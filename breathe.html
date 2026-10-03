@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Breathwork & Respiration Laboratory | Dr. Reshmi Verma</title>
+  <meta name="description" content="Interactive BOLT test, breath-hold counter, 60-second resting breath rate calculator, and guided neuromodulation breathing sanctuary with Dr. Reshmi Verma.">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%231B4D36'><path d='M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14.5v-9l6 4.5-6 4.5z'/></svg>">
+</head>
+<body>
+
+  <!-- Site Header -->
+  <header class="site-header">
+    <div class="container nav-container">
+      <a href="index.html" class="brand-logo">
+        <div class="brand-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+            <path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/>
+            <path d="M12 6a9 9 0 0 0-9 9"/>
+            <path d="M12 10a5 5 0 0 1 5 5"/>
+          </svg>
+        </div>
+        <div class="brand-text">
+          <span class="name">HealthwithReshmi™</span>
+          <span class="tagline">Dr. Reshmi Verma &bull; Functional Medicine</span>
+        </div>
+      </a>
+
+      <ul class="nav-menu">
+        <li><a href="index.html" class="nav-link">Home</a></li>
+        <li><a href="breathe.html" class="nav-link active">Breathe & BOLT</a></li>
+        <li><a href="nutrition.html" class="nav-link">Gut & Nutrition</a></li>
+        <li><a href="assessment.html" class="nav-link">Health Assessment</a></li>
+        <li><a href="booking.html" class="nav-link">Book Consultation</a></li>
+        <li class="nav-menu-mobile-cta" style="display: none; margin-top: 8px;">
+          <a href="booking.html" class="btn btn-primary" style="width: 100%; padding: 13px;">
+            <span>📅 Book Consultation</span>
+          </a>
+        </li>
+      </ul>
+
+      <div class="nav-actions">
+        <a href="booking.html" class="btn btn-primary btn-sm">
+          <span>Book Session</span>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+        </a>
+        <button class="mobile-toggle" aria-label="Toggle navigation">&#9776;</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Header -->
+  <section class="section" style="padding: 50px 0 30px; background: linear-gradient(180deg, var(--bg-secondary) 0%, var(--bg-primary) 100%);">
+    <div class="container text-center">
+      <span class="badge-pill" style="margin-bottom: 16px;">
+        <span class="pulse-dot"></span>
+        <span>Certified Oxygen Advantage & Breath Resilience Lab</span>
+      </span>
+      <h1 style="font-size: 3.2rem; max-width: 880px; margin: 0 auto 18px;">
+        Clinical Respiration & <span class="text-gradient">Vagal Neuromodulation</span>
+      </h1>
+      <p style="font-size: 1.15rem; color: var(--text-secondary); max-width: 720px; margin: 0 auto 24px;">
+        Breathing is the only autonomic function under conscious control. Discover your cellular CO₂ tolerance with the BOLT test, measure your resting respiratory rate, and recalibrate your nervous system.
+      </p>
+
+      <div style="display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;">
+        <a href="#bolt-station" class="btn btn-primary btn-sm">1. BOLT Breath-Hold Test</a>
+        <a href="#sanctuary-station" class="btn btn-secondary btn-sm">2. Guided Breath Sanctuary</a>
+        <a href="#counter-station" class="btn btn-secondary btn-sm">3. 60s Breath Counter</a>
+        <a href="#vagal-station" class="btn btn-secondary btn-sm">4. Vagal Tone Calculator</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Module 1: The BOLT Breath-Hold Station -->
+  <section class="section" id="bolt-station">
+    <div class="container">
+      <div class="section-header">
+        <span class="sub-title">Clinical Diagnostic Test</span>
+        <h2>The Body Oxygen Level Test (BOLT)</h2>
+        <p>Your BOLT score is the gold-standard measurement of functional carbon dioxide tolerance and physiological airway resilience developed by Patrick McKeown (Oxygen Advantage).</p>
+      </div>
+
+      <div class="bolt-test-card" style="max-width: 900px; margin: 0 auto;">
+        
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 32px; align-items: start;">
+          <div>
+            <h4 style="font-size: 1.3rem; margin-bottom: 12px;">Standardized Testing Protocol:</h4>
+            <div class="bolt-instructions" style="margin-top: 0;">
+              <ol>
+                <li>Sit comfortably upright in a quiet chair. Rest for 2 minutes.</li>
+                <li>Take a normal, silent, gentle breath in through your nose (2–3 seconds).</li>
+                <li>Allow a natural, silent breath out through your nose.</li>
+                <li><strong>Pinch your nose with your fingers</strong> and immediately tap <strong>"Start BOLT Hold"</strong> below.</li>
+                <li>Hold until you feel the <strong>first definite desire to breathe</strong> (an involuntary swallow or twitch of the diaphragm).</li>
+                <li>Tap <strong>"Tap At First Urge"</strong> immediately!</li>
+              </ol>
+            </div>
+            <div style="background: #FFFBEB; border: 1px solid #FCD34D; border-radius: var(--radius-sm); padding: 12px 16px; font-size: 0.82rem; color: #92400E;">
+              <strong>CRITICAL CLINICAL RULE:</strong> This is NOT a breath-holding contest or endurance challenge. Your first breath after release MUST be completely calm, silent, and through your nose. If you gasp or take a deep gulp of air, you held too long and the score is invalid!
+            </div>
+          </div>
+
+          <div>
+            <div class="bolt-counter-display" style="flex-direction: column; text-align: center; gap: 20px; padding: 36px 24px;">
+              <span style="font-size: 0.85rem; color: var(--text-muted); text-transform: uppercase; font-weight: 700; letter-spacing: 0.08em;">
+                Post-Exhale Breath Hold Timer
+              </span>
+              <div>
+                <span class="bolt-number-large" id="bolt-counter-val" style="font-size: 4.8rem;">0.0</span>
+                <span class="bolt-number-unit" style="font-size: 1.25rem;">Seconds</span>
+              </div>
+
+              <div style="display: flex; gap: 10px; width: 100%; justify-content: center;">
+                <button class="btn btn-primary btn-lg" id="bolt-start-btn" style="width: 100%;">
+                  <span>Start BOLT Hold Timer</span>
+                </button>
+                <button class="btn btn-accent btn-lg pulse-anim" id="bolt-stop-btn" style="display: none; width: 100%; font-size: 1.05rem;">
+                  Tap At First Urge To Breathe!
+                </button>
+                <button class="btn btn-secondary btn-sm" id="bolt-reset-btn" style="display: none;">Reset</button>
+              </div>
+
+              <p id="bolt-phase-hint" style="font-size: 0.85rem; color: var(--text-muted); margin: 0;">
+                Breathe normally. After a normal exhale, pinch your nose and tap start.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Result Box -->
+        <div id="bolt-result-analysis" style="display: none; background: var(--bg-secondary); border-radius: var(--radius-md); padding: 28px; border: 1px solid var(--border-medium); margin-top: 32px;">
+          <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px; flex-wrap: wrap; gap: 12px;">
+            <h4 style="font-size: 1.25rem; color: var(--emerald-deep); margin: 0;">Your Clinical Diagnostic Evaluation:</h4>
+            <span class="bolt-score-pill" id="bolt-score-tier">Analyzing...</span>
+          </div>
+
+          <div id="bolt-bohr-detail" style="font-size: 0.95rem; color: var(--text-secondary); line-height: 1.7; margin-bottom: 16px;"></div>
+          
+          <div id="bolt-protocol-text" style="font-size: 0.95rem; color: var(--emerald-deep); line-height: 1.7; background: white; padding: 20px; border-radius: var(--radius-sm); border: 1px solid var(--border-subtle); margin-bottom: 20px;"></div>
+
+          <div style="display: flex; gap: 14px; flex-wrap: wrap;">
+            <a href="booking.html" class="btn btn-primary">Schedule Consultation with Pre-Filled Score</a>
+            <a href="#vagal-station" class="btn btn-secondary">Transfer to Vagal Tone Calculator &darr;</a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Module 2: Neuromodulation Guided Breathing Sanctuary -->
+  <section class="section" id="sanctuary-station" style="background: white; border-top: 1px solid var(--border-subtle);">
+    <div class="container">
+      <div class="section-header">
+        <span class="sub-title">Interactive Autonomic Sanctuary</span>
+        <h2>Live Guided Breathing Pacer</h2>
+        <p>Synchronize your respiratory cadence with precision harmonic frequencies. Select a clinical protocol below to begin your somatic reset.</p>
+      </div>
+
+      <div class="studio-showcase" style="max-width: 960px; margin: 0 auto;">
+        
+        <!-- Protocol Tabs -->
+        <div style="display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; margin-bottom: 36px;">
+          <button class="btn btn-sm btn-primary" data-breath-protocol="478">4-7-8 Somatic Relaxation</button>
+          <button class="btn btn-sm btn-secondary" data-breath-protocol="box">Box Breathing (4-4-4-4)</button>
+          <button class="btn btn-sm btn-secondary" data-breath-protocol="coherent">Coherent Heart-Brain (5-5)</button>
+          <button class="btn btn-sm btn-secondary" data-breath-protocol="energizer">Soma Energizer (2-2)</button>
+        </div>
+
+        <p id="selected-protocol-desc" style="text-align: center; max-width: 680px; margin: 0 auto 32px; color: var(--text-secondary); font-size: 1rem;">
+          Flagship somatic autonomic regulation. 4s nasal inhalation, 7s full oxygen retention, 8s slow exhalation to trigger immediate parasympathetic baroreflex slowing.
+        </p>
+
+        <!-- Visualizer Circle -->
+        <div class="breath-visualizer-container" style="max-width: 500px; margin: 0 auto; padding: 48px 32px;">
+          <div class="breath-circle-wrapper">
+            <div class="breath-glow-ring"></div>
+            <div class="breath-orb" id="breath-interactive-orb">
+              <div class="breath-orb-status" id="breath-phase-label">READY</div>
+              <div class="breath-orb-counter" id="breath-phase-seconds">4s</div>
+            </div>
+          </div>
+
+          <p id="breath-sub-hint" style="font-size: 0.95rem; color: var(--text-muted); margin-bottom: 24px; text-align: center;">
+            Click button below to initiate guided pacing
+          </p>
+
+          <div class="breath-controls-bar">
+            <button class="btn btn-primary btn-lg" id="breath-sanctuary-toggle">Start Guided Session</button>
+            <button class="btn-sound-toggle" id="breath-sound-toggle-btn">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path></svg>
+              <span>Sound: 432Hz ON</span>
+            </button>
+          </div>
+
+          <div style="display: flex; gap: 32px; margin-top: 28px; font-size: 0.9rem; color: var(--text-muted);">
+            <div>Cycles Completed: <strong id="breath-cycle-count" style="color: var(--emerald-deep); font-size: 1.1rem;">0</strong></div>
+            <div>Elapsed Time: <strong id="breath-session-timer" style="color: var(--emerald-deep); font-size: 1.1rem;">00:00</strong></div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Module 3: 60-Second Live Resting Breath Counter -->
+  <section class="section" id="counter-station" style="background: var(--bg-secondary);">
+    <div class="container">
+      <div class="section-header">
+        <span class="sub-title">Resting Respiratory Rate</span>
+        <h2>60-Second Live Breath Counter</h2>
+        <p>Breathe naturally without trying to control your rhythm. Each time you finish a natural exhale, tap the button below. The tool calculates your resting breaths per minute.</p>
+      </div>
+
+      <div style="max-width: 680px; margin: 0 auto; background: white; border-radius: var(--radius-xl); padding: 40px; border: 1px solid var(--border-medium); box-shadow: var(--shadow-md); text-align: center;">
+        
+        <div style="display: flex; justify-content: space-around; margin-bottom: 32px; padding-bottom: 24px; border-bottom: 1px solid var(--border-subtle);">
+          <div>
+            <span style="font-size: 0.85rem; color: var(--text-muted); text-transform: uppercase; font-weight: 700;">Time Remaining</span>
+            <div id="bpm-timer-val" style="font-family: var(--font-serif); font-size: 2.8rem; font-weight: 700; color: var(--emerald-deep);">60s</div>
+          </div>
+          <div>
+            <span style="font-size: 0.85rem; color: var(--text-muted); text-transform: uppercase; font-weight: 700;">Exhales Recorded</span>
+            <div id="bpm-taps-val" style="font-family: var(--font-serif); font-size: 2.8rem; font-weight: 700; color: var(--teal-accent);">0</div>
+          </div>
+        </div>
+
+        <div style="margin-bottom: 24px;">
+          <button class="btn btn-primary btn-lg" id="bpm-start-btn">Start 60s Breath Count</button>
+          <button class="btn btn-accent btn-lg pulse-anim" id="bpm-tap-btn" style="display: none; padding: 18px 40px; font-size: 1.15rem;">
+            TAP ON EACH EXHALE
+          </button>
+          <button class="btn btn-secondary btn-sm" id="bpm-reset-btn" style="display: none; margin-left: 12px;">Reset</button>
+        </div>
+
+        <p style="font-size: 0.88rem; color: var(--text-muted);">
+          Rest quietly at your desk. Tap immediately upon completing each breath cycle (Inhale + Exhale = 1 breath).
+        </p>
+
+        <!-- Result Box -->
+        <div id="bpm-result-box" style="display: none; background: var(--bg-secondary); border-radius: var(--radius-md); padding: 24px; border: 1px solid var(--border-medium); margin-top: 28px; text-align: left;">
+          <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px;">
+            <span style="font-weight: 700; font-size: 1rem; color: var(--emerald-deep);">Resting Respiratory Rate:</span>
+            <span id="bpm-score-val" style="font-family: var(--font-serif); font-size: 1.5rem; font-weight: 700; color: var(--emerald-primary);">-- Breaths / Min</span>
+          </div>
+          <div id="bpm-diag-val" style="font-size: 0.92rem; color: var(--text-secondary); line-height: 1.6; margin-bottom: 16px;"></div>
+          <a href="#vagal-station" class="btn btn-secondary btn-sm">Use in Vagal Tone Calculator &darr;</a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Module 4: Vagal Tone Multi-Factor Index Calculator -->
+  <section class="section" id="vagal-station" style="background: white;">
+    <div class="container">
+      <div class="section-header">
+        <span class="sub-title">Autonomic Equilibrium</span>
+        <h2>Vagal Tone Auto-Assessment Calculator</h2>
+        <p>Combining your BOLT score, resting respiratory rate, digestive vitality, and stress rebound speed into a unified parasympathetic score.</p>
+      </div>
+
+      <div style="max-width: 800px; margin: 0 auto; background: var(--bg-card); border-radius: var(--radius-xl); padding: 44px; border: 1px solid var(--border-medium); box-shadow: var(--shadow-lg);">
+        
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 28px; margin-bottom: 32px;">
+          <div>
+            <label style="font-weight: 700; font-size: 0.95rem; color: var(--emerald-deep); display: block; margin-bottom: 8px;">
+              BOLT Score (Seconds)
+            </label>
+            <input type="number" id="vagal-bolt-input" placeholder="e.g. 22" style="width: 100%; padding: 12px 16px; border: 1px solid var(--border-medium); border-radius: var(--radius-sm); font-size: 1rem;">
+            <span style="font-size: 0.78rem; color: var(--text-muted); margin-top: 4px; display: block;">Tested via our BOLT timer above</span>
+          </div>
+
+          <div>
+            <label style="font-weight: 700; font-size: 0.95rem; color: var(--emerald-deep); display: block; margin-bottom: 8px;">
+              Resting Breaths Per Minute (BPM)
+            </label>
+            <input type="number" id="vagal-bpm-input" placeholder="e.g. 13" style="width: 100%; padding: 12px 16px; border: 1px solid var(--border-medium); border-radius: var(--radius-sm); font-size: 1rem;">
+            <span style="font-size: 0.78rem; color: var(--text-muted); margin-top: 4px; display: block;">Normal adult baseline: 12–16 BPM</span>
+          </div>
+        </div>
+
+        <div style="margin-bottom: 28px;">
+          <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
+            <label style="font-weight: 700; font-size: 0.95rem; color: var(--emerald-deep);">
+              Digestive Comfort & Motility (1 = Severe Reflux/Bloat, 10 = Effortless Digestion)
+            </label>
+          </div>
+          <input type="range" id="vagal-gut-slider" min="1" max="10" value="6" style="width: 100%; accent-color: var(--emerald-primary);">
+        </div>
+
+        <div style="margin-bottom: 36px;">
+          <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
+            <label style="font-weight: 700; font-size: 0.95rem; color: var(--emerald-deep);">
+              Stress Rebound Poise (1 = Chronic Anxiety Surges, 10 = Calm & Grounded)
+            </label>
+          </div>
+          <input type="range" id="vagal-stress-slider" min="1" max="10" value="6" style="width: 100%; accent-color: var(--emerald-primary);">
+        </div>
+
+        <div style="text-align: center;">
+          <button class="btn btn-primary btn-lg" id="calc-vagal-btn">Calculate Vagal Tone Index</button>
+        </div>
+
+        <!-- Vagal Result Display -->
+        <div id="vagal-calc-result" style="display: none; background: var(--bg-secondary); border-radius: var(--radius-md); padding: 28px; border: 1px solid var(--border-medium); margin-top: 36px;">
+          <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 14px; flex-wrap: wrap;">
+            <div>
+              <span style="font-size: 0.85rem; color: var(--text-muted); text-transform: uppercase; font-weight: 700;">Vagal Resilience Index</span>
+              <div id="vagal-score-number" style="font-family: var(--font-serif); font-size: 2.8rem; font-weight: 700; color: var(--emerald-deep);">--/100</div>
+            </div>
+            <div id="vagal-status-label" style="font-weight: 700; font-size: 1.05rem; color: var(--emerald-primary); background: white; padding: 10px 20px; border-radius: var(--radius-full); border: 1px solid var(--border-subtle);">
+              --
+            </div>
+          </div>
+
+          <div id="vagal-prescribed-advice" style="font-size: 0.95rem; color: var(--text-secondary); line-height: 1.7; background: white; padding: 20px; border-radius: var(--radius-sm); border: 1px solid var(--border-subtle); margin-top: 16px;"></div>
+
+          <div style="margin-top: 24px; text-align: center;">
+            <a href="booking.html" class="btn btn-primary">Book Consultation to Address Autonomic Dysregulation</a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- The Science Section: Bohr Effect & CO2 Tolerance -->
+  <section class="section" style="background: var(--sand-warm); border-top: 1px solid var(--sand-border);">
+    <div class="container">
+      <div class="section-header">
+        <span class="sub-title">Respiratory Biochemistry</span>
+        <h2>The Medical Science of Breathwork</h2>
+        <p>Why conventional deep breathing advice can actually deplete cellular oxygen, and how carbon dioxide recalibration changes everything.</p>
+      </div>
+
+      <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; max-width: 1100px; margin: 0 auto;">
+        
+        <div style="background: white; border-radius: var(--radius-md); padding: 32px; border: 1px solid var(--border-subtle); box-shadow: var(--shadow-sm);">
+          <div style="font-size: 1.8rem; color: var(--emerald-primary); margin-bottom: 16px; font-weight: 800;">01</div>
+          <h4 style="font-size: 1.3rem; margin-bottom: 12px; color: var(--emerald-deep);">The Bohr Effect</h4>
+          <p style="font-size: 0.92rem; color: var(--text-secondary); line-height: 1.6;">
+            Oxygen in the bloodstream binds to hemoglobin. It cannot be released into tissues, the brain, or muscles without adequate carbon dioxide. Over-breathing removes CO₂, locking oxygen onto hemoglobin and paradoxically suffocating cells.
+          </p>
+        </div>
+
+        <div style="background: white; border-radius: var(--radius-md); padding: 32px; border: 1px solid var(--border-subtle); box-shadow: var(--shadow-sm);">
+          <div style="font-size: 1.8rem; color: var(--teal-accent); margin-bottom: 16px; font-weight: 800;">02</div>
+          <h4 style="font-size: 1.3rem; margin-bottom: 12px; color: var(--emerald-deep);">Chemoreceptor Pacing</h4>
+          <p style="font-size: 0.92rem; color: var(--text-secondary); line-height: 1.6;">
+            Your respiratory urge is not triggered by a lack of oxygen—it is triggered by sensitive chemoreceptors in your brainstem detecting CO₂ build-up. Regular post-exhale breath holds train these receptors to tolerate higher CO₂, silencing anxiety loops.
+          </p>
+        </div>
+
+        <div style="background: white; border-radius: var(--radius-md); padding: 32px; border: 1px solid var(--border-subtle); box-shadow: var(--shadow-sm);">
+          <div style="font-size: 1.8rem; color: var(--sand-gold); margin-bottom: 16px; font-weight: 800;">03</div>
+          <h4 style="font-size: 1.3rem; margin-bottom: 12px; color: var(--emerald-deep);">Vagal Efferent Firing</h4>
+          <p style="font-size: 0.92rem; color: var(--text-secondary); line-height: 1.6;">
+            Extended slow exhalations (such as 4-7-8 or 5-5 cadence) stimulate the pulmonary stretch receptors. This activates the vagus nerve brake, releasing acetylcholine to instantly lower heart rate, blood pressure, and cortisol.
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="brand-logo">
+            <div class="brand-icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/></svg>
+            </div>
+            <div class="brand-text">
+              <span class="name">HealthwithReshmi™</span>
+              <span class="tagline">Dr. Reshmi Verma</span>
+            </div>
+          </div>
+          <p>Science-led, human-centred functional nutrition, respiratory resilience, and cellular longevity protocols.</p>
+        </div>
+
+        <div class="footer-col">
+          <h5>Navigation</h5>
+          <ul class="footer-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="breathe.html">Breathe & BOLT</a></li>
+            <li><a href="nutrition.html">Gut & Nutrition</a></li>
+            <li><a href="assessment.html">Health Assessment</a></li>
+            <li><a href="booking.html">Book Consultation</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h5>Clinical Breathwork</h5>
+          <ul class="footer-links">
+            <li><a href="#bolt-station">BOLT Score Test</a></li>
+            <li><a href="#sanctuary-station">Guided 4-7-8 Breathing</a></li>
+            <li><a href="#sanctuary-station">Box Breathing 4-4-4-4</a></li>
+            <li><a href="#counter-station">60-Second Breath Counter</a></li>
+            <li><a href="#vagal-station">Vagal Tone Auto-Assessment</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h5>Direct Contact</h5>
+          <ul class="footer-links">
+            <li style="color: var(--text-secondary); font-size: 0.9rem;">
+              <strong>Rainbow Medinova Diagnostics</strong><br>
+              Specialized Functional Medicine Clinic
+            </li>
+            <li style="margin-top: 8px;">
+              <a href="mailto:consult@reshmiverma.com">consult@reshmiverma.com</a>
+            </li>
+            <li>
+              <a href="https://reshmiverma.com" target="_blank" rel="noopener">Official: reshmiverma.com</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div>&copy; 2026 HealthwithReshmi™. Dr. Reshmi Verma. All rights reserved.</div>
+        <div style="font-size: 0.78rem; max-width: 500px; text-align: right; color: var(--text-muted);">
+          Clinical Disclaimer: This breathwork suite is an educational self-regulation tool and does not constitute medical diagnosis. If you are pregnant or experience cardiac conditions, consult your physician first.
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Floating Ask Eva -->
+  <div class="eva-floating-trigger" id="eva-trigger">
+    <div class="eva-avatar">E</div>
+    <div style="display: flex; flex-direction: column; text-align: left;">
+      <span style="font-weight: 700; font-size: 0.9rem; line-height: 1.1;">Ask Eva</span>
+      <span style="font-size: 0.72rem; color: #D8F3DC;">Clinical Health Assistant</span>
+    </div>
+  </div>
+
+  <div class="eva-chat-drawer" id="eva-drawer">
+    <div class="eva-header">
+      <div style="display: flex; align-items: center; gap: 10px;">
+        <div class="eva-avatar" style="background: white; color: var(--emerald-deep);">E</div>
+        <div>
+          <h4>Eva &bull; HealthwithReshmi™</h4>
+          <p>Educational Health Companion</p>
+        </div>
+      </div>
+      <button class="eva-close-btn" id="eva-close">&times;</button>
+    </div>
+    <div class="eva-body" id="eva-body">
+      <div class="chat-bubble bot">
+        Hi! I can explain your BOLT score, guide you through the 4-7-8 or Box breathing protocols, or help you schedule a consultation with Dr. Reshmi Verma.
+      </div>
+      <div class="eva-quick-chips">
+        <span class="quick-chip">What is BOLT?</span>
+        <span class="quick-chip">How to improve my score?</span>
+        <span class="quick-chip">Why do I chest breathe?</span>
+        <span class="quick-chip">Book Consultation</span>
+      </div>
+    </div>
+    <div class="eva-footer">
+      <input type="text" class="eva-input" id="eva-input" placeholder="Ask about breathing or vagal tone...">
+      <button class="eva-send-btn" id="eva-send" aria-label="Send message">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- Mobile Sticky Bottom Quick-Action Bar -->
+  <div class="mobile-bottom-bar">
+    <a href="assessment.html" class="btn btn-secondary">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14.5v-9l6 4.5-6 4.5z"/></svg>
+      <span>Free Assessment</span>
+    </a>
+    <a href="booking.html" class="btn btn-primary">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+      <span>Book Session</span>
+    </a>
+  </div>
+
+  <!-- Scripts -->
+  <script type="module" src="js/breathwork.js"></script>
+  <script type="module" src="js/main.js"></script>
+</body>
+</html>

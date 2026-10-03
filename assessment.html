@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Health Resilience Assessment | Dr. Reshmi Verma</title>
+  <meta name="description" content="Take the free 5-minute Health Resilience Assessment with Dr. Reshmi Verma. Discover your gut, breath, hormonal, and sleep scores.">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%231B4D36'><path d='M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14.5v-9l6 4.5-6 4.5z'/></svg>">
+</head>
+<body>
+
+  <!-- Site Header -->
+  <header class="site-header">
+    <div class="container nav-container">
+      <a href="index.html" class="brand-logo">
+        <div class="brand-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+            <path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/>
+            <path d="M12 6a9 9 0 0 0-9 9"/>
+            <path d="M12 10a5 5 0 0 1 5 5"/>
+          </svg>
+        </div>
+        <div class="brand-text">
+          <span class="name">HealthwithReshmi™</span>
+          <span class="tagline">Dr. Reshmi Verma &bull; Functional Medicine</span>
+        </div>
+      </a>
+
+      <ul class="nav-menu">
+        <li><a href="index.html" class="nav-link">Home</a></li>
+        <li><a href="breathe.html" class="nav-link">Breathe & BOLT</a></li>
+        <li><a href="nutrition.html" class="nav-link">Gut & Nutrition</a></li>
+        <li><a href="assessment.html" class="nav-link active">Health Assessment</a></li>
+        <li><a href="booking.html" class="nav-link">Book Consultation</a></li>
+        <li class="nav-menu-mobile-cta" style="display: none; margin-top: 8px;">
+          <a href="booking.html" class="btn btn-primary" style="width: 100%; padding: 13px;">
+            <span>📅 Book Consultation</span>
+          </a>
+        </li>
+      </ul>
+
+      <div class="nav-actions">
+        <a href="booking.html" class="btn btn-primary btn-sm">
+          <span>Book Session</span>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+        </a>
+        <button class="mobile-toggle" aria-label="Toggle navigation">&#9776;</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Assessment Section -->
+  <section class="section">
+    <div class="container">
+      
+      <div class="assessment-card" id="assessment-quiz-container">
+        
+        <!-- Active Quiz View -->
+        <div id="quiz-active-view">
+          <div class="assessment-progress">
+            <button type="button" id="assessment-prev-btn" class="btn btn-secondary btn-sm" style="display: none; padding: 6px 14px;">
+              &larr; Back
+            </button>
+            <div class="progress-track">
+              <div class="progress-fill" id="assessment-progress-fill" style="width: 20%;"></div>
+            </div>
+            <span id="assessment-step-num" style="font-size: 0.85rem; font-weight: 700; color: var(--emerald-primary);">
+              Question 1 of 5
+            </span>
+          </div>
+
+          <h2 class="question-title" id="assessment-q-title">What health challenge are you currently facing?</h2>
+          <p class="question-subtitle" id="assessment-q-subtitle">Select the one that resonates most with your day-to-day feeling.</p>
+
+          <div class="options-list" id="assessment-options-box">
+            <!-- Rendered by JS -->
+          </div>
+        </div>
+
+        <!-- Results View (Hidden Initially) -->
+        <div id="assessment-results-box" class="results-container">
+          <div style="text-align: center; margin-bottom: 32px;">
+            <div style="display: inline-flex; align-items: center; justify-content: center; width: 64px; height: 64px; border-radius: 50%; background: var(--status-optimal-bg); color: var(--status-optimal); font-size: 2rem; margin-bottom: 16px;">
+              &#10003;
+            </div>
+            <span class="sub-title">Your Clinical Snapshot</span>
+            <h2 style="font-size: 2.4rem; margin-bottom: 12px;">Health Resilience Evaluation</h2>
+            <p style="color: var(--text-secondary); max-width: 600px; margin: 0 auto;">
+              Here is your multi-domain biological profile based on your symptoms and timeline.
+            </p>
+          </div>
+
+          <!-- Overall Score Card -->
+          <div style="background: linear-gradient(135deg, var(--bg-secondary) 0%, white 100%); border-radius: var(--radius-lg); padding: 32px; border: 1px solid var(--border-medium); text-align: center; margin-bottom: 32px;">
+            <span style="font-size: 0.85rem; color: var(--text-muted); text-transform: uppercase; font-weight: 700; letter-spacing: 0.08em;">
+              Composite Resilience Index
+            </span>
+            <div id="result-overall-score" style="font-family: var(--font-serif); font-size: 4rem; font-weight: 700; color: var(--emerald-deep); line-height: 1.1; margin: 8px 0;">
+              --%
+            </div>
+            <div style="font-size: 0.95rem; color: var(--emerald-primary); font-weight: 600;">
+              Primary Focus: <span id="result-primary-focus">Gut & Respiration</span>
+            </div>
+          </div>
+
+          <!-- Domain Bars -->
+          <div class="scores-radar-grid">
+            <div class="domain-score-box">
+              <div class="domain-name">
+                <span>Gut Mucosal & Digestive Health</span>
+                <span id="score-gut-val">--/100</span>
+              </div>
+              <div class="domain-bar">
+                <div class="domain-bar-fill" id="bar-gut-fill" style="width: 50%;"></div>
+              </div>
+            </div>
+
+            <div class="domain-score-box">
+              <div class="domain-name">
+                <span>Breath Resilience & CO₂ Tolerance</span>
+                <span id="score-breath-val">--/100</span>
+              </div>
+              <div class="domain-bar">
+                <div class="domain-bar-fill" id="bar-breath-fill" style="width: 50%;"></div>
+              </div>
+            </div>
+
+            <div class="domain-score-box">
+              <div class="domain-name">
+                <span>Hormonal & Circadian Balance</span>
+                <span id="score-hormone-val">--/100</span>
+              </div>
+              <div class="domain-bar">
+                <div class="domain-bar-fill" id="bar-hormone-fill" style="width: 50%;"></div>
+              </div>
+            </div>
+
+            <div class="domain-score-box">
+              <div class="domain-name">
+                <span>Sleep Architecture & Airway Health</span>
+                <span id="score-sleep-val">--/100</span>
+              </div>
+              <div class="domain-bar">
+                <div class="domain-bar-fill" id="bar-sleep-fill" style="width: 50%;"></div>
+              </div>
+            </div>
+          </div>
+
+          <div id="result-clinical-summary" style="background: white; border-radius: var(--radius-md); padding: 24px; border: 1px solid var(--border-subtle); line-height: 1.7; font-size: 0.95rem; color: var(--text-secondary); margin-bottom: 32px;"></div>
+
+          <div style="display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;">
+            <a href="booking.html" class="btn btn-primary btn-lg">
+              <span>Book Health Clarity Session With These Results</span>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+            </a>
+            <button type="button" class="btn btn-secondary btn-lg" id="assessment-restart-btn">
+              Retake Assessment
+            </button>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="brand-logo">
+            <div class="brand-icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/></svg>
+            </div>
+            <div class="brand-text">
+              <span class="name">HealthwithReshmi™</span>
+              <span class="tagline">Dr. Reshmi Verma</span>
+            </div>
+          </div>
+          <p>Science-led, human-centred functional nutrition, respiratory resilience, and cellular longevity protocols.</p>
+        </div>
+
+        <div class="footer-col">
+          <h5>Navigation</h5>
+          <ul class="footer-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="breathe.html">Breathe & BOLT</a></li>
+            <li><a href="nutrition.html">Gut & Nutrition</a></li>
+            <li><a href="assessment.html">Health Assessment</a></li>
+            <li><a href="booking.html">Book Consultation</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h5>Assessment Domains</h5>
+          <ul class="footer-links">
+            <li><a href="nutrition.html">Gut Mucosal Barrier</a></li>
+            <li><a href="breathe.html">CO₂ Tolerance (BOLT)</a></li>
+            <li><a href="nutrition.html">Mitochondrial Health</a></li>
+            <li><a href="breathe.html">Sleep & Airway Pacing</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h5>Direct Contact</h5>
+          <ul class="footer-links">
+            <li style="color: var(--text-secondary); font-size: 0.9rem;">
+              <strong>Rainbow Medinova Diagnostics</strong><br>
+              Specialized Functional Medicine Clinic
+            </li>
+            <li style="margin-top: 8px;">
+              <a href="mailto:consult@reshmiverma.com">consult@reshmiverma.com</a>
+            </li>
+            <li>
+              <a href="https://reshmiverma.com" target="_blank" rel="noopener">Official: reshmiverma.com</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div>&copy; 2026 HealthwithReshmi™. Dr. Reshmi Verma. All rights reserved.</div>
+        <div style="font-size: 0.78rem; max-width: 500px; text-align: right; color: var(--text-muted);">
+          Clinical Disclaimer: This assessment provides educational insights based on your self-reported symptoms and is not a clinical diagnosis or medical prescription.
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Mobile Sticky Bottom Quick-Action Bar -->
+  <div class="mobile-bottom-bar">
+    <a href="breathe.html" class="btn btn-secondary">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="10"></circle><path d="M8 12a4 4 0 0 1 8 0"></path></svg>
+      <span>BOLT Test</span>
+    </a>
+    <a href="booking.html" class="btn btn-primary">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+      <span>Book Consultation</span>
+    </a>
+  </div>
+
+  <script type="module" src="js/assessment.js"></script>
+  <script type="module" src="js/main.js"></script>
+</body>
+</html>
