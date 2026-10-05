@@ -1,7 +1,8 @@
 /**
- * Dr. Reshmi Verma — Master UI/UX & Interactive Logic
+ * Reshmi Verma — Master UI/UX & Interactive Logic
+ * Functional Nutritionist & Breathwork Specialist
  * Features:
- * - Ask Eva AI Assistant Widget (Medical, Nutrition & Breathwork knowledge)
+ * - Ask Eva AI Assistant Widget (Nutrition & Breathwork knowledge)
  * - Navigation Scroll Dynamics & Mobile Drawer
  * - Interactive Accordions & Modals
  */
@@ -73,15 +74,15 @@
       },
       {
         triggers: ['gut', 'bloat', 'acid', 'reflux', 'digestion', 'ibs', 'microbiome'],
-        reply: "Dr. Reshmi Verma's gut mucosal protocol treats the intestinal barrier as a dynamic ecosystem. We address leaky gut, dysbiosis, and the gut-brain axis using targeted phyto-botanicals, polyphenols, and vagus nerve stimulation."
+        reply: "Reshmi Verma's gut mucosal protocol treats the intestinal barrier as a dynamic ecosystem. We address leaky gut, dysbiosis, and the gut-brain axis using targeted phyto-botanicals, polyphenols, and vagus nerve stimulation."
       },
       {
-        triggers: ['reshmi', 'doctor', 'bio', 'who', 'qualification'],
-        reply: "Dr. Reshmi Verma is a Biotechnologist, Functional Nutritionist, Certified Oxygen Advantage Coach, and Director of Rainbow Medinova Diagnostic Services with 20+ years in healthcare diagnostics. Having personally transformed her health and lost 38+ kg, she bridges hard science with deep empathy."
+        triggers: ['reshmi', 'nutritionist', 'bio', 'who', 'qualification'],
+        reply: "Reshmi Verma is a Biotechnologist, Functional Nutritionist, Certified Oxygen Advantage Coach, and Director of Rainbow Medinova Diagnostic Services with 20+ years in healthcare diagnostics. Having personally transformed her health and lost 38+ kg, she bridges hard science with deep empathy."
       },
       {
         triggers: ['samya', 'framework', 'approach', 'process'],
-        reply: "SAMYA is Dr. Reshmi's signature framework: 1. See the signs, 2. Ask the right questions, 3. Map the patterns across gut, breath, hormones & sleep, 4. Your customized solution, and 5. Achieve lasting wellness."
+        reply: "SAMYA is Reshmi Verma's signature framework: 1. See the signs, 2. Ask the right questions, 3. Map the patterns across gut, breath, hormones & sleep, 4. Your customized solution, and 5. Achieve lasting wellness."
       },
       {
         triggers: ['consult', 'book', 'appointment', 'fee', 'price', 'session'],
@@ -127,7 +128,7 @@
         }
 
         if (!matchedReply) {
-          matchedReply = "I understand. Nutrition, breathwork, and metabolic health are deeply connected. You can explore our interactive BOLT test or schedule a 1-on-1 Health Clarity Session with Dr. Reshmi Verma for an individualized roadmap.";
+          matchedReply = "I understand. Nutrition, breathwork, and metabolic health are deeply connected. You can explore our interactive BOLT test or schedule a 1-on-1 Health Clarity Session with Reshmi Verma for an individualized roadmap.";
         }
 
         appendMessage('bot', matchedReply);
@@ -166,10 +167,32 @@
     });
   }
 
+  // 5. Instagram Reels Side-Scroll Carousel Controls
+  function initReelsCarousel() {
+    const carousel = document.getElementById('reels-carousel');
+    const prevBtn = document.getElementById('reels-prev-btn');
+    const nextBtn = document.getElementById('reels-next-btn');
+
+    if (!carousel) return;
+
+    if (prevBtn) {
+      prevBtn.addEventListener('click', () => {
+        carousel.scrollBy({ left: -300, behavior: 'smooth' });
+      });
+    }
+
+    if (nextBtn) {
+      nextBtn.addEventListener('click', () => {
+        carousel.scrollBy({ left: 300, behavior: 'smooth' });
+      });
+    }
+  }
+
   document.addEventListener('DOMContentLoaded', () => {
     initHeaderScroll();
     initMobileMenu();
     initEvaAssistant();
     initAccordions();
+    initReelsCarousel();
   });
 })();

@@ -1,5 +1,5 @@
 /* ==========================================================================
-   Dr. Reshmi Verma — Clinical & Holistic Medical Aesthetic Design System
+   Reshmi Verma — Clinical & Holistic Functional Nutrition Design System
    Philosophy: Serene, Light, Pristine Medical Luxury (Strictly Light Mode)
    Colors: Healing Sage Greens, Soothing Mint, Pure Porcelain, Warm Sand, Slate
    ========================================================================== */
@@ -1102,7 +1102,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /* ==========================================================================
-   About Dr. Reshmi Verma Section
+   About Reshmi Verma Section
    ========================================================================== */
 .about-grid {
   display: grid;
@@ -2266,7 +2266,7 @@ h1, h2, h3, h4, h5, h6 {
   }
 }
 
-/* About Dr. Reshmi on Mobile */
+/* About Reshmi Verma on Mobile */
 @media (max-width: 768px) {
   .about-content h2 {
     font-size: 2rem;
@@ -2385,5 +2385,501 @@ h1, h2, h3, h4, h5, h6 {
     width: 100%;
   }
 }
+
+/* ==========================================================================
+   Social Media Redirect Icons (Instagram, LinkedIn, YouTube)
+   ========================================================================== */
+.header-social-links {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-right: 8px;
+}
+
+.header-social-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.85);
+  border: 1px solid var(--border-medium);
+  color: var(--text-secondary);
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.header-social-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.header-social-btn.instagram:hover {
+  color: #E1306C;
+  border-color: rgba(225, 48, 108, 0.35);
+  background: rgba(225, 48, 108, 0.06);
+}
+
+.header-social-btn.linkedin:hover {
+  color: #0A66C2;
+  border-color: rgba(10, 102, 194, 0.35);
+  background: rgba(10, 102, 194, 0.06);
+}
+
+.header-social-btn.youtube:hover {
+  color: #FF0000;
+  border-color: rgba(255, 0, 0, 0.35);
+  background: rgba(255, 0, 0, 0.06);
+}
+
+@media (max-width: 992px) {
+  .header-social-links {
+    display: none; /* Shown in mobile drawer and footer */
+  }
+}
+
+/* Footer Social Wrapper */
+.footer-social-wrapper {
+  margin-top: 20px;
+}
+
+.footer-social-label {
+  font-size: 0.82rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--emerald-deep);
+  margin-bottom: 10px;
+  display: block;
+}
+
+.footer-social-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.footer-social-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 14px;
+  border-radius: var(--radius-full);
+  background: white;
+  border: 1px solid var(--border-medium);
+  color: var(--text-primary);
+  font-size: 0.84rem;
+  font-weight: 600;
+  transition: all 0.25s ease;
+  box-shadow: var(--shadow-sm);
+  text-decoration: none;
+}
+
+.footer-social-btn svg {
+  flex-shrink: 0;
+  transition: transform 0.2s ease;
+}
+
+.footer-social-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.footer-social-btn:hover svg {
+  transform: scale(1.1);
+}
+
+.footer-social-btn.instagram:hover {
+  border-color: #E1306C;
+  color: #E1306C;
+  background: #FFF5F8;
+}
+
+.footer-social-btn.linkedin:hover {
+  border-color: #0A66C2;
+  color: #0A66C2;
+  background: #F4F8FD;
+}
+
+.footer-social-btn.youtube:hover {
+  border-color: #FF0000;
+  color: #FF0000;
+  background: #FFF5F5;
+}
+
+/* ==========================================================================
+   Instagram Reels Side-Scrolling Section
+   ========================================================================== */
+.reels-section {
+  position: relative;
+  background: linear-gradient(180deg, #FFFFFF 0%, var(--bg-secondary) 100%);
+  padding: 80px 0;
+  border-top: 1px solid var(--border-subtle);
+  border-bottom: 1px solid var(--border-subtle);
+  overflow: hidden;
+}
+
+.reels-header-row {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  margin-bottom: 32px;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+
+.reels-header-content {
+  max-width: 620px;
+}
+
+.reels-header-content .badge-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 14px;
+  border-radius: var(--radius-full);
+  background: rgba(225, 48, 108, 0.08);
+  border: 1px solid rgba(225, 48, 108, 0.25);
+  color: #E1306C;
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin-bottom: 12px;
+}
+
+.reels-header-content h2 {
+  font-size: 2.3rem;
+  margin-bottom: 10px;
+  line-height: 1.2;
+}
+
+.reels-header-content p {
+  color: var(--text-secondary);
+  font-size: 1.05rem;
+  margin: 0;
+  line-height: 1.5;
+}
+
+.reels-nav-controls {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.reels-scroll-arrow {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: white;
+  border: 1px solid var(--border-medium);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--emerald-deep);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: var(--shadow-sm);
+}
+
+.reels-scroll-arrow:hover {
+  background: var(--emerald-deep);
+  color: white;
+  border-color: var(--emerald-deep);
+  transform: scale(1.06);
+}
+
+.reels-scroll-arrow:active {
+  transform: scale(0.96);
+}
+
+/* Side Scrolling Carousel */
+.reels-carousel-container {
+  position: relative;
+  width: 100%;
+}
+
+.reels-carousel {
+  display: flex;
+  gap: 20px;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  scroll-snap-type: x mandatory;
+  padding: 12px 4px 28px 4px;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
+  scrollbar-color: var(--emerald-primary) var(--border-subtle);
+}
+
+.reels-carousel::-webkit-scrollbar {
+  height: 6px;
+}
+
+.reels-carousel::-webkit-scrollbar-track {
+  background: var(--border-subtle);
+  border-radius: 10px;
+}
+
+.reels-carousel::-webkit-scrollbar-thumb {
+  background: var(--emerald-primary);
+  border-radius: 10px;
+}
+
+/* Individual Reel Card */
+.reel-card {
+  flex: 0 0 280px;
+  width: 280px;
+  height: 480px;
+  position: relative;
+  border-radius: 20px;
+  overflow: hidden;
+  scroll-snap-align: start;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s ease;
+  background: #111;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+.reel-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 40px rgba(27, 77, 54, 0.18);
+}
+
+.reel-cover-img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  filter: brightness(0.92);
+}
+
+.reel-card:hover .reel-cover-img {
+  transform: scale(1.05);
+}
+
+.reel-gradient-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0) 40%, rgba(0, 0, 0, 0.88) 100%);
+  pointer-events: none;
+}
+
+.reel-top-bar {
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  right: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  z-index: 2;
+}
+
+.reel-badge-ig {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  border-radius: var(--radius-full);
+  background: rgba(0, 0, 0, 0.55);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  color: white;
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+
+.reel-badge-ig svg {
+  color: #FF5E8E;
+}
+
+.reel-duration-badge {
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.85);
+  background: rgba(0, 0, 0, 0.45);
+  padding: 3px 8px;
+  border-radius: var(--radius-full);
+  backdrop-filter: blur(6px);
+}
+
+.reel-play-icon {
+  position: absolute;
+  top: 42%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.3);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1.5px solid rgba(255, 255, 255, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  z-index: 2;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+.reel-play-icon svg {
+  transform: translateX(1.5px);
+}
+
+.reel-card:hover .reel-play-icon {
+  transform: translate(-50%, -50%) scale(1.15);
+  background: #E1306C;
+  border-color: #E1306C;
+  box-shadow: 0 0 25px rgba(225, 48, 108, 0.6);
+}
+
+.reel-content-bottom {
+  position: relative;
+  z-index: 2;
+  padding: 18px 16px;
+  color: white;
+}
+
+.reel-category {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #52B788;
+  margin-bottom: 6px;
+  display: block;
+}
+
+.reel-title {
+  font-size: 1.05rem;
+  font-weight: 700;
+  line-height: 1.35;
+  color: white;
+  margin-bottom: 12px;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.reel-meta-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 0.78rem;
+  color: rgba(255, 255, 255, 0.8);
+  padding-top: 8px;
+  border-top: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.reel-redirect-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  color: #FF5E8E;
+  font-weight: 700;
+  transition: transform 0.2s ease;
+}
+
+.reel-card:hover .reel-redirect-cta {
+  transform: translateX(3px);
+  color: white;
+}
+
+.reel-card-overlay-link {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 3;
+}
+
+/* Reels Social Channels Banner */
+.reels-channels-bar {
+  margin-top: 36px;
+  background: white;
+  border-radius: var(--radius-lg);
+  padding: 24px 32px;
+  border: 1px solid var(--border-medium);
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.reels-channels-info {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.reels-channels-avatar {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid var(--emerald-primary);
+}
+
+.reels-channels-text h4 {
+  font-size: 1.1rem;
+  margin-bottom: 2px;
+  color: var(--emerald-deep);
+}
+
+.reels-channels-text p {
+  font-size: 0.88rem;
+  color: var(--text-secondary);
+  margin: 0;
+}
+
+.reels-channels-links {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+@media (max-width: 768px) {
+  .reels-section {
+    padding: 56px 0;
+  }
+  .reels-header-content h2 {
+    font-size: 1.8rem;
+  }
+  .reel-card {
+    flex: 0 0 250px;
+    width: 250px;
+    height: 430px;
+  }
+  .reels-channels-bar {
+    padding: 20px;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .reels-channels-links {
+    width: 100%;
+  }
+  .reels-channels-links .footer-social-btn {
+    flex: 1;
+    justify-content: center;
+  }
+}
+
 
 

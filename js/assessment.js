@@ -1,5 +1,6 @@
 /**
- * Dr. Reshmi Verma — Health Resilience Assessment Engine
+ * Reshmi Verma — Health Resilience Assessment Engine
+ * Functional Nutritionist & Breathwork Coach
  * Multi-domain clinical evaluation covering:
  * - Gut & Intestinal Mucosal Barrier
  * - Autonomic Breath & Vagus Nerve Resilience
@@ -40,7 +41,7 @@
       id: 3,
       domain: 'history',
       title: 'Have you tried any treatments or coaching before?',
-      subtitle: 'It is okay if you have — this helps Dr. Reshmi understand your clinical background.',
+      subtitle: 'It is okay if you have — this helps Reshmi Verma understand your clinical background.',
       options: [
         { label: 'Conventional medications, PPIs, or pharmaceutical pills from doctors', tag: 'conventional' },
         { label: 'Standard diet plans, calorie counting, or generic fitness programs', tag: 'diets' },
@@ -68,7 +69,7 @@
       subtitle: "Be honest — there's no pressure. Just absolute clarity.",
       options: [
         { label: '100% Committed — Ready to follow a personalized clinical roadmap', readiness: 'high' },
-        { label: 'Interested & motivated — Want to consult with Dr. Reshmi first', readiness: 'medium' },
+        { label: 'Interested & motivated — Want to consult with Reshmi Verma first', readiness: 'medium' },
         { label: 'Gathering information — Curious to see my baseline health report', readiness: 'exploring' }
       ]
     }
@@ -197,7 +198,7 @@
         summaryText.innerHTML = `
           Based on your answers, your baseline biological resilience is at <strong>${averageResilience}%</strong>. 
           Your answers indicate that energy, digestion, autonomic breathing, and sleep are interconnected signals rather than isolated symptoms.
-          In a 1-on-1 <strong>Health Clarity Session</strong>, Dr. Reshmi Verma decodes these exact patterns using the SAMYA framework to create your individualized protocol.
+          In a 1-on-1 <strong>Health Clarity Session</strong>, Reshmi Verma decodes these exact patterns using the SAMYA framework to create your individualized protocol.
         `;
       }
 

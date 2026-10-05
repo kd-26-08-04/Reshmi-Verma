@@ -1,5 +1,5 @@
 /**
- * Dr. Reshmi Verma — Clinical Booking & Consultation Intake Engine
+ * Reshmi Verma — Functional Nutrition & Consultation Intake Engine
  */
 
 (function () {
@@ -94,7 +94,7 @@
         if (whatsappBtn) {
           const cleanPhone = phone.replace(/[^0-9]/g, '');
           const message = encodeURIComponent(
-            `Hello Dr. Reshmi Verma,\n\nI have requested a ${service} on ${date} at ${time}.\n\nName: ${name}\nEmail: ${email}\nPhone: ${phone}\nNotes/BOLT: ${notes}`
+            `Hello Reshmi Verma,\n\nI have requested a ${service} on ${date} at ${time}.\n\nName: ${name}\nEmail: ${email}\nPhone: ${phone}\nNotes/BOLT: ${notes}`
           );
           // WhatsApp API link (Direct clinic contact)
           whatsappBtn.href = `https://wa.me/?text=${message}`;

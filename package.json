@@ -2,7 +2,7 @@
   "name": "reshmi-verma-wellness",
   "version": "1.0.0",
   "private": true,
-  "description": "Dr. Reshmi Verma - Science-led, human-centred functional nutrition, respiratory resilience and breathwork platform",
+  "description": "Reshmi Verma - Science-led, human-centred functional nutrition, respiratory resilience and breathwork platform",
   "type": "module",
   "scripts": {
     "dev": "vite",

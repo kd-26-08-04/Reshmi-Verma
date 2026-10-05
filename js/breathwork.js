@@ -1,5 +1,6 @@
 /**
- * Dr. Reshmi Verma — Breathwork, Respiration & BOLT Testing Engine
+ * Reshmi Verma — Breathwork, Respiration & BOLT Testing Engine
+ * Functional Nutritionist & Oxygen Advantage Breathwork Specialist
  * Includes:
  * 1. BOLT (Body Oxygen Level Test) Breath-Hold Timer & Clinical Analysis
  * 2. Neuromodulation Guided Breathing Player with Web Audio API Harmonic Synthesis
