@@ -16,9 +16,9 @@ import emailjs from '@emailjs/browser';
 
   // Environment credentials
   const RAZORPAY_KEY_ID = import.meta.env.VITE_RAZORPAY_KEY_ID || 'rzp_test_51234567890abc';
-  const EMAILJS_SERVICE_ID = import.meta.env.VITE_EMAILJS_SERVICE_ID || '';
-  const EMAILJS_BOOKING_TEMPLATE_ID = import.meta.env.VITE_EMAILJS_BOOKING_TEMPLATE_ID || import.meta.env.VITE_EMAILJS_TEMPLATE_ID || '';
-  const EMAILJS_PUBLIC_KEY = import.meta.env.VITE_EMAILJS_PUBLIC_KEY || '';
+  const EMAILJS_SERVICE_ID = import.meta.env.VITE_EMAILJS_SERVICE_ID || 'service_znsc9db';
+  const EMAILJS_BOOKING_TEMPLATE_ID = import.meta.env.VITE_EMAILJS_BOOKING_TEMPLATE_ID || import.meta.env.VITE_EMAILJS_TEMPLATE_ID || 'template_206xxey';
+  const EMAILJS_PUBLIC_KEY = import.meta.env.VITE_EMAILJS_PUBLIC_KEY || '5XBYa7sia2W-qDbgm';
 
   // Initialize EmailJS if public key is active
   if (EMAILJS_PUBLIC_KEY && !EMAILJS_PUBLIC_KEY.includes('YOUR_EMAILJS_PUBLIC_KEY')) {
@@ -53,7 +53,6 @@ import emailjs from '@emailjs/browser';
     const selectedServicePrice = document.getElementById('selected-service-price');
     const bookingSuccessModal = document.getElementById('booking-success-modal');
     const modalCloseBtn = document.getElementById('modal-close-btn');
-    const hpField = document.getElementById('booking-hp-field');
     const submitBtn = document.getElementById('booking-submit-btn');
     const btnText = document.getElementById('booking-btn-text');
     const btnIcon = document.getElementById('booking-btn-icon');
@@ -176,13 +175,7 @@ import emailjs from '@emailjs/browser';
         e.preventDefault();
         hideAlert();
 
-        // 1. Anti-spam honeypot
-        if (hpField && hpField.value) {
-          console.warn('Bot detected in booking form.');
-          return;
-        }
-
-        // 2. Validate inputs
+        // 1. Validate inputs
         const rawName = document.getElementById('client-name-input')?.value || '';
         const rawEmail = document.getElementById('client-email-input')?.value || '';
         const rawPhone = document.getElementById('client-phone-input')?.value || '';
@@ -282,7 +275,7 @@ import emailjs from '@emailjs/browser';
               client_notes: notes.substring(0, 100)
             },
             theme: {
-              color: '#1B4D36' // Luxury emerald brand color
+              color: '#C2410C' // Warm Terracotta brand color
             },
             modal: {
               ondismiss: function () {
@@ -316,13 +309,25 @@ import emailjs from '@emailjs/browser';
               // Step 7: Send confirmation email via EmailJS (if configured)
               if (EMAILJS_SERVICE_ID && EMAILJS_BOOKING_TEMPLATE_ID && EMAILJS_PUBLIC_KEY && !EMAILJS_PUBLIC_KEY.includes('YOUR_EMAILJS_PUBLIC_KEY')) {
                 try {
+                  const bookingTime = `${date} at ${time}`;
                   await emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_BOOKING_TEMPLATE_ID, {
+                    name: name,
+                    from_name: name,
+                    email: email,
+                    from_email: email,
+                    reply_to: email,
+                    phone: phone,
+                    phone_number: phone,
+                    title: `Consultation Booking: ${tierName}`,
+                    subject: `Consultation Booking: ${tierName}`,
+                    message: `Confirmed Consultation Booking:\n- Service: ${tierName} (₹${tierPrice})\n- Slot: ${bookingTime}\n- Payment ID: ${response.razorpay_payment_id}\n- Client Intake Notes: ${notes}`,
+                    time: new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' }),
                     patient_name: name,
                     patient_email: email,
                     patient_phone: phone,
                     service_tier: tierName,
                     amount_paid: `₹${tierPrice}`,
-                    booking_slot: `${date} at ${time}`,
+                    booking_slot: bookingTime,
                     payment_id: response.razorpay_payment_id,
                     notes: notes,
                     booking_timestamp: new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' })

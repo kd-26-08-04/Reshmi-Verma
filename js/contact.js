@@ -14,10 +14,10 @@ import emailjs from '@emailjs/browser';
 (function () {
   'use strict';
 
-  // Environment credentials
-  const SERVICE_ID = import.meta.env.VITE_EMAILJS_SERVICE_ID || '';
-  const TEMPLATE_ID = import.meta.env.VITE_EMAILJS_TEMPLATE_ID || '';
-  const PUBLIC_KEY = import.meta.env.VITE_EMAILJS_PUBLIC_KEY || '';
+  // Environment credentials with configured live fallbacks
+  const SERVICE_ID = import.meta.env.VITE_EMAILJS_SERVICE_ID || 'service_znsc9db';
+  const TEMPLATE_ID = import.meta.env.VITE_EMAILJS_TEMPLATE_ID || 'template_206xxey';
+  const PUBLIC_KEY = import.meta.env.VITE_EMAILJS_PUBLIC_KEY || '5XBYa7sia2W-qDbgm';
 
   // Initialize EmailJS if public key is present and not a placeholder
   const isKeyConfigured = PUBLIC_KEY && !PUBLIC_KEY.includes('YOUR_EMAILJS_PUBLIC_KEY') && !PUBLIC_KEY.includes('placeholder');
@@ -55,7 +55,6 @@ import emailjs from '@emailjs/browser';
     const statusAlert = document.getElementById('contact-status-alert');
     const statusIcon = document.getElementById('contact-status-icon');
     const statusMessage = document.getElementById('contact-status-message');
-    const hpField = document.getElementById('contact-hp-field');
 
     if (!form) return;
 
@@ -93,16 +92,7 @@ import emailjs from '@emailjs/browser';
       e.preventDefault();
       hideAlert();
 
-      // 1. Anti-spam Honeypot Check (Bot trap)
-      if (hpField && hpField.value) {
-        console.warn('Bot detected via honeypot trap.');
-        // Fake success for bots to prevent retries
-        setAlert('success', 'Thank you! Your inquiry has been dispatched.', '✓');
-        form.reset();
-        return;
-      }
-
-      // 2. Rate-Limiting Cooldown Check
+      // 1. Rate-Limiting Cooldown Check
       const now = Date.now();
       if (now - lastSubmissionTime < COOLDOWN_MS) {
         const remaining = Math.ceil((COOLDOWN_MS - (now - lastSubmissionTime)) / 1000);
@@ -152,14 +142,22 @@ import emailjs from '@emailjs/browser';
       // 5. Submit through EmailJS or graceful Fallback
       setLoading(true);
 
+      const currentTime = new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' });
+
       const templateParams = {
+        name: name,
         from_name: name,
+        email: email,
         from_email: email,
         reply_to: email,
+        phone: phone,
         phone_number: phone,
+        title: subject,
+        subject: subject,
         inquiry_subject: subject,
         message: message,
-        submitted_at: new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' }),
+        time: currentTime,
+        submitted_at: currentTime,
         clinic_destination: 'Rainbow Medinova Diagnostics - Reshmi Verma'
       };
 
@@ -188,7 +186,7 @@ import emailjs from '@emailjs/browser';
               <a href="https://wa.me/?text=${encodeURIComponent(`Hello Reshmi Verma, my name is ${name}. I have an inquiry regarding: ${subject}.\n\nMessage: ${message}`)}" target="_blank" class="btn btn-secondary btn-sm" style="display: inline-flex; align-items: center; gap: 6px; padding: 6px 14px; font-size: 0.82rem; margin-right: 8px;">
                 <span>💬 Send via WhatsApp</span>
               </a>
-              <a href="mailto:consult@reshmiverma.com?subject=${encodeURIComponent(`Inquiry: ${subject} - ${name}`)}&body=${encodeURIComponent(`Name: ${name}\nPhone: ${phone}\nEmail: ${email}\n\nMessage:\n${message}`)}" class="btn btn-secondary btn-sm" style="display: inline-flex; align-items: center; gap: 6px; padding: 6px 14px; font-size: 0.82rem;">
+              <a href="mailto:support.reshmiverma@gmail.com?subject=${encodeURIComponent(`Inquiry: ${subject} - ${name}`)}&body=${encodeURIComponent(`Name: ${name}\nPhone: ${phone}\nEmail: ${email}\n\nMessage:\n${message}`)}" class="btn btn-secondary btn-sm" style="display: inline-flex; align-items: center; gap: 6px; padding: 6px 14px; font-size: 0.82rem;">
                 <span>✉️ Open Default Mail</span>
               </a>
             </div>`,
@@ -200,7 +198,7 @@ import emailjs from '@emailjs/browser';
         console.error('EmailJS transmission failed:', sendError);
         setAlert(
           'error',
-          `Could not send your message automatically via EmailJS (${sendError.text || sendError.message || 'Network error'}). You can contact Reshmi Verma directly at <a href="mailto:consult@reshmiverma.com" style="color: #991B1B; font-weight: 700; text-decoration: underline;">consult@reshmiverma.com</a> or via WhatsApp.`,
+          `Could not send your message automatically via EmailJS (${sendError.text || sendError.message || 'Network error'}). You can contact Reshmi Verma directly at <a href="mailto:support.reshmiverma@gmail.com" style="color: #991B1B; font-weight: 700; text-decoration: underline;">support.reshmiverma@gmail.com</a> or via WhatsApp.`,
           '⚠️'
         );
       } finally {

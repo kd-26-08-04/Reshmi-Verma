@@ -1,7 +1,7 @@
 /* ==========================================================================
    Reshmi Verma — Clinical & Holistic Functional Nutrition Design System
    Philosophy: Serene, Light, Pristine Medical Luxury (Strictly Light Mode)
-   Colors: Healing Sage Greens, Soothing Mint, Pure Porcelain, Warm Sand, Slate
+   Colors: Warm Terracotta, Peach Cream, Pure Porcelain, Obsidian Slate
    ========================================================================== */
 
 @import url('https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
@@ -43,8 +43,8 @@
   --text-white: #FFFFFF;
 
   /* Functional Status Colors */
-  --status-optimal: #059669;
-  --status-optimal-bg: #ECFDF5;
+  --status-optimal: #C2410C;
+  --status-optimal-bg: #FFEDD5;
   --status-warning: #D97706;
   --status-warning-bg: #FFFBEB;
   --status-alert: #E11D48;
@@ -359,7 +359,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .site-header.scrolled {
   background: rgba(255, 255, 255, 0.96);
-  box-shadow: 0 4px 20px rgba(19, 51, 36, 0.05);
+  box-shadow: 0 4px 20px rgba(15, 23, 42, 0.06);
 }
 
 .nav-container {
@@ -627,14 +627,18 @@ h1, h2, h3, h4, h5, h6 {
   max-width: 440px;
   border-radius: var(--radius-xl);
   padding: 14px;
-  background: white;
-  box-shadow: 0 25px 60px -15px rgba(194, 65, 12, 0.16);
-  border: 1px solid rgba(45, 106, 79, 0.12);
-  transition: transform var(--transition-base);
+  background: rgba(255, 255, 255, 0.94);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  box-shadow: 0 25px 60px -15px rgba(194, 65, 12, 0.16), 0 0 25px rgba(194, 65, 12, 0.08);
+  border: 1.5px solid rgba(194, 65, 12, 0.22);
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.35s ease;
 }
 
 .doctor-portrait-card:hover {
-  transform: translateY(-6px);
+  transform: translateY(-8px);
+  border-color: rgba(194, 65, 12, 0.45);
+  box-shadow: 0 35px 70px -15px rgba(194, 65, 12, 0.22), 0 0 35px rgba(234, 88, 12, 0.12);
 }
 
 .portrait-inner {
@@ -852,6 +856,112 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /* ==========================================================================
+   Reshmi Verma USPs & Credentials Grid (SEO-Rich Authority Section)
+   ========================================================================== */
+.usp-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+@media (max-width: 992px) {
+  .usp-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 640px) {
+  .usp-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.usp-card {
+  background: rgba(255, 255, 255, 0.94);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1.5px solid rgba(194, 65, 12, 0.18);
+  border-top: 3px solid var(--emerald-medium);
+  border-radius: var(--radius-lg);
+  padding: 32px 26px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.35s ease;
+  box-shadow: var(--shadow-sm);
+}
+
+.usp-card:hover {
+  transform: translateY(-8px);
+  border-color: rgba(194, 65, 12, 0.45);
+  box-shadow: 0 24px 50px -10px rgba(194, 65, 12, 0.18), 0 0 25px rgba(234, 88, 12, 0.08);
+  background: rgba(255, 255, 255, 0.98);
+}
+
+.usp-badge-rank {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 4px 10px;
+  border-radius: var(--radius-full);
+  background: var(--emerald-soft);
+  color: var(--emerald-medium);
+  border: 1px solid rgba(194, 65, 12, 0.25);
+}
+
+.usp-icon-box {
+  width: 54px;
+  height: 54px;
+  border-radius: var(--radius-md);
+  background: var(--emerald-soft);
+  color: var(--emerald-medium);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.4rem;
+  margin-bottom: 20px;
+  transition: transform var(--transition-fast);
+}
+
+.usp-card:hover .usp-icon-box {
+  transform: scale(1.08) rotate(2deg);
+  background: linear-gradient(135deg, var(--emerald-primary), var(--emerald-medium));
+  color: white;
+}
+
+.usp-card h3 {
+  font-size: 1.25rem;
+  margin-bottom: 10px;
+  color: var(--emerald-deep);
+  line-height: 1.3;
+}
+
+.usp-card p {
+  font-size: 0.92rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+  margin-bottom: 16px;
+  flex-grow: 1;
+}
+
+.usp-credential-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.76rem;
+  font-weight: 700;
+  color: var(--emerald-medium);
+  background: rgba(194, 65, 12, 0.08);
+  padding: 4px 10px;
+  border-radius: var(--radius-sm);
+  width: fit-content;
+}
+
+/* ==========================================================================
    Interactive Breathwork Studio & BOLT Test Widget (Feature Spotlight)
    ========================================================================== */
 .studio-showcase {
@@ -872,18 +982,28 @@ h1, h2, h3, h4, h5, h6 {
   align-items: center;
 }
 
-/* Breath Visualizer Orb */
+/* Breath Visualizer Orb (Warm Terracotta Sanctuary) */
 .breath-visualizer-container {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   padding: 40px;
-  background: white;
+  background: rgba(255, 255, 255, 0.94);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
   border-radius: var(--radius-lg);
-  border: 1px solid var(--border-subtle);
-  box-shadow: var(--shadow-md);
+  border: 1.5px solid rgba(194, 65, 12, 0.2);
+  border-top: 3px solid var(--emerald-medium);
+  box-shadow: 0 12px 35px -8px rgba(15, 23, 42, 0.08), 0 0 20px rgba(194, 65, 12, 0.06);
   position: relative;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.35s ease;
+}
+
+.breath-visualizer-container:hover {
+  transform: translateY(-6px);
+  border-color: rgba(194, 65, 12, 0.45);
+  box-shadow: 0 24px 50px -10px rgba(194, 65, 12, 0.18), 0 0 30px rgba(234, 88, 12, 0.1);
 }
 
 .breath-circle-wrapper {
@@ -901,7 +1021,7 @@ h1, h2, h3, h4, h5, h6 {
   width: 100%;
   height: 100%;
   border-radius: 50%;
-  border: 2px dashed rgba(82, 183, 136, 0.35);
+  border: 2px dashed rgba(234, 88, 12, 0.45);
   animation: rotateRing 30s linear infinite;
 }
 
@@ -909,8 +1029,8 @@ h1, h2, h3, h4, h5, h6 {
   width: 160px;
   height: 160px;
   border-radius: 50%;
-  background: radial-gradient(circle at 35% 35%, #74C69D 0%, #2D6A4F 60%, #1B4D36 100%);
-  box-shadow: 0 0 50px rgba(82, 183, 136, 0.45);
+  background: radial-gradient(circle at 35% 35%, #EA580C 0%, #C2410C 55%, #1E293B 100%);
+  box-shadow: 0 0 50px rgba(194, 65, 12, 0.5);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -924,18 +1044,18 @@ h1, h2, h3, h4, h5, h6 {
 .breath-orb.inhaling {
   transform: scale(1.6);
   transition-timing-function: cubic-bezier(0.25, 0.1, 0.25, 1);
-  box-shadow: 0 0 80px rgba(82, 183, 136, 0.7);
+  box-shadow: 0 0 85px rgba(234, 88, 12, 0.8);
 }
 
 .breath-orb.holding {
   transform: scale(1.6);
-  box-shadow: 0 0 70px rgba(13, 148, 136, 0.65);
+  box-shadow: 0 0 75px rgba(217, 119, 6, 0.75);
 }
 
 .breath-orb.exhaling {
   transform: scale(1.0);
   transition-timing-function: cubic-bezier(0.25, 0.1, 0.25, 1);
-  box-shadow: 0 0 35px rgba(82, 183, 136, 0.3);
+  box-shadow: 0 0 40px rgba(194, 65, 12, 0.4);
 }
 
 .breath-orb-status {
@@ -980,14 +1100,24 @@ h1, h2, h3, h4, h5, h6 {
   border-color: var(--emerald-primary);
 }
 
-/* BOLT Test UI Box */
+/* BOLT Test UI Box (Warm Terracotta Luxury) */
 .bolt-test-card {
-  background: white;
+  background: rgba(255, 255, 255, 0.94);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
   border-radius: var(--radius-lg);
-  border: 1px solid var(--border-medium);
-  box-shadow: var(--shadow-md);
+  border: 1.5px solid rgba(194, 65, 12, 0.2);
+  border-top: 3px solid var(--emerald-medium);
+  box-shadow: 0 12px 35px -8px rgba(15, 23, 42, 0.08), 0 0 20px rgba(194, 65, 12, 0.06);
   padding: 36px;
   position: relative;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.35s ease;
+}
+
+.bolt-test-card:hover {
+  transform: translateY(-6px);
+  border-color: rgba(194, 65, 12, 0.45);
+  box-shadow: 0 24px 50px -10px rgba(194, 65, 12, 0.18), 0 0 30px rgba(234, 88, 12, 0.1);
 }
 
 .bolt-test-card h3 {
@@ -1089,19 +1219,22 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .samya-card {
-  background: white;
+  background: rgba(255, 255, 255, 0.94);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
   border-radius: var(--radius-md);
-  border: 1px solid var(--border-subtle);
+  border: 1.5px solid rgba(194, 65, 12, 0.18);
+  border-top: 3px solid var(--emerald-medium);
   padding: 28px 22px;
-  box-shadow: var(--shadow-sm);
+  box-shadow: 0 10px 25px -5px rgba(15, 23, 42, 0.06);
   position: relative;
-  transition: all var(--transition-base);
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.35s ease;
 }
 
 .samya-card:hover {
-  transform: translateY(-6px);
-  box-shadow: var(--shadow-md);
-  border-color: var(--emerald-light);
+  transform: translateY(-8px);
+  box-shadow: 0 20px 45px -10px rgba(194, 65, 12, 0.18), 0 0 25px rgba(234, 88, 12, 0.08);
+  border-color: rgba(194, 65, 12, 0.45);
 }
 
 .samya-step-num {
@@ -1330,28 +1463,31 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .tier-card {
-  background: white;
+  background: rgba(255, 255, 255, 0.94);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
   border-radius: var(--radius-xl);
-  border: 1px solid var(--border-subtle);
+  border: 1.5px solid rgba(194, 65, 12, 0.18);
+  border-top: 3px solid var(--emerald-medium);
   padding: 44px 32px;
-  box-shadow: var(--shadow-sm);
+  box-shadow: 0 12px 35px -8px rgba(15, 23, 42, 0.08);
   display: flex;
   flex-direction: column;
   position: relative;
-  transition: all var(--transition-base);
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.35s ease;
 }
 
 .tier-card:hover {
   transform: translateY(-8px);
-  box-shadow: var(--shadow-lg);
-  border-color: var(--emerald-light);
+  box-shadow: 0 24px 50px -10px rgba(194, 65, 12, 0.2), 0 0 30px rgba(234, 88, 12, 0.1);
+  border-color: rgba(194, 65, 12, 0.45);
 }
 
 .tier-card.featured {
-  border-color: var(--emerald-primary);
+  border-color: var(--emerald-medium);
   border-width: 2px;
-  box-shadow: 0 20px 45px rgba(194, 65, 12, 0.12);
-  background: linear-gradient(180deg, #FFFFFF 0%, #F5FBF7 100%);
+  box-shadow: 0 20px 45px rgba(194, 65, 12, 0.16), 0 0 25px rgba(234, 88, 12, 0.08);
+  background: linear-gradient(180deg, #FFFFFF 0%, #FBF6F0 100%);
 }
 
 .tier-badge {
@@ -2008,7 +2144,7 @@ h1, h2, h3, h4, h5, h6 {
   -webkit-backdrop-filter: blur(20px);
   border-top: 1px solid var(--border-medium);
   padding: 10px 16px calc(10px + env(safe-area-inset-bottom));
-  box-shadow: 0 -4px 20px rgba(19, 51, 36, 0.08);
+  box-shadow: 0 -4px 20px rgba(15, 23, 42, 0.08);
   gap: 10px;
 }
 
@@ -2065,7 +2201,7 @@ h1, h2, h3, h4, h5, h6 {
     flex-direction: column;
     padding: 24px 20px 32px;
     gap: 12px;
-    box-shadow: 0 25px 50px rgba(19, 51, 36, 0.15);
+    box-shadow: 0 25px 50px rgba(15, 23, 42, 0.15);
     border-bottom: 2px solid var(--emerald-soft);
     transform: translateY(-160%);
     opacity: 0;
@@ -2175,7 +2311,7 @@ h1, h2, h3, h4, h5, h6 {
     max-width: 290px;
     padding: 10px 14px;
     gap: 10px;
-    box-shadow: 0 12px 30px rgba(19, 51, 36, 0.12);
+    box-shadow: 0 12px 30px rgba(15, 23, 42, 0.12);
   }
   .floating-cert-badge .cert-icon {
     width: 34px;
@@ -2450,9 +2586,9 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .header-social-btn.instagram:hover {
-  color: #E1306C;
-  border-color: rgba(225, 48, 108, 0.35);
-  background: rgba(225, 48, 108, 0.06);
+  color: var(--emerald-medium);
+  border-color: rgba(194, 65, 12, 0.35);
+  background: rgba(194, 65, 12, 0.06);
 }
 
 .header-social-btn.linkedin:hover {
@@ -2525,9 +2661,9 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .footer-social-btn.instagram:hover {
-  border-color: #E1306C;
-  color: #E1306C;
-  background: #FFF5F8;
+  border-color: var(--emerald-medium);
+  color: var(--emerald-medium);
+  background: var(--emerald-soft);
 }
 
 .footer-social-btn.linkedin:hover {
@@ -2573,9 +2709,9 @@ h1, h2, h3, h4, h5, h6 {
   gap: 8px;
   padding: 6px 14px;
   border-radius: var(--radius-full);
-  background: rgba(225, 48, 108, 0.08);
-  border: 1px solid rgba(225, 48, 108, 0.25);
-  color: #E1306C;
+  background: rgba(194, 65, 12, 0.08);
+  border: 1px solid rgba(194, 65, 12, 0.25);
+  color: var(--emerald-medium);
   font-size: 0.8rem;
   font-weight: 700;
   text-transform: uppercase;
@@ -2735,7 +2871,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .reel-badge-ig svg {
-  color: #FF5E8E;
+  color: var(--emerald-light);
 }
 
 .reel-duration-badge {
@@ -2775,9 +2911,9 @@ h1, h2, h3, h4, h5, h6 {
 
 .reel-card:hover .reel-play-icon {
   transform: translate(-50%, -50%) scale(1.15);
-  background: #E1306C;
-  border-color: #E1306C;
-  box-shadow: 0 0 25px rgba(225, 48, 108, 0.6);
+  background: var(--emerald-medium);
+  border-color: var(--emerald-medium);
+  box-shadow: 0 0 25px rgba(194, 65, 12, 0.6);
 }
 
 .reel-content-bottom {
@@ -2792,7 +2928,7 @@ h1, h2, h3, h4, h5, h6 {
   font-weight: 700;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: #52B788;
+  color: var(--emerald-medium);
   margin-bottom: 6px;
   display: block;
 }
@@ -2824,7 +2960,7 @@ h1, h2, h3, h4, h5, h6 {
   display: inline-flex;
   align-items: center;
   gap: 4px;
-  color: #FF5E8E;
+  color: var(--emerald-light);
   font-weight: 700;
   transition: transform 0.2s ease;
 }
@@ -3229,7 +3365,7 @@ h1, h2, h3, h4, h5, h6 {
   gap: 16px;
   margin-top: 16px;
   padding-top: 14px;
-  border-top: 1px solid rgba(45, 106, 79, 0.1);
+  border-top: 1px solid var(--border-medium);
   font-size: 0.78rem;
   color: var(--text-muted);
   flex-wrap: wrap;
