@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Book Clinical Consultation | Reshmi Verma — Functional Nutritionist</title>
-  <meta name="description" content="Schedule a personalized functional nutrition, gut health, and breathwork consultation with Reshmi Verma.">
+  <meta name="description" content="Schedule a personalized functional nutrition, gut health, and breathwork consultation with Reshmi Verma. Secure booking with instant confirmation.">
   <link rel="stylesheet" href="css/style.css">
   <link rel="icon" type="image/svg+xml" href="assets/images/favicon.svg">
   <link rel="alternate icon" type="image/png" href="assets/images/favicon.png">
@@ -24,6 +24,9 @@
   <meta name="twitter:title" content="Book Clinical Consultation | Reshmi Verma — Functional Nutritionist">
   <meta name="twitter:description" content="Schedule a personalized functional nutrition, gut health, and breathwork consultation with Reshmi Verma.">
   <meta name="twitter:image" content="assets/images/og-image.png">
+
+  <!-- Razorpay Official Secure Checkout SDK -->
+  <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
 </head>
 <body>
 
@@ -46,6 +49,7 @@
         <li><a href="nutrition.html" class="nav-link">Gut & Nutrition</a></li>
         <li><a href="assessment.html" class="nav-link">Health Assessment</a></li>
         <li><a href="booking.html" class="nav-link active">Book Consultation</a></li>
+        <li><a href="contact.html" class="nav-link">Contact Us</a></li>
         <li class="nav-menu-mobile-cta" style="display: none; margin-top: 8px;">
           <a href="#intake-booking-section" class="btn btn-primary" style="width: 100%; padding: 13px;">
             <span>📝 Fill Intake Form</span>
@@ -54,18 +58,7 @@
       </ul>
 
       <div class="nav-actions">
-        <div class="header-social-links">
-          <a href="https://www.instagram.com/healthwithreshmi/?hl=en" target="_blank" rel="noopener" class="header-social-btn instagram" aria-label="Instagram" title="Follow on Instagram">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
-          </a>
-          <a href="https://www.linkedin.com/in/reshmi-verma/" target="_blank" rel="noopener" class="header-social-btn linkedin" aria-label="LinkedIn" title="Connect on LinkedIn">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
-          </a>
-          <a href="https://youtube.com/@healthwithreshmi?si=J_-3JErcDWbGw6gj" target="_blank" rel="noopener" class="header-social-btn youtube" aria-label="YouTube" title="Watch on YouTube">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19.1c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.43z"></path><polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02" fill="currentColor"></polygon></svg>
-          </a>
-        </div>
-        <a href="booking.html" class="btn btn-primary btn-sm">
+        <a href="#intake-booking-section" class="btn btn-primary btn-sm">
           <span>Book Session</span>
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
         </a>
@@ -85,7 +78,7 @@
         Schedule Your <span class="text-gradient">Clinical Consultation</span>
       </h1>
       <p style="font-size: 1.15rem; color: var(--text-secondary); max-width: 720px; margin: 0 auto 20px;">
-        Take the first step toward lasting health resilience. Select a service tier below and share your health priorities with Reshmi Verma.
+        Take the first step toward lasting health resilience. Select a service tier below, complete intake details, and securely confirm your session with Reshmi Verma.
       </p>
     </div>
   </section>
@@ -97,9 +90,16 @@
       <div class="booking-tiers-grid">
         
         <!-- Tier 1 -->
-        <div class="tier-card" data-service-name="Initial Discovery Call (20 min)">
+        <div class="tier-card" data-service-id="discovery" data-service-name="Initial Discovery Call (20 min)" data-service-price="999">
           <h3>Initial Discovery Call</h3>
           <div class="tier-duration">20 Minutes &bull; Exploratory Session</div>
+          
+          <div class="tier-price-box">
+            <span class="tier-price-currency">₹</span>
+            <span class="tier-price-amount">999</span>
+            <span class="tier-price-period">/ session</span>
+          </div>
+
           <p style="font-size: 0.92rem; color: var(--text-secondary); line-height: 1.6;">
             A quick chat to discuss your health story, current roadblocks, and determine if our SAMYA functional method aligns with your goals.
           </p>
@@ -120,15 +120,22 @@
           </ul>
 
           <button type="button" class="btn btn-secondary btn-select-tier" style="width: 100%; margin-top: auto;">
-            Select Discovery Call
+            Select Discovery Call (₹999)
           </button>
         </div>
 
         <!-- Tier 2 (Featured) -->
-        <div class="tier-card featured selected-plan" data-service-name="Comprehensive Consultation (60 min)">
+        <div class="tier-card featured selected-plan" data-service-id="comprehensive" data-service-name="Comprehensive Consultation (60 min)" data-service-price="2999">
           <div class="tier-badge">Most Popular</div>
           <h3>Comprehensive Consultation</h3>
           <div class="tier-duration">60 Minutes &bull; Full Root-Cause Roadmap</div>
+
+          <div class="tier-price-box">
+            <span class="tier-price-currency">₹</span>
+            <span class="tier-price-amount">2,999</span>
+            <span class="tier-price-period">/ session</span>
+          </div>
+
           <p style="font-size: 0.92rem; color: var(--text-secondary); line-height: 1.6;">
             Deep dive into your blood diagnostics, gut health timeline, circadian sleep mapping, and custom metabolic architecture.
           </p>
@@ -153,14 +160,21 @@
           </ul>
 
           <button type="button" class="btn btn-primary btn-select-tier" style="width: 100%; margin-top: auto;">
-            Select Comprehensive Plan
+            Select Comprehensive Plan (₹2,999)
           </button>
         </div>
 
         <!-- Tier 3 -->
-        <div class="tier-card" data-service-name="Follow-Up Check-in (30 min)">
+        <div class="tier-card" data-service-id="followup" data-service-name="Follow-Up Check-in (30 min)" data-service-price="1499">
           <h3>Follow-Up Check-in</h3>
           <div class="tier-duration">30 Minutes &bull; Active Clients Only</div>
+
+          <div class="tier-price-box">
+            <span class="tier-price-currency">₹</span>
+            <span class="tier-price-amount">1,499</span>
+            <span class="tier-price-period">/ session</span>
+          </div>
+
           <p style="font-size: 0.92rem; color: var(--text-secondary); line-height: 1.6;">
             For existing clients to review progress, track repeat BOLT scores, review updated labs, and adjust protocols.
           </p>
@@ -181,7 +195,7 @@
           </ul>
 
           <button type="button" class="btn btn-secondary btn-select-tier" style="width: 100%; margin-top: auto;">
-            Select Follow-Up
+            Select Follow-Up (₹1,499)
           </button>
         </div>
 
@@ -194,14 +208,24 @@
   <section class="section" id="intake-booking-section" style="background: white; border-top: 1px solid var(--border-subtle);">
     <div class="container">
       <div class="section-header">
-        <span class="sub-title">Intake Form</span>
+        <span class="sub-title">Intake & Secure Checkout</span>
         <h2>Consultation Details & Scheduling</h2>
         <p>Answer a few quick questions so Reshmi Verma can prepare thoroughly before your session.</p>
       </div>
 
-      <div style="max-width: 760px; margin: 0 auto; background: var(--bg-card); border-radius: var(--radius-xl); padding: 48px; border: 1px solid var(--border-medium); box-shadow: var(--shadow-md);">
+      <div style="max-width: 780px; margin: 0 auto; background: var(--bg-card); border-radius: var(--radius-xl); padding: 48px; border: 1px solid var(--border-medium); box-shadow: var(--shadow-md);">
         
+        <!-- Live Form Status Alert Banner -->
+        <div id="booking-status-alert" class="form-status-alert" role="alert">
+          <span id="booking-status-icon" style="font-size: 1.25rem;"></span>
+          <div id="booking-status-message"></div>
+        </div>
+
         <form id="consultation-booking-form">
+          <!-- Anti-Spam Honeypot Field -->
+          <input type="text" name="_hp_security_check" id="booking-hp-field" class="antispam-honeypot" tabindex="-1" autocomplete="off">
+          <input type="hidden" id="selected-service-id" value="comprehensive">
+          <input type="hidden" id="selected-service-price" value="2999">
           
           <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-bottom: 24px;">
             <div>
@@ -257,7 +281,7 @@
             </div>
           </div>
 
-          <div style="margin-bottom: 32px;">
+          <div style="margin-bottom: 24px;">
             <label style="font-weight: 700; font-size: 0.95rem; color: var(--emerald-deep); display: block; margin-bottom: 8px;">
               Primary Health Challenges & Notes for Reshmi Verma *
             </label>
@@ -267,10 +291,54 @@
             </span>
           </div>
 
+          <!-- Razorpay Consultation Order Summary Box -->
+          <div class="checkout-summary-box">
+            <div class="checkout-summary-header">
+              <h4>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+                <span>Consultation Order Summary</span>
+              </h4>
+              <span class="checkout-summary-tier" id="summary-tier-badge">Comprehensive Consultation</span>
+            </div>
+
+            <div class="checkout-breakdown-row">
+              <span>Clinical Consultation Fee</span>
+              <span id="summary-tier-fee" style="font-weight: 600;">₹2,999</span>
+            </div>
+            <div class="checkout-breakdown-row">
+              <span>Intake & Biomarker Review</span>
+              <span style="color: var(--status-optimal); font-weight: 600;">Included</span>
+            </div>
+            <div class="checkout-breakdown-row">
+              <span>GST / Healthcare Taxes</span>
+              <span>Included</span>
+            </div>
+
+            <div class="checkout-total-row">
+              <span class="checkout-total-label">Total Amount Payable</span>
+              <span class="checkout-total-amount" id="summary-total-fee">₹2,999</span>
+            </div>
+
+            <div class="checkout-security-badges">
+              <div class="checkout-security-badge-item">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+                <span>256-Bit SSL Encrypted</span>
+              </div>
+              <div class="checkout-security-badge-item">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                <span>Secured by Razorpay</span>
+              </div>
+              <div class="checkout-security-badge-item">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                <span>Instant Confirmation</span>
+              </div>
+            </div>
+          </div>
+
           <div style="text-align: center;">
-            <button type="submit" class="btn btn-primary btn-lg" style="min-width: 280px;">
-              <span>Confirm Consultation Request</span>
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+            <button type="submit" id="booking-submit-btn" class="btn btn-primary btn-lg" style="min-width: 320px;">
+              <span id="booking-btn-text">Pay &amp; Confirm Booking (₹2,999)</span>
+              <svg id="booking-btn-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
             </button>
           </div>
 
@@ -286,20 +354,32 @@
       <div class="modal-icon-success">
         &#10003;
       </div>
-      <h3>Consultation Requested!</h3>
-      <p>Thank you for submitting your intake request. Our clinic team will confirm your exact video consultation link shortly.</p>
+      <h3>Consultation Confirmed!</h3>
+      <p>Your payment has been securely verified and your clinical consultation slot is locked in with Reshmi Verma.</p>
 
       <div class="modal-details-card">
+        <div>
+          <strong>Payment Status:</strong> 
+          <span class="payment-badge-success">Verified &amp; Paid</span>
+        </div>
+        <div>
+          <strong>Payment ID:</strong> 
+          <span id="confirm-payment-id" style="font-family: monospace; font-size: 0.85rem; color: var(--emerald-deep);">pay_verified</span>
+        </div>
         <div><strong>Patient Name:</strong> <span id="confirm-client-name">--</span></div>
-        <div><strong>Service:</strong> <span id="confirm-service-name">--</span></div>
+        <div><strong>Service Tier:</strong> <span id="confirm-service-name">--</span></div>
+        <div><strong>Amount Paid:</strong> <span id="confirm-amount-paid" style="font-weight: 700; color: var(--emerald-primary);">₹2,999</span></div>
         <div><strong>Requested Slot:</strong> <span id="confirm-date-time">--</span></div>
         <div><strong>Practitioner:</strong> Reshmi Verma (Rainbow Medinova)</div>
       </div>
 
-      <div class="modal-actions">
+      <div class="modal-actions" style="display: flex; gap: 12px; flex-wrap: wrap; justify-content: center;">
         <a id="whatsapp-confirm-link" href="#" target="_blank" class="btn btn-accent btn-sm">
           <span>Connect via WhatsApp</span>
         </a>
+        <button type="button" class="btn btn-outline btn-sm" id="modal-print-btn" onclick="window.print()">
+          <span>🖨️ Print Receipt</span>
+        </button>
         <button type="button" class="btn btn-secondary btn-sm" id="modal-close-btn">
           Done
         </button>
@@ -349,15 +429,16 @@
             <li><a href="nutrition.html">Gut & Nutrition</a></li>
             <li><a href="assessment.html">Health Assessment</a></li>
             <li><a href="booking.html">Book Consultation</a></li>
+            <li><a href="contact.html">Contact Us</a></li>
           </ul>
         </div>
 
         <div class="footer-col">
           <h5>Services</h5>
           <ul class="footer-links">
-            <li><a href="booking.html">Initial Discovery Call</a></li>
-            <li><a href="booking.html">Comprehensive Consultation</a></li>
-            <li><a href="booking.html">Follow-up Check-in</a></li>
+            <li><a href="booking.html">Initial Discovery Call (₹999)</a></li>
+            <li><a href="booking.html">Comprehensive Consultation (₹2,999)</a></li>
+            <li><a href="booking.html">Follow-up Check-in (₹1,499)</a></li>
             <li><a href="breathe.html">BOLT Respiration Pacing</a></li>
           </ul>
         </div>
@@ -371,6 +452,9 @@
             </li>
             <li style="margin-top: 8px;">
               <a href="mailto:consult@reshmiverma.com">consult@reshmiverma.com</a>
+            </li>
+            <li>
+              <a href="contact.html">Online Inquiry Form</a>
             </li>
             <li>
               <a href="https://reshmiverma.com" target="_blank" rel="noopener">Official: reshmiverma.com</a>
