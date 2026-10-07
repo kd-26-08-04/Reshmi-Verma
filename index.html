@@ -27,13 +27,26 @@
 </head>
 <body>
 
+  <!-- Fixed Ambient Background Video (Stuck to Background in Light Mode) -->
+  <div class="site-bg-video-container" aria-hidden="true">
+    <video
+      id="bg-video-stream"
+      class="site-bg-video"
+      autoplay
+      muted
+      loop
+      playsinline
+      preload="auto">
+      <source src="assets/videos/wellness-bg.mp4" type="video/mp4">
+      <source src="290916_medium.mp4" type="video/mp4">
+    </video>
+    <div class="site-bg-video-overlay"></div>
+  </div>
+
   <!-- Site Header & Navigation -->
   <header class="site-header">
     <div class="container nav-container">
       <a href="index.html" class="brand-logo">
-        <div class="brand-icon" style="padding: 0; background: none; box-shadow: none;">
-          <img src="assets/images/favicon.svg" alt="HealthwithReshmi Emblem" style="width: 40px; height: 40px; border-radius: 10px; box-shadow: 0 4px 12px rgba(27, 77, 54, 0.2);">
-        </div>
         <div class="brand-text">
           <span class="name">HealthwithReshmi™</span>
           <span class="tagline">Reshmi Verma &bull; Functional Nutritionist</span>

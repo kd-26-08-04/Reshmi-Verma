@@ -7,57 +7,63 @@
 @import url('https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
 
 :root {
-  /* Core Clinical Light Palette */
-  --bg-primary: #FAFDFB;
-  --bg-secondary: #F3F8F4;
-  --bg-tertiary: #EBF4EE;
-  --bg-card: rgba(255, 255, 255, 0.92);
-  --bg-card-hover: rgba(255, 255, 255, 0.98);
-  --bg-glass: rgba(255, 255, 255, 0.75);
+  /* Core Clinical Light Palette (Warm Terracotta & Ivory Silk Luxury) */
+  --bg-primary: #FAF8F5;
+  --bg-secondary: #F3ECE5;
+  --bg-tertiary: #E8DDD2;
+  --bg-card: rgba(255, 255, 255, 0.94);
+  --bg-card-hover: rgba(255, 255, 255, 0.99);
+  --bg-glass: rgba(255, 255, 255, 0.82);
   
-  /* Healing Botanical & Medical Accents */
-  --emerald-deep: #133324;
-  --emerald-primary: #1B4D36;
-  --emerald-medium: #2D6A4F;
-  --emerald-light: #52B788;
-  --emerald-soft: #D8F3DC;
-  --emerald-glow: rgba(45, 106, 79, 0.12);
+  /* Warm Terracotta & Deep Indigo Slate Authority */
+  --emerald-deep: #0F172A;       /* Midnight Slate Obsidian (Titles & Brand) */
+  --emerald-primary: #1E293B;    /* Executive Slate Navy */
+  --emerald-medium: #C2410C;     /* Warm Terracotta Sienna */
+  --emerald-light: #EA580C;      /* Vibrant Coral Amber */
+  --emerald-soft: #FFEDD5;       /* Warm Peach / Cream Petal */
+  --emerald-glow: rgba(194, 65, 12, 0.16);
 
-  /* Respiratory Oxygenation & Aqua */
-  --teal-accent: #0D9488;
-  --teal-soft: #CCFBF1;
-  --sky-breath: #0284C7;
-  --sky-soft: #E0F2FE;
+  /* Respiratory Oxygenation & Warm Amber Accents */
+  --teal-accent: #D97706;        /* Warm Burnished Gold */
+  --teal-soft: #FEF3C7;
+  --sky-breath: #EA580C;
+  --sky-soft: #FFEDD5;
 
-  /* Warm Organic Sand (Doctor Warmth) */
-  --sand-warm: #FAF7F2;
+  /* Warm Organic Sand & Doctor Warmth */
+  --sand-warm: #FAF8F5;
   --sand-cream: #F5EFEB;
-  --sand-gold: #C5A059;
-  --sand-border: #E8E2D9;
+  --sand-gold: #D97706;
+  --sand-border: #E8DCD1;
 
   /* Crisp Typography Colors */
-  --text-primary: #112217;
-  --text-secondary: #3A4D40;
-  --text-muted: #64746B;
-  --text-light: #8E9F94;
+  --text-primary: #0F172A;
+  --text-secondary: #334155;
+  --text-muted: #64748B;
+  --text-light: #94A3B8;
   --text-white: #FFFFFF;
 
   /* Functional Status Colors */
-  --status-optimal: #10B981;
+  --status-optimal: #059669;
   --status-optimal-bg: #ECFDF5;
-  --status-warning: #F59E0B;
+  --status-warning: #D97706;
   --status-warning-bg: #FFFBEB;
-  --status-alert: #EF4444;
-  --status-alert-bg: #FEF2F2;
+  --status-alert: #E11D48;
+  --status-alert-bg: #FFF1F2;
+
+  /* Ambient Breathing Atmosphere Orbs (Terracotta & Amber Sun) */
+  --orb-1-inner: rgba(234, 88, 12, 0.16);
+  --orb-1-outer: rgba(255, 237, 213, 0.35);
+  --orb-2-inner: rgba(217, 119, 6, 0.14);
+  --orb-2-outer: rgba(254, 243, 199, 0.35);
 
   /* Borders & Shadows */
-  --border-subtle: rgba(45, 106, 79, 0.1);
-  --border-medium: rgba(45, 106, 79, 0.18);
-  --border-light: rgba(255, 255, 255, 0.8);
-  --shadow-sm: 0 2px 8px rgba(19, 51, 36, 0.04);
-  --shadow-md: 0 10px 30px -5px rgba(19, 51, 36, 0.07);
-  --shadow-lg: 0 20px 45px -10px rgba(19, 51, 36, 0.1);
-  --shadow-glow: 0 0 40px rgba(82, 183, 136, 0.2);
+  --border-subtle: rgba(194, 65, 12, 0.12);
+  --border-medium: rgba(194, 65, 12, 0.22);
+  --border-light: rgba(255, 255, 255, 0.85);
+  --shadow-sm: 0 2px 8px rgba(15, 23, 42, 0.04);
+  --shadow-md: 0 10px 30px -5px rgba(15, 23, 42, 0.08);
+  --shadow-lg: 0 20px 45px -10px rgba(15, 23, 42, 0.12);
+  --shadow-glow: 0 0 40px rgba(234, 88, 12, 0.22);
 
   /* Typography */
   --font-serif: 'Playfair Display', Georgia, serif;
@@ -103,40 +109,67 @@ body {
 }
 
 /* ==========================================================================
-   Living Somatic Ambient Background (Ultra-Light Breathing Atmosphere)
+   Fixed Ambient Background Video Engine (Light-Mode Cinematic Sanctuary)
    ========================================================================== */
-body::before,
-body::after {
-  content: '';
+.site-bg-video-container {
   position: fixed;
-  border-radius: 50%;
-  filter: blur(100px);
-  -webkit-filter: blur(100px);
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  z-index: -2;
   pointer-events: none;
-  z-index: -1;
-  opacity: 0.75;
-  will-change: transform, opacity;
+  user-select: none;
+  will-change: transform;
 }
 
-/* Ambient Orb 1: Sage & Eucalyptus Vitality (Breathing gently top-left) */
+.site-bg-video {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  min-width: 100%;
+  min-height: 100%;
+  width: auto;
+  height: auto;
+  transform: translate(-50%, -50%);
+  object-fit: cover;
+  opacity: 1 !important;
+  filter: none !important;
+}
+
+/* Zero Opacity Overlay: Fully removed per user request for direct video clarity */
+.site-bg-video-overlay {
+  display: none !important;
+}
+
+/* Eliminate blurry background haze circles so video remains 100% sharp */
+body::before,
+body::after {
+  display: none !important;
+}
+
+/* Ambient Orb 1: Vitality & Energy (Breathing gently top-left) */
 body::before {
   top: -120px;
   left: -120px;
   width: min(650px, 80vw);
   height: min(650px, 80vw);
-  background: radial-gradient(circle, rgba(82, 183, 136, 0.22) 0%, rgba(216, 243, 220, 0.35) 45%, transparent 70%);
+  background: radial-gradient(circle, var(--orb-1-inner) 0%, var(--orb-1-outer) 45%, transparent 70%);
   animation: somaticBreath1 22s ease-in-out infinite alternate;
 }
 
-/* Ambient Orb 2: Serene Aqua Breath (Floating peacefully bottom-right) */
+/* Ambient Orb 2: Serene Oxygen Breath (Floating peacefully bottom-right) */
 body::after {
   bottom: -140px;
   right: -140px;
   width: min(720px, 85vw);
   height: min(720px, 85vw);
-  background: radial-gradient(circle, rgba(14, 165, 233, 0.14) 0%, rgba(224, 242, 254, 0.35) 50%, transparent 70%);
+  background: radial-gradient(circle, var(--orb-2-inner) 0%, var(--orb-2-outer) 50%, transparent 70%);
   animation: somaticBreath2 26s ease-in-out infinite alternate;
 }
+
+
 
 @keyframes somaticBreath1 {
   0% {
@@ -351,7 +384,7 @@ h1, h2, h3, h4, h5, h6 {
   align-items: center;
   justify-content: center;
   color: white;
-  box-shadow: 0 4px 12px rgba(27, 77, 54, 0.2);
+  box-shadow: 0 4px 12px rgba(194, 65, 12, 0.2);
 }
 
 .brand-text {
@@ -478,11 +511,11 @@ h1, h2, h3, h4, h5, h6 {
 .btn-primary {
   background: linear-gradient(135deg, var(--emerald-primary) 0%, var(--emerald-medium) 100%);
   color: white;
-  box-shadow: 0 4px 18px rgba(27, 77, 54, 0.28);
+  box-shadow: 0 4px 18px rgba(194, 65, 12, 0.28);
 }
 .btn-primary:hover {
   transform: translateY(-2px);
-  box-shadow: 0 8px 24px rgba(27, 77, 54, 0.38);
+  box-shadow: 0 8px 24px rgba(194, 65, 12, 0.38);
   background: linear-gradient(135deg, var(--emerald-deep) 0%, var(--emerald-primary) 100%);
   color: white;
 }
@@ -595,7 +628,7 @@ h1, h2, h3, h4, h5, h6 {
   border-radius: var(--radius-xl);
   padding: 14px;
   background: white;
-  box-shadow: 0 25px 60px -15px rgba(27, 77, 54, 0.16);
+  box-shadow: 0 25px 60px -15px rgba(194, 65, 12, 0.16);
   border: 1px solid rgba(45, 106, 79, 0.12);
   transition: transform var(--transition-base);
 }
@@ -735,12 +768,14 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .pillar-card {
-  background: var(--bg-card);
-  backdrop-filter: blur(12px);
-  border: 1px solid var(--border-subtle);
+  background: rgba(255, 255, 255, 0.94);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1.5px solid rgba(194, 65, 12, 0.18);
+  border-top: 3px solid var(--emerald-medium);
   border-radius: var(--radius-lg);
   padding: 36px 28px;
-  transition: all var(--transition-base);
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.35s ease;
   position: relative;
   display: flex;
   flex-direction: column;
@@ -748,9 +783,9 @@ h1, h2, h3, h4, h5, h6 {
 
 .pillar-card:hover {
   transform: translateY(-8px);
-  border-color: var(--emerald-light);
-  box-shadow: var(--shadow-lg);
-  background: white;
+  border-color: rgba(194, 65, 12, 0.45);
+  box-shadow: 0 24px 50px -10px rgba(194, 65, 12, 0.18), 0 0 25px rgba(234, 88, 12, 0.08);
+  background: rgba(255, 255, 255, 0.98);
 }
 
 .pillar-icon-box {
@@ -823,7 +858,7 @@ h1, h2, h3, h4, h5, h6 {
   background: linear-gradient(180deg, #FFFFFF 0%, var(--bg-secondary) 100%);
   border-radius: var(--radius-xl);
   border: 1px solid var(--border-medium);
-  box-shadow: 0 25px 60px -15px rgba(27, 77, 54, 0.09);
+  box-shadow: 0 25px 60px -15px rgba(194, 65, 12, 0.09);
   padding: 60px 48px;
   margin: 40px 0;
   position: relative;
@@ -1315,7 +1350,7 @@ h1, h2, h3, h4, h5, h6 {
 .tier-card.featured {
   border-color: var(--emerald-primary);
   border-width: 2px;
-  box-shadow: 0 20px 45px rgba(27, 77, 54, 0.12);
+  box-shadow: 0 20px 45px rgba(194, 65, 12, 0.12);
   background: linear-gradient(180deg, #FFFFFF 0%, #F5FBF7 100%);
 }
 
@@ -1515,7 +1550,7 @@ h1, h2, h3, h4, h5, h6 {
   color: white;
   padding: 14px 22px;
   border-radius: var(--radius-full);
-  box-shadow: 0 8px 30px rgba(27, 77, 54, 0.35);
+  box-shadow: 0 8px 30px rgba(194, 65, 12, 0.35);
   display: flex;
   align-items: center;
   gap: 12px;
@@ -1526,7 +1561,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .eva-floating-trigger:hover {
   transform: translateY(-3px) scale(1.02);
-  box-shadow: 0 12px 35px rgba(27, 77, 54, 0.45);
+  box-shadow: 0 12px 35px rgba(194, 65, 12, 0.45);
 }
 
 .eva-avatar {
@@ -2645,7 +2680,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .reel-card:hover {
   transform: translateY(-8px);
-  box-shadow: 0 20px 40px rgba(27, 77, 54, 0.18);
+  box-shadow: 0 20px 40px rgba(194, 65, 12, 0.18);
 }
 
 .reel-cover-img {
@@ -3116,7 +3151,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .tier-card.selected-plan {
   border-color: var(--emerald-primary) !important;
-  box-shadow: 0 0 0 3px rgba(27, 77, 54, 0.25), var(--shadow-lg) !important;
+  box-shadow: 0 0 0 3px rgba(194, 65, 12, 0.25), var(--shadow-lg) !important;
   background: linear-gradient(180deg, #FFFFFF 0%, #F3FBF6 100%) !important;
 }
 

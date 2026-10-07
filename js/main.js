@@ -188,7 +188,47 @@
     }
   }
 
+  // 6. Ensure Background Video Autoplays Smoothly in Slow Motion
+  function initBackgroundVideo() {
+    const video = document.getElementById('bg-video-stream');
+    if (!video) return;
+    video.muted = true;
+    
+    // Slow, serene cinematic flow
+    const applySlowMotion = () => {
+      video.playbackRate = 0.65;
+    };
+    applySlowMotion();
+    video.addEventListener('loadedmetadata', applySlowMotion);
+    video.addEventListener('play', applySlowMotion);
+    video.addEventListener('playing', applySlowMotion);
+
+    const playPromise = video.play();
+    if (playPromise !== undefined) {
+      playPromise.catch(() => {
+        const retryPlay = () => {
+          applySlowMotion();
+          video.play().catch(() => {});
+          window.removeEventListener('click', retryPlay);
+          window.removeEventListener('scroll', retryPlay);
+          window.removeEventListener('touchstart', retryPlay);
+        };
+        window.addEventListener('click', retryPlay, { once: true });
+        window.addEventListener('scroll', retryPlay, { once: true });
+        window.addEventListener('touchstart', retryPlay, { once: true });
+      });
+    }
+  }
+
+  // Clear any temporary preview overrides from localStorage
+  try {
+    localStorage.removeItem('rw_selected_theme');
+    localStorage.removeItem('rw_video_opacity');
+    localStorage.removeItem('rw_overlay_opacity');
+  } catch (e) {}
+
   document.addEventListener('DOMContentLoaded', () => {
+    initBackgroundVideo();
     initHeaderScroll();
     initMobileMenu();
     initEvaAssistant();
