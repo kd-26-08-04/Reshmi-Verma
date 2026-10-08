@@ -198,12 +198,12 @@
           <button class="btn btn-sm btn-secondary" data-breath-protocol="energizer">Soma Energizer (2-2)</button>
         </div>
 
-        <p id="selected-protocol-desc" style="text-align: center; max-width: 680px; margin: 0 auto 32px; color: var(--text-secondary); font-size: 1rem;">
+        <p id="selected-protocol-desc" class="breath-hint-glass" style="max-width: 680px; margin: 0 auto 32px; display: block;">
           Flagship somatic autonomic regulation. 4s nasal inhalation, 7s full oxygen retention, 8s slow exhalation to trigger immediate parasympathetic baroreflex slowing.
         </p>
 
         <!-- Visualizer Circle -->
-        <div class="breath-visualizer-container" style="max-width: 500px; margin: 0 auto; padding: 48px 32px;">
+        <div class="breath-visualizer-container" style="max-width: 520px; margin: 0 auto; padding: 48px 32px;">
           <div class="breath-circle-wrapper">
             <div class="breath-glow-ring"></div>
             <div class="breath-orb" id="breath-interactive-orb">
@@ -212,7 +212,7 @@
             </div>
           </div>
 
-          <p id="breath-sub-hint" style="font-size: 0.95rem; color: var(--text-muted); margin-bottom: 24px; text-align: center;">
+          <p id="breath-sub-hint" class="breath-hint-glass">
             Click button below to initiate guided pacing
           </p>
 
@@ -220,13 +220,13 @@
             <button class="btn btn-primary btn-lg" id="breath-sanctuary-toggle">Start Guided Session</button>
             <button class="btn-sound-toggle" id="breath-sound-toggle-btn">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path></svg>
-              <span>Sound: 432Hz ON</span>
+              <span>🌊 Sound: Ocean &amp; Zen Bowl ON</span>
             </button>
           </div>
 
-          <div style="display: flex; gap: 32px; margin-top: 28px; font-size: 0.9rem; color: var(--text-muted);">
-            <div>Cycles Completed: <strong id="breath-cycle-count" style="color: var(--emerald-deep); font-size: 1.1rem;">0</strong></div>
-            <div>Elapsed Time: <strong id="breath-session-timer" style="color: var(--emerald-deep); font-size: 1.1rem;">00:00</strong></div>
+          <div class="breath-stats-glass">
+            <div class="breath-stat-pill">Cycles Completed: <strong id="breath-cycle-count" style="color: var(--emerald-deep); font-size: 1.05rem;">0</strong></div>
+            <div class="breath-stat-pill">Elapsed Time: <strong id="breath-session-timer" style="color: var(--emerald-deep); font-size: 1.05rem;">00:00</strong></div>
           </div>
         </div>
 

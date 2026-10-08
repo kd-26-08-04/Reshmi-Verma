@@ -592,26 +592,33 @@ h1, h2, h3, h4, h5, h6 {
 
 .hero-stats-row {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 20px;
-  margin-top: 48px;
-  padding-top: 36px;
-  border-top: 1px solid var(--border-subtle);
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  margin-top: 36px;
+  padding: 18px 22px;
+  background: rgba(255, 255, 255, 0.72);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-radius: var(--radius-lg);
+  border: 1.5px solid rgba(255, 255, 255, 0.85);
+  box-shadow: 0 14px 35px -8px rgba(15, 23, 42, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.95);
 }
 
 .stat-item .stat-num {
   font-family: var(--font-serif);
-  font-size: 2.2rem;
-  font-weight: 700;
-  color: var(--emerald-deep);
+  font-size: 2.25rem;
+  font-weight: 800;
+  color: #0F172A;
   line-height: 1;
+  letter-spacing: -0.02em;
 }
 
 .stat-item .stat-label {
-  font-size: 0.85rem;
-  color: var(--text-muted);
+  font-size: 0.82rem;
+  color: #0F172A;
+  font-weight: 700;
   margin-top: 6px;
-  line-height: 1.4;
+  line-height: 1.35;
 }
 
 /* Hero Media / Doctor Card */
@@ -965,10 +972,12 @@ h1, h2, h3, h4, h5, h6 {
    Interactive Breathwork Studio & BOLT Test Widget (Feature Spotlight)
    ========================================================================== */
 .studio-showcase {
-  background: linear-gradient(180deg, #FFFFFF 0%, var(--bg-secondary) 100%);
+  background: rgba(255, 255, 255, 0.62);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
   border-radius: var(--radius-xl);
-  border: 1px solid var(--border-medium);
-  box-shadow: 0 25px 60px -15px rgba(194, 65, 12, 0.09);
+  border: 1.5px solid rgba(255, 255, 255, 0.8);
+  box-shadow: 0 25px 60px -15px rgba(15, 23, 42, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.9);
   padding: 60px 48px;
   margin: 40px 0;
   position: relative;
@@ -982,20 +991,20 @@ h1, h2, h3, h4, h5, h6 {
   align-items: center;
 }
 
-/* Breath Visualizer Orb (Warm Terracotta Sanctuary) */
+/* Breath Visualizer Orb (Glassmorphic Sanctuary Card - Light Opacity) */
 .breath-visualizer-container {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   padding: 40px;
-  background: rgba(255, 255, 255, 0.94);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
+  background: rgba(255, 255, 255, 0.68);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
   border-radius: var(--radius-lg);
-  border: 1.5px solid rgba(194, 65, 12, 0.2);
+  border: 1.5px solid rgba(255, 255, 255, 0.85);
   border-top: 3px solid var(--emerald-medium);
-  box-shadow: 0 12px 35px -8px rgba(15, 23, 42, 0.08), 0 0 20px rgba(194, 65, 12, 0.06);
+  box-shadow: 0 16px 40px -10px rgba(15, 23, 42, 0.08), 0 0 25px rgba(194, 65, 12, 0.06), inset 0 1px 0 rgba(255, 255, 255, 0.95);
   position: relative;
   transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.35s ease;
 }
@@ -1003,7 +1012,49 @@ h1, h2, h3, h4, h5, h6 {
 .breath-visualizer-container:hover {
   transform: translateY(-6px);
   border-color: rgba(194, 65, 12, 0.45);
-  box-shadow: 0 24px 50px -10px rgba(194, 65, 12, 0.18), 0 0 30px rgba(234, 88, 12, 0.1);
+  box-shadow: 0 24px 50px -10px rgba(194, 65, 12, 0.18), 0 0 30px rgba(234, 88, 12, 0.12);
+}
+
+/* Glassmorphic Hint & Stats Pills (Light Opacity, Crisp Contrast) */
+.breath-hint-glass {
+  display: inline-block;
+  background: rgba(255, 255, 255, 0.72);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  padding: 8px 20px;
+  border-radius: var(--radius-full);
+  border: 1px solid rgba(194, 65, 12, 0.2);
+  box-shadow: 0 4px 14px rgba(15, 23, 42, 0.04);
+  color: var(--emerald-deep);
+  font-weight: 700;
+  font-size: 0.92rem;
+  letter-spacing: -0.01em;
+  margin-bottom: 22px;
+  text-align: center;
+}
+
+.breath-stats-glass {
+  display: flex;
+  gap: 16px;
+  margin-top: 24px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.breath-stat-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(255, 255, 255, 0.72);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  padding: 8px 18px;
+  border-radius: var(--radius-full);
+  border: 1px solid rgba(194, 65, 12, 0.18);
+  color: #0F172A;
+  font-size: 0.88rem;
+  font-weight: 700;
+  box-shadow: 0 2px 10px rgba(15, 23, 42, 0.04);
 }
 
 .breath-circle-wrapper {
@@ -1026,11 +1077,11 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .breath-orb {
-  width: 160px;
-  height: 160px;
+  width: 164px;
+  height: 164px;
   border-radius: 50%;
-  background: radial-gradient(circle at 35% 35%, #EA580C 0%, #C2410C 55%, #1E293B 100%);
-  box-shadow: 0 0 50px rgba(194, 65, 12, 0.5);
+  background: radial-gradient(circle at 35% 35%, #EA580C 0%, #C2410C 55%, #0F172A 100%);
+  box-shadow: 0 0 50px rgba(194, 65, 12, 0.5), inset 0 0 20px rgba(255, 255, 255, 0.3);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -1061,15 +1112,20 @@ h1, h2, h3, h4, h5, h6 {
 .breath-orb-status {
   font-family: var(--font-serif);
   font-size: 1.15rem;
-  font-weight: 600;
+  font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.12em;
+  color: #FFFFFF;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.6), 0 0 12px rgba(234, 88, 12, 0.4);
 }
 
 .breath-orb-counter {
-  font-size: 1.75rem;
+  font-size: 2.1rem;
   font-weight: 800;
   margin-top: 2px;
+  color: #FED7AA;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.6);
+  line-height: 1.1;
 }
 
 .breath-controls-bar {
@@ -1102,13 +1158,13 @@ h1, h2, h3, h4, h5, h6 {
 
 /* BOLT Test UI Box (Warm Terracotta Luxury) */
 .bolt-test-card {
-  background: rgba(255, 255, 255, 0.94);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
+  background: rgba(255, 255, 255, 0.68);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
   border-radius: var(--radius-lg);
-  border: 1.5px solid rgba(194, 65, 12, 0.2);
+  border: 1.5px solid rgba(255, 255, 255, 0.85);
   border-top: 3px solid var(--emerald-medium);
-  box-shadow: 0 12px 35px -8px rgba(15, 23, 42, 0.08), 0 0 20px rgba(194, 65, 12, 0.06);
+  box-shadow: 0 16px 40px -10px rgba(15, 23, 42, 0.08), 0 0 25px rgba(194, 65, 12, 0.06), inset 0 1px 0 rgba(255, 255, 255, 0.95);
   padding: 36px;
   position: relative;
   transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.35s ease;
@@ -1866,7 +1922,7 @@ h1, h2, h3, h4, h5, h6 {
   background: #F2F8F4;
   border-top: 1px solid var(--border-medium);
   padding: 44px 0 22px;
-  margin-top: 48px;
+  margin-top: 0;
 }
 
 .footer-grid {

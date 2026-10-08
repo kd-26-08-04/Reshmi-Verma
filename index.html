@@ -414,9 +414,9 @@
   </section>
 
   <!-- Live Feature Spotlight: Interactive BOLT Test & Guided Breathing Player -->
-  <section class="section">
+  <section class="section" style="position: relative; z-index: 1;">
     <div class="container">
-      <div class="section-header">
+      <div class="section-header" style="background: rgba(255, 255, 255, 0.65); backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px); padding: 32px 36px; border-radius: var(--radius-xl); border: 1px solid rgba(255, 255, 255, 0.85); box-shadow: 0 12px 35px rgba(15, 23, 42, 0.06); max-width: 860px; margin: 0 auto 36px;">
         <span class="sub-title">Interactive Respiration Laboratory</span>
         <h2>Experience Real-Time Autonomic Regulation</h2>
         <p>Breathing is the prime regulator of cellular energy efficiency, glycemic response, and mental poise. Test your CO₂ tolerance or enter our guided breathing sanctuary.</p>
@@ -442,7 +442,7 @@
               </div>
             </div>
 
-            <p id="breath-sub-hint" style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 20px; text-align: center;">
+            <p id="breath-sub-hint" class="breath-hint-glass">
               Tap button below to start guided breathing session
             </p>
 
@@ -450,13 +450,13 @@
               <button class="btn btn-primary" id="breath-sanctuary-toggle">Start Guided Session</button>
               <button class="btn-sound-toggle" id="breath-sound-toggle-btn">
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path></svg>
-                <span>Sound: 432Hz ON</span>
+                <span>🌊 Sound: Ocean &amp; Zen Bowl ON</span>
               </button>
             </div>
 
-            <div style="display: flex; gap: 24px; margin-top: 24px; font-size: 0.85rem; color: var(--text-muted);">
-              <div>Cycles Completed: <strong id="breath-cycle-count" style="color: var(--emerald-deep);">0</strong></div>
-              <div>Duration: <strong id="breath-session-timer" style="color: var(--emerald-deep);">00:00</strong></div>
+            <div class="breath-stats-glass">
+              <div class="breath-stat-pill">Cycles Completed: <strong id="breath-cycle-count" style="color: var(--emerald-deep); font-size: 1rem;">0</strong></div>
+              <div class="breath-stat-pill">Duration: <strong id="breath-session-timer" style="color: var(--emerald-deep); font-size: 1rem;">00:00</strong></div>
             </div>
 
             <div style="margin-top: 18px; display: flex; gap: 8px; flex-wrap: wrap; justify-content: center;">

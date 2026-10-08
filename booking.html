@@ -249,10 +249,15 @@
             </div>
 
             <div>
-              <label style="font-weight: 700; font-size: 0.95rem; color: var(--emerald-deep); display: block; margin-bottom: 8px;">
-                Selected Service Tier
+              <label for="selected-service-select" style="font-weight: 700; font-size: 0.95rem; color: var(--emerald-deep); display: block; margin-bottom: 8px;">
+                Price Category / Consultation Plan *
               </label>
-              <input type="text" id="selected-service-input" readonly value="Comprehensive Consultation (60 min)" style="width: 100%; padding: 12px 16px; background: var(--bg-secondary); border: 1px solid var(--border-medium); border-radius: var(--radius-sm); font-size: 1rem; font-weight: 600; color: var(--emerald-deep);">
+              <select id="selected-service-select" style="width: 100%; padding: 12px 16px; background: white; border: 1.5px solid var(--emerald-medium); border-radius: var(--radius-sm); font-size: 1rem; font-weight: 600; color: var(--emerald-deep); cursor: pointer;">
+                <option value="discovery" data-price="999" data-name="Initial Discovery Call (20 min)">Initial Discovery Call (20 min) — ₹999</option>
+                <option value="comprehensive" data-price="2999" data-name="Comprehensive Consultation (60 min)" selected>Comprehensive Consultation (60 min) — ₹2,999 (Most Popular)</option>
+                <option value="followup" data-price="1499" data-name="Follow-Up Check-in (30 min)">Follow-Up Check-in (30 min) — ₹1,499</option>
+              </select>
+              <input type="hidden" id="selected-service-input" value="Comprehensive Consultation (60 min)">
             </div>
           </div>
 

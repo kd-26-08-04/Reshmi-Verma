@@ -48,6 +48,7 @@ import emailjs from '@emailjs/browser';
   document.addEventListener('DOMContentLoaded', () => {
     const bookingForm = document.getElementById('consultation-booking-form');
     const tierCards = document.querySelectorAll('.tier-card');
+    const selectedServiceSelect = document.getElementById('selected-service-select');
     const selectedServiceInput = document.getElementById('selected-service-input');
     const selectedServiceId = document.getElementById('selected-service-id');
     const selectedServicePrice = document.getElementById('selected-service-price');
@@ -82,6 +83,7 @@ import emailjs from '@emailjs/browser';
       const serviceName = tierCard.getAttribute('data-service-name') || 'Comprehensive Consultation (60 min)';
       const servicePrice = tierCard.getAttribute('data-service-price') || '2999';
 
+      if (selectedServiceSelect) selectedServiceSelect.value = serviceId;
       if (selectedServiceInput) selectedServiceInput.value = serviceName;
       if (selectedServiceId) selectedServiceId.value = serviceId;
       if (selectedServicePrice) selectedServicePrice.value = servicePrice;
@@ -101,7 +103,40 @@ import emailjs from '@emailjs/browser';
       tierCard.classList.add('selected-plan');
     }
 
-    // Service tier card click listeners
+    // Dropdown change listener (syncs dropdown -> cards & summary)
+    if (selectedServiceSelect) {
+      selectedServiceSelect.addEventListener('change', () => {
+        const selectedOption = selectedServiceSelect.options[selectedServiceSelect.selectedIndex];
+        const serviceId = selectedServiceSelect.value;
+        const serviceName = selectedOption.getAttribute('data-name') || selectedOption.text;
+        const servicePrice = selectedOption.getAttribute('data-price') || '2999';
+
+        if (selectedServiceInput) selectedServiceInput.value = serviceName;
+        if (selectedServiceId) selectedServiceId.value = serviceId;
+        if (selectedServicePrice) selectedServicePrice.value = servicePrice;
+
+        // Update Summary elements
+        if (summaryTierBadge) summaryTierBadge.textContent = serviceName.split('(')[0].trim();
+        if (summaryTierFee) summaryTierFee.textContent = `₹${Number(servicePrice).toLocaleString('en-IN')}`;
+        if (summaryTotalFee) summaryTotalFee.textContent = `₹${Number(servicePrice).toLocaleString('en-IN')}`;
+
+        // Update Submit Button Text
+        if (btnText) {
+          btnText.textContent = `Pay & Confirm Booking (₹${Number(servicePrice).toLocaleString('en-IN')})`;
+        }
+
+        // Highlight active card above
+        tierCards.forEach(card => {
+          if (card.getAttribute('data-service-id') === serviceId) {
+            card.classList.add('selected-plan');
+          } else {
+            card.classList.remove('selected-plan');
+          }
+        });
+      });
+    }
+
+    // Service tier card click listeners (syncs cards -> dropdown & summary)
     tierCards.forEach(card => {
       const selectBtn = card.querySelector('.btn-select-tier');
       if (selectBtn) {
@@ -120,6 +155,16 @@ import emailjs from '@emailjs/browser';
         });
       }
     });
+
+    // Check URL parameters on load for pre-selected tier
+    const urlParams = new URLSearchParams(window.location.search);
+    const initialTierParam = urlParams.get('plan') || urlParams.get('tier');
+    if (initialTierParam) {
+      const matchedCard = document.querySelector(`.tier-card[data-service-id="${initialTierParam}"]`);
+      if (matchedCard) {
+        updateTierSelection(matchedCard);
+      }
+    }
 
     // Preload assessment / BOLT data from localStorage if available
     const savedAssessment = localStorage.getItem('reshmi_assessment_results');

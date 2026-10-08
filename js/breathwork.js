@@ -12,14 +12,17 @@
   'use strict';
 
   // =========================================================================
-  // 1. Web Audio API Soothing Sound Synth (Zero external audio files needed!)
+  // 1. Web Audio API Nature Ocean Waves & Tibetan Singing Bowl Sound Synth
   // =========================================================================
   class BreathSoundSynth {
     constructor() {
       this.ctx = null;
       this.isMuted = false;
-      this.activeOsc = null;
-      this.gainNode = null;
+      this.noiseBuffer = null;
+      this.waveSource = null;
+      this.waveFilter = null;
+      this.waveGain = null;
+      this.isWaveRunning = false;
     }
 
     init() {
@@ -32,78 +35,224 @@
       if (this.ctx && this.ctx.state === 'suspended') {
         this.ctx.resume();
       }
+      if (this.ctx && !this.noiseBuffer) {
+        this.noiseBuffer = this.buildBrownNoiseBuffer();
+      }
     }
 
-    playChime(freq = 528, duration = 1.2) {
+    // Generate warm organic brown noise for realistic sea waves & shore foam
+    buildBrownNoiseBuffer() {
+      if (!this.ctx) return null;
+      const sampleRate = this.ctx.sampleRate;
+      const bufferSize = sampleRate * 5; // 5-second seamless loop
+      const buffer = this.ctx.createBuffer(2, bufferSize, sampleRate);
+      for (let channel = 0; channel < 2; channel++) {
+        const data = buffer.getChannelData(channel);
+        let lastOut = 0.0;
+        for (let i = 0; i < bufferSize; i++) {
+          const white = Math.random() * 2 - 1;
+          lastOut = (lastOut + 0.025 * white) / 1.025;
+          data[i] = lastOut * 3.8;
+        }
+      }
+      return buffer;
+    }
+
+    startOceanWaves() {
+      if (this.isMuted) return;
+      this.init();
+      if (!this.ctx || this.isWaveRunning) return;
+
+      try {
+        if (!this.noiseBuffer) this.noiseBuffer = this.buildBrownNoiseBuffer();
+        if (!this.noiseBuffer) return;
+
+        this.waveSource = this.ctx.createBufferSource();
+        this.waveSource.buffer = this.noiseBuffer;
+        this.waveSource.loop = true;
+
+        this.waveFilter = this.ctx.createBiquadFilter();
+        this.waveFilter.type = 'lowpass';
+        this.waveFilter.Q.setValueAtTime(1.8, this.ctx.currentTime);
+        this.waveFilter.frequency.setValueAtTime(180, this.ctx.currentTime);
+
+        this.waveGain = this.ctx.createGain();
+        this.waveGain.gain.setValueAtTime(0.001, this.ctx.currentTime);
+        this.waveGain.gain.linearRampToValueAtTime(0.08, this.ctx.currentTime + 1.2);
+
+        this.waveSource.connect(this.waveFilter);
+        this.waveFilter.connect(this.waveGain);
+        this.waveGain.connect(this.ctx.destination);
+
+        this.waveSource.start();
+        this.isWaveRunning = true;
+      } catch (e) {
+        console.warn('Ocean waves error:', e);
+      }
+    }
+
+    stopOceanWaves() {
+      if (this.waveGain && this.ctx && this.isWaveRunning) {
+        try {
+          const now = this.ctx.currentTime;
+          this.waveGain.gain.cancelScheduledValues(now);
+          this.waveGain.gain.setValueAtTime(this.waveGain.gain.value, now);
+          this.waveGain.gain.linearRampToValueAtTime(0.0001, now + 0.6);
+          setTimeout(() => {
+            if (this.waveSource) {
+              try {
+                this.waveSource.stop();
+                this.waveSource.disconnect();
+              } catch (e) {}
+              this.waveSource = null;
+            }
+            if (this.waveFilter) {
+              this.waveFilter.disconnect();
+              this.waveFilter = null;
+            }
+            if (this.waveGain) {
+              this.waveGain.disconnect();
+              this.waveGain = null;
+            }
+            this.isWaveRunning = false;
+          }, 650);
+        } catch (e) {
+          this.isWaveRunning = false;
+        }
+      } else {
+        this.isWaveRunning = false;
+      }
+    }
+
+    // Dynamically modulate the ocean tide to breathe in sync with user
+    modulateWave(action, duration = 4) {
+      if (this.isMuted || !this.isWaveRunning || !this.waveFilter || !this.waveGain || !this.ctx) return;
+      const now = this.ctx.currentTime;
+      const rampTime = Math.max(0.5, duration);
+
+      try {
+        this.waveFilter.frequency.cancelScheduledValues(now);
+        this.waveFilter.frequency.setValueAtTime(this.waveFilter.frequency.value, now);
+
+        this.waveGain.gain.cancelScheduledValues(now);
+        this.waveGain.gain.setValueAtTime(this.waveGain.gain.value, now);
+
+        if (action === 'inhale') {
+          // Ocean wave swells up onto shoreline
+          this.waveFilter.frequency.exponentialRampToValueAtTime(750, now + rampTime);
+          this.waveGain.gain.linearRampToValueAtTime(0.24, now + rampTime);
+        } else if (action === 'hold') {
+          // High-tide gentle ambient crest
+          this.waveFilter.frequency.linearRampToValueAtTime(460, now + rampTime);
+          this.waveGain.gain.linearRampToValueAtTime(0.14, now + rampTime);
+        } else if (action === 'exhale') {
+          // Water slowly recedes back into deep ocean
+          this.waveFilter.frequency.exponentialRampToValueAtTime(160, now + rampTime);
+          this.waveGain.gain.linearRampToValueAtTime(0.06, now + rampTime);
+        }
+      } catch (e) {
+        console.warn('Wave modulation error:', e);
+      }
+    }
+
+    // Authentic Tibetan Singing Bowl with Sacred Harmonics & Detuned Beating
+    playTibetanBowl(phase = 'inhale') {
+      if (this.isMuted) return;
+      this.init();
+      if (!this.ctx) return;
+
+      let baseFreq = 216; // 432Hz sub-octave (warm grounding)
+      let decay = 3.6;
+      let bowlVol = 0.22;
+
+      if (phase === 'hold') {
+        baseFreq = 270; // 540Hz sub-octave (clarity & expansion)
+        decay = 3.0;
+        bowlVol = 0.18;
+      } else if (phase === 'exhale') {
+        baseFreq = 180; // 360Hz sub-octave (deep release)
+        decay = 4.0;
+        bowlVol = 0.24;
+      }
+
+      try {
+        const now = this.ctx.currentTime;
+
+        // Tibetan bowl partials: Fundamental + Detuned Beat + Metallic 2.76x + Shimmer 5.4x
+        const harmonics = [
+          { freq: baseFreq, gain: bowlVol * 1.0, decay: decay },
+          { freq: baseFreq + 1.2, gain: bowlVol * 0.7, decay: decay }, // Meditative binaural beating
+          { freq: baseFreq * 2.76, gain: bowlVol * 0.35, decay: decay * 0.7 }, // Bronze rim tone
+          { freq: baseFreq * 5.4, gain: bowlVol * 0.12, decay: decay * 0.45 }  // Upper shimmer
+        ];
+
+        harmonics.forEach(h => {
+          const osc = this.ctx.createOscillator();
+          const gain = this.ctx.createGain();
+
+          osc.type = 'sine';
+          osc.frequency.setValueAtTime(h.freq, now);
+
+          gain.gain.setValueAtTime(0.0001, now);
+          gain.gain.exponentialRampToValueAtTime(h.gain, now + 0.06);
+          gain.gain.exponentialRampToValueAtTime(0.0001, now + h.decay);
+
+          osc.connect(gain);
+          gain.connect(this.ctx.destination);
+
+          osc.start(now);
+          osc.stop(now + h.decay + 0.1);
+        });
+      } catch (e) {
+        console.warn('Tibetan bowl error:', e);
+      }
+    }
+
+    // Universal Zen chime for tests (BOLT, breath counter)
+    playChime(freq = 528, duration = 1.4) {
       if (this.isMuted) return;
       this.init();
       if (!this.ctx) return;
 
       try {
+        const now = this.ctx.currentTime;
         const osc = this.ctx.createOscillator();
+        const oscHarmonic = this.ctx.createOscillator();
         const gain = this.ctx.createGain();
-        osc.type = 'sine';
-        osc.frequency.setValueAtTime(freq, this.ctx.currentTime);
 
-        // Soft bell envelope
-        gain.gain.setValueAtTime(0.001, this.ctx.currentTime);
-        gain.gain.exponentialRampToValueAtTime(0.12, this.ctx.currentTime + 0.05);
-        gain.gain.exponentialRampToValueAtTime(0.0001, this.ctx.currentTime + duration);
+        osc.type = 'sine';
+        osc.frequency.setValueAtTime(freq, now);
+
+        oscHarmonic.type = 'sine';
+        oscHarmonic.frequency.setValueAtTime(freq * 2.01, now);
+
+        gain.gain.setValueAtTime(0.0001, now);
+        gain.gain.exponentialRampToValueAtTime(0.18, now + 0.04);
+        gain.gain.exponentialRampToValueAtTime(0.0001, now + duration);
 
         osc.connect(gain);
+        oscHarmonic.connect(gain);
         gain.connect(this.ctx.destination);
 
-        osc.start();
-        osc.stop(this.ctx.currentTime + duration);
+        osc.start(now);
+        oscHarmonic.start(now);
+        osc.stop(now + duration);
+        oscHarmonic.stop(now + duration);
       } catch (e) {
-        console.warn('Audio play error:', e);
+        console.warn('Chime error:', e);
       }
     }
 
-    startDrone(freq = 136.1) {
-      // 136.1 Hz is the grounding OM / circadian frequency
-      if (this.isMuted) return;
-      this.init();
-      if (!this.ctx || this.activeOsc) return;
+    // Backward-compatibility aliases
+    startDrone() { this.startOceanWaves(); }
+    stopDrone() { this.stopOceanWaves(); }
 
-      try {
-        this.activeOsc = this.ctx.createOscillator();
-        this.gainNode = this.ctx.createGain();
-
-        this.activeOsc.type = 'sine';
-        this.activeOsc.frequency.setValueAtTime(freq, this.ctx.currentTime);
-
-        this.gainNode.gain.setValueAtTime(0.001, this.ctx.currentTime);
-        this.gainNode.gain.linearRampToValueAtTime(0.03, this.ctx.currentTime + 1.5);
-
-        this.activeOsc.connect(this.gainNode);
-        this.gainNode.connect(this.ctx.destination);
-        this.activeOsc.start();
-      } catch (e) {
-        console.warn('Drone error:', e);
-      }
-    }
-
-    stopDrone() {
-      if (this.activeOsc && this.gainNode && this.ctx) {
-        try {
-          this.gainNode.gain.linearRampToValueAtTime(0.0001, this.ctx.currentTime + 0.5);
-          setTimeout(() => {
-            if (this.activeOsc) {
-              this.activeOsc.stop();
-              this.activeOsc.disconnect();
-              this.activeOsc = null;
-              this.gainNode = null;
-            }
-          }, 500);
-        } catch (e) {}
-      }
-    }
-
-    toggleMute() {
+    toggleMute(isSanctuaryActive = false) {
       this.isMuted = !this.isMuted;
       if (this.isMuted) {
-        this.stopDrone();
+        this.stopOceanWaves();
+      } else if (isSanctuaryActive) {
+        this.startOceanWaves();
       }
       return this.isMuted;
     }
@@ -398,20 +547,23 @@
       sanctuaryElements.phaseCounter.textContent = `${sanctuaryState.countdownSec}s`;
     }
 
-    // Update orb visual style
+    // Update orb visual style & Sound Modulation
     if (sanctuaryElements.orb) {
       sanctuaryElements.orb.className = 'breath-orb';
       if (currentPhase.action === 'inhale') {
         sanctuaryElements.orb.classList.add('inhaling');
         sanctuaryElements.orb.style.transitionDuration = `${currentPhase.duration}s`;
-        soundSynth.playChime(432, 0.8);
+        soundSynth.playTibetanBowl('inhale');
+        soundSynth.modulateWave('inhale', currentPhase.duration);
       } else if (currentPhase.action === 'hold') {
         sanctuaryElements.orb.classList.add('holding');
-        soundSynth.playChime(528, 0.4);
+        soundSynth.playTibetanBowl('hold');
+        soundSynth.modulateWave('hold', currentPhase.duration);
       } else if (currentPhase.action === 'exhale') {
         sanctuaryElements.orb.classList.add('exhaling');
         sanctuaryElements.orb.style.transitionDuration = `${currentPhase.duration}s`;
-        soundSynth.playChime(396, 0.9);
+        soundSynth.playTibetanBowl('exhale');
+        soundSynth.modulateWave('exhale', currentPhase.duration);
       }
     }
 
@@ -451,7 +603,7 @@
       sanctuaryElements.startBtn.classList.add('btn-secondary');
     }
 
-    soundSynth.startDrone(136.1);
+    soundSynth.startOceanWaves();
 
     clearInterval(sanctuaryState.sessionInterval);
     sanctuaryState.sessionInterval = setInterval(() => {
@@ -470,7 +622,7 @@
     sanctuaryState.isActive = false;
     clearInterval(sanctuaryState.timer);
     clearInterval(sanctuaryState.sessionInterval);
-    soundSynth.stopDrone();
+    soundSynth.stopOceanWaves();
 
     if (sanctuaryElements.startBtn) {
       sanctuaryElements.startBtn.textContent = 'Start Guided Session';
@@ -691,10 +843,10 @@
 
     if (sanctuaryElements.soundToggleBtn) {
       sanctuaryElements.soundToggleBtn.addEventListener('click', () => {
-        const isMuted = soundSynth.toggleMute();
+        const isMuted = soundSynth.toggleMute(sanctuaryState.isActive);
         sanctuaryElements.soundToggleBtn.innerHTML = isMuted 
-          ? `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="1" y1="1" x2="23" y2="23"></line><path d="M9 9v3a3 3 0 0 0 5.12 2.12M15 9.34V4a3 3 0 0 0-5.94-.6"></path><path d="M17 16.95A7 7 0 0 1 5 12v-2m14 0v2a7 7 0 0 1-.11 1.23"></path></svg> Sound: OFF`
-          : `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path></svg> Sound: 432Hz ON`;
+          ? `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="1" y1="1" x2="23" y2="23"></line><path d="M9 9v3a3 3 0 0 0 5.12 2.12M15 9.34V4a3 3 0 0 0-5.94-.6"></path><path d="M17 16.95A7 7 0 0 1 5 12v-2m14 0v2a7 7 0 0 1-.11 1.23"></path></svg> <span>Sound: Muted</span>`
+          : `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path></svg> <span>🌊 Sound: Ocean &amp; Zen Bowl ON</span>`;
       });
     }
 
