@@ -1,0 +1,134 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
+  <defs>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&amp;family=Plus+Jakarta+Sans:wght@500;600;700;800&amp;display=swap');
+      .title { font-family: 'Playfair Display', Georgia, serif; font-weight: 700; fill: #0F172A; }
+      .sans { font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif; }
+      .pill { font-family: 'Plus Jakarta Sans', system-ui, sans-serif; font-weight: 700; font-size: 14px; letter-spacing: 0.08em; text-transform: uppercase; }
+    </style>
+
+    <!-- Background Gradients -->
+    <linearGradient id="ogBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFFDF9" />
+      <stop offset="50%" stop-color="#FFF7ED" />
+      <stop offset="100%" stop-color="#FFEDD5" />
+    </linearGradient>
+
+    <!-- Logo Gradient -->
+    <linearGradient id="logoBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0F172A" />
+      <stop offset="100%" stop-color="#1E293B" />
+    </linearGradient>
+
+    <linearGradient id="terracottaGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FB923C" />
+      <stop offset="50%" stop-color="#EA580C" />
+      <stop offset="100%" stop-color="#C2410C" />
+    </linearGradient>
+
+    <radialGradient id="goldDot" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#FDE68A" />
+      <stop offset="100%" stop-color="#D97706" />
+    </radialGradient>
+  </defs>
+
+  <!-- Background Base -->
+  <rect width="1200" height="630" fill="url(#ogBg)" />
+
+  <!-- Soft Ambient Orbs -->
+  <circle cx="150" cy="120" r="320" fill="rgba(234, 88, 12, 0.12)" filter="blur(60px)" />
+  <circle cx="1050" cy="500" r="380" fill="rgba(194, 65, 12, 0.10)" filter="blur(70px)" />
+
+  <!-- Outer Border Frame -->
+  <rect x="24" y="24" width="1152" height="582" rx="24" fill="none" stroke="rgba(194, 65, 12, 0.18)" stroke-width="2" />
+
+  <!-- Left Header: Brand Logo & Icon -->
+  <g transform="translate(80, 80)">
+    <!-- Logo Icon Squircle -->
+    <rect x="0" y="0" width="84" height="84" rx="22" fill="url(#logoBg)" filter="drop-shadow(0 10px 20px rgba(15, 23, 42, 0.25))" />
+    <circle cx="42" cy="42" r="30" fill="none" stroke="rgba(255, 237, 213, 0.35)" stroke-width="2" stroke-dasharray="3 3" />
+    
+    <!-- Terracotta Monogram -->
+    <path d="M 32 25 C 32 23, 35 22, 37 22 L 37 62 C 37 64, 34 64, 32 62 Z" fill="url(#terracottaGrad)" />
+    <path d="M 37 24 C 47 22, 57 26, 57 37 C 57 46, 48 49, 37 49" fill="none" stroke="url(#terracottaGrad)" stroke-width="5" stroke-linecap="round" />
+    <path d="M 43 47 L 58 63" stroke="url(#terracottaGrad)" stroke-width="5" stroke-linecap="round" />
+    <circle cx="47" cy="36" r="4" fill="url(#goldDot)" />
+
+    <!-- Brand Typography -->
+    <text x="104" y="38" class="sans" font-size="28" font-weight="800" fill="#0F172A" letter-spacing="-0.02em">HealthwithReshmi™</text>
+    <text x="104" y="65" class="sans" font-size="14" font-weight="600" fill="#C2410C" letter-spacing="0.1em">DR. RESHMI VERMA &bull; FUNCTIONAL MEDICINE</text>
+  </g>
+
+  <!-- Main Headline -->
+  <g transform="translate(80, 240)">
+    <rect x="0" y="-36" width="360" height="34" rx="17" fill="white" stroke="rgba(194, 65, 12, 0.2)" />
+    <circle cx="16" cy="-19" r="4" fill="#EA580C" />
+    <text x="30" y="-14" class="pill" fill="#C2410C">Integrative Clinical Practice</text>
+
+    <text x="0" y="45" class="title" font-size="52" line-height="1.15">
+      Science-led,
+    </text>
+    <text x="0" y="105" class="title" font-size="52" fill="#C2410C">
+      Human-Centred Health.
+    </text>
+
+    <text x="0" y="155" class="sans" font-size="20" font-weight="500" fill="#334155" width="580">
+      Personalized Functional Nutrition &bull; Gut Mucosal Restoration &bull; BOLT Respiration
+    </text>
+  </g>
+
+  <!-- Right Visual Feature Card -->
+  <g transform="translate(710, 80)">
+    <rect x="0" y="0" width="410" height="470" rx="28" fill="white" stroke="rgba(194, 65, 12, 0.2)" filter="drop-shadow(0 20px 40px rgba(15, 23, 42, 0.08))" />
+    
+    <!-- Top Card Header -->
+    <rect x="0" y="0" width="410" height="74" rx="28" fill="#FFF7ED" />
+    <rect x="0" y="44" width="410" height="30" fill="#FFF7ED" />
+    <text x="30" y="46" class="sans" font-size="16" font-weight="700" fill="#0F172A">CLINICAL HIGHLIGHTS</text>
+
+    <!-- Item 1: BOLT Test -->
+    <g transform="translate(30, 110)">
+      <circle cx="22" cy="22" r="22" fill="#FFEDD5" />
+      <text x="22" y="27" class="sans" font-size="16" font-weight="800" fill="#C2410C" text-anchor="middle">🫁</text>
+      <text x="60" y="18" class="sans" font-size="16" font-weight="700" fill="#0F172A">BOLT Respiration Suite</text>
+      <text x="60" y="38" class="sans" font-size="13" font-weight="500" fill="#64748B">CO₂ Tolerance &amp; Bohr Effect Analysis</text>
+    </g>
+
+    <!-- Item 2: Gut Mucosal Matrix -->
+    <g transform="translate(30, 185)">
+      <circle cx="22" cy="22" r="22" fill="#FEF3C7" />
+      <text x="22" y="27" class="sans" font-size="16" font-weight="800" fill="#D97706" text-anchor="middle">🌿</text>
+      <text x="60" y="18" class="sans" font-size="16" font-weight="700" fill="#0F172A">Gut Mucosal Regeneration</text>
+      <text x="60" y="38" class="sans" font-size="13" font-weight="500" fill="#64746B">Microbiome, Tight Junctions &amp; SIBO</text>
+    </g>
+
+    <!-- Item 3: Diagnostics & 38kg Transformation -->
+    <g transform="translate(30, 260)">
+      <circle cx="22" cy="22" r="22" fill="#FFEDD5" />
+      <text x="22" y="27" class="sans" font-size="16" font-weight="800" fill="#C2410C" text-anchor="middle">⚡</text>
+      <text x="60" y="18" class="sans" font-size="16" font-weight="700" fill="#0F172A">20+ Years Diagnostics</text>
+      <text x="60" y="38" class="sans" font-size="13" font-weight="500" fill="#64746B">Rainbow Medinova &bull; 38kg Transformation</text>
+    </g>
+
+    <!-- Bottom URL Pill -->
+    <rect x="30" y="380" width="350" height="54" rx="27" fill="#C2410C" />
+    <text x="205" y="413" class="sans" font-size="15" font-weight="700" fill="white" text-anchor="middle">
+      Explore &bull; reshmiverma.com
+    </text>
+  </g>
+
+  <!-- Bottom Credential Badges Row -->
+  <g transform="translate(80, 500)">
+    <!-- Badge 1 -->
+    <rect x="0" y="0" width="180" height="42" rx="10" fill="white" stroke="rgba(194, 65, 12, 0.2)" />
+    <text x="90" y="26" class="sans" font-size="13" font-weight="700" fill="#C2410C" text-anchor="middle">Oxygen Advantage</text>
+
+    <!-- Badge 2 -->
+    <rect x="195" y="0" width="180" height="42" rx="10" fill="white" stroke="rgba(194, 65, 12, 0.2)" />
+    <text x="285" y="26" class="sans" font-size="13" font-weight="700" fill="#C2410C" text-anchor="middle">Functional Nutrition</text>
+
+    <!-- Badge 3 -->
+    <rect x="390" y="0" width="180" height="42" rx="10" fill="white" stroke="rgba(194, 65, 12, 0.2)" />
+    <text x="480" y="26" class="sans" font-size="13" font-weight="700" fill="#C2410C" text-anchor="middle">Vagal Neuromodulation</text>
+  </g>
+</svg>

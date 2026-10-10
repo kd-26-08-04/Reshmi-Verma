@@ -1,0 +1,985 @@
+{
+  "users": [
+    {
+      "id": "admin_reshmi_01",
+      "name": "Reshmi Verma",
+      "email": "support.reshmiverma@gmail.com",
+      "phone": "+919876543210",
+      "role": "admin",
+      "passwordHash": "$2b$10$wLdfO9afl83VMk8n8eJTBu0VddhCyResAhkK0Uvxka9Wf37akK6nC",
+      "createdAt": "2026-10-09T09:47:15.399Z"
+    },
+    {
+      "name": "Ananya Roy",
+      "email": "test_client_1791539235397@example.com",
+      "phone": "+91 9876543210",
+      "passwordHash": "$2b$10$w56QRbUqT68kZv2HJ1TFYeosgxbsD5Oq3gRGN.J0rJc5Jn7dr5ff2",
+      "role": "client",
+      "id": "usr_1791539235526_9ptj4",
+      "createdAt": "2026-10-09T09:47:15.526Z"
+    },
+    {
+      "name": "Ananya Roy",
+      "email": "test_client_1791539316527@example.com",
+      "phone": "+91 9876543210",
+      "passwordHash": "$2b$10$97ZncYIH68ZAAKPGsUEk3O2s7khggNaRL8QZv2XpFmn.v83zkdMvK",
+      "role": "client",
+      "id": "usr_1791539316642_58h5v",
+      "createdAt": "2026-10-09T09:48:36.642Z"
+    },
+    {
+      "name": "Kuldeep Tiwari",
+      "email": "kdkuldeeptiwari26@gmail.com",
+      "phone": "+917058972300",
+      "passwordHash": "$2b$10$NxFaVVJQ3dMRIA9n29KYEeop8b4vAoRF970yTUvy75oqw.emHPKqC",
+      "role": "client",
+      "id": "usr_1791540315041_uz9z1",
+      "createdAt": "2026-10-09T10:05:15.041Z"
+    },
+    {
+      "name": "Test Client",
+      "email": "client.test@example.com",
+      "phone": "+919999988888",
+      "passwordHash": "$2b$10$Lr57vGi05dznV6XzUcTALeYfWaNhyZOaPoO0QlCndq7LQmPJzaAiq",
+      "role": "client",
+      "id": "usr_1791540758507_r8cey",
+      "createdAt": "2026-10-09T10:12:38.507Z"
+    },
+    {
+      "name": "Kuldeep Tiwari Tiwari",
+      "email": "kuldeept.cse22@sbjit.edu.in",
+      "phone": "1234567890",
+      "passwordHash": "$2b$10$hdlTi8NIaOPejAa9iM7qzO7kpn1Mnwy93WWTVqhy.Nau0Mu1w2J8a",
+      "role": "client",
+      "id": "usr_1791620151062_ycbyl",
+      "createdAt": "2026-10-10T08:15:51.062Z"
+    }
+  ],
+  "bookings": [
+    {
+      "userId": null,
+      "clientName": "Kuldeep Tiwari Tiwari",
+      "clientEmail": "kuldeept.cse22@sbjit.edu.in",
+      "clientPhone": "1234567890",
+      "serviceName": "Comprehensive Consultation (60 min)",
+      "serviceTier": "comprehensive",
+      "servicePrice": "2999",
+      "amount": 2999,
+      "bookingDate": "2026-10-11",
+      "bookingTime": "10:00 AM - Morning Slot",
+      "timeSlot": "10:00 AM - Morning Slot",
+      "notes": "",
+      "healthConcerns": "",
+      "age": "",
+      "gender": "",
+      "city": "",
+      "occupation": "",
+      "language": "English",
+      "emergencyContact": "",
+      "sectionA": {
+        "age": "",
+        "gender": "",
+        "city": "",
+        "occupation": "",
+        "language": "English",
+        "emergencyContact": ""
+      },
+      "paymentId": "pay_direct_1791623580839",
+      "orderId": "order_test_1791623580833",
+      "paymentStatus": "paid",
+      "status": "confirmed",
+      "questionnaireStatus": "pending",
+      "clinicalStatus": "confirmed_by_dr_reshmi",
+      "questionnaireData": null,
+      "clinicalScores": null,
+      "createdAt": "2026-10-10T09:13:00.847Z",
+      "id": "bk_1791623580847_5tp2q",
+      "updatedAt": "2026-10-10T09:33:42.164Z",
+      "meetingLink": "https://meet.google.com/hwr-reshmi-_5tp2q"
+    },
+    {
+      "id": "intake_1791623469350_wviam",
+      "name": "Ananya Test Sharma",
+      "email": "ananya.test@healthwithreshmi.com",
+      "phone": "+91 98765 00000",
+      "date": "2026-10-10",
+      "time": "10:00 AM",
+      "status": "confirmed",
+      "consultationType": "intake_assessment",
+      "serviceTitle": "Clinical Nutrition & Breath Consultation",
+      "amount": 2499,
+      "isDemo": false,
+      "createdAt": "2026-10-10T09:11:09.351Z",
+      "updatedAt": "2026-10-10T09:11:09.420Z",
+      "questionnaireStatus": "completed",
+      "clinicalStatus": "awaiting_clinical_review",
+      "questionnaireData": {
+        "fullName": "Ananya Test Sharma",
+        "email": "ananya.test@healthwithreshmi.com",
+        "phone": "+91 98765 00000",
+        "q10_primary_concern": "Gut and digestive health (Bloating, IBS, SIBO, Reflux)",
+        "q11_concern_description": "Severe bloating 30 mins after meals, sluggish bowels",
+        "q12_concern_duration": "6 to 12 months (Persistent issue)",
+        "q20_laboratory_reports": "[Attached PDF: ananya_blood_test_cbc_thyroid.pdf]",
+        "labReportFileUrl": "/uploads/1791623466369_deje_ananya_blood_test_cbc_thyroid.pdf",
+        "labReportFileName": "ananya_blood_test_cbc_thyroid.pdf",
+        "labReportFileSize": "2.4 MB",
+        "submittedAt": "2026-10-10T09:11:09.419Z"
+      },
+      "clinicalScores": {
+        "compositeResilience": 70,
+        "gutScore": 53,
+        "breathScore": 75,
+        "hormoneScore": 75,
+        "sleepScore": 75,
+        "clinicalFlags": [
+          "Active Gut Dysbiosis / Mucosal Barrier Compromise"
+        ],
+        "evaluatedAt": "2026-10-10T09:11:09.419Z"
+      }
+    },
+    {
+      "userId": null,
+      "clientName": "Kuldeep Tiwari Tiwari",
+      "clientEmail": "kuldeept.cse22@sbjit.edu.in",
+      "clientPhone": "1234567890",
+      "serviceName": "Follow-Up Check-in (30 min)",
+      "serviceTier": "followup",
+      "servicePrice": "1499",
+      "amount": 1499,
+      "bookingDate": "2026-10-11",
+      "bookingTime": "10:00 AM - Morning Slot",
+      "timeSlot": "10:00 AM - Morning Slot",
+      "notes": "Yes go ahead",
+      "healthConcerns": "Yes go ahead",
+      "age": "",
+      "gender": "",
+      "city": "Bhopal",
+      "occupation": "Software",
+      "language": "English",
+      "emergencyContact": "",
+      "sectionA": {
+        "age": "",
+        "gender": "",
+        "city": "Bhopal",
+        "occupation": "Software",
+        "language": "English",
+        "emergencyContact": ""
+      },
+      "paymentId": "pay_direct_1791620217344",
+      "orderId": "order_test_1791620217333",
+      "paymentStatus": "paid",
+      "status": "confirmed",
+      "questionnaireStatus": "pending",
+      "clinicalStatus": "intake_pending",
+      "questionnaireData": null,
+      "clinicalScores": null,
+      "createdAt": "2026-10-10T08:16:57.363Z",
+      "id": "bk_1791620217363_bitbd",
+      "updatedAt": "2026-10-10T08:16:57.363Z"
+    },
+    {
+      "userId": null,
+      "clientName": "Kuldeep Tiwari Tiwari",
+      "clientEmail": "kuldeept.cse22@sbjit.edu.in",
+      "clientPhone": "1234567890",
+      "serviceName": "Follow-Up Check-in (30 min)",
+      "serviceTier": "followup",
+      "servicePrice": "1499",
+      "amount": 1499,
+      "bookingDate": "2026-10-11",
+      "bookingTime": "10:00 AM - Morning Slot",
+      "timeSlot": "10:00 AM - Morning Slot",
+      "notes": "Yes go ahead",
+      "healthConcerns": "Yes go ahead",
+      "age": "",
+      "gender": "",
+      "city": "Bhopal",
+      "occupation": "Software",
+      "language": "English",
+      "emergencyContact": "",
+      "sectionA": {
+        "age": "",
+        "gender": "",
+        "city": "Bhopal",
+        "occupation": "Software",
+        "language": "English",
+        "emergencyContact": ""
+      },
+      "paymentId": "pay_direct_1791620201089",
+      "orderId": "order_test_1791620201082",
+      "paymentStatus": "paid",
+      "status": "confirmed",
+      "questionnaireStatus": "pending",
+      "clinicalStatus": "intake_pending",
+      "questionnaireData": null,
+      "clinicalScores": null,
+      "createdAt": "2026-10-10T08:16:41.096Z",
+      "id": "bk_1791620201096_r0oi9",
+      "updatedAt": "2026-10-10T08:16:41.096Z"
+    },
+    {
+      "userId": null,
+      "clientName": "Pooja Sharma",
+      "clientEmail": "pooja.sharma.test@gmail.com",
+      "clientPhone": "+91 9811223344",
+      "serviceName": "Comprehensive Consultation (60 min)",
+      "serviceTier": "comprehensive",
+      "servicePrice": "2999",
+      "amount": 2999,
+      "bookingDate": "2026-10-18",
+      "bookingTime": "11:30 AM",
+      "timeSlot": "11:30 AM",
+      "notes": "Chronic bloating, severe acid reflux, poor BOLT score (12s).",
+      "healthConcerns": "Chronic bloating, severe acid reflux, poor BOLT score (12s).",
+      "age": "34",
+      "gender": "Female",
+      "city": "Bengaluru",
+      "occupation": "Senior Product Manager",
+      "language": "English / Hindi",
+      "emergencyContact": "+91 9811223399 (Spouse)",
+      "sectionA": {
+        "age": "34",
+        "gender": "Female",
+        "city": "Bengaluru",
+        "occupation": "Senior Product Manager",
+        "language": "English / Hindi",
+        "emergencyContact": "+91 9811223399 (Spouse)"
+      },
+      "paymentId": "pay_test_audit_999",
+      "orderId": "order_test_audit_999",
+      "paymentStatus": "paid",
+      "status": "confirmed",
+      "questionnaireStatus": "completed",
+      "clinicalStatus": "awaiting_clinical_review",
+      "questionnaireData": {
+        "q10_primary_concern": "Severe gut bloating, acid reflux, post-meal fullness",
+        "q12_concern_duration": "2 to 3 years chronic symptoms",
+        "q33_digestive_symptoms": "Bloating within 30 min, burning reflux at night, constipation",
+        "q17_medicines_supplements": "Pantoprazole 40mg daily, occasional antacids",
+        "q27_stress_level": "High (demanding product management leadership)",
+        "q26_sleep_hours": "5 to 6 hours, fragmented with morning grogginess",
+        "q18_food_allergies": "Dairy sensitivity, wheat makes stomach swell",
+        "submittedAt": "2026-10-10T08:13:24.083Z"
+      },
+      "clinicalScores": {
+        "compositeResilience": 50,
+        "gutScore": 20,
+        "breathScore": 66,
+        "hormoneScore": 66,
+        "sleepScore": 46,
+        "clinicalFlags": [
+          "Active Gut Dysbiosis / Mucosal Barrier Compromise",
+          "Long-standing Chronic Adaptation (> 1 Year)",
+          "Altered Colonic Motility / Gut Transit Delay",
+          "Hypochlorhydria Risk (Long-term PPI / Acid Suppressor Use)",
+          "Nocturnal Recovery Debt / Fragmented REM Cycles",
+          "Immunological Food Reactivity / Intolerance Profile"
+        ],
+        "evaluatedAt": "2026-10-10T08:13:24.083Z"
+      },
+      "createdAt": "2026-10-10T08:12:21.381Z",
+      "id": "bk_1791619941383_q3hum",
+      "updatedAt": "2026-10-10T08:13:24.084Z"
+    },
+    {
+      "userId": "usr_1791539235526_9ptj4",
+      "clientName": "Ananya Roy",
+      "clientEmail": "test_client_1791539235397@example.com",
+      "clientPhone": "+91 9876543210",
+      "serviceName": "Comprehensive Clinical Consultation (60 min)",
+      "servicePrice": "2999",
+      "bookingDate": "2026-10-15",
+      "bookingTime": "11:00 AM",
+      "notes": "Severe bloating after dinner",
+      "paymentId": "pay_test_123456",
+      "orderId": "order_test_998877",
+      "paymentStatus": "paid",
+      "questionnaireStatus": "pending",
+      "clinicalStatus": "intake_pending",
+      "questionnaireData": null,
+      "clinicalScores": null,
+      "id": "bk_1791539235646_qlahd",
+      "createdAt": "2026-10-09T09:47:15.646Z",
+      "updatedAt": "2026-10-09T09:47:15.646Z"
+    },
+    {
+      "userId": "usr_1791539316642_58h5v",
+      "clientName": "Ananya Roy",
+      "clientEmail": "test_client_1791539316527@example.com",
+      "clientPhone": "+91 9876543210",
+      "serviceName": "Comprehensive Clinical Consultation (60 min)",
+      "servicePrice": "2999",
+      "bookingDate": "2026-10-15",
+      "bookingTime": "11:00 AM",
+      "notes": "Severe bloating after dinner",
+      "paymentId": "pay_test_123456",
+      "orderId": "order_test_998877",
+      "paymentStatus": "paid",
+      "questionnaireStatus": "completed",
+      "clinicalStatus": "protocol_prepared",
+      "questionnaireData": {
+        "primaryChallenge": "Gut Health (Bloating, IBS, Acid Reflux, Food Intolerances)",
+        "duration": "2 to 5 years (Chronic)",
+        "gutSymptoms": "Severe post-meal gas and distension, acid reflux in throat",
+        "respiratorySymptoms": "Mouth breathing at night, dry throat",
+        "boltScore": 12.5,
+        "medications": "Pantoprazole 40mg daily",
+        "supplements": "None reported",
+        "dietType": "Vegetarian",
+        "sleepPatterns": "",
+        "primaryGoal": "Eliminate antacid dependence and repair gut lining",
+        "additionalNotes": "",
+        "submittedAt": "2026-10-09T09:48:36.764Z"
+      },
+      "clinicalScores": {
+        "compositeResilience": 51,
+        "gutScore": 28,
+        "breathScore": 55,
+        "hormoneScore": 60,
+        "sleepScore": 60,
+        "boltScore": 12.5,
+        "boltBracket": "Suboptimal Respiratory Efficiency (10 - 19s)",
+        "clinicalFlags": [
+          "Active Gut Dysbiosis / Mucosal Barrier Compromise",
+          "Long-standing Chronic Adaptation (> 2 Years)",
+          "Elevated CO₂ Sensitivity & Afternoon Energy Dips",
+          "Hypochlorhydria Risk (Long-term PPI / Acid Suppressor Use)"
+        ],
+        "evaluatedAt": "2026-10-09T09:48:36.764Z"
+      },
+      "id": "bk_1791539316760_guo84",
+      "createdAt": "2026-10-09T09:48:36.760Z",
+      "updatedAt": "2026-10-09T09:48:36.870Z",
+      "adminNotes": "Recommended L-Glutamine 5g morning, 4-7-8 vagal breathing protocol.",
+      "meetingLink": "https://meet.google.com/abc-defg-hij"
+    },
+    {
+      "userId": "usr_1791540315041_uz9z1",
+      "clientName": "Kuldeep Tiwari",
+      "clientEmail": "kdkuldeeptiwari26@gmail.com",
+      "clientPhone": "+917058972300",
+      "serviceName": "Comprehensive Consultation (60 min)",
+      "servicePrice": 2999,
+      "bookingDate": "2026-10-09",
+      "bookingTime": "10:00 AM - Morning Slot",
+      "notes": "fefeejdnwcerjc bg   rff  f f  gytbbr er3rr eioj",
+      "sectionA": {
+        "age": "",
+        "gender": "",
+        "city": "Nagpur",
+        "occupation": "Software",
+        "language": "English",
+        "emergencyContact": ""
+      },
+      "paymentId": "pay_redirect_1791547455240",
+      "orderId": "order_redirect_1791547455240",
+      "paymentStatus": "paid",
+      "questionnaireStatus": "pending",
+      "clinicalStatus": "intake_pending",
+      "questionnaireData": null,
+      "clinicalScores": null,
+      "id": "bk_1791547455256_qj23e",
+      "createdAt": "2026-10-09T12:04:15.256Z",
+      "updatedAt": "2026-10-09T12:04:15.257Z"
+    },
+    {
+      "userId": "usr_1791540315041_uz9z1",
+      "clientName": "Kuldeep Tiwari",
+      "clientEmail": "kdkuldeeptiwari26@gmail.com",
+      "clientPhone": "+917058972300",
+      "serviceName": "Comprehensive Consultation (60 min)",
+      "servicePrice": 2999,
+      "bookingDate": "2026-10-09",
+      "bookingTime": "10:00 AM - Morning Slot",
+      "notes": "fefeejdnwcerjc bg   rff  f f  gytbbr er3rr eioj",
+      "sectionA": {
+        "age": "",
+        "gender": "",
+        "city": "Nagpur",
+        "occupation": "Software",
+        "language": "English",
+        "emergencyContact": ""
+      },
+      "paymentId": "pay_redirect_1791547631486",
+      "orderId": "order_redirect_1791547631486",
+      "paymentStatus": "paid",
+      "questionnaireStatus": "pending",
+      "clinicalStatus": "intake_pending",
+      "questionnaireData": null,
+      "clinicalScores": null,
+      "id": "bk_1791547631509_9tug1",
+      "createdAt": "2026-10-09T12:07:11.509Z",
+      "updatedAt": "2026-10-09T12:07:11.509Z"
+    },
+    {
+      "userId": "usr_1791540315041_uz9z1",
+      "clientName": "Kuldeep Tiwari",
+      "clientEmail": "kdkuldeeptiwari26@gmail.com",
+      "clientPhone": "+917058972300",
+      "serviceName": "Comprehensive Consultation (60 min)",
+      "servicePrice": 2999,
+      "bookingDate": "2026-10-09",
+      "bookingTime": "10:00 AM - Morning Slot",
+      "notes": "Comprehensive intake review",
+      "sectionA": {
+        "age": "",
+        "gender": "",
+        "city": "",
+        "occupation": "",
+        "language": "English",
+        "emergencyContact": ""
+      },
+      "paymentId": "pay_rzp_1791547694755",
+      "orderId": "order_test_1791547694147",
+      "paymentStatus": "paid",
+      "questionnaireStatus": "completed",
+      "clinicalStatus": "awaiting_clinical_review",
+      "questionnaireData": {
+        "q10_primary_concern": "Weight management",
+        "q11_concern_description": "SWDDDWF JIJ NG RF RFEDFVE",
+        "q12_concern_duration": "1–6 months",
+        "q13_daily_life_impact": "DFD EFEF",
+        "q14_consulted_professional": "Yes",
+        "q15_tried_so_far": "DFFDFHJYHKRJEC",
+        "q16_medical_condition": "KULGJEWOF",
+        "q17_medicines_supplements": "DBRF DEK",
+        "q18_food_allergies": "DEBRK",
+        "q19_surgeries_medical_events": "KFMFR",
+        "q21_other_health_info": "FMK",
+        "q22_height_cm": "754",
+        "q23_weight_kg": "71",
+        "q24_weight_changes": "3",
+        "q25_physical_activity": "Mostly sitting",
+        "q26_sleep_hours": "9",
+        "q27_stress_level": "Moderate",
+        "q28_substance_use": "NN",
+        "q29_dietary_preference": "Eggetarian",
+        "q30_meal_timings": "KOJOJ",
+        "q31_typical_day_meals": "KJKJ",
+        "q32_water_intake": "5",
+        "q33_digestive_symptoms": "KMKNKLKN",
+        "q34_foods_avoided": "KNK",
+        "q35_eating_outside_frequency": "KNK",
+        "q36_habits_difficulty": "KNKON",
+        "q37_primary_consultation_goal": "KNKLN",
+        "q38_meaningful_improvement": "KNKNKNKN",
+        "q39_past_nutrition_plans": "KLNK",
+        "q40_support_type": "Personalized nutrition plan",
+        "q41_time_dedication": "KNKKNKN",
+        "q42_additional_discussion": "KN",
+        "submittedAt": "2026-10-09T12:10:14.798Z"
+      },
+      "clinicalScores": {
+        "compositeResilience": 65,
+        "gutScore": 65,
+        "breathScore": 67,
+        "hormoneScore": 60,
+        "sleepScore": 67,
+        "clinicalFlags": [
+          "Metabolic Adaptation / Weight Plateau",
+          "Immunological Food Reactivity / Intolerance Profile"
+        ],
+        "evaluatedAt": "2026-10-09T12:10:14.798Z"
+      },
+      "id": "bk_1791547694775_wl6jz",
+      "createdAt": "2026-10-09T12:08:14.775Z",
+      "updatedAt": "2026-10-09T12:10:14.809Z"
+    }
+  ],
+  "questionnaireTemplate": {
+    "title": "HEALTHWITHRESHMI — Pre-Consultation Health & Nutrition Questionnaire",
+    "subtitle": "Section B through Section F (Flexible Clinical History & Biomarkers)",
+    "notice": "After payment, please fill this questionnaire to give Reshmi Verma a comprehensive clinical picture. It is not mandatory to answer every question — answer what is most relevant to your goals.",
+    "updatedAt": "2026-10-09T12:00:30.607Z",
+    "sections": [
+      {
+        "id": "section_b",
+        "badge": "B",
+        "title": "Section B — Your Main Health Concern",
+        "description": "Help us understand your primary health focus and how long it has persisted.",
+        "questions": [
+          {
+            "id": "q10_primary_concern",
+            "number": 10,
+            "text": "What is your primary health concern?",
+            "type": "select",
+            "options": [
+              "Weight management",
+              "Gut and digestive health",
+              "PCOS / hormonal health",
+              "Thyroid-related nutrition",
+              "Diabetes / blood sugar management",
+              "Fatigue / low energy",
+              "Skin and hair nutrition",
+              "Sports nutrition",
+              "General wellness",
+              "Other"
+            ],
+            "required": false,
+            "enabled": true
+          },
+          {
+            "id": "q11_concern_description",
+            "number": 11,
+            "text": "Please describe your main concern in your own words.",
+            "type": "textarea",
+            "placeholder": "Describe the symptoms, frequency, and when they started...",
+            "required": false,
+            "enabled": true
+          },
+          {
+            "id": "q12_concern_duration",
+            "number": 12,
+            "text": "How long have you been experiencing this concern?",
+            "type": "select",
+            "options": [
+              "Less than one month",
+              "1–6 months",
+              "6–12 months",
+              "More than one year"
+            ],
+            "required": false,
+            "enabled": true
+          },
+          {
+            "id": "q13_daily_life_impact",
+            "number": 13,
+            "text": "How much does this concern affect your daily life?",
+            "type": "text",
+            "placeholder": "e.g., Affects work focus, daily energy, mood, sleep...",
+            "required": false,
+            "enabled": true
+          },
+          {
+            "id": "q14_consulted_professional",
+            "number": 14,
+            "text": "Have you consulted a healthcare professional about this concern?",
+            "type": "select",
+            "options": [
+              "Yes",
+              "No"
+            ],
+            "required": false,
+            "enabled": true
+          },
+          {
+            "id": "q15_tried_so_far",
+            "number": 15,
+            "text": "What have you tried so far, and what results did you experience?",
+            "type": "textarea",
+            "placeholder": "Medications, home remedies, diets, supplements, therapies...",
+            "required": false,
+            "enabled": true
+          }
+        ]
+      },
+      {
+        "id": "section_c",
+        "badge": "C",
+        "title": "Section C — Health History",
+        "description": "Medical diagnoses, surgeries, medications, and laboratory data.",
+        "questions": [
+          {
+            "id": "q16_medical_condition",
+            "number": 16,
+            "text": "Have you been diagnosed with any medical condition? If yes, please specify.",
+            "type": "textarea",
+            "placeholder": "e.g., Hypothyroidism, Fatty Liver, IBS, Hypertension, None...",
+            "required": false,
+            "enabled": true
+          },
+          {
+            "id": "q17_medicines_supplements",
+            "number": 17,
+            "text": "Are you currently taking any medicines or supplements? Please list their names, if known.",
+            "type": "textarea",
+            "placeholder": "e.g., Thyronorm 25mcg, Pantoprazole 40mg, Vitamin D3, B12, None...",
+            "required": false,
+            "enabled": true
+          },
+          {
+            "id": "q18_food_allergies",
+            "number": 18,
+            "text": "Do you have any known food allergies or intolerances?",
+            "type": "textarea",
+            "placeholder": "e.g., Lactose/Dairy, Gluten, Nuts, Shellfish, Soy, None...",
+            "required": false,
+            "enabled": true
+          },
+          {
+            "id": "q19_surgeries_medical_events",
+            "number": 19,
+            "text": "Have you undergone any surgery or had a significant medical event relevant to your nutrition?",
+            "type": "textarea",
+            "placeholder": "e.g., Gallbladder removal, C-section, Appendectomy, None...",
+            "required": false,
+            "enabled": true
+          },
+          {
+            "id": "q20_laboratory_reports",
+            "number": 20,
+            "text": "Do you have recent laboratory reports that you would like the nutritionist to review? (Optional secure note/link)",
+            "type": "text",
+            "placeholder": "e.g., CBC, Lipid Profile, Thyroid Panel (can share on Google Meet or paste link)...",
+            "required": false,
+            "enabled": true
+          },
+          {
+            "id": "q21_other_health_info",
+            "number": 21,
+            "text": "Is there any other health information the nutritionist should know before your consultation?",
+            "type": "textarea",
+            "placeholder": "Family history, genetic predispositions, or specific concerns...",
+            "required": false,
+            "enabled": true
+          }
+        ]
+      },
+      {
+        "id": "section_d",
+        "badge": "D",
+        "title": "Section D — Body & Lifestyle Profile",
+        "description": "Physical measurements, movement, sleep patterns, and stress profile.",
+        "questions": [
+          {
+            "id": "q22_height_cm",
+            "number": 22,
+            "text": "Height (cm)",
+            "type": "number",
+            "placeholder": "e.g., 165",
+            "required": false,
+            "enabled": true
+          },
+          {
+            "id": "q23_weight_kg",
+            "number": 23,
+            "text": "Current weight (kg), if comfortable sharing",
+            "type": "number",
+            "placeholder": "e.g., 68",
+            "required": false,
+            "enabled": true
+          },
+          {
+            "id": "q24_weight_changes",
+            "number": 24,
+            "text": "Has your weight changed significantly in the last 3–6 months? If yes, describe the change.",
+            "type": "text",
+            "placeholder": "e.g., Gained 3 kg, Lost 5 kg unintentionally, Stable...",
+            "required": false,
+            "enabled": true
+          },
+          {
+            "id": "q25_physical_activity",
+            "number": 25,
+            "text": "How physically active are you?",
+            "type": "select",
+            "options": [
+              "Mostly sitting",
+              "Lightly active",
+              "Moderately active",
+              "Very active"
+            ],
+            "required": false,
+            "enabled": true
+          },
+          {
+            "id": "q26_sleep_hours",
+            "number": 26,
+            "text": "On average, how many hours do you sleep each night?",
+            "type": "text",
+            "placeholder": "e.g., 6–7 hours, fragmented, mouth breathing at night...",
+            "required": false,
+            "enabled": true
+          },
+          {
+            "id": "q27_stress_level",
+            "number": 27,
+            "text": "How would you describe your current stress level?",
+            "type": "select",
+            "options": [
+              "Low",
+              "Moderate",
+              "High"
+            ],
+            "required": false,
+            "enabled": true
+          },
+          {
+            "id": "q28_substance_use",
+            "number": 28,
+            "text": "Do you smoke, consume alcohol, or use other substances that may be relevant to your health? (Optional and confidential)",
+            "type": "text",
+            "placeholder": "Strictly confidential medical note (e.g. Occasional social drinks, Non-smoker)...",
+            "required": false,
+            "enabled": true
+          }
+        ]
+      },
+      {
+        "id": "section_e",
+        "badge": "E",
+        "title": "Section E — Food & Nutrition Habits",
+        "description": "Dietary preferences, meal timings, digestion, and hydration.",
+        "questions": [
+          {
+            "id": "q29_dietary_preference",
+            "number": 29,
+            "text": "Which best describes your dietary preference?",
+            "type": "select",
+            "options": [
+              "Vegetarian",
+              "Vegan",
+              "Eggetarian",
+              "Non-vegetarian",
+              "Other"
+            ],
+            "required": false,
+            "enabled": true
+          },
+          {
+            "id": "q30_meal_timings",
+            "number": 30,
+            "text": "What time do you usually eat breakfast, lunch and dinner?",
+            "type": "text",
+            "placeholder": "e.g., Breakfast: 9:00 AM, Lunch: 1:30 PM, Dinner: 9:00 PM",
+            "required": false,
+            "enabled": true
+          },
+          {
+            "id": "q31_typical_day_meals",
+            "number": 31,
+            "text": "Please describe a typical day's meals and snacks.",
+            "type": "textarea",
+            "placeholder": "Morning tea/coffee, breakfast items, afternoon lunch, evening snack, dinner...",
+            "required": false,
+            "enabled": true
+          },
+          {
+            "id": "q32_water_intake",
+            "number": 32,
+            "text": "Approximately how much water do you drink daily?",
+            "type": "text",
+            "placeholder": "e.g., 2–3 litres, 4–5 glasses...",
+            "required": false,
+            "enabled": true
+          },
+          {
+            "id": "q33_digestive_symptoms",
+            "number": 33,
+            "text": "Do you regularly experience bloating, acidity, constipation, diarrhoea or other digestive symptoms? If yes, describe them.",
+            "type": "textarea",
+            "placeholder": "e.g., Bloating 30 mins after meals, acidity in morning, sluggish bowels...",
+            "required": false,
+            "enabled": true
+          },
+          {
+            "id": "q34_foods_avoided",
+            "number": 34,
+            "text": "Are there any foods you avoid due to preference, culture, allergy or intolerance?",
+            "type": "textarea",
+            "placeholder": "e.g., Avoid dairy, avoid onion/garlic, avoid red meat...",
+            "required": false,
+            "enabled": true
+          },
+          {
+            "id": "q35_eating_outside_frequency",
+            "number": 35,
+            "text": "How often do you eat outside or order food?",
+            "type": "text",
+            "placeholder": "e.g., 2–3 times a week, weekends only, rarely...",
+            "required": false,
+            "enabled": true
+          },
+          {
+            "id": "q36_habits_difficulty",
+            "number": 36,
+            "text": "What makes it difficult for you to maintain your desired eating habits?",
+            "type": "textarea",
+            "placeholder": "e.g., Busy work schedule, travel, sugar cravings, lack of meal prep time...",
+            "required": false,
+            "enabled": true
+          }
+        ]
+      },
+      {
+        "id": "section_f",
+        "badge": "F",
+        "title": "Section F — Your Goals & Expectations",
+        "description": "Your primary aspirations, realistic time dedication, and expectations.",
+        "questions": [
+          {
+            "id": "q37_primary_consultation_goal",
+            "number": 37,
+            "text": "What is your primary goal from this consultation?",
+            "type": "textarea",
+            "placeholder": "e.g., Eliminate acid reflux permanently, boost daytime energy, optimize gut microbiome...",
+            "required": false,
+            "enabled": true
+          },
+          {
+            "id": "q38_meaningful_improvement",
+            "number": 38,
+            "text": "What would meaningful improvement look like to you?",
+            "type": "textarea",
+            "placeholder": "e.g., Feeling light after meals, waking up refreshed, clear skin...",
+            "required": false,
+            "enabled": true
+          },
+          {
+            "id": "q39_past_nutrition_plans",
+            "number": 39,
+            "text": "Have you previously followed a nutrition or diet plan? What worked or did not work?",
+            "type": "textarea",
+            "placeholder": "e.g., Tried keto (too restrictive), tried intermittent fasting (gave acidity)...",
+            "required": false,
+            "enabled": true
+          },
+          {
+            "id": "q40_support_type",
+            "number": 40,
+            "text": "What kind of support would help you most?",
+            "type": "select",
+            "options": [
+              "Personalized nutrition plan",
+              "Understanding food and eating habits",
+              "Ongoing progress monitoring",
+              "Lifestyle and habit support",
+              "Follow-up consultations"
+            ],
+            "required": false,
+            "enabled": true
+          },
+          {
+            "id": "q41_time_dedication",
+            "number": 41,
+            "text": "How much time can you realistically dedicate to making changes?",
+            "type": "text",
+            "placeholder": "e.g., 20–30 minutes daily for cooking/breathing, gradual step-by-step changes...",
+            "required": false,
+            "enabled": true
+          },
+          {
+            "id": "q42_additional_discussion",
+            "number": 42,
+            "text": "Is there anything else you would like to discuss with the nutritionist?",
+            "type": "textarea",
+            "placeholder": "Any other questions or comments for Reshmi Verma...",
+            "required": false,
+            "enabled": true
+          }
+        ]
+      }
+    ]
+  },
+  "pricingTiers": [
+    {
+      "id": "discovery",
+      "name": "Initial Discovery Call (20 min)",
+      "badge": "Discovery Call",
+      "title": "Initial Discovery Call",
+      "duration": "20 Minutes • Exploratory Session",
+      "price": 999,
+      "desc": "A quick chat to discuss your health story, current roadblocks, and determine if our SAMYA functional method aligns with your goals.",
+      "features": [
+        "Review your primary symptoms",
+        "Evaluate your BOLT & breath baseline",
+        "Identify the right next clinical step"
+      ],
+      "buttonText": "Select Discovery Call (₹999)",
+      "featured": false,
+      "active": true
+    },
+    {
+      "id": "comprehensive",
+      "name": "Comprehensive Consultation (60 min)",
+      "badge": "Comprehensive Consultation",
+      "title": "Comprehensive Consultation",
+      "duration": "60 Minutes • Full Root-Cause Roadmap",
+      "price": 2999,
+      "desc": "Deep dive into your blood diagnostics, gut health timeline, circadian sleep mapping, and custom metabolic architecture.",
+      "features": [
+        "Full blood chemistry & biomarker review",
+        "Customized gut mucosal healing protocol",
+        "Individualized Oxygen Advantage breath prescription",
+        "Written clinical action plan & supplement guide"
+      ],
+      "buttonText": "Select Comprehensive Plan (₹2,999)",
+      "featured": true,
+      "active": true
+    },
+    {
+      "id": "followup",
+      "name": "Follow-Up Check-in (30 min)",
+      "badge": "Follow-Up Session",
+      "title": "Follow-Up Check-in",
+      "duration": "30 Minutes • Active Clients Only",
+      "price": 1499,
+      "desc": "For existing clients to review progress, track repeat BOLT scores, review updated labs, and adjust protocols.",
+      "features": [
+        "Biomarker progression audit",
+        "Titrate nutraceuticals & botanical doses",
+        "Advanced breathwork progression"
+      ],
+      "buttonText": "Select Follow-Up (₹1,499)",
+      "featured": false,
+      "active": true
+    }
+  ],
+  "reels": [
+    {
+      "id": "reel-1",
+      "title": "Why Morning Coffee On An Empty Stomach Causes Gut Dysbiosis & Acidity",
+      "url": "https://www.instagram.com/reel/DEvM_3Yvx4D/?utm_source=ig_web_copy_link",
+      "image": "/assets/images/founder.jpeg",
+      "views": "48.2K",
+      "duration": "0:58",
+      "topic": "Gut Acidity & Coffee"
+    },
+    {
+      "id": "reel-2",
+      "title": "Breathe Light To Breathe Right — The Bohr Effect In 45 Seconds",
+      "url": "https://www.instagram.com/reel/DEvM_3Yvx4D/?utm_source=ig_web_copy_link",
+      "image": "/assets/images/founder.jpg",
+      "views": "62.4K",
+      "duration": "0:45",
+      "topic": "Oxygen Advantage #13"
+    },
+    {
+      "id": "reel-3",
+      "title": "Stop Counting Calories: 3 Real Food Swaps For Fatty Liver & Insulin Resistance",
+      "url": "https://www.instagram.com/reel/DEvM_3Yvx4D/?utm_source=ig_web_copy_link",
+      "image": "/assets/images/reel-3-food-swaps.jpg",
+      "views": "39.1K",
+      "duration": "1:15",
+      "topic": "Metabolic Healing"
+    },
+    {
+      "id": "reel-4",
+      "title": "Bloating After Every Meal? Here Is How To Heal Your Gut Mucosa",
+      "url": "https://www.instagram.com/reel/DEvM_3Yvx4D/?utm_source=ig_web_copy_link",
+      "image": "/assets/images/reel-4-gut-mucosa.jpg",
+      "views": "71.8K",
+      "duration": "1:02",
+      "topic": "Gut Barrier Repair"
+    },
+    {
+      "id": "reel-5",
+      "title": "Why Mouth Breathing Ruins Deep REM Sleep & Causes Brain Fog",
+      "url": "https://www.instagram.com/reel/DEvM_3Yvx4D/?utm_source=ig_web_copy_link",
+      "image": "/assets/images/founder.jpeg",
+      "views": "54.6K",
+      "duration": "0:52",
+      "topic": "Nasal Breathing Biohack"
+    },
+    {
+      "id": "reel-6",
+      "title": "From 98kg to Resilient Vitality: My Real -38kg Transformation Story",
+      "url": "https://www.instagram.com/reel/DEvM_3Yvx4D/?utm_source=ig_web_copy_link",
+      "image": "/assets/images/founder.jpg",
+      "views": "94.3K",
+      "duration": "1:30",
+      "topic": "Real Transformation"
+    }
+  ]
+}

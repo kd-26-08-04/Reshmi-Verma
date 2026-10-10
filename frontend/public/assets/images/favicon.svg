@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="100%" height="100%">
+  <defs>
+    <!-- Background Gradient: Deep Indigo Slate Luxury -->
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0F172A" />
+      <stop offset="60%" stop-color="#1E293B" />
+      <stop offset="100%" stop-color="#334155" />
+    </linearGradient>
+
+    <!-- Warm Terracotta & Amber Vitality Flow -->
+    <linearGradient id="terracottaGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FED7AA" />
+      <stop offset="50%" stop-color="#EA580C" />
+      <stop offset="100%" stop-color="#C2410C" />
+    </linearGradient>
+
+    <!-- Golden Circadian Spark Core -->
+    <radialGradient id="goldGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#FEF3C7" />
+      <stop offset="60%" stop-color="#D97706" />
+      <stop offset="100%" stop-color="#9A3412" />
+    </radialGradient>
+  </defs>
+
+  <!-- Base Rounded Squircle -->
+  <rect x="24" y="24" width="464" height="464" rx="120" ry="120" fill="url(#bgGrad)" filter="drop-shadow(0 16px 32px rgba(15, 23, 42, 0.35))" />
+  
+  <!-- Outer Subtle Breath Ring -->
+  <circle cx="256" cy="256" r="180" fill="none" stroke="rgba(255, 237, 213, 0.25)" stroke-width="6" stroke-dasharray="12 12" />
+
+  <!-- Pranic Breath & Cellular Vitality "R" Iconography -->
+  <g transform="translate(256, 256) scale(1.1) translate(-256, -256)">
+    
+    <!-- Left Vertical Stem (Spine / Vagus Line) -->
+    <path d="M 180 150 C 180 140, 195 130, 204 130 C 214 130, 218 140, 218 150 L 218 360 C 218 372, 204 378, 194 374 C 185 370, 180 360, 180 350 Z" fill="url(#terracottaGrad)" />
+
+    <!-- Top Loop: Respiration Wave & Vitality Arc -->
+    <path d="M 210 140 C 260 130, 330 145, 330 215 C 330 270, 275 285, 218 285" fill="none" stroke="url(#terracottaGrad)" stroke-width="32" stroke-linecap="round" />
+
+    <!-- Lower Leg: Extending Vitality Branch -->
+    <path d="M 245 270 C 275 295, 305 330, 335 365 C 342 373, 332 384, 322 380 C 298 355, 270 320, 242 290" fill="url(#terracottaGrad)" stroke="url(#terracottaGrad)" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" />
+
+    <!-- Golden Circadian Vitality Core (Sun/Nerve Spark) -->
+    <circle cx="265" cy="210" r="22" fill="url(#goldGlow)" />
+  </g>
+</svg>
