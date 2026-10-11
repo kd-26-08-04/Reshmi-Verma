@@ -716,51 +716,110 @@ h1, h2, h3, h4, h5, h6 {
   line-height: 1.35;
 }
 
+/* Next-Level Cinematic Hero Section Entrance Animations */
+@keyframes heroSlideInLeft {
+  0% {
+    opacity: 0;
+    transform: translateX(-55px) scale(0.97);
+    filter: blur(8px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0) scale(1);
+    filter: blur(0);
+  }
+}
+
+@keyframes heroSlideInRight {
+  0% {
+    opacity: 0;
+    transform: translateX(65px) scale(0.96);
+    filter: blur(10px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0) scale(1);
+    filter: blur(0);
+  }
+}
+
+@keyframes badgePopSpringLeft {
+  0% {
+    opacity: 0;
+    transform: translate(-35px, 25px) scale(0.5);
+  }
+  70% {
+    transform: translate(5px, -3px) scale(1.06);
+  }
+  100% {
+    opacity: 1;
+    transform: translate(0, 0) scale(1);
+  }
+}
+
+@keyframes badgePopSpringRight {
+  0% {
+    opacity: 0;
+    transform: translate(35px, -25px) scale(0.5);
+  }
+  70% {
+    transform: translate(-5px, 3px) scale(1.06);
+  }
+  100% {
+    opacity: 1;
+    transform: translate(0, 0) scale(1);
+  }
+}
+
+.hero-content {
+  animation: heroSlideInLeft 1.15s cubic-bezier(0.16, 1, 0.3, 1) both;
+  will-change: transform, opacity, filter;
+}
+
 /* Hero Media / Doctor Card */
 .hero-media {
   position: relative;
   display: flex;
   justify-content: center;
+  animation: heroSlideInRight 1.25s cubic-bezier(0.16, 1, 0.3, 1) 0.1s both;
+  will-change: transform, opacity, filter;
 }
 
 .doctor-portrait-card {
   position: relative;
   width: 100%;
-  max-width: 440px;
-  border-radius: var(--radius-xl);
-  padding: 14px;
-  background: rgba(255, 255, 255, 0.94);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  box-shadow: 0 25px 60px -15px rgba(194, 65, 12, 0.16), 0 0 25px rgba(194, 65, 12, 0.08);
-  border: 1.5px solid rgba(194, 65, 12, 0.22);
-  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.35s ease;
+  max-width: 510px;
+  padding: 0;
+  background: transparent;
+  border: none;
+  box-shadow: none;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .doctor-portrait-card:hover {
-  transform: translateY(-8px);
-  border-color: rgba(194, 65, 12, 0.45);
-  box-shadow: 0 35px 70px -15px rgba(194, 65, 12, 0.22), 0 0 35px rgba(234, 88, 12, 0.12);
+  transform: translateY(-6px);
 }
 
 .portrait-inner {
-  border-radius: calc(var(--radius-xl) - 6px);
+  border-radius: 28px;
   overflow: hidden;
   position: relative;
-  aspect-ratio: 4/5;
-  background: var(--bg-tertiary);
+  aspect-ratio: 3/4;
+  background: transparent;
+  box-shadow: 0 25px 50px -12px rgba(15, 23, 42, 0.14), 0 0 40px rgba(194, 65, 12, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.8);
 }
 
 .portrait-inner img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center 20%;
-  transition: transform var(--transition-slow);
+  object-position: center 10%;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .doctor-portrait-card:hover .portrait-inner img {
-  transform: scale(1.03);
+  transform: scale(1.02);
 }
 
 /* Floating Verification Pill */
@@ -778,7 +837,7 @@ h1, h2, h3, h4, h5, h6 {
   align-items: center;
   gap: 14px;
   z-index: 3;
-  animation: floatSlow 5s ease-in-out infinite;
+  animation: badgePopSpringLeft 0.85s cubic-bezier(0.34, 1.56, 0.64, 1) 0.5s both, floatSlow 5s ease-in-out 1.35s infinite;
 }
 
 .floating-cert-badge .cert-icon {
@@ -821,7 +880,7 @@ h1, h2, h3, h4, h5, h6 {
   align-items: center;
   gap: 12px;
   z-index: 3;
-  animation: floatSlow 6s ease-in-out infinite 1s;
+  animation: badgePopSpringRight 0.85s cubic-bezier(0.34, 1.56, 0.64, 1) 0.65s both, floatSlow 6s ease-in-out 1.5s infinite;
 }
 
 .floating-breath-badge .circle-pulse {
@@ -2483,10 +2542,12 @@ h1, h2, h3, h4, h5, h6 {
   }
 
   .doctor-portrait-card {
-    max-width: 310px;
+    max-width: 330px;
     margin: 10px auto 0;
-    padding: 10px;
-    border-radius: var(--radius-lg);
+    padding: 0;
+    background: transparent;
+    border: none;
+    box-shadow: none;
   }
   .floating-cert-badge {
     left: 50%;
@@ -3700,8 +3761,84 @@ h1, h2, h3, h4, h5, h6 {
   width: 100%;
   height: 100%;
   /* Ultra-subtle vignette so the sunrise, misty mountains, and meditating lady are crystal clear */
-  background: radial-gradient(circle at center, rgba(15, 23, 42, 0.04) 0%, rgba(15, 23, 42, 0.22) 100%);
+  background: radial-gradient(circle at center, rgba(15, 23, 42, 0.02) 0%, rgba(15, 23, 42, 0.18) 100%);
   pointer-events: none;
+}
+
+/* Glassmorphism & Layout for Assessment Page */
+.assessment-page-layout {
+  position: relative;
+  z-index: 1;
+  padding: 36px 0 60px;
+}
+
+@media (min-width: 1200px) {
+  .assessment-widescreen-container {
+    max-width: 760px !important;
+    margin-left: calc((100vw - 1280px) / 2 + 40px) !important;
+    margin-right: auto !important;
+  }
+}
+
+@media (min-width: 1400px) {
+  .assessment-widescreen-container {
+    max-width: 800px !important;
+    margin-left: calc((100vw - 1400px) / 2 + 60px) !important;
+    margin-right: auto !important;
+  }
+}
+
+.glass-assessment-card {
+  background: rgba(255, 255, 255, 0.72) !important;
+  backdrop-filter: blur(20px) !important;
+  -webkit-backdrop-filter: blur(20px) !important;
+  border: 1px solid rgba(255, 255, 255, 0.85) !important;
+  border-radius: 24px !important;
+  box-shadow: 0 20px 45px rgba(15, 23, 42, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.8) !important;
+  padding: 36px !important;
+  transition: all 0.3s ease;
+}
+
+.glass-option-btn {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  text-align: left;
+  padding: 16px 20px;
+  background: rgba(255, 255, 255, 0.78) !important;
+  backdrop-filter: blur(14px) !important;
+  -webkit-backdrop-filter: blur(14px) !important;
+  border: 1.5px solid rgba(255, 255, 255, 0.9) !important;
+  border-radius: 14px;
+  cursor: pointer;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  color: var(--text-primary);
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 12px rgba(15, 23, 42, 0.03);
+}
+
+.glass-option-btn:hover {
+  background: rgba(255, 255, 255, 0.95) !important;
+  border-color: var(--emerald-primary) !important;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(194, 65, 12, 0.12);
+}
+
+.glass-section-summary-card {
+  background: rgba(255, 255, 255, 0.75) !important;
+  backdrop-filter: blur(16px) !important;
+  -webkit-backdrop-filter: blur(16px) !important;
+  border: 1px solid rgba(255, 255, 255, 0.85) !important;
+  border-radius: 18px !important;
+  padding: 22px 24px !important;
+  box-shadow: 0 6px 18px rgba(15, 23, 42, 0.04) !important;
+  transition: transform 0.2s ease;
+}
+
+.glass-section-summary-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 24px rgba(15, 23, 42, 0.07) !important;
 }
 
 .auth-viewport {

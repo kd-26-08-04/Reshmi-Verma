@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { Link, useNavigate, useSearchParams } from 'react-router-dom';
 import emailjs from '@emailjs/browser';
 import { useAuth } from '../context/AuthContext';
+import { getApiUrl } from '../utils/api';
 
 const DEFAULT_PRICING_TIERS = {
   discovery: {
@@ -99,6 +100,50 @@ export default function BookingPage() {
   const [alert, setAlert] = useState(null); // { type: 'success' | 'error', message: string, icon?: string }
   const [confirmedBooking, setConfirmedBooking] = useState(null);
 
+  // Dynamic slot availability state
+  const [slotsLoading, setSlotsLoading] = useState(false);
+  const [slotsData, setSlotsData] = useState({
+    isDateBlocked: false,
+    blockReason: null,
+    slots: TIME_SLOTS.map(s => ({ slot: s, available: true, status: 'available' })),
+    hasAvailableSlot: true
+  });
+
+  // Fetch slot availability whenever bookingDate changes
+  useEffect(() => {
+    if (!formData.bookingDate) return;
+    let isCancelled = false;
+
+    const fetchSlots = async () => {
+      setSlotsLoading(true);
+      try {
+        const res = await fetch(getApiUrl(`/api/available-slots?date=${encodeURIComponent(formData.bookingDate)}`));
+        const data = await res.json();
+        if (!isCancelled && res.ok && data.success) {
+          setSlotsData(data);
+          // If current selected slot is unavailable or date is blocked, auto-select first available slot
+          const currentSlotItem = (data.slots || []).find(s => s.slot === formData.timeSlot);
+          if (!currentSlotItem || !currentSlotItem.available) {
+            const firstAvailable = (data.slots || []).find(s => s.available);
+            if (firstAvailable) {
+              setFormData(prev => ({ ...prev, timeSlot: firstAvailable.slot }));
+            }
+          }
+        }
+      } catch (e) {
+        console.warn('Slot availability fetch notice:', e);
+      } finally {
+        if (!isCancelled) setSlotsLoading(false);
+      }
+    };
+
+    fetchSlots();
+
+    return () => {
+      isCancelled = true;
+    };
+  }, [formData.bookingDate]);
+
   // Prefill user details if logged in
   useEffect(() => {
     if (user) {
@@ -147,7 +192,7 @@ export default function BookingPage() {
     }
 
     // Fetch dynamic pricing tiers configured by Admin
-    fetch('/api/pricing-tiers')
+    fetch(getApiUrl('/api/pricing-tiers'))
       .then(res => res.json())
       .then(data => {
         if (data.success && Array.isArray(data.tiers) && data.tiers.length > 0) {
@@ -193,18 +238,37 @@ export default function BookingPage() {
       return;
     }
 
+    if (slotsData.isDateBlocked) {
+      setAlert({
+        type: 'error',
+        message: slotsData.blockReason || 'The clinician is unavailable on the selected date. Please choose another date.'
+      });
+      return;
+    }
+
+    const currentSlotItem = (slotsData.slots || []).find(s => s.slot === formData.timeSlot);
+    if (currentSlotItem && !currentSlotItem.available) {
+      setAlert({
+        type: 'error',
+        message: `The slot "${formData.timeSlot}" is already booked or unavailable on this date. Please select an available slot.`
+      });
+      return;
+    }
+
     setLoading(true);
 
     try {
       // 1. Create order on backend Express server
-      const orderRes = await fetch('/api/create-order', {
+      const orderRes = await fetch(getApiUrl('/api/create-order'), {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           serviceTier: selectedTier,
           clientName: formData.name,
           clientEmail: formData.email,
-          clientPhone: formData.phone
+          clientPhone: formData.phone,
+          bookingDate: formData.bookingDate,
+          timeSlot: formData.timeSlot
         })
       });
 
@@ -216,7 +280,7 @@ export default function BookingPage() {
       const razorpayKey = import.meta.env.VITE_RAZORPAY_KEY_ID || 'rzp_test_51234567890abc';
 
       const finalizeBooking = async (paymentDetails = {}) => {
-        const verifyRes = await fetch('/api/verify-payment', {
+        const verifyRes = await fetch(getApiUrl('/api/verify-payment'), {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
@@ -283,14 +347,32 @@ export default function BookingPage() {
           }
         }
 
+        const assignedBookingId = verifyData.bookingId || verifyData.booking?.id || `bk_${Date.now()}`;
+
         setConfirmedBooking({
           ...verifyData.booking,
+          id: assignedBookingId,
+          bookingId: assignedBookingId,
           paymentId: paymentDetails.razorpay_payment_id || `pay_verified_${Date.now().toString().slice(-6)}`,
           clientName: formData.name,
+          clientEmail: formData.email,
+          clientPhone: formData.phone,
           serviceName: currentTier.name,
           amountPaid: currentTier.price,
           dateTime: `${formData.bookingDate} (${formData.timeSlot})`
         });
+
+        try {
+          localStorage.setItem('reshmi_last_booking_id', assignedBookingId);
+          localStorage.setItem('reshmi_last_booking_data', JSON.stringify({
+            id: assignedBookingId,
+            clientName: formData.name,
+            clientEmail: formData.email,
+            clientPhone: formData.phone,
+            serviceName: currentTier.name,
+            dateTime: `${formData.bookingDate} (${formData.timeSlot})`
+          }));
+        } catch (e) {}
         setLoading(false);
       };
 
@@ -338,7 +420,7 @@ export default function BookingPage() {
   };
 
   const whatsappMessage = encodeURIComponent(
-    `Hello Reshmi Verma, I have booked the ${currentTier.name} on ${formData.bookingDate} at ${formData.timeSlot}. Name: ${formData.name}.`
+    `Hello Reshmi Verma, I have booked the ${currentTier.name} on ${formData.bookingDate} at ${formData.timeSlot}. Name: ${formData.name}. Booking ID: ${confirmedBooking?.id || confirmedBooking?.bookingId || ''}`
   );
 
   return (
@@ -644,22 +726,75 @@ export default function BookingPage() {
                     required 
                     style={{ width: '100%', padding: '12px 16px', border: '1px solid var(--border-medium)', borderRadius: 'var(--radius-sm)', fontSize: '1rem' }} 
                   />
+                  {slotsLoading && (
+                    <span style={{ fontSize: '0.8rem', color: 'var(--emerald-medium)', display: 'block', marginTop: '4px' }}>
+                      ⏳ Checking clinician availability...
+                    </span>
+                  )}
+                  {slotsData.isDateBlocked && (
+                    <div style={{ marginTop: '8px', padding: '8px 12px', background: 'rgba(239, 68, 68, 0.08)', border: '1px solid rgba(239, 68, 68, 0.25)', borderRadius: '8px', color: '#dc2626', fontSize: '0.82rem', lineHeight: 1.4 }}>
+                      ⚠️ <strong>Date Unavailable:</strong> {slotsData.blockReason || 'Reshmi Mam is not taking consultations on this date. Please pick another date.'}
+                    </div>
+                  )}
+                  {!slotsData.isDateBlocked && !slotsData.hasAvailableSlot && !slotsLoading && (
+                    <div style={{ marginTop: '8px', padding: '8px 12px', background: 'rgba(245, 158, 11, 0.1)', border: '1px solid rgba(245, 158, 11, 0.25)', borderRadius: '8px', color: '#b45309', fontSize: '0.82rem', lineHeight: 1.4 }}>
+                      ⚠️ <strong>All slots booked:</strong> All consultation slots for this date are full. Please choose another date.
+                    </div>
+                  )}
                 </div>
 
                 <div>
-                  <label htmlFor="booking-time-picker" style={{ fontWeight: 700, fontSize: '0.95rem', color: 'var(--emerald-deep)', display: 'block', marginBottom: '8px' }}>
-                    Preferred Time Window
-                  </label>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '8px' }}>
+                    <label htmlFor="booking-time-picker" style={{ fontWeight: 700, fontSize: '0.95rem', color: 'var(--emerald-deep)', margin: 0 }}>
+                      Preferred Time Window *
+                    </label>
+                    {slotsData.hasAvailableSlot && !slotsData.isDateBlocked && (
+                      <span style={{ fontSize: '0.78rem', color: '#16a34a', fontWeight: 600, background: 'rgba(22, 163, 74, 0.1)', padding: '2px 8px', borderRadius: '12px' }}>
+                        ● Live Available
+                      </span>
+                    )}
+                  </div>
+
                   <select 
                     id="booking-time-picker" 
                     name="timeSlot"
                     value={formData.timeSlot}
                     onChange={handleInputChange}
-                    style={{ width: '100%', padding: '12px 16px', border: '1px solid var(--border-medium)', borderRadius: 'var(--radius-sm)', fontSize: '1rem' }}
+                    disabled={slotsLoading || slotsData.isDateBlocked || !slotsData.hasAvailableSlot}
+                    style={{ 
+                      width: '100%', 
+                      padding: '12px 16px', 
+                      border: '1px solid var(--border-medium)', 
+                      borderRadius: 'var(--radius-sm)', 
+                      fontSize: '0.95rem',
+                      background: slotsData.isDateBlocked || !slotsData.hasAvailableSlot ? '#f8fafc' : 'white',
+                      cursor: slotsData.isDateBlocked || !slotsData.hasAvailableSlot ? 'not-allowed' : 'pointer'
+                    }}
                   >
-                    {TIME_SLOTS.map((slot) => (
-                      <option key={slot} value={slot}>{slot}</option>
-                    ))}
+                    {slotsData.isDateBlocked ? (
+                      <option value="">No consultation slots on this date</option>
+                    ) : !slotsData.hasAvailableSlot ? (
+                      <option value="">All slots fully booked for this date</option>
+                    ) : (
+                      (slotsData.slots || []).map((item) => {
+                        const isAvailable = item.available;
+                        const label = isAvailable 
+                          ? `${item.slot} — ✓ Available` 
+                          : item.status === 'booked' 
+                            ? `${item.slot} — ❌ [Already Booked]` 
+                            : `${item.slot} — ⛔ [Doctor Unavailable]`;
+                        return (
+                          <option 
+                            key={item.slot} 
+                            value={item.slot}
+                            disabled={!isAvailable}
+                            style={{ color: isAvailable ? '#0f172a' : '#94a3b8' }}
+                          >
+                            {label}
+                          </option>
+                        );
+                      })
+                    )}
                   </select>
                 </div>
               </div>
@@ -796,7 +931,7 @@ export default function BookingPage() {
             <div className="modal-actions" style={{ display: 'flex', gap: '12px', flexWrap: 'wrap', justifyContent: 'center' }}>
               <a 
                 id="whatsapp-confirm-link" 
-                href={`https://wa.me/919876543210?text=${whatsappMessage}`} 
+                href={`https://wa.me/919876543210?text=${encodeURIComponent(`Hello Reshmi Verma, I have confirmed my ${confirmedBooking.serviceName} on ${confirmedBooking.dateTime}. Patient Name: ${confirmedBooking.clientName}. Booking ID: ${confirmedBooking.id || confirmedBooking.bookingId || ''}. I am submitting my clinical questionnaire.`)}`} 
                 target="_blank" 
                 rel="noopener noreferrer" 
                 className="btn btn-accent btn-sm"

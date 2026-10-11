@@ -6,7 +6,15 @@
   "trailingSlash": false,
   "rewrites": [
     {
-      "source": "/(.*)",
+      "source": "/api/(.*)",
+      "destination": "/backend/server.js"
+    },
+    {
+      "source": "/uploads/(.*)",
+      "destination": "/backend/server.js"
+    },
+    {
+      "source": "/((?!api|uploads).*)",
       "destination": "/index.html"
     }
   ],

@@ -108,7 +108,7 @@ export default function Footer() {
 
           <div className="footer-bottom">
             <div>
-              &copy; 2026 HealthwithReshmi™. All rights reserved. Dr. Reshmi Verma.
+              &copy; 2026 HealthwithReshmi™. All rights reserved. Reshmi Verma.
             </div>
             <div style={{ fontSize: '0.72rem', maxWidth: '480px', textAlign: 'right', color: 'var(--text-muted)', lineHeight: 1.35 }}>
               Medical Disclaimer: Educational and self-optimization purposes only; does not replace personalized medical diagnosis or treatment.

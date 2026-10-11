@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { soundSynth } from '../utils/soundSynth';
+import { getApiUrl } from '../utils/api';
 
 const BREATH_PROTOCOLS = {
   '478': {
@@ -113,7 +114,7 @@ export default function HomePage() {
   const [reelsList, setReelsList] = useState(DEFAULT_REELS);
 
   useEffect(() => {
-    fetch('/api/reels')
+    fetch(getApiUrl('/api/reels'))
       .then(res => res.json())
       .then(data => {
         if (data.success && Array.isArray(data.reels) && data.reels.length > 0) {
@@ -344,7 +345,7 @@ export default function HomePage() {
               <div className="doctor-portrait-card">
                 <div className="portrait-inner">
                   <img
-                    src="/assets/images/reshmi-verma.jpg"
+                    src="/assets/images/reshmi-verma-executive.jpg"
                     alt="Reshmi Verma - #13 Oxygen Advantage Coach India, Certified Biohacker & Functional Nutritionist"
                   />
                 </div>

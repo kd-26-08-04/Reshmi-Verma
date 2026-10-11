@@ -52,7 +52,18 @@ export default async function handler(req, res) {
       }
     }
 
-    const { serviceTier, clientName, clientEmail, clientPhone } = body || {};
+    const { serviceTier, clientName, clientEmail, clientPhone, bookingDate, timeSlot } = body || {};
+
+    // Validate slot availability if date & time are provided
+    if (bookingDate && timeSlot) {
+      const slotCheck = await db.checkSlotAvailability(bookingDate, timeSlot);
+      if (!slotCheck.available) {
+        return res.status(409).json({
+          success: false,
+          error: slotCheck.reason || `The slot (${timeSlot}) on ${bookingDate} is no longer available. Please select another time.`
+        });
+      }
+    }
 
     // Validate and enforce pricing dynamically (from admin db or fallbacks)
     let dynamicTiers = [];

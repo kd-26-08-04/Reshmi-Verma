@@ -17,15 +17,6 @@ export default function AuthPage() {
   const navigate = useNavigate();
 
   const [showPassword, setShowPassword] = useState(false);
-
-  const handleAdminQuickFill = () => {
-    setLoginForm({
-      email: 'support.reshmiverma@gmail.com',
-      password: 'Reshmi@2026'
-    });
-    setErrorMsg('');
-  };
-
   const redirectParam = searchParams.get('redirect');
   const redirectTarget = redirectParam ? decodeURIComponent(redirectParam) : '/';
 
@@ -201,18 +192,6 @@ export default function AuthPage() {
                   <polyline points="12 5 19 12 12 19"></polyline>
                 </svg>
               </button>
-
-              {/* Quick Fill Admin Demo Chip */}
-              <div className="auth-quick-fill-chip">
-                <span>Clinic Admin: <strong>support.reshmiverma@gmail.com</strong></span>
-                <button
-                  type="button"
-                  className="auth-quick-fill-btn"
-                  onClick={handleAdminQuickFill}
-                >
-                  Quick Fill
-                </button>
-              </div>
             </form>
           )}
 

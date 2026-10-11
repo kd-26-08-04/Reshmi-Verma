@@ -26,6 +26,8 @@ import adminPricingTiersHandler from './api/admin-pricing-tiers.js';
 import reelsHandler from './api/reels.js';
 import adminReelsHandler from './api/admin-reels.js';
 import uploadPdfHandler from './api/upload-pdf.js';
+import availableSlotsHandler from './api/available-slots.js';
+import adminScheduleHandler from './api/admin-schedule.js';
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -76,9 +78,15 @@ app.get('/api/auth-me', wrapHandler(authMeHandler));
 app.get('/api/auth/me', wrapHandler(authMeHandler));
 
 // Booking & Razorpay endpoints
+app.get('/api/available-slots', wrapHandler(availableSlotsHandler));
 app.post('/api/create-order', wrapHandler(createOrderHandler));
 app.post('/api/verify-payment', wrapHandler(verifyPaymentHandler));
 app.get('/api/my-bookings', wrapHandler(myBookingsHandler));
+
+// Clinic Schedule & Slots management
+app.get('/api/admin-schedule', wrapHandler(adminScheduleHandler));
+app.post('/api/admin-schedule', wrapHandler(adminScheduleHandler));
+app.put('/api/admin-schedule', wrapHandler(adminScheduleHandler));
 
 // Admin portal endpoints
 app.get('/api/admin-bookings', wrapHandler(adminBookingsHandler));
@@ -89,6 +97,8 @@ app.put('/api/admin-update-booking', wrapHandler(adminUpdateBookingHandler));
 app.get('/api/questionnaire-template', wrapHandler(questionnaireTemplateHandler));
 app.post('/api/submit-questionnaire', wrapHandler(submitQuestionnaireHandler));
 app.post('/api/upload-pdf', wrapHandler(uploadPdfHandler));
+app.get('/api/upload-pdf', wrapHandler(uploadPdfHandler));
+app.get('/api/upload-pdf/:id', wrapHandler(uploadPdfHandler));
 
 // Consultation Tiers & Fees endpoints
 app.get('/api/pricing-tiers', wrapHandler(pricingTiersHandler));

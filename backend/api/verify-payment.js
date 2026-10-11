@@ -149,6 +149,7 @@ export default async function handler(req, res) {
       paymentId: razorpay_payment_id,
       orderId: razorpay_order_id,
       bookingId: booking.id || booking._id,
+      booking: booking,
       message: 'Payment verified successfully and consultation record created.'
     });
   } catch (error) {

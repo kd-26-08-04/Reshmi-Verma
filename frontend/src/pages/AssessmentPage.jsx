@@ -1,298 +1,698 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 
-const questions = [
+// 3 Clinical Sections for Focused Functional Health Evaluation
+const ASSESSMENT_SECTIONS = [
   {
-    id: 1,
-    domain: 'challenge',
-    title: 'What health challenge are you currently facing?',
-    subtitle: 'Select the one that resonates most with your day-to-day feeling.',
-    options: [
-      { label: 'Gut issues: Bloating, acid reflux, IBS, food sensitivities, or sluggish motility', scores: { gut: 40, breath: 65, hormones: 55, sleep: 60 } },
-      { label: 'Respiratory & stress: Shallow chest breathing, anxiety surges, or low stamina', scores: { gut: 60, breath: 40, hormones: 50, sleep: 55 } },
-      { label: 'Metabolism & fatigue: Stubborn weight retention, thyroid drag, or afternoon crashes', scores: { gut: 55, breath: 60, hormones: 40, sleep: 50 } },
-      { label: 'Sleep & airway: Fragmented sleep, snoring, mouth breathing, or morning exhaustion', scores: { gut: 65, breath: 50, hormones: 55, sleep: 35 } },
-      { label: 'Longevity & prevention: Want to optimize cellular biomarkers and biohack vitality', scores: { gut: 75, breath: 80, hormones: 75, sleep: 75 } }
+    id: 'section_gut',
+    sectionNumber: 1,
+    sectionTitle: 'Section 1 — Gut Mucosal & Digestive Health',
+    sectionBadge: 'Gastrointestinal Ecosystem',
+    sectionDesc: 'Decoding intestinal permeability, microbiome fermentation, and stomach acid kinetics.',
+    questions: [
+      {
+        id: 'q1_bloat',
+        title: 'When do you typically experience bloating, gas, or distension?',
+        subtitle: 'The timing of post-meal bloating reveals which section of your digestive tract is struggling.',
+        options: [
+          {
+            label: 'Severe distension within 30–45 mins of eating (Upper GI / Low Stomach Acid signal)',
+            score: 35,
+            tag: 'Hypochlorhydria / Upper GI'
+          },
+          {
+            label: 'Lower abdominal bloating late evening or 2–3 hours after meals (Fermentation / Dysbiosis / SIBO)',
+            score: 45,
+            tag: 'Microbiome Fermentation / SIBO'
+          },
+          {
+            label: 'Frequent acid reflux, heartburn, or persistent chest heaviness after meals',
+            score: 40,
+            tag: 'Gastroesophageal Reflux / LES Laxity'
+          },
+          {
+            label: 'No visible distension, but chronic post-meal sluggishness and slow digestion',
+            score: 65,
+            tag: 'Sluggish Motility'
+          },
+          {
+            label: 'Flat stomach, effortless digestion with zero post-meal discomfort (Optimal)',
+            score: 95,
+            tag: 'Optimal Digestive Ease'
+          }
+        ]
+      },
+      {
+        id: 'q2_motility',
+        title: 'How would you classify your bowel motility & stool consistency?',
+        subtitle: 'Daily elimination is the primary exit pathway for metabolized hormones and cellular toxins.',
+        options: [
+          {
+            label: 'Hard, pellet-like stools or skipping bowel movements for 1–2 days (Constipation / Slow Transit)',
+            score: 35,
+            tag: 'Constipation & Toxin Reabsorption'
+          },
+          {
+            label: 'Urgent, loose, or undigested food particles in stool (Rapid Transit / Nutrient Malabsorption)',
+            score: 40,
+            tag: 'Malabsorption / Permeability'
+          },
+          {
+            label: 'Alternating between constipation and loose stools (IBS-Mixed Pattern)',
+            score: 45,
+            tag: 'Enteric Nervous Irritability'
+          },
+          {
+            label: 'Daily smooth, well-formed, effortless bowel movement (Optimal Bristol Type 4)',
+            score: 95,
+            tag: 'Balanced Intestinal Motility'
+          }
+        ]
+      },
+      {
+        id: 'q3_reactivity',
+        title: 'Do you experience food sensitivities or inflammatory reactions?',
+        subtitle: 'Intestinal permeability (Leaky Gut) allows macromolecular antigens into systemic circulation.',
+        options: [
+          {
+            label: 'React strongly to gluten, dairy, high-FODMAPs, or oily restaurant meals (Severe Leaky Gut)',
+            score: 30,
+            tag: 'Systemic Endotoxemia & Reactivity'
+          },
+          {
+            label: 'Brain fog, joint aches, or skin flare-ups/acne within 24 hours of certain foods',
+            score: 45,
+            tag: 'Immune Complex Flare'
+          },
+          {
+            label: 'Mild occasional discomfort, but can generally tolerate most whole foods',
+            score: 70,
+            tag: 'Moderate Tolerance'
+          },
+          {
+            label: 'Can digest diverse whole, fermented, and fibrous foods with zero systemic flare-ups',
+            score: 95,
+            tag: 'High Immunological Tolerance'
+          }
+        ]
+      }
     ]
   },
   {
-    id: 2,
-    domain: 'duration',
-    title: 'How long have you been experiencing this?',
-    subtitle: "There's no wrong answer — we just want to understand your timeline.",
-    options: [
-      { label: 'Less than 6 months (Acute / recent onset)', multiplier: 1.1 },
-      { label: '6 months to 2 years (Establishing pattern)', multiplier: 0.95 },
-      { label: '2 to 5 years (Chronic systemic compensation)', multiplier: 0.85 },
-      { label: 'More than 5 years (Deeply ingrained cellular dysfunction)', multiplier: 0.75 }
+    id: 'section_breath',
+    sectionNumber: 2,
+    sectionTitle: 'Section 2 — Autonomic Breath & Vagal Tone',
+    sectionBadge: 'Respiratory & Nervous System',
+    sectionDesc: 'Measuring CO₂ tolerance, diaphragmatic mechanics, and parasympathetic brake capacity.',
+    questions: [
+      {
+        id: 'q4_breathing_pattern',
+        title: 'What is your involuntary daytime breathing pattern?',
+        subtitle: 'Over-breathing depletes CO₂, preventing hemoglobin from releasing oxygen to your brain via the Bohr Effect.',
+        options: [
+          {
+            label: 'Frequent upper-chest breathing, sighing, yawning, or feeling of "air hunger"',
+            score: 35,
+            tag: 'Chronic Hyperventilation'
+          },
+          {
+            label: 'Mouth breathing during focused desk work, speech, or light physical exertion',
+            score: 45,
+            tag: 'Airway Collapse & Mouth Breathing'
+          },
+          {
+            label: 'Nasal breathing mostly, but chest moves instead of diaphragm when stressed',
+            score: 65,
+            tag: 'Dysfunctional Biomechanics'
+          },
+          {
+            label: 'Silent, calm, diaphragmatic nasal breathing (Inhale & exhale through nose 24/7)',
+            score: 95,
+            tag: 'Optimal Respiration Mechanics'
+          }
+        ]
+      },
+      {
+        id: 'q5_stress_vagal',
+        title: 'How does your nervous system respond to acute daily stress?',
+        subtitle: 'The vagus nerve regulates heart rate variability (HRV), bile flow, and emotional recovery.',
+        options: [
+          {
+            label: 'Constant sympathetic overdrive: Racing heart, muscle tightness, anxiety surges, mental overwhelm',
+            score: 30,
+            tag: 'Low Vagal Tone / Sympathetic Overdrive'
+          },
+          {
+            label: 'Afternoon energy slump paired with agitation, irritability, or brain fog under pressure',
+            score: 50,
+            tag: 'HPA-Axis Instability'
+          },
+          {
+            label: 'Experience work stress, but can unwind after a few hours with conscious effort',
+            score: 70,
+            tag: 'Moderate Nervous Regulation'
+          },
+          {
+            label: 'Resilient vagal brake: Quick emotional reset, calm pulse, high somatic composure',
+            score: 95,
+            tag: 'Elite Vagal Tone'
+          }
+        ]
+      },
+      {
+        id: 'q6_stamina',
+        title: 'How is your physical stamina and aerobic breath-hold capacity?',
+        subtitle: 'Tolerance to carbon dioxide is the true bottleneck of aerobic performance and energy.',
+        options: [
+          {
+            label: 'Get breathless climbing 1–2 flights of stairs; breath-hold capacity is under 15 seconds',
+            score: 35,
+            tag: 'Low CO₂ Tolerance'
+          },
+          {
+            label: 'Moderate stamina, but experience intense physical exhaustion after normal gym or workday',
+            score: 55,
+            tag: 'Mitochondrial Aerobic Deficit'
+          },
+          {
+            label: 'Decent stamina during exercise, but recovery takes 24–48 hours',
+            score: 70,
+            tag: 'Moderate Aerobic Buffer'
+          },
+          {
+            label: 'High aerobic stamina, easy nasal workouts, effortless recovery, BOLT score 30s+',
+            score: 95,
+            tag: 'Optimal Cellular Respiration'
+          }
+        ]
+      }
     ]
   },
   {
-    id: 3,
-    domain: 'history',
-    title: 'Have you tried any treatments or coaching before?',
-    subtitle: 'It is okay if you have — this helps Reshmi Verma understand your clinical background.',
-    options: [
-      { label: 'Conventional medications, PPIs, or pharmaceutical pills from doctors', tag: 'conventional' },
-      { label: 'Standard diet plans, calorie counting, or generic fitness programs', tag: 'diets' },
-      { label: 'Alternative therapies, ayurveda, or sporadic supplements', tag: 'holistic' },
-      { label: 'No, this is my first time seeking root-cause functional guidance', tag: 'first-time' }
-    ]
-  },
-  {
-    id: 4,
-    domain: 'goals',
-    title: 'What is your primary goal for the next 90 days?',
-    subtitle: 'What would genuine transformation look like in your life?',
-    options: [
-      { label: 'Heal gut lining, abolish bloating, and digest meals with complete ease', focus: 'gut' },
-      { label: 'Master autonomic breathwork to silence anxiety and boost aerobic stamina', focus: 'breath' },
-      { label: 'Rebalance hormones, achieve effortless fat loss, and sustain all-day energy', focus: 'metabolism' },
-      { label: 'Restore uninterrupted deep REM sleep and wake up feeling truly energized', focus: 'sleep' },
-      { label: 'Comprehensive 360° functional overhaul: Gut, breath, and cellular longevity', focus: 'all' }
-    ]
-  },
-  {
-    id: 5,
-    domain: 'readiness',
-    title: 'How ready are you to start your healing journey?',
-    subtitle: "Be honest — there's no pressure. Just absolute clarity.",
-    options: [
-      { label: '100% Committed — Ready to follow a personalized clinical roadmap', readiness: 'high' },
-      { label: 'Interested & motivated — Want to consult with Reshmi Verma first', readiness: 'medium' },
-      { label: 'Gathering information — Curious to see my baseline health report', readiness: 'exploring' }
+    id: 'section_metabolic',
+    sectionNumber: 3,
+    sectionTitle: 'Section 3 — Circadian Rhythm, Hormones & Cellular Energy',
+    sectionBadge: 'Endocrine & Mitochondrial Vitality',
+    sectionDesc: 'Analyzing cortisol rhythms, thyroid/insulin sensitivity, and deep sleep architecture.',
+    questions: [
+      {
+        id: 'q7_sleep',
+        title: 'How is your nighttime sleep architecture and morning wakefulness?',
+        subtitle: 'Fragmented sleep triggers high morning fasting glucose and suppresses cellular repair.',
+        options: [
+          {
+            label: 'Fragmented sleep, frequent waking around 2–4 AM, or waking up gasping with dry mouth',
+            score: 30,
+            tag: 'Circadian Disruption / Airway Instability'
+          },
+          {
+            label: 'Take over 45 minutes to fall asleep due to racing thoughts; dependent on screens or pills',
+            score: 45,
+            tag: 'Delayed Melatonin Phase'
+          },
+          {
+            label: 'Sleep 7–8 hours, but wake up feeling heavy, sluggish, and unrefreshed without caffeine',
+            score: 60,
+            tag: 'Mitochondrial Sleep Deficit'
+          },
+          {
+            label: 'Deep, restorative, uninterrupted sleep; wake up refreshed before alarm (Optimal)',
+            score: 95,
+            tag: 'Synchronized Circadian Rhythm'
+          }
+        ]
+      },
+      {
+        id: 'q8_metabolic_signals',
+        title: 'Which metabolic or hormonal pattern resonates most with you?',
+        subtitle: 'Hormones act as biochemical messengers—insulin and thyroid dictate cellular energy.',
+        options: [
+          {
+            label: 'Stubborn belly fat, intense post-meal sweet cravings, or shaky feeling if meals are delayed',
+            score: 35,
+            tag: 'Insulin Resistance & Reactive Hypoglycemia'
+          },
+          {
+            label: 'Cold hands/feet, hair thinning, sluggish metabolism, or irregular menstrual cycles / PCOS',
+            score: 40,
+            tag: 'Thyroid & Endocrine Imbalance'
+          },
+          {
+            label: 'Energy drops drastically between 3 PM – 5 PM, but otherwise manageable',
+            score: 65,
+            tag: 'Cortisol Rhythm Dip'
+          },
+          {
+            label: 'Stable all-day cellular energy, balanced body composition, zero urgent sugar cravings',
+            score: 95,
+            tag: 'High Metabolic Plasticity'
+          }
+        ]
+      },
+      {
+        id: 'q9_duration',
+        title: 'How long have you been navigating these health roadblocks?',
+        subtitle: 'Understanding the chronic timeline helps calibrate the therapeutic mucosal regeneration phase.',
+        options: [
+          {
+            label: 'Less than 6 months (Acute onset — quick cellular responsiveness expected)',
+            score: 90,
+            tag: 'Acute Phase'
+          },
+          {
+            label: '6 months to 2 years (Establishing multi-system compensation pattern)',
+            score: 70,
+            tag: 'Sub-Chronic Phase'
+          },
+          {
+            label: '2 to 5 years (Deeply ingrained cellular dysfunction and systemic adaptation)',
+            score: 50,
+            tag: 'Chronic Phase'
+          },
+          {
+            label: 'More than 5 years (Multi-decade metabolic burnout — requires phased root-cause roadmap)',
+            score: 35,
+            tag: 'Deep Chronic Adaptation'
+          }
+        ]
+      }
     ]
   }
 ];
 
 export default function AssessmentPage() {
-  const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
-  const [userAnswers, setUserAnswers] = useState([]);
+  const [currentSectionIndex, setCurrentSectionIndex] = useState(0);
+  const [currentQuestionIndexInSection, setCurrentQuestionIndexInSection] = useState(0);
+  const [answers, setAnswers] = useState({});
   const [results, setResults] = useState(null);
 
-  const selectAnswer = (index) => {
-    const q = questions[currentQuestionIndex];
-    const newAnswers = [...userAnswers];
-    newAnswers[currentQuestionIndex] = q.options[index];
-    setUserAnswers(newAnswers);
+  const currentSection = ASSESSMENT_SECTIONS[currentSectionIndex];
+  const currentQuestion = currentSection.questions[currentQuestionIndexInSection];
 
-    if (currentQuestionIndex < questions.length - 1) {
-      setCurrentQuestionIndex(currentQuestionIndex + 1);
+  const totalQuestions = ASSESSMENT_SECTIONS.reduce((acc, sec) => acc + sec.questions.length, 0);
+  const currentAbsoluteQuestionIndex = ASSESSMENT_SECTIONS.slice(0, currentSectionIndex).reduce((acc, sec) => acc + sec.questions.length, 0) + currentQuestionIndexInSection;
+  const progressPercent = Math.round(((currentAbsoluteQuestionIndex + 1) / totalQuestions) * 100);
+
+  const selectAnswer = (option) => {
+    const updatedAnswers = {
+      ...answers,
+      [currentQuestion.id]: option
+    };
+    setAnswers(updatedAnswers);
+
+    if (currentQuestionIndexInSection < currentSection.questions.length - 1) {
+      setCurrentQuestionIndexInSection(currentQuestionIndexInSection + 1);
+    } else if (currentSectionIndex < ASSESSMENT_SECTIONS.length - 1) {
+      setCurrentSectionIndex(currentSectionIndex + 1);
+      setCurrentQuestionIndexInSection(0);
     } else {
-      calculateAndShowResults(newAnswers);
+      computeConciseResults(updatedAnswers);
     }
   };
 
-  const previousQuestion = () => {
-    if (currentQuestionIndex > 0) {
-      setCurrentQuestionIndex(currentQuestionIndex - 1);
+  const handlePrevious = () => {
+    if (currentQuestionIndexInSection > 0) {
+      setCurrentQuestionIndexInSection(currentQuestionIndexInSection - 1);
+    } else if (currentSectionIndex > 0) {
+      const prevSecIdx = currentSectionIndex - 1;
+      setCurrentSectionIndex(prevSecIdx);
+      setCurrentQuestionIndexInSection(ASSESSMENT_SECTIONS[prevSecIdx].questions.length - 1);
     }
   };
 
-  const calculateAndShowResults = (answers) => {
-    let gutScore = 60;
-    let breathScore = 60;
-    let hormoneScore = 60;
-    let sleepScore = 60;
+  const computeConciseResults = (allAnswers) => {
+    // 1. Gut Mucosal Score
+    const gutScores = [
+      allAnswers['q1_bloat']?.score ?? 50,
+      allAnswers['q2_motility']?.score ?? 50,
+      allAnswers['q3_reactivity']?.score ?? 50
+    ];
+    const gutScore = Math.round(gutScores.reduce((a, b) => a + b, 0) / gutScores.length);
 
-    if (answers[0]?.scores) {
-      gutScore = answers[0].scores.gut;
-      breathScore = answers[0].scores.breath;
-      hormoneScore = answers[0].scores.hormones;
-      sleepScore = answers[0].scores.sleep;
-    }
+    // 2. Breath Score
+    const breathScores = [
+      allAnswers['q4_breathing_pattern']?.score ?? 50,
+      allAnswers['q5_stress_vagal']?.score ?? 50,
+      allAnswers['q6_stamina']?.score ?? 50
+    ];
+    const breathScore = Math.round(breathScores.reduce((a, b) => a + b, 0) / breathScores.length);
 
-    const multiplier = answers[1]?.multiplier || 1.0;
-    gutScore = Math.min(95, Math.max(30, Math.round(gutScore * multiplier)));
-    breathScore = Math.min(95, Math.max(30, Math.round(breathScore * multiplier)));
-    hormoneScore = Math.min(95, Math.max(30, Math.round(hormoneScore * multiplier)));
-    sleepScore = Math.min(95, Math.max(30, Math.round(sleepScore * multiplier)));
+    // 3. Metabolic Score
+    const metabolicScores = [
+      allAnswers['q7_sleep']?.score ?? 50,
+      allAnswers['q8_metabolic_signals']?.score ?? 50,
+      allAnswers['q9_duration']?.score ?? 50
+    ];
+    const metabolicScore = Math.round(metabolicScores.reduce((a, b) => a + b, 0) / metabolicScores.length);
 
-    const averageResilience = Math.round((gutScore + breathScore + hormoneScore + sleepScore) / 4);
+    // Composite Resilience
+    const compositeResilience = Math.round((gutScore + breathScore + metabolicScore) / 3);
+
+    // CONCISE, PUNCHY CLINICAL DIRECTIVES (No overwhelming essays)
+    const gutSummary = gutScore < 60
+      ? {
+          status: 'High Mucosal Permeability & Dysbiosis',
+          severity: 'Critical Priority',
+          color: '#DC2626',
+          insight: 'Tight junctions and stomach acid kinetics are compromised. Do not self-treat with random probiotics; phased mucosal repair is required.'
+        }
+      : {
+          status: 'Stable Intestinal Mucosal Barrier',
+          severity: 'Optimal Function',
+          color: '#15803D',
+          insight: 'Healthy digestive baseline. Maintain clean dietary fat sources and regular migrating motor complex (MMC) fasting intervals.'
+        };
+
+    const breathSummary = breathScore < 60
+      ? {
+          status: 'Sympathetic Overdrive & Low CO₂ Tolerance',
+          severity: 'Critical Priority',
+          color: '#DC2626',
+          insight: 'Upper-chest over-breathing suppresses oxygen delivery via the Bohr Effect. Oxygen Advantage autonomic retraining is recommended.'
+        }
+      : {
+          status: 'Balanced Autonomic & Vagal Regulation',
+          severity: 'Optimal Function',
+          color: '#15803D',
+          insight: 'High parasympathetic resilience and healthy diaphragmatic pacing supporting cellular oxygen diffusion.'
+        };
+
+    const metabolicSummary = metabolicScore < 60
+      ? {
+          status: 'Cortisol-Insulin Rhythm Friction',
+          severity: 'Action Required',
+          color: '#D97706',
+          insight: 'Nighttime waking and afternoon energy dips indicate HPA-axis stress. A clinical Fasting Insulin & Full Thyroid panel is strongly advised.'
+        }
+      : {
+          status: 'Resilient Endocrine & Circadian Plasticity',
+          severity: 'Optimal State',
+          color: '#15803D',
+          insight: 'Synchronized sleep architecture and stable cellular glucose kinetics maintaining steady all-day vitality.'
+        };
+
+    const isCriticalOverall = compositeResilience < 60 || gutScore < 50 || breathScore < 50;
 
     const calculated = {
-      averageResilience,
+      compositeResilience,
       gutScore,
       breathScore,
-      hormoneScore,
-      sleepScore,
-      goal: answers[3]?.label || 'Comprehensive cellular metabolic reset',
-      readiness: answers[4]?.readiness
+      metabolicScore,
+      gutSummary,
+      breathSummary,
+      metabolicSummary,
+      isCriticalOverall
     };
 
     setResults(calculated);
 
-    // Save to localStorage so Booking Page can preload it
     try {
       localStorage.setItem('reshmi_assessment_results', JSON.stringify({
-        averageResilience,
+        compositeResilience,
+        averageResilience: compositeResilience,
         gutScore,
         breathScore,
-        hormoneScore,
-        sleepScore,
-        goal: answers[3]?.label,
-        readiness: answers[4]?.readiness
+        metabolicScore,
+        goal: '360° Gut, Breath & Metabolic Restoration',
+        timestamp: new Date().toISOString()
       }));
-    } catch (e) {
-      console.warn('localStorage error:', e);
-    }
+    } catch (e) {}
   };
 
   const restartAssessment = () => {
-    setCurrentQuestionIndex(0);
-    setUserAnswers([]);
+    setCurrentSectionIndex(0);
+    setCurrentQuestionIndexInSection(0);
+    setAnswers({});
     setResults(null);
   };
 
-  const q = questions[currentQuestionIndex];
-  const total = questions.length;
-  const progressPercent = ((currentQuestionIndex + 1) / total) * 100;
-
   return (
     <>
-      <section className="section" style={{ padding: '40px 0 50px', background: 'transparent', position: 'relative', zIndex: 1 }}>
-        <div className="container">
+      <section className="assessment-page-layout">
+        <div className="container assessment-widescreen-container">
           
-          <div className="assessment-card" id="assessment-quiz-container">
-            
-            {/* Active Quiz View */}
-            {!results ? (
-              <div id="quiz-active-view">
-                <div className="assessment-progress">
-                  {currentQuestionIndex > 0 ? (
+          {/* Active Quiz View */}
+          {!results ? (
+            <div className="glass-assessment-card" id="assessment-quiz-container">
+              
+              {/* Top Progress & Section Indicator */}
+              <div style={{ marginBottom: '24px' }}>
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '12px' }}>
+                  {currentAbsoluteQuestionIndex > 0 ? (
                     <button 
                       type="button" 
-                      id="assessment-prev-btn" 
-                      className="btn btn-secondary btn-sm" 
-                      style={{ padding: '6px 14px' }}
-                      onClick={previousQuestion}
+                      onClick={handlePrevious}
+                      className="btn btn-secondary btn-sm"
+                      style={{ padding: '5px 12px', fontSize: '0.8rem', background: 'rgba(255,255,255,0.85)' }}
                     >
                       &larr; Back
                     </button>
                   ) : (
                     <div style={{ width: '60px' }}></div>
                   )}
-                  
-                  <div className="progress-track">
-                    <div className="progress-fill" id="assessment-progress-fill" style={{ width: `${progressPercent}%` }}></div>
-                  </div>
-                  
-                  <span id="assessment-step-num" style={{ fontSize: '0.85rem', fontWeight: 700, color: 'var(--emerald-primary)' }}>
-                    Question {currentQuestionIndex + 1} of {total}
+
+                  <span style={{ 
+                    background: 'var(--status-optimal-bg)',
+                    color: 'var(--emerald-primary)',
+                    padding: '4px 12px',
+                    borderRadius: '20px',
+                    fontSize: '0.76rem',
+                    fontWeight: 700,
+                    textTransform: 'uppercase',
+                    letterSpacing: '0.04em'
+                  }}>
+                    {currentSection.sectionBadge} &bull; Part {currentSection.sectionNumber} of 3
+                  </span>
+
+                  <span style={{ fontSize: '0.82rem', fontWeight: 700, color: 'var(--emerald-deep)' }}>
+                    Q{currentAbsoluteQuestionIndex + 1} of {totalQuestions}
                   </span>
                 </div>
 
-                <h2 className="question-title" id="assessment-q-title">{q.title}</h2>
-                <p className="question-subtitle" id="assessment-q-subtitle">{q.subtitle}</p>
-
-                <div className="options-list" id="assessment-options-box">
-                  {q.options.map((opt, idx) => (
-                    <button
-                      key={idx}
-                      type="button"
-                      className="option-button"
-                      onClick={() => selectAnswer(idx)}
-                    >
-                      <span>{opt.label}</span>
-                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                        <polyline points="9 18 15 12 9 6"></polyline>
-                      </svg>
-                    </button>
-                  ))}
+                {/* Progress bar */}
+                <div style={{ height: '6px', background: 'rgba(226, 232, 240, 0.8)', borderRadius: '3px', overflow: 'hidden' }}>
+                  <div style={{ 
+                    height: '100%', 
+                    width: `${progressPercent}%`, 
+                    background: 'linear-gradient(90deg, var(--emerald-medium) 0%, var(--emerald-primary) 100%)',
+                    transition: 'width 0.35s ease'
+                  }}></div>
                 </div>
               </div>
-            ) : (
-              /* Results View */
-              <div id="assessment-results-box" className="results-container" style={{ display: 'block' }}>
-                <div style={{ textAlign: 'center', marginBottom: '32px' }}>
-                  <div style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', width: '64px', height: '64px', borderRadius: '50%', background: 'var(--status-optimal-bg)', color: 'var(--status-optimal)', fontSize: '2rem', marginBottom: '16px' }}>
-                    &#10003;
-                  </div>
-                  <span className="sub-title">Your Clinical Snapshot</span>
-                  <h2 style={{ fontSize: '2.4rem', marginBottom: '12px' }}>Health Resilience Evaluation</h2>
-                  <p style={{ color: 'var(--text-secondary)', maxWidth: '600px', margin: '0 auto' }}>
-                    Here is your multi-domain biological profile based on your symptoms and timeline.
-                  </p>
+
+              {/* Section Header Strip */}
+              <div style={{ 
+                background: 'rgba(255, 247, 237, 0.85)', 
+                borderLeft: '4px solid var(--emerald-primary)', 
+                padding: '10px 16px', 
+                borderRadius: '8px',
+                marginBottom: '22px'
+              }}>
+                <div style={{ fontSize: '0.8rem', fontWeight: 700, color: 'var(--emerald-deep)', textTransform: 'uppercase' }}>
+                  {currentSection.sectionTitle}
                 </div>
-
-                {/* Overall Score Card */}
-                <div style={{ background: 'rgba(255, 255, 255, 0.75)', backdropFilter: 'blur(16px)', WebkitBackdropFilter: 'blur(16px)', borderRadius: 'var(--radius-lg)', padding: '32px', border: '1px solid rgba(255, 255, 255, 0.8)', textAlign: 'center', marginBottom: '32px', boxShadow: '0 10px 30px rgba(15, 23, 42, 0.06)' }}>
-                  <span style={{ fontSize: '0.85rem', color: 'var(--text-muted)', textTransform: 'uppercase', fontWeight: 700, letterSpacing: '0.08em' }}>
-                    Composite Resilience Index
-                  </span>
-                  <div id="result-overall-score" style={{ fontFamily: 'var(--font-serif)', fontSize: '4rem', fontWeight: 700, color: 'var(--emerald-deep)', lineHeight: 1.1, margin: '8px 0' }}>
-                    {results.averageResilience}%
-                  </div>
-                  <div style={{ fontSize: '0.95rem', color: 'var(--emerald-primary)', fontWeight: 600 }}>
-                    Primary Focus: <span id="result-primary-focus">{results.goal}</span>
-                  </div>
+                <div style={{ fontSize: '0.82rem', color: 'var(--text-secondary)', marginTop: '2px' }}>
+                  {currentSection.sectionDesc}
                 </div>
+              </div>
 
-                {/* Domain Bars */}
-                <div className="scores-radar-grid">
-                  <div className="domain-score-box" style={{ background: 'rgba(255, 255, 255, 0.7)', backdropFilter: 'blur(12px)', WebkitBackdropFilter: 'blur(12px)', border: '1px solid rgba(255, 255, 255, 0.8)' }}>
-                    <div className="domain-name">
-                      <span>Gut Mucosal &amp; Digestive Health</span>
-                      <span id="score-gut-val">{results.gutScore}/100</span>
-                    </div>
-                    <div className="domain-bar">
-                      <div className="domain-bar-fill" id="bar-gut-fill" style={{ width: `${results.gutScore}%` }}></div>
-                    </div>
-                  </div>
+              {/* Question Header */}
+              <h2 style={{ fontSize: '1.45rem', color: 'var(--emerald-deep)', marginBottom: '8px', lineHeight: 1.3 }}>
+                {currentQuestion.title}
+              </h2>
+              <p style={{ color: 'var(--text-secondary)', fontSize: '0.92rem', marginBottom: '22px', lineHeight: 1.5 }}>
+                {currentQuestion.subtitle}
+              </p>
 
-                  <div className="domain-score-box" style={{ background: 'rgba(255, 255, 255, 0.7)', backdropFilter: 'blur(12px)', WebkitBackdropFilter: 'blur(12px)', border: '1px solid rgba(255, 255, 255, 0.8)' }}>
-                    <div className="domain-name">
-                      <span>Breath Resilience &amp; CO₂ Tolerance</span>
-                      <span id="score-breath-val">{results.breathScore}/100</span>
-                    </div>
-                    <div className="domain-bar">
-                      <div className="domain-bar-fill" id="bar-breath-fill" style={{ width: `${results.breathScore}%` }}></div>
-                    </div>
-                  </div>
-
-                  <div className="domain-score-box" style={{ background: 'rgba(255, 255, 255, 0.7)', backdropFilter: 'blur(12px)', WebkitBackdropFilter: 'blur(12px)', border: '1px solid rgba(255, 255, 255, 0.8)' }}>
-                    <div className="domain-name">
-                      <span>Hormonal &amp; Circadian Balance</span>
-                      <span id="score-hormone-val">{results.hormoneScore}/100</span>
-                    </div>
-                    <div className="domain-bar">
-                      <div className="domain-bar-fill" id="bar-hormone-fill" style={{ width: `${results.hormoneScore}%` }}></div>
-                    </div>
-                  </div>
-
-                  <div className="domain-score-box" style={{ background: 'rgba(255, 255, 255, 0.7)', backdropFilter: 'blur(12px)', WebkitBackdropFilter: 'blur(12px)', border: '1px solid rgba(255, 255, 255, 0.8)' }}>
-                    <div className="domain-name">
-                      <span>Sleep Architecture &amp; Airway Health</span>
-                      <span id="score-sleep-val">{results.sleepScore}/100</span>
-                    </div>
-                    <div className="domain-bar">
-                      <div className="domain-bar-fill" id="bar-sleep-fill" style={{ width: `${results.sleepScore}%` }}></div>
-                    </div>
-                  </div>
-                </div>
-
-                <div id="result-clinical-summary" style={{ background: 'rgba(255, 255, 255, 0.75)', backdropFilter: 'blur(14px)', WebkitBackdropFilter: 'blur(14px)', borderRadius: 'var(--radius-md)', padding: '24px', border: '1px solid rgba(255, 255, 255, 0.8)', lineHeight: 1.7, fontSize: '0.95rem', color: 'var(--text-secondary)', marginBottom: '32px' }}>
-                  Based on your answers, your baseline biological resilience is at <strong>{results.averageResilience}%</strong>. 
-                  Your answers indicate that energy, digestion, autonomic breathing, and sleep are interconnected signals rather than isolated symptoms.
-                  In a 1-on-1 <strong>Health Clarity Session</strong>, Reshmi Verma decodes these exact patterns using the SAMYA framework to create your individualized protocol.
-                </div>
-
-                <div style={{ display: 'flex', gap: '16px', justifyContent: 'center', flexWrap: 'wrap' }}>
-                  <Link to="/booking" className="btn btn-primary btn-lg">
-                    <span>Book Health Clarity Session With These Results</span>
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-                      <line x1="5" y1="12" x2="19" y2="12"></line>
-                      <polyline points="12 5 19 12 12 19"></polyline>
+              {/* Options */}
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
+                {currentQuestion.options.map((option, idx) => (
+                  <button
+                    key={idx}
+                    type="button"
+                    onClick={() => selectAnswer(option)}
+                    className="glass-option-btn"
+                  >
+                    <span>{option.label}</span>
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" style={{ color: 'var(--emerald-primary)', flexShrink: 0, marginLeft: '12px' }}>
+                      <polyline points="9 18 15 12 9 6"></polyline>
                     </svg>
-                  </Link>
-                  <button type="button" className="btn btn-secondary btn-lg" id="assessment-restart-btn" onClick={restartAssessment}>
-                    Retake Assessment
                   </button>
+                ))}
+              </div>
+
+            </div>
+          ) : (
+            /* ============================================================== */
+            /* RESULTS VIEW: CONCISE GLASSMORPHIC TAKEAWAYS + DIRECT CALL-TO-ACTION */
+            /* ============================================================== */
+            <div id="assessment-results-box" className="glass-assessment-card" style={{ padding: '36px 30px' }}>
+              
+              {/* Snapshot Header */}
+              <div style={{ textAlign: 'center', marginBottom: '28px' }}>
+                <span className="badge-pill" style={{ marginBottom: '10px' }}>
+                  <span className="pulse-dot"></span>
+                  <span>Clinical Snapshot Complete</span>
+                </span>
+                <h1 style={{ fontSize: '2.1rem', margin: '4px 0 8px', color: 'var(--emerald-deep)', fontFamily: 'var(--font-serif)' }}>
+                  Your Biological Resilience Profile
+                </h1>
+                <p style={{ color: 'var(--text-secondary)', fontSize: '0.95rem', maxWidth: '580px', margin: '0 auto', lineHeight: 1.5 }}>
+                  Evaluated across Gut Permeability, Respiration Vagal Tone, and Circadian Endocrine Rhythms.
+                </p>
+              </div>
+
+              {/* Composite Overall Index Box */}
+              <div style={{
+                background: 'linear-gradient(135deg, rgba(255,237,213,0.7) 0%, rgba(255,255,255,0.85) 100%)',
+                backdropFilter: 'blur(16px)',
+                WebkitBackdropFilter: 'blur(16px)',
+                borderRadius: '18px',
+                padding: '24px 20px',
+                textAlign: 'center',
+                border: '1px solid rgba(194,65,12,0.25)',
+                marginBottom: '26px'
+              }}>
+                <span style={{ fontSize: '0.8rem', color: 'var(--text-muted)', textTransform: 'uppercase', fontWeight: 700, letterSpacing: '0.08em' }}>
+                  Composite Health Resilience Index
+                </span>
+                <div style={{ fontFamily: 'var(--font-serif)', fontSize: '3.8rem', fontWeight: 700, color: 'var(--emerald-deep)', lineHeight: 1.1, margin: '4px 0' }}>
+                  {results.compositeResilience}%
+                </div>
+                <div style={{ fontSize: '0.92rem', color: results.isCriticalOverall ? '#DC2626' : 'var(--emerald-primary)', fontWeight: 700 }}>
+                  {results.isCriticalOverall ? '⚠️ Action Required: Priority Multi-System Friction Detected' : 'Optimal Baseline Function'}
                 </div>
               </div>
-            )}
 
-          </div>
+              {/* ========================================================== */}
+              {/* 3 CONCISE SECTIONAL CARDS WITH CLEAR MARKS */}
+              {/* ========================================================== */}
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '16px', marginBottom: '30px' }}>
+                
+                {/* 1. Gut Mucosal Card */}
+                <div className="glass-section-summary-card">
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '8px', marginBottom: '8px' }}>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                      <span style={{ fontSize: '1.2rem' }}>🌿</span>
+                      <strong style={{ fontSize: '1.05rem', color: 'var(--emerald-deep)' }}>Gut Mucosal &amp; Digestive Barrier</strong>
+                    </div>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+                      <span style={{ fontSize: '1.25rem', fontWeight: 700, color: 'var(--emerald-deep)', fontFamily: 'var(--font-serif)' }}>{results.gutScore}/100</span>
+                      <span style={{ fontSize: '0.74rem', fontWeight: 700, color: results.gutSummary.color, background: 'rgba(255,255,255,0.9)', padding: '2px 8px', borderRadius: '10px', border: `1px solid ${results.gutSummary.color}` }}>
+                        {results.gutSummary.severity}
+                      </span>
+                    </div>
+                  </div>
+                  <div style={{ fontSize: '0.88rem', color: 'var(--text-secondary)', lineHeight: 1.5 }}>
+                    <strong>Pattern:</strong> {results.gutSummary.status}. {results.gutSummary.insight}
+                  </div>
+                </div>
+
+                {/* 2. Breath Card */}
+                <div className="glass-section-summary-card">
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '8px', marginBottom: '8px' }}>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                      <span style={{ fontSize: '1.2rem' }}>🫁</span>
+                      <strong style={{ fontSize: '1.05rem', color: 'var(--emerald-deep)' }}>Respiration, Bohr Effect &amp; Vagal Tone</strong>
+                    </div>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+                      <span style={{ fontSize: '1.25rem', fontWeight: 700, color: 'var(--emerald-deep)', fontFamily: 'var(--font-serif)' }}>{results.breathScore}/100</span>
+                      <span style={{ fontSize: '0.74rem', fontWeight: 700, color: results.breathSummary.color, background: 'rgba(255,255,255,0.9)', padding: '2px 8px', borderRadius: '10px', border: `1px solid ${results.breathSummary.color}` }}>
+                        {results.breathSummary.severity}
+                      </span>
+                    </div>
+                  </div>
+                  <div style={{ fontSize: '0.88rem', color: 'var(--text-secondary)', lineHeight: 1.5 }}>
+                    <strong>Pattern:</strong> {results.breathSummary.status}. {results.breathSummary.insight}
+                  </div>
+                </div>
+
+                {/* 3. Metabolic Card */}
+                <div className="glass-section-summary-card">
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '8px', marginBottom: '8px' }}>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                      <span style={{ fontSize: '1.2rem' }}>⚡</span>
+                      <strong style={{ fontSize: '1.05rem', color: 'var(--emerald-deep)' }}>Circadian Rhythm &amp; Metabolic Energy</strong>
+                    </div>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+                      <span style={{ fontSize: '1.25rem', fontWeight: 700, color: 'var(--emerald-deep)', fontFamily: 'var(--font-serif)' }}>{results.metabolicScore}/100</span>
+                      <span style={{ fontSize: '0.74rem', fontWeight: 700, color: results.metabolicSummary.color, background: 'rgba(255,255,255,0.9)', padding: '2px 8px', borderRadius: '10px', border: `1px solid ${results.metabolicSummary.color}` }}>
+                        {results.metabolicSummary.severity}
+                      </span>
+                    </div>
+                  </div>
+                  <div style={{ fontSize: '0.88rem', color: 'var(--text-secondary)', lineHeight: 1.5 }}>
+                    <strong>Pattern:</strong> {results.metabolicSummary.status}. {results.metabolicSummary.insight}
+                  </div>
+                </div>
+
+              </div>
+
+              {/* ========================================================== */}
+              {/* HIGH-IMPACT DIRECT CLINICAL ACTION CALLOUT */}
+              {/* ========================================================== */}
+              <div style={{ 
+                background: 'linear-gradient(135deg, var(--emerald-deep) 0%, #1E293B 100%)', 
+                borderRadius: '18px', 
+                padding: '28px 24px', 
+                color: 'white', 
+                textAlign: 'center',
+                boxShadow: '0 12px 30px rgba(15, 23, 42, 0.15)',
+                marginBottom: '22px'
+              }}>
+                <div style={{ 
+                  display: 'inline-block',
+                  background: 'rgba(251, 146, 60, 0.25)', 
+                  color: '#FED7AA', 
+                  padding: '3px 12px', 
+                  borderRadius: '16px', 
+                  fontSize: '0.78rem', 
+                  fontWeight: 700, 
+                  textTransform: 'uppercase',
+                  marginBottom: '10px'
+                }}>
+                  Clinical Recommendation
+                </div>
+                <h3 style={{ color: '#FFEDD5', fontSize: '1.45rem', margin: '0 0 8px', fontFamily: 'var(--font-serif)' }}>
+                  Do Not Self-Medicate. Get Your Phased 90-Day Protocol.
+                </h3>
+                <p style={{ color: '#E2E8F0', maxWidth: '580px', margin: '0 auto 20px', fontSize: '0.92rem', lineHeight: 1.5 }}>
+                  Your scores indicate interconnected gastrointestinal and breathing friction. Reshmi Verma correlates your symptoms with laboratory biomarkers to construct your individual recovery roadmap.
+                </p>
+                <div style={{ display: 'flex', gap: '12px', justifyContent: 'center', flexWrap: 'wrap' }}>
+                  <Link 
+                    to="/booking" 
+                    className="btn btn-primary" 
+                    style={{ background: 'var(--emerald-medium)', color: 'white', fontWeight: 700, padding: '12px 24px' }}
+                  >
+                    <span>Book 1-on-1 Consultation With These Scores &rarr;</span>
+                  </Link>
+                  <a 
+                    href={`https://wa.me/919876543210?text=${encodeURIComponent(`Hello Reshmi Verma, I completed my 3-Section Health Assessment. Overall Score: ${results.compositeResilience}% (Gut: ${results.gutScore}/100, Breath: ${results.breathScore}/100, Metabolic: ${results.metabolicScore}/100). I would like to schedule a consultation.`)}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="btn btn-secondary"
+                    style={{ background: 'white', color: 'var(--emerald-deep)', fontWeight: 600, padding: '12px 20px' }}
+                  >
+                    <span>Connect via WhatsApp</span>
+                  </a>
+                </div>
+              </div>
+
+              {/* Retake */}
+              <div style={{ textAlign: 'center' }}>
+                <button 
+                  type="button" 
+                  onClick={restartAssessment}
+                  className="btn btn-secondary btn-sm"
+                  style={{ padding: '6px 16px', fontSize: '0.8rem', background: 'rgba(255,255,255,0.7)' }}
+                >
+                  &larr; Retake Assessment
+                </button>
+              </div>
+
+            </div>
+          )}
 
         </div>
       </section>

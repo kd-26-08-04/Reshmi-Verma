@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useSearchParams, useNavigate, Link } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
+import { getApiUrl } from '../utils/api';
 
 // Built-in clinical questionnaire specification (Sections A through F)
 const CLINICAL_SECTIONS = [
@@ -376,7 +377,16 @@ const CLINICAL_SECTIONS = [
 
 export default function QuestionnairePage() {
   const [searchParams] = useSearchParams();
-  const bookingIdFromUrl = searchParams.get('bookingId') || '';
+  const bookingIdFromUrl = searchParams.get('bookingId') || 
+                           searchParams.get('booking') || 
+                           searchParams.get('id') || 
+                           (() => {
+                             try {
+                               return localStorage.getItem('reshmi_last_booking_id') || '';
+                             } catch {
+                               return '';
+                             }
+                           })();
   const { user, token } = useAuth();
   const navigate = useNavigate();
 
@@ -509,7 +519,7 @@ export default function QuestionnairePage() {
       reader.onload = async (event) => {
         const base64Data = event.target.result;
 
-        const res = await fetch('/api/upload-pdf', {
+        const res = await fetch(getApiUrl('/api/upload-pdf'), {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
@@ -619,7 +629,7 @@ export default function QuestionnairePage() {
       const headers = { 'Content-Type': 'application/json' };
       if (token) headers['Authorization'] = `Bearer ${token}`;
 
-      const res = await fetch('/api/submit-questionnaire', {
+      const res = await fetch(getApiUrl('/api/submit-questionnaire'), {
         method: 'POST',
         headers,
         body: JSON.stringify({

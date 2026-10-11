@@ -335,6 +335,65 @@ export const db = {
     return updatedLocalDoc || { id, ...updates };
   },
 
+  // --- LAB REPORTS & PDF STORAGE (DB STORED) ---
+  async savePdfReport(reportDoc) {
+    const doc = {
+      ...reportDoc,
+      id: reportDoc.id || `rep_${Date.now()}_${Math.random().toString(36).substring(2, 7)}`,
+      createdAt: reportDoc.createdAt || new Date().toISOString()
+    };
+
+    // 1. Save to local fallback store
+    try {
+      const data = readLocalDb();
+      data.labReports = data.labReports || [];
+      const existingIdx = data.labReports.findIndex(r => r.id === doc.id || r.uniqueFileName === doc.uniqueFileName);
+      if (existingIdx >= 0) {
+        data.labReports[existingIdx] = doc;
+      } else {
+        data.labReports.unshift(doc);
+      }
+      writeLocalDb(data);
+    } catch (e) {
+      console.warn('Local DB savePdfReport warning:', e.message);
+    }
+
+    // 2. Save directly to MongoDB Atlas
+    try {
+      const mdb = await getMongo();
+      if (mdb) {
+        await mdb.collection('lab_reports').updateOne(
+          { id: doc.id },
+          { $set: doc },
+          { upsert: true }
+        );
+      }
+    } catch (e) {
+      console.warn('MongoDB savePdfReport warning:', e.message);
+    }
+
+    return doc;
+  },
+
+  async getPdfReportById(id) {
+    if (!id) return null;
+    try {
+      const mdb = await getMongo();
+      if (mdb) {
+        const { ObjectId } = await import('mongodb');
+        let filter = { $or: [{ id }, { uniqueFileName: id }] };
+        try {
+          if (ObjectId.isValid(id)) filter = { $or: [{ _id: new ObjectId(id) }, { id }, { uniqueFileName: id }] };
+        } catch (e) {}
+        const doc = await mdb.collection('lab_reports').findOne(filter);
+        if (doc) return doc;
+      }
+    } catch (e) {}
+
+    const data = readLocalDb();
+    return (data.labReports || []).find(r => r.id === id || r._id === id || r.uniqueFileName === id) || null;
+  },
+
   // --- QUESTIONNAIRE TEMPLATE (ADMIN EDITABLE) ---
   async getQuestionnaireTemplate() {
     const mdb = await getMongo();
@@ -445,8 +504,124 @@ export const db = {
     data.reels = reels;
     writeLocalDb(data);
     return reels;
+  },
+
+  // --- CLINIC SCHEDULE & SLOTS MANAGEMENT ---
+  async getClinicSchedule() {
+    const mdb = await getMongo();
+    if (mdb) {
+      const doc = await mdb.collection('configs').findOne({ key: 'clinic_schedule' });
+      if (doc && doc.schedule) return doc.schedule;
+    }
+    const data = readLocalDb();
+    if (data.clinicSchedule) {
+      return data.clinicSchedule;
+    }
+    const defaultSchedule = getDefaultClinicSchedule();
+    data.clinicSchedule = defaultSchedule;
+    writeLocalDb(data);
+    return defaultSchedule;
+  },
+
+  async updateClinicSchedule(schedule) {
+    const patch = {
+      ...schedule,
+      updatedAt: new Date().toISOString()
+    };
+    const mdb = await getMongo();
+    if (mdb) {
+      await mdb.collection('configs').updateOne(
+        { key: 'clinic_schedule' },
+        { $set: { key: 'clinic_schedule', schedule: patch, updatedAt: patch.updatedAt } },
+        { upsert: true }
+      );
+      return patch;
+    }
+    const data = readLocalDb();
+    data.clinicSchedule = patch;
+    writeLocalDb(data);
+    return patch;
+  },
+
+  async getBookingsByDate(dateStr) {
+    if (!dateStr) return [];
+    try {
+      const mdb = await getMongo();
+      if (mdb) {
+        return await mdb.collection('bookings')
+          .find({
+            bookingDate: dateStr,
+            status: { $nin: ['cancelled', 'rejected'] }
+          })
+          .toArray();
+      }
+    } catch (e) {}
+    const data = readLocalDb();
+    return (data.bookings || []).filter(
+      b => b.bookingDate === dateStr && b.status !== 'cancelled' && b.status !== 'rejected'
+    );
+  },
+
+  async checkSlotAvailability(dateStr, slot) {
+    const schedule = await this.getClinicSchedule();
+    const cleanDate = (dateStr || '').trim();
+    const cleanSlot = (slot || '').trim();
+
+    if (!cleanDate || !cleanSlot) {
+      return { available: true };
+    }
+
+    // 1. Check if date is blocked (holiday / off day)
+    const isBlockedDate = (schedule.blockedDates || []).some(
+      bd => (typeof bd === 'string' ? bd === cleanDate : bd.date === cleanDate)
+    );
+    if (isBlockedDate) {
+      return { available: false, reason: 'Clinician is unavailable on this date.' };
+    }
+
+    // 2. Check day of week
+    if (schedule.workingDays && Array.isArray(schedule.workingDays)) {
+      const dayOfWeek = new Date(cleanDate + 'T00:00:00').getDay();
+      if (!schedule.workingDays.includes(dayOfWeek)) {
+        return { available: false, reason: 'Clinic is closed on this day of the week.' };
+      }
+    }
+
+    // 3. Check custom blocked slots on this date
+    const blockedForDate = schedule.customBlockedSlots?.[cleanDate] || [];
+    if (blockedForDate.includes(cleanSlot)) {
+      return { available: false, reason: 'This specific time slot has been blocked by the clinician.' };
+    }
+
+    // 4. Check if slot is already booked by another confirmed client
+    const existingBookings = await this.getBookingsByDate(cleanDate);
+    const isTaken = existingBookings.some(b => {
+      const bSlot = (b.timeSlot || b.bookingTime || '').trim();
+      return bSlot.toLowerCase() === cleanSlot.toLowerCase();
+    });
+
+    if (isTaken) {
+      return { available: false, reason: 'This time slot is already booked by another client.' };
+    }
+
+    return { available: true };
   }
 };
+
+export function getDefaultClinicSchedule() {
+  return {
+    workingDays: [1, 2, 3, 4, 5, 6], // Monday to Saturday (0 = Sunday closed)
+    defaultSlots: [
+      '10:00 AM - Morning Slot',
+      '11:30 AM - Morning Slot',
+      '02:30 PM - Afternoon Slot',
+      '04:00 PM - Afternoon Slot',
+      '06:00 PM - Evening Slot'
+    ],
+    blockedDates: [], // Array of { date: 'YYYY-MM-DD', reason: '...' } or strings
+    customBlockedSlots: {} // Map of 'YYYY-MM-DD': ['10:00 AM - Morning Slot', ...]
+  };
+}
 
 export function getDefaultPricingTiers() {
   return [

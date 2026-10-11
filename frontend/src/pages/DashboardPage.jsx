@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
+import { getApiUrl } from '../utils/api';
 
 export default function DashboardPage() {
   const { user, token, isAuthenticated, loading: authLoading } = useAuth();
@@ -19,7 +20,7 @@ export default function DashboardPage() {
       const headers = {};
       if (token) headers['Authorization'] = `Bearer ${token}`;
 
-      const res = await fetch('/api/my-bookings', { headers });
+      const res = await fetch(getApiUrl('/api/my-bookings'), { headers });
       const data = await res.json();
 
       if (res.ok && data.success) {
@@ -172,12 +173,48 @@ export default function DashboardPage() {
 
                     {b.status === 'confirmed' ? (
                       <div style={{ marginTop: '10px', display: 'inline-flex', alignItems: 'center', gap: '6px', padding: '6px 12px', background: '#DCFCE7', color: '#15803D', borderRadius: '8px', fontSize: '0.84rem', fontWeight: 600 }}>
-                        <span>✓ Appointment Accepted & Confirmed</span>
+                        <span>✓ Appointment Accepted &amp; Confirmed</span>
                       </div>
                     ) : (
                       <p style={{ margin: '6px 0 0', fontSize: '0.82rem', color: 'var(--text-muted)' }}>
                         Status: Awaiting clinic confirmation
                       </p>
+                    )}
+
+                    {/* Telehealth Meeting Link if added by Reshmi Mam */}
+                    {b.meetingLink && (
+                      <div style={{ marginTop: '10px' }}>
+                        <a
+                          href={b.meetingLink.startsWith('http') ? b.meetingLink : `https://${b.meetingLink}`}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="btn btn-sm"
+                          style={{ background: '#2563EB', color: 'white', padding: '6px 14px', borderRadius: '8px', fontWeight: 700, textDecoration: 'none', display: 'inline-flex', alignItems: 'center', gap: '6px' }}
+                        >
+                          <span>📹 Join Video Consultation Call</span>
+                        </a>
+                      </div>
+                    )}
+
+                    {/* Uploaded Lab Report Link */}
+                    {b.questionnaireData?.labReportFileUrl && (
+                      <div style={{ marginTop: '8px' }}>
+                        <a
+                          href={b.questionnaireData.labReportFileUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          style={{ fontSize: '0.82rem', color: '#DC2626', fontWeight: 600, display: 'inline-flex', alignItems: 'center', gap: '4px', textDecoration: 'none' }}
+                        >
+                          <span>📄 View Uploaded Lab Report ({b.questionnaireData.labReportFileName || 'PDF'})</span>
+                        </a>
+                      </div>
+                    )}
+
+                    {/* Practitioner Notes from Clinic */}
+                    {b.adminNotes && (
+                      <div style={{ marginTop: '10px', background: 'var(--bg-secondary)', borderLeft: '3px solid var(--emerald-primary)', padding: '8px 12px', borderRadius: '6px', fontSize: '0.84rem', color: 'var(--text-secondary)' }}>
+                        <strong>Reshmi Verma's Note:</strong> {b.adminNotes}
+                      </div>
                     )}
                   </div>
 

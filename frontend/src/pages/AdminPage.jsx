@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
+import { getApiUrl } from '../utils/api';
 
 export default function AdminPage() {
   const { user, token, isAdmin, isAuthenticated, loading: authLoading } = useAuth();
@@ -28,6 +29,27 @@ export default function AdminPage() {
   const [loadingReels, setLoadingReels] = useState(false);
   const [savingReels, setSavingReels] = useState(false);
 
+  // Clinic Schedule & Slot Manager State
+  const [scheduleData, setScheduleData] = useState({
+    workingDays: [1, 2, 3, 4, 5, 6],
+    defaultSlots: [
+      '10:00 AM - Morning Slot',
+      '11:30 AM - Morning Slot',
+      '02:30 PM - Afternoon Slot',
+      '04:00 PM - Afternoon Slot',
+      '06:00 PM - Evening Slot'
+    ],
+    blockedDates: [],
+    customBlockedSlots: {}
+  });
+  const [loadingSchedule, setLoadingSchedule] = useState(false);
+  const [savingSchedule, setSavingSchedule] = useState(false);
+  const [newSlotInput, setNewSlotInput] = useState('');
+  const [blockDateInput, setBlockDateInput] = useState('');
+  const [blockDateReason, setBlockDateReason] = useState('Leave / Out of clinic');
+  const [slotBlockDate, setSlotBlockDate] = useState('');
+  const [slotBlockSlot, setSlotBlockSlot] = useState('');
+
   // Status Alerts
   const [alertMsg, setAlertMsg] = useState(null); // { type: 'success' | 'error', text: string }
 
@@ -43,7 +65,7 @@ export default function AdminPage() {
       const headers = {};
       if (token) headers['Authorization'] = `Bearer ${token}`;
 
-      const res = await fetch('/api/admin-bookings', { headers });
+      const res = await fetch(getApiUrl('/api/admin-bookings'), { headers });
       const data = await res.json();
 
       if (res.ok && data.success) {
@@ -63,7 +85,7 @@ export default function AdminPage() {
   const fetchPricingTiers = async () => {
     setLoadingPricing(true);
     try {
-      const res = await fetch('/api/pricing-tiers');
+      const res = await fetch(getApiUrl('/api/pricing-tiers'));
       const data = await res.json();
       if (res.ok && data.success) {
         setPricingTiers(data.tiers || []);
@@ -81,7 +103,7 @@ export default function AdminPage() {
   const fetchReels = async () => {
     setLoadingReels(true);
     try {
-      const res = await fetch('/api/reels');
+      const res = await fetch(getApiUrl('/api/reels'));
       const data = await res.json();
       if (res.ok && data.success) {
         setReels(data.reels || []);
@@ -95,6 +117,142 @@ export default function AdminPage() {
     }
   };
 
+  // 4. Fetch Clinic Schedule & Slots
+  const fetchSchedule = async () => {
+    setLoadingSchedule(true);
+    try {
+      const res = await fetch(getApiUrl('/api/admin-schedule'));
+      const data = await res.json();
+      if (res.ok && data.success && data.schedule) {
+        setScheduleData(data.schedule);
+      } else {
+        showNotification('error', 'Failed to load clinic schedule.');
+      }
+    } catch (err) {
+      console.error('Schedule fetch error:', err);
+    } finally {
+      setLoadingSchedule(false);
+    }
+  };
+
+  // Save Schedule Config
+  const handleSaveScheduleConfig = async (patch) => {
+    setSavingSchedule(true);
+    try {
+      const headers = { 'Content-Type': 'application/json' };
+      if (token) headers['Authorization'] = `Bearer ${token}`;
+
+      const res = await fetch(getApiUrl('/api/admin-schedule'), {
+        method: 'POST',
+        headers,
+        body: JSON.stringify(patch)
+      });
+      const data = await res.json();
+      if (res.ok && data.success) {
+        setScheduleData(data.schedule);
+        showNotification('success', data.message || 'Schedule configuration saved successfully!');
+      } else {
+        showNotification('error', data.error || 'Failed to update schedule.');
+      }
+    } catch (err) {
+      console.error('Save schedule error:', err);
+      showNotification('error', 'Error updating clinic schedule.');
+    } finally {
+      setSavingSchedule(false);
+    }
+  };
+
+  // Toggle Working Day (0 = Sun, 1 = Mon, ..., 6 = Sat)
+  const handleToggleWorkingDay = (dayIndex) => {
+    const current = scheduleData.workingDays || [];
+    let updated;
+    if (current.includes(dayIndex)) {
+      if (current.length <= 1) {
+        alert('You must have at least one active working day in the week.');
+        return;
+      }
+      updated = current.filter(d => d !== dayIndex);
+    } else {
+      updated = [...current, dayIndex].sort();
+    }
+    const newSchedule = { ...scheduleData, workingDays: updated };
+    setScheduleData(newSchedule);
+    handleSaveScheduleConfig(newSchedule);
+  };
+
+  // Add Default Master Slot
+  const handleAddDefaultSlot = () => {
+    if (!newSlotInput.trim()) return;
+    const slotText = newSlotInput.trim();
+    if (scheduleData.defaultSlots?.includes(slotText)) {
+      alert('This slot already exists.');
+      return;
+    }
+    const updatedSlots = [...(scheduleData.defaultSlots || []), slotText];
+    const newSchedule = { ...scheduleData, defaultSlots: updatedSlots };
+    setScheduleData(newSchedule);
+    setNewSlotInput('');
+    handleSaveScheduleConfig(newSchedule);
+  };
+
+  // Remove Default Master Slot
+  const handleRemoveDefaultSlot = (slot) => {
+    if ((scheduleData.defaultSlots || []).length <= 1) {
+      alert('You must keep at least one available slot.');
+      return;
+    }
+    if (window.confirm(`Are you sure you want to remove the slot "${slot}"?`)) {
+      const updatedSlots = (scheduleData.defaultSlots || []).filter(s => s !== slot);
+      const newSchedule = { ...scheduleData, defaultSlots: updatedSlots };
+      setScheduleData(newSchedule);
+      handleSaveScheduleConfig(newSchedule);
+    }
+  };
+
+  // Block Date
+  const handleBlockDate = () => {
+    if (!blockDateInput) {
+      alert('Please select a date to block.');
+      return;
+    }
+    handleSaveScheduleConfig({
+      action: 'block_date',
+      date: blockDateInput,
+      reason: blockDateReason || 'Clinic Closed / Personal Leave'
+    });
+    setBlockDateInput('');
+  };
+
+  // Unblock Date
+  const handleUnblockDate = (date) => {
+    handleSaveScheduleConfig({
+      action: 'unblock_date',
+      date
+    });
+  };
+
+  // Block Specific Slot on a Specific Date
+  const handleBlockSpecificSlot = () => {
+    if (!slotBlockDate || !slotBlockSlot) {
+      alert('Please select both a date and a slot to block.');
+      return;
+    }
+    handleSaveScheduleConfig({
+      action: 'block_slot',
+      date: slotBlockDate,
+      slot: slotBlockSlot
+    });
+  };
+
+  // Unblock Specific Slot on a Specific Date
+  const handleUnblockSpecificSlot = (date, slot) => {
+    handleSaveScheduleConfig({
+      action: 'unblock_slot',
+      date,
+      slot
+    });
+  };
+
   // Initialize data on auth load
   useEffect(() => {
     if (!authLoading) {
@@ -106,6 +264,7 @@ export default function AdminPage() {
         fetchAdminBookings();
         fetchPricingTiers();
         fetchReels();
+        fetchSchedule();
       }
     }
   }, [authLoading, isAuthenticated, isAdmin]);
@@ -117,7 +276,7 @@ export default function AdminPage() {
       const headers = { 'Content-Type': 'application/json' };
       if (token) headers['Authorization'] = `Bearer ${token}`;
 
-      const res = await fetch('/api/admin-update-booking', {
+      const res = await fetch(getApiUrl('/api/admin-update-booking'), {
         method: 'POST',
         headers,
         body: JSON.stringify({ bookingId, updates })
@@ -147,7 +306,7 @@ export default function AdminPage() {
       const headers = { 'Content-Type': 'application/json' };
       if (token) headers['Authorization'] = `Bearer ${token}`;
 
-      const res = await fetch('/api/admin-pricing-tiers', {
+      const res = await fetch(getApiUrl('/api/admin-pricing-tiers'), {
         method: 'POST',
         headers,
         body: JSON.stringify({ tiers: pricingTiers })
@@ -224,7 +383,7 @@ export default function AdminPage() {
       const headers = { 'Content-Type': 'application/json' };
       if (token) headers['Authorization'] = `Bearer ${token}`;
 
-      const res = await fetch('/api/admin-reels', {
+      const res = await fetch(getApiUrl('/api/admin-reels'), {
         method: 'POST',
         headers,
         body: JSON.stringify({ reels })
@@ -359,6 +518,11 @@ export default function AdminPage() {
                 {savingReels ? 'Saving Reels...' : '💾 Save All Instagram Reels'}
               </button>
             )}
+            {activeTab === 'schedule' && (
+              <button className="btn btn-secondary btn-sm" onClick={fetchSchedule} disabled={loadingSchedule}>
+                {loadingSchedule ? 'Refreshing...' : '↻ Refresh Schedule'}
+              </button>
+            )}
           </div>
         </div>
 
@@ -480,6 +644,33 @@ export default function AdminPage() {
             <span>🎬 Instagram Reels Studio</span>
             <span style={{ padding: '2px 8px', borderRadius: '999px', fontSize: '0.75rem', background: activeTab === 'reels' ? 'rgba(255,255,255,0.25)' : 'rgba(0,0,0,0.06)' }}>
               {reels.length}
+            </span>
+          </button>
+
+          <button
+            type="button"
+            onClick={() => setActiveTab('schedule')}
+            style={{
+              flex: 1,
+              minWidth: '200px',
+              padding: '12px 18px',
+              borderRadius: '12px',
+              border: 'none',
+              background: activeTab === 'schedule' ? 'var(--emerald-deep)' : 'transparent',
+              color: activeTab === 'schedule' ? 'white' : 'var(--text-secondary)',
+              fontWeight: 700,
+              fontSize: '0.92rem',
+              cursor: 'pointer',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              gap: '8px',
+              transition: 'all 0.2s ease'
+            }}
+          >
+            <span>📅 Clinic Schedule &amp; Slots</span>
+            <span style={{ padding: '2px 8px', borderRadius: '999px', fontSize: '0.75rem', background: activeTab === 'schedule' ? 'rgba(255,255,255,0.25)' : 'rgba(0,0,0,0.06)' }}>
+              {scheduleData.defaultSlots?.length || 5} Slots
             </span>
           </button>
         </div>
@@ -1331,6 +1522,349 @@ export default function AdminPage() {
                 ))}
               </div>
             )}
+          </div>
+        )}
+
+        {/* =========================================================================
+            TAB 4: CLINIC SCHEDULE & SLOTS MANAGER
+            ========================================================================= */}
+        {activeTab === 'schedule' && (
+          <div>
+            {/* Schedule Header / Quick Info */}
+            <div
+              style={{
+                background: 'white',
+                borderRadius: '20px',
+                padding: '24px 28px',
+                border: '1px solid var(--border-subtle)',
+                boxShadow: 'var(--shadow-sm)',
+                marginBottom: '24px',
+                display: 'flex',
+                justifyContent: 'space-between',
+                alignItems: 'center',
+                flexWrap: 'wrap',
+                gap: '16px'
+              }}
+            >
+              <div>
+                <h3 style={{ margin: '0 0 4px', fontSize: '1.25rem', color: 'var(--emerald-deep)' }}>
+                  📅 Doctor Availability &amp; Session Slot Control
+                </h3>
+                <p style={{ margin: 0, fontSize: '0.88rem', color: 'var(--text-muted)' }}>
+                  Set your working days, add or remove standard daily consultation slots, and block dates or specific hours when you are unavailable.
+                </p>
+              </div>
+              <div style={{ display: 'flex', gap: '8px' }}>
+                <button
+                  type="button"
+                  className="btn btn-primary btn-sm"
+                  onClick={() => handleSaveScheduleConfig(scheduleData)}
+                  disabled={savingSchedule}
+                >
+                  {savingSchedule ? 'Saving...' : '💾 Save All Schedule Changes'}
+                </button>
+              </div>
+            </div>
+
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(360px, 1fr))', gap: '24px', marginBottom: '24px' }}>
+              
+              {/* Card 1: Working Days of the Week */}
+              <div style={{ background: 'white', borderRadius: '20px', padding: '24px', border: '1px solid var(--border-subtle)', boxShadow: 'var(--shadow-sm)' }}>
+                <h4 style={{ fontSize: '1.05rem', color: 'var(--emerald-deep)', margin: '0 0 8px', display: 'flex', alignItems: 'center', gap: '8px' }}>
+                  <span>🗓️ Weekly Working Days</span>
+                </h4>
+                <p style={{ fontSize: '0.82rem', color: 'var(--text-muted)', marginBottom: '16px' }}>
+                  Uncheck days when the clinic is closed (e.g. Sunday off). Patients cannot book on unchecked days.
+                </p>
+
+                <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px' }}>
+                  {[
+                    { label: 'Monday', idx: 1 },
+                    { label: 'Tuesday', idx: 2 },
+                    { label: 'Wednesday', idx: 3 },
+                    { label: 'Thursday', idx: 4 },
+                    { label: 'Friday', idx: 5 },
+                    { label: 'Saturday', idx: 6 },
+                    { label: 'Sunday', idx: 0 }
+                  ].map(day => {
+                    const isActive = (scheduleData.workingDays || []).includes(day.idx);
+                    return (
+                      <button
+                        key={day.idx}
+                        type="button"
+                        onClick={() => handleToggleWorkingDay(day.idx)}
+                        style={{
+                          padding: '8px 16px',
+                          borderRadius: '12px',
+                          border: `1.5px solid ${isActive ? 'var(--emerald-primary)' : 'var(--border-subtle)'}`,
+                          background: isActive ? 'var(--emerald-soft)' : '#F8FAFC',
+                          color: isActive ? 'var(--emerald-deep)' : 'var(--text-muted)',
+                          fontWeight: 700,
+                          fontSize: '0.85rem',
+                          cursor: 'pointer',
+                          display: 'flex',
+                          alignItems: 'center',
+                          gap: '6px'
+                        }}
+                      >
+                        <span>{isActive ? '✓' : '✕'}</span>
+                        <span>{day.label}</span>
+                      </button>
+                    );
+                  })}
+                </div>
+              </div>
+
+              {/* Card 2: Master Daily Consultation Windows */}
+              <div style={{ background: 'white', borderRadius: '20px', padding: '24px', border: '1px solid var(--border-subtle)', boxShadow: 'var(--shadow-sm)' }}>
+                <h4 style={{ fontSize: '1.05rem', color: 'var(--emerald-deep)', margin: '0 0 8px', display: 'flex', alignItems: 'center', gap: '8px' }}>
+                  <span>⏰ Daily Consultation Time Slots</span>
+                </h4>
+                <p style={{ fontSize: '0.82rem', color: 'var(--text-muted)', marginBottom: '16px' }}>
+                  Standard slots offered to patients each working day. Only one patient can book each slot per day.
+                </p>
+
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', marginBottom: '16px' }}>
+                  {(scheduleData.defaultSlots || []).map((slot, sIdx) => (
+                    <div
+                      key={sIdx}
+                      style={{
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'space-between',
+                        padding: '10px 14px',
+                        background: '#FAF8F5',
+                        borderRadius: '10px',
+                        border: '1px solid var(--border-subtle)'
+                      }}
+                    >
+                      <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                        <span style={{ width: '8px', height: '8px', borderRadius: '50%', background: 'var(--emerald-primary)' }}></span>
+                        <span style={{ fontWeight: 600, fontSize: '0.9rem', color: 'var(--text-primary)' }}>{slot}</span>
+                      </div>
+                      <button
+                        type="button"
+                        onClick={() => handleRemoveDefaultSlot(slot)}
+                        title="Remove slot"
+                        style={{
+                          background: 'none',
+                          border: 'none',
+                          color: '#BE123C',
+                          cursor: 'pointer',
+                          fontWeight: 700,
+                          fontSize: '0.82rem',
+                          padding: '4px 8px'
+                        }}
+                      >
+                        ✕ Remove
+                      </button>
+                    </div>
+                  ))}
+                </div>
+
+                {/* Add new slot input */}
+                <div style={{ display: 'flex', gap: '8px' }}>
+                  <input
+                    type="text"
+                    value={newSlotInput}
+                    onChange={(e) => setNewSlotInput(e.target.value)}
+                    placeholder="e.g. 05:00 PM - Evening Slot"
+                    style={{
+                      flex: 1,
+                      padding: '8px 12px',
+                      borderRadius: '10px',
+                      border: '1.5px solid var(--border-subtle)',
+                      fontSize: '0.88rem'
+                    }}
+                  />
+                  <button
+                    type="button"
+                    onClick={handleAddDefaultSlot}
+                    className="btn btn-secondary btn-sm"
+                    style={{ padding: '8px 14px' }}
+                  >
+                    + Add Slot
+                  </button>
+                </div>
+              </div>
+
+            </div>
+
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(360px, 1fr))', gap: '24px', marginBottom: '24px' }}>
+              
+              {/* Card 3: Block Full Dates (Holidays, Leaves, Travel) */}
+              <div style={{ background: 'white', borderRadius: '20px', padding: '24px', border: '1px solid var(--border-subtle)', boxShadow: 'var(--shadow-sm)' }}>
+                <h4 style={{ fontSize: '1.05rem', color: 'var(--emerald-deep)', margin: '0 0 8px', display: 'flex', alignItems: 'center', gap: '8px' }}>
+                  <span>🚫 Block Entire Date (Leaves / Off Days)</span>
+                </h4>
+                <p style={{ fontSize: '0.82rem', color: 'var(--text-muted)', marginBottom: '16px' }}>
+                  When Reshmi Mam is out of town or taking leave, block the whole date. Patients will see the date as unavailable.
+                </p>
+
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '10px', marginBottom: '16px', background: '#FAF8F5', padding: '14px', borderRadius: '12px', border: '1px solid var(--border-subtle)' }}>
+                  <div>
+                    <label style={{ fontSize: '0.75rem', fontWeight: 700, color: 'var(--text-muted)', textTransform: 'uppercase' }}>Select Date to Block</label>
+                    <input
+                      type="date"
+                      value={blockDateInput}
+                      min={new Date().toISOString().split('T')[0]}
+                      onChange={(e) => setBlockDateInput(e.target.value)}
+                      style={{ width: '100%', padding: '8px 12px', borderRadius: '8px', border: '1px solid var(--border-subtle)', fontSize: '0.9rem', marginTop: '4px' }}
+                    />
+                  </div>
+                  <div>
+                    <label style={{ fontSize: '0.75rem', fontWeight: 700, color: 'var(--text-muted)', textTransform: 'uppercase' }}>Reason / Public Note</label>
+                    <input
+                      type="text"
+                      value={blockDateReason}
+                      onChange={(e) => setBlockDateReason(e.target.value)}
+                      placeholder="e.g. Clinical Conference / Doctor Leave"
+                      style={{ width: '100%', padding: '8px 12px', borderRadius: '8px', border: '1px solid var(--border-subtle)', fontSize: '0.9rem', marginTop: '4px' }}
+                    />
+                  </div>
+                  <button
+                    type="button"
+                    onClick={handleBlockDate}
+                    className="btn btn-primary btn-sm"
+                    style={{ marginTop: '4px' }}
+                  >
+                    🚫 Block Selected Date
+                  </button>
+                </div>
+
+                {/* List of currently blocked dates */}
+                <div style={{ marginTop: '12px' }}>
+                  <label style={{ fontSize: '0.78rem', fontWeight: 700, color: 'var(--emerald-deep)', display: 'block', marginBottom: '8px' }}>
+                    Currently Blocked Dates ({(scheduleData.blockedDates || []).length}):
+                  </label>
+                  {(scheduleData.blockedDates || []).length === 0 ? (
+                    <div style={{ fontSize: '0.85rem', color: 'var(--text-muted)', fontStyle: 'italic' }}>
+                      No full dates are currently blocked.
+                    </div>
+                  ) : (
+                    <div style={{ display: 'flex', flexDirection: 'column', gap: '6px', maxHeight: '180px', overflowY: 'auto' }}>
+                      {(scheduleData.blockedDates || []).map((bd, bIdx) => {
+                        const bDate = typeof bd === 'string' ? bd : bd.date;
+                        const bReason = typeof bd === 'string' ? 'Doctor Leave' : (bd.reason || 'Doctor Leave');
+                        return (
+                          <div
+                            key={bIdx}
+                            style={{
+                              display: 'flex',
+                              justifyContent: 'space-between',
+                              alignItems: 'center',
+                              padding: '8px 12px',
+                              background: '#FEF2F2',
+                              borderRadius: '8px',
+                              border: '1px solid #FECDD3'
+                            }}
+                          >
+                            <div>
+                              <strong style={{ color: '#991B1B', fontSize: '0.88rem' }}>{bDate}</strong>
+                              <span style={{ fontSize: '0.78rem', color: '#B91C1C', marginLeft: '8px' }}>({bReason})</span>
+                            </div>
+                            <button
+                              type="button"
+                              onClick={() => handleUnblockDate(bDate)}
+                              style={{ background: 'none', border: 'none', color: '#DC2626', fontWeight: 700, fontSize: '0.8rem', cursor: 'pointer' }}
+                            >
+                              Unblock
+                            </button>
+                          </div>
+                        );
+                      })}
+                    </div>
+                  )}
+                </div>
+              </div>
+
+              {/* Card 4: Block a Specific Single Slot on a Specific Date */}
+              <div style={{ background: 'white', borderRadius: '20px', padding: '24px', border: '1px solid var(--border-subtle)', boxShadow: 'var(--shadow-sm)' }}>
+                <h4 style={{ fontSize: '1.05rem', color: 'var(--emerald-deep)', margin: '0 0 8px', display: 'flex', alignItems: 'center', gap: '8px' }}>
+                  <span>⏳ Block Single Slot on Specific Date</span>
+                </h4>
+                <p style={{ fontSize: '0.82rem', color: 'var(--text-muted)', marginBottom: '16px' }}>
+                  Busy for just 1 hour on a specific date? Block only that specific time slot without disabling the entire day.
+                </p>
+
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '10px', marginBottom: '16px', background: '#FAF8F5', padding: '14px', borderRadius: '12px', border: '1px solid var(--border-subtle)' }}>
+                  <div>
+                    <label style={{ fontSize: '0.75rem', fontWeight: 700, color: 'var(--text-muted)', textTransform: 'uppercase' }}>Select Date</label>
+                    <input
+                      type="date"
+                      value={slotBlockDate}
+                      min={new Date().toISOString().split('T')[0]}
+                      onChange={(e) => setSlotBlockDate(e.target.value)}
+                      style={{ width: '100%', padding: '8px 12px', borderRadius: '8px', border: '1px solid var(--border-subtle)', fontSize: '0.9rem', marginTop: '4px' }}
+                    />
+                  </div>
+                  <div>
+                    <label style={{ fontSize: '0.75rem', fontWeight: 700, color: 'var(--text-muted)', textTransform: 'uppercase' }}>Select Slot to Block</label>
+                    <select
+                      value={slotBlockSlot}
+                      onChange={(e) => setSlotBlockSlot(e.target.value)}
+                      style={{ width: '100%', padding: '8px 12px', borderRadius: '8px', border: '1px solid var(--border-subtle)', fontSize: '0.9rem', marginTop: '4px', background: 'white' }}
+                    >
+                      <option value="">-- Choose Slot to Block --</option>
+                      {(scheduleData.defaultSlots || []).map(s => (
+                        <option key={s} value={s}>{s}</option>
+                      ))}
+                    </select>
+                  </div>
+                  <button
+                    type="button"
+                    onClick={handleBlockSpecificSlot}
+                    className="btn btn-secondary btn-sm"
+                    style={{ marginTop: '4px' }}
+                  >
+                    🔒 Block Slot for this Date
+                  </button>
+                </div>
+
+                {/* List of custom blocked slots */}
+                <div style={{ marginTop: '12px' }}>
+                  <label style={{ fontSize: '0.78rem', fontWeight: 700, color: 'var(--emerald-deep)', display: 'block', marginBottom: '8px' }}>
+                    Custom Blocked Slots:
+                  </label>
+                  {Object.keys(scheduleData.customBlockedSlots || {}).length === 0 ? (
+                    <div style={{ fontSize: '0.85rem', color: 'var(--text-muted)', fontStyle: 'italic' }}>
+                      No individual slots are currently blocked.
+                    </div>
+                  ) : (
+                    <div style={{ display: 'flex', flexDirection: 'column', gap: '6px', maxHeight: '180px', overflowY: 'auto' }}>
+                      {Object.entries(scheduleData.customBlockedSlots || {}).flatMap(([dateKey, slotsArr]) => 
+                        slotsArr.map(s => (
+                          <div
+                            key={`${dateKey}-${s}`}
+                            style={{
+                              display: 'flex',
+                              justifyContent: 'space-between',
+                              alignItems: 'center',
+                              padding: '8px 12px',
+                              background: '#FFFBEB',
+                              borderRadius: '8px',
+                              border: '1px solid #FDE68A'
+                            }}
+                          >
+                            <div>
+                              <strong style={{ color: '#92400E', fontSize: '0.85rem' }}>{dateKey}</strong> &bull; <span style={{ fontSize: '0.82rem', color: '#B45309' }}>{s}</span>
+                            </div>
+                            <button
+                              type="button"
+                              onClick={() => handleUnblockSpecificSlot(dateKey, s)}
+                              style={{ background: 'none', border: 'none', color: '#D97706', fontWeight: 700, fontSize: '0.8rem', cursor: 'pointer' }}
+                            >
+                              Unblock
+                            </button>
+                          </div>
+                        ))
+                      )}
+                    </div>
+                  )}
+                </div>
+              </div>
+
+            </div>
           </div>
         )}
 
