@@ -90,7 +90,7 @@ export default function Footer() {
               <h5>Direct Contact</h5>
               <ul className="footer-links">
                 <li style={{ color: 'var(--text-secondary)', fontSize: '0.82rem', lineHeight: 1.4 }}>
-                  <strong>Rainbow Medinova Diagnostics</strong><br />
+                  <strong>Clinical Diagnostics &amp; Health Sanctuary</strong><br />
                   Functional Medicine Clinic
                 </li>
                 <li style={{ marginTop: '4px' }}>

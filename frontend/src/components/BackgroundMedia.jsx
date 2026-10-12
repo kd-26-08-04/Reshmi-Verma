@@ -6,9 +6,10 @@ export default function BackgroundMedia() {
   const location = useLocation();
   const isAuthPage = location.pathname === '/auth' || location.pathname === '/login';
   const isAssessmentPage = location.pathname === '/assessment';
+  const isContactPage = location.pathname === '/contact';
 
   useEffect(() => {
-    if (isAssessmentPage) return; // No video on assessment page
+    if (isAssessmentPage || isAuthPage || isContactPage) return; // No video on assessment, auth, or contact pages
 
     const video = videoRef.current;
     if (!video) return;
@@ -44,15 +45,15 @@ export default function BackgroundMedia() {
       video.removeEventListener('play', applySlowMotion);
       video.removeEventListener('playing', applySlowMotion);
     };
-  }, [location.pathname, isAssessmentPage]);
+  }, [location.pathname, isAssessmentPage, isAuthPage, isContactPage]);
 
   // Dedicated Serene Static Image Background for Health Assessment
   if (isAssessmentPage) {
     return (
       <div className="assessment-bg-image-container" aria-hidden="true">
         <img
-          src="/assets/images/assessment-sunrise-mountains.png"
-          alt="Meditation at Sunrise in the Misty Mountains"
+          src="/assets/images/assessment-reshmi-meditation.jpg"
+          alt="Reshmi Verma Meditating in White Marble Sanctuary"
           className="assessment-bg-image"
         />
         <div className="assessment-bg-image-overlay"></div>
@@ -60,27 +61,9 @@ export default function BackgroundMedia() {
     );
   }
 
-  if (isAuthPage) {
-    return (
-      <div className="auth-bg-video-container" aria-hidden="true">
-        <video
-          ref={videoRef}
-          key="auth-bg-video"
-          id="auth-bg-video-stream"
-          className="auth-bg-video"
-          autoPlay
-          muted
-          loop
-          playsInline
-          preload="auto"
-        >
-          <source src="/assets/videos/102377-659979931_medium.mp4" type="video/mp4" />
-          <source src="/assets/videos/wellness-bg.mp4" type="video/mp4" />
-          <source src="/290916_medium.mp4" type="video/mp4" />
-        </video>
-        <div className="auth-bg-video-overlay"></div>
-      </div>
-    );
+  // Clean simple backgrounds for Sign In & Contact Us (No video)
+  if (isAuthPage || isContactPage) {
+    return null;
   }
 
   return (
@@ -102,8 +85,8 @@ export default function BackgroundMedia() {
           playsInline
           preload="auto"
         >
+          <source src="/assets/videos/reshmi-bg-video.mp4" type="video/mp4" />
           <source src="/assets/videos/wellness-bg.mp4" type="video/mp4" />
-          <source src="/290916_medium.mp4" type="video/mp4" />
         </video>
         <div className="site-bg-video-overlay"></div>
       </div>

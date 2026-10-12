@@ -910,7 +910,7 @@ export default function BookingPage() {
               <div><strong>Service Tier:</strong> <span id="confirm-service-name">{confirmedBooking.serviceName}</span></div>
               <div><strong>Amount Paid:</strong> <span id="confirm-amount-paid" style={{ fontWeight: 700, color: 'var(--emerald-primary)' }}>₹{confirmedBooking.amountPaid?.toLocaleString('en-IN')}</span></div>
               <div><strong>Requested Slot:</strong> <span id="confirm-date-time">{confirmedBooking.dateTime}</span></div>
-              <div><strong>Practitioner:</strong> Reshmi Verma (Rainbow Medinova)</div>
+              <div><strong>Practitioner:</strong> Reshmi Verma (Functional Nutritionist &amp; Breathwork Facilitator)</div>
             </div>
 
             <div style={{ margin: '20px 0 16px', background: '#fff8e1', border: '1px solid #fbc02d', borderRadius: '12px', padding: '14px 18px', textAlign: 'center' }}>

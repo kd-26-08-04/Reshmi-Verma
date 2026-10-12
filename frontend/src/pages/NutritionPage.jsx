@@ -162,7 +162,7 @@ export default function NutritionPage() {
               <span className="sub-title">Diagnostics First</span>
               <h2>We Never Guess. We Measure.</h2>
               <p style={{ fontSize: '1.05rem', color: 'var(--text-secondary)', lineHeight: 1.7, marginBottom: '20px' }}>
-                Backed by Reshmi Verma's 20+ years directing <strong>Rainbow Medinova Diagnostic Services</strong>, every clinical protocol is rooted in objective biomarkers:
+                Backed by Reshmi Verma's <strong>18 years of experience in the diagnostics industry</strong>, every clinical protocol is rooted in objective biomarkers:
               </p>
 
               <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: '14px', marginBottom: '32px', paddingLeft: 0 }}>

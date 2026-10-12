@@ -109,7 +109,7 @@ export default function ContactPage() {
             {/* Left: Direct Clinic Information */}
             <div className="contact-info-card">
               <span className="sub-title">Direct Clinic Access</span>
-              <h2 style={{ fontSize: '1.85rem', marginTop: '6px', marginBottom: '14px' }}>Rainbow Medinova Diagnostics</h2>
+              <h2 style={{ fontSize: '1.85rem', marginTop: '6px', marginBottom: '14px' }}>Clinical Diagnostics &amp; Wellness Sanctuary</h2>
               <p style={{ color: 'var(--text-secondary)', fontSize: '0.95rem', lineHeight: 1.6 }}>
                 Reshmi Verma combines 20+ years of clinical laboratory diagnostic expertise with functional root-cause biology to address gut permeability, chronic fatigue, and autonomic dysregulation.
               </p>

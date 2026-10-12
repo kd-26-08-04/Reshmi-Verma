@@ -1,7 +1,7 @@
 # HealthwithReshmi™ — Reshmi Verma
 ### Science-Led, Human-Centred Functional Nutrition & Clinical Respiration Sanctuary
 
-An ultra-premium, light-mode clinical portfolio and interactive health application built for **Reshmi Verma** (Biotechnologist, Functional Nutritionist, Certified Oxygen Advantage Coach, and Director of Rainbow Medinova Diagnostic Services).
+An ultra-premium, light-mode clinical portfolio and interactive health application built for **Reshmi Verma** (Biotechnologist, Functional Nutritionist, Certified Oxygen Advantage Coach, and Director of Clinical Diagnostic Laboratories).
 
 ---
 
@@ -93,6 +93,6 @@ Generates optimized, bundled static assets inside the `dist/` folder.
 **Reshmi Verma**  
 - Functional Nutritionist & Biotechnologist  
 - MBA in Marketing & HR (Medical Tourism Specialization)  
-- 20+ Years in Diagnostics & Healthcare (Director, Rainbow Medinova Diagnostic Services)  
+- 20+ Years in Diagnostics & Healthcare (Director of Clinical Diagnostic Laboratories)  
 - Certified Oxygen Advantage Coach & Breath Resilience Facilitator  
 - Personal 38 kg Weight Loss & Health Transformation  

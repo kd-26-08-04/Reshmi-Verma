@@ -11,7 +11,7 @@ const knowledgeBase = [
   },
   {
     triggers: ['reshmi', 'nutritionist', 'bio', 'who', 'qualification'],
-    reply: "Reshmi Verma is a Biotechnologist, Functional Nutritionist, Certified Oxygen Advantage Coach (#13 in India), and Director of Rainbow Medinova Diagnostic Services with 20+ years in healthcare diagnostics. Having personally transformed her health and lost 38+ kg, she bridges hard science with deep empathy."
+    reply: "Reshmi Verma is a Functional Nutritionist, Breathwork Facilitator, Certified Biohacker, and #13 Oxygen Advantage Coach in India with 18 years of experience in the diagnostics industry. She guides clients through her signature 3R Framework: Restoration, Regulation, and Resilience."
   },
   {
     triggers: ['samya', 'framework', 'approach', 'process'],

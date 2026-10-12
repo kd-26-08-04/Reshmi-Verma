@@ -669,26 +669,50 @@ h1, h2, h3, h4, h5, h6 {
 .hero-content {
   position: relative;
   z-index: 2;
+  background: transparent;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  border: none;
+  box-shadow: none;
+  padding: 0;
+  max-width: 680px;
 }
 
 .hero-content h1 {
   font-size: 3.5rem;
   line-height: 1.15;
   margin: 20px 0 24px;
+  color: #FFFFFF;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  text-shadow: 0 2px 14px rgba(0, 0, 0, 0.85), 0 1px 4px rgba(0, 0, 0, 0.95);
+}
+
+.hero-content h1 .text-gradient,
+.hero-content h1 .text-gradient-terracotta {
+  background: linear-gradient(135deg, #FF7A45 0%, #EA580C 50%, #C2410C 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: none !important;
+  text-shadow: none !important;
+  display: inline-block;
 }
 
 .hero-content p.lead {
   font-size: 1.18rem;
-  color: #1E293B;
-  font-weight: 450;
+  color: #FFFFFF;
+  font-weight: 500;
   line-height: 1.75;
   margin-bottom: 32px;
-  max-width: 600px;
+  max-width: 620px;
+  text-shadow: 0 1px 8px rgba(0, 0, 0, 0.9), 0 2px 16px rgba(0, 0, 0, 0.8);
 }
 
 .hero-content p.lead strong {
-  color: #0F172A;
+  color: #FEF08A;
   font-weight: 700;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.9);
 }
 
 .hero-stats-row {
@@ -696,30 +720,32 @@ h1, h2, h3, h4, h5, h6 {
   grid-template-columns: repeat(4, 1fr);
   gap: 16px;
   margin-top: 36px;
-  padding: 18px 22px;
-  background: rgba(255, 255, 255, 0.72);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
+  padding: 16px 20px;
+  background: rgba(15, 23, 42, 0.55);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
   border-radius: var(--radius-lg);
-  border: 1.5px solid rgba(255, 255, 255, 0.85);
-  box-shadow: 0 14px 35px -8px rgba(15, 23, 42, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.95);
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
 }
 
 .stat-item .stat-num {
   font-family: var(--font-serif);
   font-size: 2.25rem;
   font-weight: 800;
-  color: #0F172A;
+  color: #FFFFFF;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.7);
   line-height: 1;
   letter-spacing: -0.02em;
 }
 
 .stat-item .stat-label {
   font-size: 0.82rem;
-  color: #0F172A;
-  font-weight: 700;
+  color: #E2E8F0;
+  font-weight: 600;
   margin-top: 6px;
   line-height: 1.35;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.7);
 }
 
 /* Next-Level Cinematic Hero Section Entrance Animations */
@@ -914,10 +940,14 @@ h1, h2, h3, h4, h5, h6 {
 @media (max-width: 992px) {
   .hero-grid {
     grid-template-columns: 1fr;
-    gap: 48px;
+    gap: 32px;
+  }
+  .hero-content {
+    padding: 0;
+    max-width: 100%;
   }
   .hero-content h1 {
-    font-size: 2.75rem;
+    font-size: 2.5rem;
   }
   .floating-cert-badge {
     left: 10px;
@@ -1497,6 +1527,154 @@ h1, h2, h3, h4, h5, h6 {
 
 .about-image-wrapper {
   position: relative;
+}
+
+.transformation-tabs-nav {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 14px;
+  background: rgba(15, 23, 42, 0.05);
+  padding: 5px;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-subtle);
+}
+
+.trans-tab-btn {
+  flex: 1;
+  padding: 8px 10px;
+  border: none;
+  background: transparent;
+  color: var(--text-secondary);
+  font-size: 0.8rem;
+  font-weight: 600;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: all 0.25s ease;
+  white-space: nowrap;
+  text-align: center;
+}
+
+.trans-tab-btn:hover {
+  color: var(--emerald-deep);
+}
+
+.trans-tab-btn.active {
+  background: white;
+  color: var(--emerald-deep);
+  box-shadow: 0 4px 12px rgba(15, 23, 42, 0.08);
+}
+
+.transformation-visual-container {
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  box-shadow: 0 25px 50px -12px rgba(15, 23, 42, 0.16);
+  border: 2px solid rgba(255, 255, 255, 0.9);
+  background: #0f172a;
+  position: relative;
+}
+
+.transformation-split-view {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  position: relative;
+  aspect-ratio: 4/5;
+  background: #0b1120;
+}
+
+.split-photo-card {
+  position: relative;
+  overflow: hidden;
+  height: 100%;
+}
+
+.split-photo-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 15%;
+  display: block;
+}
+
+.split-divider-line {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  width: 2px;
+  background: rgba(255, 255, 255, 0.7);
+  z-index: 3;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.divider-badge {
+  background: #c2410c;
+  color: white;
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  padding: 4px 10px;
+  border-radius: 9999px;
+  box-shadow: 0 4px 14px rgba(194, 65, 12, 0.45);
+  border: 2px solid white;
+  white-space: nowrap;
+}
+
+.photo-phase-tag {
+  position: absolute;
+  top: 14px;
+  z-index: 4;
+  padding: 5px 12px;
+  border-radius: 9999px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+}
+
+.phase-before {
+  left: 12px;
+  background: rgba(15, 23, 42, 0.85);
+  color: #fed7aa;
+  border: 1px solid rgba(254, 215, 170, 0.3);
+}
+
+.phase-after {
+  right: 12px;
+  background: rgba(194, 65, 12, 0.9);
+  color: white;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+}
+
+.transformation-single-view {
+  position: relative;
+  aspect-ratio: 4/5;
+  background: #0f172a;
+}
+
+.transformation-single-view img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 15%;
+  display: block;
+}
+
+.single-phase-caption {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 16px 20px;
+  background: linear-gradient(180deg, transparent 0%, rgba(15, 23, 42, 0.92) 100%);
+  color: white;
+  font-size: 0.84rem;
+  line-height: 1.45;
+  z-index: 3;
 }
 
 .about-main-image {
@@ -3737,7 +3915,7 @@ h1, h2, h3, h4, h5, h6 {
   display: none !important;
 }
 
-/* Assessment Dedicated Serene Static Image Background */
+/* Assessment Dedicated Serene Meditative Background with Slow-Mo Inhale/Exhale */
 .assessment-bg-image-container {
   position: fixed;
   top: 0;
@@ -3748,26 +3926,67 @@ h1, h2, h3, h4, h5, h6 {
   z-index: -1;
   pointer-events: none;
   user-select: none;
+  background: #f8fafc;
 }
+
+@keyframes somaticInhaleExhale {
+  0% {
+    transform: scale(1);
+    filter: brightness(0.97) contrast(1.03);
+  }
+  45% {
+    /* Gentle slow-motion inhale expansion */
+    transform: scale(1.04);
+    filter: brightness(1.02) contrast(1.06);
+  }
+  55% {
+    /* Natural breath stillness pause */
+    transform: scale(1.04);
+    filter: brightness(1.02) contrast(1.06);
+  }
+  100% {
+    /* Slow-motion exhale relaxation */
+    transform: scale(1);
+    filter: brightness(0.97) contrast(1.03);
+  }
+}
+
 .assessment-bg-image {
   position: absolute;
-  top: 50%;
-  left: 50%;
+  top: 0;
+  left: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transform: translate(-50%, -50%);
-  filter: brightness(0.96) contrast(1.06);
+  object-position: center 25%;
+  animation: somaticInhaleExhale 16s ease-in-out infinite;
+  transform-origin: center center;
+  will-change: transform;
   opacity: 1 !important;
 }
+
+/* On Desktop: Anchor left at 0 (eliminates grey gap) and expand width so Reshmi Mam in the pavilion sits gracefully on the right half */
+@media (min-width: 992px) {
+  .assessment-bg-image {
+    left: 0;
+    top: 0;
+    width: 135vw;
+    min-width: 135vw;
+    height: 100vh;
+    min-height: 100vh;
+    object-position: left center;
+    transform-origin: 65% center;
+  }
+}
+
 .assessment-bg-image-overlay {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  /* Ultra-subtle vignette so the sunrise, misty mountains, and meditating lady are crystal clear */
-  background: radial-gradient(circle at center, rgba(15, 23, 42, 0.02) 0%, rgba(15, 23, 42, 0.18) 100%);
+  /* Light organic gradient: subtle brightening on left for card contrast, crystal-clear transparency on right for Reshmi Mam */
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0.45) 0%, rgba(255, 255, 255, 0.15) 45%, transparent 68%);
   pointer-events: none;
 }
 
@@ -3775,33 +3994,36 @@ h1, h2, h3, h4, h5, h6 {
 .assessment-page-layout {
   position: relative;
   z-index: 1;
-  padding: 36px 0 60px;
+  padding: 24px 0 60px;
 }
 
-@media (min-width: 1200px) {
+/* Compact, sleek card positioned cleanly on the Left with generous room for Reshmi Mam on the Right */
+@media (min-width: 992px) {
   .assessment-widescreen-container {
-    max-width: 760px !important;
-    margin-left: calc((100vw - 1280px) / 2 + 40px) !important;
+    max-width: 510px !important;
+    margin-left: 40px !important;
     margin-right: auto !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
   }
 }
 
 @media (min-width: 1400px) {
   .assessment-widescreen-container {
-    max-width: 800px !important;
-    margin-left: calc((100vw - 1400px) / 2 + 60px) !important;
+    max-width: 540px !important;
+    margin-left: max(50px, calc((100vw - 1440px) / 2 + 50px)) !important;
     margin-right: auto !important;
   }
 }
 
 .glass-assessment-card {
-  background: rgba(255, 255, 255, 0.72) !important;
-  backdrop-filter: blur(20px) !important;
-  -webkit-backdrop-filter: blur(20px) !important;
-  border: 1px solid rgba(255, 255, 255, 0.85) !important;
+  background: rgba(255, 255, 255, 0.88) !important;
+  backdrop-filter: blur(24px) !important;
+  -webkit-backdrop-filter: blur(24px) !important;
+  border: 1.5px solid rgba(255, 255, 255, 0.95) !important;
   border-radius: 24px !important;
-  box-shadow: 0 20px 45px rgba(15, 23, 42, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.8) !important;
-  padding: 36px !important;
+  box-shadow: 0 20px 45px -10px rgba(15, 23, 42, 0.12), inset 0 1px 0 rgba(255, 255, 255, 1) !important;
+  padding: 26px 28px !important;
   transition: all 0.3s ease;
 }
 
@@ -3859,6 +4081,7 @@ h1, h2, h3, h4, h5, h6 {
   overflow: hidden;
   z-index: 2;
   box-sizing: border-box;
+  background: radial-gradient(circle at 50% 35%, #FAF8F5 0%, #F3ECE5 100%);
 }
 
 @media (max-height: 680px), (max-width: 500px) {

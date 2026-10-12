@@ -144,6 +144,9 @@ export default function HomePage() {
   // Carousel ref
   const reelsCarouselRef = useRef(null);
 
+  // Transformation Before/After Showcase state
+  const [transformationTab, setTransformationTab] = useState('compare'); // 'compare' | 'before' | 'after'
+
   // --- Sound Sync ---
   useEffect(() => {
     soundSynth.isMuted = isSoundMuted;
@@ -296,10 +299,10 @@ export default function HomePage() {
                 <span>🏅 India's #13 Oxygen Advantage Coach &bull; Functional Nutritionist &bull; Biohacker</span>
               </div>
 
-              <h1>Root-Cause <span className="text-gradient">Functional Nutrition</span> &amp; Breath Biohacking.</h1>
+              <h1>Root-Cause <span className="text-gradient">Functional Nutrition</span> &amp; <span className="text-gradient-terracotta">Breathwork Facilitator</span>.</h1>
 
               <p className="lead">
-                Stop masking symptoms. Led by <strong>Reshmi Verma</strong> — <strong>#13 Certified Oxygen Advantage Coach in India</strong>, <strong>Functional Nutritionist</strong>, and <strong>Certified Biohacker</strong> with 20+ years directing clinical diagnostic laboratories. We decode your blood biomarkers, gut microbiome, and breathing mechanics to formulate personalized root-cause recovery protocols.
+                Led by <strong>Reshmi Verma</strong> — <strong>Functional Nutritionist</strong>, <strong>Breathwork Facilitator</strong>, <strong>Certified Biohacker</strong> &amp; <strong>#13 Oxygen Advantage Coach in India</strong>. With 18 years of experience in the diagnostics industry, combining functional nutrition, breathwork, stress regulation and recovery through the 3R framework: Restoration, Regulation and Resilience.
               </p>
 
               <div style={{ display: 'flex', gap: '16px', flexWrap: 'wrap' }}>
@@ -326,8 +329,8 @@ export default function HomePage() {
                   <div className="stat-label">In India &bull; Oxygen Advantage Certified</div>
                 </div>
                 <div className="stat-item">
-                  <div className="stat-num">20+</div>
-                  <div className="stat-label">Years Diagnostic Lab Leadership</div>
+                  <div className="stat-num">18+</div>
+                  <div className="stat-label">Years Diagnostics Industry</div>
                 </div>
                 <div className="stat-item">
                   <div className="stat-num">6+</div>
@@ -339,45 +342,134 @@ export default function HomePage() {
                 </div>
               </div>
             </div>
+          </div>
+        </div>
+      </section>
 
-            {/* Practitioner Portrait & Interactive Badges */}
-            <div className="hero-media">
-              <div className="doctor-portrait-card">
-                <div className="portrait-inner">
-                  <img
-                    src="/assets/images/reshmi-verma-executive.jpg"
-                    alt="Reshmi Verma - #13 Oxygen Advantage Coach India, Certified Biohacker & Functional Nutritionist"
-                  />
-                </div>
+      {/* 2. Lived Experience: The -38 kg Transformation Showcase (Immediate Visibility) */}
+      <section 
+        className="section" 
+        id="lived-transformation-showcase" 
+        style={{ 
+          background: 'var(--sand-warm)', 
+          borderTop: '1px solid var(--sand-border)', 
+          borderBottom: '1px solid var(--sand-border)',
+          padding: '70px 0'
+        }}
+      >
+        <div className="container">
+          <div className="section-header" style={{ marginBottom: '40px' }}>
+            <span className="sub-title">Proof of Concept &bull; Walking The Talk</span>
+            <h2>Real Transformation: Meet Your Guide</h2>
+            <p>
+              Why patient trust starts here: Before designing clinical protocols for others, Reshmi Verma reversed her own metabolic resistance and achieved a sustainable -38 kg transformation without crash diets.
+            </p>
+          </div>
 
-                {/* Floating Certification Badge */}
-                <div className="floating-cert-badge">
-                  <div className="cert-icon">
-                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2">
-                      <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
-                    </svg>
-                  </div>
-                  <div className="cert-text">
-                    <h5>#13 in India &bull; Oxygen Advantage</h5>
-                    <p>Core Instructor &bull; Certified Biohacker</p>
-                  </div>
-                </div>
+          <div className="about-grid">
+            <div className="about-image-wrapper">
+              {/* Transformation View Switcher */}
+              <div className="transformation-tabs-nav">
+                <button 
+                  type="button" 
+                  className={`trans-tab-btn ${transformationTab === 'compare' ? 'active' : ''}`}
+                  onClick={() => setTransformationTab('compare')}
+                >
+                  ⚡ Side-by-Side
+                </button>
+                <button 
+                  type="button" 
+                  className={`trans-tab-btn ${transformationTab === 'before' ? 'active' : ''}`}
+                  onClick={() => setTransformationTab('before')}
+                >
+                  Before
+                </button>
+                <button 
+                  type="button" 
+                  className={`trans-tab-btn ${transformationTab === 'after' ? 'active' : ''}`}
+                  onClick={() => setTransformationTab('after')}
+                >
+                  After (-38 kg)
+                </button>
+              </div>
 
-                {/* Floating Breath Badge */}
-                <div className="floating-breath-badge">
-                  <div className="circle-pulse"></div>
-                  <div className="breath-text">
-                    <h6>Breath Resilience</h6>
-                    <p>Circular Connected Facilitator</p>
+              {/* Main Visual Display */}
+              <div className="transformation-visual-container">
+                {transformationTab === 'compare' && (
+                  <div className="transformation-split-view">
+                    <div className="split-photo-card">
+                      <span className="photo-phase-tag phase-before">BEFORE • Chronic Fatigue</span>
+                      <img src="/assets/images/reshmi-before.jpg" alt="Reshmi Verma Before Health Transformation" />
+                    </div>
+                    <div className="split-divider-line">
+                      <span className="divider-badge">-38 KG</span>
+                    </div>
+                    <div className="split-photo-card">
+                      <span className="photo-phase-tag phase-after">AFTER • Metabolic Reversal</span>
+                      <img src="/assets/images/reshmi-after.jpg" alt="Reshmi Verma After Health Transformation" />
+                    </div>
                   </div>
-                </div>
+                )}
+
+                {transformationTab === 'before' && (
+                  <div className="transformation-single-view">
+                    <span className="photo-phase-tag phase-before">BEFORE • Initial Metabolic Resistance</span>
+                    <img src="/assets/images/reshmi-before.jpg" alt="Reshmi Verma Before Transformation" />
+                    <div className="single-phase-caption">
+                      <strong>Earlier Phase:</strong> Battling systemic inflammation, sluggish metabolism, and persistent fatigue despite clinical healthcare background.
+                    </div>
+                  </div>
+                )}
+
+                {transformationTab === 'after' && (
+                  <div className="transformation-single-view">
+                    <span className="photo-phase-tag phase-after">AFTER • -38 kg Victory</span>
+                    <img src="/assets/images/reshmi-after.jpg" alt="Reshmi Verma After Transformation" />
+                    <div className="single-phase-caption">
+                      <strong>Reversed Phase:</strong> Reclaimed energy, pristine metabolic biomarkers, #13 Oxygen Advantage Coach &amp; Certified Biohacker without crash dieting.
+                    </div>
+                  </div>
+                )}
+              </div>
+
+              <div className="transformation-callout">
+                <div className="metric">-38 kg</div>
+                <p>Personal weight loss & complete health reversal. Lived experience meets hard science.</p>
+              </div>
+            </div>
+
+            <div className="about-content">
+              <span className="sub-title">Lived Experience Meets Clinical Science</span>
+              <h2>"I Didn't Just Study Health — I Lived The Struggle."</h2>
+              <p className="lead" style={{ fontSize: '1.1rem', color: 'var(--emerald-deep)', fontWeight: 600 }}>
+                Reshmi Verma — Biotechnologist, Functional Nutritionist &amp; #13 Oxygen Advantage Coach
+              </p>
+
+              <div style={{ background: 'white', padding: '20px 24px', borderRadius: 'var(--radius-md)', borderLeft: '4px solid var(--emerald-medium)', boxShadow: 'var(--shadow-sm)', marginBottom: '20px' }}>
+                <p style={{ margin: 0, fontStyle: 'italic', color: 'var(--text-primary)', fontSize: '0.98rem', lineHeight: 1.65 }}>
+                  "I don't just teach functional protocols — I lived through the exact same metabolic resistance, persistent fatigue, and weight struggles my clients face. Even with 20+ years managing diagnostic laboratories, conventional diet charts failed me. Only when I targeted cellular gut mucosa, mitochondrial energy, and autonomic breathwork did my body release 38 kg effortlessly."
+                </p>
+              </div>
+
+              <p style={{ color: 'var(--text-secondary)', marginBottom: '20px', lineHeight: 1.65 }}>
+                When you work with Reshmi, you are guided by someone who understands the physical and mental hurdles firsthand, backed by two decades of hard diagnostic pathology experience.
+              </p>
+
+              <div>
+                <Link to="/booking" className="btn btn-primary btn-lg">
+                  <span>Schedule Consultation</span>
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" style={{ marginLeft: '8px' }}>
+                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                    <polyline points="12 5 19 12 12 19"></polyline>
+                  </svg>
+                </Link>
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* 2. Defining Clinical USPs & Credentials Section */}
+      {/* 3. Defining Clinical USPs & Credentials Section */}
       <section
         className="section"
         id="credentials-section"
@@ -433,15 +525,15 @@ export default function HomePage() {
             <div className="usp-card">
               <span className="usp-badge-rank">Diagnostic Leadership</span>
               <div className="usp-icon-box">🔬</div>
-              <h3>20+ Years Pathology Leadership</h3>
+              <h3>18 Years Diagnostics Experience</h3>
               <p>
-                Director at Rainbow Medinova Diagnostic Services with over two decades managing diagnostic blood laboratories. Reshmi analyzes clinical panels far deeper than superficial reference ranges.
+                With 18 years of experience in the diagnostics industry, Reshmi brings an integrative perspective to health, analyzing clinical panels far deeper than superficial reference ranges.
               </p>
               <span className="usp-credential-tag">
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
                   <polyline points="20 6 9 17 4 12"></polyline>
                 </svg>
-                Director, Rainbow Medinova Diagnostics
+                Clinical Diagnostics Perspective
               </span>
             </div>
 
@@ -479,17 +571,17 @@ export default function HomePage() {
 
             {/* USP 6 */}
             <div className="usp-card">
-              <span className="usp-badge-rank">20+ Yrs Diagnostics</span>
-              <div className="usp-icon-box">🔬</div>
-              <h3>Functional Nutritionist & Laboratory Director</h3>
+              <span className="usp-badge-rank">3R Framework</span>
+              <div className="usp-icon-box">🌱</div>
+              <h3>Restoration, Regulation &amp; Resilience</h3>
               <p>
-                Over two decades directing Rainbow Medinova Diagnostic Services, integrating advanced blood biochemistry, gut microbiome dysbiosis, and food sensitivity panels with root-cause anti-inflammatory nutrition and tight-junction mucosal repair.
+                Resilience is not about pushing harder, but about creating the right foundation for the body to adapt, regulate and recover through targeted functional nutrition and breathwork.
               </p>
               <span className="usp-credential-tag">
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
                   <polyline points="20 6 9 17 4 12"></polyline>
                 </svg>
-                Functional Medicine Practitioner
+                Signature 3R Methodology
               </span>
             </div>
           </div>
@@ -837,33 +929,56 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 6. About Reshmi Verma Section */}
-      <section className="section" style={{ background: 'white' }}>
+      {/* 7. Clinical Diagnostics Leadership & Global Credentials */}
+      <section className="section" id="about-reshmi" style={{ background: 'white' }}>
         <div className="container">
           <div className="about-grid">
             <div className="about-image-wrapper">
-              <div className="about-main-image">
-                <img src="/assets/images/reshmi-verma.jpg" alt="Reshmi Verma Functional Health Specialist" />
+              <div className="about-main-image" style={{ aspectRatio: '3/4', maxHeight: '580px', borderRadius: '24px', overflow: 'hidden' }}>
+                <img 
+                  src="/assets/images/reshmi-verma-executive.jpg" 
+                  alt="Reshmi Verma - Healthcare Executive, Functional Nutritionist & Biohacker" 
+                  style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center 12%' }} 
+                />
               </div>
-              <div className="transformation-callout">
-                <div className="metric">-38 kg</div>
-                <p>Personal weight loss & complete health reversal. Lived experience meets hard science.</p>
+              <div className="transformation-callout" style={{ bottom: '-16px', right: '-16px' }}>
+                <div className="metric">18 Yrs</div>
+                <p>Diagnostics Industry Experience</p>
               </div>
             </div>
 
             <div className="about-content">
-              <span className="sub-title">Meet Your Practitioner</span>
-              <h2>Reshmi Verma</h2>
-              <p className="lead" style={{ fontSize: '1.1rem', color: 'var(--emerald-deep)', fontWeight: 500 }}>
-                Biotechnologist, Functional Nutritionist, Certified Oxygen Advantage Coach & Health Facilitator
+              <span className="sub-title">Integrative Perspective to Health</span>
+              <h2>About Reshmi Verma</h2>
+              <p className="lead" style={{ fontSize: '1.12rem', color: 'var(--emerald-deep)', fontWeight: 700, marginBottom: '18px' }}>
+                Functional Nutritionist &bull; Breathwork Facilitator &bull; Certified Biohacker &bull; #13 Oxygen Advantage Coach India
               </p>
 
-              <p style={{ color: 'var(--text-secondary)', marginBottom: '16px' }}>
-                "I'm a Biotechnologist and MBA in Marketing & HR, with a specialization in Medical Tourism, and I've spent over 20 years in the world of diagnostics and healthcare. I'm the Director of <strong>Rainbow Medinova Diagnostic Services</strong> and Co-founder of <strong>Neofit Gym</strong>."
+              <p style={{ color: 'var(--text-secondary)', marginBottom: '14px', lineHeight: 1.7, fontSize: '1.02rem' }}>
+                With <strong>18 years of experience in the diagnostics industry</strong>, I bring an integrative perspective to health, combining functional nutrition, breathwork, stress regulation and recovery.
               </p>
 
-              <p style={{ color: 'var(--text-secondary)', marginBottom: '24px' }}>
-                "I've studied Functional Nutrition across India, the USA, and Australia, and trained as an <strong>Oxygen Advantage Coach</strong>, Breath Resilience Instructor, and Circular Connected Breathwork Facilitator. But perhaps my most personal qualification is my own transformation: losing more than 38 kg and completely changing my relationship with health."
+              <p style={{ color: 'var(--text-secondary)', marginBottom: '16px', lineHeight: 1.7, fontSize: '1.02rem' }}>
+                My approach focuses on helping individuals understand their breathing patterns, build greater awareness and develop resilience through the signature <strong>3R Framework</strong>: <strong>Restoration</strong>, <strong>Regulation</strong>, and <strong>Resilience</strong>.
+              </p>
+
+              {/* Philosophy Quote Callout */}
+              <div style={{ 
+                background: 'var(--sand-cream)', 
+                borderLeft: '4px solid var(--emerald-medium)', 
+                padding: '16px 20px', 
+                borderRadius: '0 14px 14px 0', 
+                margin: '18px 0 20px', 
+                fontStyle: 'italic', 
+                color: 'var(--emerald-primary)', 
+                fontSize: '1.02rem', 
+                lineHeight: 1.6 
+              }}>
+                &ldquo;I believe resilience is not about pushing harder, but about creating the right foundation for the body to adapt, regulate and recover.&rdquo;
+              </div>
+
+              <p style={{ color: 'var(--text-secondary)', marginBottom: '24px', lineHeight: 1.65, fontSize: '0.96rem' }}>
+                Trained in Dublin under Patrick McKeown as an <strong>Oxygen Advantage Coach</strong> (#13 certified in India), Circular Connected Breathwork Facilitator, and Certified Biohacker, every protocol is personalized around your objective biomarkers to create lasting cellular vitality.
               </p>
 
               <div className="credentials-list">
@@ -871,29 +986,36 @@ export default function HomePage() {
                   <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
                     <polyline points="20 6 9 17 4 12"></polyline>
                   </svg>
-                  <span>20+ Years Diagnostics Experience</span>
+                  <span>18 Years Diagnostics Experience</span>
                 </div>
                 <div className="credential-item">
                   <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
                     <polyline points="20 6 9 17 4 12"></polyline>
                   </svg>
-                  <span>Certified Oxygen Advantage Coach</span>
+                  <span>#13 Oxygen Advantage Coach India</span>
                 </div>
                 <div className="credential-item">
                   <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
                     <polyline points="20 6 9 17 4 12"></polyline>
                   </svg>
-                  <span>Director, Rainbow Medinova</span>
+                  <span>Certified Biohacker &amp; Breathwork Facilitator</span>
                 </div>
                 <div className="credential-item">
                   <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
                     <polyline points="20 6 9 17 4 12"></polyline>
                   </svg>
-                  <span>Studied India, USA & Australia</span>
+                  <span>3R Framework: Restoration, Regulation &amp; Resilience</span>
                 </div>
               </div>
 
-              <Link to="/booking" className="btn btn-primary">Schedule a Consultation with Reshmi</Link>
+              <div style={{ display: 'flex', gap: '14px', flexWrap: 'wrap', marginTop: '8px' }}>
+                <Link to="/booking" className="btn btn-primary">
+                  <span>Schedule Consultation</span>
+                </Link>
+                <Link to="/assessment" className="btn btn-secondary">
+                  <span>Take Free Health Assessment</span>
+                </Link>
+              </div>
             </div>
           </div>
         </div>
