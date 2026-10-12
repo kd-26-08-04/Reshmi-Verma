@@ -293,13 +293,13 @@ export default function HomePage() {
             <div className="hero-content">
               <div className="badge-pill">
                 <span className="pulse-dot"></span>
-                <span>🏅 #13 in India &bull; Oxygen Advantage Certified | Certified Biohacker</span>
+                <span>🏅 India's #13 Oxygen Advantage Coach &bull; Functional Nutritionist &bull; Biohacker</span>
               </div>
 
-              <h1>Science-led, <span className="text-gradient">human-centred</span> health.</h1>
+              <h1>Root-Cause <span className="text-gradient">Functional Nutrition</span> &amp; Breath Biohacking.</h1>
 
               <p className="lead">
-                Bridging metabolic biochemistry, autonomic regulation, and cellular biohacking. Led by <strong>Reshmi Verma</strong> — <strong>#13 Certified Oxygen Advantage Coach in India</strong>, <strong>Certified Biohacker</strong>, <strong>Circular Connected Breathwork Facilitator</strong>, and <strong>Breath Resilience Instructor</strong> with 20+ years of clinical laboratory diagnostic expertise.
+                Stop masking symptoms. Led by <strong>Reshmi Verma</strong> — <strong>#13 Certified Oxygen Advantage Coach in India</strong>, <strong>Functional Nutritionist</strong>, and <strong>Certified Biohacker</strong> with 20+ years directing clinical diagnostic laboratories. We decode your blood biomarkers, gut microbiome, and breathing mechanics to formulate personalized root-cause recovery protocols.
               </p>
 
               <div style={{ display: 'flex', gap: '16px', flexWrap: 'wrap' }}>
