@@ -482,13 +482,14 @@ export default function AssessmentPage() {
 
               {/* Section Header Strip */}
               <div style={{ 
-                background: 'rgba(255, 247, 237, 0.85)', 
+                background: 'rgba(255, 247, 237, 0.95)', 
                 borderLeft: '4px solid var(--emerald-primary)', 
-                padding: '10px 16px', 
-                borderRadius: '8px',
-                marginBottom: '22px'
+                padding: '12px 18px', 
+                borderRadius: '10px',
+                marginBottom: '24px',
+                textAlign: 'center'
               }}>
-                <div style={{ fontSize: '0.8rem', fontWeight: 700, color: 'var(--emerald-deep)', textTransform: 'uppercase' }}>
+                <div style={{ fontSize: '0.82rem', fontWeight: 700, color: 'var(--emerald-deep)', textTransform: 'uppercase', letterSpacing: '0.04em' }}>
                   {currentSection.sectionTitle}
                 </div>
                 <div style={{ fontSize: '0.82rem', color: 'var(--text-secondary)', marginTop: '2px' }}>
@@ -496,13 +497,15 @@ export default function AssessmentPage() {
                 </div>
               </div>
 
-              {/* Question Header */}
-              <h2 style={{ fontSize: '1.45rem', color: 'var(--emerald-deep)', marginBottom: '8px', lineHeight: 1.3 }}>
-                {currentQuestion.title}
-              </h2>
-              <p style={{ color: 'var(--text-secondary)', fontSize: '0.92rem', marginBottom: '22px', lineHeight: 1.5 }}>
-                {currentQuestion.subtitle}
-              </p>
+              {/* Question Header - Centered */}
+              <div style={{ textAlign: 'center', marginBottom: '24px' }}>
+                <h2 style={{ fontSize: '1.5rem', color: 'var(--emerald-deep)', marginBottom: '8px', lineHeight: 1.35, textAlign: 'center' }}>
+                  {currentQuestion.title}
+                </h2>
+                <p style={{ color: 'var(--text-secondary)', fontSize: '0.94rem', margin: '0 auto', maxWidth: '620px', lineHeight: 1.55, textAlign: 'center' }}>
+                  {currentQuestion.subtitle}
+                </p>
+              </div>
 
               {/* Options */}
               <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>

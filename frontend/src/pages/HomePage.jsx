@@ -115,9 +115,12 @@ export default function HomePage() {
 
   useEffect(() => {
     fetch(getApiUrl('/api/reels'))
-      .then(res => res.json())
+      .then(res => {
+        if (!res.ok) return null;
+        return res.json();
+      })
       .then(data => {
-        if (data.success && Array.isArray(data.reels) && data.reels.length > 0) {
+        if (data && data.success && Array.isArray(data.reels) && data.reels.length > 0) {
           setReelsList(data.reels);
         }
       })
@@ -296,13 +299,13 @@ export default function HomePage() {
             <div className="hero-content">
               <div className="badge-pill">
                 <span className="pulse-dot"></span>
-                <span>🏅 India's #13 Oxygen Advantage Coach &bull; Functional Nutritionist &bull; Biohacker</span>
+                <span>🏅 Top Certified Oxygen Advantage Coach &bull; Functional Nutritionist &bull; Biohacker</span>
               </div>
 
               <h1>Root-Cause <span className="text-gradient">Functional Nutrition</span> &amp; <span className="text-gradient-terracotta">Breathwork Facilitator</span>.</h1>
 
               <p className="lead">
-                Led by <strong>Reshmi Verma</strong> — <strong>Functional Nutritionist</strong>, <strong>Breathwork Facilitator</strong>, <strong>Certified Biohacker</strong> &amp; <strong>#13 Oxygen Advantage Coach in India</strong>. With 18 years of experience in the diagnostics industry, combining functional nutrition, breathwork, stress regulation and recovery through the 3R framework: Restoration, Regulation and Resilience.
+                Led by <strong>Reshmi Verma</strong> — <strong>Functional Nutritionist</strong>, <strong>Breathwork Facilitator</strong>, <strong>Certified Biohacker</strong> &amp; recognized among <strong>India's Top Oxygen Advantage Coaches</strong>. With 18 years of experience in the diagnostics industry, combining functional nutrition, breathwork, stress regulation and recovery through the 3R framework: Restoration, Regulation and Resilience.
               </p>
 
               <div style={{ display: 'flex', gap: '16px', flexWrap: 'wrap' }}>
@@ -325,8 +328,8 @@ export default function HomePage() {
               {/* Hero Clinical Highlights */}
               <div className="hero-stats-row" style={{ gridTemplateColumns: 'repeat(4, 1fr)' }}>
                 <div className="stat-item">
-                  <div className="stat-num">#13</div>
-                  <div className="stat-label">In India &bull; Oxygen Advantage Certified</div>
+                  <div className="stat-num">TOP</div>
+                  <div className="stat-label">Oxygen Advantage Coach in India</div>
                 </div>
                 <div className="stat-item">
                   <div className="stat-num">18+</div>
@@ -339,6 +342,46 @@ export default function HomePage() {
                 <div className="stat-item">
                   <div className="stat-num">38<span style={{ fontSize: '1.25rem' }}>kg</span></div>
                   <div className="stat-label">Personal Health Transformation</div>
+                </div>
+              </div>
+            </div>
+
+            {/* Hero Visual Column with Reshmi Verma Saree Portrait & Side Entrance Animation */}
+            <div className="hero-visual-col animate-hero-slide-in">
+              <div className="hero-portrait-card">
+                <div className="hero-portrait-glow-ring"></div>
+                <div className="hero-portrait-image-wrap">
+                  <img
+                    src="/assets/images/reshmi-saree-hero.jpg"
+                    alt="Reshmi Verma — Functional Nutritionist & Top Oxygen Advantage Coach"
+                    className="hero-portrait-img"
+                    onError={(e) => { e.target.src = '/assets/images/reshmi-verma-executive.jpg'; }}
+                  />
+                  <div className="hero-portrait-overlay"></div>
+                </div>
+
+                {/* Floating Top Trust Badge */}
+                <div className="hero-floating-badge badge-top-right">
+                  <div className="badge-icon">🔬</div>
+                  <div className="badge-text">
+                    <strong>18+ Years</strong>
+                    <span>Diagnostics Industry</span>
+                  </div>
+                </div>
+
+                {/* Floating Bottom Identity Badge */}
+                <div className="hero-floating-badge badge-bottom-left">
+                  <div className="badge-icon">🌿</div>
+                  <div className="badge-text">
+                    <strong>Reshmi Verma</strong>
+                    <span>Functional Nutritionist</span>
+                  </div>
+                </div>
+
+                {/* Floating Oxygen Advantage Pill */}
+                <div className="hero-floating-pill badge-bottom-right">
+                  <span className="pill-dot"></span>
+                  <span>Top Oxygen Advantage Coach</span>
                 </div>
               </div>
             </div>
@@ -399,7 +442,7 @@ export default function HomePage() {
                   <div className="transformation-split-view">
                     <div className="split-photo-card">
                       <span className="photo-phase-tag phase-before">BEFORE • Chronic Fatigue</span>
-                      <img src="/assets/images/reshmi-before.jpg" alt="Reshmi Verma Before Health Transformation" />
+                      <img src="/assets/images/reshmi-transform-user.jpg" alt="Reshmi Verma Before Health Transformation" />
                     </div>
                     <div className="split-divider-line">
                       <span className="divider-badge">-38 KG</span>
@@ -414,7 +457,7 @@ export default function HomePage() {
                 {transformationTab === 'before' && (
                   <div className="transformation-single-view">
                     <span className="photo-phase-tag phase-before">BEFORE • Initial Metabolic Resistance</span>
-                    <img src="/assets/images/reshmi-before.jpg" alt="Reshmi Verma Before Transformation" />
+                    <img src="/assets/images/reshmi-transform-user.jpg" alt="Reshmi Verma Before Transformation" />
                     <div className="single-phase-caption">
                       <strong>Earlier Phase:</strong> Battling systemic inflammation, sluggish metabolism, and persistent fatigue despite clinical healthcare background.
                     </div>
@@ -426,7 +469,7 @@ export default function HomePage() {
                     <span className="photo-phase-tag phase-after">AFTER • -38 kg Victory</span>
                     <img src="/assets/images/reshmi-after.jpg" alt="Reshmi Verma After Transformation" />
                     <div className="single-phase-caption">
-                      <strong>Reversed Phase:</strong> Reclaimed energy, pristine metabolic biomarkers, #13 Oxygen Advantage Coach &amp; Certified Biohacker without crash dieting.
+                      <strong>Reversed Phase:</strong> Reclaimed energy, pristine metabolic biomarkers, Top Oxygen Advantage Coach &amp; Certified Biohacker without crash dieting.
                     </div>
                   </div>
                 )}
@@ -442,17 +485,17 @@ export default function HomePage() {
               <span className="sub-title">Lived Experience Meets Clinical Science</span>
               <h2>"I Didn't Just Study Health — I Lived The Struggle."</h2>
               <p className="lead" style={{ fontSize: '1.1rem', color: 'var(--emerald-deep)', fontWeight: 600 }}>
-                Reshmi Verma — Biotechnologist, Functional Nutritionist &amp; #13 Oxygen Advantage Coach
+                Reshmi Verma — Biotechnologist, Functional Nutritionist &amp; Top Oxygen Advantage Coach
               </p>
 
               <div style={{ background: 'white', padding: '20px 24px', borderRadius: 'var(--radius-md)', borderLeft: '4px solid var(--emerald-medium)', boxShadow: 'var(--shadow-sm)', marginBottom: '20px' }}>
                 <p style={{ margin: 0, fontStyle: 'italic', color: 'var(--text-primary)', fontSize: '0.98rem', lineHeight: 1.65 }}>
-                  "I don't just teach functional protocols — I lived through the exact same metabolic resistance, persistent fatigue, and weight struggles my clients face. Even with 20+ years managing diagnostic laboratories, conventional diet charts failed me. Only when I targeted cellular gut mucosa, mitochondrial energy, and autonomic breathwork did my body release 38 kg effortlessly."
+                  "I don't just teach functional protocols — I lived through the exact same metabolic resistance, persistent fatigue, and weight struggles my clients face. Even with 18 years of experience in the diagnostics industry, conventional diet charts failed me. Only when I targeted cellular gut mucosa, mitochondrial energy, and autonomic breathwork did my body release 38 kg effortlessly."
                 </p>
               </div>
 
               <p style={{ color: 'var(--text-secondary)', marginBottom: '20px', lineHeight: 1.65 }}>
-                When you work with Reshmi, you are guided by someone who understands the physical and mental hurdles firsthand, backed by two decades of hard diagnostic pathology experience.
+                When you work with Reshmi, you are guided by someone who understands the physical and mental hurdles firsthand, backed by 18 years of hard diagnostics industry experience.
               </p>
 
               <div>
@@ -491,11 +534,11 @@ export default function HomePage() {
           <div className="usp-grid">
             {/* USP 1 */}
             <div className="usp-card">
-              <span className="usp-badge-rank">Ranked #13 In India</span>
+              <span className="usp-badge-rank">Premier Rank in India</span>
               <div className="usp-icon-box">🏅</div>
-              <h3>#13 Certified Oxygen Advantage Coach</h3>
+              <h3>Top Certified Oxygen Advantage Coach</h3>
               <p>
-                Ranked the 13th certified practitioner nationwide in Patrick McKeown’s globally acclaimed Oxygen Advantage science. Specializing in functional breathing biomechanics, hypercapnic conditioning, and cellular oxygen release via the Bohr effect.
+                Recognized among the premier certified practitioners nationwide in Patrick McKeown’s globally acclaimed Oxygen Advantage science. Specializing in functional breathing biomechanics, hypercapnic conditioning, and cellular oxygen release via the Bohr effect.
               </p>
               <span className="usp-credential-tag">
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
@@ -936,9 +979,10 @@ export default function HomePage() {
             <div className="about-image-wrapper">
               <div className="about-main-image" style={{ aspectRatio: '3/4', maxHeight: '580px', borderRadius: '24px', overflow: 'hidden' }}>
                 <img 
-                  src="/assets/images/reshmi-verma-executive.jpg" 
+                  src="/assets/images/Foundr.jpeg" 
                   alt="Reshmi Verma - Healthcare Executive, Functional Nutritionist & Biohacker" 
                   style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center 12%' }} 
+                  onError={(e) => { e.target.src = '/assets/images/founder.jpg'; }}
                 />
               </div>
               <div className="transformation-callout" style={{ bottom: '-16px', right: '-16px' }}>
@@ -951,7 +995,7 @@ export default function HomePage() {
               <span className="sub-title">Integrative Perspective to Health</span>
               <h2>About Reshmi Verma</h2>
               <p className="lead" style={{ fontSize: '1.12rem', color: 'var(--emerald-deep)', fontWeight: 700, marginBottom: '18px' }}>
-                Functional Nutritionist &bull; Breathwork Facilitator &bull; Certified Biohacker &bull; #13 Oxygen Advantage Coach India
+                Functional Nutritionist &bull; Breathwork Facilitator &bull; Certified Biohacker &bull; Top Oxygen Advantage Coach India
               </p>
 
               <p style={{ color: 'var(--text-secondary)', marginBottom: '14px', lineHeight: 1.7, fontSize: '1.02rem' }}>
@@ -978,7 +1022,7 @@ export default function HomePage() {
               </div>
 
               <p style={{ color: 'var(--text-secondary)', marginBottom: '24px', lineHeight: 1.65, fontSize: '0.96rem' }}>
-                Trained in Dublin under Patrick McKeown as an <strong>Oxygen Advantage Coach</strong> (#13 certified in India), Circular Connected Breathwork Facilitator, and Certified Biohacker, every protocol is personalized around your objective biomarkers to create lasting cellular vitality.
+                Trained in Dublin under Patrick McKeown as an <strong>Oxygen Advantage Coach</strong> (recognized among India's top certified coaches), Circular Connected Breathwork Facilitator, and Certified Biohacker, every protocol is personalized around your objective biomarkers to create lasting cellular vitality.
               </p>
 
               <div className="credentials-list">
@@ -992,7 +1036,7 @@ export default function HomePage() {
                   <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
                     <polyline points="20 6 9 17 4 12"></polyline>
                   </svg>
-                  <span>#13 Oxygen Advantage Coach India</span>
+                  <span>Top Oxygen Advantage Coach India</span>
                 </div>
                 <div className="credential-item">
                   <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
@@ -1156,11 +1200,14 @@ export default function HomePage() {
                     aria-label={`Watch Reel on Instagram: ${reel.title}`}
                   ></a>
                   <img
-                    src={reel.image || '/assets/images/founder.jpg'}
+                    src={reel.image || '/assets/images/reshmi-verma.jpg'}
                     alt={reel.title}
                     className="reel-cover-img"
                     style={{ filter: 'brightness(0.7) contrast(1.1)' }}
-                    onError={(e) => { e.target.src = '/assets/images/founder.jpg'; }}
+                    onError={(e) => {
+                      e.target.onerror = null;
+                      e.target.src = '/assets/images/reshmi-verma.jpg';
+                    }}
                   />
                   <div className="reel-gradient-overlay"></div>
 

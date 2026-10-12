@@ -320,7 +320,7 @@ export default function AuthPage() {
                 <circle cx="12" cy="12" r="10"></circle>
                 <path d="M12 8v4l3 3"></path>
               </svg>
-              <span>20+ Yrs Diagnostics</span>
+              <span>18 Yrs Diagnostics</span>
             </div>
           </div>
         </div>

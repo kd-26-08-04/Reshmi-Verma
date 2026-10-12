@@ -410,7 +410,7 @@ export default function AdminPage() {
       id: `reel_${Date.now()}`,
       title: 'New Clinical Health & Breathwork Reel',
       url: 'https://www.instagram.com/healthwithreshmi/',
-      image: '/assets/images/founder.jpg',
+      image: '/assets/images/reshmi-verma.jpg',
       views: '50K',
       duration: '0:50',
       topic: 'Functional Health'
@@ -1329,10 +1329,13 @@ export default function AdminPage() {
                         }}
                       >
                         <img
-                          src={reel.image || '/assets/images/founder.jpg'}
+                          src={reel.image || '/assets/images/reshmi-verma.jpg'}
                           alt={reel.title}
                           style={{ width: '100%', height: '100%', objectFit: 'cover' }}
-                          onError={(e) => { e.target.src = '/assets/images/founder.jpg'; }}
+                          onError={(e) => {
+                            e.target.onerror = null;
+                            e.target.src = '/assets/images/reshmi-verma.jpg';
+                          }}
                         />
                         <span
                           style={{
@@ -1434,7 +1437,7 @@ export default function AdminPage() {
                           type="text"
                           value={reel.image || ''}
                           onChange={(e) => handleReelChange(idx, 'image', e.target.value)}
-                          placeholder="/assets/images/founder.jpg"
+                          placeholder="/assets/images/reshmi-verma.jpg"
                           style={{
                             width: '100%',
                             padding: '8px 12px',

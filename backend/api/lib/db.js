@@ -695,7 +695,7 @@ export function getDefaultReels() {
       id: "reel-2",
       title: "Breathe Light To Breathe Right — The Bohr Effect In 45 Seconds",
       url: "https://www.instagram.com/reel/DEvM_3Yvx4D/?utm_source=ig_web_copy_link",
-      image: "/assets/images/founder.jpg",
+      image: "/assets/images/reshmi-saree-hero.jpg",
       views: "62.4K",
       duration: "0:45",
       topic: "Oxygen Advantage #13"
@@ -722,7 +722,7 @@ export function getDefaultReels() {
       id: "reel-5",
       title: "Why Mouth Breathing Ruins Deep REM Sleep & Causes Brain Fog",
       url: "https://www.instagram.com/reel/DEvM_3Yvx4D/?utm_source=ig_web_copy_link",
-      image: "/assets/images/founder.jpeg",
+      image: "/assets/images/clinic-sanctuary.jpg",
       views: "54.6K",
       duration: "0:52",
       topic: "Nasal Breathing Biohack"
@@ -731,7 +731,7 @@ export function getDefaultReels() {
       id: "reel-6",
       title: "From 98kg to Resilient Vitality: My Real -38kg Transformation Story",
       url: "https://www.instagram.com/reel/DEvM_3Yvx4D/?utm_source=ig_web_copy_link",
-      image: "/assets/images/founder.jpg",
+      image: "/assets/images/reshmi-verma.jpg",
       views: "94.3K",
       duration: "1:30",
       topic: "Real Transformation"

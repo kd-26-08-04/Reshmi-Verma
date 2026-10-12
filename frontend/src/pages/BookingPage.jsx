@@ -84,7 +84,7 @@ export default function BookingPage() {
   const [formData, setFormData] = useState({
     name: user?.name || '',
     age: '',
-    gender: '',
+    gender: 'Female',
     phone: user?.phone || '',
     email: user?.email || '',
     city: '',
@@ -93,7 +93,16 @@ export default function BookingPage() {
     emergencyContact: '',
     bookingDate: tomorrow,
     timeSlot: TIME_SLOTS[0],
-    notes: ''
+    notes: '',
+    // Pre-Consultation Clinical Intake Questions (Pahale Questions, Phir Payment)
+    q10_primary_concern: 'Gut and digestive health (Bloating, IBS, SIBO, Reflux)',
+    q11_concern_description: '',
+    q12_concern_duration: '6 to 12 months (Persistent issue)',
+    q16_medical_condition: '',
+    q17_medicines_supplements: '',
+    q29_dietary_preference: 'Vegetarian',
+    q33_digestive_symptoms: '',
+    q27_stress_level: 'Moderate — Work pressure but manageable'
   });
 
   const [loading, setLoading] = useState(false);
@@ -309,8 +318,8 @@ export default function BookingPage() {
             bookingDate: formData.bookingDate,
             bookingTime: formData.timeSlot,
             timeSlot: formData.timeSlot,
-            notes: formData.notes,
-            healthConcerns: formData.notes
+            notes: formData.notes || formData.q11_concern_description,
+            healthConcerns: `${formData.q10_primary_concern}: ${formData.q11_concern_description}`
           })
         });
 
@@ -318,6 +327,37 @@ export default function BookingPage() {
         if (!verifyRes.ok || !verifyData.success) {
           throw new Error(verifyData.error || 'Failed to confirm booking.');
         }
+
+        // Auto-submit Clinical Questionnaire Intake using created booking ID
+        const assignedBookingId = verifyData.bookingId || verifyData.booking?.id || `bk_${Date.now()}`;
+        try {
+          fetch(getApiUrl('/api/submit-questionnaire'), {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              bookingId: assignedBookingId,
+              email: formData.email,
+              formData: {
+                fullName: formData.name,
+                email: formData.email,
+                phone: formData.phone,
+                age: formData.age,
+                gender: formData.gender,
+                city: formData.city,
+                occupation: formData.occupation,
+                q10_primary_concern: formData.q10_primary_concern,
+                q11_concern_description: formData.q11_concern_description,
+                q12_concern_duration: formData.q12_concern_duration,
+                q16_medical_condition: formData.q16_medical_condition,
+                q17_medicines_supplements: formData.q17_medicines_supplements,
+                q29_dietary_preference: formData.q29_dietary_preference,
+                q33_digestive_symptoms: formData.q33_digestive_symptoms,
+                q27_stress_level: formData.q27_stress_level,
+                bookingId: assignedBookingId
+              }
+            })
+          }).catch(() => {});
+        } catch (e) {}
 
         // EmailJS notification
         const emailService = import.meta.env.VITE_EMAILJS_SERVICE_ID || 'service_znsc9db';
@@ -346,8 +386,6 @@ export default function BookingPage() {
             console.warn('EmailJS dispatch notice:', e);
           }
         }
-
-        const assignedBookingId = verifyData.bookingId || verifyData.booking?.id || `bk_${Date.now()}`;
 
         setConfirmedBooking({
           ...verifyData.booking,
@@ -690,9 +728,209 @@ export default function BookingPage() {
                 />
               </div>
 
-              {/* Scheduling & Consultation Tier */}
+              {/* Step 2: Confidential Clinical Health Intake (Pre-Consultation Questions) */}
+              <div style={{ marginBottom: '24px', paddingBottom: '12px', borderBottom: '2px solid rgba(194, 65, 12, 0.12)', marginTop: '32px' }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                  <span style={{ fontSize: '1.25rem' }}>📋</span>
+                  <h3 style={{ fontSize: '1.18rem', color: 'var(--emerald-deep)', margin: 0, fontWeight: 700 }}>
+                    {selectedTier === 'followup' 
+                      ? 'Step 2: Follow-Up Progress Update (Existing Client)' 
+                      : 'Step 2: Confidential Clinical Health Intake (Answer Questions First)'}
+                  </h3>
+                </div>
+                <p style={{ fontSize: '0.88rem', color: 'var(--text-secondary)', margin: '6px 0 0' }}>
+                  {selectedTier === 'followup'
+                    ? 'Welcome back! Since you are an existing client, your baseline history is already on record. You do NOT need to refill the full health questionnaire.'
+                    : 'Please share your symptom chronology so Reshmi Verma can evaluate your root cause biochemistry prior to your consultation call.'}
+                </p>
+              </div>
+
+              {selectedTier === 'followup' ? (
+                /* Returning / Follow-Up Client: NO 40 questions needed, just quick progress check-in */
+                <div style={{ background: '#F0FDF4', border: '1.5px solid #86EFAC', borderRadius: '16px', padding: '22px 24px', marginBottom: '24px' }}>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '10px', color: '#166534', fontWeight: 700, fontSize: '1.02rem', marginBottom: '8px' }}>
+                    <span style={{ fontSize: '1.3rem' }}>🌿</span>
+                    <span>Returning Client Progress Update</span>
+                  </div>
+                  <p style={{ margin: '0 0 16px', color: '#14532D', fontSize: '0.92rem', lineHeight: 1.55 }}>
+                    Aapka initial 40-question baseline profile already Reshmi Verma ke clinical database me linked hai. Sirf pichhli consultation ke baad se aaye updates share karein:
+                  </p>
+                  <div>
+                    <label htmlFor="followup-notes-input" style={{ fontWeight: 700, fontSize: '0.92rem', color: 'var(--emerald-deep)', display: 'block', marginBottom: '8px' }}>
+                      Recent progress, dietary changes, or symptoms observed since your last session *
+                    </label>
+                    <textarea
+                      id="followup-notes-input"
+                      name="notes"
+                      value={formData.notes}
+                      onChange={handleInputChange}
+                      rows={3}
+                      required
+                      placeholder="e.g. Followed 3R gut protocol for 4 weeks. Morning energy improved, bloating reduced by 50%. Have latest bloodwork to review during this follow-up call..."
+                      style={{ width: '100%', padding: '12px 16px', border: '1.5px solid var(--border-medium)', borderRadius: 'var(--radius-sm)', fontSize: '0.95rem', resize: 'vertical', background: 'white' }}
+                    />
+                  </div>
+                </div>
+              ) : (
+                /* New Consultation Client: Intake Questions */
+                <>
+                  {/* Primary Concern */}
+                  <div style={{ marginBottom: '20px' }}>
+                    <label htmlFor="q10-concern-select" style={{ fontWeight: 700, fontSize: '0.92rem', color: 'var(--emerald-deep)', display: 'block', marginBottom: '6px' }}>
+                      1. What is your primary health concern? *
+                    </label>
+                    <select
+                      id="q10-concern-select"
+                      name="q10_primary_concern"
+                      value={formData.q10_primary_concern}
+                      onChange={handleInputChange}
+                      style={{ width: '100%', padding: '12px 16px', border: '1.5px solid var(--border-medium)', borderRadius: 'var(--radius-sm)', fontSize: '0.95rem', background: 'white' }}
+                    >
+                      <option value="Gut and digestive health (Bloating, IBS, SIBO, Reflux)">Gut and digestive health (Bloating, IBS, SIBO, Reflux)</option>
+                      <option value="PCOS / Hormonal balance & irregular cycles">PCOS / Hormonal balance & irregular cycles</option>
+                      <option value="Thyroid-related metabolic dysfunction">Thyroid-related metabolic dysfunction</option>
+                      <option value="Weight plateau & stubborn fat retention">Weight plateau & stubborn fat retention</option>
+                      <option value="Diabetes / Insulin resistance & blood sugar crashes">Diabetes / Insulin resistance & blood sugar crashes</option>
+                      <option value="Chronic fatigue & cellular energy depletion">Chronic fatigue & cellular energy depletion</option>
+                      <option value="Respiratory pacing / Anxiety surges / Sleep apnea">Respiratory pacing / Anxiety surges / Sleep apnea</option>
+                      <option value="Skin, hair loss, and inflammatory flare-ups">Skin, hair loss, and inflammatory flare-ups</option>
+                      <option value="General cellular longevity & preventive optimization">General cellular longevity & preventive optimization</option>
+                      <option value="Other">Other</option>
+                    </select>
+                  </div>
+
+                  {/* Description */}
+                  <div style={{ marginBottom: '20px' }}>
+                    <label htmlFor="q11-description-input" style={{ fontWeight: 700, fontSize: '0.92rem', color: 'var(--emerald-deep)', display: 'block', marginBottom: '6px' }}>
+                      2. Describe your main symptoms in detail (triggers, daily pattern, frequency) *
+                    </label>
+                    <textarea
+                      id="q11-description-input"
+                      name="q11_concern_description"
+                      value={formData.q11_concern_description}
+                      onChange={handleInputChange}
+                      rows={3}
+                      required
+                      placeholder="e.g. Severe distension and gas within 45 mins of eating, sluggish morning energy, waking at 3 AM with rapid heart rate, severe brain fog..."
+                      style={{ width: '100%', padding: '12px 16px', border: '1.5px solid var(--border-medium)', borderRadius: 'var(--radius-sm)', fontSize: '0.95rem', resize: 'vertical' }}
+                    />
+                  </div>
+
+                  <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '20px', marginBottom: '20px' }}>
+                    <div>
+                      <label htmlFor="q12-duration-select" style={{ fontWeight: 700, fontSize: '0.92rem', color: 'var(--emerald-deep)', display: 'block', marginBottom: '6px' }}>
+                        3. Duration of this concern
+                      </label>
+                      <select
+                        id="q12-duration-select"
+                        name="q12_concern_duration"
+                        value={formData.q12_concern_duration}
+                        onChange={handleInputChange}
+                        style={{ width: '100%', padding: '12px 16px', border: '1px solid var(--border-medium)', borderRadius: 'var(--radius-sm)', fontSize: '0.95rem', background: 'white' }}
+                      >
+                        <option value="Less than 1 month (Acute onset)">Less than 1 month (Acute onset)</option>
+                        <option value="1 to 6 months (Developing pattern)">1 to 6 months (Developing pattern)</option>
+                        <option value="6 to 12 months (Persistent issue)">6 to 12 months (Persistent issue)</option>
+                        <option value="More than 1 year (Chronic compensation)">More than 1 year (Chronic compensation)</option>
+                      </select>
+                    </div>
+
+                    <div>
+                      <label htmlFor="q29-diet-select" style={{ fontWeight: 700, fontSize: '0.92rem', color: 'var(--emerald-deep)', display: 'block', marginBottom: '6px' }}>
+                        4. Dietary Preference
+                      </label>
+                      <select
+                        id="q29-diet-select"
+                        name="q29_dietary_preference"
+                        value={formData.q29_dietary_preference}
+                        onChange={handleInputChange}
+                        style={{ width: '100%', padding: '12px 16px', border: '1px solid var(--border-medium)', borderRadius: 'var(--radius-sm)', fontSize: '0.95rem', background: 'white' }}
+                      >
+                        <option value="Vegetarian">Vegetarian</option>
+                        <option value="Jain Vegetarian">Jain Vegetarian</option>
+                        <option value="Vegan / Plant-based">Vegan / Plant-based</option>
+                        <option value="Eggetarian">Eggetarian</option>
+                        <option value="Non-Vegetarian / Omnivore">Non-Vegetarian / Omnivore</option>
+                      </select>
+                    </div>
+                  </div>
+
+                  <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '20px', marginBottom: '20px' }}>
+                    <div>
+                      <label htmlFor="q16-medical-input" style={{ fontWeight: 700, fontSize: '0.92rem', color: 'var(--emerald-deep)', display: 'block', marginBottom: '6px' }}>
+                        5. Existing Diagnosed Conditions (Optional)
+                      </label>
+                      <input
+                        type="text"
+                        id="q16-medical-input"
+                        name="q16_medical_condition"
+                        value={formData.q16_medical_condition}
+                        onChange={handleInputChange}
+                        placeholder="e.g. Hypothyroidism, PCOD, Fatty liver, None"
+                        style={{ width: '100%', padding: '12px 16px', border: '1px solid var(--border-medium)', borderRadius: 'var(--radius-sm)', fontSize: '0.95rem' }}
+                      />
+                    </div>
+
+                    <div>
+                      <label htmlFor="q17-meds-input" style={{ fontWeight: 700, fontSize: '0.92rem', color: 'var(--emerald-deep)', display: 'block', marginBottom: '6px' }}>
+                        6. Medications / Supplements Taken (Optional)
+                      </label>
+                      <input
+                        type="text"
+                        id="q17-meds-input"
+                        name="q17_medicines_supplements"
+                        value={formData.q17_medicines_supplements}
+                        onChange={handleInputChange}
+                        placeholder="e.g. Thyronorm 50mcg, Vitamin D3, B12, None"
+                        style={{ width: '100%', padding: '12px 16px', border: '1px solid var(--border-medium)', borderRadius: 'var(--radius-sm)', fontSize: '0.95rem' }}
+                      />
+                    </div>
+                  </div>
+
+                  <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '20px', marginBottom: '24px' }}>
+                    <div>
+                      <label htmlFor="q33-digestive-input" style={{ fontWeight: 700, fontSize: '0.92rem', color: 'var(--emerald-deep)', display: 'block', marginBottom: '6px' }}>
+                        7. Digestive &amp; Motility Patterns
+                      </label>
+                      <input
+                        type="text"
+                        id="q33-digestive-input"
+                        name="q33_digestive_symptoms"
+                        value={formData.q33_digestive_symptoms}
+                        onChange={handleInputChange}
+                        placeholder="e.g. Bloating late evening, acid reflux, constipation"
+                        style={{ width: '100%', padding: '12px 16px', border: '1px solid var(--border-medium)', borderRadius: 'var(--radius-sm)', fontSize: '0.95rem' }}
+                      />
+                    </div>
+
+                    <div>
+                      <label htmlFor="q27-stress-select" style={{ fontWeight: 700, fontSize: '0.92rem', color: 'var(--emerald-deep)', display: 'block', marginBottom: '6px' }}>
+                        8. Perceived Stress &amp; Night Sleep
+                      </label>
+                      <select
+                        id="q27-stress-select"
+                        name="q27_stress_level"
+                        value={formData.q27_stress_level}
+                        onChange={handleInputChange}
+                        style={{ width: '100%', padding: '12px 16px', border: '1px solid var(--border-medium)', borderRadius: 'var(--radius-sm)', fontSize: '0.95rem', background: 'white' }}
+                      >
+                        <option value="Moderate — Work pressure but manageable">Moderate — Work pressure but manageable</option>
+                        <option value="High — Constant anxiety, fragmented sleep, burnout">High — Constant anxiety, fragmented sleep, burnout</option>
+                        <option value="Low — Generally calm and regulated">Low — Generally calm and regulated</option>
+                      </select>
+                    </div>
+                  </div>
+                </>
+              )}
+
+              {/* Step 3: Scheduling & Consultation Tier */}
               <div style={{ marginBottom: '24px', paddingBottom: '12px', borderBottom: '2px solid rgba(194, 65, 12, 0.12)', marginTop: '28px' }}>
-                <h3 style={{ fontSize: '1.15rem', color: 'var(--emerald-deep)', margin: 0, fontWeight: 700 }}>Consultation Plan &amp; Appointment Slot</h3>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                  <span style={{ fontSize: '1.25rem' }}>📅</span>
+                  <h3 style={{ fontSize: '1.18rem', color: 'var(--emerald-deep)', margin: 0, fontWeight: 700 }}>
+                    Step 3: Consultation Plan &amp; Appointment Slot
+                  </h3>
+                </div>
               </div>
 
               <div style={{ marginBottom: '20px' }}>
@@ -913,19 +1151,29 @@ export default function BookingPage() {
               <div><strong>Practitioner:</strong> Reshmi Verma (Functional Nutritionist &amp; Breathwork Facilitator)</div>
             </div>
 
-            <div style={{ margin: '20px 0 16px', background: '#fff8e1', border: '1px solid #fbc02d', borderRadius: '12px', padding: '14px 18px', textAlign: 'center' }}>
-              <div style={{ fontSize: '0.82rem', fontWeight: 700, color: '#856404', textTransform: 'uppercase', marginBottom: '4px' }}>CRITICAL NEXT STEP (Step 2 of 2)</div>
-              <p style={{ fontSize: '0.88rem', color: '#533f03', margin: '0 0 10px' }}>
-                Please complete the confidential pre-consultation health questionnaire so Reshmi Verma can analyze your metabolic biomarkers before your call.
+            <div style={{ margin: '20px 0 16px', background: '#F0FDF4', border: '1px solid #86EFAC', borderRadius: '12px', padding: '16px 20px', textAlign: 'center' }}>
+              <div style={{ fontSize: '0.85rem', fontWeight: 700, color: '#166534', textTransform: 'uppercase', marginBottom: '6px' }}>
+                ✓ Clinical Intake &amp; Booking Confirmed
+              </div>
+              <p style={{ fontSize: '0.92rem', color: '#14532D', margin: '0 0 10px', lineHeight: 1.5 }}>
+                Your clinical intake answers and symptoms have been securely recorded. Reshmi Verma will review your case trajectory prior to your scheduled consultation.
               </p>
-              <Link 
-                id="proceed-questionnaire-btn" 
-                to={`/questionnaire?bookingId=${confirmedBooking.id || ''}`} 
-                className="btn btn-primary btn-sm" 
-                style={{ width: '100%', justifyContent: 'center', background: 'var(--emerald-medium)', fontWeight: 700 }}
-              >
-                <span>Complete Clinical Intake Questionnaire &rarr;</span>
-              </Link>
+              <div style={{ display: 'flex', gap: '10px', justifyContent: 'center', marginTop: '12px' }}>
+                <Link 
+                  to="/dashboard"
+                  className="btn btn-primary btn-sm" 
+                  style={{ background: 'var(--emerald-medium)', fontWeight: 700 }}
+                >
+                  <span>Go to My Client Portal &rarr;</span>
+                </Link>
+                <Link 
+                  to={`/questionnaire?bookingId=${confirmedBooking.id || ''}`} 
+                  className="btn btn-secondary btn-sm" 
+                  style={{ background: 'white', color: 'var(--emerald-deep)' }}
+                >
+                  <span>Attach PDF Lab Reports (Optional)</span>
+                </Link>
+              </div>
             </div>
 
             <div className="modal-actions" style={{ display: 'flex', gap: '12px', flexWrap: 'wrap', justifyContent: 'center' }}>

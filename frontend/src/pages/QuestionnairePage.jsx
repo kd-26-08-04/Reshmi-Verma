@@ -1096,11 +1096,20 @@ export default function QuestionnairePage() {
             </div>
 
             <div style={{ display: 'flex', gap: '16px', justifyContent: 'center', flexWrap: 'wrap' }}>
-              <Link to="/dashboard" className="btn btn-primary btn-lg">
+              {!formData.bookingId && (
+                <Link 
+                  to={`/booking?email=${encodeURIComponent(formData.email || '')}&name=${encodeURIComponent(formData.fullName || '')}`} 
+                  className="btn btn-primary btn-lg"
+                  style={{ background: 'var(--emerald-medium)', fontWeight: 700 }}
+                >
+                  <span>Select Consultation Slot &amp; Lock Appointment &rarr;</span>
+                </Link>
+              )}
+              <Link to="/dashboard" className="btn btn-secondary btn-lg">
                 <span>View in Client Portal</span>
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg>
               </Link>
-              <Link to="/" className="btn btn-secondary btn-lg">
+              <Link to="/" className="btn btn-outline btn-lg">
                 Back to Home
               </Link>
             </div>

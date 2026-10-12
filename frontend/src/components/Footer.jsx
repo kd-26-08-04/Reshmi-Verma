@@ -132,7 +132,7 @@ export default function Footer() {
             <line x1="8" y1="2" x2="8" y2="6"></line>
             <line x1="3" y1="10" x2="21" y2="10"></line>
           </svg>
-          <span>Book Session</span>
+          <span>Book Consultation</span>
         </Link>
       </div>
     </>

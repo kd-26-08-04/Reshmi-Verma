@@ -103,15 +103,15 @@ export default function ContactPage() {
       {/* Main Contact Section */}
       <section className="section" style={{ paddingTop: '20px', paddingBottom: '80px' }}>
         <div className="container">
-          
+
           <div className="contact-layout-grid">
-            
+
             {/* Left: Direct Clinic Information */}
             <div className="contact-info-card">
               <span className="sub-title">Direct Clinic Access</span>
               <h2 style={{ fontSize: '1.85rem', marginTop: '6px', marginBottom: '14px' }}>Clinical Diagnostics &amp; Wellness Sanctuary</h2>
               <p style={{ color: 'var(--text-secondary)', fontSize: '0.95rem', lineHeight: 1.6 }}>
-                Reshmi Verma combines 20+ years of clinical laboratory diagnostic expertise with functional root-cause biology to address gut permeability, chronic fatigue, and autonomic dysregulation.
+                Reshmi Verma combines 18 years of clinical laboratory diagnostic expertise with functional root-cause biology to address gut permeability, chronic fatigue, and autonomic dysregulation.
               </p>
 
               <div className="contact-channels-list">
@@ -189,29 +189,29 @@ export default function ContactPage() {
                 <div className="form-group-row">
                   <div className="form-field-group">
                     <label htmlFor="contact-name">Full Name *</label>
-                    <input 
-                      type="text" 
-                      id="contact-name" 
-                      name="name" 
-                      required 
+                    <input
+                      type="text"
+                      id="contact-name"
+                      name="name"
+                      required
                       value={formData.name}
                       onChange={handleChange}
-                      placeholder="e.g. Dr. Priya Sharma" 
-                      autoComplete="name" 
+                      placeholder="e.g. Dr. Priya Sharma"
+                      autoComplete="name"
                     />
                   </div>
 
                   <div className="form-field-group">
                     <label htmlFor="contact-email">Email Address *</label>
-                    <input 
-                      type="email" 
-                      id="contact-email" 
-                      name="email" 
-                      required 
+                    <input
+                      type="email"
+                      id="contact-email"
+                      name="email"
+                      required
                       value={formData.email}
                       onChange={handleChange}
-                      placeholder="priya@example.com" 
-                      autoComplete="email" 
+                      placeholder="priya@example.com"
+                      autoComplete="email"
                     />
                   </div>
                 </div>
@@ -219,23 +219,23 @@ export default function ContactPage() {
                 <div className="form-group-row">
                   <div className="form-field-group">
                     <label htmlFor="contact-phone">WhatsApp / Phone Number *</label>
-                    <input 
-                      type="tel" 
-                      id="contact-phone" 
-                      name="phone" 
-                      required 
+                    <input
+                      type="tel"
+                      id="contact-phone"
+                      name="phone"
+                      required
                       value={formData.phone}
                       onChange={handleChange}
-                      placeholder="+91 98765 43210" 
-                      autoComplete="tel" 
+                      placeholder="+91 98765 43210"
+                      autoComplete="tel"
                     />
                   </div>
 
                   <div className="form-field-group">
                     <label htmlFor="contact-subject">Inquiry Subject *</label>
-                    <select 
-                      id="contact-subject" 
-                      name="subject" 
+                    <select
+                      id="contact-subject"
+                      name="subject"
                       value={formData.subject}
                       onChange={handleChange}
                       required
@@ -252,14 +252,14 @@ export default function ContactPage() {
 
                 <div className="form-field-group">
                   <label htmlFor="contact-message">Your Message or Health Background *</label>
-                  <textarea 
-                    id="contact-message" 
-                    name="message" 
-                    rows="5" 
-                    required 
+                  <textarea
+                    id="contact-message"
+                    name="message"
+                    rows="5"
+                    required
                     value={formData.message}
                     onChange={handleChange}
-                    placeholder="Describe your primary health concerns, symptom timeline, or questions for Reshmi Verma..." 
+                    placeholder="Describe your primary health concerns, symptom timeline, or questions for Reshmi Verma..."
                     style={{ resize: 'vertical' }}
                   ></textarea>
                 </div>
@@ -269,14 +269,14 @@ export default function ContactPage() {
                   <span>Protected by client-side anti-spam verification and TLS 1.3 encryption.</span>
                 </div>
 
-                <button 
-                  type="submit" 
-                  id="contact-submit-btn" 
-                  className="btn btn-primary btn-lg" 
+                <button
+                  type="submit"
+                  id="contact-submit-btn"
+                  className="btn btn-primary btn-lg"
                   style={{ width: '100%', justifyContent: 'center' }}
                   disabled={loading}
                 >
-                  <span id="contact-btn-text">{loading ? 'Transmitting to Clinic...' : 'Send Message to Reshmi Verma'}</span>
+                  <span id="contact-btn-text">{loading ? 'Transmitting to Clinic...' : 'Send Message'}</span>
                   <svg id="contact-btn-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
                 </button>
               </form>

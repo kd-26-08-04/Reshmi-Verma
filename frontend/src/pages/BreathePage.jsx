@@ -112,7 +112,7 @@ export default function BreathePage() {
         badgeBg: '#FFF1F2',
         title: '🚨 CRITICAL CLINICAL ALERT: Severe Cellular Oxygen Starvation',
         summary: `Your BOLT score is critically low at ${score.toFixed(1)}s (${marks}/100 Marks). This confirms that your cells, brain, and gut lining are chronically starved of functional oxygen due to rapid carbon dioxide depletion and silent mouth-breathing.`,
-        recommendation: 'URGENT CONSULTATION ADVISED: Leaving this unaddressed leads to chronic gut inflammation, refractory brain fog, and autonomic exhaustion. Reshmi Verma (India #13 Oxygen Advantage Coach) strongly advises booking an immediate 1-on-1 priority clinical consultation to restore your Bohr-effect oxygen delivery and repair your gut-mucosal barrier.',
+        recommendation: 'URGENT CONSULTATION ADVISED: Leaving this unaddressed leads to chronic gut inflammation, refractory brain fog, and autonomic exhaustion. Reshmi Verma (Top Oxygen Advantage Coach in India) strongly advises booking an immediate 1-on-1 priority clinical consultation to restore your Bohr-effect oxygen delivery and repair your gut-mucosal barrier.',
         buttonText: '🚨 Book Priority Emergency Consultation (₹999 / ₹2,999)',
         buttonClass: 'btn btn-primary btn-lg pulse-anim',
         bohr: 'Your red blood cells possess an excessively tight hemoglobin-oxygen bond. Due to chronic over-breathing and depleted CO₂, oxygen is trapped in the bloodstream and cannot discharge into digestive organs or muscle tissue.',
@@ -313,13 +313,13 @@ export default function BreathePage() {
         <div className="container text-center">
           <span className="badge-pill" style={{ marginBottom: '16px' }}>
             <span className="pulse-dot"></span>
-            <span>🏅 #13 Certified Oxygen Advantage Coach in India &bull; Circular Connected Breathwork Facilitator</span>
+            <span>🏅 Top Certified Oxygen Advantage Coach in India &bull; Circular Connected Breathwork Facilitator</span>
           </span>
           <h1 style={{ fontSize: '3.2rem', maxWidth: '880px', margin: '0 auto 18px' }}>
             Clinical Respiration & <span className="text-gradient">Vagal Neuromodulation</span>
           </h1>
           <p style={{ fontSize: '1.15rem', color: 'var(--text-secondary)', maxWidth: '760px', margin: '0 auto 24px' }}>
-            Guided by <strong>Reshmi Verma</strong> — <strong>#13 Certified in India for Oxygen Advantage</strong>, <strong>Oxygen Advantage Core Instructor</strong>, and <strong>Breath Resilience Instructor</strong>. Discover your cellular CO₂ tolerance with the BOLT test and recalibrate autonomic nervous system tone.
+            Guided by <strong>Reshmi Verma</strong> — <strong>Top Certified in India for Oxygen Advantage</strong>, <strong>Oxygen Advantage Core Instructor</strong>, and <strong>Breath Resilience Instructor</strong>. Discover your cellular CO₂ tolerance with the BOLT test and recalibrate autonomic nervous system tone.
           </p>
 
           <div style={{ display: 'flex', gap: '12px', justifyContent: 'center', flexWrap: 'wrap' }}>
@@ -469,7 +469,7 @@ export default function BreathePage() {
                 {/* Direct High-Conversion Call to Action */}
                 <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center', background: 'linear-gradient(135deg, rgba(15, 23, 42, 0.03) 0%, rgba(194, 65, 12, 0.06) 100%)', padding: '28px 24px', borderRadius: '16px', border: '1px dashed var(--border-medium)' }}>
                   <div style={{ fontSize: '0.85rem', fontWeight: 700, color: 'var(--emerald-medium)', textTransform: 'uppercase', letterSpacing: '0.06em', marginBottom: '6px' }}>
-                    Next Step with #13 Oxygen Advantage Coach Reshmi Verma
+                    Next Step with Top Oxygen Advantage Coach Reshmi Verma
                   </div>
                   <h4 style={{ fontSize: '1.35rem', color: 'var(--emerald-deep)', margin: '0 0 16px' }}>
                     {boltAnalysis.urgency === 'critical' ? 'Urgent 1-on-1 Consultation Required' : 'Book Your Personalized Clinical Roadmap'}

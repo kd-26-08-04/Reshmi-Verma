@@ -8,6 +8,7 @@ import Footer from './components/Footer';
 import BackgroundMedia from './components/BackgroundMedia';
 import EvaAssistant from './components/EvaAssistant';
 import MobileBottomBar from './components/MobileBottomBar';
+import WelcomeAssessmentModal from './components/WelcomeAssessmentModal';
 
 // Pages
 import HomePage from './pages/HomePage';
@@ -60,6 +61,7 @@ function AppContent() {
       {!isAuthPage && <Footer />}
       <EvaAssistant />
       {!isAuthPage && <MobileBottomBar />}
+      <WelcomeAssessmentModal />
     </>
   );
 }
