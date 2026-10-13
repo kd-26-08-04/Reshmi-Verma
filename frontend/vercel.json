@@ -7,6 +7,14 @@
   "trailingSlash": false,
   "rewrites": [
     {
+      "source": "/api/(.*)",
+      "destination": "https://reshmi-verma-eurb.onrender.com/api/$1"
+    },
+    {
+      "source": "/uploads/(.*)",
+      "destination": "https://reshmi-verma-eurb.onrender.com/uploads/$1"
+    },
+    {
       "source": "/((?!api|uploads).*)",
       "destination": "/index.html"
     }

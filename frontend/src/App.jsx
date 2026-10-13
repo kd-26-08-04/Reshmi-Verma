@@ -9,6 +9,7 @@ import BackgroundMedia from './components/BackgroundMedia';
 import EvaAssistant from './components/EvaAssistant';
 import MobileBottomBar from './components/MobileBottomBar';
 import WelcomeAssessmentModal from './components/WelcomeAssessmentModal';
+import DragonflyAnimation from './components/DragonflyAnimation';
 
 // Pages
 import HomePage from './pages/HomePage';
@@ -62,6 +63,7 @@ function AppContent() {
       <EvaAssistant />
       {!isAuthPage && <MobileBottomBar />}
       <WelcomeAssessmentModal />
+      <DragonflyAnimation />
     </>
   );
 }

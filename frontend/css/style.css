@@ -4053,11 +4053,6 @@ h1, h2, h3, h4, h5, h6 {
   opacity: 0 !important;
   pointer-events: none !important;
 }
-  z-index: -1;
-  pointer-events: none;
-  user-select: none;
-  background: #f8fafc;
-}
 
 @keyframes somaticInhaleExhale {
   0% {
@@ -5105,6 +5100,105 @@ h1, h2, h3, h4, h5, h6 {
   font-size: 0.76rem;
   color: var(--text-muted);
 }
+
+/* ==========================================================================
+   Reshmi Verma Signature — Realistic Dragonfly Biometric Flight Engine
+   ========================================================================== */
+.dragonfly-portal-overlay {
+  pointer-events: none !important;
+  user-select: none !important;
+}
+
+.dragonfly-entity {
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
+  pointer-events: none;
+}
+
+/* Fast 3D wing fluttering when gliding / darting across viewport (blurred wings) */
+.dragonfly-entity.flutter-fast .df-wing-fore-left {
+  animation: dfWingFlapLeft 0.045s infinite alternate ease-in-out;
+}
+
+.dragonfly-entity.flutter-fast .df-wing-fore-right {
+  animation: dfWingFlapRight 0.045s infinite alternate ease-in-out;
+}
+
+.dragonfly-entity.flutter-fast .df-wing-hind-left {
+  animation: dfWingFlapLeft 0.048s infinite alternate 0.012s ease-in-out;
+}
+
+.dragonfly-entity.flutter-fast .df-wing-hind-right {
+  animation: dfWingFlapRight 0.048s infinite alternate 0.012s ease-in-out;
+}
+
+/* Gentle rhythmic wing flapping during meditative hover */
+.dragonfly-entity.flutter-hover .df-wing-fore-left {
+  animation: dfWingHoverLeft 0.11s infinite alternate ease-in-out;
+}
+
+.dragonfly-entity.flutter-hover .df-wing-fore-right {
+  animation: dfWingHoverRight 0.11s infinite alternate ease-in-out;
+}
+
+.dragonfly-entity.flutter-hover .df-wing-hind-left {
+  animation: dfWingHoverLeft 0.115s infinite alternate 0.02s ease-in-out;
+}
+
+.dragonfly-entity.flutter-hover .df-wing-hind-right {
+  animation: dfWingHoverRight 0.115s infinite alternate 0.02s ease-in-out;
+}
+
+@keyframes dfWingFlapLeft {
+  0% {
+    transform: rotateY(0deg) skewY(0deg) scaleY(1);
+    opacity: 0.95;
+  }
+  50% {
+    opacity: 0.65;
+  }
+  100% {
+    transform: rotateY(68deg) skewY(-9deg) scaleY(0.72);
+    opacity: 0.45;
+  }
+}
+
+@keyframes dfWingFlapRight {
+  0% {
+    transform: rotateY(0deg) skewY(0deg) scaleY(1);
+    opacity: 0.95;
+  }
+  50% {
+    opacity: 0.65;
+  }
+  100% {
+    transform: rotateY(-68deg) skewY(9deg) scaleY(0.72);
+    opacity: 0.45;
+  }
+}
+
+@keyframes dfWingHoverLeft {
+  0% {
+    transform: rotateY(0deg) skewY(0deg);
+    opacity: 0.95;
+  }
+  100% {
+    transform: rotateY(42deg) skewY(-4deg) scaleY(0.85);
+    opacity: 0.6;
+  }
+}
+
+@keyframes dfWingHoverRight {
+  0% {
+    transform: rotateY(0deg) skewY(0deg);
+    opacity: 0.95;
+  }
+  100% {
+    transform: rotateY(-42deg) skewY(4deg) scaleY(0.85);
+    opacity: 0.6;
+  }
+}
+
 
 
 
