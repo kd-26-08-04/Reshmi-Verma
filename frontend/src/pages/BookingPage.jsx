@@ -470,7 +470,7 @@ export default function BookingPage() {
             <span className="pulse-dot"></span>
             <span>Personalized Functional Care</span>
           </span>
-          <h1 style={{ fontSize: '3.2rem', maxWidth: '880px', margin: '0 auto 18px' }}>
+          <h1 style={{ fontSize: 'clamp(2rem, 5vw, 3.2rem)', maxWidth: '880px', margin: '0 auto 18px' }}>
             Schedule Your <span className="text-gradient">Clinical Consultation</span>
           </h1>
           <p style={{ fontSize: '1.15rem', color: 'var(--text-secondary)', maxWidth: '720px', margin: '0 auto 20px' }}>
@@ -539,7 +539,7 @@ export default function BookingPage() {
             <p>Answer a few quick questions so Reshmi Verma can prepare thoroughly before your session.</p>
           </div>
 
-          <div style={{ maxWidth: '780px', margin: '0 auto', background: 'var(--bg-card)', borderRadius: 'var(--radius-xl)', padding: '48px', border: '1px solid var(--border-medium)', boxShadow: 'var(--shadow-md)' }}>
+          <div className="booking-form-card">
             
             {/* Live Form Status Alert Banner */}
             {alert && (
@@ -576,7 +576,7 @@ export default function BookingPage() {
                 <p style={{ fontSize: '0.82rem', color: 'var(--text-muted)', margin: 0 }}>Verified prior to booking &amp; payment.</p>
               </div>
               
-              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '20px', marginBottom: '20px' }}>
+              <div className="booking-form-row">
                 <div>
                   <label htmlFor="client-name-input" style={{ fontWeight: 700, fontSize: '0.92rem', color: 'var(--emerald-deep)', display: 'block', marginBottom: '6px' }}>
                     1. Full Name *
@@ -610,7 +610,7 @@ export default function BookingPage() {
                 </div>
               </div>
 
-              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '20px', marginBottom: '20px' }}>
+              <div className="booking-form-row">
                 <div>
                   <label htmlFor="client-gender-input" style={{ fontWeight: 700, fontSize: '0.92rem', color: 'var(--emerald-deep)', display: 'block', marginBottom: '6px' }}>
                     3. Gender (Optional)
@@ -646,7 +646,7 @@ export default function BookingPage() {
                 </div>
               </div>
 
-              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '20px', marginBottom: '20px' }}>
+              <div className="booking-form-row">
                 <div>
                   <label htmlFor="client-email-input" style={{ fontWeight: 700, fontSize: '0.92rem', color: 'var(--emerald-deep)', display: 'block', marginBottom: '6px' }}>
                     5. Email Address *
@@ -679,7 +679,7 @@ export default function BookingPage() {
                 </div>
               </div>
 
-              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '20px', marginBottom: '20px' }}>
+              <div className="booking-form-row">
                 <div>
                   <label htmlFor="client-occupation-input" style={{ fontWeight: 700, fontSize: '0.92rem', color: 'var(--emerald-deep)', display: 'block', marginBottom: '6px' }}>
                     7. Occupation
@@ -816,7 +816,7 @@ export default function BookingPage() {
                     />
                   </div>
 
-                  <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '20px', marginBottom: '20px' }}>
+                  <div className="booking-form-row">
                     <div>
                       <label htmlFor="q12-duration-select" style={{ fontWeight: 700, fontSize: '0.92rem', color: 'var(--emerald-deep)', display: 'block', marginBottom: '6px' }}>
                         3. Duration of this concern
@@ -855,7 +855,7 @@ export default function BookingPage() {
                     </div>
                   </div>
 
-                  <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '20px', marginBottom: '20px' }}>
+                  <div className="booking-form-row">
                     <div>
                       <label htmlFor="q16-medical-input" style={{ fontWeight: 700, fontSize: '0.92rem', color: 'var(--emerald-deep)', display: 'block', marginBottom: '6px' }}>
                         5. Existing Diagnosed Conditions (Optional)
@@ -887,7 +887,7 @@ export default function BookingPage() {
                     </div>
                   </div>
 
-                  <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '20px', marginBottom: '24px' }}>
+                  <div className="booking-form-row">
                     <div>
                       <label htmlFor="q33-digestive-input" style={{ fontWeight: 700, fontSize: '0.92rem', color: 'var(--emerald-deep)', display: 'block', marginBottom: '6px' }}>
                         7. Digestive &amp; Motility Patterns
@@ -949,7 +949,7 @@ export default function BookingPage() {
                 </select>
               </div>
 
-              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '20px', marginBottom: '24px' }}>
+              <div className="booking-form-row">
                 <div>
                   <label htmlFor="booking-date-picker" style={{ fontWeight: 700, fontSize: '0.95rem', color: 'var(--emerald-deep)', display: 'block', marginBottom: '8px' }}>
                     Preferred Consultation Date *

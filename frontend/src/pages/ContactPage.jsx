@@ -91,7 +91,7 @@ export default function ContactPage() {
             <span className="pulse-dot"></span>
             <span>Clinic Inquiries &amp; Client Support</span>
           </span>
-          <h1 style={{ fontSize: '3.2rem', maxWidth: '880px', margin: '0 auto 18px' }}>
+          <h1 style={{ fontSize: 'clamp(2rem, 5vw, 3.2rem)', maxWidth: '880px', margin: '0 auto 18px' }}>
             Get in Touch with <span className="text-gradient">Reshmi Verma</span>
           </h1>
           <p style={{ fontSize: '1.15rem', color: 'var(--text-secondary)', maxWidth: '720px', margin: '0 auto 20px' }}>

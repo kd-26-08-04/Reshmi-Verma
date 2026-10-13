@@ -326,7 +326,7 @@ export default function HomePage() {
               </div>
 
               {/* Hero Clinical Highlights */}
-              <div className="hero-stats-row" style={{ gridTemplateColumns: 'repeat(4, 1fr)' }}>
+              <div className="hero-stats-row">
                 <div className="stat-item">
                   <div className="stat-num">TOP</div>
                   <div className="stat-label">Oxygen Advantage Coach in India</div>

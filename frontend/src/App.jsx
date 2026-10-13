@@ -37,6 +37,7 @@ function ScrollToTop() {
 function AppContent() {
   const { pathname } = useLocation();
   const isAuthPage = pathname === '/auth' || pathname === '/login';
+  const isAdminPage = pathname.startsWith('/admin');
 
   return (
     <>
@@ -59,9 +60,9 @@ function AppContent() {
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
 
-      {!isAuthPage && <Footer />}
-      <EvaAssistant />
-      {!isAuthPage && <MobileBottomBar />}
+      {!isAuthPage && !isAdminPage && <Footer />}
+      {!isAdminPage && <EvaAssistant />}
+      {!isAuthPage && !isAdminPage && <MobileBottomBar />}
       <WelcomeAssessmentModal />
       <DragonflyAnimation />
     </>

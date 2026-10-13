@@ -315,7 +315,7 @@ export default function BreathePage() {
             <span className="pulse-dot"></span>
             <span>🏅 Top Certified Oxygen Advantage Coach in India &bull; Circular Connected Breathwork Facilitator</span>
           </span>
-          <h1 style={{ fontSize: '3.2rem', maxWidth: '880px', margin: '0 auto 18px' }}>
+          <h1 style={{ fontSize: 'clamp(2rem, 5vw, 3.2rem)', maxWidth: '880px', margin: '0 auto 18px' }}>
             Clinical Respiration & <span className="text-gradient">Vagal Neuromodulation</span>
           </h1>
           <p style={{ fontSize: '1.15rem', color: 'var(--text-secondary)', maxWidth: '760px', margin: '0 auto 24px' }}>
@@ -650,8 +650,8 @@ export default function BreathePage() {
             <p>Combining your BOLT score, resting respiratory rate, digestive vitality, and stress rebound speed into a unified parasympathetic score.</p>
           </div>
 
-          <div style={{ maxWidth: '800px', margin: '0 auto', background: 'var(--bg-card)', borderRadius: 'var(--radius-xl)', padding: '44px', border: '1px solid var(--border-medium)', boxShadow: 'var(--shadow-lg)' }}>
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '28px', marginBottom: '32px' }}>
+          <div className="vagal-station-card">
+            <div className="vagal-inputs-grid">
               <div>
                 <label style={{ fontWeight: 700, fontSize: '0.95rem', color: 'var(--emerald-deep)', display: 'block', marginBottom: '8px' }}>
                   BOLT Score (Seconds)

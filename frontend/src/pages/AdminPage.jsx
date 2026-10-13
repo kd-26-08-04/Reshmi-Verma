@@ -453,10 +453,10 @@ export default function AdminPage() {
 
   if (!isAdmin && !authLoading) {
     return (
-      <main className="admin-container" style={{ maxWidth: '1240px', margin: '60px auto 90px', padding: '0 20px', textAlign: 'center' }}>
-        <div style={{ background: '#FFF1F2', padding: '40px', borderRadius: '24px', border: '1px solid #BE123C' }}>
-          <h2 style={{ color: '#BE123C' }}>🔒 Administrative Access Restricted</h2>
-          <p style={{ color: 'var(--text-secondary)' }}>
+      <main className="admin-container" style={{ textAlign: 'center' }}>
+        <div style={{ background: '#FFF1F2', padding: '32px 20px', borderRadius: '24px', border: '1px solid #BE123C' }}>
+          <h2 style={{ color: '#BE123C', fontSize: 'clamp(1.25rem, 4vw, 1.75rem)' }}>🔒 Administrative Access Restricted</h2>
+          <p style={{ color: 'var(--text-secondary)', fontSize: '0.95rem' }}>
             This command desk requires administrator credentials. Please sign in with an authorized clinic account.
           </p>
           <button className="btn btn-primary" onClick={() => navigate('/auth')}>
@@ -469,40 +469,24 @@ export default function AdminPage() {
 
   return (
     <>
-      <main className="admin-container" style={{ maxWidth: '1280px', margin: '50px auto 90px', padding: '0 20px', position: 'relative', zIndex: 2 }}>
+      <main className="admin-container">
         
         {/* Admin Header Card */}
-        <div
-          className="admin-header-card"
-          style={{
-            background: 'rgba(255, 255, 255, 0.95)',
-            backdropFilter: 'blur(24px)',
-            borderRadius: '26px',
-            padding: '30px 36px',
-            border: '1px solid rgba(194, 65, 12, 0.16)',
-            boxShadow: '0 10px 30px rgba(15, 23, 42, 0.05)',
-            marginBottom: '24px',
-            display: 'flex',
-            justifyContent: 'space-between',
-            alignItems: 'center',
-            flexWrap: 'wrap',
-            gap: '16px'
-          }}
-        >
+        <div className="admin-header-card">
           <div>
             <div style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', padding: '4px 12px', background: 'rgba(194, 65, 12, 0.08)', borderRadius: '999px', color: 'var(--emerald-primary)', fontSize: '0.78rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.06em', marginBottom: '8px' }}>
               <span style={{ width: '8px', height: '8px', borderRadius: '50%', background: 'var(--emerald-primary)' }}></span>
               Clinical Command Desk
             </div>
-            <h1 style={{ fontSize: '2rem', margin: '0 0 6px', fontFamily: 'var(--font-serif)', color: 'var(--emerald-deep)' }}>
+            <h1 style={{ fontSize: 'clamp(1.4rem, 4vw, 2rem)', margin: '0 0 6px', fontFamily: 'var(--font-serif)', color: 'var(--emerald-deep)' }}>
               Reshmi Verma Administration & Control
             </h1>
-            <p style={{ fontSize: '0.88rem', color: 'var(--text-muted)', margin: 0 }}>
+            <p style={{ fontSize: '0.88rem', color: 'var(--text-muted)', margin: 0, wordBreak: 'break-word' }}>
               Authorized Portal &bull; Logged in as: <strong>{user?.email}</strong>
             </p>
           </div>
 
-          <div style={{ display: 'flex', gap: '10px' }}>
+          <div style={{ display: 'flex', gap: '10px', flexWrap: 'wrap' }}>
             {activeTab === 'bookings' && (
               <button className="btn btn-secondary btn-sm" onClick={fetchAdminBookings} disabled={loadingBookings}>
                 {loadingBookings ? 'Refreshing...' : '↻ Refresh Records'}
@@ -554,122 +538,47 @@ export default function AdminPage() {
         )}
 
         {/* Clinical Desk Navigation Tabs */}
-        <div
-          style={{
-            display: 'flex',
-            gap: '8px',
-            background: 'rgba(255, 255, 255, 0.8)',
-            padding: '6px',
-            borderRadius: '16px',
-            border: '1px solid var(--border-subtle)',
-            marginBottom: '24px',
-            flexWrap: 'wrap'
-          }}
-        >
+        <div className="admin-tabs-nav">
           <button
             type="button"
+            className={`admin-tab-btn ${activeTab === 'bookings' ? 'active' : ''}`}
             onClick={() => setActiveTab('bookings')}
-            style={{
-              flex: 1,
-              minWidth: '200px',
-              padding: '12px 18px',
-              borderRadius: '12px',
-              border: 'none',
-              background: activeTab === 'bookings' ? 'var(--emerald-deep)' : 'transparent',
-              color: activeTab === 'bookings' ? 'white' : 'var(--text-secondary)',
-              fontWeight: 700,
-              fontSize: '0.92rem',
-              cursor: 'pointer',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              gap: '8px',
-              transition: 'all 0.2s ease'
-            }}
           >
-            <span>📋 Patient Bookings & Intakes</span>
-            <span style={{ padding: '2px 8px', borderRadius: '999px', fontSize: '0.75rem', background: activeTab === 'bookings' ? 'rgba(255,255,255,0.25)' : 'rgba(0,0,0,0.06)' }}>
+            <span>📋 Patient Bookings</span>
+            <span className="admin-tab-badge">
               {totalCount}
             </span>
           </button>
 
           <button
             type="button"
+            className={`admin-tab-btn ${activeTab === 'pricing' ? 'active' : ''}`}
             onClick={() => setActiveTab('pricing')}
-            style={{
-              flex: 1,
-              minWidth: '200px',
-              padding: '12px 18px',
-              borderRadius: '12px',
-              border: 'none',
-              background: activeTab === 'pricing' ? 'var(--emerald-deep)' : 'transparent',
-              color: activeTab === 'pricing' ? 'white' : 'var(--text-secondary)',
-              fontWeight: 700,
-              fontSize: '0.92rem',
-              cursor: 'pointer',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              gap: '8px',
-              transition: 'all 0.2s ease'
-            }}
           >
-            <span>💳 Session Fees & Consultation Tiers</span>
-            <span style={{ padding: '2px 8px', borderRadius: '999px', fontSize: '0.75rem', background: activeTab === 'pricing' ? 'rgba(255,255,255,0.25)' : 'rgba(0,0,0,0.06)' }}>
+            <span>💳 Session Fees</span>
+            <span className="admin-tab-badge">
               {pricingTiers.length}
             </span>
           </button>
 
           <button
             type="button"
+            className={`admin-tab-btn ${activeTab === 'reels' ? 'active' : ''}`}
             onClick={() => setActiveTab('reels')}
-            style={{
-              flex: 1,
-              minWidth: '200px',
-              padding: '12px 18px',
-              borderRadius: '12px',
-              border: 'none',
-              background: activeTab === 'reels' ? 'var(--emerald-deep)' : 'transparent',
-              color: activeTab === 'reels' ? 'white' : 'var(--text-secondary)',
-              fontWeight: 700,
-              fontSize: '0.92rem',
-              cursor: 'pointer',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              gap: '8px',
-              transition: 'all 0.2s ease'
-            }}
           >
-            <span>🎬 Instagram Reels Studio</span>
-            <span style={{ padding: '2px 8px', borderRadius: '999px', fontSize: '0.75rem', background: activeTab === 'reels' ? 'rgba(255,255,255,0.25)' : 'rgba(0,0,0,0.06)' }}>
+            <span>🎬 Instagram Reels</span>
+            <span className="admin-tab-badge">
               {reels.length}
             </span>
           </button>
 
           <button
             type="button"
+            className={`admin-tab-btn ${activeTab === 'schedule' ? 'active' : ''}`}
             onClick={() => setActiveTab('schedule')}
-            style={{
-              flex: 1,
-              minWidth: '200px',
-              padding: '12px 18px',
-              borderRadius: '12px',
-              border: 'none',
-              background: activeTab === 'schedule' ? 'var(--emerald-deep)' : 'transparent',
-              color: activeTab === 'schedule' ? 'white' : 'var(--text-secondary)',
-              fontWeight: 700,
-              fontSize: '0.92rem',
-              cursor: 'pointer',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              gap: '8px',
-              transition: 'all 0.2s ease'
-            }}
           >
-            <span>📅 Clinic Schedule &amp; Slots</span>
-            <span style={{ padding: '2px 8px', borderRadius: '999px', fontSize: '0.75rem', background: activeTab === 'schedule' ? 'rgba(255,255,255,0.25)' : 'rgba(0,0,0,0.06)' }}>
+            <span>📅 Clinic Schedule</span>
+            <span className="admin-tab-badge">
               {scheduleData.defaultSlots?.length || 5} Slots
             </span>
           </button>
@@ -681,14 +590,7 @@ export default function AdminPage() {
         {activeTab === 'bookings' && (
           <div>
             {/* Metrics Overview Cards */}
-            <div
-              style={{
-                display: 'grid',
-                gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))',
-                gap: '16px',
-                marginBottom: '26px'
-              }}
-            >
+            <div className="admin-metrics-grid">
               <div style={{ background: 'white', padding: '20px', borderRadius: '20px', border: '1px solid var(--border-subtle)', boxShadow: '0 4px 14px rgba(0,0,0,0.02)' }}>
                 <span style={{ fontSize: '0.8rem', color: 'var(--text-muted)', textTransform: 'uppercase', fontWeight: 700 }}>Total Bookings</span>
                 <div style={{ fontSize: '2.2rem', fontFamily: 'var(--font-serif)', color: 'var(--emerald-deep)', fontWeight: 700, marginTop: '4px' }}>
@@ -719,15 +621,7 @@ export default function AdminPage() {
             </div>
 
             {/* Filter and Search Bar */}
-            <div
-              style={{
-                display: 'flex',
-                justifyContent: 'space-between',
-                gap: '14px',
-                marginBottom: '20px',
-                flexWrap: 'wrap'
-              }}
-            >
+            <div className="admin-filter-bar">
               <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap' }}>
                 {['all', 'confirmed', 'pending', 'cancelled'].map((st) => (
                   <button
@@ -755,14 +649,7 @@ export default function AdminPage() {
                 placeholder="Search patient name, email, or booking ID..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                style={{
-                  padding: '9px 16px',
-                  borderRadius: '12px',
-                  border: '1.5px solid var(--border-subtle)',
-                  background: 'white',
-                  minWidth: '280px',
-                  fontSize: '0.9rem'
-                }}
+                className="admin-search-input"
               />
             </div>
 
@@ -785,16 +672,7 @@ export default function AdminPage() {
                   return (
                     <div
                       key={b.id}
-                      style={{
-                        background: 'white',
-                        borderRadius: '20px',
-                        padding: '24px 28px',
-                        border: '1px solid var(--border-subtle)',
-                        boxShadow: '0 4px 16px rgba(0,0,0,0.03)',
-                        display: 'flex',
-                        flexDirection: 'column',
-                        gap: '16px'
-                      }}
+                      className="admin-booking-card"
                     >
                       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', flexWrap: 'wrap', gap: '12px' }}>
                         <div>
@@ -832,7 +710,7 @@ export default function AdminPage() {
                         </div>
                       </div>
 
-                      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '12px', padding: '16px', background: '#FAF8F5', borderRadius: '14px', fontSize: '0.88rem' }}>
+                      <div className="admin-booking-details-grid">
                         <div>
                           <span style={{ color: 'var(--text-muted)', fontSize: '0.78rem', textTransform: 'uppercase', fontWeight: 700 }}>Service Tier & Fee:</span>
                           <div style={{ fontWeight: 700, color: 'var(--emerald-deep)' }}>{b.serviceTier || b.serviceName || 'Comprehensive Consultation'} (₹{Number(b.amount || b.servicePrice || 2999).toLocaleString('en-IN')})</div>
@@ -1044,7 +922,7 @@ export default function AdminPage() {
                 <div style={{ fontSize: '1.1rem', color: 'var(--text-muted)' }}>Loading consultation tiers...</div>
               </div>
             ) : (
-              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(360px, 1fr))', gap: '22px' }}>
+              <div className="admin-pricing-grid">
                 {pricingTiers.map((tier, idx) => (
                   <div
                     key={tier.id || idx}
@@ -1300,7 +1178,7 @@ export default function AdminPage() {
                 <div style={{ fontSize: '1.1rem', color: 'var(--text-muted)' }}>Loading Instagram reels...</div>
               </div>
             ) : (
-              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '22px' }}>
+              <div className="admin-reels-grid">
                 {reels.map((reel, idx) => (
                   <div
                     key={reel.id || idx}
@@ -1569,7 +1447,7 @@ export default function AdminPage() {
               </div>
             </div>
 
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(360px, 1fr))', gap: '24px', marginBottom: '24px' }}>
+            <div className="admin-schedule-grid" style={{ marginBottom: '24px' }}>
               
               {/* Card 1: Working Days of the Week */}
               <div style={{ background: 'white', borderRadius: '20px', padding: '24px', border: '1px solid var(--border-subtle)', boxShadow: 'var(--shadow-sm)' }}>
@@ -1693,7 +1571,7 @@ export default function AdminPage() {
 
             </div>
 
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(360px, 1fr))', gap: '24px', marginBottom: '24px' }}>
+            <div className="admin-schedule-grid" style={{ marginBottom: '24px' }}>
               
               {/* Card 3: Block Full Dates (Holidays, Leaves, Travel) */}
               <div style={{ background: 'white', borderRadius: '20px', padding: '24px', border: '1px solid var(--border-subtle)', boxShadow: 'var(--shadow-sm)' }}>
@@ -1873,8 +1751,8 @@ export default function AdminPage() {
 
         {/* Comprehensive Modal: Clinical Patient Dossier & Report */}
         {selectedPatientReport && (
-          <div style={{ position: 'fixed', inset: 0, background: 'rgba(15,23,42,0.7)', backdropFilter: 'blur(8px)', zIndex: 9999, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '20px' }}>
-            <div style={{ background: 'white', borderRadius: '24px', maxWidth: '820px', width: '100%', maxHeight: '90vh', overflowY: 'auto', padding: '36px', boxShadow: '0 25px 60px rgba(0,0,0,0.25)' }}>
+          <div className="admin-modal-overlay">
+            <div className="admin-modal-card">
               
               {/* Modal Header */}
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', paddingBottom: '20px', borderBottom: '2px solid var(--border-subtle)', marginBottom: '24px' }}>
@@ -1917,7 +1795,7 @@ export default function AdminPage() {
                 <h4 style={{ fontSize: '1.05rem', color: 'var(--emerald-deep)', marginBottom: '12px', display: 'flex', alignItems: 'center', gap: '8px' }}>
                   <span>👤 Patient Profile &amp; Demographics</span>
                 </h4>
-                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '12px', background: '#FAF8F5', padding: '18px', borderRadius: '16px', border: '1px solid var(--border-subtle)' }}>
+                <div className="admin-modal-profile-grid">
                   <div>
                     <span style={{ fontSize: '0.75rem', color: 'var(--text-muted)', textTransform: 'uppercase', fontWeight: 700 }}>Full Name</span>
                     <div style={{ fontWeight: 600 }}>{selectedPatientReport.clientName || 'N/A'}</div>
@@ -1962,7 +1840,7 @@ export default function AdminPage() {
                 <h4 style={{ fontSize: '1.05rem', color: 'var(--emerald-deep)', marginBottom: '12px', display: 'flex', alignItems: 'center', gap: '8px' }}>
                   <span>💳 Appointment &amp; Payment Audit</span>
                 </h4>
-                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '12px', background: '#FAF8F5', padding: '18px', borderRadius: '16px', border: '1px solid var(--border-subtle)' }}>
+                <div className="admin-modal-session-grid">
                   <div>
                     <span style={{ fontSize: '0.75rem', color: 'var(--text-muted)', textTransform: 'uppercase', fontWeight: 700 }}>Plan Tier</span>
                     <div style={{ fontWeight: 700, color: 'var(--emerald-deep)' }}>{selectedPatientReport.serviceTier || selectedPatientReport.serviceName}</div>
@@ -2007,7 +1885,7 @@ export default function AdminPage() {
                       </span>
                     </div>
 
-                    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '10px', textAlign: 'center', marginBottom: '14px' }}>
+                    <div className="admin-modal-scores-grid">
                       <div style={{ background: 'white', padding: '10px', borderRadius: '10px', border: '1px solid var(--border-subtle)' }}>
                         <div style={{ fontSize: '0.72rem', color: 'var(--text-muted)' }}>Gut Mucosal</div>
                         <div style={{ fontWeight: 700, color: 'var(--emerald-deep)' }}>{selectedPatientReport.clinicalScores.gutScore}/100</div>

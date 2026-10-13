@@ -52,7 +52,7 @@ export default function NutritionPage() {
             <p>Every customized nutritional intervention is verified through rigorous before-and-after functional blood chemistry, organic acids, and stool microbiome sequencing.</p>
           </div>
 
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '28px' }}>
+          <div className="pillars-grid">
 
             {/* Frontier 1 */}
             <div className="pillar-card">
@@ -157,7 +157,7 @@ export default function NutritionPage() {
       {/* Diagnostic Mapping Section */}
       <section className="section" style={{ background: 'var(--bg-secondary)' }}>
         <div className="container">
-          <div style={{ display: 'grid', gridTemplateColumns: '1.1fr 0.9fr', gap: '48px', alignItems: 'center' }}>
+          <div className="diagnostics-mapping-grid">
             <div>
               <span className="sub-title">Diagnostics First</span>
               <h2>We Never Guess. We Measure.</h2>
