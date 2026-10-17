@@ -305,7 +305,7 @@ export default function HomePage() {
               <h1>Root-Cause <span className="text-gradient">Functional Nutrition</span> &amp; <span className="text-gradient-terracotta">Breathwork Facilitator</span>.</h1>
 
               <p className="lead">
-                Led by <strong>Reshmi Verma</strong> — <strong>Functional Nutritionist</strong>, <strong>Breathwork Facilitator</strong>, <strong>Certified Biohacker</strong> &amp; recognized among <strong>India's Top Oxygen Advantage Coaches</strong>. With 18 years of experience in the diagnostics industry, combining functional nutrition, breathwork, stress regulation and recovery through the 3R framework: Restoration, Regulation and Resilience.
+                Led by <strong>Reshmi Verma</strong> — <strong>Functional Nutritionist</strong>, <strong>Breathwork Facilitator</strong>, <strong>Certified Biohacker</strong> &amp; recognized among <strong>India's Top Oxygen Advantage Coaches</strong>. With over 20 years in diagnostics and healthcare (Director of Rainbow Medinova &amp; Co-founder of Neofit Gym), combining personalized nutrition, breathwork, and autonomic resilience to rebuild lasting vitality.
               </p>
 
               <div style={{ display: 'flex', gap: '16px', flexWrap: 'wrap' }}>
@@ -332,16 +332,16 @@ export default function HomePage() {
                   <div className="stat-label">Oxygen Advantage Coach in India</div>
                 </div>
                 <div className="stat-item">
-                  <div className="stat-num">18+</div>
-                  <div className="stat-label">Years Diagnostics Industry</div>
+                  <div className="stat-num">20+</div>
+                  <div className="stat-label">Years Healthcare &amp; Diagnostics</div>
                 </div>
                 <div className="stat-item">
                   <div className="stat-num">6+</div>
-                  <div className="stat-label">Elite Global Biohack & Breath Certs</div>
+                  <div className="stat-label">Elite Global Biohack &amp; Breath Certs</div>
                 </div>
                 <div className="stat-item">
-                  <div className="stat-num">38<span style={{ fontSize: '1.25rem' }}>kg</span></div>
-                  <div className="stat-label">Personal Health Transformation</div>
+                  <div className="stat-num">38+<span style={{ fontSize: '1.25rem' }}>kg</span></div>
+                  <div className="stat-label">Personal Transformation (98→60s kg)</div>
                 </div>
               </div>
             </div>
@@ -364,8 +364,8 @@ export default function HomePage() {
                 <div className="hero-floating-badge badge-top-right">
                   <div className="badge-icon">🔬</div>
                   <div className="badge-text">
-                    <strong>18+ Years</strong>
-                    <span>Diagnostics Industry</span>
+                    <strong>20+ Years</strong>
+                    <span>Healthcare &amp; Diagnostics</span>
                   </div>
                 </div>
 
@@ -476,8 +476,8 @@ export default function HomePage() {
               </div>
 
               <div className="transformation-callout">
-                <div className="metric">-38 kg</div>
-                <p>Personal weight loss & complete health reversal. Lived experience meets hard science.</p>
+                <div className="metric">-38+ kg</div>
+                <p>Personal transformation: 98 kg to 60s kg. Lived experience meets hard clinical science.</p>
               </div>
             </div>
 
@@ -490,17 +490,17 @@ export default function HomePage() {
 
               <div style={{ background: 'white', padding: '20px 24px', borderRadius: 'var(--radius-md)', borderLeft: '4px solid var(--emerald-medium)', boxShadow: 'var(--shadow-sm)', marginBottom: '20px' }}>
                 <p style={{ margin: 0, fontStyle: 'italic', color: 'var(--text-primary)', fontSize: '0.98rem', lineHeight: 1.65 }}>
-                  "I don't just teach functional protocols — I lived through the exact same metabolic resistance, persistent fatigue, and weight struggles my clients face. Even with 18 years of experience in the diagnostics industry, conventional diet charts failed me. Only when I targeted cellular gut mucosa, mitochondrial energy, and autonomic breathwork did my body release 38 kg effortlessly."
+                  "I don't just teach functional protocols — I lived through the exact same metabolic resistance, persistent fatigue, and weight struggles my clients face. Even with over 20 years in diagnostics and healthcare, conventional diet charts failed me. Only when I targeted cellular gut mucosa, mitochondrial energy, and autonomic breathwork did my body release 38+ kg (from 98 kg down to the 60s kg) effortlessly."
                 </p>
               </div>
 
               <p style={{ color: 'var(--text-secondary)', marginBottom: '20px', lineHeight: 1.65 }}>
-                When you work with Reshmi, you are guided by someone who understands the physical and mental hurdles firsthand, backed by 18 years of hard diagnostics industry experience.
+                When you work with Reshmi, you are guided by someone who understands the physical and mental hurdles firsthand, backed by over 20 years of diagnostics and healthcare leadership.
               </p>
 
               <div>
                 <Link to="/booking" className="btn btn-primary btn-lg">
-                  <span>Schedule Consultation</span>
+                  <span>Book a Health Clarity Session</span>
                   <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" style={{ marginLeft: '8px' }}>
                     <line x1="5" y1="12" x2="19" y2="12"></line>
                     <polyline points="12 5 19 12 12 19"></polyline>
@@ -568,9 +568,9 @@ export default function HomePage() {
             <div className="usp-card">
               <span className="usp-badge-rank">Diagnostic Leadership</span>
               <div className="usp-icon-box">🔬</div>
-              <h3>18 Years Diagnostics Experience</h3>
+              <h3>20+ Years in Healthcare Industry</h3>
               <p>
-                With 18 years of experience in the diagnostics industry, Reshmi brings an integrative perspective to health, analyzing clinical panels far deeper than superficial reference ranges.
+                Director of Rainbow Medinova Diagnostic Services and Co-founder of Neofit Gym. Over 20 years evaluating complex diagnostics, reading clinical panels far deeper than superficial reference ranges.
               </p>
               <span className="usp-credential-tag">
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
@@ -631,46 +631,175 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 3. The SAMYA Framework Section */}
-      <section className="section" style={{ background: 'white', borderTop: '1px solid var(--border-subtle)', borderBottom: '1px solid var(--border-subtle)' }}>
+      {/* 3. The SAMYA Framework Section (Prominent High-Impact Redesign) */}
+      <section 
+        className="section" 
+        id="samya-methodology"
+        style={{ 
+          background: 'linear-gradient(180deg, #FFFFFF 0%, var(--sand-warm) 50%, #FFFFFF 100%)', 
+          borderTop: '1px solid var(--border-subtle)', 
+          borderBottom: '1px solid var(--border-subtle)',
+          padding: '80px 0'
+        }}
+      >
         <div className="container">
-          <div className="section-header">
-            <span className="sub-title">The SAMYA Methodology</span>
-            <h2>How We Uncover Your Body's True Story</h2>
-            <p>
-              Most health advice treats symptoms in isolation. SAMYA starts with you: connecting gut, breath, hormones, and sleep patterns into a unified clinical blueprint.
+          <div className="section-header text-center" style={{ maxWidth: '820px', margin: '0 auto 20px' }}>
+            <span 
+              className="badge-pill"
+              style={{
+                background: 'var(--emerald-soft)',
+                borderColor: 'var(--emerald-medium)',
+                color: 'var(--emerald-deep)',
+                marginBottom: '16px',
+                fontWeight: 700
+              }}
+            >
+              <span className="pulse-dot" style={{ background: 'var(--emerald-medium)' }}></span>
+              <span>Proprietary Methodology • A Different Way To Look At Health</span>
+            </span>
+            <h2 style={{ fontSize: '2.75rem', lineHeight: 1.2, marginBottom: '16px' }}>
+              The <span className="text-gradient">SAMYA™</span> Method
+            </h2>
+            <p style={{ fontSize: '1.15rem', color: 'var(--text-secondary)', lineHeight: 1.65 }}>
+              Most conventional health advice treats symptoms in isolation. <strong>SAMYA</strong> starts with you: connecting gut, breath, hormones, and sleep patterns into a unified clinical blueprint.
             </p>
           </div>
 
+          {/* 5 Prominent Acronym Step Cards */}
           <div className="samya-track">
+            {/* S */}
             <div className="samya-card">
-              <div className="samya-step-num">Step 01</div>
+              <div className="samya-card-header">
+                <div className="samya-letter-hero">S</div>
+                <span className="samya-step-badge">Step 01</span>
+              </div>
               <h4>See the Signs</h4>
-              <p>Notice what your body is whispering: erratic digestion, sudden energy drops, brain fog, chest breathing, or fragmented sleep architecture.</p>
+              <p>
+                Notice what your body is whispering: erratic digestion, sudden energy drops, brain fog, chest breathing, or fragmented sleep architecture.
+              </p>
+              <span className="samya-card-tag">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                  <circle cx="11" cy="11" r="8"></circle>
+                  <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                </svg>
+                Signal Awareness
+              </span>
             </div>
 
+            {/* A */}
             <div className="samya-card">
-              <div className="samya-step-num">Step 02</div>
+              <div className="samya-card-header">
+                <div className="samya-letter-hero">A</div>
+                <span className="samya-step-badge">Step 02</span>
+              </div>
               <h4>Ask Right Questions</h4>
-              <p>We look beyond surface symptoms into your medical history, metabolic timeline, and environmental triggers to understand how patterns formed.</p>
+              <p>
+                We look beyond surface symptoms into your medical history, metabolic timeline, and environmental triggers to understand how patterns formed.
+              </p>
+              <span className="samya-card-tag">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                  <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+                </svg>
+                Deep Root Inquiry
+              </span>
             </div>
 
+            {/* M */}
             <div className="samya-card">
-              <div className="samya-step-num">Step 03</div>
+              <div className="samya-card-header">
+                <div className="samya-letter-hero">M</div>
+                <span className="samya-step-badge">Step 03</span>
+              </div>
               <h4>Map the Patterns</h4>
-              <p>We connect the dots between blood chemistry, CO₂ breathing tolerance, microbiome ecology, and circadian cortisol curves.</p>
+              <p>
+                We connect the dots between blood chemistry, CO₂ breathing tolerance, microbiome ecology, and circadian cortisol curves.
+              </p>
+              <span className="samya-card-tag">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                  <line x1="18" y1="20" x2="18" y2="10"></line>
+                  <line x1="12" y1="20" x2="12" y2="4"></line>
+                  <line x1="6" y1="20" x2="6" y2="14"></line>
+                </svg>
+                Pattern Synthesis
+              </span>
             </div>
 
+            {/* Y */}
             <div className="samya-card">
-              <div className="samya-step-num">Step 04</div>
-              <h4>Custom Solution</h4>
-              <p>A science-backed protocol engineered for your biochemistry: targeted cellular nutrition, gut mucosal repair, and neuromodulation breathwork.</p>
+              <div className="samya-card-header">
+                <div className="samya-letter-hero">Y</div>
+                <span className="samya-step-badge">Step 04</span>
+              </div>
+              <h4>Your Custom Solution</h4>
+              <p>
+                A science-backed protocol engineered for your biochemistry: targeted cellular nutrition, gut mucosal repair, and neuromodulation breathwork.
+              </p>
+              <span className="samya-card-tag">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                  <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                </svg>
+                Bespoke Protocol
+              </span>
             </div>
 
+            {/* A */}
             <div className="samya-card">
-              <div className="samya-step-num">Step 05</div>
-              <h4>Lasting Wellness</h4>
-              <p>Sustainable cellular vitality that holds for life, monitored through follow-up check-ins and objective biomarker improvements.</p>
+              <div className="samya-card-header">
+                <div className="samya-letter-hero">A</div>
+                <span className="samya-step-badge">Step 05</span>
+              </div>
+              <h4>Achieve Lasting Wellness</h4>
+              <p>
+                Sustainable cellular vitality that holds for life, monitored through follow-up check-ins and objective biomarker improvements.
+              </p>
+              <span className="samya-card-tag">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                  <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                  <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                </svg>
+                Sustained Vitality
+              </span>
+            </div>
+          </div>
+
+          {/* Integrated SAMYA Bridge Action Banner */}
+          <div className="samya-banner-bridge">
+            <div className="samya-banner-content">
+              <span 
+                className="badge-pill" 
+                style={{ 
+                  background: 'rgba(255, 255, 255, 0.15)', 
+                  borderColor: 'rgba(255, 255, 255, 0.25)', 
+                  color: '#FED7AA',
+                  marginBottom: '14px' 
+                }}
+              >
+                <span>From Insight To Clarity</span>
+              </span>
+              <h3>Your assessment highlights the patterns. Your Clarity Session explores your story.</h3>
+              <p>
+                Experience the SAMYA Method firsthand. In a 60-minute 1:1 Health Clarity Session, Reshmi Verma connects the dots across your health history, lab work, and breathing biomechanics.
+              </p>
+            </div>
+            <div className="samya-banner-actions">
+              <Link 
+                to="/booking" 
+                className="btn btn-accent btn-lg"
+                style={{ background: '#FFFFFF', color: 'var(--emerald-deep)', fontWeight: 700 }}
+              >
+                <span>Book a Health Clarity Session</span>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                  <line x1="5" y1="12" x2="19" y2="12"></line>
+                  <polyline points="12 5 19 12 12 19"></polyline>
+                </svg>
+              </Link>
+              <Link 
+                to="/assessment" 
+                className="btn btn-secondary btn-lg"
+                style={{ background: 'rgba(255, 255, 255, 0.12)', color: 'white', borderColor: 'rgba(255, 255, 255, 0.3)' }}
+              >
+                <span>Take Free Assessment</span>
+              </Link>
             </div>
           </div>
         </div>
@@ -881,19 +1010,39 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 5. 4 Core Clinical Domains / Pillars */}
+      {/* 5. 6 Core Interconnected Clinical Pillars (Your Health. Your Whole Story) */}
       <section className="section" id="pillars" style={{ background: 'var(--bg-secondary)' }}>
         <div className="container">
-          <div className="section-header">
-            <span className="sub-title">Comprehensive Clinical Focus</span>
-            <h2>Four Interconnected Pillars of Healing</h2>
+          <div className="section-header text-center" style={{ maxWidth: '820px', margin: '0 auto 40px' }}>
+            <span className="sub-title">Your Health. Your Whole Story.</span>
+            <h2>Six Interconnected Pillars of Lasting Vitality</h2>
             <p>
-              Because energy, digestion, hormones, sleep, and longevity are never separate conversations. They communicate continuously at the cellular level.
+              Because energy, digestion, hormones, sleep, stress and longevity are not separate conversations. They’re connected.
             </p>
           </div>
 
           <div className="pillars-grid">
-            {/* Pillar 1 */}
+            {/* Pillar 1: Health Insights */}
+            <div className="pillar-card">
+              <div className="pillar-icon-box">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <circle cx="12" cy="12" r="10"></circle>
+                  <line x1="12" y1="16" x2="12" y2="12"></line>
+                  <line x1="12" y1="8" x2="12.01" y2="8"></line>
+                </svg>
+              </div>
+              <h3>Health Insights</h3>
+              <p>
+                Bring together your health story, history, and available clinical information to see the bigger picture and identify root patterns.
+              </p>
+              <div className="pillar-tags">
+                <span className="pillar-tag">Health History</span>
+                <span className="pillar-tag">Pattern Discovery</span>
+                <span className="pillar-tag">Big Picture Care</span>
+              </div>
+            </div>
+
+            {/* Pillar 2: Gut Health */}
             <div className="pillar-card">
               <div className="pillar-icon-box">
                 <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
@@ -901,18 +1050,18 @@ export default function HomePage() {
                   <path d="M12 7v5l3 3"></path>
                 </svg>
               </div>
-              <h3>Gut Health & Microbiome</h3>
+              <h3>Gut Health</h3>
               <p>
-                Repairing intestinal mucosal architecture, sealing tight junctions, cultivating Akkermansia, resolving SIBO, IBS, and chronic reflux through phyto-pharmacology.
+                Understand your digestion, gut patterns, microbiome fermentation, and the factors that may influence how you feel each day.
               </p>
               <div className="pillar-tags">
                 <span className="pillar-tag">Mucosal Repair</span>
-                <span className="pillar-tag">Postbiotics</span>
-                <span className="pillar-tag">SIBO / Dysbiosis</span>
+                <span className="pillar-tag">Digestion Patterns</span>
+                <span className="pillar-tag">Microbiome Balance</span>
               </div>
             </div>
 
-            {/* Pillar 2 */}
+            {/* Pillar 3: Breathwork & Regulation */}
             <div className="pillar-card">
               <div className="pillar-icon-box">
                 <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
@@ -921,18 +1070,37 @@ export default function HomePage() {
                   <path d="M12 8v8"></path>
                 </svg>
               </div>
-              <h3>Breathwork & Vagal Tone</h3>
+              <h3>Breathwork &amp; Regulation</h3>
               <p>
-                Neuromodulation via CO₂ tolerance recalibration, Bohr effect optimization, and restoring parasympathetic vagus nerve tone to lower resting heart rate.
+                Breathe, regulate, and build greater resilience through functional breathing biomechanics, vagal stimulation, and CO₂ tolerance.
               </p>
               <div className="pillar-tags">
-                <span className="pillar-tag">BOLT Testing</span>
-                <span className="pillar-tag">Vagal Stimulation</span>
                 <span className="pillar-tag">Oxygen Advantage</span>
+                <span className="pillar-tag">Vagal Tone</span>
+                <span className="pillar-tag">Stress Modulation</span>
               </div>
             </div>
 
-            {/* Pillar 3 */}
+            {/* Pillar 4: Personalised Nutrition */}
+            <div className="pillar-card">
+              <div className="pillar-icon-box">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <path d="M18 6L6 18"></path>
+                  <path d="M6 6l12 12"></path>
+                </svg>
+              </div>
+              <h3>Personalised Nutrition</h3>
+              <p>
+                Build an approach to food and cellular nutrition that works for your unique body, metabolic speed, and daily schedule without starvation.
+              </p>
+              <div className="pillar-tags">
+                <span className="pillar-tag">Nutrient Density</span>
+                <span className="pillar-tag">Glycemic Stability</span>
+                <span className="pillar-tag">Real Food First</span>
+              </div>
+            </div>
+
+            {/* Pillar 5: Hormonal Health */}
             <div className="pillar-card">
               <div className="pillar-icon-box">
                 <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
@@ -940,39 +1108,39 @@ export default function HomePage() {
                   <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
                 </svg>
               </div>
-              <h3>Hormonal & Circadian Flow</h3>
+              <h3>Hormonal Health</h3>
               <p>
-                Restoring thyroid receptor sensitivity, balancing cortisol rhythms, optimizing cellular insulin signaling, and breaking fatigue cycles naturally.
+                Support your body through changing needs, cortisol fluctuations, thyroid receptor sensitivity, and different life stages.
               </p>
               <div className="pillar-tags">
-                <span className="pillar-tag">Cortisol Mapping</span>
-                <span className="pillar-tag">Insulin Kinetics</span>
-                <span className="pillar-tag">Thyroid Support</span>
+                <span className="pillar-tag">Cortisol Balance</span>
+                <span className="pillar-tag">Metabolic Flow</span>
+                <span className="pillar-tag">Life Stage Support</span>
               </div>
             </div>
 
-            {/* Pillar 4 */}
+            {/* Pillar 6: Longevity & Healthy Ageing */}
             <div className="pillar-card">
               <div className="pillar-icon-box">
                 <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                  <path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+                  <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
                 </svg>
               </div>
-              <h3>Cellular Longevity & Sleep</h3>
+              <h3>Longevity &amp; Healthy Ageing</h3>
               <p>
-                Mitochondrial ATP synthesis, STOP-BANG airway evaluation, nighttime mouth-to-nasal conversion, and deep regenerative REM sleep stabilization.
+                Build the foundations for a healthier, stronger future through mitochondrial energy repair, restful sleep cycles, and cellular resilience.
               </p>
               <div className="pillar-tags">
-                <span className="pillar-tag">Airway Health</span>
                 <span className="pillar-tag">Mitochondrial ATP</span>
-                <span className="pillar-tag">NAD+ Recycling</span>
+                <span className="pillar-tag">Deep Sleep</span>
+                <span className="pillar-tag">Cellular Vitality</span>
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* 7. Clinical Diagnostics Leadership & Global Credentials */}
+      {/* 6. Clinical Diagnostics Leadership & Global Credentials (Meet Reshmi) */}
       <section className="section" id="about-reshmi" style={{ background: 'white' }}>
         <div className="container">
           <div className="about-grid">
@@ -986,24 +1154,24 @@ export default function HomePage() {
                 />
               </div>
               <div className="transformation-callout" style={{ bottom: '-16px', right: '-16px' }}>
-                <div className="metric">18 Yrs</div>
-                <p>Diagnostics Industry Experience</p>
+                <div className="metric">20+ Yrs</div>
+                <p>Healthcare &amp; Diagnostics Experience</p>
               </div>
             </div>
 
             <div className="about-content">
               <span className="sub-title">Integrative Perspective to Health</span>
-              <h2>About Reshmi Verma</h2>
+              <h2>Meet Reshmi Verma</h2>
               <p className="lead" style={{ fontSize: '1.12rem', color: 'var(--emerald-deep)', fontWeight: 700, marginBottom: '18px' }}>
-                Functional Nutritionist &bull; Breathwork Facilitator &bull; Certified Biohacker &bull; Top Oxygen Advantage Coach India
+                Biotechnologist &bull; MBA &bull; Functional Nutritionist &bull; Top Oxygen Advantage Coach &bull; Biohacker
               </p>
 
               <p style={{ color: 'var(--text-secondary)', marginBottom: '14px', lineHeight: 1.7, fontSize: '1.02rem' }}>
-                With <strong>18 years of experience in the diagnostics industry</strong>, I bring an integrative perspective to health, combining functional nutrition, breathwork, stress regulation and recovery.
+                I’m a <strong>Biotechnologist and MBA in Marketing &amp; HR</strong>, with a specialization in <strong>Medical Tourism</strong>, and have spent <strong>over 20 years</strong> in the world of diagnostics and healthcare. I’m the <strong>Director of Rainbow Medinova Diagnostic Services</strong> &amp; <strong>Co-founder of Neofit Gym</strong>.
               </p>
 
               <p style={{ color: 'var(--text-secondary)', marginBottom: '16px', lineHeight: 1.7, fontSize: '1.02rem' }}>
-                My approach focuses on helping individuals understand their breathing patterns, build greater awareness and develop resilience through the signature <strong>3R Framework</strong>: <strong>Restoration</strong>, <strong>Regulation</strong>, and <strong>Resilience</strong>.
+                As a Functional Nutritionist, Biohacker &amp; Gut Health Coach, I’ve studied Functional Nutrition across <strong>India, the USA and Australia</strong>, and trained as an <strong>Oxygen Advantage Coach</strong> (recognized among India's top certified coaches), Breath Resilience Instructor and Circular Connected Breathwork Facilitator, with a deep interest in Longevity.
               </p>
 
               {/* Philosophy Quote Callout */}
@@ -1018,49 +1186,103 @@ export default function HomePage() {
                 fontSize: '1.02rem', 
                 lineHeight: 1.6 
               }}>
-                &ldquo;I believe resilience is not about pushing harder, but about creating the right foundation for the body to adapt, regulate and recover.&rdquo;
+                &ldquo;Perhaps my most personal qualification is my own transformation losing more than 38 kg (from 98 kg to the 60s kg) and completely changing my relationship with health. Today, I bring together science, healthcare experience and lived transformation to help people build better health, greater resilience and lasting change.&rdquo;
               </div>
-
-              <p style={{ color: 'var(--text-secondary)', marginBottom: '24px', lineHeight: 1.65, fontSize: '0.96rem' }}>
-                Trained in Dublin under Patrick McKeown as an <strong>Oxygen Advantage Coach</strong> (recognized among India's top certified coaches), Circular Connected Breathwork Facilitator, and Certified Biohacker, every protocol is personalized around your objective biomarkers to create lasting cellular vitality.
-              </p>
 
               <div className="credentials-list">
                 <div className="credential-item">
                   <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
                     <polyline points="20 6 9 17 4 12"></polyline>
                   </svg>
-                  <span>18 Years Diagnostics Experience</span>
+                  <span>20+ Years in Healthcare &amp; Diagnostics</span>
                 </div>
                 <div className="credential-item">
                   <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
                     <polyline points="20 6 9 17 4 12"></polyline>
                   </svg>
-                  <span>Top Oxygen Advantage Coach India</span>
+                  <span>Director, Rainbow Medinova &amp; Co-founder, Neofit Gym</span>
                 </div>
                 <div className="credential-item">
                   <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
                     <polyline points="20 6 9 17 4 12"></polyline>
                   </svg>
-                  <span>Certified Biohacker &amp; Breathwork Facilitator</span>
+                  <span>Functional Nutritionist (India, USA &amp; Australia)</span>
                 </div>
                 <div className="credential-item">
                   <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
                     <polyline points="20 6 9 17 4 12"></polyline>
                   </svg>
-                  <span>3R Framework: Restoration, Regulation &amp; Resilience</span>
+                  <span>Top Oxygen Advantage Coach &amp; Breath Resilience Instructor</span>
                 </div>
               </div>
 
-              <div style={{ display: 'flex', gap: '14px', flexWrap: 'wrap', marginTop: '8px' }}>
+              <div style={{ display: 'flex', gap: '14px', flexWrap: 'wrap', marginTop: '14px' }}>
                 <Link to="/booking" className="btn btn-primary">
-                  <span>Schedule Consultation</span>
+                  <span>Book a Health Clarity Session</span>
                 </Link>
                 <Link to="/assessment" className="btn btn-secondary">
                   <span>Take Free Health Assessment</span>
                 </Link>
               </div>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 7. How We Work Together Section (No One-Size-Fits-All) */}
+      <section className="section" id="how-we-work" style={{ background: 'var(--sand-warm)', borderTop: '1px solid var(--sand-border)', borderBottom: '1px solid var(--sand-border)' }}>
+        <div className="container">
+          <div className="section-header text-center" style={{ maxWidth: '820px', margin: '0 auto 30px' }}>
+            <span className="sub-title">A Tailored Health Pathway</span>
+            <h2>How We Work Together</h2>
+            <p>
+              After your Health Clarity Session, the appropriate health pathway is determined based on your individual needs. There is no one-size-fits-all program.
+            </p>
+          </div>
+
+          <div className="how-steps-grid">
+            <div className="how-step-card">
+              <div className="how-step-number">01</div>
+              <h3>Free Health Assessment</h3>
+              <p>
+                Take our 5-minute Health Resilience Assessment to capture your health baseline, pinpoint gut patterns, and understand the signals your body is giving.
+              </p>
+              <span className="how-step-highlight">Step 1 • Signal Discovery</span>
+            </div>
+
+            <div className="how-step-card" style={{ borderColor: 'var(--emerald-medium)', boxShadow: 'var(--shadow-md)', background: '#FFFFFF' }}>
+              <div className="how-step-number" style={{ color: 'var(--emerald-medium)' }}>02</div>
+              <h3>Health Clarity Session</h3>
+              <p>
+                A comprehensive 60-minute 1:1 session with Reshmi Verma (₹1,999) exploring your health history, lab panels, breathing mechanics, and metabolic bottlenecks.
+              </p>
+              <span className="how-step-highlight" style={{ background: 'var(--emerald-soft)' }}>Step 2 • 60-Min 1:1 (₹1,999)</span>
+            </div>
+
+            <div className="how-step-card">
+              <div className="how-step-number">03</div>
+              <h3>Tailored Health Pathway</h3>
+              <p>
+                Receive an individualized protocol built around your unique biochemistry: targeted cellular nutrition, gut mucosal repair, and respiratory modulation.
+              </p>
+              <span className="how-step-highlight">Step 3 • Customized Protocol</span>
+            </div>
+          </div>
+
+          <div className="how-manifesto-box">
+            <div className="how-manifesto-text">
+              <strong>There is no one-size-fits-all program.</strong>
+              <p>
+                Your personalized plan is built directly around your health story, goals, and biochemical assessment. That is vastly more powerful and sustainable than generic diet charts.
+              </p>
+            </div>
+            <Link to="/booking" className="btn btn-primary btn-lg">
+              <span>Book a Health Clarity Session</span>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" style={{ marginLeft: '8px' }}>
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+                <polyline points="12 5 19 12 12 19"></polyline>
+              </svg>
+            </Link>
           </div>
         </div>
       </section>
@@ -1360,7 +1582,7 @@ export default function HomePage() {
               className="btn btn-accent btn-lg"
               style={{ background: 'white', color: 'var(--emerald-deep)', boxShadow: '0 4px 20px rgba(0,0,0,0.15)' }}
             >
-              <span>Schedule Clinical Consultation</span>
+              <span>Book a Health Clarity Session</span>
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
                 <line x1="5" y1="12" x2="19" y2="12"></line>
                 <polyline points="12 5 19 12 12 19"></polyline>

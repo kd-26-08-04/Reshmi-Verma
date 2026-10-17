@@ -34,7 +34,7 @@ export default function Footer() {
                     </svg>
                     <span>Instagram</span>
                   </a>
-                  <a
+                  {/* <a
                     href="https://www.linkedin.com/in/reshmi-verma/"
                     target="_blank"
                     rel="noopener noreferrer"
@@ -47,7 +47,7 @@ export default function Footer() {
                       <circle cx="4" cy="4" r="2"></circle>
                     </svg>
                     <span>LinkedIn</span>
-                  </a>
+                  </a> */}
                   <a
                     href="https://youtube.com/@healthwithreshmi?si=J_-3JErcDWbGw6gj"
                     target="_blank"
@@ -79,9 +79,9 @@ export default function Footer() {
             <div className="footer-col">
               <h5>Consultations</h5>
               <ul className="footer-links">
+                <li><Link to="/booking?tier=healthClarity">Health Clarity Session (₹1,999)</Link></li>
                 <li><Link to="/booking?tier=discovery">Discovery Call (₹999)</Link></li>
-                <li><Link to="/booking?tier=comprehensive">Comprehensive Plan (₹2,999)</Link></li>
-                <li><Link to="/booking?tier=followup">Follow-Up (₹1,499)</Link></li>
+                <li><Link to="/booking?tier=followup">Follow-Up Check-in (₹1,499)</Link></li>
                 <li><Link to="/breathe">BOLT Breath Test</Link></li>
               </ul>
             </div>

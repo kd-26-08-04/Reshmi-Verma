@@ -5,6 +5,23 @@ import { useAuth } from '../context/AuthContext';
 import { getApiUrl } from '../utils/api';
 
 const DEFAULT_PRICING_TIERS = {
+  healthClarity: {
+    id: 'healthClarity',
+    name: 'Health Clarity Session (60 min)',
+    badge: 'Recommended • 1:1 Deep Dive',
+    title: 'Health Clarity Session',
+    duration: '60 Minutes • Personalised Health Roadmap',
+    price: 1999,
+    featured: true,
+    desc: 'The bridge from insight to clarity. A 60-minute 1:1 deep dive with Reshmi Verma to explore your health story, analyze symptom patterns, review blood diagnostics, and determine your tailored health pathway.',
+    features: [
+      'Comprehensive review of your health story & history',
+      'Blood chemistry, gut patterns & biomarker analysis',
+      'Breathing biomechanics & BOLT baseline assessment',
+      'Written clinical roadmap & tailored health pathway'
+    ],
+    buttonText: 'Select Health Clarity Session (₹1,999)'
+  },
   discovery: {
     id: 'discovery',
     name: 'Initial Discovery Call (20 min)',
@@ -19,23 +36,6 @@ const DEFAULT_PRICING_TIERS = {
       'Identify the right next clinical step'
     ],
     buttonText: 'Select Discovery Call (₹999)'
-  },
-  comprehensive: {
-    id: 'comprehensive',
-    name: 'Comprehensive Consultation (60 min)',
-    badge: 'Comprehensive Consultation',
-    title: 'Comprehensive Consultation',
-    duration: '60 Minutes • Full Root-Cause Roadmap',
-    price: 2999,
-    featured: true,
-    desc: 'Deep dive into your blood diagnostics, gut health timeline, circadian sleep mapping, and custom metabolic architecture.',
-    features: [
-      'Full blood chemistry & biomarker review',
-      'Customized gut mucosal healing protocol',
-      'Individualized Oxygen Advantage breath prescription',
-      'Written clinical action plan & supplement guide'
-    ],
-    buttonText: 'Select Comprehensive Plan (₹2,999)'
   },
   followup: {
     id: 'followup',
@@ -75,8 +75,9 @@ export default function BookingPage() {
   const [tiersList, setTiersList] = useState(DEFAULT_TIERS_LIST);
 
   // Initialize selected tier from URL or fallback
-  const urlTier = searchParams.get('tier') || searchParams.get('plan') || 'comprehensive';
-  const initialTierKey = DEFAULT_PRICING_TIERS[urlTier] ? urlTier : 'comprehensive';
+  const rawTier = searchParams.get('tier') || searchParams.get('plan') || 'healthClarity';
+  const urlTier = rawTier === 'comprehensive' ? 'healthClarity' : rawTier;
+  const initialTierKey = DEFAULT_PRICING_TIERS[urlTier] ? urlTier : 'healthClarity';
   const [selectedTier, setSelectedTier] = useState(initialTierKey);
 
   // Form State

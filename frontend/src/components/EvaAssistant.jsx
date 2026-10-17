@@ -2,24 +2,40 @@ import React, { useState, useRef, useEffect } from 'react';
 
 const knowledgeBase = [
   {
+    triggers: ['price', 'fee', 'cost', 'charge', 'rate', 'how much', 'pricing'],
+    reply: "The primary 1:1 consultation is the Health Clarity Session — ₹1,999 for a 60-minute deep dive with Reshmi Verma. In this session, Reshmi connects the dots across your health history, reviews blood chemistry, evaluates gut patterns and breathing biomechanics, and designs your tailored roadmap. We also offer a 20-min Discovery Call (₹999) if you prefer an exploratory chat."
+  },
+  {
+    triggers: ['clarity', 'health clarity', 'session', 'consultation', 'what happens', 'book', 'appointment'],
+    reply: "The Health Clarity Session (60 min • ₹1,999) is the bridge from insight to lasting wellness. Reshmi Verma explores your whole health story, analyzes your gut mucosal ecosystem, assesses breathing tolerance, and establishes your customized health pathway. You can click 'Book a Health Clarity Session' anytime to select your preferred date and slot."
+  },
+  {
+    triggers: ['reshmi', 'who is', 'qualification', 'credential', 'background', 'bio'],
+    reply: "Reshmi Verma is a Biotechnologist and MBA in Marketing & HR (Specialization in Medical Tourism) with over 20 years in diagnostics and healthcare. She is the Director of Rainbow Medinova Diagnostic Services and Co-founder of Neofit Gym. Having studied Functional Nutrition across India, the USA, and Australia, she is recognized among India's Top Oxygen Advantage Coaches and personally lost 38+ kg (98 kg to 60s kg) without crash dieting."
+  },
+  {
+    triggers: ['samya', 'framework', 'approach', 'process', 'methodology'],
+    reply: "The SAMYA Method is Reshmi Verma's proprietary 5-step approach: 1. See the signs, 2. Ask the right questions, 3. Map the patterns across gut, breath, hormones & sleep, 4. Your customized solution, and 5. Achieve lasting wellness."
+  },
+  {
+    triggers: ['program', 'package', 'one size', 'pathway', 'plan'],
+    reply: "There is no one-size-fits-all program at HealthwithReshmi. After your Health Clarity Session, a tailored health pathway is engineered specifically around your biochemistry, symptom patterns, and real-life schedule."
+  },
+  {
+    triggers: ['assessment', 'quiz', 'resilience assessment', 'lead'],
+    reply: "Our free 5-minute Health Resilience Assessment decodes your symptom patterns across gut health, breathwork, and circadian flow. It gives you a personalized health baseline that Reshmi explores during your Health Clarity Session."
+  },
+  {
     triggers: ['bolt', 'oxygen', 'hold', 'test', 'breath hold'],
     reply: "The BOLT (Body Oxygen Level Test) measures your body's tolerance to carbon dioxide and reveals how efficiently oxygen reaches your cells via the Bohr Effect. A score under 20s suggests over-breathing and airway stress, while 30s+ indicates superior aerobic resilience."
   },
   {
-    triggers: ['gut', 'bloat', 'acid', 'reflux', 'digestion', 'ibs', 'microbiome'],
+    triggers: ['gut', 'bloat', 'acid', 'reflux', 'digestion', 'ibs', 'microbiome', 'sibo'],
     reply: "Reshmi Verma's gut mucosal protocol treats the intestinal barrier as a dynamic ecosystem. We address leaky gut, dysbiosis, and the gut-brain axis using targeted phyto-botanicals, polyphenols, and vagus nerve stimulation."
   },
   {
-    triggers: ['reshmi', 'nutritionist', 'bio', 'who', 'qualification'],
-    reply: "Reshmi Verma is a Functional Nutritionist, Breathwork Facilitator, Certified Biohacker, and recognized among India's Top Oxygen Advantage Coaches with 18 years of experience in the diagnostics industry. She guides clients through her signature 3R Framework: Restoration, Regulation, and Resilience."
-  },
-  {
-    triggers: ['samya', 'framework', 'approach', 'process'],
-    reply: "SAMYA is Reshmi Verma's signature framework: 1. See the signs, 2. Ask the right questions, 3. Map the patterns across gut, breath, hormones & sleep, 4. Your customized solution, and 5. Achieve lasting wellness."
-  },
-  {
-    triggers: ['consult', 'book', 'appointment', 'fee', 'price', 'session'],
-    reply: "You can book an Initial Discovery Call (20 min) or a Comprehensive Clinical Consultation (60 min). Simply click 'Book Consultation' in the menu or go to the booking page to select your date and time."
+    triggers: ['medicine', 'cure', 'prescribe', 'diagnose', 'disease', 'tablet', 'drug'],
+    reply: "Please note: I am an educational health assistant and do not diagnose medical conditions, prescribe medication, or replace a doctor's care. For an individualized root-cause roadmap, please book a 1:1 Health Clarity Session with Reshmi Verma."
   },
   {
     triggers: ['478', 'box', 'breathwork', 'technique', 'vagal'],
@@ -32,7 +48,7 @@ export default function EvaAssistant() {
   const [messages, setMessages] = useState([
     {
       sender: 'bot',
-      text: "Hi, I'm Eva, Reshmi Verma's clinical health assistant. How can I guide you today regarding nutrition, gut health, BOLT breathing, or booking a consultation?"
+      text: "Hi, I'm Eva, your HealthwithReshmi AI Assistant! How can I guide you today regarding nutrition, gut health, breathwork, taking our free health assessment, or booking a Health Clarity Session (₹1,999)?"
     }
   ]);
   const [inputVal, setInputVal] = useState('');

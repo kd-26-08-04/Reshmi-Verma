@@ -1160,7 +1160,7 @@ h6 {
    ========================================================================== */
 .pillars-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   gap: 24px;
 }
 
@@ -1657,64 +1657,256 @@ h6 {
 }
 
 /* ==========================================================================
-   The SAMYA Framework (5-Step Holistic Journey)
+   The SAMYA Framework (5-Step Holistic Journey — High Impact Redesign)
    ========================================================================== */
 .samya-track {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
-  gap: 20px;
+  gap: 22px;
   position: relative;
-  margin-top: 40px;
+  margin-top: 44px;
 }
 
 .samya-card {
-  background: rgba(255, 255, 255, 0.94);
+  background: linear-gradient(180deg, #FFFFFF 0%, rgba(254, 245, 238, 0.7) 100%);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
-  border-radius: var(--radius-md);
-  border: 1.5px solid rgba(194, 65, 12, 0.18);
-  border-top: 3px solid var(--emerald-medium);
-  padding: 28px 22px;
-  box-shadow: 0 10px 25px -5px rgba(15, 23, 42, 0.06);
+  border-radius: var(--radius-lg);
+  border: 1.5px solid rgba(194, 65, 12, 0.22);
+  border-top: 4px solid var(--emerald-medium);
+  padding: 32px 22px 26px;
+  box-shadow: 0 12px 30px -8px rgba(15, 23, 42, 0.08);
   position: relative;
+  display: flex;
+  flex-direction: column;
   transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.35s ease;
 }
 
 .samya-card:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 20px 45px -10px rgba(194, 65, 12, 0.18), 0 0 25px rgba(234, 88, 12, 0.08);
-  border-color: rgba(194, 65, 12, 0.45);
+  transform: translateY(-10px);
+  box-shadow: 0 24px 50px -10px rgba(194, 65, 12, 0.24), 0 0 25px rgba(234, 88, 12, 0.12);
+  border-color: var(--emerald-medium);
+  background: #FFFFFF;
 }
 
-.samya-step-num {
-  font-size: 0.85rem;
+.samya-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.samya-letter-hero {
+  width: 56px;
+  height: 56px;
+  border-radius: 16px;
+  background: linear-gradient(135deg, var(--emerald-medium) 0%, var(--emerald-light) 100%);
+  color: #FFFFFF;
+  font-family: var(--font-serif);
+  font-size: 1.85rem;
   font-weight: 800;
-  color: var(--emerald-light);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 8px 20px rgba(194, 65, 12, 0.32);
+  line-height: 1;
+  transition: transform 0.3s ease;
+}
+
+.samya-card:hover .samya-letter-hero {
+  transform: scale(1.1) rotate(-3deg);
+}
+
+.samya-step-badge {
+  font-size: 0.78rem;
+  font-weight: 800;
   text-transform: uppercase;
-  letter-spacing: 0.1em;
-  margin-bottom: 8px;
+  letter-spacing: 0.08em;
+  color: var(--emerald-medium);
+  background: var(--emerald-soft);
+  padding: 5px 12px;
+  border-radius: var(--radius-full);
 }
 
 .samya-card h4 {
-  font-size: 1.25rem;
+  font-size: 1.35rem;
+  font-weight: 700;
   margin-bottom: 12px;
   color: var(--emerald-deep);
+  line-height: 1.3;
 }
 
 .samya-card p {
-  font-size: 0.88rem;
+  font-size: 0.92rem;
   color: var(--text-secondary);
+  line-height: 1.65;
+  margin-bottom: 22px;
+  flex-grow: 1;
+}
+
+.samya-card-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--emerald-primary);
+  background: rgba(255, 255, 255, 0.95);
+  border: 1px solid var(--border-subtle);
+  padding: 5px 12px;
+  border-radius: var(--radius-full);
+  margin-top: auto;
+  align-self: flex-start;
+}
+
+.samya-banner-bridge {
+  background: linear-gradient(135deg, #0F172A 0%, #1E293B 100%);
+  color: white;
+  border-radius: var(--radius-xl);
+  padding: 36px 44px;
+  margin-top: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 24px;
+  box-shadow: 0 16px 45px -10px rgba(15, 23, 42, 0.25);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.samya-banner-content h3 {
+  color: #FFFFFF;
+  font-size: 1.6rem;
+  margin-bottom: 8px;
+}
+
+.samya-banner-content p {
+  color: #FED7AA;
+  font-size: 1.02rem;
+  max-width: 650px;
+  margin: 0;
   line-height: 1.6;
 }
 
-@media (max-width: 1024px) {
+.samya-banner-actions {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+@media (max-width: 1200px) {
   .samya-track {
     grid-template-columns: repeat(3, 1fr);
   }
 }
 
-@media (max-width: 640px) {
+@media (max-width: 768px) {
   .samya-track {
+    grid-template-columns: 1fr;
+    gap: 16px;
+    margin-top: 24px;
+  }
+  .samya-banner-bridge {
+    padding: 26px 20px;
+    flex-direction: column;
+    text-align: left;
+  }
+}
+
+/* ==========================================================================
+   How We Work Together (No One-Size-Fits-All) Section
+   ========================================================================== */
+.how-steps-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
+  margin-top: 40px;
+}
+
+.how-step-card {
+  background: #FFFFFF;
+  border-radius: var(--radius-lg);
+  border: 1.5px solid var(--border-subtle);
+  padding: 38px 30px;
+  position: relative;
+  transition: all 0.35s ease;
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  flex-direction: column;
+}
+
+.how-step-card:hover {
+  transform: translateY(-8px);
+  border-color: var(--emerald-medium);
+  box-shadow: var(--shadow-lg);
+}
+
+.how-step-number {
+  font-family: var(--font-serif);
+  font-size: 3rem;
+  font-weight: 800;
+  color: var(--emerald-soft);
+  line-height: 1;
+  margin-bottom: 12px;
+}
+
+.how-step-card h3 {
+  font-size: 1.45rem;
+  color: var(--emerald-deep);
+  margin-bottom: 14px;
+}
+
+.how-step-card p {
+  font-size: 0.98rem;
+  color: var(--text-secondary);
+  line-height: 1.65;
+  margin-bottom: 20px;
+  flex-grow: 1;
+}
+
+.how-step-highlight {
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--emerald-medium);
+  background: var(--sand-cream);
+  padding: 6px 14px;
+  border-radius: var(--radius-full);
+  align-self: flex-start;
+}
+
+.how-manifesto-box {
+  background: var(--sand-cream);
+  border-left: 4px solid var(--emerald-medium);
+  padding: 24px 30px;
+  border-radius: 0 var(--radius-lg) var(--radius-lg) 0;
+  margin-top: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+
+.how-manifesto-text {
+  max-width: 700px;
+}
+
+.how-manifesto-text strong {
+  display: block;
+  font-size: 1.15rem;
+  color: var(--emerald-deep);
+  margin-bottom: 6px;
+}
+
+.how-manifesto-text p {
+  color: var(--text-secondary);
+  margin: 0;
+  font-size: 0.98rem;
+  line-height: 1.6;
+}
+
+@media (max-width: 900px) {
+  .how-steps-grid {
     grid-template-columns: 1fr;
   }
 }
