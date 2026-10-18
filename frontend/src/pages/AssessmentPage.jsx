@@ -1,5 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { useAuth } from '../context/AuthContext';
+import { getApiUrl } from '../utils/api';
 
 // 3 Clinical Sections for Focused Functional Health Evaluation
 const ASSESSMENT_SECTIONS = [
@@ -281,10 +283,35 @@ const ASSESSMENT_SECTIONS = [
 ];
 
 export default function AssessmentPage() {
+  const { user } = useAuth();
   const [currentSectionIndex, setCurrentSectionIndex] = useState(0);
   const [currentQuestionIndexInSection, setCurrentQuestionIndexInSection] = useState(0);
   const [answers, setAnswers] = useState({});
   const [results, setResults] = useState(null);
+
+  // Lead Info State (retrieved from welcome popup or pre-assessment gate)
+  const [leadInfo, setLeadInfo] = useState(() => {
+    try {
+      const stored = localStorage.getItem('reshmi_assessment_lead');
+      if (stored) return JSON.parse(stored);
+    } catch (e) {}
+    return null;
+  });
+
+  // Pre-Assessment Gate Form state (if user landed on /assessment directly)
+  const [leadName, setLeadName] = useState(user?.name || '');
+  const [leadPhone, setLeadPhone] = useState(user?.phone || '');
+  const [leadEmail, setLeadEmail] = useState(user?.email || '');
+  const [leadError, setLeadError] = useState('');
+  const [leadSaving, setLeadSaving] = useState(false);
+
+  useEffect(() => {
+    if (user && !leadInfo) {
+      if (user.name) setLeadName(user.name);
+      if (user.phone) setLeadPhone(user.phone);
+      if (user.email) setLeadEmail(user.email);
+    }
+  }, [user, leadInfo]);
 
   const currentSection = ASSESSMENT_SECTIONS[currentSectionIndex];
   const currentQuestion = currentSection.questions[currentQuestionIndexInSection];
@@ -293,12 +320,88 @@ export default function AssessmentPage() {
   const currentAbsoluteQuestionIndex = ASSESSMENT_SECTIONS.slice(0, currentSectionIndex).reduce((acc, sec) => acc + sec.questions.length, 0) + currentQuestionIndexInSection;
   const progressPercent = Math.round(((currentAbsoluteQuestionIndex + 1) / totalQuestions) * 100);
 
+  const handleStartFromGate = async (e) => {
+    e.preventDefault();
+    setLeadError('');
+    if (!leadName.trim()) {
+      setLeadError('Please enter your full name.');
+      return;
+    }
+    if (!leadPhone.trim() || leadPhone.trim().length < 8) {
+      setLeadError('Please enter a valid WhatsApp or Mobile number.');
+      return;
+    }
+
+    setLeadSaving(true);
+    try {
+      const payload = {
+        name: leadName.trim(),
+        phone: leadPhone.trim(),
+        email: leadEmail.trim().toLowerCase(),
+        source: 'assessment_gate',
+        step: 'Started Assessment (Section 1 - Gut)',
+        status: 'in_progress'
+      };
+
+      const res = await fetch(getApiUrl('/api/assessment-lead'), {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      });
+      const data = await res.json();
+      const leadId = data?.lead?.id || `lead_${Date.now()}`;
+      const info = {
+        id: leadId,
+        name: leadName.trim(),
+        phone: leadPhone.trim(),
+        email: leadEmail.trim()
+      };
+      setLeadInfo(info);
+      localStorage.setItem('reshmi_assessment_lead', JSON.stringify(info));
+    } catch (err) {
+      const info = {
+        id: `lead_${Date.now()}`,
+        name: leadName.trim(),
+        phone: leadPhone.trim(),
+        email: leadEmail.trim()
+      };
+      setLeadInfo(info);
+      localStorage.setItem('reshmi_assessment_lead', JSON.stringify(info));
+    } finally {
+      setLeadSaving(false);
+    }
+  };
+
   const selectAnswer = (option) => {
     const updatedAnswers = {
       ...answers,
       [currentQuestion.id]: option
     };
     setAnswers(updatedAnswers);
+
+    // Background sync to backend so Admin knows in real-time which question user reached
+    const currentLead = leadInfo || (function() {
+      try {
+        const stored = localStorage.getItem('reshmi_assessment_lead');
+        return stored ? JSON.parse(stored) : null;
+      } catch (e) { return null; }
+    })();
+
+    if (currentLead && currentLead.id) {
+      fetch(getApiUrl('/api/assessment-lead'), {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          id: currentLead.id,
+          name: currentLead.name,
+          phone: currentLead.phone,
+          email: currentLead.email,
+          step: `Part ${currentSection.sectionNumber}: Q${currentAbsoluteQuestionIndex + 1} (${currentQuestion.title})`,
+          answers: updatedAnswers,
+          status: 'in_progress'
+        })
+      }).catch(() => {});
+    }
 
     if (currentQuestionIndexInSection < currentSection.questions.length - 1) {
       setCurrentQuestionIndexInSection(currentQuestionIndexInSection + 1);
@@ -406,6 +509,31 @@ export default function AssessmentPage() {
 
     setResults(calculated);
 
+    // Save final scores to backend lead record
+    const currentLead = leadInfo || (function() {
+      try {
+        const stored = localStorage.getItem('reshmi_assessment_lead');
+        return stored ? JSON.parse(stored) : null;
+      } catch (e) { return null; }
+    })();
+
+    if (currentLead && currentLead.id) {
+      fetch(getApiUrl('/api/assessment-lead'), {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          id: currentLead.id,
+          name: currentLead.name,
+          phone: currentLead.phone,
+          email: currentLead.email,
+          step: 'Completed Assessment - Ready for Consultation',
+          answers: allAnswers,
+          scores: calculated,
+          status: 'completed_not_booked'
+        })
+      }).catch(() => {});
+    }
+
     try {
       localStorage.setItem('reshmi_assessment_results', JSON.stringify({
         compositeResilience,
@@ -431,8 +559,88 @@ export default function AssessmentPage() {
       <section className="assessment-page-layout">
         <div className="container assessment-widescreen-container">
           
-          {/* Active Quiz View */}
-          {!results ? (
+          {/* Step 0: Gate Card (if user arrived directly without popup info) */}
+          {!results && !leadInfo ? (
+            <div className="glass-assessment-card" style={{ maxWidth: '540px', margin: '0 auto', textAlign: 'center', padding: '40px 32px' }}>
+              <div style={{ width: '64px', height: '64px', borderRadius: '50%', background: 'var(--emerald-soft)', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', fontSize: '1.8rem', marginBottom: '16px' }}>
+                🌱
+              </div>
+              <div style={{ marginBottom: '12px' }}>
+                <span className="badge-pill">
+                  <span className="pulse-dot"></span>
+                  <span>Step 1 of 2 &bull; Contact Registration</span>
+                </span>
+              </div>
+              <h2 style={{ fontSize: '1.75rem', color: 'var(--emerald-deep)', margin: '0 0 10px 0' }}>
+                Where Should We Send Your Clinical Scorecard?
+              </h2>
+              <p style={{ color: 'var(--text-secondary)', fontSize: '0.94rem', lineHeight: 1.6, marginBottom: '24px' }}>
+                Please provide your contact information to begin your 2-minute functional health assessment. Reshmi Verma's clinical team will calibrate your report across gut mucosal, vagal breath, and circadian markers.
+              </p>
+
+              {leadError && (
+                <div style={{ background: '#FEE2E2', border: '1px solid #F87171', color: '#991B1B', padding: '10px 14px', borderRadius: '10px', fontSize: '0.88rem', marginBottom: '16px', textAlign: 'left' }}>
+                  ⚠️ {leadError}
+                </div>
+              )}
+
+              <form onSubmit={handleStartFromGate} style={{ textAlign: 'left', display: 'flex', flexDirection: 'column', gap: '16px' }}>
+                <div>
+                  <label style={{ display: 'block', fontSize: '0.88rem', fontWeight: 600, color: 'var(--text-primary)', marginBottom: '6px' }}>
+                    Full Name <span style={{ color: '#DC2626' }}>*</span>
+                  </label>
+                  <input 
+                    type="text" 
+                    value={leadName} 
+                    onChange={(e) => setLeadName(e.target.value)}
+                    placeholder="e.g. Priya Sharma"
+                    required
+                    style={{ width: '100%', padding: '12px 16px', borderRadius: '10px', border: '1px solid var(--border-medium)', fontSize: '0.95rem' }}
+                  />
+                </div>
+
+                <div>
+                  <label style={{ display: 'block', fontSize: '0.88rem', fontWeight: 600, color: 'var(--text-primary)', marginBottom: '6px' }}>
+                    WhatsApp / Mobile Number <span style={{ color: '#DC2626' }}>*</span>
+                  </label>
+                  <input 
+                    type="tel" 
+                    value={leadPhone} 
+                    onChange={(e) => setLeadPhone(e.target.value)}
+                    placeholder="+91 98765 43210"
+                    required
+                    style={{ width: '100%', padding: '12px 16px', borderRadius: '10px', border: '1px solid var(--border-medium)', fontSize: '0.95rem' }}
+                  />
+                </div>
+
+                <div>
+                  <label style={{ display: 'block', fontSize: '0.88rem', fontWeight: 600, color: 'var(--text-primary)', marginBottom: '6px' }}>
+                    Email Address <span style={{ fontSize: '0.78rem', color: 'var(--text-muted)' }}>(Optional)</span>
+                  </label>
+                  <input 
+                    type="email" 
+                    value={leadEmail} 
+                    onChange={(e) => setLeadEmail(e.target.value)}
+                    placeholder="yourname@example.com"
+                    style={{ width: '100%', padding: '12px 16px', borderRadius: '10px', border: '1px solid var(--border-medium)', fontSize: '0.95rem' }}
+                  />
+                </div>
+
+                <button 
+                  type="submit" 
+                  disabled={leadSaving}
+                  className="btn btn-primary btn-lg"
+                  style={{ width: '100%', justifyContent: 'center', marginTop: '8px' }}
+                >
+                  <span>{leadSaving ? 'Initializing Assessment...' : 'Begin 2-Min Assessment Now &rarr;'}</span>
+                </button>
+              </form>
+              <div style={{ marginTop: '16px', fontSize: '0.78rem', color: 'var(--text-muted)' }}>
+                🔒 100% Free &bull; Zero spam &bull; Confidential clinical diagnostics
+              </div>
+            </div>
+          ) : !results ? (
+            /* Active Quiz View */
             <div className="glass-assessment-card" id="assessment-quiz-container">
               
               {/* Top Progress & Section Indicator */}
@@ -664,21 +872,12 @@ export default function AssessmentPage() {
                 </p>
                 <div style={{ display: 'flex', gap: '12px', justifyContent: 'center', flexWrap: 'wrap' }}>
                   <Link 
-                    to="/booking" 
+                    to={`/booking?tier=healthClarity&name=${encodeURIComponent(leadInfo?.name || '')}&phone=${encodeURIComponent(leadInfo?.phone || '')}&email=${encodeURIComponent(leadInfo?.email || '')}`}
                     className="btn btn-primary" 
-                    style={{ background: 'var(--emerald-medium)', color: 'white', fontWeight: 700, padding: '12px 24px' }}
+                    style={{ background: 'var(--emerald-medium)', color: 'white', fontWeight: 700, padding: '14px 28px', fontSize: '1rem', borderRadius: '14px' }}
                   >
-                    <span>Book 1-on-1 Consultation With These Scores &rarr;</span>
+                    <span>Book 1-on-1 Consultation With These Scores (₹1,999) &rarr;</span>
                   </Link>
-                  <a 
-                    href={`https://wa.me/919876543210?text=${encodeURIComponent(`Hello Reshmi Verma, I completed my 3-Section Health Assessment. Overall Score: ${results.compositeResilience}% (Gut: ${results.gutScore}/100, Breath: ${results.breathScore}/100, Metabolic: ${results.metabolicScore}/100). I would like to schedule a consultation.`)}`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="btn btn-secondary"
-                    style={{ background: 'white', color: 'var(--emerald-deep)', fontWeight: 600, padding: '12px 20px' }}
-                  >
-                    <span>Connect via WhatsApp</span>
-                  </a>
                 </div>
               </div>
 

@@ -80,14 +80,25 @@ export default function BookingPage() {
   const initialTierKey = DEFAULT_PRICING_TIERS[urlTier] ? urlTier : 'healthClarity';
   const [selectedTier, setSelectedTier] = useState(initialTierKey);
 
+  // Read any prefilled lead data from URL or localStorage
+  let savedLead = null;
+  try {
+    const raw = localStorage.getItem('reshmi_assessment_lead');
+    if (raw) savedLead = JSON.parse(raw);
+  } catch (e) {}
+
+  const initialName = searchParams.get('name') || savedLead?.name || user?.name || '';
+  const initialPhone = searchParams.get('phone') || savedLead?.phone || user?.phone || '';
+  const initialEmail = searchParams.get('email') || savedLead?.email || user?.email || '';
+
   // Form State
   const tomorrow = new Date(Date.now() + 86400000).toISOString().split('T')[0];
   const [formData, setFormData] = useState({
-    name: user?.name || '',
+    name: initialName,
     age: '',
     gender: 'Female',
-    phone: user?.phone || '',
-    email: user?.email || '',
+    phone: initialPhone,
+    email: initialEmail,
     city: '',
     occupation: '',
     language: 'English',
@@ -356,6 +367,23 @@ export default function BookingPage() {
                 q27_stress_level: formData.q27_stress_level,
                 bookingId: assignedBookingId
               }
+            })
+          }).catch(() => {});
+        } catch (e) {}
+
+        // Update lead tracking status to 'booked'
+        try {
+          fetch(getApiUrl('/api/assessment-lead'), {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              id: savedLead?.id,
+              phone: formData.phone,
+              name: formData.name,
+              email: formData.email,
+              bookingId: assignedBookingId,
+              status: 'booked',
+              step: '1:1 Consultation Booked & Confirmed'
             })
           }).catch(() => {});
         } catch (e) {}
@@ -944,8 +972,8 @@ export default function BookingPage() {
                   onChange={(e) => setSelectedTier(e.target.value)}
                   style={{ width: '100%', padding: '12px 16px', background: 'white', border: '1.5px solid var(--emerald-medium)', borderRadius: 'var(--radius-sm)', fontSize: '1rem', fontWeight: 600, color: 'var(--emerald-deep)', cursor: 'pointer' }}
                 >
+                  <option value="healthClarity">Health Clarity Session (60 min) — ₹1,999 (Recommended)</option>
                   <option value="discovery">Initial Discovery Call (20 min) — ₹999</option>
-                  <option value="comprehensive">Comprehensive Consultation (60 min) — ₹2,999 (Most Popular)</option>
                   <option value="followup">Follow-Up Check-in (30 min) — ₹1,499</option>
                 </select>
               </div>

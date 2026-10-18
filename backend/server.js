@@ -28,6 +28,8 @@ import adminReelsHandler from './api/admin-reels.js';
 import uploadPdfHandler from './api/upload-pdf.js';
 import availableSlotsHandler from './api/available-slots.js';
 import adminScheduleHandler from './api/admin-schedule.js';
+import assessmentLeadHandler from './api/assessment-lead.js';
+import adminLeadsHandler from './api/admin-leads.js';
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -92,6 +94,12 @@ app.put('/api/admin-schedule', wrapHandler(adminScheduleHandler));
 app.get('/api/admin-bookings', wrapHandler(adminBookingsHandler));
 app.post('/api/admin-update-booking', wrapHandler(adminUpdateBookingHandler));
 app.put('/api/admin-update-booking', wrapHandler(adminUpdateBookingHandler));
+
+// Assessment Lead capture & Drop-off tracking endpoints
+app.post('/api/assessment-lead', wrapHandler(assessmentLeadHandler));
+app.get('/api/admin-leads', wrapHandler(adminLeadsHandler));
+app.post('/api/admin-leads', wrapHandler(adminLeadsHandler));
+app.post('/api/admin-update-lead', wrapHandler(adminLeadsHandler));
 
 // Clinical Intake Questionnaire endpoints
 app.get('/api/questionnaire-template', wrapHandler(questionnaireTemplateHandler));

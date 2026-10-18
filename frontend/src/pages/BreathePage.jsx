@@ -112,8 +112,8 @@ export default function BreathePage() {
         badgeBg: '#FFF1F2',
         title: '🚨 CRITICAL CLINICAL ALERT: Severe Cellular Oxygen Starvation',
         summary: `Your BOLT score is critically low at ${score.toFixed(1)}s (${marks}/100 Marks). This confirms that your cells, brain, and gut lining are chronically starved of functional oxygen due to rapid carbon dioxide depletion and silent mouth-breathing.`,
-        recommendation: 'URGENT CONSULTATION ADVISED: Leaving this unaddressed leads to chronic gut inflammation, refractory brain fog, and autonomic exhaustion. Reshmi Verma (Top Oxygen Advantage Coach in India) strongly advises booking an immediate 1-on-1 priority clinical consultation to restore your Bohr-effect oxygen delivery and repair your gut-mucosal barrier.',
-        buttonText: '🚨 Book Priority Emergency Consultation (₹999 / ₹2,999)',
+        recommendation: 'CONSULTATION ADVISED: Leaving low CO2 tolerance unaddressed leads to chronic gut inflammation and autonomic exhaustion. Reshmi Verma (Functional Nutritionist & Breathwork Facilitator) advises booking a 1-on-1 clinical consultation to restore your Bohr-effect oxygen delivery and repair your gut-mucosal barrier.',
+        buttonText: '🚨 Book 1:1 Health Clarity Consultation (₹1,999)',
         buttonClass: 'btn btn-primary btn-lg pulse-anim',
         bohr: 'Your red blood cells possess an excessively tight hemoglobin-oxygen bond. Due to chronic over-breathing and depleted CO₂, oxygen is trapped in the bloodstream and cannot discharge into digestive organs or muscle tissue.',
         protocol: 'Immediate Clinical Steps: 100% strict daytime nasal breathing, nocturnal mouth-taping protocol, and immediate clinical breathwork titration with Reshmi Verma.'
@@ -130,7 +130,7 @@ export default function BreathePage() {
         title: '⚠️ CLINICAL RECOMMENDATION: Consultation Strongly Recommended',
         summary: `Good attempt! Your score is ${score.toFixed(1)}s (${marks}/100 Marks). While you manage day-to-day tasks, your breathing pattern is silently burning 30% to 40% excess cellular energy, causing afternoon fatigue crashes and digestive acidity.`,
         recommendation: 'HIGHLY RECOMMENDED FOR SESSION BOOKING: You are prime for rapid turnaround. A targeted consultation with Reshmi Verma will reset your respiratory chemoreceptors, double your stamina, and eliminate digestive bloating within 21 days.',
-        buttonText: '📅 Book Clinical Consultation (₹999 / ₹2,999)',
+        buttonText: '📅 Book 1:1 Health Clarity Consultation (₹1,999)',
         buttonClass: 'btn btn-primary btn-lg',
         bohr: 'Sub-conscious hyperventilation and upper-chest breathing cause intermittent cellular hypoxia. Stress spikes accelerate CO₂ loss, triggering anxiety surges and digestive spasms.',
         protocol: 'Recommended Protocol: Daily 4-7-8 somatic autonomic regulation, 5-5 Coherent Breathing before main meals, and personalized clinical guidance.'
@@ -313,13 +313,13 @@ export default function BreathePage() {
         <div className="container text-center">
           <span className="badge-pill" style={{ marginBottom: '16px' }}>
             <span className="pulse-dot"></span>
-            <span>🏅 Top Certified Oxygen Advantage Coach in India &bull; Circular Connected Breathwork Facilitator</span>
+            <span>🏅 Certified Breathwork Facilitator &bull; Somatic Nervous System Specialist</span>
           </span>
           <h1 style={{ fontSize: 'clamp(2rem, 5vw, 3.2rem)', maxWidth: '880px', margin: '0 auto 18px' }}>
             Clinical Respiration & <span className="text-gradient">Vagal Neuromodulation</span>
           </h1>
           <p style={{ fontSize: '1.15rem', color: 'var(--text-secondary)', maxWidth: '760px', margin: '0 auto 24px' }}>
-            Guided by <strong>Reshmi Verma</strong> — <strong>Top Certified in India for Oxygen Advantage</strong>, <strong>Oxygen Advantage Core Instructor</strong>, and <strong>Breath Resilience Instructor</strong>. Discover your cellular CO₂ tolerance with the BOLT test and recalibrate autonomic nervous system tone.
+            Guided by <strong>Reshmi Verma</strong> — <strong>Functional Nutritionist</strong> and <strong>Breath Resilience Instructor</strong>. Discover your cellular CO₂ tolerance with the BOLT test and recalibrate autonomic nervous system tone.
           </p>
 
           <div style={{ display: 'flex', gap: '12px', justifyContent: 'center', flexWrap: 'wrap' }}>
@@ -469,7 +469,7 @@ export default function BreathePage() {
                 {/* Direct High-Conversion Call to Action */}
                 <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center', background: 'linear-gradient(135deg, rgba(15, 23, 42, 0.03) 0%, rgba(194, 65, 12, 0.06) 100%)', padding: '28px 24px', borderRadius: '16px', border: '1px dashed var(--border-medium)' }}>
                   <div style={{ fontSize: '0.85rem', fontWeight: 700, color: 'var(--emerald-medium)', textTransform: 'uppercase', letterSpacing: '0.06em', marginBottom: '6px' }}>
-                    Next Step with Top Oxygen Advantage Coach Reshmi Verma
+                    Next Step with Reshmi Verma
                   </div>
                   <h4 style={{ fontSize: '1.35rem', color: 'var(--emerald-deep)', margin: '0 0 16px' }}>
                     {boltAnalysis.urgency === 'critical' ? 'Urgent 1-on-1 Consultation Required' : 'Book Your Personalized Clinical Roadmap'}

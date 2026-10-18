@@ -13,6 +13,7 @@ import DragonflyAnimation from './components/DragonflyAnimation';
 
 // Pages
 import HomePage from './pages/HomePage';
+import AboutPage from './pages/AboutPage';
 import NutritionPage from './pages/NutritionPage';
 import BreathePage from './pages/BreathePage';
 import BookingPage from './pages/BookingPage';
@@ -47,6 +48,7 @@ function AppContent() {
 
       <Routes>
         <Route path="/" element={<HomePage />} />
+        <Route path="/about" element={<AboutPage />} />
         <Route path="/nutrition" element={<NutritionPage />} />
         <Route path="/breathe" element={<BreathePage />} />
         <Route path="/booking" element={<BookingPage />} />

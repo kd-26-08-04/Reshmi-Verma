@@ -69,6 +69,7 @@ export default function Footer() {
               <h5>Navigation</h5>
               <ul className="footer-links">
                 <li><Link to="/">Home</Link></li>
+                <li><Link to="/about">About Reshmi Verma</Link></li>
                 <li><Link to="/assessment">Health Assessment</Link></li>
                 <li><a href="/#reels-section">Instagram Reels</a></li>
                 <li><Link to="/booking">Book Consultation</Link></li>

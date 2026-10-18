@@ -48,6 +48,15 @@ export default function Navbar() {
           </li>
           <li>
             <NavLink
+              to="/about"
+              className={({ isActive }) => `nav-link ${isActive ? 'active' : ''}`}
+              onClick={closeMenu}
+            >
+              About Reshmi
+            </NavLink>
+          </li>
+          <li>
+            <NavLink
               to="/assessment"
               className={({ isActive }) => `nav-link ${isActive ? 'active' : ''}`}
               onClick={closeMenu}

@@ -1,53 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
-import { soundSynth } from '../utils/soundSynth';
 import { getApiUrl } from '../utils/api';
-
-const BREATH_PROTOCOLS = {
-  '478': {
-    name: '4-7-8 Somatic Relax',
-    phases: [
-      { name: 'INHALE', duration: 4, action: 'inhale', freq: 432 },
-      { name: 'HOLD', duration: 7, action: 'hold', freq: 528 },
-      { name: 'EXHALE', duration: 8, action: 'exhale', freq: 396 }
-    ]
-  },
-  'box': {
-    name: 'Box 4-4-4-4',
-    phases: [
-      { name: 'INHALE', duration: 4, action: 'inhale', freq: 432 },
-      { name: 'HOLD', duration: 4, action: 'hold', freq: 528 },
-      { name: 'EXHALE', duration: 4, action: 'exhale', freq: 396 },
-      { name: 'HOLD', duration: 4, action: 'hold', freq: 432 }
-    ]
-  },
-  'coherent': {
-    name: 'Coherent 5-5',
-    phases: [
-      { name: 'INHALE', duration: 5, action: 'inhale', freq: 432 },
-      { name: 'EXHALE', duration: 5, action: 'exhale', freq: 396 }
-    ]
-  }
-};
-
-const faqs = [
-  {
-    q: "What is the Body Oxygen Level Test (BOLT) and why does it matter?",
-    a: "The BOLT test measures your carbon dioxide tolerance and physiological breathing efficiency. Carbon dioxide is not merely a waste gas—it triggers hemoglobin to release oxygen into your organs and brain cells via the Bohr Effect. A low BOLT score (< 20s) correlates strongly with airway collapse, anxiety, and fatigue."
-  },
-  {
-    q: "How is functional nutrition different from standard dietitians?",
-    a: "We move far beyond obsolete calorie counting. Reshmi Verma analyzes nutrition as biochemical information—fueling mitochondrial ATP synthesis, repairing the gut mucosal barrier, and balancing glycemic kinetics based on verified functional diagnostics."
-  },
-  {
-    q: "What happens in an Initial Discovery Call vs a Comprehensive Consultation?",
-    a: "The Initial Discovery Call (20 min) is a focused discussion to review your main health challenges, clarify questions, and determine the right clinical pathway. The Comprehensive Consultation (60 min) includes a deep dive into blood chemistry, gut history, circadian sleep mapping, and a full personalized protocol."
-  },
-  {
-    q: "Can breathwork help with gut issues and acid reflux?",
-    a: "Yes, significantly. The vagus nerve controls both parasympathetic breathing and digestive motility/gastric acid release. Slow diaphragmatic breathing stimulates vagal tone, physically lowering the diaphragm, stabilizing the lower esophageal sphincter, and encouraging digestive enzyme secretion."
-  }
-];
 
 const DEFAULT_REELS = [
   {
@@ -107,9 +60,6 @@ const DEFAULT_REELS = [
 ];
 
 export default function HomePage() {
-  // FAQ state
-  const [openFaq, setOpenFaq] = useState(0);
-
   // Dynamic Reels from API
   const [reelsList, setReelsList] = useState(DEFAULT_REELS);
 
@@ -127,156 +77,11 @@ export default function HomePage() {
       .catch(() => {});
   }, []);
 
-  // Breathing Sanctuary State
-  const [activeProtocolKey, setActiveProtocolKey] = useState('478');
-  const [isBreathingPlaying, setIsBreathingPlaying] = useState(false);
-  const [isSoundMuted, setIsSoundMuted] = useState(false);
-  const [breathPhaseIndex, setBreathPhaseIndex] = useState(0);
-  const [breathSecondsLeft, setBreathSecondsLeft] = useState(4);
-  const [breathCycles, setBreathCycles] = useState(0);
-  const [sessionSeconds, setSessionSeconds] = useState(0);
-  const breathTimerRef = useRef(null);
-  const sessionTimerRef = useRef(null);
-
-  // BOLT Test State
-  const [boltState, setBoltState] = useState('idle'); // idle | running | completed
-  const [boltSeconds, setBoltSeconds] = useState(0);
-  const boltStartTimeRef = useRef(0);
-  const boltIntervalRef = useRef(null);
-
   // Carousel ref
   const reelsCarouselRef = useRef(null);
 
   // Transformation Before/After Showcase state
   const [transformationTab, setTransformationTab] = useState('compare'); // 'compare' | 'before' | 'after'
-
-  // --- Sound Sync ---
-  useEffect(() => {
-    soundSynth.isMuted = isSoundMuted;
-  }, [isSoundMuted]);
-
-  // --- Breathing Sanctuary Logic ---
-  useEffect(() => {
-    if (!isBreathingPlaying) {
-      if (breathTimerRef.current) clearInterval(breathTimerRef.current);
-      if (sessionTimerRef.current) clearInterval(sessionTimerRef.current);
-      soundSynth.stopOceanWaves();
-      return;
-    }
-
-    soundSynth.startOceanWaves();
-
-    // Session timer
-    sessionTimerRef.current = setInterval(() => {
-      setSessionSeconds((prev) => prev + 1);
-    }, 1000);
-
-    const protocol = BREATH_PROTOCOLS[activeProtocolKey];
-    let pIdx = breathPhaseIndex;
-    let secLeft = breathSecondsLeft;
-
-    soundSynth.playBowlChime(protocol.phases[pIdx].freq);
-    soundSynth.modulateWave(protocol.phases[pIdx].action, protocol.phases[pIdx].duration);
-
-    breathTimerRef.current = setInterval(() => {
-      secLeft -= 1;
-      if (secLeft <= 0) {
-        pIdx = (pIdx + 1) % protocol.phases.length;
-        if (pIdx === 0) {
-          setBreathCycles((prev) => prev + 1);
-        }
-        secLeft = protocol.phases[pIdx].duration;
-        setBreathPhaseIndex(pIdx);
-        soundSynth.playBowlChime(protocol.phases[pIdx].freq);
-        soundSynth.modulateWave(protocol.phases[pIdx].action, protocol.phases[pIdx].duration);
-      }
-      setBreathSecondsLeft(secLeft);
-    }, 1000);
-
-    return () => {
-      if (breathTimerRef.current) clearInterval(breathTimerRef.current);
-      if (sessionTimerRef.current) clearInterval(sessionTimerRef.current);
-    };
-  }, [isBreathingPlaying, activeProtocolKey]);
-
-  const toggleBreathingPlay = () => {
-    if (isBreathingPlaying) {
-      setIsBreathingPlaying(false);
-    } else {
-      const protocol = BREATH_PROTOCOLS[activeProtocolKey];
-      setBreathPhaseIndex(0);
-      setBreathSecondsLeft(protocol.phases[0].duration);
-      setIsBreathingPlaying(true);
-    }
-  };
-
-  const switchProtocol = (key) => {
-    setActiveProtocolKey(key);
-    const protocol = BREATH_PROTOCOLS[key];
-    setBreathPhaseIndex(0);
-    setBreathSecondsLeft(protocol.phases[0].duration);
-    if (isBreathingPlaying) {
-      soundSynth.playBowlChime(protocol.phases[0].freq);
-      soundSynth.modulateWave(protocol.phases[0].action, protocol.phases[0].duration);
-    }
-  };
-
-  const formatSessionTime = (totalSec) => {
-    const mins = Math.floor(totalSec / 60).toString().padStart(2, '0');
-    const secs = (totalSec % 60).toString().padStart(2, '0');
-    return `${mins}:${secs}`;
-  };
-
-  // --- BOLT Test Logic ---
-  const startBoltHold = () => {
-    setBoltState('running');
-    setBoltSeconds(0);
-    boltStartTimeRef.current = Date.now();
-    boltIntervalRef.current = setInterval(() => {
-      const elapsed = Number(((Date.now() - boltStartTimeRef.current) / 1000).toFixed(1));
-      setBoltSeconds(elapsed);
-    }, 100);
-  };
-
-  const stopBoltHold = () => {
-    if (boltIntervalRef.current) clearInterval(boltIntervalRef.current);
-    setBoltState('completed');
-  };
-
-  const resetBoltHold = () => {
-    if (boltIntervalRef.current) clearInterval(boltIntervalRef.current);
-    setBoltState('idle');
-    setBoltSeconds(0);
-  };
-
-  const getBoltAnalysis = (score) => {
-    if (score < 15) {
-      return {
-        tier: 'Significant Airway & CO₂ Sensitivity',
-        bohr: 'Your red blood cells have a strong affinity for oxygen, holding onto it rather than releasing it freely to tissues (Bohr effect suppression). This strongly correlates with upper-chest breathing, sleep disturbances, fatigue, and frequent sighing.',
-        protocol: 'Recommended Protocol: Oxygen Advantage Nose-Unblocking Drills, gentle nasal pacing, and restoring daytime diaphragmatic awareness before progressive exercise.'
-      };
-    }
-    if (score < 25) {
-      return {
-        tier: 'Moderate Functional Respiration',
-        bohr: 'Reasonable breathing mechanics, but autonomic resilience drops under acute physical exertion, digestive inflammation, or mental stress. CO₂ tolerance has substantial room for physiological growth.',
-        protocol: 'Recommended Protocol: Incorporate 10 minutes of daily 4-7-8 or 5-5 Coherent Breathing, light-load walking with nasal breath-holds, and mealtime vagal breathing.'
-      };
-    }
-    if (score < 35) {
-      return {
-        tier: 'Optimal Aerobic Efficiency',
-        bohr: 'Healthy Bohr Effect efficiency! Carbon dioxide comfortably triggers robust oxygen diffusion across capillary beds into active brain and muscle tissue. High vagal tone and stable sleep architecture.',
-        protocol: 'Recommended Protocol: Advanced Oxygen Advantage simulation of high-altitude conditioning and athletic carbon dioxide challenge drills.'
-      };
-    }
-    return {
-      tier: 'Elite Respiration & Autonomic Mastery',
-      bohr: 'Exceptional cellular oxygen release, elite heart rate variability, and peak mitochondrial aerobic stamina. Superior parasympathetic tone.',
-      protocol: 'Recommended Protocol: Maintenance and advanced circular connected breathwork for deep emotional and cellular integration.'
-    };
-  };
 
   // --- Carousel Scroll ---
   const scrollReels = (direction) => {
@@ -285,10 +90,6 @@ export default function HomePage() {
       reelsCarouselRef.current.scrollBy({ left: amount, behavior: 'smooth' });
     }
   };
-
-  const currentProtocol = BREATH_PROTOCOLS[activeProtocolKey];
-  const currentPhase = currentProtocol.phases[breathPhaseIndex] || currentProtocol.phases[0];
-  const boltAnalysis = getBoltAnalysis(boltSeconds);
 
   return (
     <>
@@ -299,45 +100,55 @@ export default function HomePage() {
             <div className="hero-content">
               <div className="badge-pill">
                 <span className="pulse-dot"></span>
-                <span>🏅 Top Certified Oxygen Advantage Coach &bull; Functional Nutritionist &bull; Biohacker</span>
+                <span>🏅 Functional Nutritionist &bull; Somatic Breathwork Facilitator &bull; Biohacker</span>
               </div>
 
               <h1>Root-Cause <span className="text-gradient">Functional Nutrition</span> &amp; <span className="text-gradient-terracotta">Breathwork Facilitator</span>.</h1>
 
               <p className="lead">
-                Led by <strong>Reshmi Verma</strong> — <strong>Functional Nutritionist</strong>, <strong>Breathwork Facilitator</strong>, <strong>Certified Biohacker</strong> &amp; recognized among <strong>India's Top Oxygen Advantage Coaches</strong>. With over 20 years in diagnostics and healthcare (Director of Rainbow Medinova &amp; Co-founder of Neofit Gym), combining personalized nutrition, breathwork, and autonomic resilience to rebuild lasting vitality.
+                Led by <strong>Reshmi Verma</strong> — <strong>Functional Nutritionist</strong>, <strong>Breathwork Facilitator</strong> &amp; <strong>Certified Biohacker</strong>. With over 20 years in diagnostics and healthcare (Director of Rainbow Medinova &amp; Co-founder of Neofit Gym), combining personalized nutrition, breathwork, and autonomic resilience to rebuild lasting vitality.
               </p>
 
-              <div style={{ display: 'flex', gap: '16px', flexWrap: 'wrap' }}>
-                <Link to="/assessment" className="btn btn-primary btn-lg">
-                  <span>Take Free Health Assessment</span>
+              <div style={{ display: 'flex', gap: '16px', flexWrap: 'wrap', alignItems: 'center' }}>
+                <Link to="/booking" className="btn btn-primary btn-lg">
+                  <span>Book 1:1 Health Consultation</span>
                   <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
                     <line x1="5" y1="12" x2="19" y2="12"></line>
                     <polyline points="12 5 19 12 12 19"></polyline>
                   </svg>
                 </Link>
-                <a href="#interactive-breath-lab" className="btn btn-secondary btn-lg">
+                <Link to="/assessment" className="btn btn-secondary btn-lg">
                   <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                    <circle cx="12" cy="12" r="10"></circle>
-                    <polygon points="10 8 16 12 10 16 10 8"></polygon>
+                    <path d="M9 11l3 3L22 4"></path>
+                    <path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"></path>
                   </svg>
-                  <span>Test BOLT Breath Score</span>
-                </a>
+                  <span>Take Free Health Assessment</span>
+                </Link>
+              </div>
+
+              {/* Consultation Micro-Trust Badge */}
+              <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginTop: '14px', fontSize: '0.88rem', color: 'var(--text-secondary)', flexWrap: 'wrap' }}>
+                <span style={{ display: 'inline-flex', alignItems: 'center', gap: '6px', color: 'var(--emerald-deep)', fontWeight: 600 }}>
+                  <span style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#15803D' }}></span>
+                  60-Min 1:1 Session with Reshmi Verma (₹1,999)
+                </span>
+                <span>&bull;</span>
+                <span>Direct Clinical Root-Cause Roadmap</span>
               </div>
 
               {/* Hero Clinical Highlights */}
               <div className="hero-stats-row">
                 <div className="stat-item">
-                  <div className="stat-num">TOP</div>
-                  <div className="stat-label">Oxygen Advantage Coach in India</div>
-                </div>
-                <div className="stat-item">
                   <div className="stat-num">20+</div>
                   <div className="stat-label">Years Healthcare &amp; Diagnostics</div>
                 </div>
                 <div className="stat-item">
+                  <div className="stat-num">100%</div>
+                  <div className="stat-label">Personalized 1:1 Care Pathway</div>
+                </div>
+                <div className="stat-item">
                   <div className="stat-num">6+</div>
-                  <div className="stat-label">Elite Global Biohack &amp; Breath Certs</div>
+                  <div className="stat-label">Global Functional &amp; Breath Certs</div>
                 </div>
                 <div className="stat-item">
                   <div className="stat-num">38+<span style={{ fontSize: '1.25rem' }}>kg</span></div>
@@ -353,7 +164,7 @@ export default function HomePage() {
                 <div className="hero-portrait-image-wrap">
                   <img
                     src="/assets/images/reshmi-saree-hero.jpg"
-                    alt="Reshmi Verma — Functional Nutritionist & Top Oxygen Advantage Coach"
+                    alt="Reshmi Verma — Functional Nutritionist & Breathwork Facilitator"
                     className="hero-portrait-img"
                     onError={(e) => { e.target.src = '/assets/images/reshmi-verma-executive.jpg'; }}
                   />
@@ -378,10 +189,10 @@ export default function HomePage() {
                   </div>
                 </div>
 
-                {/* Floating Oxygen Advantage Pill */}
+                {/* Floating Breathwork Pill */}
                 <div className="hero-floating-pill badge-bottom-right">
                   <span className="pill-dot"></span>
-                  <span>Top Oxygen Advantage Coach</span>
+                  <span>Breathwork &amp; Resilience Coach</span>
                 </div>
               </div>
             </div>
@@ -469,7 +280,7 @@ export default function HomePage() {
                     <span className="photo-phase-tag phase-after">AFTER • -38 kg Victory</span>
                     <img src="/assets/images/reshmi-after.jpg" alt="Reshmi Verma After Transformation" />
                     <div className="single-phase-caption">
-                      <strong>Reversed Phase:</strong> Reclaimed energy, pristine metabolic biomarkers, Top Oxygen Advantage Coach &amp; Certified Biohacker without crash dieting.
+                      <strong>Reversed Phase:</strong> Reclaimed energy, pristine metabolic biomarkers, Functional Nutritionist &amp; Certified Biohacker without crash dieting.
                     </div>
                   </div>
                 )}
@@ -485,7 +296,7 @@ export default function HomePage() {
               <span className="sub-title">Lived Experience Meets Clinical Science</span>
               <h2>"I Didn't Just Study Health — I Lived The Struggle."</h2>
               <p className="lead" style={{ fontSize: '1.1rem', color: 'var(--emerald-deep)', fontWeight: 600 }}>
-                Reshmi Verma — Biotechnologist, Functional Nutritionist &amp; Top Oxygen Advantage Coach
+                Reshmi Verma — Biotechnologist, Functional Nutritionist &amp; Breathwork Facilitator
               </p>
 
               <div style={{ background: 'white', padding: '20px 24px', borderRadius: 'var(--radius-md)', borderLeft: '4px solid var(--emerald-medium)', boxShadow: 'var(--shadow-sm)', marginBottom: '20px' }}>
@@ -512,124 +323,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 3. Defining Clinical USPs & Credentials Section */}
-      <section
-        className="section"
-        id="credentials-section"
-        style={{
-          background: 'linear-gradient(180deg, #FFFFFF 0%, var(--bg-secondary) 100%)',
-          borderTop: '1px solid var(--border-subtle)',
-          borderBottom: '1px solid var(--border-subtle)'
-        }}
-      >
-        <div className="container">
-          <div className="section-header">
-            <span className="sub-title">Clinical Authority & Elite Credentials</span>
-            <h2>Reshmi Verma’s Defining Clinical USPs</h2>
-            <p>
-              Recognized among India's foremost authorities in functional respiration, metabolic biochemistry, and cellular biohacking.
-            </p>
-          </div>
 
-          <div className="usp-grid">
-            {/* USP 1 */}
-            <div className="usp-card">
-              <span className="usp-badge-rank">Premier Rank in India</span>
-              <div className="usp-icon-box">🏅</div>
-              <h3>Top Certified Oxygen Advantage Coach</h3>
-              <p>
-                Recognized among the premier certified practitioners nationwide in Patrick McKeown’s globally acclaimed Oxygen Advantage science. Specializing in functional breathing biomechanics, hypercapnic conditioning, and cellular oxygen release via the Bohr effect.
-              </p>
-              <span className="usp-credential-tag">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-                  <polyline points="20 6 9 17 4 12"></polyline>
-                </svg>
-                Oxygen Advantage Core Certified
-              </span>
-            </div>
-
-            {/* USP 2 */}
-            <div className="usp-card">
-              <span className="usp-badge-rank">Cellular Optimization</span>
-              <div className="usp-icon-box">⚡</div>
-              <h3>Certified Biohacker</h3>
-              <p>
-                Formally credentialed in human biohacking, mitochondrial resilience, photobiomodulation, and autonomic nervous system regulation. Merging quantifiable data tracking with lifestyle physiology.
-              </p>
-              <span className="usp-credential-tag">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-                  <polyline points="20 6 9 17 4 12"></polyline>
-                </svg>
-                Mitochondrial & Cellular Biohacking
-              </span>
-            </div>
-
-            {/* USP 3 */}
-            <div className="usp-card">
-              <span className="usp-badge-rank">Diagnostic Leadership</span>
-              <div className="usp-icon-box">🔬</div>
-              <h3>20+ Years in Healthcare Industry</h3>
-              <p>
-                Director of Rainbow Medinova Diagnostic Services and Co-founder of Neofit Gym. Over 20 years evaluating complex diagnostics, reading clinical panels far deeper than superficial reference ranges.
-              </p>
-              <span className="usp-credential-tag">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-                  <polyline points="20 6 9 17 4 12"></polyline>
-                </svg>
-                Clinical Diagnostics Perspective
-              </span>
-            </div>
-
-            {/* USP 4 */}
-            <div className="usp-card">
-              <span className="usp-badge-rank">Personal Victory</span>
-              <div className="usp-icon-box">🌟</div>
-              <h3>38 kg Personal Transformation</h3>
-              <p>
-                Her medical protocols are forged through lived experience. After struggling with metabolic dysfunction and systemic fatigue, Reshmi reversed her conditions and lost 38 kg without crash dieting.
-              </p>
-              <span className="usp-credential-tag">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-                  <polyline points="20 6 9 17 4 12"></polyline>
-                </svg>
-                Lived Clinical Empathy
-              </span>
-            </div>
-
-            {/* USP 5 */}
-            <div className="usp-card">
-              <span className="usp-badge-rank">Conscious Respiration</span>
-              <div className="usp-icon-box">💨</div>
-              <h3>Circular Connected Breathwork</h3>
-              <p>
-                Certified facilitator in circular, connected breathwork techniques. Using therapeutic somatic respiration to release stored emotional trauma, calm autonomic fight-or-flight overdrive, and enhance vagal tone.
-              </p>
-              <span className="usp-credential-tag">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-                  <polyline points="20 6 9 17 4 12"></polyline>
-                </svg>
-                Certified Somatic Facilitator
-              </span>
-            </div>
-
-            {/* USP 6 */}
-            <div className="usp-card">
-              <span className="usp-badge-rank">3R Framework</span>
-              <div className="usp-icon-box">🌱</div>
-              <h3>Restoration, Regulation &amp; Resilience</h3>
-              <p>
-                Resilience is not about pushing harder, but about creating the right foundation for the body to adapt, regulate and recover through targeted functional nutrition and breathwork.
-              </p>
-              <span className="usp-credential-tag">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-                  <polyline points="20 6 9 17 4 12"></polyline>
-                </svg>
-                Signature 3R Methodology
-              </span>
-            </div>
-          </div>
-        </div>
-      </section>
 
       {/* 3. The SAMYA Framework Section (Prominent High-Impact Redesign) */}
       <section 
@@ -639,29 +333,30 @@ export default function HomePage() {
           background: 'linear-gradient(180deg, #FFFFFF 0%, var(--sand-warm) 50%, #FFFFFF 100%)', 
           borderTop: '1px solid var(--border-subtle)', 
           borderBottom: '1px solid var(--border-subtle)',
-          padding: '80px 0'
+          padding: '48px 0'
         }}
       >
         <div className="container">
-          <div className="section-header text-center" style={{ maxWidth: '820px', margin: '0 auto 20px' }}>
+          <div className="section-header text-center" style={{ maxWidth: '780px', margin: '0 auto 16px' }}>
             <span 
               className="badge-pill"
               style={{
                 background: 'var(--emerald-soft)',
                 borderColor: 'var(--emerald-medium)',
                 color: 'var(--emerald-deep)',
-                marginBottom: '16px',
-                fontWeight: 700
+                marginBottom: '10px',
+                fontWeight: 700,
+                fontSize: '0.78rem'
               }}
             >
               <span className="pulse-dot" style={{ background: 'var(--emerald-medium)' }}></span>
               <span>Proprietary Methodology • A Different Way To Look At Health</span>
             </span>
-            <h2 style={{ fontSize: '2.75rem', lineHeight: 1.2, marginBottom: '16px' }}>
+            <h2 style={{ fontSize: '2.2rem', lineHeight: 1.2, marginBottom: '10px' }}>
               The <span className="text-gradient">SAMYA™</span> Method
             </h2>
-            <p style={{ fontSize: '1.15rem', color: 'var(--text-secondary)', lineHeight: 1.65 }}>
-              Most conventional health advice treats symptoms in isolation. <strong>SAMYA</strong> starts with you: connecting gut, breath, hormones, and sleep patterns into a unified clinical blueprint.
+            <p style={{ fontSize: '1rem', color: 'var(--text-secondary)', lineHeight: 1.55 }}>
+              Connecting gut, breath, hormones, and sleep patterns into a unified clinical blueprint.
             </p>
           </div>
 
@@ -805,207 +500,102 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 4. Live Feature Spotlight: Interactive BOLT Test & Guided Breathing Player */}
-      <section className="section" id="interactive-breath-lab" style={{ position: 'relative', zIndex: 1 }}>
+      {/* 4. Clinical Respiration & Oxygen Advantage Authority Spotlight */}
+      <section className="section" id="clinical-respiration-spotlight" style={{ position: 'relative', zIndex: 1, background: 'linear-gradient(180deg, #FFFFFF 0%, var(--bg-secondary) 100%)', borderTop: '1px solid var(--border-subtle)', borderBottom: '1px solid var(--border-subtle)', padding: '70px 0' }}>
         <div className="container">
           <div
-            className="section-header"
-            style={{
-              background: 'rgba(255, 255, 255, 0.65)',
-              backdropFilter: 'blur(24px)',
-              WebkitBackdropFilter: 'blur(24px)',
-              padding: '32px 36px',
-              borderRadius: 'var(--radius-xl)',
-              border: '1px solid rgba(255, 255, 255, 0.85)',
-              boxShadow: '0 12px 35px rgba(15, 23, 42, 0.06)',
-              maxWidth: '860px',
-              margin: '0 auto 36px'
-            }}
+            className="section-header text-center"
+            style={{ maxWidth: '840px', margin: '0 auto 40px' }}
           >
-            <span className="sub-title">Interactive Respiration Laboratory</span>
-            <h2>Experience Real-Time Autonomic Regulation</h2>
+            <span className="badge-pill" style={{ marginBottom: '16px' }}>
+              <span className="pulse-dot"></span>
+              <span>Oxygen Advantage® Science &bull; Autonomic Regulation</span>
+            </span>
+            <h2>Why Breath Mechanics Rule Gut Motility, Cortisol &amp; Cellular Energy</h2>
             <p>
-              Breathing is the prime regulator of cellular energy efficiency, glycemic response, and mental poise. Test your CO₂ tolerance or enter our guided breathing sanctuary.
+              Recognized among India's foremost Oxygen Advantage Coaches. Reshmi Verma incorporates clinical respiration diagnostics (BOLT score &amp; vagal tone) directly into your personalized recovery protocol.
             </p>
           </div>
 
-          <div className="studio-showcase">
-            <div className="studio-grid">
-
-              {/* Guided Breathing Orb Visualizer */}
-              <div className="breath-visualizer-container">
-                <div style={{ marginBottom: '16px', textAlign: 'center' }}>
-                  <span className="badge-pill" style={{ fontSize: '0.78rem' }}>
-                    <span className="pulse-dot"></span>
-                    <span>Neuromodulation Sanctuary</span>
-                  </span>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '28px', maxWidth: '1100px', margin: '0 auto' }}>
+            
+            {/* Clinical Mechanism Card */}
+            <div style={{ background: '#FFFFFF', padding: '36px 32px', borderRadius: 'var(--radius-xl)', border: '1px solid var(--border-subtle)', boxShadow: 'var(--shadow-md)', display: 'flex', flexDirection: 'column' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '14px', marginBottom: '20px' }}>
+                <div style={{ width: '52px', height: '52px', borderRadius: '14px', background: 'var(--emerald-soft)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '1.6rem' }}>
+                  🫁
                 </div>
-
-                <div className="breath-circle-wrapper">
-                  <div className="breath-glow-ring"></div>
-                  <div
-                    className={`breath-orb ${isBreathingPlaying ? currentPhase.action : ''}`}
-                    id="breath-interactive-orb"
-                  >
-                    <div className="breath-orb-status" id="breath-phase-label">
-                      {isBreathingPlaying ? currentPhase.name : 'READY'}
-                    </div>
-                    <div className="breath-orb-counter" id="breath-phase-seconds">
-                      {isBreathingPlaying ? `${breathSecondsLeft}s` : `${currentProtocol.phases[0].duration}s`}
-                    </div>
-                  </div>
-                </div>
-
-                <p id="breath-sub-hint" className="breath-hint-glass">
-                  {isBreathingPlaying
-                    ? `${currentPhase.action.toUpperCase()} in harmony with the visual pulsing orb`
-                    : 'Tap button below to start guided breathing session'}
-                </p>
-
-                <div className="breath-controls-bar">
-                  <button
-                    className={`btn ${isBreathingPlaying ? 'btn-accent' : 'btn-primary'}`}
-                    id="breath-sanctuary-toggle"
-                    onClick={toggleBreathingPlay}
-                  >
-                    {isBreathingPlaying ? 'Stop Guided Session' : 'Start Guided Session'}
-                  </button>
-                  <button
-                    className="btn-sound-toggle"
-                    id="breath-sound-toggle-btn"
-                    onClick={() => setIsSoundMuted(!isSoundMuted)}
-                  >
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                      <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
-                      <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path>
-                    </svg>
-                    <span>{isSoundMuted ? '🔇 Sound: Muted' : '🌊 Sound: Ocean & Zen Bowl ON'}</span>
-                  </button>
-                </div>
-
-                <div className="breath-stats-glass">
-                  <div className="breath-stat-pill">
-                    Cycles Completed: <strong id="breath-cycle-count" style={{ color: 'var(--emerald-deep)', fontSize: '1rem' }}>{breathCycles}</strong>
-                  </div>
-                  <div className="breath-stat-pill">
-                    Duration: <strong id="breath-session-timer" style={{ color: 'var(--emerald-deep)', fontSize: '1rem' }}>{formatSessionTime(sessionSeconds)}</strong>
-                  </div>
-                </div>
-
-                <div style={{ marginTop: '18px', display: 'flex', gap: '8px', flexWrap: 'wrap', justifyContent: 'center' }}>
-                  <button
-                    className={`btn btn-sm ${activeProtocolKey === '478' ? 'btn-primary' : 'btn-secondary'}`}
-                    onClick={() => switchProtocol('478')}
-                  >
-                    4-7-8 Relax
-                  </button>
-                  <button
-                    className={`btn btn-sm ${activeProtocolKey === 'box' ? 'btn-primary' : 'btn-secondary'}`}
-                    onClick={() => switchProtocol('box')}
-                  >
-                    Box 4-4-4-4
-                  </button>
-                  <button
-                    className={`btn btn-sm ${activeProtocolKey === 'coherent' ? 'btn-primary' : 'btn-secondary'}`}
-                    onClick={() => switchProtocol('coherent')}
-                  >
-                    Coherent 5-5
-                  </button>
+                <div>
+                  <h3 style={{ fontSize: '1.3rem', margin: 0, color: 'var(--emerald-deep)' }}>The Bohr Effect &amp; Gut-Vagus Axis</h3>
+                  <span style={{ fontSize: '0.85rem', color: 'var(--text-muted)' }}>Beyond Calorie Counting &bull; Nervous System Medicine</span>
                 </div>
               </div>
 
-              {/* Interactive BOLT Breath-Hold Counter */}
-              <div className="bolt-test-card" id="bolt-tester">
-                <span className="sub-title" style={{ fontSize: '0.8rem' }}>Clinical Breath-Hold Test</span>
-                <h3>Body Oxygen Level Test (BOLT)</h3>
-                <p style={{ fontSize: '0.95rem', color: 'var(--text-secondary)' }}>
-                  Measures functional carbon dioxide tolerance and true cellular oxygen delivery via the <strong>Bohr Effect</strong>.
-                </p>
+              <p style={{ color: 'var(--text-secondary)', lineHeight: 1.65, fontSize: '0.98rem', marginBottom: '18px' }}>
+                Upper-chest over-breathing and chronic mouth breathing deplete arterial CO₂, locking oxygen into hemoglobin and starving your brain and digestive organs of oxygen. This directly correlates with:
+              </p>
 
-                <div className="bolt-instructions">
-                  <strong>How to perform accurately:</strong>
-                  <ol>
-                    <li>Take a calm, normal breath in through your nose (2–3s).</li>
-                    <li>Allow a gentle, normal breath out through your nose.</li>
-                    <li>Pinch your nose, click <strong>"Start BOLT Hold"</strong> below, and stop at the <em>first definite urge to breathe</em>!</li>
-                  </ol>
-                  <div style={{ marginTop: '6px', fontSize: '0.8rem', color: '#B45309', fontWeight: 600 }}>
-                    &bull; The Golden Rule: This is NOT a breath-holding contest. Stop at the very first involuntary urge!
-                  </div>
-                </div>
+              <ul style={{ listStyle: 'none', padding: 0, margin: '0 0 24px 0', display: 'flex', flexDirection: 'column', gap: '12px' }}>
+                <li style={{ display: 'flex', alignItems: 'flex-start', gap: '10px', fontSize: '0.92rem', color: 'var(--text-primary)' }}>
+                  <span style={{ color: '#DC2626', fontWeight: 700, fontSize: '1.1rem' }}>&bull;</span>
+                  <span><strong>Acid Reflux &amp; Delayed Stomach Emptying:</strong> Low vagal tone weakens lower esophageal sphincter tone.</span>
+                </li>
+                <li style={{ display: 'flex', alignItems: 'flex-start', gap: '10px', fontSize: '0.92rem', color: 'var(--text-primary)' }}>
+                  <span style={{ color: '#DC2626', fontWeight: 700, fontSize: '1.1rem' }}>&bull;</span>
+                  <span><strong>Nocturnal Waking &amp; Afternoon Slumps:</strong> Sympathetic overdrive driving high nighttime cortisol spikes.</span>
+                </li>
+                <li style={{ display: 'flex', alignItems: 'flex-start', gap: '10px', fontSize: '0.92rem', color: 'var(--text-primary)' }}>
+                  <span style={{ color: '#15803D', fontWeight: 700, fontSize: '1.1rem' }}>✓</span>
+                  <span><strong>Clinical BOLT Testing:</strong> Measure true CO₂ tolerance to design customized hypercapnic pacing drills.</span>
+                </li>
+              </ul>
 
-                <div className="bolt-counter-display">
-                  <div>
-                    <span style={{ fontSize: '0.85rem', color: 'var(--text-muted)', textTransform: 'uppercase', fontWeight: 700, letterSpacing: '0.05em' }}>
-                      Hold Duration
-                    </span>
-                    <div>
-                      <span className="bolt-number-large" id="bolt-counter-val">{boltSeconds.toFixed(1)}</span>
-                      <span className="bolt-number-unit">seconds</span>
-                    </div>
-                  </div>
-                  <div>
-                    {boltState === 'idle' && (
-                      <button className="btn btn-primary" id="bolt-start-btn" onClick={startBoltHold}>
-                        Start BOLT Hold Timer
-                      </button>
-                    )}
-                    {boltState === 'running' && (
-                      <button className="btn btn-accent" id="bolt-stop-btn" onClick={stopBoltHold} style={{ padding: '14px 24px' }}>
-                        Tap At First Urge To Breathe
-                      </button>
-                    )}
-                    {boltState === 'completed' && (
-                      <div style={{ display: 'flex', gap: '8px' }}>
-                        <button className="btn btn-primary btn-sm" onClick={startBoltHold}>
-                          Retest BOLT
-                        </button>
-                        <button className="btn btn-secondary btn-sm" id="bolt-reset-btn" onClick={resetBoltHold}>
-                          Reset
-                        </button>
-                      </div>
-                    )}
-                  </div>
-                </div>
-
-                <p id="bolt-phase-hint" style={{ fontSize: '0.88rem', color: 'var(--text-muted)', marginBottom: '16px' }}>
-                  {boltState === 'running'
-                    ? 'Pinch nose and hold until first definite physical impulse or involuntary swallow...'
-                    : 'Breathe normally. After a normal exhale, pinch your nose and start the timer.'}
-                </p>
-
-                {/* Instant Clinical Evaluation Result Box */}
-                {boltState === 'completed' && (
-                  <div
-                    id="bolt-result-analysis"
-                    style={{
-                      background: 'var(--bg-secondary)',
-                      borderRadius: 'var(--radius-md)',
-                      padding: '20px',
-                      border: '1px solid var(--border-medium)',
-                      marginTop: '20px',
-                      display: 'block'
-                    }}
-                  >
-                    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '12px' }}>
-                      <span style={{ fontWeight: 700, fontSize: '0.95rem', color: 'var(--emerald-deep)' }}>Diagnostic Result:</span>
-                      <span className="bolt-score-pill" id="bolt-score-tier">{boltAnalysis.tier}</span>
-                    </div>
-                    <div id="bolt-bohr-detail" style={{ fontSize: '0.88rem', color: 'var(--text-secondary)', lineHeight: 1.6, marginBottom: '12px' }}>
-                      {boltAnalysis.bohr}
-                    </div>
-                    <div id="bolt-protocol-text" style={{ fontSize: '0.88rem', color: 'var(--emerald-deep)', lineHeight: 1.6, background: 'white', padding: '14px', borderRadius: 'var(--radius-sm)', border: '1px solid var(--border-subtle)' }}>
-                      {boltAnalysis.protocol}
-                    </div>
-                    <div style={{ marginTop: '16px', display: 'flex', gap: '12px', flexWrap: 'wrap' }}>
-                      <Link to="/booking" className="btn btn-primary btn-sm">Discuss Score in Consultation</Link>
-                      <Link to="/breathe" className="btn btn-secondary btn-sm">Full Breath Laboratory &rarr;</Link>
-                    </div>
-                  </div>
-                )}
+              <div style={{ marginTop: 'auto', paddingTop: '16px', borderTop: '1px solid var(--border-subtle)' }}>
+                <Link to="/breathe" style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', color: 'var(--emerald-primary)', fontWeight: 600, fontSize: '0.92rem', textDecoration: 'none' }}>
+                  <span>Want to test your BOLT score online? Visit Interactive Breath Lab &rarr;</span>
+                </Link>
               </div>
-
             </div>
+
+            {/* Direct 1:1 Consultation Bridge Card */}
+            <div style={{ background: 'linear-gradient(135deg, var(--emerald-deep) 0%, #064E3B 100%)', color: '#FFFFFF', padding: '36px 32px', borderRadius: 'var(--radius-xl)', boxShadow: 'var(--shadow-lg)', display: 'flex', flexDirection: 'column', position: 'relative', overflow: 'hidden' }}>
+              <div style={{ position: 'absolute', top: '-20px', right: '-20px', width: '120px', height: '120px', background: 'radial-gradient(circle, rgba(251, 146, 60, 0.25) 0%, transparent 70%)', pointerEvents: 'none' }}></div>
+              
+              <div style={{ marginBottom: '18px' }}>
+                <span className="badge-pill" style={{ background: 'rgba(255, 255, 255, 0.15)', borderColor: 'rgba(255, 255, 255, 0.25)', color: '#FED7AA', fontSize: '0.8rem' }}>
+                  1:1 Deep Dive Consultation &bull; 60 Minutes
+                </span>
+                <h3 style={{ color: '#FFFFFF', fontSize: '1.5rem', marginTop: '12px', marginBottom: '8px' }}>
+                  Integrated Breath &amp; Functional Nutrition Roadmap
+                </h3>
+                <p style={{ color: 'rgba(255, 255, 255, 0.85)', fontSize: '0.95rem', lineHeight: 1.6 }}>
+                  In your 1:1 Health Clarity Session with Reshmi Verma, your breathing mechanics are evaluated alongside your blood diagnostics and gut mucosal health.
+                </p>
+              </div>
+
+              <div style={{ background: 'rgba(255, 255, 255, 0.08)', borderRadius: 'var(--radius-md)', padding: '16px 20px', marginBottom: '24px', border: '1px solid rgba(255, 255, 255, 0.15)' }}>
+                <div style={{ fontSize: '0.82rem', color: '#FED7AA', textTransform: 'uppercase', letterSpacing: '0.05em', fontWeight: 700, marginBottom: '6px' }}>What You Receive:</div>
+                <div style={{ fontSize: '0.9rem', color: '#FFFFFF', lineHeight: 1.5 }}>
+                  ✓ Direct 60-min video deep dive with Reshmi Verma<br />
+                  ✓ Functional interpretation of your blood chemistry &amp; BOLT<br />
+                  ✓ Written clinical step-by-step 30-day recovery protocol
+                </div>
+              </div>
+
+              <div style={{ marginTop: 'auto', display: 'flex', flexDirection: 'column', gap: '12px' }}>
+                <Link to="/booking" className="btn btn-accent btn-lg" style={{ background: '#FFFFFF', color: 'var(--emerald-deep)', fontWeight: 700, textAlign: 'center', justifyContent: 'center' }}>
+                  <span>Book 1:1 Health Consultation (₹1,999)</span>
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" style={{ marginLeft: '6px' }}>
+                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                    <polyline points="12 5 19 12 12 19"></polyline>
+                  </svg>
+                </Link>
+                <div style={{ textAlign: 'center', fontSize: '0.82rem', color: 'rgba(255, 255, 255, 0.75)' }}>
+                  🔒 Secure checkout &bull; Instant calendar slot confirmation
+                </div>
+              </div>
+            </div>
+
           </div>
         </div>
       </section>
@@ -1137,97 +727,34 @@ export default function HomePage() {
               </div>
             </div>
           </div>
-        </div>
-      </section>
 
-      {/* 6. Clinical Diagnostics Leadership & Global Credentials (Meet Reshmi) */}
-      <section className="section" id="about-reshmi" style={{ background: 'white' }}>
-        <div className="container">
-          <div className="about-grid">
-            <div className="about-image-wrapper">
-              <div className="about-main-image" style={{ aspectRatio: '3/4', maxHeight: '580px', borderRadius: '24px', overflow: 'hidden' }}>
-                <img 
-                  src="/assets/images/Foundr.jpeg" 
-                  alt="Reshmi Verma - Healthcare Executive, Functional Nutritionist & Biohacker" 
-                  style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center 12%' }} 
-                  onError={(e) => { e.target.src = '/assets/images/founder.jpg'; }}
-                />
-              </div>
-              <div className="transformation-callout" style={{ bottom: '-16px', right: '-16px' }}>
-                <div className="metric">20+ Yrs</div>
-                <p>Healthcare &amp; Diagnostics Experience</p>
-              </div>
+          {/* Post-Pillars Clinical Consultation Banner */}
+          <div style={{ marginTop: '48px', background: '#FFFFFF', padding: '32px 36px', borderRadius: 'var(--radius-xl)', border: '1px solid var(--border-subtle)', boxShadow: 'var(--shadow-md)', display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '24px' }}>
+            <div style={{ maxWidth: '640px' }}>
+              <span className="badge-pill" style={{ fontSize: '0.8rem', marginBottom: '8px' }}>
+                <span>Interconnected Clinical Care</span>
+              </span>
+              <h3 style={{ fontSize: '1.45rem', color: 'var(--emerald-deep)', margin: '8px 0' }}>
+                Which of these pillars is your body struggling with right now?
+              </h3>
+              <p style={{ color: 'var(--text-secondary)', margin: 0, fontSize: '0.96rem', lineHeight: 1.6 }}>
+                In your 60-Minute 1:1 Health Clarity Session, Reshmi Verma connects the dots across your symptom patterns, blood chemistry, and nervous system to build your personalized recovery blueprint.
+              </p>
             </div>
-
-            <div className="about-content">
-              <span className="sub-title">Integrative Perspective to Health</span>
-              <h2>Meet Reshmi Verma</h2>
-              <p className="lead" style={{ fontSize: '1.12rem', color: 'var(--emerald-deep)', fontWeight: 700, marginBottom: '18px' }}>
-                Biotechnologist &bull; MBA &bull; Functional Nutritionist &bull; Top Oxygen Advantage Coach &bull; Biohacker
-              </p>
-
-              <p style={{ color: 'var(--text-secondary)', marginBottom: '14px', lineHeight: 1.7, fontSize: '1.02rem' }}>
-                I’m a <strong>Biotechnologist and MBA in Marketing &amp; HR</strong>, with a specialization in <strong>Medical Tourism</strong>, and have spent <strong>over 20 years</strong> in the world of diagnostics and healthcare. I’m the <strong>Director of Rainbow Medinova Diagnostic Services</strong> &amp; <strong>Co-founder of Neofit Gym</strong>.
-              </p>
-
-              <p style={{ color: 'var(--text-secondary)', marginBottom: '16px', lineHeight: 1.7, fontSize: '1.02rem' }}>
-                As a Functional Nutritionist, Biohacker &amp; Gut Health Coach, I’ve studied Functional Nutrition across <strong>India, the USA and Australia</strong>, and trained as an <strong>Oxygen Advantage Coach</strong> (recognized among India's top certified coaches), Breath Resilience Instructor and Circular Connected Breathwork Facilitator, with a deep interest in Longevity.
-              </p>
-
-              {/* Philosophy Quote Callout */}
-              <div style={{ 
-                background: 'var(--sand-cream)', 
-                borderLeft: '4px solid var(--emerald-medium)', 
-                padding: '16px 20px', 
-                borderRadius: '0 14px 14px 0', 
-                margin: '18px 0 20px', 
-                fontStyle: 'italic', 
-                color: 'var(--emerald-primary)', 
-                fontSize: '1.02rem', 
-                lineHeight: 1.6 
-              }}>
-                &ldquo;Perhaps my most personal qualification is my own transformation losing more than 38 kg (from 98 kg to the 60s kg) and completely changing my relationship with health. Today, I bring together science, healthcare experience and lived transformation to help people build better health, greater resilience and lasting change.&rdquo;
-              </div>
-
-              <div className="credentials-list">
-                <div className="credential-item">
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-                    <polyline points="20 6 9 17 4 12"></polyline>
-                  </svg>
-                  <span>20+ Years in Healthcare &amp; Diagnostics</span>
-                </div>
-                <div className="credential-item">
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-                    <polyline points="20 6 9 17 4 12"></polyline>
-                  </svg>
-                  <span>Director, Rainbow Medinova &amp; Co-founder, Neofit Gym</span>
-                </div>
-                <div className="credential-item">
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-                    <polyline points="20 6 9 17 4 12"></polyline>
-                  </svg>
-                  <span>Functional Nutritionist (India, USA &amp; Australia)</span>
-                </div>
-                <div className="credential-item">
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-                    <polyline points="20 6 9 17 4 12"></polyline>
-                  </svg>
-                  <span>Top Oxygen Advantage Coach &amp; Breath Resilience Instructor</span>
-                </div>
-              </div>
-
-              <div style={{ display: 'flex', gap: '14px', flexWrap: 'wrap', marginTop: '14px' }}>
-                <Link to="/booking" className="btn btn-primary">
-                  <span>Book a Health Clarity Session</span>
-                </Link>
-                <Link to="/assessment" className="btn btn-secondary">
-                  <span>Take Free Health Assessment</span>
-                </Link>
-              </div>
+            <div>
+              <Link to="/booking" className="btn btn-primary btn-lg" style={{ whiteSpace: 'nowrap' }}>
+                <span>Book 1:1 Health Consultation (₹1,999)</span>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" style={{ marginLeft: '8px' }}>
+                  <line x1="5" y1="12" x2="19" y2="12"></line>
+                  <polyline points="12 5 19 12 12 19"></polyline>
+                </svg>
+              </Link>
             </div>
           </div>
         </div>
       </section>
+
+
 
       {/* 7. How We Work Together Section (No One-Size-Fits-All) */}
       <section className="section" id="how-we-work" style={{ background: 'var(--sand-warm)', borderTop: '1px solid var(--sand-border)', borderBottom: '1px solid var(--sand-border)' }}>
@@ -1526,33 +1053,27 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 10. Interactive FAQ Section */}
-      <section className="section" style={{ background: 'white' }}>
-        <div className="container">
-          <div className="section-header">
-            <span className="sub-title">Frequently Asked Questions</span>
-            <h2>Answers to Common Clinical Inquiries</h2>
-            <p>Learn how our integrative consultations work and what you can expect.</p>
+      {/* 8. Trust & Founder Spotlight Banner */}
+      <section style={{ background: '#FAF8F5', padding: '44px 0', borderTop: '1px solid var(--border-subtle)', borderBottom: '1px solid var(--border-subtle)' }}>
+        <div className="container" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '24px' }}>
+          <div style={{ maxWidth: '680px' }}>
+            <div style={{ fontSize: '0.82rem', fontWeight: 700, color: 'var(--emerald-medium)', textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: '6px' }}>
+              Led By Reshmi Verma &bull; 20+ Years Clinical Diagnostics Leadership
+            </div>
+            <h3 style={{ fontSize: '1.5rem', color: 'var(--emerald-deep)', margin: '0 0 6px', fontFamily: 'var(--font-serif)' }}>
+              Biotechnologist &bull; Functional Nutritionist &bull; Breathwork Facilitator
+            </h3>
+            <p style={{ margin: 0, color: 'var(--text-secondary)', fontSize: '0.94rem', lineHeight: 1.6 }}>
+              Director of Rainbow Medinova Diagnostic Services and Co-founder of Neofit Gym. Read her journey from pathology diagnostics to personal 38 kg reversal.
+            </p>
           </div>
-
-          <div className="faq-list">
-            {faqs.map((faq, idx) => (
-              <div key={idx} className={`faq-item ${openFaq === idx ? 'active' : ''}`}>
-                <div
-                  className="faq-question"
-                  onClick={() => setOpenFaq(openFaq === idx ? null : idx)}
-                  style={{ cursor: 'pointer' }}
-                >
-                  <span>{faq.q}</span>
-                  <div className="faq-icon">{openFaq === idx ? '−' : '+'}</div>
-                </div>
-                {openFaq === idx && (
-                  <div className="faq-answer" style={{ display: 'block' }}>
-                    {faq.a}
-                  </div>
-                )}
-              </div>
-            ))}
+          <div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap', alignItems: 'center' }}>
+            <Link to="/about" className="btn btn-secondary btn-lg" style={{ borderRadius: '14px', padding: '12px 24px', fontSize: '0.95rem' }}>
+              <span>Read Reshmi's Full Story &rarr;</span>
+            </Link>
+            <Link to="/booking" className="btn btn-primary btn-lg" style={{ borderRadius: '14px', padding: '12px 26px', fontSize: '0.95rem' }}>
+              <span>Book 1:1 Consultation (₹1,999)</span>
+            </Link>
           </div>
         </div>
       </section>

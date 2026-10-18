@@ -50,6 +50,13 @@ export default function AdminPage() {
   const [slotBlockDate, setSlotBlockDate] = useState('');
   const [slotBlockSlot, setSlotBlockSlot] = useState('');
 
+  // Assessment Leads State
+  const [leads, setLeads] = useState([]);
+  const [loadingLeads, setLoadingLeads] = useState(false);
+  const [leadsFilter, setLeadsFilter] = useState('all');
+  const [leadsSearch, setLeadsSearch] = useState('');
+  const [updatingLeadId, setUpdatingLeadId] = useState(null);
+
   // Status Alerts
   const [alertMsg, setAlertMsg] = useState(null); // { type: 'success' | 'error', text: string }
 
@@ -132,6 +139,59 @@ export default function AdminPage() {
       console.error('Schedule fetch error:', err);
     } finally {
       setLoadingSchedule(false);
+    }
+  };
+
+  // 5. Fetch Assessment Leads
+  const fetchAdminLeads = async () => {
+    setLoadingLeads(true);
+    try {
+      const headers = {};
+      if (token) headers['Authorization'] = `Bearer ${token}`;
+
+      const res = await fetch(getApiUrl('/api/admin-leads'), { headers });
+      const data = await res.json();
+
+      if (res.ok && data.success) {
+        setLeads(data.leads || []);
+      } else {
+        showNotification('error', data.error || 'Failed to load assessment leads.');
+      }
+    } catch (err) {
+      console.error('Admin leads fetch error:', err);
+      showNotification('error', 'Error connecting to assessment leads endpoint.');
+    } finally {
+      setLoadingLeads(false);
+    }
+  };
+
+  // Update Assessment Lead Status / Notes
+  const handleUpdateLeadStatus = async (leadId, updates) => {
+    setUpdatingLeadId(leadId);
+    try {
+      const headers = { 'Content-Type': 'application/json' };
+      if (token) headers['Authorization'] = `Bearer ${token}`;
+
+      const res = await fetch(getApiUrl('/api/admin-update-lead'), {
+        method: 'POST',
+        headers,
+        body: JSON.stringify({ leadId, updates })
+      });
+
+      const data = await res.json();
+      if (res.ok && data.success) {
+        setLeads((prev) =>
+          prev.map((l) => (l.id === leadId ? { ...l, ...updates, ...(data.lead || {}) } : l))
+        );
+        showNotification('success', 'Lead record updated.');
+      } else {
+        showNotification('error', data.error || 'Failed to update lead status.');
+      }
+    } catch (err) {
+      console.error('Update lead error:', err);
+      showNotification('error', 'Error updating lead.');
+    } finally {
+      setUpdatingLeadId(null);
     }
   };
 
@@ -265,6 +325,7 @@ export default function AdminPage() {
         fetchPricingTiers();
         fetchReels();
         fetchSchedule();
+        fetchAdminLeads();
       }
     }
   }, [authLoading, isAuthenticated, isAdmin]);
@@ -507,6 +568,11 @@ export default function AdminPage() {
                 {loadingSchedule ? 'Refreshing...' : '↻ Refresh Schedule'}
               </button>
             )}
+            {activeTab === 'leads' && (
+              <button className="btn btn-secondary btn-sm" onClick={fetchAdminLeads} disabled={loadingLeads}>
+                {loadingLeads ? 'Refreshing...' : '↻ Refresh Leads'}
+              </button>
+            )}
           </div>
         </div>
 
@@ -580,6 +646,17 @@ export default function AdminPage() {
             <span>📅 Clinic Schedule</span>
             <span className="admin-tab-badge">
               {scheduleData.defaultSlots?.length || 5} Slots
+            </span>
+          </button>
+
+          <button
+            type="button"
+            className={`admin-tab-btn ${activeTab === 'leads' ? 'active' : ''}`}
+            onClick={() => setActiveTab('leads')}
+          >
+            <span>🎯 Assessment Leads</span>
+            <span className="admin-tab-badge" style={{ background: '#FEF3C7', color: '#92400E' }}>
+              {leads.length}
             </span>
           </button>
         </div>
@@ -1746,6 +1823,309 @@ export default function AdminPage() {
               </div>
 
             </div>
+          </div>
+        )}
+
+        {/* =========================================================================
+            TAB 5: ASSESSMENT LEADS & DROP-OFF RECOVERY DESK
+            ========================================================================= */}
+        {activeTab === 'leads' && (
+          <div>
+            {/* Top Metrics Banner */}
+            <div className="admin-metrics-grid" style={{ marginBottom: '24px' }}>
+              <div style={{ background: 'white', padding: '20px', borderRadius: '20px', border: '1px solid var(--border-subtle)', boxShadow: '0 4px 14px rgba(0,0,0,0.02)' }}>
+                <span style={{ fontSize: '0.8rem', color: 'var(--text-muted)', textTransform: 'uppercase', fontWeight: 700 }}>Total Leads Captured</span>
+                <div style={{ fontSize: '2rem', fontWeight: 800, color: 'var(--emerald-deep)', marginTop: '4px' }}>
+                  {leads.length}
+                </div>
+                <div style={{ fontSize: '0.78rem', color: 'var(--text-muted)', marginTop: '4px' }}>From welcome popup &amp; assessment</div>
+              </div>
+
+              <div style={{ background: '#FFFBEB', padding: '20px', borderRadius: '20px', border: '1px solid #FDE68A', boxShadow: '0 4px 14px rgba(0,0,0,0.02)' }}>
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                  <span style={{ fontSize: '0.8rem', color: '#92400E', textTransform: 'uppercase', fontWeight: 700 }}>Priority: Finished Quiz, Not Booked</span>
+                  <span style={{ background: '#FEF3C7', color: '#B45309', padding: '2px 8px', borderRadius: '12px', fontSize: '0.72rem', fontWeight: 700 }}>Hot Leads</span>
+                </div>
+                <div style={{ fontSize: '2rem', fontWeight: 800, color: '#B45309', marginTop: '4px' }}>
+                  {leads.filter(l => l.status === 'completed_not_booked').length}
+                </div>
+                <div style={{ fontSize: '0.78rem', color: '#92400E', marginTop: '4px' }}>Know their health score; ready for 1-click WhatsApp</div>
+              </div>
+
+              <div style={{ background: '#FFF7ED', padding: '20px', borderRadius: '20px', border: '1px solid #FFEDD5', boxShadow: '0 4px 14px rgba(0,0,0,0.02)' }}>
+                <span style={{ fontSize: '0.8rem', color: '#9A3412', textTransform: 'uppercase', fontWeight: 700 }}>Mid-Quiz Drop-Offs</span>
+                <div style={{ fontSize: '2rem', fontWeight: 800, color: '#EA580C', marginTop: '4px' }}>
+                  {leads.filter(l => l.status === 'in_progress').length}
+                </div>
+                <div style={{ fontSize: '0.78rem', color: '#9A3412', marginTop: '4px' }}>Left midway through the assessment questions</div>
+              </div>
+
+              <div style={{ background: '#F0FDF4', padding: '20px', borderRadius: '20px', border: '1px solid #BBF7D0', boxShadow: '0 4px 14px rgba(0,0,0,0.02)' }}>
+                <span style={{ fontSize: '0.8rem', color: '#166534', textTransform: 'uppercase', fontWeight: 700 }}>Booked 1:1 Consultations</span>
+                <div style={{ fontSize: '2rem', fontWeight: 800, color: '#15803D', marginTop: '4px' }}>
+                  {leads.filter(l => l.status === 'booked').length}
+                </div>
+                <div style={{ fontSize: '0.78rem', color: '#166534', marginTop: '4px' }}>Successfully converted into patient appointments</div>
+              </div>
+            </div>
+
+            {/* Filter and Search Bar */}
+            <div style={{ background: 'white', padding: '18px 24px', borderRadius: '18px', border: '1px solid var(--border-subtle)', marginBottom: '20px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '14px' }}>
+              <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap' }}>
+                <button
+                  type="button"
+                  className={`btn btn-sm ${leadsFilter === 'all' ? 'btn-primary' : 'btn-secondary'}`}
+                  onClick={() => setLeadsFilter('all')}
+                >
+                  All ({leads.length})
+                </button>
+                <button
+                  type="button"
+                  className={`btn btn-sm ${leadsFilter === 'completed_not_booked' ? 'btn-primary' : 'btn-secondary'}`}
+                  onClick={() => setLeadsFilter('completed_not_booked')}
+                  style={leadsFilter === 'completed_not_booked' ? { background: '#D97706', borderColor: '#D97706' } : {}}
+                >
+                  ⭐ Finished Quiz ({leads.filter(l => l.status === 'completed_not_booked').length})
+                </button>
+                <button
+                  type="button"
+                  className={`btn btn-sm ${leadsFilter === 'in_progress' ? 'btn-primary' : 'btn-secondary'}`}
+                  onClick={() => setLeadsFilter('in_progress')}
+                  style={leadsFilter === 'in_progress' ? { background: '#EA580C', borderColor: '#EA580C' } : {}}
+                >
+                  ⏳ Mid-Quiz Drop-offs ({leads.filter(l => l.status === 'in_progress').length})
+                </button>
+                <button
+                  type="button"
+                  className={`btn btn-sm ${leadsFilter === 'booked' ? 'btn-primary' : 'btn-secondary'}`}
+                  onClick={() => setLeadsFilter('booked')}
+                  style={leadsFilter === 'booked' ? { background: '#16A34A', borderColor: '#16A34A' } : {}}
+                >
+                  ✅ Booked ({leads.filter(l => l.status === 'booked').length})
+                </button>
+              </div>
+
+              <div style={{ flex: '1', minWidth: '240px', maxWidth: '380px' }}>
+                <input
+                  type="text"
+                  placeholder="Search lead by name, phone or email..."
+                  value={leadsSearch}
+                  onChange={(e) => setLeadsSearch(e.target.value)}
+                  style={{
+                    width: '100%',
+                    padding: '8px 14px',
+                    borderRadius: '10px',
+                    border: '1px solid var(--border-subtle)',
+                    fontSize: '0.88rem'
+                  }}
+                />
+              </div>
+            </div>
+
+            {/* Leads List / Cards */}
+            {loadingLeads ? (
+              <div style={{ padding: '60px', textAlign: 'center', background: 'white', borderRadius: '20px', border: '1px solid var(--border-subtle)' }}>
+                <div style={{ fontSize: '1.2rem', color: 'var(--emerald-deep)', fontWeight: 600 }}>Loading Assessment Leads...</div>
+              </div>
+            ) : leads.length === 0 ? (
+              <div style={{ padding: '60px 20px', textAlign: 'center', background: 'white', borderRadius: '20px', border: '1px dashed var(--border-medium)' }}>
+                <div style={{ fontSize: '2.5rem', marginBottom: '10px' }}>🎯</div>
+                <h3 style={{ color: 'var(--emerald-deep)', margin: '0 0 8px' }}>No Assessment Leads Yet</h3>
+                <p style={{ color: 'var(--text-muted)', maxWidth: '480px', margin: '0 auto', fontSize: '0.9rem' }}>
+                  Whenever a visitor enters their Name and WhatsApp number on the welcome popup or begins the Health Assessment, their data is instantly tracked here for follow-up.
+                </p>
+              </div>
+            ) : (
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '14px' }}>
+                {leads
+                  .filter(l => {
+                    if (leadsFilter !== 'all' && l.status !== leadsFilter) return false;
+                    if (leadsSearch) {
+                      const q = leadsSearch.toLowerCase();
+                      return (
+                        l.name?.toLowerCase().includes(q) ||
+                        l.phone?.toLowerCase().includes(q) ||
+                        l.email?.toLowerCase().includes(q)
+                      );
+                    }
+                    return true;
+                  })
+                  .map((lead) => {
+                    const cleanPhone = (lead.phone || '').replace(/\D/g, '');
+                    const waText = encodeURIComponent(
+                      `Hello ${lead.name || 'there'}! This is the clinical team at HealthwithReshmi™. We saw that you completed your Functional Health Assessment. Would you like to schedule your 1:1 Consultation with Reshmi Verma to review your personalized protocol?`
+                    );
+                    const waUrl = `https://wa.me/91${cleanPhone.length === 10 ? cleanPhone : cleanPhone.slice(-10)}?text=${waText}`;
+
+                    return (
+                      <div
+                        key={lead.id}
+                        style={{
+                          background: 'white',
+                          borderRadius: '18px',
+                          padding: '20px 24px',
+                          border: '1px solid var(--border-subtle)',
+                          boxShadow: '0 2px 8px rgba(0,0,0,0.02)',
+                          display: 'flex',
+                          flexDirection: 'column',
+                          gap: '14px'
+                        }}
+                      >
+                        {/* Top Line: Patient Info & Status Badge */}
+                        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', flexWrap: 'wrap', gap: '12px' }}>
+                          <div>
+                            <div style={{ display: 'flex', alignItems: 'center', gap: '10px', flexWrap: 'wrap' }}>
+                              <h3 style={{ margin: 0, fontSize: '1.2rem', color: 'var(--emerald-deep)', fontWeight: 700 }}>
+                                {lead.name || 'Anonymous Visitor'}
+                              </h3>
+                              {lead.status === 'completed_not_booked' && (
+                                <span style={{ background: '#FEF3C7', color: '#92400E', border: '1px solid #FDE68A', padding: '3px 10px', borderRadius: '999px', fontSize: '0.75rem', fontWeight: 700 }}>
+                                  ⭐ Quiz Finished • Consultation Not Yet Booked
+                                </span>
+                              )}
+                              {lead.status === 'in_progress' && (
+                                <span style={{ background: '#FFF7ED', color: '#C2410C', border: '1px solid #FFEDD5', padding: '3px 10px', borderRadius: '999px', fontSize: '0.75rem', fontWeight: 700 }}>
+                                  ⏳ Dropped Off at Step {lead.lastStep || 1} of {lead.totalSteps || 8}
+                                </span>
+                              )}
+                              {lead.status === 'booked' && (
+                                <span style={{ background: '#DCFCE7', color: '#15803D', border: '1px solid #BBF7D0', padding: '3px 10px', borderRadius: '999px', fontSize: '0.75rem', fontWeight: 700 }}>
+                                  ✅ Booked 1:1 Consultation
+                                </span>
+                              )}
+                            </div>
+
+                            {/* Contact Details */}
+                            <div style={{ display: 'flex', gap: '16px', marginTop: '6px', flexWrap: 'wrap', fontSize: '0.88rem', color: 'var(--text-muted)' }}>
+                              <span>📱 <strong>{lead.phone || 'No phone'}</strong></span>
+                              <span>✉️ <strong>{lead.email || 'No email'}</strong></span>
+                              <span>🕒 {new Date(lead.updatedAt || lead.createdAt).toLocaleString('en-IN', { dateStyle: 'medium', timeStyle: 'short' })}</span>
+                            </div>
+                          </div>
+
+                          {/* Quick Contact Buttons */}
+                          <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap' }}>
+                            {lead.phone && (
+                              <a
+                                href={waUrl}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="btn btn-sm"
+                                style={{
+                                  background: '#25D366',
+                                  color: 'white',
+                                  fontWeight: 700,
+                                  textDecoration: 'none',
+                                  display: 'inline-flex',
+                                  alignItems: 'center',
+                                  gap: '6px',
+                                  padding: '8px 14px',
+                                  borderRadius: '10px'
+                                }}
+                              >
+                                <span>💬 WhatsApp Client</span>
+                              </a>
+                            )}
+                            {lead.phone && (
+                              <a
+                                href={`tel:${lead.phone}`}
+                                className="btn btn-secondary btn-sm"
+                                style={{
+                                  padding: '8px 14px',
+                                  borderRadius: '10px',
+                                  display: 'inline-flex',
+                                  alignItems: 'center',
+                                  gap: '6px',
+                                  fontWeight: 600
+                                }}
+                              >
+                                <span>📞 Direct Call</span>
+                              </a>
+                            )}
+                          </div>
+                        </div>
+
+                        {/* Mid Section: Assessment Insights & Progress Bar */}
+                        <div style={{ background: '#FAF8F5', borderRadius: '12px', padding: '12px 16px', border: '1px solid var(--border-subtle)', display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '12px' }}>
+                          <div style={{ flex: '1', minWidth: '220px' }}>
+                            <div style={{ fontSize: '0.75rem', textTransform: 'uppercase', fontWeight: 700, color: 'var(--text-muted)', marginBottom: '4px' }}>
+                              Assessment Drop-off &amp; Completion Status
+                            </div>
+                            <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+                              <div style={{ flex: '1', height: '8px', background: '#E2E8F0', borderRadius: '4px', overflow: 'hidden' }}>
+                                <div
+                                  style={{
+                                    height: '100%',
+                                    width: `${lead.status === 'completed_not_booked' || lead.status === 'booked' ? 100 : Math.round(((lead.lastStep || 1) / (lead.totalSteps || 8)) * 100)}%`,
+                                    background: lead.status === 'booked' ? '#16A34A' : lead.status === 'completed_not_booked' ? '#D97706' : '#EA580C',
+                                    borderRadius: '4px'
+                                  }}
+                                />
+                              </div>
+                              <span style={{ fontSize: '0.82rem', fontWeight: 700, color: 'var(--text-primary)' }}>
+                                {lead.status === 'completed_not_booked' || lead.status === 'booked'
+                                  ? '100% Completed'
+                                  : `Step ${lead.lastStep || 1} / ${lead.totalSteps || 8}`}
+                              </span>
+                            </div>
+                          </div>
+
+                          {lead.assessmentScore && (
+                            <div style={{ textAlign: 'center', padding: '0 16px', borderLeft: '1px solid var(--border-subtle)' }}>
+                              <div style={{ fontSize: '0.72rem', textTransform: 'uppercase', color: 'var(--text-muted)', fontWeight: 700 }}>
+                                Calculated Score
+                              </div>
+                              <div style={{ fontSize: '1.3rem', fontWeight: 800, color: 'var(--emerald-deep)' }}>
+                                {lead.assessmentScore}%
+                              </div>
+                            </div>
+                          )}
+
+                          {lead.conciseResults && (
+                            <div style={{ fontSize: '0.85rem', color: 'var(--text-secondary)', padding: '0 12px' }}>
+                              Score Level: <strong>{lead.conciseResults.title || 'Evaluated'}</strong>
+                            </div>
+                          )}
+                        </div>
+
+                        {/* Bottom Bar: Follow-up Status Dropdown & Notes */}
+                        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '12px', paddingTop: '4px' }}>
+                          <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+                            <label style={{ fontSize: '0.8rem', fontWeight: 700, color: 'var(--text-muted)', textTransform: 'uppercase' }}>
+                              Follow-up Status:
+                            </label>
+                            <select
+                              value={lead.followUpStatus || 'pending'}
+                              disabled={updatingLeadId === lead.id}
+                              onChange={(e) => handleUpdateLeadStatus(lead.id, { followUpStatus: e.target.value })}
+                              style={{
+                                padding: '6px 12px',
+                                borderRadius: '8px',
+                                border: '1px solid var(--border-subtle)',
+                                fontSize: '0.85rem',
+                                fontWeight: 600,
+                                background: lead.followUpStatus === 'converted' ? '#DCFCE7' : lead.followUpStatus === 'contacted' ? '#EFF6FF' : '#FFFBEB',
+                                color: lead.followUpStatus === 'converted' ? '#15803D' : lead.followUpStatus === 'contacted' ? '#1D4ED8' : '#92400E'
+                              }}
+                            >
+                              <option value="pending">⏳ Pending Follow-up</option>
+                              <option value="contacted">💬 Contacted via WhatsApp</option>
+                              <option value="called">📞 Called Client</option>
+                              <option value="converted">✅ Converted to Consultation</option>
+                              <option value="not_interested">❌ Not Interested</option>
+                            </select>
+                          </div>
+
+                          <div style={{ fontSize: '0.8rem', color: 'var(--text-muted)' }}>
+                            Lead ID: <code style={{ background: '#F1F5F9', padding: '2px 6px', borderRadius: '4px' }}>{lead.id}</code>
+                          </div>
+                        </div>
+
+                      </div>
+                    );
+                  })}
+              </div>
+            )}
           </div>
         )}
 

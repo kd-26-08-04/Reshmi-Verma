@@ -1662,29 +1662,29 @@ h6 {
 .samya-track {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
-  gap: 22px;
+  gap: 14px;
   position: relative;
-  margin-top: 44px;
+  margin-top: 28px;
 }
 
 .samya-card {
-  background: linear-gradient(180deg, #FFFFFF 0%, rgba(254, 245, 238, 0.7) 100%);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border-radius: var(--radius-lg);
-  border: 1.5px solid rgba(194, 65, 12, 0.22);
-  border-top: 4px solid var(--emerald-medium);
-  padding: 32px 22px 26px;
-  box-shadow: 0 12px 30px -8px rgba(15, 23, 42, 0.08);
+  background: linear-gradient(180deg, #FFFFFF 0%, rgba(254, 245, 238, 0.6) 100%);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-radius: 16px;
+  border: 1px solid rgba(194, 65, 12, 0.18);
+  border-top: 3px solid var(--emerald-medium);
+  padding: 18px 14px 16px;
+  box-shadow: 0 4px 14px rgba(15, 23, 42, 0.05);
   position: relative;
   display: flex;
   flex-direction: column;
-  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.35s ease;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.25s ease;
 }
 
 .samya-card:hover {
-  transform: translateY(-10px);
-  box-shadow: 0 24px 50px -10px rgba(194, 65, 12, 0.24), 0 0 25px rgba(234, 88, 12, 0.12);
+  transform: translateY(-5px);
+  box-shadow: 0 14px 28px -6px rgba(194, 65, 12, 0.18);
   border-color: var(--emerald-medium);
   background: #FFFFFF;
 }
@@ -1693,67 +1693,67 @@ h6 {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 20px;
+  margin-bottom: 12px;
 }
 
 .samya-letter-hero {
-  width: 56px;
-  height: 56px;
-  border-radius: 16px;
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
   background: linear-gradient(135deg, var(--emerald-medium) 0%, var(--emerald-light) 100%);
   color: #FFFFFF;
   font-family: var(--font-serif);
-  font-size: 1.85rem;
+  font-size: 1.25rem;
   font-weight: 800;
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 8px 20px rgba(194, 65, 12, 0.32);
+  box-shadow: 0 4px 12px rgba(194, 65, 12, 0.25);
   line-height: 1;
   transition: transform 0.3s ease;
 }
 
 .samya-card:hover .samya-letter-hero {
-  transform: scale(1.1) rotate(-3deg);
+  transform: scale(1.06) rotate(-2deg);
 }
 
 .samya-step-badge {
-  font-size: 0.78rem;
-  font-weight: 800;
+  font-size: 0.68rem;
+  font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.05em;
   color: var(--emerald-medium);
   background: var(--emerald-soft);
-  padding: 5px 12px;
+  padding: 3px 8px;
   border-radius: var(--radius-full);
 }
 
 .samya-card h4 {
-  font-size: 1.35rem;
+  font-size: 1.02rem;
   font-weight: 700;
-  margin-bottom: 12px;
+  margin-bottom: 6px;
   color: var(--emerald-deep);
-  line-height: 1.3;
+  line-height: 1.25;
 }
 
 .samya-card p {
-  font-size: 0.92rem;
+  font-size: 0.8rem;
   color: var(--text-secondary);
-  line-height: 1.65;
-  margin-bottom: 22px;
+  line-height: 1.45;
+  margin-bottom: 12px;
   flex-grow: 1;
 }
 
 .samya-card-tag {
   display: inline-flex;
   align-items: center;
-  gap: 6px;
-  font-size: 0.78rem;
-  font-weight: 700;
-  color: var(--emerald-primary);
-  background: rgba(255, 255, 255, 0.95);
+  gap: 5px;
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  background: white;
   border: 1px solid var(--border-subtle);
-  padding: 5px 12px;
+  padding: 4px 10px;
   border-radius: var(--radius-full);
   margin-top: auto;
   align-self: flex-start;
@@ -5549,15 +5549,33 @@ h6 {
 }
 
 .welcome-btn-yes {
-  flex: 1 1 200px;
+  flex: initial;
+  width: 100%;
+  height: auto;
+  min-height: 48px;
+  max-width: 100%;
+  padding: 14px 24px;
+  border-radius: 14px;
+  font-size: 0.98rem;
+  font-weight: 700;
+  display: inline-flex;
+  align-items: center;
   justify-content: center;
-  padding: 13px 22px;
-  font-size: 0.96rem;
+  gap: 8px;
+  box-shadow: 0 4px 18px rgba(194, 65, 12, 0.28);
 }
 
 .welcome-btn-skip {
-  padding: 12px 20px;
-  font-size: 0.92rem;
+  flex: initial;
+  width: 100%;
+  height: auto;
+  padding: 11px 20px;
+  border-radius: 12px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .welcome-modal-footer-note {
@@ -6042,4 +6060,162 @@ h6 {
   .admin-modal-session-grid {
     grid-template-columns: 1fr;
   }
+}
+
+/* ==========================================================================
+   About Page Next-Level Luxury Animations
+   ========================================================================== */
+@keyframes aboutFadeSlideUp {
+  0% {
+    opacity: 0;
+    transform: translateY(28px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes aboutPortraitBreathe {
+  0%, 100% {
+    transform: translateY(0px) scale(1);
+    box-shadow: 0 20px 45px rgba(0, 0, 0, 0.12), 0 0 20px rgba(194, 65, 12, 0.08);
+  }
+  50% {
+    transform: translateY(-6px) scale(1.008);
+    box-shadow: 0 28px 55px rgba(0, 0, 0, 0.16), 0 0 32px rgba(194, 65, 12, 0.18);
+  }
+}
+
+@keyframes statPopIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.85);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.about-anim-fade-up {
+  animation: aboutFadeSlideUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.about-portrait-breathe {
+  animation: aboutPortraitBreathe 6s ease-in-out infinite;
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.about-badge-float {
+  animation: badgeFloat 4s ease-in-out infinite alternate;
+}
+
+.clinical-card-interactive {
+  transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.45s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.clinical-card-interactive:hover {
+  transform: translateY(-8px) scale(1.015);
+  box-shadow: 0 20px 45px -8px rgba(15, 23, 42, 0.14), 0 0 25px rgba(194, 65, 12, 0.12) !important;
+  border-color: var(--emerald-medium) !important;
+}
+
+.clinical-card-interactive .card-img-wrap {
+  overflow: hidden;
+  position: relative;
+}
+
+.clinical-card-interactive .card-img-wrap img {
+  transition: transform 0.7s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.clinical-card-interactive:hover .card-img-wrap img {
+  transform: scale(1.08);
+}
+
+.quote-interactive-box {
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.quote-interactive-box:hover {
+  border-left-color: var(--emerald-primary) !important;
+  box-shadow: 0 8px 24px rgba(194, 65, 12, 0.1);
+  transform: translateX(4px);
+}
+
+/* ==========================================================================
+   Kinetic Heading Scale Convergence Animation
+   Line 1: Starts enlarged and contracts to fixed size (Bade se Chhota)
+   Line 2: Starts smaller and expands to prominent size (Chhote se Bada)
+   ========================================================================== */
+@keyframes shrinkToFix {
+  0% {
+    opacity: 0;
+    transform: scale(1.28) translateY(-18px);
+    letter-spacing: 0.03em;
+    filter: blur(5px);
+  }
+  50% {
+    opacity: 0.85;
+    filter: blur(1px);
+  }
+  75% {
+    opacity: 0.96;
+    transform: scale(0.985) translateY(1px);
+    filter: blur(0px);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+    letter-spacing: normal;
+    filter: blur(0px);
+  }
+}
+
+@keyframes expandToProminent {
+  0% {
+    opacity: 0;
+    transform: scale(0.72) translateY(22px);
+    filter: blur(6px);
+  }
+  50% {
+    opacity: 0.85;
+    filter: blur(1px);
+  }
+  75% {
+    opacity: 0.96;
+    transform: scale(1.025) translateY(-1px);
+    filter: blur(0px);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+    filter: blur(0px);
+  }
+}
+
+.about-heading-line-1 {
+  display: block;
+  font-size: clamp(2.1rem, 4.8vw, 3.25rem);
+  font-weight: 800;
+  color: var(--emerald-deep);
+  transform-origin: center bottom;
+  animation: shrinkToFix 2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  margin-bottom: 8px;
+  line-height: 1.22;
+  letter-spacing: -0.01em;
+}
+
+.about-heading-line-2 {
+  display: block;
+  font-size: clamp(2.3rem, 5.2vw, 3.6rem);
+  font-weight: 800;
+  transform-origin: center top;
+  animation: expandToProminent 2.2s cubic-bezier(0.16, 1, 0.3, 1) 0.25s both;
+  line-height: 1.15;
 }

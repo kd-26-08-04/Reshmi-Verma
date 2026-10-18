@@ -11,7 +11,7 @@ const knowledgeBase = [
   },
   {
     triggers: ['reshmi', 'who is', 'qualification', 'credential', 'background', 'bio'],
-    reply: "Reshmi Verma is a Biotechnologist and MBA in Marketing & HR (Specialization in Medical Tourism) with over 20 years in diagnostics and healthcare. She is the Director of Rainbow Medinova Diagnostic Services and Co-founder of Neofit Gym. Having studied Functional Nutrition across India, the USA, and Australia, she is recognized among India's Top Oxygen Advantage Coaches and personally lost 38+ kg (98 kg to 60s kg) without crash dieting."
+    reply: "Reshmi Verma is a Biotechnologist and MBA in Marketing & HR (Specialization in Medical Tourism) with over 20 years in diagnostics and healthcare. She is the Director of Rainbow Medinova Diagnostic Services and Co-founder of Neofit Gym. Having studied Functional Nutrition across India, the USA, and Australia, she specializes in functional nutrition, somatic breathwork, and personally lost 38+ kg (98 kg to 60s kg) without crash dieting."
   },
   {
     triggers: ['samya', 'framework', 'approach', 'process', 'methodology'],

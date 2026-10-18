@@ -37,7 +37,8 @@ function ensureLocalDb() {
           createdAt: new Date().toISOString()
         }
       ],
-      bookings: []
+      bookings: [],
+      assessment_leads: []
     };
     try {
       fs.writeFileSync(DB_FILE, JSON.stringify(initialData, null, 2), 'utf-8');
@@ -605,6 +606,105 @@ export const db = {
     }
 
     return { available: true };
+  },
+
+  // --- ASSESSMENT LEADS (DATA ENTRY & ABANDONED DROP-OFF TRACKING) ---
+  async createOrUpdateAssessmentLead(leadData) {
+    const id = leadData.id || `lead_${Date.now()}_${Math.random().toString(36).substring(2, 7)}`;
+    const now = new Date().toISOString();
+    const doc = {
+      id,
+      name: (leadData.name || '').trim(),
+      phone: (leadData.phone || '').trim(),
+      email: (leadData.email || '').trim().toLowerCase(),
+      source: leadData.source || 'welcome_modal',
+      step: leadData.step || 'Started Assessment',
+      answers: leadData.answers || {},
+      scores: leadData.scores || null,
+      status: leadData.status || 'in_progress', // 'in_progress' | 'completed_not_booked' | 'booked'
+      followUpStatus: leadData.followUpStatus || 'pending', // 'pending' | 'contacted' | 'converted' | 'not_interested'
+      notes: leadData.notes || '',
+      bookingId: leadData.bookingId || null,
+      createdAt: leadData.createdAt || now,
+      updatedAt: now
+    };
+
+    // 1. Local DB persistence
+    try {
+      const data = readLocalDb();
+      data.assessment_leads = data.assessment_leads || [];
+      const existingIdx = data.assessment_leads.findIndex(l => l.id === doc.id || (doc.phone && l.phone && l.phone === doc.phone));
+      if (existingIdx >= 0) {
+        data.assessment_leads[existingIdx] = {
+          ...data.assessment_leads[existingIdx],
+          ...doc,
+          createdAt: data.assessment_leads[existingIdx].createdAt || doc.createdAt,
+          updatedAt: now
+        };
+      } else {
+        data.assessment_leads.unshift(doc);
+      }
+      writeLocalDb(data);
+    } catch (e) {
+      console.error('Error writing lead to local DB:', e);
+    }
+
+    // 2. MongoDB sync
+    try {
+      const mdb = await getMongo();
+      if (mdb) {
+        await mdb.collection('assessment_leads').updateOne(
+          { $or: [{ id: doc.id }, { phone: doc.phone }] },
+          { $set: doc },
+          { upsert: true }
+        );
+      }
+    } catch (err) {
+      console.warn('MongoDB assessment_leads notice:', err.message);
+    }
+
+    return doc;
+  },
+
+  async getAssessmentLeads() {
+    try {
+      const mdb = await getMongo();
+      if (mdb) {
+        return await mdb.collection('assessment_leads')
+          .find({})
+          .sort({ updatedAt: -1 })
+          .toArray();
+      }
+    } catch (e) {}
+    const data = readLocalDb();
+    return (data.assessment_leads || []).sort((a, b) => new Date(b.updatedAt || 0) - new Date(a.updatedAt || 0));
+  },
+
+  async updateAssessmentLeadStatus(id, updateData) {
+    const now = new Date().toISOString();
+    const patch = { ...updateData, updatedAt: now };
+
+    try {
+      const data = readLocalDb();
+      data.assessment_leads = data.assessment_leads || [];
+      const idx = data.assessment_leads.findIndex(l => l.id === id);
+      if (idx >= 0) {
+        data.assessment_leads[idx] = { ...data.assessment_leads[idx], ...patch };
+        writeLocalDb(data);
+      }
+    } catch (e) {}
+
+    try {
+      const mdb = await getMongo();
+      if (mdb) {
+        await mdb.collection('assessment_leads').updateOne(
+          { id },
+          { $set: patch }
+        );
+      }
+    } catch (e) {}
+
+    return { id, ...patch };
   }
 };
 
