@@ -386,16 +386,18 @@ h6 {
 .brand-logo-img {
   width: 44px;
   height: 44px;
+  border-radius: 50%;
   object-fit: contain;
-  filter: drop-shadow(0 2px 8px rgba(212, 175, 55, 0.35));
-  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), filter 0.3s ease;
+  background: #000000;
+  padding: 1.5px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.28), 0 0 0 1.5px rgba(212, 175, 55, 0.45);
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease;
   flex-shrink: 0;
-  background: transparent;
 }
 
 .brand-logo:hover .brand-logo-img {
   transform: scale(1.08) rotate(3deg);
-  filter: drop-shadow(0 4px 14px rgba(212, 175, 55, 0.65));
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.38), 0 0 0 2px rgba(212, 175, 55, 0.75);
 }
 
 .footer-brand-logo-img {
