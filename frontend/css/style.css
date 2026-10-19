@@ -15,25 +15,25 @@
      4. Health Assessment Track: #EB5E28 (Warm Saffron / Terracotta)
      5. Breathing Assessment Track: #2EC4B6 (Oxygen Advantage Turquoise Cyan)
      ========================================================================== */
-  --bg-primary: #FAF9F6;
-  --bg-secondary: #F3F1EC;
-  --bg-tertiary: #E8E5DD;
+  --bg-primary: #F4F5F6;
+  --bg-secondary: #F4F5F6;
+  --bg-tertiary: #EAEBED;
   --bg-card: #FFFFFF;
   --bg-card-hover: #FFFFFF;
-  --bg-glass: rgba(250, 249, 246, 0.94);
+  --bg-glass: rgba(244, 245, 246, 0.95);
 
   /* Deep Jet Obsidian Authority */
   --emerald-deep: #121214;
   --emerald-primary: #121214;
   --emerald-medium: #121214;
-  --emerald-light: #8EBE93;
-  --emerald-soft: #EDF6EE;
-  --emerald-glow: rgba(142, 190, 147, 0.16);
+  --emerald-light: #6B7280;
+  --emerald-soft: #F4F5F6;
+  --emerald-glow: none;
 
   /* Universal Sage Gray-Green (#8EBE93) */
-  --accent-gray: #8EBE93;
-  --accent-gray-light: #EDF6EE;
-  --accent-gray-border: #C6DFC9;
+  --accent-gray: #6B7280;
+  --accent-gray-light: #F4F5F6;
+  --accent-gray-border: #E5E7EB;
   --accent-gray-deep: #3C6642;
 
   /* Health Track EXCLUSIVELY — Electric Neon Saffron (Bright & Radiant) */
@@ -41,17 +41,17 @@
   --health-saffron-hover: #FF2E93;
   --health-saffron-light: #FFF0F6;
   --health-saffron-border: #FF80BF;
-  --health-saffron-shadow: rgba(255, 0, 127, 0.45);
-  --health-saffron-glow: 0 0 25px rgba(255, 0, 127, 0.4);
+  --health-saffron-shadow: rgba(0, 0, 0, 0.08);
+  --health-saffron-glow: none;
 
   /* Breathwork Track EXCLUSIVELY — Electric Neon Cyan (Bright & Radiant) */
   --breath-cyan: #00E5D9;
   --breath-cyan-hover: #26F0E6;
   --breath-cyan-light: #E6FCFB;
   --breath-cyan-border: #7AF5EE;
-  --breath-cyan-shadow: rgba(0, 229, 217, 0.45);
+  --breath-cyan-shadow: rgba(0, 0, 0, 0.08);
   --breath-cyan-deep: #0D827B;
-  --breath-cyan-glow: 0 0 25px rgba(0, 229, 217, 0.4);
+  --breath-cyan-glow: none;
 
   /* Respiratory & Accents */
   --teal-accent: #00E5D9;
@@ -60,10 +60,10 @@
   --sky-soft: #E6FCFB;
 
   /* Organic Sand & Universal Structure */
-  --sand-warm: #FAF9F6;
-  --sand-cream: #F3F1EC;
+  --sand-warm: #F4F5F6;
+  --sand-cream: #F4F5F6;
   --sand-gold: #121214;
-  --sand-border: #E8E5DD;
+  --sand-border: #E5E7EB;
 
   /* Crisp Typography Colors */
   --text-primary: #121214;
@@ -6920,7 +6920,7 @@ h6 {
 }
 
 .stories-cards-scroller::-webkit-scrollbar-thumb {
-  background: #8EBE93;
+  background: #333333;
   border-radius: 999px;
 }
 
@@ -6941,21 +6941,14 @@ h6 {
   flex-direction: column;
   border: 1px solid rgba(255, 255, 255, 0.1);
   border-top: 2.5px solid #FF007F;
-  box-shadow: 0 -2px 10px rgba(255, 0, 127, 0.22), 0 12px 30px rgba(0, 0, 0, 0.45);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
   transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
   position: relative;
   overflow: hidden;
 }
 
 .story-client-card::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 2.5px;
-  background: linear-gradient(90deg, transparent 0%, #FF007F 30%, #FF80BF 50%, #FF007F 70%, transparent 100%);
-  opacity: 0.85;
+  display: none;
 }
 
 .story-client-card:hover {
@@ -7134,14 +7127,7 @@ h6 {
 }
 
 .review-glass-card::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 2.5px;
-  background: linear-gradient(90deg, transparent 0%, #FF007F 30%, #FF80BF 50%, #FF007F 70%, transparent 100%);
-  opacity: 0.8;
+  display: none;
 }
 
 .review-glass-card:hover {
@@ -7149,3 +7135,262 @@ h6 {
   box-shadow: 0 -3px 14px rgba(255, 0, 127, 0.25), 0 16px 36px rgba(0, 0, 0, 0.08);
   border-color: rgba(255, 0, 127, 0.25);
 }
+
+
+/* ==========================================================================
+   SAFE ADDITIONS (Button contrast, scoped socials, and navbar mobile fix)
+   ========================================================================== */
+
+/* Hide duplicate mobile CTA from desktop navbar */
+.nav-menu-mobile-cta {
+  display: none !important;
+}
+@media (max-width: 991px) {
+  .nav-menu-mobile-cta {
+    display: block !important;
+  }
+}
+
+/* Button on Dark Backgrounds — High Contrast Crisp White */
+.btn-on-dark {
+  background: rgba(255, 255, 255, 0.12) !important;
+  color: #FFFFFF !important;
+  border: 1.5px solid rgba(255, 255, 255, 0.4) !important;
+  font-weight: 700 !important;
+  display: inline-flex !important;
+  align-items: center;
+  justify-content: center;
+}
+.btn-on-dark:hover {
+  background: rgba(255, 255, 255, 0.22) !important;
+  color: #FFFFFF !important;
+  border-color: rgba(255, 255, 255, 0.7) !important;
+  transform: translateY(-2px);
+}
+
+/* Solid White Pill Button on Dark Sections */
+.btn-white-solid {
+  background: #FFFFFF !important;
+  color: #111111 !important;
+  font-weight: 800 !important;
+  border: none !important;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25) !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+  cursor: pointer;
+  text-decoration: none !important;
+}
+.btn-white-solid span,
+.btn-white-solid svg {
+  color: #111111 !important;
+  stroke: #111111 !important;
+}
+.btn-white-solid:hover {
+  background: #F4F5F6 !important;
+  color: #111111 !important;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.35) !important;
+}
+.btn-white-solid:hover span,
+.btn-white-solid:hover svg {
+  color: #111111 !important;
+  stroke: #111111 !important;
+}
+
+/* Luxury Black Strip for Social Media Follow Bar */
+.reels-channels-bar {
+  background: #111111 !important;
+  border: 1px solid rgba(255, 255, 255, 0.14) !important;
+  border-radius: 20px !important;
+  padding: 24px 32px !important;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.35) !important;
+}
+.reels-channels-text h4 {
+  color: #FFFFFF !important;
+  font-size: 1.15rem;
+  font-weight: 700;
+  margin: 0 0 4px;
+}
+.reels-channels-text p {
+  color: #9CA3AF !important;
+  font-size: 0.92rem;
+  margin: 0;
+}
+.reels-channels-bar .footer-social-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 18px;
+  border-radius: 999px;
+  font-size: 0.88rem;
+  font-weight: 600;
+  background: rgba(255, 255, 255, 0.08) !important;
+  color: #FFFFFF !important;
+  border: 1px solid rgba(255, 255, 255, 0.16) !important;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+.reels-channels-bar .footer-social-btn span {
+  color: #FFFFFF !important;
+}
+.reels-channels-bar .footer-social-btn:hover {
+  background: rgba(255, 255, 255, 0.18) !important;
+  border-color: rgba(255, 255, 255, 0.35) !important;
+  transform: translateY(-2px);
+  color: #FFFFFF !important;
+}
+
+/* Site Footer Social Buttons — High Contrast on Light Background */
+.site-footer .footer-social-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  border-radius: 999px;
+  font-size: 0.86rem;
+  font-weight: 600;
+  background: #FFFFFF !important;
+  color: #121214 !important;
+  border: 1px solid #E5E7EB !important;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+.site-footer .footer-social-btn span {
+  color: #121214 !important;
+}
+.site-footer .footer-social-btn:hover {
+  background: #F4F5F6 !important;
+  border-color: #D1D5DB !important;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+/* ==========================================================================
+   Continuous Client Before/After Marquee & Voice Testimonials
+   ========================================================================== */
+
+.transformation-marquee-container {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  padding: 16px 0 24px;
+}
+
+.transformation-marquee-container::before,
+.transformation-marquee-container::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 70px;
+  z-index: 3;
+  pointer-events: none;
+}
+
+.transformation-marquee-container::before {
+  left: 0;
+  background: linear-gradient(90deg, #FFFFFF 0%, rgba(255, 255, 255, 0) 100%);
+}
+
+.transformation-marquee-container::after {
+  right: 0;
+  background: linear-gradient(270deg, #FFFFFF 0%, rgba(255, 255, 255, 0) 100%);
+}
+
+.transformation-marquee-track {
+  display: flex;
+  gap: 24px;
+  width: max-content;
+  animation: transformationMarquee 38s linear infinite;
+  will-change: transform;
+}
+
+.transformation-marquee-container:hover .transformation-marquee-track {
+  animation-play-state: paused;
+}
+
+@keyframes transformationMarquee {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.transformation-card-item {
+  flex: 0 0 320px;
+  background: #FFFFFF;
+  border-radius: 20px;
+  overflow: hidden;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-top: 3px solid #FF007F;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.05);
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease;
+  position: relative;
+}
+
+.transformation-card-item:hover {
+  transform: translateY(-6px) scale(1.02);
+  box-shadow: 0 16px 36px rgba(255, 0, 127, 0.15), 0 4px 12px rgba(0, 0, 0, 0.06);
+}
+
+.transformation-image-wrap {
+  width: 100%;
+  height: 380px;
+  position: relative;
+  background: #0F172A;
+  overflow: hidden;
+}
+
+.transformation-image-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  display: block;
+  transition: transform 0.4s ease;
+}
+
+.transformation-card-item:hover .transformation-image-wrap img {
+  transform: scale(1.04);
+}
+
+/* Audio Voice Testimonials */
+.voice-audio-card {
+  background: #FFFFFF;
+  border-radius: 20px;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-left: 4px solid #00E5D9;
+  padding: 22px 24px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.04);
+  transition: all 0.25s ease;
+}
+
+.voice-audio-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 32px rgba(0, 229, 217, 0.15), 0 4px 12px rgba(0, 0, 0, 0.04);
+}
+
+.soundwave-bar {
+  width: 3px;
+  height: 14px;
+  background: #00E5D9;
+  border-radius: 3px;
+  animation: soundwaveBounce 1.2s ease-in-out infinite alternate;
+}
+
+@keyframes soundwaveBounce {
+  0% {
+    height: 4px;
+  }
+  50% {
+    height: 20px;
+  }
+  100% {
+    height: 8px;
+  }
+}
+

@@ -577,7 +577,7 @@ export default function AssessmentPage() {
                 gap: '6px'
               }}
             >
-              🌸 Functional Health Assessment
+              Functional Health Assessment
             </Link>
             <Link 
               to="/breathing-assessment"
@@ -595,7 +595,7 @@ export default function AssessmentPage() {
                 gap: '6px'
               }}
             >
-              🫁 Functional Breathing Assessment
+              Functional Breathing Assessment
             </Link>
           </div>
 
@@ -852,7 +852,7 @@ export default function AssessmentPage() {
                 <div className="glass-section-summary-card">
                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '8px', marginBottom: '8px' }}>
                     <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                      <span style={{ fontSize: '1.2rem' }}>🫁</span>
+                      <span style={{ fontSize: '1.2rem' }}></span>
                       <strong style={{ fontSize: '1.05rem', color: 'var(--emerald-deep)' }}>Respiration, Bohr Effect &amp; Vagal Tone</strong>
                     </div>
                     <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>

@@ -110,10 +110,10 @@ export default function BreathePage() {
         urgency: 'critical',
         badgeColor: '#E11D48',
         badgeBg: '#FFF1F2',
-        title: '🚨 CRITICAL CLINICAL ALERT: Severe Cellular Oxygen Starvation',
+        title: 'CRITICAL CLINICAL ALERT: Severe Cellular Oxygen Starvation',
         summary: `Your BOLT score is critically low at ${score.toFixed(1)}s (${marks}/100 Marks). This confirms that your cells, brain, and gut lining are chronically starved of functional oxygen due to rapid carbon dioxide depletion and silent mouth-breathing.`,
         recommendation: 'CONSULTATION ADVISED: Leaving low CO2 tolerance unaddressed leads to chronic gut inflammation and autonomic exhaustion. Reshmi Verma (Functional Nutritionist & Breathwork Facilitator) advises booking a 1-on-1 clinical consultation to restore your Bohr-effect oxygen delivery and repair your gut-mucosal barrier.',
-        buttonText: '🚨 Book 1:1 Health Clarity Consultation (₹1,999)',
+        buttonText: 'Book 1:1 Health Clarity Consultation (₹1,999)',
         buttonClass: 'btn btn-primary btn-lg pulse-anim',
         bohr: 'Your red blood cells possess an excessively tight hemoglobin-oxygen bond. Due to chronic over-breathing and depleted CO₂, oxygen is trapped in the bloodstream and cannot discharge into digestive organs or muscle tissue.',
         protocol: 'Immediate Clinical Steps: 100% strict daytime nasal breathing, nocturnal mouth-taping protocol, and immediate clinical breathwork titration with Reshmi Verma.'
@@ -127,10 +127,10 @@ export default function BreathePage() {
         urgency: 'warning',
         badgeColor: '#D97706',
         badgeBg: '#FFFBEB',
-        title: '⚠️ CLINICAL RECOMMENDATION: Consultation Strongly Recommended',
+        title: 'CLINICAL RECOMMENDATION: Consultation Strongly Recommended',
         summary: `Good attempt! Your score is ${score.toFixed(1)}s (${marks}/100 Marks). While you manage day-to-day tasks, your breathing pattern is silently burning 30% to 40% excess cellular energy, causing afternoon fatigue crashes and digestive acidity.`,
         recommendation: 'HIGHLY RECOMMENDED FOR SESSION BOOKING: You are prime for rapid turnaround. A targeted consultation with Reshmi Verma will reset your respiratory chemoreceptors, double your stamina, and eliminate digestive bloating within 21 days.',
-        buttonText: '📅 Book 1:1 Health Clarity Consultation (₹1,999)',
+        buttonText: 'Book 1:1 Health Clarity Consultation (₹1,999)',
         buttonClass: 'btn btn-primary btn-lg',
         bohr: 'Sub-conscious hyperventilation and upper-chest breathing cause intermittent cellular hypoxia. Stress spikes accelerate CO₂ loss, triggering anxiety surges and digestive spasms.',
         protocol: 'Recommended Protocol: Daily 4-7-8 somatic autonomic regulation, 5-5 Coherent Breathing before main meals, and personalized clinical guidance.'
@@ -144,10 +144,10 @@ export default function BreathePage() {
         urgency: 'good',
         badgeColor: '#059669',
         badgeBg: '#ECFDF5',
-        title: '✨ HEALTHY BASELINE: Session Recommended For Peak Optimization',
+        title: 'HEALTHY BASELINE: Session Recommended For Peak Optimization',
         summary: `Great job! You achieved ${score.toFixed(1)}s (${marks}/100 Marks). You have a solid respiratory baseline and respectable cellular oxygenation, with minimal airway collapse risk.`,
         recommendation: 'RECOMMENDED FOR ADVANCED MASTERY: To elevate this good baseline into elite athletic stamina, deep regenerative sleep, and longevity-focused biohacking, consult with Reshmi Verma to optimize your biochemical biomarkers.',
-        buttonText: '⚡ Book Advanced Biohacking Consultation',
+        buttonText: 'Book Advanced Biohacking Consultation',
         buttonClass: 'btn btn-primary btn-lg',
         bohr: 'Hemoglobin releases oxygen moderately well. Your cells receive adequate baseline nutrition, but higher aerobic conditioning is needed to withstand high-stress environments without fatigue.',
         protocol: 'Recommended Protocol: Progressive altitude simulation drills, advanced circular connected breathwork, and targeted gut microbiome optimization.'
@@ -160,10 +160,10 @@ export default function BreathePage() {
       urgency: 'elite',
       badgeColor: '#4338CA',
       badgeBg: '#EEF2FF',
-      title: '🏆 MASTER-LEVEL SCORE: Biological Excellence',
+      title: 'MASTER-LEVEL SCORE: Biological Excellence',
       summary: `Outstanding performance! You scored an impressive ${score.toFixed(1)}s (${marks}/100 Marks). You possess top-tier cellular CO₂ tolerance and optimal Bohr Effect efficiency!`,
       recommendation: 'BIOHACKING MASTERY: You have achieved the gold standard of respiratory resilience. Schedule a 1-on-1 session with Reshmi Verma to explore advanced circular connected breathwork and personalized clinical diagnostics.',
-      buttonText: '🌟 Book Master Biohacking Consultation',
+      buttonText: 'Book Master Biohacking Consultation',
       buttonClass: 'btn btn-primary btn-lg',
       bohr: 'Master-level Bohr effect efficiency! Carbon dioxide effortlessly releases maximum oxygen into active mitochondria, supporting high metabolic output, deep sleep, and low systemic inflammation.',
       protocol: 'Recommended Protocol: Sustained nasal-only pacing during intensive workouts, advanced autonomic modulation, and preventative longevity biomarker tracking.'
@@ -313,7 +313,7 @@ export default function BreathePage() {
         <div className="container text-center">
           <span className="badge-pill" style={{ marginBottom: '16px' }}>
             <span className="pulse-dot"></span>
-            <span>🏅 Certified Breathwork Facilitator &bull; Somatic Nervous System Specialist</span>
+            <span>Certified Breathwork Facilitator &bull; Somatic Nervous System Specialist</span>
           </span>
           <h1 style={{ fontSize: 'clamp(2rem, 5vw, 3.2rem)', maxWidth: '880px', margin: '0 auto 18px' }}>
             Clinical Respiration & <span className="text-gradient">Vagal Neuromodulation</span>

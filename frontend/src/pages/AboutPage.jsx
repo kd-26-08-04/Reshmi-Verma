@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import ClientTransformationShowcase from '../components/ClientTransformationShowcase';
 
 function AnimatedNumber({ value, suffix = '', duration = 1600 }) {
   const [count, setCount] = useState(0);
@@ -269,6 +270,9 @@ export default function AboutPage() {
           </div>
         </div>
       </section>
+
+      {/* Verified Client Before & After Transformations & Real Voice Notes */}
+      <ClientTransformationShowcase />
 
       {/* 4. Patient Problems & Healing Solutions (With Generated Clinical Images) */}
       <section className="section" style={{ background: '#FAF8F5' }}>

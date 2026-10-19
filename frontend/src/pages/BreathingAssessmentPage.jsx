@@ -381,7 +381,7 @@ export default function BreathingAssessmentPage() {
               gap: '6px'
             }}
           >
-            🌸 Functional Health Assessment
+            Functional Health Assessment
           </Link>
           <Link 
             to="/breathing-assessment"
@@ -399,14 +399,14 @@ export default function BreathingAssessmentPage() {
               gap: '6px'
             }}
           >
-            🫁 Functional Breathing Assessment
+            Functional Breathing Assessment
           </Link>
         </div>
 
         {/* Header Clinical Credential Badge */}
         <div style={{ textAlign: 'center', marginBottom: '32px' }}>
           <div style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', padding: '6px 16px', borderRadius: '999px', background: '#121214', color: '#00E5D9', fontSize: '0.82rem', fontWeight: 700, letterSpacing: '0.04em', marginBottom: '14px', boxShadow: '0 4px 14px rgba(0,0,0,0.12)' }}>
-            <span>🫁 #13 Certified Oxygen Advantage® Coach in India</span>
+            <span>#13 Certified Oxygen Advantage® Coach in India</span>
           </div>
           <h1 style={{ fontSize: 'clamp(1.8rem, 4vw, 2.7rem)', color: 'var(--emerald-deep)', fontFamily: 'var(--font-serif)', margin: '0 0 10px', lineHeight: 1.2 }}>
             Oxygen Advantage® Functional Breathing Assessment
@@ -504,7 +504,7 @@ export default function BreathingAssessmentPage() {
                   📅 Book 1-on-1 Oxygen Advantage Consultation
                 </Link>
                 <Link to="/assessment" className="btn btn-secondary" style={{ padding: '12px 24px', background: 'transparent', color: '#FFFFFF', borderColor: 'rgba(255,255,255,0.3)' }}>
-                  🌸 Take Functional Gut Health Assessment
+                  Take Functional Gut Health Assessment
                 </Link>
               </div>
             </div>
@@ -538,7 +538,7 @@ export default function BreathingAssessmentPage() {
               <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '14px' }}>
                 <div>
                   <span style={{ fontSize: '0.78rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.06em', color: '#167A71' }}>
-                    ⏱️ Patrick McKeown's Signature Test
+                    Patrick McKeown's Signature Test
                   </span>
                   <h3 style={{ fontSize: '1.2rem', color: '#121214', margin: '4px 0 2px' }}>
                     Live BOLT Score Stopwatch

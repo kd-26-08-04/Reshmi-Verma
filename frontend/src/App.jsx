@@ -24,6 +24,7 @@ import AuthPage from './pages/AuthPage';
 import DashboardPage from './pages/DashboardPage';
 import AdminPage from './pages/AdminPage';
 import ContactPage from './pages/ContactPage';
+import TestimonialsPage from './pages/TestimonialsPage';
 import NotFoundPage from './pages/NotFoundPage';
 
 function ScrollToTop() {
@@ -83,6 +84,7 @@ function AppContent() {
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/about" element={<AboutPage />} />
+        <Route path="/testimonials" element={<TestimonialsPage />} />
         <Route path="/nutrition" element={<NutritionPage />} />
         <Route path="/breathe" element={<BreathePage />} />
         <Route path="/booking" element={<BookingPage />} />

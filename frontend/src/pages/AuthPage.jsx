@@ -89,16 +89,7 @@ export default function AuthPage() {
                 padding: '6px',
                 boxShadow: '0 6px 20px rgba(0, 0, 0, 0.35), 0 0 0 1.5px rgba(212, 175, 55, 0.55)'
               }}>
-                <img
-                  src="/assets/images/rv-brand-logo.png"
-                  alt="Reshmi Verma Luxury Gold RV Monogram"
-                  style={{
-                    width: '100%',
-                    height: '100%',
-                    objectFit: 'contain',
-                    filter: 'drop-shadow(0 2px 8px rgba(212, 175, 55, 0.45))'
-                  }}
-                />
+                <span style={{ fontWeight: 800, fontSize: "1.4rem", color: "#FFFFFF" }}>HR</span>
               </div>
             </div>
             <div className="auth-security-pill">

@@ -980,55 +980,22 @@
   },
   "pricingTiers": [
     {
-      "id": "discovery",
-      "name": "Initial Discovery Call (20 min)",
-      "badge": "Discovery Call",
-      "title": "Initial Discovery Call",
-      "duration": "20 Minutes • Exploratory Session",
-      "price": 999,
-      "desc": "A quick chat to discuss your health story, current roadblocks, and determine if our SAMYA functional method aligns with your goals.",
+      "id": "healthClarity",
+      "name": "1:1 Health Clarity Consultation (60 min)",
+      "title": "1:1 Health Clarity Session",
+      "badge": "Official 1:1 Clinical Consultation",
+      "duration": "60 Minutes • Deep Clinical Video Session",
+      "price": 1999,
+      "desc": "A comprehensive 60-minute 1:1 deep dive with Reshmi Verma to explore your health story, analyze symptom patterns, review blood diagnostics, evaluate breathing mechanics, and build your personalized recovery blueprint.",
       "features": [
-        "Review your primary symptoms",
-        "Evaluate your BOLT & breath baseline",
-        "Identify the right next clinical step"
+        "Comprehensive review of your complete medical & symptom history",
+        "Previous blood panels, gut microbiome & biomarker decoding",
+        "Breathing biomechanics & Oxygen Advantage BOLT assessment",
+        "Direct 1-on-1 consultation via private secure video call",
+        "Tailored, actionable functional recovery blueprint"
       ],
-      "buttonText": "Select Discovery Call (₹999)",
-      "featured": false,
-      "active": true
-    },
-    {
-      "id": "comprehensive",
-      "name": "Comprehensive Consultation (60 min)",
-      "badge": "Comprehensive Consultation",
-      "title": "Comprehensive Consultation",
-      "duration": "60 Minutes • Full Root-Cause Roadmap",
-      "price": 2999,
-      "desc": "Deep dive into your blood diagnostics, gut health timeline, circadian sleep mapping, and custom metabolic architecture.",
-      "features": [
-        "Full blood chemistry & biomarker review",
-        "Customized gut mucosal healing protocol",
-        "Individualized Oxygen Advantage breath prescription",
-        "Written clinical action plan & supplement guide"
-      ],
-      "buttonText": "Select Comprehensive Plan (₹2,999)",
+      "buttonText": "Book 1:1 Consultation (₹1,999)",
       "featured": true,
-      "active": true
-    },
-    {
-      "id": "followup",
-      "name": "Follow-Up Check-in (30 min)",
-      "badge": "Follow-Up Session",
-      "title": "Follow-Up Check-in",
-      "duration": "30 Minutes • Active Clients Only",
-      "price": 1499,
-      "desc": "For existing clients to review progress, track repeat BOLT scores, review updated labs, and adjust protocols.",
-      "features": [
-        "Biomarker progression audit",
-        "Titrate nutraceuticals & botanical doses",
-        "Advanced breathwork progression"
-      ],
-      "buttonText": "Select Follow-Up (₹1,499)",
-      "featured": false,
       "active": true
     }
   ],

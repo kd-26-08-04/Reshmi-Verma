@@ -7,13 +7,13 @@ export default function ContactPage() {
     name: '',
     email: '',
     phone: '',
-    subject: 'Gut Health & Microbiome Protocol',
+    subject: 'Functional Health & Gut Microbiome Protocol',
     message: '',
     honeypot: ''
   });
 
   const [loading, setLoading] = useState(false);
-  const [alert, setAlert] = useState(null); // { type: 'success' | 'error', text: '', icon?: string }
+  const [alert, setAlert] = useState(null); // { type: 'success' | 'error', text: '' }
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -60,14 +60,14 @@ export default function ContactPage() {
 
       setAlert({
         type: 'success',
-        text: 'Thank you! Your message has been transmitted directly to Reshmi Verma. Our clinical desk will respond within 24 hours.'
+        text: 'Thank you! Your message has been sent directly to Reshmi Verma. Our clinical desk will respond within 24 hours.'
       });
 
       setFormData({
         name: '',
         email: '',
         phone: '',
-        subject: 'Gut Health & Microbiome Protocol',
+        subject: 'Functional Health & Gut Microbiome Protocol',
         message: '',
         honeypot: ''
       });
@@ -83,217 +83,352 @@ export default function ContactPage() {
   };
 
   return (
-    <>
-      {/* Hero Header */}
-      <section className="section" style={{ padding: '50px 0 30px', background: 'linear-gradient(180deg, var(--bg-secondary) 0%, var(--bg-primary) 100%)' }}>
-        <div className="container text-center">
-          <span className="badge-pill" style={{ marginBottom: '16px' }}>
+    <main style={{ background: 'var(--bg-primary)', minHeight: '100vh', padding: '110px 0 80px' }}>
+      <div className="container">
+
+        {/* Hero Header */}
+        <div style={{ textAlign: 'center', maxWidth: '780px', margin: '0 auto 48px' }}>
+          <div className="badge-pill" style={{ marginBottom: '14px' }}>
             <span className="pulse-dot"></span>
-            <span>Clinic Inquiries &amp; Client Support</span>
-          </span>
-          <h1 style={{ fontSize: 'clamp(2rem, 5vw, 3.2rem)', maxWidth: '880px', margin: '0 auto 18px' }}>
+            <span>Clinic Inquiries &bull; Direct Support</span>
+          </div>
+          <h1 style={{ fontSize: 'clamp(2.1rem, 4.5vw, 3.2rem)', color: 'var(--emerald-deep)', margin: '0 0 16px', lineHeight: 1.2 }}>
             Get in Touch with <span className="text-gradient">Reshmi Verma</span>
           </h1>
-          <p style={{ fontSize: '1.15rem', color: 'var(--text-secondary)', maxWidth: '720px', margin: '0 auto 20px' }}>
-            Have clinical questions regarding functional nutrition, gut health restoration, or respiratory resilience? Send a message directly to our healthcare team.
+          <p style={{ fontSize: '1.05rem', color: 'var(--text-secondary)', lineHeight: 1.6, margin: 0 }}>
+            Have questions regarding functional nutrition, gut health restoration, or Oxygen Advantage breathwork? Send a message directly to our healthcare desk.
           </p>
         </div>
-      </section>
 
-      {/* Main Contact Section */}
-      <section className="section" style={{ paddingTop: '20px', paddingBottom: '80px' }}>
-        <div className="container">
+        {/* Contact Layout Grid */}
+        <div style={{
+          display: 'grid',
+          gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
+          gap: '32px',
+          alignItems: 'start',
+          marginBottom: '60px'
+        }}>
 
-          <div className="contact-layout-grid">
+          {/* Left: Direct Clinic Info Card */}
+          <div style={{
+            background: '#FFFFFF',
+            borderRadius: '24px',
+            border: '1px solid var(--border-subtle)',
+            borderTop: '3px solid #FF007F',
+            padding: '36px 32px',
+            boxShadow: '0 10px 30px rgba(0, 0, 0, 0.04)'
+          }}>
+            <span style={{ fontSize: '0.8rem', color: '#9CA3AF', textTransform: 'uppercase', letterSpacing: '0.08em', fontWeight: 800 }}>
+              Direct Clinic Access
+            </span>
+            <h2 style={{ fontSize: '1.7rem', color: 'var(--emerald-deep)', margin: '8px 0 14px', lineHeight: 1.25 }}>
+              Clinical Diagnostics &amp; Health Sanctuary
+            </h2>
+            <p style={{ color: 'var(--text-secondary)', fontSize: '0.94rem', lineHeight: 1.6, marginBottom: '28px' }}>
+              Combining 20+ years in diagnostics with functional nutrition and breathwork to uncover biochemical root causes and guide lasting metabolic recovery.
+            </p>
 
-            {/* Left: Direct Clinic Information */}
-            <div className="contact-info-card">
-              <span className="sub-title">Direct Clinic Access</span>
-              <h2 style={{ fontSize: '1.85rem', marginTop: '6px', marginBottom: '14px' }}>Clinical Diagnostics &amp; Wellness Sanctuary</h2>
-              <p style={{ color: 'var(--text-secondary)', fontSize: '0.95rem', lineHeight: 1.6 }}>
-                Reshmi Verma combines 18 years of clinical laboratory diagnostic expertise with functional root-cause biology to address gut permeability, chronic fatigue, and autonomic dysregulation.
-              </p>
-
-              <div className="contact-channels-list">
-                {/* Email */}
-                <div className="contact-channel-item">
-                  <div className="contact-channel-icon">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
-                  </div>
-                  <div className="contact-channel-details">
-                    <h4>Direct Email</h4>
-                    <a href="mailto:support.reshmiverma@gmail.com">support.reshmiverma@gmail.com</a>
-                    <p style={{ fontSize: '0.8rem', color: 'var(--text-muted)', marginTop: '2px' }}>Official medical &amp; consultation desk</p>
-                  </div>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '20px', marginBottom: '28px' }}>
+              {/* Email */}
+              <div style={{ display: 'flex', gap: '16px', alignItems: 'flex-start' }}>
+                <div style={{
+                  width: '42px',
+                  height: '42px',
+                  borderRadius: '12px',
+                  background: 'var(--bg-primary)',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  flexShrink: 0,
+                  border: '1px solid var(--border-subtle)'
+                }}>
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--emerald-deep)" strokeWidth="2">
+                    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                    <polyline points="22,6 12,13 2,6"></polyline>
+                  </svg>
                 </div>
-
-                {/* WhatsApp Direct */}
-                <div className="contact-channel-item">
-                  <div className="contact-channel-icon" style={{ background: '#FFEDD5', color: '#C2410C' }}>
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>
-                  </div>
-                  <div className="contact-channel-details">
-                    <h4>Clinic WhatsApp</h4>
-                    <a href="https://wa.me/?text=Hello%20Reshmi%20Verma%20Clinic%2C%20I%20have%20an%20inquiry%20regarding%20functional%20consultations." target="_blank" rel="noopener noreferrer">Chat via WhatsApp</a>
-                    <p style={{ fontSize: '0.8rem', color: 'var(--text-muted)', marginTop: '2px' }}>Fastest response for scheduling assistance</p>
-                  </div>
-                </div>
-
-                {/* Consultation Hours */}
-                <div className="contact-channel-item">
-                  <div className="contact-channel-icon" style={{ background: '#FEF3C7', color: '#D97706' }}>
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
-                  </div>
-                  <div className="contact-channel-details">
-                    <h4>Consultation Timings</h4>
-                    <p><strong>Mon – Sat:</strong> 9:00 AM – 6:30 PM IST</p>
-                    <p style={{ fontSize: '0.8rem', color: 'var(--text-muted)', marginTop: '2px' }}>Telehealth consultations available globally</p>
-                  </div>
+                <div>
+                  <h4 style={{ margin: '0 0 2px', fontSize: '0.95rem', fontWeight: 700, color: 'var(--emerald-deep)' }}>Direct Email</h4>
+                  <a href="mailto:support.reshmiverma@gmail.com" style={{ fontSize: '0.92rem', color: 'var(--emerald-deep)', fontWeight: 600, wordBreak: 'break-all' }}>
+                    support.reshmiverma@gmail.com
+                  </a>
+                  <p style={{ margin: '2px 0 0', fontSize: '0.8rem', color: 'var(--text-muted)' }}>Official consultation &amp; medical desk</p>
                 </div>
               </div>
 
-              <div className="contact-trust-box">
-                <strong>🔒 Clinical Confidentiality Guarantee</strong><br />
-                All health histories, symptom descriptions, and diagnostic labs shared with Reshmi Verma are encrypted, handled strictly under clinical confidentiality protocols, and never shared with third parties.
+              {/* WhatsApp */}
+              <div style={{ display: 'flex', gap: '16px', alignItems: 'flex-start' }}>
+                <div style={{
+                  width: '42px',
+                  height: '42px',
+                  borderRadius: '12px',
+                  background: '#ECFDF5',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  flexShrink: 0,
+                  border: '1px solid #A7F3D0'
+                }}>
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#059669" strokeWidth="2">
+                    <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path>
+                  </svg>
+                </div>
+                <div>
+                  <h4 style={{ margin: '0 0 2px', fontSize: '0.95rem', fontWeight: 700, color: 'var(--emerald-deep)' }}>Clinic WhatsApp</h4>
+                  <a
+                    href="https://wa.me/?text=Hello%20Reshmi%20Verma%20Clinic%2C%20I%20have%20an%20inquiry%20regarding%20functional%20consultations."
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    style={{ fontSize: '0.92rem', color: '#059669', fontWeight: 700 }}
+                  >
+                    Chat via WhatsApp &rarr;
+                  </a>
+                  <p style={{ margin: '2px 0 0', fontSize: '0.8rem', color: 'var(--text-muted)' }}>Fastest response for scheduling queries</p>
+                </div>
+              </div>
+
+              {/* Consultation Hours */}
+              <div style={{ display: 'flex', gap: '16px', alignItems: 'flex-start' }}>
+                <div style={{
+                  width: '42px',
+                  height: '42px',
+                  borderRadius: '12px',
+                  background: 'var(--bg-primary)',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  flexShrink: 0,
+                  border: '1px solid var(--border-subtle)'
+                }}>
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--emerald-deep)" strokeWidth="2">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <polyline points="12 6 12 12 16 14"></polyline>
+                  </svg>
+                </div>
+                <div>
+                  <h4 style={{ margin: '0 0 2px', fontSize: '0.95rem', fontWeight: 700, color: 'var(--emerald-deep)' }}>Consultation Timings</h4>
+                  <p style={{ margin: 0, fontSize: '0.92rem', color: 'var(--text-secondary)' }}>
+                    <strong>Mon – Sat:</strong> 9:00 AM – 6:30 PM IST
+                  </p>
+                  <p style={{ margin: '2px 0 0', fontSize: '0.8rem', color: 'var(--text-muted)' }}>Telehealth consultations conducted globally</p>
+                </div>
               </div>
             </div>
 
-            {/* Right: Interactive Contact Form powered by EmailJS */}
-            <div className="contact-form-container">
-              <div className="section-header" style={{ textAlign: 'left', marginBottom: '24px' }}>
-                <span className="sub-title">Send a Message</span>
-                <h3 style={{ fontSize: '1.75rem', marginTop: '4px' }}>Direct Clinical Inquiry</h3>
-                <p style={{ fontSize: '0.92rem' }}>Fill out the form below. Messages are transmitted securely via EmailJS directly to Reshmi Verma's clinical inbox.</p>
+            <div style={{
+              background: 'var(--bg-primary)',
+              borderRadius: '16px',
+              padding: '16px 20px',
+              fontSize: '0.85rem',
+              color: 'var(--text-secondary)',
+              lineHeight: 1.55,
+              border: '1px solid var(--border-subtle)'
+            }}>
+              <strong style={{ color: 'var(--emerald-deep)', display: 'block', marginBottom: '4px' }}>Clinical Confidentiality Guarantee</strong>
+              All diagnostic records, symptoms, and health information shared with Reshmi Verma are strictly confidential and encrypted under medical ethics standards.
+            </div>
+          </div>
+
+          {/* Right: Modern Form Card */}
+          <div style={{
+            background: '#FFFFFF',
+            borderRadius: '24px',
+            border: '1px solid var(--border-subtle)',
+            borderTop: '3px solid #00E5D9',
+            padding: '36px 32px',
+            boxShadow: '0 10px 30px rgba(0, 0, 0, 0.04)'
+          }}>
+            <span style={{ fontSize: '0.8rem', color: '#9CA3AF', textTransform: 'uppercase', letterSpacing: '0.08em', fontWeight: 800 }}>
+              Send a Message
+            </span>
+            <h3 style={{ fontSize: '1.7rem', color: 'var(--emerald-deep)', margin: '8px 0 6px', lineHeight: 1.25 }}>
+              Direct Clinical Inquiry
+            </h3>
+            <p style={{ fontSize: '0.92rem', color: 'var(--text-secondary)', marginBottom: '24px', lineHeight: 1.55 }}>
+              Fill out your details below. Your inquiry is transmitted directly to Reshmi Verma's clinical desk.
+            </p>
+
+            {alert && (
+              <div style={{
+                background: alert.type === 'error' ? '#FEE2E2' : '#ECFDF5',
+                color: alert.type === 'error' ? '#991B1B' : '#065F46',
+                border: alert.type === 'error' ? '1px solid #F87171' : '1px solid #6EE7B7',
+                borderRadius: '12px',
+                padding: '14px 18px',
+                fontSize: '0.92rem',
+                fontWeight: 600,
+                marginBottom: '20px'
+              }}>
+                {alert.text}
               </div>
+            )}
 
-              {/* Dynamic Live Status Alert Banner */}
-              {alert && (
-                <div id="contact-status-alert" className={`form-status-alert active ${alert.type}`} role="alert">
-                  <span id="contact-status-icon" style={{ fontSize: '1.25rem' }}>{alert.type === 'error' ? '⚠️' : '✓'}</span>
-                  <div id="contact-status-message">{alert.text}</div>
-                </div>
-              )}
+            <form onSubmit={handleSubmit} noValidate>
+              <input
+                type="text"
+                name="honeypot"
+                value={formData.honeypot}
+                onChange={handleChange}
+                style={{ display: 'none' }}
+                tabIndex="-1"
+                autoComplete="off"
+              />
 
-              <form id="clinical-contact-form" onSubmit={handleSubmit} noValidate>
-                {/* Honeypot field for anti-spam */}
-                <input
-                  type="text"
-                  name="honeypot"
-                  value={formData.honeypot}
-                  onChange={handleChange}
-                  style={{ display: 'none' }}
-                  tabIndex="-1"
-                  autoComplete="off"
-                />
-
-                <div className="form-group-row">
-                  <div className="form-field-group">
-                    <label htmlFor="contact-name">Full Name *</label>
-                    <input
-                      type="text"
-                      id="contact-name"
-                      name="name"
-                      required
-                      value={formData.name}
-                      onChange={handleChange}
-                      placeholder="e.g. Dr. Priya Sharma"
-                      autoComplete="name"
-                    />
-                  </div>
-
-                  <div className="form-field-group">
-                    <label htmlFor="contact-email">Email Address *</label>
-                    <input
-                      type="email"
-                      id="contact-email"
-                      name="email"
-                      required
-                      value={formData.email}
-                      onChange={handleChange}
-                      placeholder="priya@example.com"
-                      autoComplete="email"
-                    />
-                  </div>
-                </div>
-
-                <div className="form-group-row">
-                  <div className="form-field-group">
-                    <label htmlFor="contact-phone">WhatsApp / Phone Number *</label>
-                    <input
-                      type="tel"
-                      id="contact-phone"
-                      name="phone"
-                      required
-                      value={formData.phone}
-                      onChange={handleChange}
-                      placeholder="+91 98765 43210"
-                      autoComplete="tel"
-                    />
-                  </div>
-
-                  <div className="form-field-group">
-                    <label htmlFor="contact-subject">Inquiry Subject *</label>
-                    <select
-                      id="contact-subject"
-                      name="subject"
-                      value={formData.subject}
-                      onChange={handleChange}
-                      required
-                    >
-                      <option value="Gut Health & Microbiome Protocol">Gut Health &amp; Microbiome Protocol</option>
-                      <option value="Oxygen Advantage & Breathwork Coaching">Oxygen Advantage &amp; Breathwork Coaching</option>
-                      <option value="Clinical Consultation & Pricing Query">Clinical Consultation &amp; Pricing Query</option>
-                      <option value="Laboratory Biomarker & Blood Review">Laboratory Biomarker &amp; Blood Review</option>
-                      <option value="Corporate Wellness & Speaking">Corporate Wellness &amp; Speaking</option>
-                      <option value="General Health Inquiry">General Health Inquiry</option>
-                    </select>
-                  </div>
-                </div>
-
-                <div className="form-field-group">
-                  <label htmlFor="contact-message">Your Message or Health Background *</label>
-                  <textarea
-                    id="contact-message"
-                    name="message"
-                    rows="5"
+              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '16px', marginBottom: '16px' }}>
+                <div>
+                  <label htmlFor="contact-name" style={{ display: 'block', fontSize: '0.88rem', fontWeight: 700, color: 'var(--emerald-deep)', marginBottom: '6px' }}>
+                    Full Name *
+                  </label>
+                  <input
+                    type="text"
+                    id="contact-name"
+                    name="name"
                     required
-                    value={formData.message}
+                    value={formData.name}
                     onChange={handleChange}
-                    placeholder="Describe your primary health concerns, symptom timeline, or questions for Reshmi Verma..."
-                    style={{ resize: 'vertical' }}
-                  ></textarea>
+                    placeholder="e.g. Priya Sharma"
+                    style={{
+                      width: '100%',
+                      padding: '12px 14px',
+                      borderRadius: '12px',
+                      border: '1.5px solid #E5E7EB',
+                      fontSize: '0.95rem',
+                      background: 'var(--bg-primary)',
+                      color: 'var(--text-primary)'
+                    }}
+                  />
                 </div>
 
-                <div style={{ marginBottom: '24px', display: 'flex', alignItems: 'center', gap: '8px', fontSize: '0.82rem', color: 'var(--text-muted)' }}>
-                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
-                  <span>Protected by client-side anti-spam verification and TLS 1.3 encryption.</span>
+                <div>
+                  <label htmlFor="contact-email" style={{ display: 'block', fontSize: '0.88rem', fontWeight: 700, color: 'var(--emerald-deep)', marginBottom: '6px' }}>
+                    Email Address *
+                  </label>
+                  <input
+                    type="email"
+                    id="contact-email"
+                    name="email"
+                    required
+                    value={formData.email}
+                    onChange={handleChange}
+                    placeholder="priya@example.com"
+                    style={{
+                      width: '100%',
+                      padding: '12px 14px',
+                      borderRadius: '12px',
+                      border: '1.5px solid #E5E7EB',
+                      fontSize: '0.95rem',
+                      background: 'var(--bg-primary)',
+                      color: 'var(--text-primary)'
+                    }}
+                  />
                 </div>
-
-                <button
-                  type="submit"
-                  id="contact-submit-btn"
-                  className="btn btn-primary btn-lg"
-                  style={{ width: '100%', justifyContent: 'center' }}
-                  disabled={loading}
-                >
-                  <span id="contact-btn-text">{loading ? 'Transmitting to Clinic...' : 'Send Message'}</span>
-                  <svg id="contact-btn-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
-                </button>
-              </form>
-
-              <div style={{ marginTop: '24px', textAlign: 'center', fontSize: '0.88rem', color: 'var(--text-secondary)' }}>
-                Looking to book an immediate 1-on-1 session?{' '}
-                <Link to="/booking" style={{ color: 'var(--emerald-primary)', fontWeight: 700, textDecoration: 'underline' }}>
-                  Schedule Consultation Directly &rarr;
-                </Link>
               </div>
 
-            </div>
+              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '16px', marginBottom: '16px' }}>
+                <div>
+                  <label htmlFor="contact-phone" style={{ display: 'block', fontSize: '0.88rem', fontWeight: 700, color: 'var(--emerald-deep)', marginBottom: '6px' }}>
+                    WhatsApp / Phone Number *
+                  </label>
+                  <input
+                    type="tel"
+                    id="contact-phone"
+                    name="phone"
+                    required
+                    value={formData.phone}
+                    onChange={handleChange}
+                    placeholder="+91 98765 43210"
+                    style={{
+                      width: '100%',
+                      padding: '12px 14px',
+                      borderRadius: '12px',
+                      border: '1.5px solid #E5E7EB',
+                      fontSize: '0.95rem',
+                      background: 'var(--bg-primary)',
+                      color: 'var(--text-primary)'
+                    }}
+                  />
+                </div>
 
+                <div>
+                  <label htmlFor="contact-subject" style={{ display: 'block', fontSize: '0.88rem', fontWeight: 700, color: 'var(--emerald-deep)', marginBottom: '6px' }}>
+                    Inquiry Subject *
+                  </label>
+                  <select
+                    id="contact-subject"
+                    name="subject"
+                    value={formData.subject}
+                    onChange={handleChange}
+                    required
+                    style={{
+                      width: '100%',
+                      padding: '12px 14px',
+                      borderRadius: '12px',
+                      border: '1.5px solid #E5E7EB',
+                      fontSize: '0.92rem',
+                      background: 'var(--bg-primary)',
+                      color: 'var(--text-primary)',
+                      cursor: 'pointer'
+                    }}
+                  >
+                    <option value="Functional Health & Gut Microbiome Protocol">Functional Health &amp; Gut Microbiome Protocol</option>
+                    <option value="Oxygen Advantage & Breathwork Coaching">Oxygen Advantage &amp; Breathwork Coaching</option>
+                    <option value="1:1 Consultation (₹1,999) Query">1:1 Clinical Consultation (₹1,999) Query</option>
+                    <option value="Laboratory Biomarker & Blood Review">Laboratory Biomarker &amp; Blood Review</option>
+                    <option value="General Health Inquiry">General Health Inquiry</option>
+                  </select>
+                </div>
+              </div>
+
+              <div style={{ marginBottom: '22px' }}>
+                <label htmlFor="contact-message" style={{ display: 'block', fontSize: '0.88rem', fontWeight: 700, color: 'var(--emerald-deep)', marginBottom: '6px' }}>
+                  Your Message or Health Background *
+                </label>
+                <textarea
+                  id="contact-message"
+                  name="message"
+                  rows="4"
+                  required
+                  value={formData.message}
+                  onChange={handleChange}
+                  placeholder="Describe your health concerns, symptom timeline, or questions for Reshmi Verma..."
+                  style={{
+                    width: '100%',
+                    padding: '12px 14px',
+                    borderRadius: '12px',
+                    border: '1.5px solid #E5E7EB',
+                    fontSize: '0.95rem',
+                    background: 'var(--bg-primary)',
+                    color: 'var(--text-primary)',
+                    resize: 'vertical'
+                  }}
+                ></textarea>
+              </div>
+
+              <button
+                type="submit"
+                className="btn btn-primary btn-lg"
+                style={{ width: '100%', justifyContent: 'center', borderRadius: '14px', padding: '15px 28px', fontSize: '1rem', fontWeight: 800 }}
+                disabled={loading}
+              >
+                <span>{loading ? 'Transmitting to Clinic...' : 'Send Message'}</span>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                  <line x1="22" y1="2" x2="11" y2="13"></line>
+                  <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+                </svg>
+              </button>
+            </form>
+
+            <div style={{ marginTop: '20px', textAlign: 'center', fontSize: '0.88rem', color: 'var(--text-secondary)' }}>
+              Looking to schedule directly?{' '}
+              <Link to="/booking" style={{ color: 'var(--emerald-primary)', fontWeight: 700, textDecoration: 'underline' }}>
+                Book 1:1 Consultation (₹1,999) &rarr;
+              </Link>
+            </div>
           </div>
 
         </div>
-      </section>
-    </>
+
+      </div>
+    </main>
   );
 }

@@ -19,64 +19,44 @@ import React, { useEffect, useRef, useState } from 'react';
 
 const SPECIES_PALETTES = [
   {
-    id: 'sapphire',
-    name: 'Electric Sapphire Blue',
-    bodyColors: ['#0C4A6E', '#0284C7', '#38BDF8', '#0369A1'],
-    thoraxColors: ['#0369A1', '#38BDF8', '#075985'],
+    id: 'neon-pink',
+    name: 'Neon Pink Dragonfly',
+    bodyColors: ['#800040', '#D9006C', '#FF007F', '#B30059'],
+    thoraxColors: ['#B30059', '#FF3399', '#800040'],
     wingGradients: [
       'rgba(255, 255, 255, 0.9)',
-      'rgba(186, 230, 253, 0.65)',
-      'rgba(224, 242, 254, 0.4)',
-      'rgba(56, 189, 248, 0.25)'
+      'rgba(255, 179, 217, 0.65)',
+      'rgba(255, 204, 230, 0.45)',
+      'rgba(255, 0, 127, 0.25)'
     ],
-    wingVein: 'rgba(56, 189, 248, 0.6)',
-    eyeColor: '#0284C7',
-    eyeStroke: '#38BDF8',
-    eyeHighlight: '#E0F2FE',
-    segmentColor: '#38BDF8',
-    accentColor: '#BAE6FD',
-    particleRGB: '56, 189, 248', // Electric Cyan Blue
-    glowShadow: 'rgba(2, 132, 199, 0.38)'
+    wingVein: 'rgba(255, 0, 127, 0.65)',
+    eyeColor: '#B30059',
+    eyeStroke: '#FF007F',
+    eyeHighlight: '#FFE6F2',
+    segmentColor: '#FF66B2',
+    accentColor: '#FFB3D9',
+    particleRGB: '255, 0, 127', // Neon Pink
+    glowShadow: 'rgba(255, 0, 127, 0.25)'
   },
   {
-    id: 'golden',
-    name: 'Radiant Golden Amber',
-    bodyColors: ['#78350F', '#D97706', '#FDE047', '#B45309'],
-    thoraxColors: ['#B45309', '#FBBF24', '#78350F'],
+    id: 'neon-turquoise',
+    name: 'Neon Turquoise Dragonfly',
+    bodyColors: ['#004D48', '#00998F', '#00E5D9', '#007A73'],
+    thoraxColors: ['#007A73', '#33EBE1', '#004D48'],
     wingGradients: [
       'rgba(255, 255, 255, 0.9)',
-      'rgba(254, 240, 138, 0.65)',
-      'rgba(254, 215, 170, 0.45)',
-      'rgba(245, 158, 11, 0.25)'
+      'rgba(179, 250, 246, 0.65)',
+      'rgba(204, 252, 250, 0.45)',
+      'rgba(0, 229, 217, 0.25)'
     ],
-    wingVein: 'rgba(245, 158, 11, 0.65)',
-    eyeColor: '#B45309',
-    eyeStroke: '#F59E0B',
-    eyeHighlight: '#FEF08A',
-    segmentColor: '#FDE047',
-    accentColor: '#FED7AA',
-    particleRGB: '245, 158, 11', // Golden Honey Amber
-    glowShadow: 'rgba(217, 119, 6, 0.38)'
-  },
-  {
-    id: 'emerald',
-    name: 'Iridescent Emerald Jade',
-    bodyColors: ['#064E3B', '#059669', '#34D399', '#047857'],
-    thoraxColors: ['#047857', '#10B981', '#064E3B'],
-    wingGradients: [
-      'rgba(255, 255, 255, 0.9)',
-      'rgba(209, 250, 229, 0.65)',
-      'rgba(254, 243, 199, 0.4)',
-      'rgba(52, 211, 153, 0.25)'
-    ],
-    wingVein: 'rgba(16, 185, 129, 0.6)',
-    eyeColor: '#047857',
-    eyeStroke: '#10B981',
-    eyeHighlight: '#A7F3D0',
-    segmentColor: '#34D399',
-    accentColor: '#FBBF24',
-    particleRGB: '52, 211, 153', // Emerald Sparkle
-    glowShadow: 'rgba(5, 150, 105, 0.38)'
+    wingVein: 'rgba(0, 229, 217, 0.65)',
+    eyeColor: '#007A73',
+    eyeStroke: '#00E5D9',
+    eyeHighlight: '#E6FCFB',
+    segmentColor: '#4DF0E7',
+    accentColor: '#B3FAF6',
+    particleRGB: '0, 229, 217', // Neon Turquoise
+    glowShadow: 'rgba(0, 229, 217, 0.25)'
   }
 ];
 

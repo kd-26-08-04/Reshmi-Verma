@@ -7,50 +7,21 @@ import { getApiUrl } from '../utils/api';
 const DEFAULT_PRICING_TIERS = {
   healthClarity: {
     id: 'healthClarity',
-    name: 'Health Clarity Session (60 min)',
-    badge: 'Recommended • 1:1 Deep Dive',
-    title: 'Health Clarity Session',
-    duration: '60 Minutes • Personalised Health Roadmap',
+    name: '1:1 Health Clarity Consultation (60 min)',
+    badge: 'Official 1:1 Clinical Consultation',
+    title: '1:1 Health Clarity Session',
+    duration: '60 Minutes • Deep Clinical Video Session',
     price: 1999,
     featured: true,
-    desc: 'The bridge from insight to clarity. A 60-minute 1:1 deep dive with Reshmi Verma to explore your health story, analyze symptom patterns, review blood diagnostics, and determine your tailored health pathway.',
+    desc: 'A comprehensive 60-minute 1:1 deep dive with Reshmi Verma to explore your health story, analyze symptom patterns, review blood diagnostics, evaluate breathing mechanics, and build your personalized recovery blueprint.',
     features: [
-      'Comprehensive review of your health story & history',
-      'Blood chemistry, gut patterns & biomarker analysis',
-      'Breathing biomechanics & BOLT baseline assessment',
-      'Written clinical roadmap & tailored health pathway'
+      'Comprehensive review of your complete medical & symptom history',
+      'Previous blood panels, gut microbiome & biomarker decoding',
+      'Breathing biomechanics & Oxygen Advantage BOLT assessment',
+      'Direct 1-on-1 consultation via private secure video call',
+      'Tailored, actionable functional recovery blueprint'
     ],
-    buttonText: 'Select Health Clarity Session (₹1,999)'
-  },
-  discovery: {
-    id: 'discovery',
-    name: 'Initial Discovery Call (20 min)',
-    badge: 'Discovery Call',
-    title: 'Initial Discovery Call',
-    duration: '20 Minutes • Exploratory Session',
-    price: 999,
-    desc: 'A quick chat to discuss your health story, current roadblocks, and determine if our SAMYA functional method aligns with your goals.',
-    features: [
-      'Review your primary symptoms',
-      'Evaluate your BOLT & breath baseline',
-      'Identify the right next clinical step'
-    ],
-    buttonText: 'Select Discovery Call (₹999)'
-  },
-  followup: {
-    id: 'followup',
-    name: 'Follow-Up Check-in (30 min)',
-    badge: 'Follow-Up Session',
-    title: 'Follow-Up Check-in',
-    duration: '30 Minutes • Active Clients Only',
-    price: 1499,
-    desc: 'For existing clients to review progress, track repeat BOLT scores, review updated labs, and adjust protocols.',
-    features: [
-      'Biomarker progression audit',
-      'Titrate nutraceuticals & botanical doses',
-      'Advanced breathwork progression'
-    ],
-    buttonText: 'Select Follow-Up (₹1,499)'
+    buttonText: 'Book 1:1 Consultation (₹1,999)'
   }
 };
 
@@ -330,8 +301,8 @@ export default function BookingPage() {
             bookingDate: formData.bookingDate,
             bookingTime: formData.timeSlot,
             timeSlot: formData.timeSlot,
-            notes: formData.notes || formData.q11_concern_description,
-            healthConcerns: `${formData.q10_primary_concern}: ${formData.q11_concern_description}`
+            notes: formData.notes || '1:1 Health Clarity Session',
+            healthConcerns: formData.notes || '1:1 Health Clarity Consultation'
           })
         });
 
@@ -511,34 +482,45 @@ export default function BookingPage() {
       {/* Consultation Tiers */}
       <section className="section" style={{ paddingTop: '20px' }}>
         <div className="container">
-          <div className="booking-tiers-grid">
-            {tiersList.filter(t => t.active !== false).map(tier => {
-              const isSelected = selectedTier === tier.id;
+          <div style={{ maxWidth: '640px', margin: '0 auto' }}>
+            {tiersList.slice(0, 1).map(tier => {
               return (
                 <div 
                   key={tier.id}
-                  className={`tier-card ${tier.featured ? 'featured' : ''} ${isSelected ? 'selected-plan' : ''}`}
+                  className="tier-card featured selected-plan"
                   data-service-id={tier.id}
-                  onClick={() => handleSelectTier(tier.id)}
+                  style={{
+                    background: '#FFFFFF',
+                    border: '2px solid var(--emerald-deep)',
+                    borderRadius: '24px',
+                    padding: '36px 32px',
+                    boxShadow: '0 16px 40px rgba(0, 0, 0, 0.08)'
+                  }}
                 >
-                  {tier.featured && <div className="tier-badge">{tier.badge || 'Most Popular'}</div>}
-                  <h3>{tier.title || tier.name}</h3>
-                  <div className="tier-duration">{tier.duration}</div>
+                  <div className="tier-badge" style={{ background: '#121214', color: '#FFFFFF' }}>
+                    {tier.badge || 'Official 1:1 Clinical Consultation'}
+                  </div>
+                  <h3 style={{ fontSize: '1.75rem', marginTop: '14px', marginBottom: '4px' }}>
+                    {tier.title || tier.name}
+                  </h3>
+                  <div className="tier-duration" style={{ color: '#0D827B', fontWeight: 600 }}>
+                    {tier.duration}
+                  </div>
                   
-                  <div className="tier-price-box">
-                    <span className="tier-price-currency">₹</span>
-                    <span className="tier-price-amount">{Number(tier.price).toLocaleString('en-IN')}</span>
-                    <span className="tier-price-period">/ session</span>
+                  <div className="tier-price-box" style={{ margin: '20px 0 16px' }}>
+                    <span className="tier-price-currency" style={{ fontSize: '1.6rem' }}>₹</span>
+                    <span className="tier-price-amount" style={{ fontSize: '3rem', fontWeight: 800 }}>1,999</span>
+                    <span className="tier-price-period" style={{ fontSize: '0.95rem' }}>/ 60-min session</span>
                   </div>
 
-                  <p style={{ fontSize: '0.92rem', color: 'var(--text-secondary)', lineHeight: 1.6 }}>
+                  <p style={{ fontSize: '0.95rem', color: 'var(--text-secondary)', lineHeight: 1.6, marginBottom: '20px' }}>
                     {tier.desc}
                   </p>
 
-                  <ul className="tier-features">
+                  <ul className="tier-features" style={{ marginBottom: '28px' }}>
                     {(tier.features || []).map((feat, fIdx) => (
-                      <li key={fIdx}>
-                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                      <li key={fIdx} style={{ fontSize: '0.93rem', padding: '6px 0' }}>
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#0D827B" strokeWidth="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
                         <span>{feat}</span>
                       </li>
                     ))}
@@ -546,11 +528,13 @@ export default function BookingPage() {
 
                   <button 
                     type="button" 
-                    className={`btn ${isSelected ? 'btn-primary' : 'btn-secondary'} btn-select-tier`} 
-                    style={{ width: '100%', marginTop: 'auto' }}
-                    onClick={(e) => { e.stopPropagation(); handleSelectTier(tier.id); }}
+                    className="btn btn-primary btn-lg" 
+                    style={{ width: '100%', justifyContent: 'center', borderRadius: '14px', fontSize: '1.05rem', fontWeight: 800 }}
+                    onClick={() => {
+                      if (formRef.current) formRef.current.scrollIntoView({ behavior: 'smooth' });
+                    }}
                   >
-                    {tier.buttonText || `Select Plan (₹${Number(tier.price).toLocaleString('en-IN')})`}
+                    Proceed with 1:1 Consultation (₹1,999) &rarr;
                   </button>
                 </div>
               );
@@ -563,9 +547,9 @@ export default function BookingPage() {
       <section className="section" id="intake-booking-section" ref={formRef} style={{ background: 'white', borderTop: '1px solid var(--border-subtle)' }}>
         <div className="container">
           <div className="section-header">
-            <span className="sub-title">Intake &amp; Secure Checkout</span>
+            <span className="sub-title">Direct Booking &amp; Secure Checkout</span>
             <h2>Consultation Details &amp; Scheduling</h2>
-            <p>Answer a few quick questions so Reshmi Verma can prepare thoroughly before your session.</p>
+            <p>Enter your contact details, select your preferred appointment slot, and proceed directly to secure payment.</p>
           </div>
 
           <div className="booking-form-card">
@@ -596,13 +580,13 @@ export default function BookingPage() {
 
             <form id="consultation-booking-form" onSubmit={handleSubmit}>
               
-              {/* Section A — Basic Information */}
+              {/* Step 1: Contact Information */}
               <div style={{ marginBottom: '24px', paddingBottom: '12px', borderBottom: '2px solid rgba(194, 65, 12, 0.12)' }}>
                 <div style={{ display: 'flex', alignContent: 'center', alignItems: 'center', gap: '8px', marginBottom: '4px' }}>
-                  <span style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', width: '26px', height: '26px', borderRadius: '50%', background: 'var(--emerald-soft)', color: 'var(--emerald-medium)', fontWeight: 700, fontSize: '0.85rem' }}>A</span>
-                  <h3 style={{ fontSize: '1.15rem', color: 'var(--emerald-deep)', margin: 0, fontWeight: 700 }}>Section A — Basic Information</h3>
+                  <span style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', width: '26px', height: '26px', borderRadius: '50%', background: 'var(--emerald-soft)', color: 'var(--emerald-medium)', fontWeight: 700, fontSize: '0.85rem' }}>1</span>
+                  <h3 style={{ fontSize: '1.15rem', color: 'var(--emerald-deep)', margin: 0, fontWeight: 700 }}>Step 1: Your Contact Information</h3>
                 </div>
-                <p style={{ fontSize: '0.82rem', color: 'var(--text-muted)', margin: 0 }}>Verified prior to booking &amp; payment.</p>
+                <p style={{ fontSize: '0.82rem', color: 'var(--text-muted)', margin: 0 }}>Required for private video consultation link and confirmation.</p>
               </div>
               
               <div className="booking-form-row">
@@ -757,207 +741,12 @@ export default function BookingPage() {
                 />
               </div>
 
-              {/* Step 2: Confidential Clinical Health Intake (Pre-Consultation Questions) */}
-              <div style={{ marginBottom: '24px', paddingBottom: '12px', borderBottom: '2px solid rgba(194, 65, 12, 0.12)', marginTop: '32px' }}>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                  <span style={{ fontSize: '1.25rem' }}>📋</span>
-                  <h3 style={{ fontSize: '1.18rem', color: 'var(--emerald-deep)', margin: 0, fontWeight: 700 }}>
-                    {selectedTier === 'followup' 
-                      ? 'Step 2: Follow-Up Progress Update (Existing Client)' 
-                      : 'Step 2: Confidential Clinical Health Intake (Answer Questions First)'}
-                  </h3>
-                </div>
-                <p style={{ fontSize: '0.88rem', color: 'var(--text-secondary)', margin: '6px 0 0' }}>
-                  {selectedTier === 'followup'
-                    ? 'Welcome back! Since you are an existing client, your baseline history is already on record. You do NOT need to refill the full health questionnaire.'
-                    : 'Please share your symptom chronology so Reshmi Verma can evaluate your root cause biochemistry prior to your consultation call.'}
-                </p>
-              </div>
-
-              {selectedTier === 'followup' ? (
-                /* Returning / Follow-Up Client: NO 40 questions needed, just quick progress check-in */
-                <div style={{ background: '#F0FDF4', border: '1.5px solid #86EFAC', borderRadius: '16px', padding: '22px 24px', marginBottom: '24px' }}>
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '10px', color: '#166534', fontWeight: 700, fontSize: '1.02rem', marginBottom: '8px' }}>
-                    <span style={{ fontSize: '1.3rem' }}>🌿</span>
-                    <span>Returning Client Progress Update</span>
-                  </div>
-                  <p style={{ margin: '0 0 16px', color: '#14532D', fontSize: '0.92rem', lineHeight: 1.55 }}>
-                    Aapka initial 40-question baseline profile already Reshmi Verma ke clinical database me linked hai. Sirf pichhli consultation ke baad se aaye updates share karein:
-                  </p>
-                  <div>
-                    <label htmlFor="followup-notes-input" style={{ fontWeight: 700, fontSize: '0.92rem', color: 'var(--emerald-deep)', display: 'block', marginBottom: '8px' }}>
-                      Recent progress, dietary changes, or symptoms observed since your last session *
-                    </label>
-                    <textarea
-                      id="followup-notes-input"
-                      name="notes"
-                      value={formData.notes}
-                      onChange={handleInputChange}
-                      rows={3}
-                      required
-                      placeholder="e.g. Followed 3R gut protocol for 4 weeks. Morning energy improved, bloating reduced by 50%. Have latest bloodwork to review during this follow-up call..."
-                      style={{ width: '100%', padding: '12px 16px', border: '1.5px solid var(--border-medium)', borderRadius: 'var(--radius-sm)', fontSize: '0.95rem', resize: 'vertical', background: 'white' }}
-                    />
-                  </div>
-                </div>
-              ) : (
-                /* New Consultation Client: Intake Questions */
-                <>
-                  {/* Primary Concern */}
-                  <div style={{ marginBottom: '20px' }}>
-                    <label htmlFor="q10-concern-select" style={{ fontWeight: 700, fontSize: '0.92rem', color: 'var(--emerald-deep)', display: 'block', marginBottom: '6px' }}>
-                      1. What is your primary health concern? *
-                    </label>
-                    <select
-                      id="q10-concern-select"
-                      name="q10_primary_concern"
-                      value={formData.q10_primary_concern}
-                      onChange={handleInputChange}
-                      style={{ width: '100%', padding: '12px 16px', border: '1.5px solid var(--border-medium)', borderRadius: 'var(--radius-sm)', fontSize: '0.95rem', background: 'white' }}
-                    >
-                      <option value="Gut and digestive health (Bloating, IBS, SIBO, Reflux)">Gut and digestive health (Bloating, IBS, SIBO, Reflux)</option>
-                      <option value="PCOS / Hormonal balance & irregular cycles">PCOS / Hormonal balance & irregular cycles</option>
-                      <option value="Thyroid-related metabolic dysfunction">Thyroid-related metabolic dysfunction</option>
-                      <option value="Weight plateau & stubborn fat retention">Weight plateau & stubborn fat retention</option>
-                      <option value="Diabetes / Insulin resistance & blood sugar crashes">Diabetes / Insulin resistance & blood sugar crashes</option>
-                      <option value="Chronic fatigue & cellular energy depletion">Chronic fatigue & cellular energy depletion</option>
-                      <option value="Respiratory pacing / Anxiety surges / Sleep apnea">Respiratory pacing / Anxiety surges / Sleep apnea</option>
-                      <option value="Skin, hair loss, and inflammatory flare-ups">Skin, hair loss, and inflammatory flare-ups</option>
-                      <option value="General cellular longevity & preventive optimization">General cellular longevity & preventive optimization</option>
-                      <option value="Other">Other</option>
-                    </select>
-                  </div>
-
-                  {/* Description */}
-                  <div style={{ marginBottom: '20px' }}>
-                    <label htmlFor="q11-description-input" style={{ fontWeight: 700, fontSize: '0.92rem', color: 'var(--emerald-deep)', display: 'block', marginBottom: '6px' }}>
-                      2. Describe your main symptoms in detail (triggers, daily pattern, frequency) *
-                    </label>
-                    <textarea
-                      id="q11-description-input"
-                      name="q11_concern_description"
-                      value={formData.q11_concern_description}
-                      onChange={handleInputChange}
-                      rows={3}
-                      required
-                      placeholder="e.g. Severe distension and gas within 45 mins of eating, sluggish morning energy, waking at 3 AM with rapid heart rate, severe brain fog..."
-                      style={{ width: '100%', padding: '12px 16px', border: '1.5px solid var(--border-medium)', borderRadius: 'var(--radius-sm)', fontSize: '0.95rem', resize: 'vertical' }}
-                    />
-                  </div>
-
-                  <div className="booking-form-row">
-                    <div>
-                      <label htmlFor="q12-duration-select" style={{ fontWeight: 700, fontSize: '0.92rem', color: 'var(--emerald-deep)', display: 'block', marginBottom: '6px' }}>
-                        3. Duration of this concern
-                      </label>
-                      <select
-                        id="q12-duration-select"
-                        name="q12_concern_duration"
-                        value={formData.q12_concern_duration}
-                        onChange={handleInputChange}
-                        style={{ width: '100%', padding: '12px 16px', border: '1px solid var(--border-medium)', borderRadius: 'var(--radius-sm)', fontSize: '0.95rem', background: 'white' }}
-                      >
-                        <option value="Less than 1 month (Acute onset)">Less than 1 month (Acute onset)</option>
-                        <option value="1 to 6 months (Developing pattern)">1 to 6 months (Developing pattern)</option>
-                        <option value="6 to 12 months (Persistent issue)">6 to 12 months (Persistent issue)</option>
-                        <option value="More than 1 year (Chronic compensation)">More than 1 year (Chronic compensation)</option>
-                      </select>
-                    </div>
-
-                    <div>
-                      <label htmlFor="q29-diet-select" style={{ fontWeight: 700, fontSize: '0.92rem', color: 'var(--emerald-deep)', display: 'block', marginBottom: '6px' }}>
-                        4. Dietary Preference
-                      </label>
-                      <select
-                        id="q29-diet-select"
-                        name="q29_dietary_preference"
-                        value={formData.q29_dietary_preference}
-                        onChange={handleInputChange}
-                        style={{ width: '100%', padding: '12px 16px', border: '1px solid var(--border-medium)', borderRadius: 'var(--radius-sm)', fontSize: '0.95rem', background: 'white' }}
-                      >
-                        <option value="Vegetarian">Vegetarian</option>
-                        <option value="Jain Vegetarian">Jain Vegetarian</option>
-                        <option value="Vegan / Plant-based">Vegan / Plant-based</option>
-                        <option value="Eggetarian">Eggetarian</option>
-                        <option value="Non-Vegetarian / Omnivore">Non-Vegetarian / Omnivore</option>
-                      </select>
-                    </div>
-                  </div>
-
-                  <div className="booking-form-row">
-                    <div>
-                      <label htmlFor="q16-medical-input" style={{ fontWeight: 700, fontSize: '0.92rem', color: 'var(--emerald-deep)', display: 'block', marginBottom: '6px' }}>
-                        5. Existing Diagnosed Conditions (Optional)
-                      </label>
-                      <input
-                        type="text"
-                        id="q16-medical-input"
-                        name="q16_medical_condition"
-                        value={formData.q16_medical_condition}
-                        onChange={handleInputChange}
-                        placeholder="e.g. Hypothyroidism, PCOD, Fatty liver, None"
-                        style={{ width: '100%', padding: '12px 16px', border: '1px solid var(--border-medium)', borderRadius: 'var(--radius-sm)', fontSize: '0.95rem' }}
-                      />
-                    </div>
-
-                    <div>
-                      <label htmlFor="q17-meds-input" style={{ fontWeight: 700, fontSize: '0.92rem', color: 'var(--emerald-deep)', display: 'block', marginBottom: '6px' }}>
-                        6. Medications / Supplements Taken (Optional)
-                      </label>
-                      <input
-                        type="text"
-                        id="q17-meds-input"
-                        name="q17_medicines_supplements"
-                        value={formData.q17_medicines_supplements}
-                        onChange={handleInputChange}
-                        placeholder="e.g. Thyronorm 50mcg, Vitamin D3, B12, None"
-                        style={{ width: '100%', padding: '12px 16px', border: '1px solid var(--border-medium)', borderRadius: 'var(--radius-sm)', fontSize: '0.95rem' }}
-                      />
-                    </div>
-                  </div>
-
-                  <div className="booking-form-row">
-                    <div>
-                      <label htmlFor="q33-digestive-input" style={{ fontWeight: 700, fontSize: '0.92rem', color: 'var(--emerald-deep)', display: 'block', marginBottom: '6px' }}>
-                        7. Digestive &amp; Motility Patterns
-                      </label>
-                      <input
-                        type="text"
-                        id="q33-digestive-input"
-                        name="q33_digestive_symptoms"
-                        value={formData.q33_digestive_symptoms}
-                        onChange={handleInputChange}
-                        placeholder="e.g. Bloating late evening, acid reflux, constipation"
-                        style={{ width: '100%', padding: '12px 16px', border: '1px solid var(--border-medium)', borderRadius: 'var(--radius-sm)', fontSize: '0.95rem' }}
-                      />
-                    </div>
-
-                    <div>
-                      <label htmlFor="q27-stress-select" style={{ fontWeight: 700, fontSize: '0.92rem', color: 'var(--emerald-deep)', display: 'block', marginBottom: '6px' }}>
-                        8. Perceived Stress &amp; Night Sleep
-                      </label>
-                      <select
-                        id="q27-stress-select"
-                        name="q27_stress_level"
-                        value={formData.q27_stress_level}
-                        onChange={handleInputChange}
-                        style={{ width: '100%', padding: '12px 16px', border: '1px solid var(--border-medium)', borderRadius: 'var(--radius-sm)', fontSize: '0.95rem', background: 'white' }}
-                      >
-                        <option value="Moderate — Work pressure but manageable">Moderate — Work pressure but manageable</option>
-                        <option value="High — Constant anxiety, fragmented sleep, burnout">High — Constant anxiety, fragmented sleep, burnout</option>
-                        <option value="Low — Generally calm and regulated">Low — Generally calm and regulated</option>
-                      </select>
-                    </div>
-                  </div>
-                </>
-              )}
-
-              {/* Step 3: Scheduling & Consultation Tier */}
+              {/* Step 2: Scheduling & Consultation Slot */}
               <div style={{ marginBottom: '24px', paddingBottom: '12px', borderBottom: '2px solid rgba(194, 65, 12, 0.12)', marginTop: '28px' }}>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                  <span style={{ fontSize: '1.25rem' }}>📅</span>
+                  <span style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', width: '26px', height: '26px', borderRadius: '50%', background: 'var(--emerald-soft)', color: 'var(--emerald-medium)', fontWeight: 700, fontSize: '0.85rem' }}>2</span>
                   <h3 style={{ fontSize: '1.18rem', color: 'var(--emerald-deep)', margin: 0, fontWeight: 700 }}>
-                    Step 3: Consultation Plan &amp; Appointment Slot
+                    Step 2: Consultation Plan &amp; Appointment Slot
                   </h3>
                 </div>
               </div>
@@ -968,13 +757,11 @@ export default function BookingPage() {
                 </label>
                 <select 
                   id="selected-service-select" 
-                  value={selectedTier}
-                  onChange={(e) => setSelectedTier(e.target.value)}
-                  style={{ width: '100%', padding: '12px 16px', background: 'white', border: '1.5px solid var(--emerald-medium)', borderRadius: 'var(--radius-sm)', fontSize: '1rem', fontWeight: 600, color: 'var(--emerald-deep)', cursor: 'pointer' }}
+                  value="healthClarity"
+                  disabled
+                  style={{ width: '100%', padding: '12px 16px', background: '#F4F5F6', border: '1.5px solid var(--emerald-medium)', borderRadius: 'var(--radius-sm)', fontSize: '1rem', fontWeight: 600, color: 'var(--emerald-deep)', cursor: 'default' }}
                 >
-                  <option value="healthClarity">Health Clarity Session (60 min) — ₹1,999 (Recommended)</option>
-                  <option value="discovery">Initial Discovery Call (20 min) — ₹999</option>
-                  <option value="followup">Follow-Up Check-in (30 min) — ₹1,499</option>
+                  <option value="healthClarity">1:1 Health Clarity Consultation (60 min) — ₹1,999</option>
                 </select>
               </div>
 
@@ -1068,20 +855,17 @@ export default function BookingPage() {
 
               <div style={{ marginBottom: '24px' }}>
                 <label htmlFor="client-notes-input" style={{ fontWeight: 700, fontSize: '0.95rem', color: 'var(--emerald-deep)', display: 'block', marginBottom: '8px' }}>
-                  Primary Health Challenges &amp; Notes for Reshmi Verma *
+                  Consultation Notes or Health Focus (Optional)
                 </label>
                 <textarea 
                   id="client-notes-input" 
                   name="notes"
                   value={formData.notes}
                   onChange={handleInputChange}
-                  rows="4" 
-                  placeholder="e.g. Chronic acid reflux, shallow breathing, afternoon brain fog. I want to build a sustainable nutrition & breath plan..." 
+                  rows="3" 
+                  placeholder="e.g. Acid reflux, thyroid pacing, energy fatigue, or specific health goals you wish to discuss..." 
                   style={{ width: '100%', padding: '14px 16px', border: '1px solid var(--border-medium)', borderRadius: 'var(--radius-sm)', fontSize: '1rem', lineHeight: 1.6 }}
                 ></textarea>
-                <span style={{ fontSize: '0.8rem', color: 'var(--text-muted)', marginTop: '4px', display: 'block' }}>
-                  (If you tested your BOLT score or completed the Health Assessment, your notes are automatically attached above)
-                </span>
               </div>
 
               {/* Razorpay Consultation Order Summary Box */}

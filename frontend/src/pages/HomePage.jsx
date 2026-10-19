@@ -100,7 +100,7 @@ export default function HomePage() {
             <div className="hero-content">
               <div className="badge-pill">
                 <span className="pulse-dot"></span>
-                <span>🏅 Functional Nutritionist &bull; Somatic Breathwork Facilitator &bull; Biohacker</span>
+                <span>Functional Nutritionist &bull; Somatic Breathwork Facilitator &bull; Biohacker</span>
               </div>
 
               <h1>Root-Cause <span className="text-gradient">Functional Nutrition</span> &amp; <span className="text-gradient-breath">Breathwork Facilitator</span>.</h1>
@@ -118,10 +118,10 @@ export default function HomePage() {
                   </svg>
                 </Link>
                 <Link to="/assessment" className="btn btn-health btn-lg">
-                  <span>🌸 Take Free Health Assessment</span>
+                  <span>Take Free Health Assessment</span>
                 </Link>
                 <Link to="/breathing-assessment" className="btn btn-breath btn-lg">
-                  <span>🫁 Breathing Assessment</span>
+                  <span>Breathing Assessment</span>
                 </Link>
               </div>
 
@@ -172,7 +172,7 @@ export default function HomePage() {
 
                 {/* Floating Top Trust Badge */}
                 <div className="hero-floating-badge badge-top-right">
-                  <div className="badge-icon">🔬</div>
+                  <div className="badge-icon" style={{ fontSize: "1rem", fontWeight: 800 }}>20+</div>
                   <div className="badge-text">
                     <strong>20+ Years</strong>
                     <span>Healthcare &amp; Diagnostics</span>
@@ -181,11 +181,6 @@ export default function HomePage() {
 
                 {/* Floating Bottom Identity Badge */}
                 <div className="hero-floating-badge badge-bottom-left">
-                  <img
-                    src="/assets/images/rv-brand-logo.png"
-                    alt="Reshmi Verma Brand Monogram"
-                    style={{ width: '38px', height: '38px', borderRadius: '50%', objectFit: 'contain', background: '#000000', padding: '2.5px', flexShrink: 0, boxShadow: '0 2px 10px rgba(0,0,0,0.35), 0 0 0 1px rgba(212, 175, 55, 0.5)' }}
-                  />
                   <div className="badge-text">
                     <strong>Reshmi Verma</strong>
                     <span>Functional Nutritionist</span>
@@ -218,10 +213,10 @@ export default function HomePage() {
               Explore 1:1 UltraWellness
             </Link>
             <Link to="/assessment" className="btn btn-health">
-              🌸 Functional Health Assessment
+              Functional Health Assessment
             </Link>
             <Link to="/breathing-assessment" className="btn btn-breath">
-              🫁 Functional Breathing Assessment
+              Functional Breathing Assessment
             </Link>
           </div>
         </div>
@@ -232,7 +227,7 @@ export default function HomePage() {
         className="section"
         id="lived-transformation-showcase"
         style={{
-          background: 'var(--sand-warm)',
+          background: 'var(--bg-primary)',
           borderTop: '1px solid var(--sand-border)',
           borderBottom: '1px solid var(--sand-border)',
           padding: '70px 0'
@@ -283,9 +278,9 @@ export default function HomePage() {
                       <span className="divider-badge">-38 KG</span>
                     </div>
                     <span className="photo-phase-tag phase-after">AFTER • Metabolic Reversal</span>
-                    <img 
-                      src="/assets/images/reshmi-transformation-side-by-side.jpg" 
-                      alt="Reshmi Verma Before and After 38 kg Health Transformation" 
+                    <img
+                      src="/assets/images/reshmi-transformation-side-by-side.jpg"
+                      alt="Reshmi Verma Before and After 38 kg Health Transformation"
                       className="transformation-combined-img"
                     />
                   </div>
@@ -294,7 +289,7 @@ export default function HomePage() {
                 {transformationTab === 'before' && (
                   <div className="transformation-single-view">
                     <span className="photo-phase-tag phase-before">BEFORE • Initial Metabolic Resistance</span>
-                    <img src="/assets/images/reshmi-transform-user.jpg" alt="Reshmi Verma Before Transformation" />
+                    <img src="/assets/images/real-patient-vartika.jpg" alt="Reshmi Verma Before Transformation" />
                     <div className="single-phase-caption">
                       <strong>Earlier Phase:</strong> Battling systemic inflammation, sluggish metabolism, and persistent fatigue despite clinical healthcare background.
                     </div>
@@ -304,7 +299,7 @@ export default function HomePage() {
                 {transformationTab === 'after' && (
                   <div className="transformation-single-view">
                     <span className="photo-phase-tag phase-after">AFTER • -38 kg Victory</span>
-                    <img src="/assets/images/reshmi-after.jpg" alt="Reshmi Verma After Transformation" />
+                    <img src="/assets/images/real-patient-shoaib.jpg" alt="Reshmi Verma After Transformation" />
                     <div className="single-phase-caption">
                       <strong>Reversed Phase:</strong> Reclaimed energy, pristine metabolic biomarkers, Functional Nutritionist &amp; Certified Biohacker without crash dieting.
                     </div>
@@ -369,7 +364,7 @@ export default function HomePage() {
         className="section"
         id="samya-methodology"
         style={{
-          background: 'linear-gradient(180deg, #FFFFFF 0%, var(--sand-warm) 50%, #FFFFFF 100%)',
+          background: 'var(--bg-primary)',
           borderTop: '1px solid var(--border-subtle)',
           borderBottom: '1px solid var(--border-subtle)',
           padding: '48px 0'
@@ -527,11 +522,7 @@ export default function HomePage() {
                   <polyline points="12 5 19 12 12 19"></polyline>
                 </svg>
               </Link>
-              <Link
-                to="/assessment"
-                className="btn btn-secondary btn-lg"
-                style={{ background: 'rgba(255, 255, 255, 0.12)', color: 'white', borderColor: 'rgba(255, 255, 255, 0.3)' }}
-              >
+              <Link to="/assessment" className="btn btn-on-dark btn-lg">
                 <span>Take Free Assessment</span>
               </Link>
             </div>
@@ -544,40 +535,32 @@ export default function HomePage() {
         <div className="container">
           <div className="stories-noir-grid">
             <div>
-              <span style={{ fontSize: '0.8rem', color: '#8EBE93', textTransform: 'uppercase', letterSpacing: '0.08em', fontWeight: 800 }}>
+              <span style={{ fontSize: '0.8rem', color: '#9CA3AF', textTransform: 'uppercase', letterSpacing: '0.08em', fontWeight: 800 }}>
                 Verified Patient Outcomes
               </span>
               <h2 style={{ fontSize: 'clamp(2rem, 4vw, 2.7rem)', color: '#FFFFFF', margin: '8px 0 14px', lineHeight: 1.15 }}>
-                Real People, Real Success Stories
+                Their Results, Their Words
               </h2>
               <p style={{ color: '#9CA3AF', fontSize: '1rem', lineHeight: 1.6, marginBottom: '24px' }}>
-                See what our clients have to say about their root-cause recovery journey with Reshmi Verma.
+                Every health journey is different. Discover our clients’ experiences with personalised, root-cause-focused care.
               </p>
               <Link
                 to="/booking"
-                className="btn btn-lg"
-                style={{
-                  background: '#FFFFFF',
-                  color: '#121214',
-                  fontWeight: 800,
-                  padding: '13px 26px',
-                  borderRadius: '14px',
-                  display: 'inline-flex',
-                  alignItems: 'center',
-                  gap: '8px',
-                  boxShadow: '0 8px 25px rgba(255, 255, 255, 0.18)',
-                  border: 'none'
-                }}
+                className="btn btn-white-solid btn-lg"
+                style={{ padding: '14px 28px', borderRadius: '14px' }}
               >
                 <span>Book 1:1 Consultation</span>
-                <span>&rarr;</span>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                  <line x1="5" y1="12" x2="19" y2="12"></line>
+                  <polyline points="12 5 19 12 12 19"></polyline>
+                </svg>
               </Link>
             </div>
 
             <div className="stories-cards-scroller">
               <div className="story-client-card">
                 <div className="story-client-header">
-                  <img src="/assets/images/reshmi-transform-user.jpg" alt="Vartika" className="story-client-avatar" />
+                  <img src="/assets/images/real-patient-vartika.jpg" alt="Vartika" className="story-client-avatar" />
                   <div>
                     <h5 style={{ margin: 0, fontSize: '0.98rem', fontWeight: 700, color: '#FFFFFF' }}>Vartika</h5>
                     <span style={{ fontSize: '0.78rem', color: '#9CA3AF' }}>Bangalore</span>
@@ -586,12 +569,11 @@ export default function HomePage() {
                 <p className="story-client-quote">
                   "For as long as I can remember, I had been suffering from Hashimoto's, extreme fatigue, and crazy PMS mood swings. Within 8 weeks on Reshmi's gut &amp; breath protocol, my brain fog vanished and energy is at an all-time high!"
                 </p>
-                <Link to="/about" className="story-read-more-btn">READ MORE &rarr;</Link>
-              </div>
+                </div>
 
               <div className="story-client-card">
                 <div className="story-client-header">
-                  <img src="/assets/images/patient-vitality-energy.jpg" alt="Simrat" className="story-client-avatar" />
+                  <img src="/assets/images/real-patient-simrat.jpg" alt="Simrat" className="story-client-avatar" />
                   <div>
                     <h5 style={{ margin: 0, fontSize: '0.98rem', fontWeight: 700, color: '#FFFFFF' }}>Simrat</h5>
                     <span style={{ fontSize: '0.78rem', color: '#9CA3AF' }}>Ludhiana</span>
@@ -600,12 +582,11 @@ export default function HomePage() {
                 <p className="story-client-quote">
                   "This program has done wonders in my life. I had severe chronic constipation, low energy, and food sensitivities. Reshmi's diagnostic approach repaired my digestion without restrictive crash diets."
                 </p>
-                <Link to="/about" className="story-read-more-btn">READ MORE &rarr;</Link>
-              </div>
+                </div>
 
               <div className="story-client-card">
                 <div className="story-client-header">
-                  <img src="/assets/images/founder.jpg" alt="Pranav" className="story-client-avatar" />
+                  <img src="/assets/images/real-patient-pranav.jpg" alt="Pranav" className="story-client-avatar" />
                   <div>
                     <h5 style={{ margin: 0, fontSize: '0.98rem', fontWeight: 700, color: '#FFFFFF' }}>Pranav</h5>
                     <span style={{ fontSize: '0.78rem', color: '#9CA3AF' }}>New Delhi</span>
@@ -614,12 +595,11 @@ export default function HomePage() {
                 <p className="story-client-quote">
                   "I was struggling with anxiety-induced shallow breathing, sleep apnea, and high stress. Oxygen Advantage breathwork with Reshmi boosted my BOLT score from 12s to 32s. Sleep quality is now phenomenal."
                 </p>
-                <Link to="/about" className="story-read-more-btn">READ MORE &rarr;</Link>
-              </div>
+                </div>
 
               <div className="story-client-card">
                 <div className="story-client-header">
-                  <img src="/assets/images/reshmi-after.jpg" alt="Shoaib" className="story-client-avatar" />
+                  <img src="/assets/images/real-patient-shoaib.jpg" alt="Shoaib" className="story-client-avatar" />
                   <div>
                     <h5 style={{ margin: 0, fontSize: '0.98rem', fontWeight: 700, color: '#FFFFFF' }}>Shoaib</h5>
                     <span style={{ fontSize: '0.78rem', color: '#9CA3AF' }}>Ahmednagar</span>
@@ -628,8 +608,7 @@ export default function HomePage() {
                 <p className="story-client-quote">
                   "I had been suffering from severe gastritis, acidity, and post-meal sluggishness for years. Reshmi pinpointed the exact bacterial imbalance in my lab report and fixed it with whole food biochemistry."
                 </p>
-                <Link to="/about" className="story-read-more-btn">READ MORE &rarr;</Link>
-              </div>
+                </div>
             </div>
           </div>
         </div>
@@ -801,10 +780,10 @@ export default function HomePage() {
                 </svg>
               </Link>
               <Link to="/assessment" className="btn btn-health btn-lg">
-                <span>🌸 Health Assessment</span>
+                <span>Health Assessment</span>
               </Link>
               <Link to="/breathing-assessment" className="btn btn-breath btn-lg">
-                <span>🫁 Breathing Assessment</span>
+                <span>Breathing Assessment</span>
               </Link>
             </div>
           </div>
@@ -914,7 +893,7 @@ export default function HomePage() {
             </div>
           </div>
 
-          {/* Social Channels Redirect Bar */}
+          {/* Social Channels Redirect Bar (Luxury Sleek Black Strip with Real Brand Icons) */}
           <div className="reels-channels-bar">
             <div className="reels-channels-info">
               <img src="/assets/images/reshmi-verma.jpg" alt="Reshmi Verma" className="reels-channels-avatar" />
@@ -929,13 +908,22 @@ export default function HomePage() {
                 href="https://www.instagram.com/healthwithreshmi/?hl=en"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="footer-social-btn instagram"
+                className="footer-social-btn"
                 aria-label="Follow on Instagram"
               >
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
-                  <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
-                  <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                  <defs>
+                    <linearGradient id="igFollowGrad" x1="0%" y1="100%" x2="100%" y2="0%">
+                      <stop offset="0%" stopColor="#f09433"/>
+                      <stop offset="25%" stopColor="#e6683c"/>
+                      <stop offset="50%" stopColor="#dc2743"/>
+                      <stop offset="75%" stopColor="#cc2366"/>
+                      <stop offset="100%" stopColor="#bc1888"/>
+                    </linearGradient>
+                  </defs>
+                  <rect x="2" y="2" width="20" height="20" rx="5" fill="url(#igFollowGrad)"/>
+                  <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" stroke="#FFFFFF" strokeWidth="1.8" fill="none"/>
+                  <circle cx="17.5" cy="6.5" r="1.2" fill="#FFFFFF"/>
                 </svg>
                 <span>Instagram</span>
               </a>
@@ -943,13 +931,12 @@ export default function HomePage() {
                 href="https://www.linkedin.com/in/reshmiverma/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="footer-social-btn linkedin"
+                className="footer-social-btn"
                 aria-label="Connect on LinkedIn"
               >
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
-                  <rect x="2" y="9" width="4" height="12"></rect>
-                  <circle cx="4" cy="4" r="2"></circle>
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                  <rect width="24" height="24" rx="4" fill="#0A66C2"/>
+                  <path d="M19 19h-3v-4.5c0-1.08-.02-2.5-1.5-2.5-1.5 0-1.8 1.2-1.8 2.4V19H9.7V9.5h2.9v1.3h.04c.4-.76 1.4-1.56 2.8-1.56 3 0 3.56 2 3.56 4.56V19zM6.4 8.2a1.7 1.7 0 1 1 0-3.4 1.7 1.7 0 0 1 0 3.4zM7.9 19H4.9V9.5h3V19z" fill="#FFFFFF"/>
                 </svg>
                 <span>LinkedIn</span>
               </a>
@@ -957,12 +944,12 @@ export default function HomePage() {
                 href="https://youtube.com/@healthwithreshmi?si=J_-3JErcDWbGw6gj"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="footer-social-btn youtube"
+                className="footer-social-btn"
                 aria-label="Subscribe on YouTube"
               >
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19.1c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.43z"></path>
-                  <polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02" fill="currentColor"></polygon>
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+                  <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814z" fill="#FF0000"/>
+                  <path d="M9.545 15.568V8.432L15.818 12l-6.273 3.568z" fill="#FFFFFF"/>
                 </svg>
                 <span>YouTube</span>
               </a>
@@ -972,7 +959,7 @@ export default function HomePage() {
       </section>
 
       {/* 8. Trust & Founder Spotlight Banner */}
-      <section style={{ background: '#FAF8F5', padding: '44px 0', borderTop: '1px solid var(--border-subtle)', borderBottom: '1px solid var(--border-subtle)' }}>
+      <section style={{ background: 'var(--bg-primary)', padding: '44px 0', borderTop: '1px solid var(--border-subtle)', borderBottom: '1px solid var(--border-subtle)' }}>
         <div className="container" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '24px' }}>
           <div style={{ maxWidth: '680px' }}>
             <div style={{ fontSize: '0.82rem', fontWeight: 700, color: 'var(--emerald-medium)', textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: '6px' }}>
@@ -1000,7 +987,7 @@ export default function HomePage() {
       <section className="more-about-section" id="more-about-reshmi">
         <div className="container">
           <div style={{ textAlign: 'center', marginBottom: '40px' }}>
-            <span style={{ fontSize: '0.8rem', color: '#8EBE93', textTransform: 'uppercase', letterSpacing: '0.08em', fontWeight: 700 }}>
+            <span style={{ fontSize: '0.8rem', color: '#9CA3AF', textTransform: 'uppercase', letterSpacing: '0.08em', fontWeight: 700 }}>
               Connect &bull; Learn &bull; Explore
             </span>
             <h2 style={{ fontSize: 'clamp(2rem, 4vw, 2.6rem)', color: 'var(--emerald-deep)', margin: '6px 0 0', fontFamily: 'var(--font-serif)' }}>
@@ -1018,7 +1005,6 @@ export default function HomePage() {
                 <h3 className="more-about-title">About</h3>
                 <Link to="/about" className="more-about-link">
                   <span>Click here</span>
-                  <span>&rarr;</span>
                 </Link>
               </div>
             </div>
@@ -1029,7 +1015,23 @@ export default function HomePage() {
                 <img src="/assets/images/reshmi-instagram-profile.png" alt="Reshmi Verma Instagram" />
               </div>
               <div className="more-about-content">
-                <h3 className="more-about-title">Instagram</h3>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+                    <defs>
+                      <linearGradient id="igCardGrad" x1="0%" y1="100%" x2="100%" y2="0%">
+                        <stop offset="0%" stopColor="#f09433"/>
+                        <stop offset="25%" stopColor="#e6683c"/>
+                        <stop offset="50%" stopColor="#dc2743"/>
+                        <stop offset="75%" stopColor="#cc2366"/>
+                        <stop offset="100%" stopColor="#bc1888"/>
+                      </linearGradient>
+                    </defs>
+                    <rect x="2" y="2" width="20" height="20" rx="5" fill="url(#igCardGrad)"/>
+                    <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" stroke="#FFFFFF" strokeWidth="1.8" fill="none"/>
+                    <circle cx="17.5" cy="6.5" r="1.2" fill="#FFFFFF"/>
+                  </svg>
+                  <h3 className="more-about-title" style={{ margin: 0 }}>Instagram</h3>
+                </div>
                 <a
                   href="https://www.instagram.com/healthwithreshmi/?hl=en"
                   target="_blank"
@@ -1037,7 +1039,6 @@ export default function HomePage() {
                   className="more-about-link"
                 >
                   <span>Click here</span>
-                  <span>&rarr;</span>
                 </a>
               </div>
             </div>
@@ -1048,7 +1049,13 @@ export default function HomePage() {
                 <img src="/assets/images/reshmi-youtube-channel.png" alt="Reshmi Verma YouTube" />
               </div>
               <div className="more-about-content">
-                <h3 className="more-about-title">YouTube</h3>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                    <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814z" fill="#FF0000"/>
+                    <path d="M9.545 15.568V8.432L15.818 12l-6.273 3.568z" fill="#FFFFFF"/>
+                  </svg>
+                  <h3 className="more-about-title" style={{ margin: 0 }}>YouTube</h3>
+                </div>
                 <a
                   href="https://youtube.com/@healthwithreshmi?si=J_-3JErcDWbGw6gj"
                   target="_blank"
@@ -1056,7 +1063,6 @@ export default function HomePage() {
                   className="more-about-link"
                 >
                   <span>Click here</span>
-                  <span>&rarr;</span>
                 </a>
               </div>
             </div>
@@ -1064,30 +1070,30 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 11. CTA Banner Section */}
-      <section className="section" style={{ background: 'linear-gradient(135deg, var(--emerald-deep) 0%, var(--emerald-primary) 100%)', color: 'white' }}>
+      {/* 11. CTA Banner Section (High Contrast Noir Strip) */}
+      <section className="section" style={{ background: '#111111', color: '#FFFFFF' }}>
         <div className="container text-center">
           <span
             className="badge-pill"
             style={{
-              background: 'rgba(255, 255, 255, 0.15)',
-              borderColor: 'rgba(255, 255, 255, 0.25)',
-              color: 'white',
+              background: 'rgba(255, 255, 255, 0.12)',
+              borderColor: 'rgba(255, 255, 255, 0.22)',
+              color: '#FFFFFF',
               marginBottom: '24px'
             }}
           >
-            <span className="pulse-dot" style={{ background: '#FB923C' }}></span>
+            <span className="pulse-dot" style={{ background: '#FF007F' }}></span>
             <span>Begin Your Healing Journey</span>
           </span>
-          <h2 style={{ color: 'white', fontSize: '2.85rem', marginBottom: '20px' }}>Ready for Clarity on Your Health?</h2>
-          <p style={{ color: '#FED7AA', maxWidth: '650px', margin: '0 auto 36px', fontSize: '1.15rem' }}>
+          <h2 style={{ color: '#FFFFFF', fontSize: '2.85rem', marginBottom: '20px' }}>Ready for Clarity on Your Health?</h2>
+          <p style={{ color: '#E5E7EB', maxWidth: '650px', margin: '0 auto 36px', fontSize: '1.15rem' }}>
             Take our 5-minute Health Resilience Assessment or book a dedicated session with Reshmi Verma to decode your symptoms into an actionable recovery plan.
           </p>
           <div style={{ display: 'flex', gap: '16px', justifyContent: 'center', flexWrap: 'wrap' }}>
             <Link
               to="/booking"
-              className="btn btn-accent btn-lg"
-              style={{ background: 'white', color: 'var(--emerald-deep)', boxShadow: '0 4px 20px rgba(0,0,0,0.15)' }}
+              className="btn btn-white-solid btn-lg"
+              style={{ padding: '16px 36px', borderRadius: '14px' }}
             >
               <span>Book a Health Clarity Session</span>
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
@@ -1097,8 +1103,7 @@ export default function HomePage() {
             </Link>
             <Link
               to="/assessment"
-              className="btn btn-secondary btn-lg"
-              style={{ background: 'rgba(255, 255, 255, 0.15)', color: 'white', borderColor: 'rgba(255, 255, 255, 0.3)' }}
+              className="btn btn-on-dark btn-lg"
             >
               <span>Take Free Assessment</span>
             </Link>

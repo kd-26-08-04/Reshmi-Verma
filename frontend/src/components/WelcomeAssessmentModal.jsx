@@ -578,8 +578,7 @@ export default function WelcomeAssessmentModal() {
                   border: '1.5px solid #FF80BF',
                   boxShadow: '0 4px 12px rgba(255, 0, 127, 0.18)'
                 }}>
-                  🌸
-                </div>
+                  </div>
                 <div style={{ flex: 1, minWidth: 0 }}>
                   <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '4px', flexWrap: 'wrap' }}>
                     <strong style={{ fontSize: '1rem', color: '#121214', fontWeight: 800 }}>
@@ -655,8 +654,7 @@ export default function WelcomeAssessmentModal() {
                   border: '1.5px solid #7AF5EE',
                   boxShadow: '0 4px 12px rgba(0, 229, 217, 0.18)'
                 }}>
-                  🫁
-                </div>
+                  </div>
                 <div style={{ flex: 1, minWidth: 0 }}>
                   <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '4px', flexWrap: 'wrap' }}>
                     <strong style={{ fontSize: '1rem', color: '#121214', fontWeight: 800 }}>

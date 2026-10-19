@@ -3,7 +3,7 @@ import React, { useState, useRef, useEffect } from 'react';
 const knowledgeBase = [
   {
     triggers: ['price', 'fee', 'cost', 'charge', 'rate', 'how much', 'pricing'],
-    reply: "The primary 1:1 consultation is the Health Clarity Session — ₹1,999 for a 60-minute deep dive with Reshmi Verma. In this session, Reshmi connects the dots across your health history, reviews blood chemistry, evaluates gut patterns and breathing biomechanics, and designs your tailored roadmap. We also offer a 20-min Discovery Call (₹999) if you prefer an exploratory chat."
+    reply: "Our official 1:1 consultation is the Health Clarity Session — ₹1,999 for a comprehensive 60-minute deep dive directly with Reshmi Verma. In this session, Reshmi connects the dots across your health history, reviews previous blood diagnostics, evaluates gut permeability and breathing biomechanics, and designs your tailored recovery roadmap."
   },
   {
     triggers: ['clarity', 'health clarity', 'session', 'consultation', 'what happens', 'book', 'appointment'],

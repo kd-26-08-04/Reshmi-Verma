@@ -535,21 +535,7 @@ export default function AdminPage() {
         {/* Admin Header Card */}
         <div className="admin-header-card">
           <div style={{ display: 'flex', alignItems: 'center', gap: '18px', flexWrap: 'wrap' }}>
-            <img
-              src="/assets/images/rv-brand-logo.png"
-              alt="Reshmi Verma Luxury Brand Emblem"
-              style={{
-                width: '56px',
-                height: '56px',
-                borderRadius: '50%',
-                background: '#000000',
-                padding: '4px',
-                objectFit: 'contain',
-                boxShadow: '0 4px 14px rgba(0, 0, 0, 0.35), 0 0 0 1.5px rgba(212, 175, 55, 0.55)',
-                filter: 'drop-shadow(0 3px 10px rgba(212, 175, 55, 0.4))',
-                flexShrink: 0
-              }}
-            />
+            <div style={{ width: "56px", height: "56px", borderRadius: "50%", background: "#121214", color: "#FFFFFF", display: "flex", alignItems: "center", justifyContent: "center", fontWeight: 800, fontSize: "1.2rem", flexShrink: 0 }}>HR</div>
             <div>
               <div style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', padding: '4px 12px', background: 'rgba(194, 65, 12, 0.08)', borderRadius: '999px', color: 'var(--emerald-primary)', fontSize: '0.78rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.06em', marginBottom: '8px' }}>
                 <span style={{ width: '8px', height: '8px', borderRadius: '50%', background: 'var(--emerald-primary)' }}></span>

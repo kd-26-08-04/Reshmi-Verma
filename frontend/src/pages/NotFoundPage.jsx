@@ -40,7 +40,7 @@ export default function NotFoundPage() {
           {/* Quick Exploration Cards */}
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(160px, 1fr))', gap: '16px', textAlign: 'left' }}>
             <Link to="/breathe" style={{ background: 'white', padding: '18px', borderRadius: 'var(--radius-md)', border: '1px solid var(--border-medium)', textDecoration: 'none', transition: 'transform var(--transition-fast)' }} className="tier-card">
-              <h4 style={{ fontSize: '0.95rem', color: 'var(--emerald-deep)', marginBottom: '4px' }}>🫁 Breathe &amp; BOLT</h4>
+              <h4 style={{ fontSize: '0.95rem', color: 'var(--emerald-deep)', marginBottom: '4px' }}>Breathe &amp; BOLT</h4>
               <p style={{ fontSize: '0.8rem', color: 'var(--text-muted)', margin: 0 }}>Test CO₂ tolerance</p>
             </Link>
             <Link to="/nutrition" style={{ background: 'white', padding: '18px', borderRadius: 'var(--radius-md)', border: '1px solid var(--border-medium)', textDecoration: 'none', transition: 'transform var(--transition-fast)' }} className="tier-card">

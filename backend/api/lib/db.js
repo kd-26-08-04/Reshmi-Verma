@@ -435,19 +435,46 @@ export const db = {
 
   // --- PRICING TIERS & SESSION FEES (ADMIN EDITABLE) ---
   async getPricingTiers() {
+    const singleTier = [
+      {
+        id: 'healthClarity',
+        name: '1:1 Health Clarity Consultation (60 min)',
+        title: '1:1 Health Clarity Session',
+        badge: 'Official 1:1 Clinical Consultation',
+        duration: '60 Minutes • Deep Clinical Video Session',
+        price: 1999,
+        desc: 'A comprehensive 60-minute 1:1 deep dive with Reshmi Verma to explore your health story, analyze symptom patterns, review blood diagnostics, evaluate breathing mechanics, and build your personalized recovery blueprint.',
+        features: [
+          'Comprehensive review of your complete medical & symptom history',
+          'Previous blood panels, gut microbiome & biomarker decoding',
+          'Breathing biomechanics & Oxygen Advantage BOLT assessment',
+          'Direct 1-on-1 consultation via private secure video call',
+          'Tailored, actionable functional recovery blueprint'
+        ],
+        buttonText: 'Book 1:1 Consultation (₹1,999)',
+        featured: true,
+        active: true
+      }
+    ];
+
     const mdb = await getMongo();
     if (mdb) {
-      const doc = await mdb.collection('configs').findOne({ key: 'pricing_tiers' });
-      if (doc && doc.tiers && Array.isArray(doc.tiers) && doc.tiers.length > 0) return doc.tiers;
+      try {
+        const doc = await mdb.collection('configs').findOne({ key: 'pricing_tiers' });
+        if (doc && doc.tiers && Array.isArray(doc.tiers) && doc.tiers.length === 1 && doc.tiers[0].price === 1999) {
+          return doc.tiers;
+        }
+        await mdb.collection('configs').updateOne(
+          { key: 'pricing_tiers' },
+          { $set: { key: 'pricing_tiers', tiers: singleTier, updatedAt: new Date().toISOString() } },
+          { upsert: true }
+        );
+      } catch (e) {}
     }
     const data = readLocalDb();
-    if (data.pricingTiers && Array.isArray(data.pricingTiers) && data.pricingTiers.length > 0) {
-      return data.pricingTiers;
-    }
-    const defaultTiers = getDefaultPricingTiers();
-    data.pricingTiers = defaultTiers;
+    data.pricingTiers = singleTier;
     writeLocalDb(data);
-    return defaultTiers;
+    return singleTier;
   },
 
   async updatePricingTiers(tiers) {

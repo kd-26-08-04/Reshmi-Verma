@@ -9,11 +9,6 @@ export default function Footer() {
           <div className="footer-grid">
             <div className="footer-brand">
               <div className="brand-logo" style={{ marginBottom: '16px', display: 'flex', alignItems: 'center', gap: '14px' }}>
-                <img
-                  src="/assets/images/rv-brand-logo.png"
-                  alt="Reshmi Verma Luxury Gold RV Monogram"
-                  className="footer-brand-logo-img"
-                />
                 <div className="brand-text">
                   <span className="name" style={{ color: 'var(--emerald-deep)' }}>HealthwithReshmi™</span>
                   <span className="tagline">Reshmi Verma &bull; Functional Nutritionist</span>
@@ -23,19 +18,28 @@ export default function Footer() {
                 Science-led, human-centred functional nutrition, respiratory resilience, and cellular longevity protocols with Reshmi Verma.
               </p>
               <div className="footer-social-wrapper">
-                <span className="footer-social-label">Follow & Connect</span>
+                <span className="footer-social-label">Follow &amp; Connect</span>
                 <div className="footer-social-buttons">
                   <a
                     href="https://www.instagram.com/healthwithreshmi/?hl=en"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="footer-social-btn instagram"
+                    className="footer-social-btn"
                     aria-label="Instagram"
                   >
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                      <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
-                      <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
-                      <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                      <defs>
+                        <linearGradient id="igFooterGrad" x1="0%" y1="100%" x2="100%" y2="0%">
+                          <stop offset="0%" stopColor="#f09433"/>
+                          <stop offset="25%" stopColor="#e6683c"/>
+                          <stop offset="50%" stopColor="#dc2743"/>
+                          <stop offset="75%" stopColor="#cc2366"/>
+                          <stop offset="100%" stopColor="#bc1888"/>
+                        </linearGradient>
+                      </defs>
+                      <rect x="2" y="2" width="20" height="20" rx="5" fill="url(#igFooterGrad)"/>
+                      <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" stroke="#FFFFFF" strokeWidth="1.8" fill="none"/>
+                      <circle cx="17.5" cy="6.5" r="1.2" fill="#FFFFFF"/>
                     </svg>
                     <span>Instagram</span>
                   </a>
@@ -43,13 +47,12 @@ export default function Footer() {
                     href="https://www.linkedin.com/in/reshmiverma/"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="footer-social-btn linkedin"
+                    className="footer-social-btn"
                     aria-label="LinkedIn"
                   >
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                      <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
-                      <rect x="2" y="9" width="4" height="12"></rect>
-                      <circle cx="4" cy="4" r="2"></circle>
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                      <rect width="24" height="24" rx="4" fill="#0A66C2"/>
+                      <path d="M19 19h-3v-4.5c0-1.08-.02-2.5-1.5-2.5-1.5 0-1.8 1.2-1.8 2.4V19H9.7V9.5h2.9v1.3h.04c.4-.76 1.4-1.56 2.8-1.56 3 0 3.56 2 3.56 4.56V19zM6.4 8.2a1.7 1.7 0 1 1 0-3.4 1.7 1.7 0 0 1 0 3.4zM7.9 19H4.9V9.5h3V19z" fill="#FFFFFF"/>
                     </svg>
                     <span>LinkedIn</span>
                   </a>
@@ -57,12 +60,12 @@ export default function Footer() {
                     href="https://youtube.com/@healthwithreshmi?si=J_-3JErcDWbGw6gj"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="footer-social-btn youtube"
+                    className="footer-social-btn"
                     aria-label="YouTube"
                   >
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                      <path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.43z"></path>
-                      <polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02" fill="currentColor"></polygon>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                      <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814z" fill="#FF0000"/>
+                      <path d="M9.545 15.568V8.432L15.818 12l-6.273 3.568z" fill="#FFFFFF"/>
                     </svg>
                     <span>YouTube</span>
                   </a>
@@ -75,8 +78,9 @@ export default function Footer() {
               <ul className="footer-links">
                 <li><Link to="/">Home</Link></li>
                 <li><Link to="/about">About Reshmi Verma</Link></li>
+                <li><Link to="/testimonials">Patient Testimonials</Link></li>
                 <li><Link to="/assessment">Health Assessment</Link></li>
-                <li><a href="/#reels-section">Instagram Reels</a></li>
+                <li><Link to="/breathing-assessment">Breathing Assessment</Link></li>
                 <li><Link to="/booking">Book Consultation</Link></li>
                 <li><Link to="/contact">Contact Us</Link></li>
               </ul>
@@ -85,9 +89,9 @@ export default function Footer() {
             <div className="footer-col">
               <h5>Consultations</h5>
               <ul className="footer-links">
-                <li><Link to="/booking?tier=healthClarity">Health Clarity Session (₹1,999)</Link></li>
-                <li><Link to="/booking?tier=discovery">Discovery Call (₹999)</Link></li>
-                <li><Link to="/booking?tier=followup">Follow-Up Check-in (₹1,499)</Link></li>
+                <li><Link to="/booking">1:1 Health Clarity Session (₹1,999)</Link></li>
+                <li><Link to="/assessment">Functional Health Assessment</Link></li>
+                <li><Link to="/breathing-assessment">Functional Breathing Assessment</Link></li>
                 <li><Link to="/breathe">BOLT Breath Test</Link></li>
               </ul>
             </div>
@@ -97,50 +101,33 @@ export default function Footer() {
               <ul className="footer-links">
                 <li style={{ color: 'var(--text-secondary)', fontSize: '0.82rem', lineHeight: 1.4 }}>
                   <strong>Clinical Diagnostics &amp; Health Sanctuary</strong><br />
-                  Functional Medicine Clinic
-                </li>
-                <li style={{ marginTop: '4px' }}>
-                  <a href="mailto:support.reshmiverma@gmail.com">support.reshmiverma@gmail.com</a>
+                  Rainbow Medinova, 4B, Dr. Rajendra Prasad Sarani, Terita Bazar, Kolkata, West Bengal 700001
                 </li>
                 <li>
-                  <Link to="/contact">Online Inquiry Form</Link>
+                  <a href="mailto:support.reshmiverma@gmail.com" style={{ display: 'flex', alignItems: 'center', gap: '8px', wordBreak: 'break-all' }}>
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+                    support.reshmiverma@gmail.com
+                  </a>
                 </li>
-                <li>
-                  <a href="https://reshmiverma.com" target="_blank" rel="noopener noreferrer">Official: reshmiverma.com</a>
+                <li style={{ fontSize: '0.8rem', color: 'var(--text-muted)' }}>
+                  Mon – Sat: 9:00 AM – 6:30 PM IST
                 </li>
               </ul>
             </div>
           </div>
 
           <div className="footer-bottom">
-            <div>
-              &copy; 2026 HealthwithReshmi™. All rights reserved. Reshmi Verma.
-            </div>
-            <div style={{ fontSize: '0.72rem', maxWidth: '480px', textAlign: 'right', color: 'var(--text-muted)', lineHeight: 1.35 }}>
-              Medical Disclaimer: Educational and self-optimization purposes only; does not replace personalized medical diagnosis or treatment.
+            <p>&copy; {new Date().getFullYear()} HealthwithReshmi™. All rights reserved. Clinical nutrition, somatic breathwork &amp; biohacking protocols.</p>
+            <div className="footer-legal-links">
+              <span>Medical Disclaimer</span>
+              <span>&bull;</span>
+              <span>Privacy Policy</span>
+              <span>&bull;</span>
+              <span>Terms of Service</span>
             </div>
           </div>
         </div>
       </footer>
-
-      {/* Mobile Sticky Bottom Quick-Action Bar */}
-      <div className="mobile-bottom-bar">
-        <Link to="/assessment" className="btn btn-secondary">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2">
-            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14.5v-9l6 4.5-6 4.5z" />
-          </svg>
-          <span>Free Assessment</span>
-        </Link>
-        <Link to="/booking" className="btn btn-primary">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2">
-            <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
-            <line x1="16" y1="2" x2="16" y2="6"></line>
-            <line x1="8" y1="2" x2="8" y2="6"></line>
-            <line x1="3" y1="10" x2="21" y2="10"></line>
-          </svg>
-          <span>Book Consultation</span>
-        </Link>
-      </div>
     </>
   );
 }
