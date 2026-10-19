@@ -78,16 +78,28 @@ export default function AuthPage() {
         <div className="auth-luxury-card">
           <div style={{ textAlign: 'center' }}>
             <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '16px' }}>
-              <img
-                src="/assets/images/rv-brand-logo.png"
-                alt="Reshmi Verma Luxury Gold RV Monogram"
-                style={{
-                  width: '64px',
-                  height: '64px',
-                  objectFit: 'contain',
-                  filter: 'drop-shadow(0 4px 14px rgba(212, 175, 55, 0.45))'
-                }}
-              />
+              <div style={{
+                width: '70px',
+                height: '70px',
+                borderRadius: '50%',
+                background: '#000000',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                padding: '6px',
+                boxShadow: '0 6px 20px rgba(0, 0, 0, 0.35), 0 0 0 1.5px rgba(212, 175, 55, 0.55)'
+              }}>
+                <img
+                  src="/assets/images/rv-brand-logo.png"
+                  alt="Reshmi Verma Luxury Gold RV Monogram"
+                  style={{
+                    width: '100%',
+                    height: '100%',
+                    objectFit: 'contain',
+                    filter: 'drop-shadow(0 2px 8px rgba(212, 175, 55, 0.45))'
+                  }}
+                />
+              </div>
             </div>
             <div className="auth-security-pill">
               <span className="pulse-dot"></span>

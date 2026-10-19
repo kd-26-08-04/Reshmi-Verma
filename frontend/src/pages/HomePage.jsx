@@ -185,7 +185,7 @@ export default function HomePage() {
                   <img
                     src="/assets/images/rv-brand-logo.png"
                     alt="Reshmi Verma Brand Monogram"
-                    style={{ width: '36px', height: '36px', borderRadius: '50%', objectFit: 'cover', flexShrink: 0, boxShadow: '0 2px 8px rgba(0,0,0,0.2)' }}
+                    style={{ width: '38px', height: '38px', borderRadius: '50%', objectFit: 'contain', background: '#000000', padding: '2.5px', flexShrink: 0, boxShadow: '0 2px 10px rgba(0,0,0,0.35), 0 0 0 1px rgba(212, 175, 55, 0.5)' }}
                   />
                   <div className="badge-text">
                     <strong>Reshmi Verma</strong>

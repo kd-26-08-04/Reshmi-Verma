@@ -541,7 +541,11 @@ export default function AdminPage() {
               style={{
                 width: '56px',
                 height: '56px',
+                borderRadius: '50%',
+                background: '#000000',
+                padding: '4px',
                 objectFit: 'contain',
+                boxShadow: '0 4px 14px rgba(0, 0, 0, 0.35), 0 0 0 1.5px rgba(212, 175, 55, 0.55)',
                 filter: 'drop-shadow(0 3px 10px rgba(212, 175, 55, 0.4))',
                 flexShrink: 0
               }}

@@ -26,11 +26,44 @@ import ContactPage from './pages/ContactPage';
 import NotFoundPage from './pages/NotFoundPage';
 
 function ScrollToTop() {
-  const { pathname } = useLocation();
+  const { pathname, search, hash } = useLocation();
 
   useEffect(() => {
-    window.scrollTo(0, 0);
-  }, [pathname]);
+    // Prevent browser from automatically restoring previous scroll positions on back/forward or route switch
+    if ('scrollRestoration' in window.history) {
+      window.history.scrollRestoration = 'manual';
+    }
+
+    if (!hash) {
+      // Temporarily bypass smooth-scrolling to ensure page snaps immediately to top
+      const html = document.documentElement;
+      const originalScrollBehavior = html.style.scrollBehavior;
+      html.style.scrollBehavior = 'auto';
+
+      window.scrollTo(0, 0);
+      document.body.scrollTop = 0;
+      html.scrollTop = 0;
+
+      // Second frame check after React finishes render/paint to guarantee top position
+      const rafId = requestAnimationFrame(() => {
+        window.scrollTo(0, 0);
+        document.body.scrollTop = 0;
+        html.scrollTop = 0;
+        html.style.scrollBehavior = originalScrollBehavior;
+      });
+
+      return () => cancelAnimationFrame(rafId);
+    } else {
+      const targetId = hash.replace('#', '');
+      const timer = setTimeout(() => {
+        const el = document.getElementById(targetId);
+        if (el) {
+          el.scrollIntoView({ behavior: 'smooth' });
+        }
+      }, 60);
+      return () => clearTimeout(timer);
+    }
+  }, [pathname, search, hash]);
 
   return null;
 }

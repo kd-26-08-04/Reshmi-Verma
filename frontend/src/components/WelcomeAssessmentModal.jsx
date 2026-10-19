@@ -133,7 +133,7 @@ export default function WelcomeAssessmentModal() {
         {modalStep === 'intro' ? (
           <>
             {/* Header Icon / Luxury Brand Emblem */}
-            <div className="welcome-modal-icon-wrap" style={{ width: '64px', height: '64px', margin: '0 auto 16px' }}>
+            <div className="welcome-modal-icon-wrap" style={{ width: '68px', height: '68px', margin: '0 auto 16px', background: '#000000', border: '2px solid rgba(212, 175, 55, 0.65)', padding: '6px', boxShadow: '0 4px 16px rgba(0, 0, 0, 0.35)' }}>
               <img
                 src="/assets/images/rv-brand-logo.png"
                 alt="HealthwithReshmi Luxury Brand Monogram"
@@ -141,7 +141,7 @@ export default function WelcomeAssessmentModal() {
                   width: '100%',
                   height: '100%',
                   objectFit: 'contain',
-                  filter: 'drop-shadow(0 4px 12px rgba(212, 175, 55, 0.4))'
+                  filter: 'drop-shadow(0 2px 8px rgba(212, 175, 55, 0.45))'
                 }}
               />
             </div>

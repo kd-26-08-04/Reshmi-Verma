@@ -5,7 +5,14 @@
  * 2. Fallback to relative endpoint if VITE_API_URL is not defined
  */
 const LIVE_BACKEND_URL = 'https://reshmi-verma-eurb.onrender.com';
-const RAW_API_URL = import.meta.env.VITE_API_URL || (import.meta.env.PROD ? LIVE_BACKEND_URL : '');
+
+// In local development, use relative endpoint ('') so Vite proxy routes /api to http://localhost:5000.
+// This completely avoids CORS preflight blocking on localhost:3000, 3001, etc.
+// In production, use VITE_API_URL or LIVE_BACKEND_URL.
+const RAW_API_URL = import.meta.env.DEV && import.meta.env.VITE_FORCE_LIVE_API !== 'true'
+  ? ''
+  : (import.meta.env.VITE_API_URL || LIVE_BACKEND_URL);
+
 export const API_BASE_URL = RAW_API_URL.replace(/\/+$/, '');
 
 export function getApiUrl(endpoint) {
