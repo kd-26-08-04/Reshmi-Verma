@@ -383,17 +383,30 @@ h6 {
   white-space: nowrap;
 }
 
-.brand-icon {
+.brand-logo-img {
   width: 44px;
   height: 44px;
-  border-radius: var(--radius-sm);
-  background: linear-gradient(135deg, var(--emerald-primary), var(--emerald-light));
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: white;
-  box-shadow: 0 4px 12px rgba(194, 65, 12, 0.2);
+  border-radius: 50%;
+  object-fit: cover;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.22), 0 0 0 2px rgba(212, 175, 55, 0.35);
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease;
   flex-shrink: 0;
+  background: #000000;
+}
+
+.brand-logo:hover .brand-logo-img {
+  transform: scale(1.06) rotate(3deg);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.3), 0 0 0 2.5px rgba(212, 175, 55, 0.6);
+}
+
+.footer-brand-logo-img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  object-fit: cover;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25), 0 0 0 2px rgba(212, 175, 55, 0.4);
+  flex-shrink: 0;
+  background: #000000;
 }
 
 .brand-text {
@@ -6219,3 +6232,119 @@ h6 {
   animation: expandToProminent 2.2s cubic-bezier(0.16, 1, 0.3, 1) 0.25s both;
   line-height: 1.15;
 }
+
+
+
+/* ==========================================================================
+   Chronic Health Conditions Grid (High Relatability)
+   ========================================================================== */
+.conditions-section {
+  padding: 85px 0;
+  background: #FFFFFF;
+  border-top: 1px solid var(--border-subtle);
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.conditions-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 24px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.condition-card {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-xl);
+  padding: 30px 26px;
+  display: flex;
+  flex-direction: column;
+  transition: all 0.28s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.condition-card:hover {
+  transform: translateY(-5px);
+  border-color: var(--emerald-primary);
+  background: #FFFFFF;
+  box-shadow: 0 16px 36px rgba(6, 78, 59, 0.08);
+}
+
+.condition-header {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 16px;
+}
+
+.condition-icon-badge {
+  width: 50px;
+  height: 50px;
+  border-radius: 14px;
+  background: var(--emerald-soft);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  flex-shrink: 0;
+}
+
+.condition-header h3 {
+  font-size: 1.25rem;
+  margin: 0;
+  color: var(--emerald-deep);
+  line-height: 1.25;
+}
+
+.condition-card p {
+  color: var(--text-secondary);
+  font-size: 0.94rem;
+  line-height: 1.6;
+  margin-bottom: 20px;
+}
+
+.condition-symptoms-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 22px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.condition-symptoms-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  font-size: 0.88rem;
+  color: var(--text-primary);
+}
+
+.condition-symptoms-list li span.dot {
+  color: #DC2626;
+  font-weight: 700;
+  line-height: 1.1;
+}
+
+.condition-action-link {
+  margin-top: auto;
+  padding-top: 14px;
+  border-top: 1px solid var(--border-subtle);
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--emerald-primary);
+  font-weight: 700;
+  font-size: 0.88rem;
+  text-decoration: none;
+  transition: gap 0.2s;
+}
+
+.condition-card:hover .condition-action-link {
+  gap: 10px;
+}
+
+
+

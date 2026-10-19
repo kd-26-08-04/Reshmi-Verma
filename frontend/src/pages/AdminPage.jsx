@@ -534,17 +534,32 @@ export default function AdminPage() {
         
         {/* Admin Header Card */}
         <div className="admin-header-card">
-          <div>
-            <div style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', padding: '4px 12px', background: 'rgba(194, 65, 12, 0.08)', borderRadius: '999px', color: 'var(--emerald-primary)', fontSize: '0.78rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.06em', marginBottom: '8px' }}>
-              <span style={{ width: '8px', height: '8px', borderRadius: '50%', background: 'var(--emerald-primary)' }}></span>
-              Clinical Command Desk
+          <div style={{ display: 'flex', alignItems: 'center', gap: '18px', flexWrap: 'wrap' }}>
+            <img
+              src="/assets/images/rv-brand-logo.png"
+              alt="Reshmi Verma Luxury Brand Emblem"
+              style={{
+                width: '56px',
+                height: '56px',
+                borderRadius: '50%',
+                objectFit: 'cover',
+                boxShadow: '0 6px 20px rgba(0, 0, 0, 0.22), 0 0 0 2px rgba(212, 175, 55, 0.45)',
+                background: '#000000',
+                flexShrink: 0
+              }}
+            />
+            <div>
+              <div style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', padding: '4px 12px', background: 'rgba(194, 65, 12, 0.08)', borderRadius: '999px', color: 'var(--emerald-primary)', fontSize: '0.78rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.06em', marginBottom: '8px' }}>
+                <span style={{ width: '8px', height: '8px', borderRadius: '50%', background: 'var(--emerald-primary)' }}></span>
+                Clinical Command Desk
+              </div>
+              <h1 style={{ fontSize: 'clamp(1.4rem, 4vw, 2rem)', margin: '0 0 6px', fontFamily: 'var(--font-serif)', color: 'var(--emerald-deep)' }}>
+                Reshmi Verma Administration & Control
+              </h1>
+              <p style={{ fontSize: '0.88rem', color: 'var(--text-muted)', margin: 0, wordBreak: 'break-word' }}>
+                Authorized Portal &bull; Logged in as: <strong>{user?.email}</strong>
+              </p>
             </div>
-            <h1 style={{ fontSize: 'clamp(1.4rem, 4vw, 2rem)', margin: '0 0 6px', fontFamily: 'var(--font-serif)', color: 'var(--emerald-deep)' }}>
-              Reshmi Verma Administration & Control
-            </h1>
-            <p style={{ fontSize: '0.88rem', color: 'var(--text-muted)', margin: 0, wordBreak: 'break-word' }}>
-              Authorized Portal &bull; Logged in as: <strong>{user?.email}</strong>
-            </p>
           </div>
 
           <div style={{ display: 'flex', gap: '10px', flexWrap: 'wrap' }}>

@@ -8,7 +8,12 @@ export default function Footer() {
         <div className="container">
           <div className="footer-grid">
             <div className="footer-brand">
-              <div className="brand-logo" style={{ marginBottom: '16px' }}>
+              <div className="brand-logo" style={{ marginBottom: '16px', display: 'flex', alignItems: 'center', gap: '14px' }}>
+                <img
+                  src="/assets/images/rv-brand-logo.png"
+                  alt="Reshmi Verma Luxury Gold RV Monogram"
+                  className="footer-brand-logo-img"
+                />
                 <div className="brand-text">
                   <span className="name" style={{ color: 'var(--emerald-deep)' }}>HealthwithReshmi™</span>
                   <span className="tagline">Reshmi Verma &bull; Functional Nutritionist</span>

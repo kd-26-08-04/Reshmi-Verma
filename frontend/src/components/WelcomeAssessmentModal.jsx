@@ -132,10 +132,20 @@ export default function WelcomeAssessmentModal() {
 
         {modalStep === 'intro' ? (
           <>
-            {/* Header Icon / Badge */}
-            <div className="welcome-modal-icon-wrap">
-              <div className="welcome-modal-icon-glow"></div>
-              <span className="welcome-modal-icon">🌱</span>
+            {/* Header Icon / Luxury Brand Emblem */}
+            <div className="welcome-modal-icon-wrap" style={{ width: '64px', height: '64px', margin: '0 auto 16px' }}>
+              <img
+                src="/assets/images/rv-brand-logo.png"
+                alt="HealthwithReshmi Luxury Brand Monogram"
+                style={{
+                  width: '100%',
+                  height: '100%',
+                  borderRadius: '50%',
+                  objectFit: 'cover',
+                  boxShadow: '0 8px 24px rgba(0, 0, 0, 0.28), 0 0 0 2px rgba(212, 175, 55, 0.45)',
+                  background: '#000000'
+                }}
+              />
             </div>
 
             <div className="welcome-modal-badge">

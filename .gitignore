@@ -7,3 +7,5 @@ Thumbs.db
 .env.local
 .vscode/
 .idea/
+backend/uploads/*
+!backend/uploads/.gitkeep

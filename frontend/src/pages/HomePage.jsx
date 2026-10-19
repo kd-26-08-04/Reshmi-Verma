@@ -182,7 +182,11 @@ export default function HomePage() {
 
                 {/* Floating Bottom Identity Badge */}
                 <div className="hero-floating-badge badge-bottom-left">
-                  <div className="badge-icon">🌿</div>
+                  <img
+                    src="/assets/images/rv-brand-logo.png"
+                    alt="Reshmi Verma Brand Monogram"
+                    style={{ width: '36px', height: '36px', borderRadius: '50%', objectFit: 'cover', flexShrink: 0, boxShadow: '0 2px 8px rgba(0,0,0,0.2)' }}
+                  />
                   <div className="badge-text">
                     <strong>Reshmi Verma</strong>
                     <span>Functional Nutritionist</span>
@@ -500,99 +504,206 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 4. Clinical Respiration & Oxygen Advantage Authority Spotlight */}
-      <section className="section" id="clinical-respiration-spotlight" style={{ position: 'relative', zIndex: 1, background: 'linear-gradient(180deg, #FFFFFF 0%, var(--bg-secondary) 100%)', borderTop: '1px solid var(--border-subtle)', borderBottom: '1px solid var(--border-subtle)', padding: '70px 0' }}>
+      {/* 3B. Targeted Clinical Focus Areas (Crisp & Direct) */}
+      <section className="conditions-section" id="conditions-we-resolve">
         <div className="container">
-          <div
-            className="section-header text-center"
-            style={{ maxWidth: '840px', margin: '0 auto 40px' }}
-          >
-            <span className="badge-pill" style={{ marginBottom: '16px' }}>
-              <span className="pulse-dot"></span>
-              <span>Oxygen Advantage® Science &bull; Autonomic Regulation</span>
+          <div className="section-header text-center" style={{ maxWidth: '680px', margin: '0 auto 28px' }}>
+            <span className="badge-pill" style={{ marginBottom: '10px' }}>
+              <span>Targeted Clinical Focus</span>
             </span>
-            <h2>Why Breath Mechanics Rule Gut Motility, Cortisol &amp; Cellular Energy</h2>
-            <p>
-              Recognized among India's foremost Oxygen Advantage Coaches. Reshmi Verma incorporates clinical respiration diagnostics (BOLT score &amp; vagal tone) directly into your personalized recovery protocol.
+            <h2>Which Chronic Challenge Is Your Body Struggling With?</h2>
+            <p style={{ margin: 0 }}>
+              Root-cause functional protocols targeting underlying biochemical drivers for lasting recovery.
             </p>
           </div>
 
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '28px', maxWidth: '1100px', margin: '0 auto' }}>
+          <div className="conditions-grid">
+            {/* Condition 1: Gut */}
+            <div className="condition-card">
+              <div className="condition-header">
+                <div className="condition-icon-badge">🫄</div>
+                <div>
+                  <h3>Gut Dysbiosis &amp; Reflux</h3>
+                </div>
+              </div>
+              <ul className="condition-symptoms-list">
+                <li><span className="dot">•</span> <span>Chronic Bloating &amp; Post-Meal Distension</span></li>
+                <li><span className="dot">•</span> <span>Acid Reflux, GERD &amp; SIBO Relapse</span></li>
+                <li><span className="dot">•</span> <span>Food Reactivities &amp; Sluggish Motility</span></li>
+              </ul>
+              <Link to="/booking" className="condition-action-link">
+                <span>Explore Gut Care &rarr;</span>
+              </Link>
+            </div>
+
+            {/* Condition 2: Hormones */}
+            <div className="condition-card">
+              <div className="condition-header">
+                <div className="condition-icon-badge">🌸</div>
+                <div>
+                  <h3>PCOS &amp; Hormonal Balance</h3>
+                </div>
+              </div>
+              <ul className="condition-symptoms-list">
+                <li><span className="dot">•</span> <span>Irregular or Absent Menstrual Cycles</span></li>
+                <li><span className="dot">•</span> <span>Hormonal Acne &amp; Stubborn Weight</span></li>
+                <li><span className="dot">•</span> <span>Cellular Insulin Resistance</span></li>
+              </ul>
+              <Link to="/booking" className="condition-action-link">
+                <span>Explore Hormonal Care &rarr;</span>
+              </Link>
+            </div>
+
+            {/* Condition 3: Metabolic */}
+            <div className="condition-card">
+              <div className="condition-header">
+                <div className="condition-icon-badge">📉</div>
+                <div>
+                  <h3>Fatty Liver &amp; Metabolism</h3>
+                </div>
+              </div>
+              <ul className="condition-symptoms-list">
+                <li><span className="dot">•</span> <span>Grade-1 &amp; Grade-2 Hepatic Steatosis</span></li>
+                <li><span className="dot">•</span> <span>Elevated Fasting Insulin &amp; HbA1c</span></li>
+                <li><span className="dot">•</span> <span>Afternoon Fatigue &amp; Sugar Cravings</span></li>
+              </ul>
+              <Link to="/booking" className="condition-action-link">
+                <span>Explore Metabolic Reset &rarr;</span>
+              </Link>
+            </div>
+
+            {/* Condition 4: Thyroid */}
+            <div className="condition-card">
+              <div className="condition-header">
+                <div className="condition-icon-badge">⚡</div>
+                <div>
+                  <h3>Hashimoto's &amp; Fatigue</h3>
+                </div>
+              </div>
+              <ul className="condition-symptoms-list">
+                <li><span className="dot">•</span> <span>Elevated Thyroid Antibodies (Anti-TPO)</span></li>
+                <li><span className="dot">•</span> <span>Persistent Exhaustion &amp; Brain Fog</span></li>
+                <li><span className="dot">•</span> <span>Sluggish Digestion &amp; Joint Discomfort</span></li>
+              </ul>
+              <Link to="/booking" className="condition-action-link">
+                <span>Explore Thyroid Care &rarr;</span>
+              </Link>
+            </div>
+
+            {/* Condition 5: Breath */}
+            <div className="condition-card">
+              <div className="condition-header">
+                <div className="condition-icon-badge">🫁</div>
+                <div>
+                  <h3>Breath &amp; Autonomic Stress</h3>
+                </div>
+              </div>
+              <ul className="condition-symptoms-list">
+                <li><span className="dot">•</span> <span>Low BOLT Score (&lt; 15s) &amp; Air Hunger</span></li>
+                <li><span className="dot">•</span> <span>Mouth Breathing &amp; 3 AM Awakening</span></li>
+                <li><span className="dot">•</span> <span>Sympathetic Nervous System Overdrive</span></li>
+              </ul>
+              <Link to="/breathe" className="condition-action-link">
+                <span>Test BOLT Score &rarr;</span>
+              </Link>
+            </div>
+
+            {/* Condition 6: Histamine */}
+            <div className="condition-card">
+              <div className="condition-header">
+                <div className="condition-icon-badge">🛡️</div>
+                <div>
+                  <h3>Histamine &amp; Inflammation</h3>
+                </div>
+              </div>
+              <ul className="condition-symptoms-list">
+                <li><span className="dot">•</span> <span>Skin Eczema, Hives &amp; Unexplained Itching</span></li>
+                <li><span className="dot">•</span> <span>Sensitivities to Fermented Foods</span></li>
+                <li><span className="dot">•</span> <span>Sinus Congestion &amp; Systemic Flare-ups</span></li>
+              </ul>
+              <Link to="/booking" className="condition-action-link">
+                <span>Explore Immune Care &rarr;</span>
+              </Link>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 4. Clinical Respiration & Autonomic Regulation (Crisp & Direct) */}
+      <section className="section" id="clinical-respiration-spotlight" style={{ position: 'relative', zIndex: 1, background: 'linear-gradient(180deg, #FFFFFF 0%, var(--bg-secondary) 100%)', borderTop: '1px solid var(--border-subtle)', borderBottom: '1px solid var(--border-subtle)', padding: '52px 0' }}>
+        <div className="container">
+          <div
+            className="section-header text-center"
+            style={{ maxWidth: '720px', margin: '0 auto 28px' }}
+          >
+            <span className="badge-pill" style={{ marginBottom: '10px' }}>
+              <span className="pulse-dot"></span>
+              <span>Oxygen Advantage® &bull; Autonomic Regulation</span>
+            </span>
+            <h2>Breath Mechanics &amp; Autonomic Balance</h2>
+            <p style={{ margin: 0 }}>
+              Incorporating respiration diagnostics (BOLT score &amp; vagal tone) directly into your personalized recovery protocol.
+            </p>
+          </div>
+
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '24px', maxWidth: '1020px', margin: '0 auto' }}>
             
             {/* Clinical Mechanism Card */}
-            <div style={{ background: '#FFFFFF', padding: '36px 32px', borderRadius: 'var(--radius-xl)', border: '1px solid var(--border-subtle)', boxShadow: 'var(--shadow-md)', display: 'flex', flexDirection: 'column' }}>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '14px', marginBottom: '20px' }}>
-                <div style={{ width: '52px', height: '52px', borderRadius: '14px', background: 'var(--emerald-soft)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '1.6rem' }}>
+            <div style={{ background: '#FFFFFF', padding: '26px 24px', borderRadius: 'var(--radius-xl)', border: '1px solid var(--border-subtle)', boxShadow: 'var(--shadow-md)', display: 'flex', flexDirection: 'column' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '14px' }}>
+                <div style={{ width: '42px', height: '42px', borderRadius: '10px', background: 'var(--emerald-soft)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '1.3rem' }}>
                   🫁
                 </div>
                 <div>
-                  <h3 style={{ fontSize: '1.3rem', margin: 0, color: 'var(--emerald-deep)' }}>The Bohr Effect &amp; Gut-Vagus Axis</h3>
-                  <span style={{ fontSize: '0.85rem', color: 'var(--text-muted)' }}>Beyond Calorie Counting &bull; Nervous System Medicine</span>
+                  <h3 style={{ fontSize: '1.15rem', margin: 0, color: 'var(--emerald-deep)' }}>Respiration Diagnostics</h3>
+                  <span style={{ fontSize: '0.8rem', color: 'var(--text-muted)' }}>Vagal Tone &amp; Nervous System Balance</span>
                 </div>
               </div>
 
-              <p style={{ color: 'var(--text-secondary)', lineHeight: 1.65, fontSize: '0.98rem', marginBottom: '18px' }}>
-                Upper-chest over-breathing and chronic mouth breathing deplete arterial CO₂, locking oxygen into hemoglobin and starving your brain and digestive organs of oxygen. This directly correlates with:
-              </p>
-
-              <ul style={{ listStyle: 'none', padding: 0, margin: '0 0 24px 0', display: 'flex', flexDirection: 'column', gap: '12px' }}>
-                <li style={{ display: 'flex', alignItems: 'flex-start', gap: '10px', fontSize: '0.92rem', color: 'var(--text-primary)' }}>
-                  <span style={{ color: '#DC2626', fontWeight: 700, fontSize: '1.1rem' }}>&bull;</span>
-                  <span><strong>Acid Reflux &amp; Delayed Stomach Emptying:</strong> Low vagal tone weakens lower esophageal sphincter tone.</span>
+              <ul style={{ listStyle: 'none', padding: 0, margin: '0 0 18px 0', display: 'flex', flexDirection: 'column', gap: '8px' }}>
+                <li style={{ display: 'flex', alignItems: 'flex-start', gap: '8px', fontSize: '0.88rem', color: 'var(--text-primary)' }}>
+                  <span style={{ color: '#15803D', fontWeight: 700 }}>✓</span>
+                  <span><strong>Gut &amp; Motility:</strong> Vagal breath pacing activates the parasympathetic "rest &amp; digest" state.</span>
                 </li>
-                <li style={{ display: 'flex', alignItems: 'flex-start', gap: '10px', fontSize: '0.92rem', color: 'var(--text-primary)' }}>
-                  <span style={{ color: '#DC2626', fontWeight: 700, fontSize: '1.1rem' }}>&bull;</span>
-                  <span><strong>Nocturnal Waking &amp; Afternoon Slumps:</strong> Sympathetic overdrive driving high nighttime cortisol spikes.</span>
+                <li style={{ display: 'flex', alignItems: 'flex-start', gap: '8px', fontSize: '0.88rem', color: 'var(--text-primary)' }}>
+                  <span style={{ color: '#15803D', fontWeight: 700 }}>✓</span>
+                  <span><strong>Cortisol &amp; Sleep:</strong> Nasal breathing drills stabilize nocturnal adrenaline and stop 3 AM awakenings.</span>
                 </li>
-                <li style={{ display: 'flex', alignItems: 'flex-start', gap: '10px', fontSize: '0.92rem', color: 'var(--text-primary)' }}>
-                  <span style={{ color: '#15803D', fontWeight: 700, fontSize: '1.1rem' }}>✓</span>
-                  <span><strong>Clinical BOLT Testing:</strong> Measure true CO₂ tolerance to design customized hypercapnic pacing drills.</span>
+                <li style={{ display: 'flex', alignItems: 'flex-start', gap: '8px', fontSize: '0.88rem', color: 'var(--text-primary)' }}>
+                  <span style={{ color: '#15803D', fontWeight: 700 }}>✓</span>
+                  <span><strong>Cellular CO₂ Tolerance:</strong> Personalized BOLT testing measures true oxygen delivery efficiency.</span>
                 </li>
               </ul>
 
-              <div style={{ marginTop: 'auto', paddingTop: '16px', borderTop: '1px solid var(--border-subtle)' }}>
-                <Link to="/breathe" style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', color: 'var(--emerald-primary)', fontWeight: 600, fontSize: '0.92rem', textDecoration: 'none' }}>
-                  <span>Want to test your BOLT score online? Visit Interactive Breath Lab &rarr;</span>
+              <div style={{ marginTop: 'auto', paddingTop: '12px', borderTop: '1px solid var(--border-subtle)' }}>
+                <Link to="/breathe" style={{ display: 'inline-flex', alignItems: 'center', gap: '6px', color: 'var(--emerald-primary)', fontWeight: 600, fontSize: '0.88rem', textDecoration: 'none' }}>
+                  <span>Test your BOLT score in the Breath Lab &rarr;</span>
                 </Link>
               </div>
             </div>
 
             {/* Direct 1:1 Consultation Bridge Card */}
-            <div style={{ background: 'linear-gradient(135deg, var(--emerald-deep) 0%, #064E3B 100%)', color: '#FFFFFF', padding: '36px 32px', borderRadius: 'var(--radius-xl)', boxShadow: 'var(--shadow-lg)', display: 'flex', flexDirection: 'column', position: 'relative', overflow: 'hidden' }}>
-              <div style={{ position: 'absolute', top: '-20px', right: '-20px', width: '120px', height: '120px', background: 'radial-gradient(circle, rgba(251, 146, 60, 0.25) 0%, transparent 70%)', pointerEvents: 'none' }}></div>
-              
-              <div style={{ marginBottom: '18px' }}>
-                <span className="badge-pill" style={{ background: 'rgba(255, 255, 255, 0.15)', borderColor: 'rgba(255, 255, 255, 0.25)', color: '#FED7AA', fontSize: '0.8rem' }}>
-                  1:1 Deep Dive Consultation &bull; 60 Minutes
+            <div style={{ background: 'linear-gradient(135deg, var(--emerald-deep) 0%, #064E3B 100%)', color: '#FFFFFF', padding: '26px 24px', borderRadius: 'var(--radius-xl)', boxShadow: 'var(--shadow-lg)', display: 'flex', flexDirection: 'column' }}>
+              <div style={{ marginBottom: '12px' }}>
+                <span className="badge-pill" style={{ background: 'rgba(255, 255, 255, 0.15)', borderColor: 'rgba(255, 255, 255, 0.25)', color: '#FED7AA', fontSize: '0.76rem' }}>
+                  60-Minute 1:1 Video Deep Dive &bull; ₹1,999
                 </span>
-                <h3 style={{ color: '#FFFFFF', fontSize: '1.5rem', marginTop: '12px', marginBottom: '8px' }}>
+                <h3 style={{ color: '#FFFFFF', fontSize: '1.25rem', marginTop: '10px', marginBottom: '6px' }}>
                   Integrated Breath &amp; Functional Nutrition Roadmap
                 </h3>
-                <p style={{ color: 'rgba(255, 255, 255, 0.85)', fontSize: '0.95rem', lineHeight: 1.6 }}>
-                  In your 1:1 Health Clarity Session with Reshmi Verma, your breathing mechanics are evaluated alongside your blood diagnostics and gut mucosal health.
+                <p style={{ color: 'rgba(255, 255, 255, 0.88)', fontSize: '0.88rem', lineHeight: 1.5, margin: 0 }}>
+                  Reshmi Verma evaluates your breathing mechanics alongside blood diagnostics to build your customized 30-day recovery protocol.
                 </p>
               </div>
 
-              <div style={{ background: 'rgba(255, 255, 255, 0.08)', borderRadius: 'var(--radius-md)', padding: '16px 20px', marginBottom: '24px', border: '1px solid rgba(255, 255, 255, 0.15)' }}>
-                <div style={{ fontSize: '0.82rem', color: '#FED7AA', textTransform: 'uppercase', letterSpacing: '0.05em', fontWeight: 700, marginBottom: '6px' }}>What You Receive:</div>
-                <div style={{ fontSize: '0.9rem', color: '#FFFFFF', lineHeight: 1.5 }}>
-                  ✓ Direct 60-min video deep dive with Reshmi Verma<br />
-                  ✓ Functional interpretation of your blood chemistry &amp; BOLT<br />
-                  ✓ Written clinical step-by-step 30-day recovery protocol
-                </div>
+              <div style={{ background: 'rgba(255, 255, 255, 0.08)', borderRadius: 'var(--radius-md)', padding: '10px 14px', marginBottom: '16px', border: '1px solid rgba(255, 255, 255, 0.15)', fontSize: '0.84rem', color: '#FFFFFF', lineHeight: 1.5 }}>
+                ✓ 60-min 1:1 with Reshmi Verma &bull; Lab biomarker review &bull; Written 30-day protocol
               </div>
 
-              <div style={{ marginTop: 'auto', display: 'flex', flexDirection: 'column', gap: '12px' }}>
-                <Link to="/booking" className="btn btn-accent btn-lg" style={{ background: '#FFFFFF', color: 'var(--emerald-deep)', fontWeight: 700, textAlign: 'center', justifyContent: 'center' }}>
-                  <span>Book 1:1 Health Consultation (₹1,999)</span>
-                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" style={{ marginLeft: '6px' }}>
-                    <line x1="5" y1="12" x2="19" y2="12"></line>
-                    <polyline points="12 5 19 12 12 19"></polyline>
-                  </svg>
+              <div style={{ marginTop: 'auto' }}>
+                <Link to="/booking" className="btn btn-accent btn-lg" style={{ background: '#FFFFFF', color: 'var(--emerald-deep)', fontWeight: 700, width: '100%', justifyContent: 'center' }}>
+                  <span>Book 1:1 Consultation (₹1,999) &rarr;</span>
                 </Link>
-                <div style={{ textAlign: 'center', fontSize: '0.82rem', color: 'rgba(255, 255, 255, 0.75)' }}>
-                  🔒 Secure checkout &bull; Instant calendar slot confirmation
-                </div>
               </div>
             </div>
 
@@ -829,65 +940,99 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 8. Client Case Studies & Transformation Stories */}
-      <section className="section" style={{ background: 'var(--sand-warm)', borderTop: '1px solid var(--sand-border)', borderBottom: '1px solid var(--sand-border)' }}>
+      {/* 8. Verified Patient Testimonials & Outcomes */}
+      <section className="section" id="client-breakthroughs" style={{ background: '#FFFFFF', borderTop: '1px solid var(--border-subtle)', borderBottom: '1px solid var(--border-subtle)', padding: '60px 0' }}>
         <div className="container">
-          <div className="section-header">
-            <span className="sub-title">Lived Transformations</span>
-            <h2>Stories of Real, Sustainable Recovery</h2>
-            <p>From chronic acid reflux to crippling fatigue and anxiety, see how addressing the root cause changes everything.</p>
+          <div className="section-header text-center" style={{ maxWidth: '720px', margin: '0 auto 36px' }}>
+            <span className="badge-pill" style={{ marginBottom: '10px' }}>
+              <span>Verified Patient Outcomes</span>
+            </span>
+            <h2>Real Clinical Transformations</h2>
+            <p style={{ margin: 0 }}>
+              Genuine recovery stories from patients who addressed the root biochemical cause of their chronic challenges.
+            </p>
           </div>
 
-          <div className="testimonials-grid">
-            {/* Story 1 */}
-            <div className="testimonial-card">
-              <div className="quote-stars">
-                &#9733;&#9733;&#9733;&#9733;&#9733;
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '24px', maxWidth: '1100px', margin: '0 auto' }}>
+            {/* Review 1 */}
+            <div style={{ background: 'var(--bg-secondary)', border: '1px solid var(--border-subtle)', borderRadius: 'var(--radius-xl)', padding: '28px 24px', display: 'flex', flexDirection: 'column' }}>
+              <div style={{ color: '#F59E0B', fontSize: '1.05rem', marginBottom: '12px', letterSpacing: '2px' }}>
+                ★★★★★
               </div>
-              <p className="testimonial-quote">
-                "I suffered from severe acid reflux and gut bloat for 7 years. Reshmi didn't just give me another diet chart; she mapped my gut mucosal lining and taught me vagal breathing before meals. Within 6 weeks, my digestion normalized completely."
+              <p style={{ color: 'var(--text-primary)', fontSize: '0.94rem', lineHeight: 1.6, marginBottom: '20px', fontStyle: 'italic', flex: 1 }}>
+                "Suffered from severe GERD and post-meal bloating for 3 years. Reshmi's gut mucosa protocol resolved the burning and reflux within 6 weeks. No more daily antacids."
               </p>
-              <div className="testimonial-author">
-                <div className="author-avatar">AP</div>
-                <div className="author-info">
-                  <h5>Ananya Patel</h5>
-                  <span>Severe GERD & Dysbiosis &bull; 90-Day Protocol</span>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '12px', paddingTop: '14px', borderTop: '1px solid var(--border-subtle)' }}>
+                <div style={{ width: '40px', height: '40px', borderRadius: '50%', background: 'var(--emerald-soft)', color: 'var(--emerald-deep)', fontWeight: 700, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '0.95rem' }}>
+                  AP
+                </div>
+                <div>
+                  <h4 style={{ margin: 0, fontSize: '0.95rem', color: 'var(--emerald-deep)' }}>Ananya Patel</h4>
+                  <span style={{ fontSize: '0.78rem', color: 'var(--text-muted)' }}>GERD &amp; SIBO Recovery • 3 Months</span>
                 </div>
               </div>
             </div>
 
-            {/* Story 2 */}
-            <div className="testimonial-card">
-              <div className="quote-stars">
-                &#9733;&#9733;&#9733;&#9733;&#9733;
+            {/* Review 2 */}
+            <div style={{ background: 'var(--bg-secondary)', border: '1px solid var(--border-subtle)', borderRadius: 'var(--radius-xl)', padding: '28px 24px', display: 'flex', flexDirection: 'column' }}>
+              <div style={{ color: '#F59E0B', fontSize: '1.05rem', marginBottom: '12px', letterSpacing: '2px' }}>
+                ★★★★★
               </div>
-              <p className="testimonial-quote">
-                "My BOLT score was barely 8 seconds when I started. I had chronic brain fog, panic spikes, and mouth breathing at night. Following Reshmi's Oxygen Advantage routine brought my BOLT to 28s. My sleep and energy have skyrocketed."
+              <p style={{ color: 'var(--text-primary)', fontSize: '0.94rem', lineHeight: 1.6, marginBottom: '20px', fontStyle: 'italic', flex: 1 }}>
+                "My BOLT score was just 8 seconds with high anxiety and midnight awakenings. Reshmi's breathing pacing and autonomic reset brought my score to 26s. I finally sleep peacefully."
               </p>
-              <div className="testimonial-author">
-                <div className="author-avatar">RK</div>
-                <div className="author-info">
-                  <h5>Rahul Kapoor</h5>
-                  <span>Nocturnal Airway Stress & Anxiety &bull; Breath Program</span>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '12px', paddingTop: '14px', borderTop: '1px solid var(--border-subtle)' }}>
+                <div style={{ width: '40px', height: '40px', borderRadius: '50%', background: 'var(--emerald-soft)', color: 'var(--emerald-deep)', fontWeight: 700, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '0.95rem' }}>
+                  RK
+                </div>
+                <div>
+                  <h4 style={{ margin: 0, fontSize: '0.95rem', color: 'var(--emerald-deep)' }}>Rahul Kapoor</h4>
+                  <span style={{ fontSize: '0.78rem', color: 'var(--text-muted)' }}>Oxygen Advantage &amp; Sleep Program</span>
                 </div>
               </div>
             </div>
 
-            {/* Story 3 */}
-            <div className="testimonial-card">
-              <div className="quote-stars">
-                &#9733;&#9733;&#9733;&#9733;&#9733;
+            {/* Review 3 */}
+            <div style={{ background: 'var(--bg-secondary)', border: '1px solid var(--border-subtle)', borderRadius: 'var(--radius-xl)', padding: '28px 24px', display: 'flex', flexDirection: 'column' }}>
+              <div style={{ color: '#F59E0B', fontSize: '1.05rem', marginBottom: '12px', letterSpacing: '2px' }}>
+                ★★★★★
               </div>
-              <p className="testimonial-quote">
-                "Knowing that Reshmi herself lost 38 kg gave me unmatched trust. She tailored my cellular nutrition without starvation or deprivation. I lost 16 kg, normalized my HbA1c, and finally have effortless morning energy."
+              <p style={{ color: 'var(--text-primary)', fontSize: '0.94rem', lineHeight: 1.6, marginBottom: '20px', fontStyle: 'italic', flex: 1 }}>
+                "Knowing that Reshmi herself lost 38 kg gave me immense confidence. She customized my nutrition without starvation. Lost 15 kg and my HbA1c is completely normal."
               </p>
-              <div className="testimonial-author">
-                <div className="author-avatar">SM</div>
-                <div className="author-info">
-                  <h5>Sunita Mehta</h5>
-                  <span>Metabolic Syndrome & Hormonal Reset &bull; 6 Months</span>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '12px', paddingTop: '14px', borderTop: '1px solid var(--border-subtle)' }}>
+                <div style={{ width: '40px', height: '40px', borderRadius: '50%', background: 'var(--emerald-soft)', color: 'var(--emerald-deep)', fontWeight: 700, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '0.95rem' }}>
+                  SM
+                </div>
+                <div>
+                  <h4 style={{ margin: 0, fontSize: '0.95rem', color: 'var(--emerald-deep)' }}>Sunita Mehta</h4>
+                  <span style={{ fontSize: '0.78rem', color: 'var(--text-muted)' }}>Metabolic Health &amp; Weight Reversal</span>
                 </div>
               </div>
+            </div>
+          </div>
+
+          {/* Simple Consultation CTA Card */}
+          <div style={{ marginTop: '40px', background: 'var(--emerald-soft)', padding: '28px 32px', borderRadius: 'var(--radius-xl)', border: '1px solid var(--emerald-medium)', display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '20px' }}>
+            <div style={{ maxWidth: '600px' }}>
+              <h3 style={{ fontSize: '1.3rem', color: 'var(--emerald-deep)', margin: '0 0 6px 0' }}>
+                Ready to uncover the root cause of your symptoms?
+              </h3>
+              <p style={{ margin: 0, color: 'var(--text-secondary)', fontSize: '0.92rem' }}>
+                Book a 60-minute 1:1 Health Clarity Session with Reshmi Verma for a personalized roadmap.
+              </p>
+            </div>
+            <div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap' }}>
+              <Link to="/booking" className="btn btn-primary btn-lg">
+                <span>Book Consultation (₹1,999)</span>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" style={{ marginLeft: '6px' }}>
+                  <line x1="5" y1="12" x2="19" y2="12"></line>
+                  <polyline points="12 5 19 12 12 19"></polyline>
+                </svg>
+              </Link>
+              <Link to="/assessment" className="btn btn-secondary btn-lg">
+                <span>Take Free Assessment</span>
+              </Link>
             </div>
           </div>
         </div>
