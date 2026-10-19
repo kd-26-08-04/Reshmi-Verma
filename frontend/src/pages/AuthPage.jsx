@@ -84,10 +84,8 @@ export default function AuthPage() {
                 style={{
                   width: '64px',
                   height: '64px',
-                  borderRadius: '50%',
-                  objectFit: 'cover',
-                  boxShadow: '0 8px 24px rgba(0, 0, 0, 0.28), 0 0 0 2.5px rgba(212, 175, 55, 0.45)',
-                  background: '#000000'
+                  objectFit: 'contain',
+                  filter: 'drop-shadow(0 4px 14px rgba(212, 175, 55, 0.45))'
                 }}
               />
             </div>

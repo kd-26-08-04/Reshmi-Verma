@@ -140,10 +140,8 @@ export default function WelcomeAssessmentModal() {
                 style={{
                   width: '100%',
                   height: '100%',
-                  borderRadius: '50%',
-                  objectFit: 'cover',
-                  boxShadow: '0 8px 24px rgba(0, 0, 0, 0.28), 0 0 0 2px rgba(212, 175, 55, 0.45)',
-                  background: '#000000'
+                  objectFit: 'contain',
+                  filter: 'drop-shadow(0 4px 12px rgba(212, 175, 55, 0.4))'
                 }}
               />
             </div>
