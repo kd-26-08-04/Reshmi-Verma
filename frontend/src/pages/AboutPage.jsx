@@ -154,10 +154,9 @@ export default function AboutPage() {
             <div className="about-image-wrapper">
               <div className="about-main-image about-portrait-breathe" style={{ aspectRatio: '3/4', maxHeight: '580px', borderRadius: '24px', overflow: 'hidden' }}>
                 <img 
-                  src="/assets/images/Foundr.jpeg" 
+                  src="/assets/images/founder.jpg" 
                   alt="Reshmi Verma - Healthcare Executive, Functional Nutritionist & Biohacker" 
                   style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center 12%' }} 
-                  onError={(e) => { e.target.src = '/assets/images/founder.jpg'; }}
                 />
               </div>
               <div className="transformation-callout about-badge-float" style={{ bottom: '-16px', right: '-16px' }}>
