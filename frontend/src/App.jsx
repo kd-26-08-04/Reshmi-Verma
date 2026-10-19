@@ -18,6 +18,7 @@ import NutritionPage from './pages/NutritionPage';
 import BreathePage from './pages/BreathePage';
 import BookingPage from './pages/BookingPage';
 import AssessmentPage from './pages/AssessmentPage';
+import BreathingAssessmentPage from './pages/BreathingAssessmentPage';
 import QuestionnairePage from './pages/QuestionnairePage';
 import AuthPage from './pages/AuthPage';
 import DashboardPage from './pages/DashboardPage';
@@ -86,6 +87,8 @@ function AppContent() {
         <Route path="/breathe" element={<BreathePage />} />
         <Route path="/booking" element={<BookingPage />} />
         <Route path="/assessment" element={<AssessmentPage />} />
+        <Route path="/breathing-assessment" element={<BreathingAssessmentPage />} />
+        <Route path="/functional-breathing-assessment" element={<BreathingAssessmentPage />} />
         <Route path="/questionnaire" element={<QuestionnairePage />} />
         <Route path="/auth" element={<AuthPage />} />
         <Route path="/login" element={<AuthPage />} />

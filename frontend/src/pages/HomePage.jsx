@@ -74,7 +74,7 @@ export default function HomePage() {
           setReelsList(data.reels);
         }
       })
-      .catch(() => {});
+      .catch(() => { });
   }, []);
 
   // Carousel ref
@@ -103,13 +103,13 @@ export default function HomePage() {
                 <span>🏅 Functional Nutritionist &bull; Somatic Breathwork Facilitator &bull; Biohacker</span>
               </div>
 
-              <h1>Root-Cause <span className="text-gradient">Functional Nutrition</span> &amp; <span className="text-gradient-terracotta">Breathwork Facilitator</span>.</h1>
+              <h1>Root-Cause <span className="text-gradient">Functional Nutrition</span> &amp; <span className="text-gradient-breath">Breathwork Facilitator</span>.</h1>
 
               <p className="lead">
                 Led by <strong>Reshmi Verma</strong> — <strong>Functional Nutritionist</strong>, <strong>Breathwork Facilitator</strong> &amp; <strong>Certified Biohacker</strong>. With over 20 years in diagnostics and healthcare (Director of Rainbow Medinova &amp; Co-founder of Neofit Gym), combining personalized nutrition, breathwork, and autonomic resilience to rebuild lasting vitality.
               </p>
 
-              <div style={{ display: 'flex', gap: '16px', flexWrap: 'wrap', alignItems: 'center' }}>
+              <div style={{ display: 'flex', gap: '14px', flexWrap: 'wrap', alignItems: 'center' }}>
                 <Link to="/booking" className="btn btn-primary btn-lg">
                   <span>Book 1:1 Health Consultation</span>
                   <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
@@ -117,12 +117,11 @@ export default function HomePage() {
                     <polyline points="12 5 19 12 12 19"></polyline>
                   </svg>
                 </Link>
-                <Link to="/assessment" className="btn btn-secondary btn-lg">
-                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                    <path d="M9 11l3 3L22 4"></path>
-                    <path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"></path>
-                  </svg>
-                  <span>Take Free Health Assessment</span>
+                <Link to="/assessment" className="btn btn-health btn-lg">
+                  <span>🌸 Take Free Health Assessment</span>
+                </Link>
+                <Link to="/breathing-assessment" className="btn btn-breath btn-lg">
+                  <span>🫁 Breathing Assessment</span>
                 </Link>
               </div>
 
@@ -204,13 +203,37 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* 1A. Post-Hero Clinical Pillars & Quick Actions (Consult Reshmi, 1:1 UltraWellness, Both Assessments) */}
+      <section className="clinical-approach-strip">
+        <div className="container">
+          <p className="clinical-approach-lead">
+            Her clinical approach unifies 20+ years of laboratory diagnostic expertise, gut microbiome testing, #13 Oxygen Advantage® breathwork, and identifying the hidden biochemical root causes that trigger chronic inflammation, gut dysbiosis, and metabolic fatigue.
+          </p>
+
+          <div className="clinical-approach-buttons" style={{ display: 'flex', gap: '12px', flexWrap: 'wrap', justifyContent: 'center', marginTop: '20px' }}>
+            <Link to="/booking" className="btn btn-primary">
+              Consult Reshmi
+            </Link>
+            <Link to="/booking" className="btn btn-secondary">
+              Explore 1:1 UltraWellness
+            </Link>
+            <Link to="/assessment" className="btn btn-health">
+              🌸 Functional Health Assessment
+            </Link>
+            <Link to="/breathing-assessment" className="btn btn-breath">
+              🫁 Functional Breathing Assessment
+            </Link>
+          </div>
+        </div>
+      </section>
+
       {/* 2. Lived Experience: The -38 kg Transformation Showcase (Immediate Visibility) */}
-      <section 
-        className="section" 
-        id="lived-transformation-showcase" 
-        style={{ 
-          background: 'var(--sand-warm)', 
-          borderTop: '1px solid var(--sand-border)', 
+      <section
+        className="section"
+        id="lived-transformation-showcase"
+        style={{
+          background: 'var(--sand-warm)',
+          borderTop: '1px solid var(--sand-border)',
           borderBottom: '1px solid var(--sand-border)',
           padding: '70px 0'
         }}
@@ -228,22 +251,22 @@ export default function HomePage() {
             <div className="about-image-wrapper">
               {/* Transformation View Switcher */}
               <div className="transformation-tabs-nav">
-                <button 
-                  type="button" 
+                <button
+                  type="button"
                   className={`trans-tab-btn ${transformationTab === 'compare' ? 'active' : ''}`}
                   onClick={() => setTransformationTab('compare')}
                 >
                   ⚡ Side-by-Side
                 </button>
-                <button 
-                  type="button" 
+                <button
+                  type="button"
                   className={`trans-tab-btn ${transformationTab === 'before' ? 'active' : ''}`}
                   onClick={() => setTransformationTab('before')}
                 >
                   Before
                 </button>
-                <button 
-                  type="button" 
+                <button
+                  type="button"
                   className={`trans-tab-btn ${transformationTab === 'after' ? 'active' : ''}`}
                   onClick={() => setTransformationTab('after')}
                 >
@@ -254,18 +277,17 @@ export default function HomePage() {
               {/* Main Visual Display */}
               <div className="transformation-visual-container">
                 {transformationTab === 'compare' && (
-                  <div className="transformation-split-view">
-                    <div className="split-photo-card">
-                      <span className="photo-phase-tag phase-before">BEFORE • Chronic Fatigue</span>
-                      <img src="/assets/images/reshmi-transform-user.jpg" alt="Reshmi Verma Before Health Transformation" />
-                    </div>
+                  <div className="transformation-split-view combined-mode">
+                    <span className="photo-phase-tag phase-before">BEFORE • Chronic Fatigue</span>
                     <div className="split-divider-line">
                       <span className="divider-badge">-38 KG</span>
                     </div>
-                    <div className="split-photo-card">
-                      <span className="photo-phase-tag phase-after">AFTER • Metabolic Reversal</span>
-                      <img src="/assets/images/reshmi-after.jpg" alt="Reshmi Verma After Health Transformation" />
-                    </div>
+                    <span className="photo-phase-tag phase-after">AFTER • Metabolic Reversal</span>
+                    <img 
+                      src="/assets/images/reshmi-transformation-side-by-side.jpg" 
+                      alt="Reshmi Verma Before and After 38 kg Health Transformation" 
+                      className="transformation-combined-img"
+                    />
                   </div>
                 )}
 
@@ -327,22 +349,35 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* 2A. Conditions Addressed & Scope of Practice (Clinical Sage & Bone White Theme Card) */}
+      <section className="conditions-scope-wrapper">
+        <div className="container">
+          <div className="conditions-scope-card">
+            <p className="conditions-scope-text-primary">
+              She addresses chronic and debilitating health challenges like <strong>Constant Fatigue, Severe Bloating, Breathing Pattern Disorders, Sinus &amp; Airway Blockages, Chronic Constipation, Acid Reflux, Indigestion, SIBO, Frequent Stomach Upsets, Hormonal Acne, Irregular or Absent Periods, Fibroids, Severe Period Pain, Mood Swings, PCOD / PCOS, Endometriosis, Insulin Resistance, Prediabetes &amp; Diabetes, Fatty Liver, Chronic Itching, Urticaria, Eczema, Psoriasis, Autoimmune Conditions, Hashimoto's Thyroiditis</strong>, and systemic cellular exhaustion using 100% natural, science-backed interventions like functional food biochemistry, #13 Oxygen Advantage® respiratory pacing, and targeted lifestyle optimization.
+            </p>
+            <p className="conditions-scope-disclaimer">
+              Reshmi Verma is a functional health coach and certified biohacker with 20+ years in diagnostics, not a conventional medical doctor, and <u>does not prescribe pharmaceutical medicines</u>.<br />
+              Her <em>'Food &amp; Breath as Medicine'</em> clinical methodology complements the work of medical doctors, operating in full synergy with their guidance and clinical protocols.
+            </p>
+          </div>
+        </div>
+      </section>
 
-
-      {/* 3. The SAMYA Framework Section (Prominent High-Impact Redesign) */}
-      <section 
-        className="section" 
+      {/* 3. The SAMYA Framework Section (Positioned Above Success Stories) */}
+      <section
+        className="section"
         id="samya-methodology"
-        style={{ 
-          background: 'linear-gradient(180deg, #FFFFFF 0%, var(--sand-warm) 50%, #FFFFFF 100%)', 
-          borderTop: '1px solid var(--border-subtle)', 
+        style={{
+          background: 'linear-gradient(180deg, #FFFFFF 0%, var(--sand-warm) 50%, #FFFFFF 100%)',
+          borderTop: '1px solid var(--border-subtle)',
           borderBottom: '1px solid var(--border-subtle)',
           padding: '48px 0'
         }}
       >
         <div className="container">
           <div className="section-header text-center" style={{ maxWidth: '780px', margin: '0 auto 16px' }}>
-            <span 
+            <span
               className="badge-pill"
               style={{
                 background: 'var(--emerald-soft)',
@@ -464,13 +499,13 @@ export default function HomePage() {
           {/* Integrated SAMYA Bridge Action Banner */}
           <div className="samya-banner-bridge">
             <div className="samya-banner-content">
-              <span 
-                className="badge-pill" 
-                style={{ 
-                  background: 'rgba(255, 255, 255, 0.15)', 
-                  borderColor: 'rgba(255, 255, 255, 0.25)', 
+              <span
+                className="badge-pill"
+                style={{
+                  background: 'rgba(255, 255, 255, 0.15)',
+                  borderColor: 'rgba(255, 255, 255, 0.25)',
                   color: '#FED7AA',
-                  marginBottom: '14px' 
+                  marginBottom: '14px'
                 }}
               >
                 <span>From Insight To Clarity</span>
@@ -481,8 +516,8 @@ export default function HomePage() {
               </p>
             </div>
             <div className="samya-banner-actions">
-              <Link 
-                to="/booking" 
+              <Link
+                to="/booking"
                 className="btn btn-accent btn-lg"
                 style={{ background: '#FFFFFF', color: 'var(--emerald-deep)', fontWeight: 700 }}
               >
@@ -492,8 +527,8 @@ export default function HomePage() {
                   <polyline points="12 5 19 12 12 19"></polyline>
                 </svg>
               </Link>
-              <Link 
-                to="/assessment" 
+              <Link
+                to="/assessment"
                 className="btn btn-secondary btn-lg"
                 style={{ background: 'rgba(255, 255, 255, 0.12)', color: 'white', borderColor: 'rgba(255, 255, 255, 0.3)' }}
               >
@@ -504,362 +539,97 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 3B. Targeted Clinical Focus Areas (Crisp & Direct) */}
-      <section className="conditions-section" id="conditions-we-resolve">
+      {/* 4. Real People, Real Success Stories (Dark Noir Section) */}
+      <section className="stories-noir-section" id="client-success-stories">
         <div className="container">
-          <div className="section-header text-center" style={{ maxWidth: '680px', margin: '0 auto 28px' }}>
-            <span className="badge-pill" style={{ marginBottom: '10px' }}>
-              <span>Targeted Clinical Focus</span>
-            </span>
-            <h2>Which Chronic Challenge Is Your Body Struggling With?</h2>
-            <p style={{ margin: 0 }}>
-              Root-cause functional protocols targeting underlying biochemical drivers for lasting recovery.
-            </p>
-          </div>
-
-          <div className="conditions-grid">
-            {/* Condition 1: Gut */}
-            <div className="condition-card">
-              <div className="condition-header">
-                <div className="condition-icon-badge">🫄</div>
-                <div>
-                  <h3>Gut Dysbiosis &amp; Reflux</h3>
-                </div>
-              </div>
-              <ul className="condition-symptoms-list">
-                <li><span className="dot">•</span> <span>Chronic Bloating &amp; Post-Meal Distension</span></li>
-                <li><span className="dot">•</span> <span>Acid Reflux, GERD &amp; SIBO Relapse</span></li>
-                <li><span className="dot">•</span> <span>Food Reactivities &amp; Sluggish Motility</span></li>
-              </ul>
-              <Link to="/booking" className="condition-action-link">
-                <span>Explore Gut Care &rarr;</span>
-              </Link>
-            </div>
-
-            {/* Condition 2: Hormones */}
-            <div className="condition-card">
-              <div className="condition-header">
-                <div className="condition-icon-badge">🌸</div>
-                <div>
-                  <h3>PCOS &amp; Hormonal Balance</h3>
-                </div>
-              </div>
-              <ul className="condition-symptoms-list">
-                <li><span className="dot">•</span> <span>Irregular or Absent Menstrual Cycles</span></li>
-                <li><span className="dot">•</span> <span>Hormonal Acne &amp; Stubborn Weight</span></li>
-                <li><span className="dot">•</span> <span>Cellular Insulin Resistance</span></li>
-              </ul>
-              <Link to="/booking" className="condition-action-link">
-                <span>Explore Hormonal Care &rarr;</span>
-              </Link>
-            </div>
-
-            {/* Condition 3: Metabolic */}
-            <div className="condition-card">
-              <div className="condition-header">
-                <div className="condition-icon-badge">📉</div>
-                <div>
-                  <h3>Fatty Liver &amp; Metabolism</h3>
-                </div>
-              </div>
-              <ul className="condition-symptoms-list">
-                <li><span className="dot">•</span> <span>Grade-1 &amp; Grade-2 Hepatic Steatosis</span></li>
-                <li><span className="dot">•</span> <span>Elevated Fasting Insulin &amp; HbA1c</span></li>
-                <li><span className="dot">•</span> <span>Afternoon Fatigue &amp; Sugar Cravings</span></li>
-              </ul>
-              <Link to="/booking" className="condition-action-link">
-                <span>Explore Metabolic Reset &rarr;</span>
-              </Link>
-            </div>
-
-            {/* Condition 4: Thyroid */}
-            <div className="condition-card">
-              <div className="condition-header">
-                <div className="condition-icon-badge">⚡</div>
-                <div>
-                  <h3>Hashimoto's &amp; Fatigue</h3>
-                </div>
-              </div>
-              <ul className="condition-symptoms-list">
-                <li><span className="dot">•</span> <span>Elevated Thyroid Antibodies (Anti-TPO)</span></li>
-                <li><span className="dot">•</span> <span>Persistent Exhaustion &amp; Brain Fog</span></li>
-                <li><span className="dot">•</span> <span>Sluggish Digestion &amp; Joint Discomfort</span></li>
-              </ul>
-              <Link to="/booking" className="condition-action-link">
-                <span>Explore Thyroid Care &rarr;</span>
-              </Link>
-            </div>
-
-            {/* Condition 5: Breath */}
-            <div className="condition-card">
-              <div className="condition-header">
-                <div className="condition-icon-badge">🫁</div>
-                <div>
-                  <h3>Breath &amp; Autonomic Stress</h3>
-                </div>
-              </div>
-              <ul className="condition-symptoms-list">
-                <li><span className="dot">•</span> <span>Low BOLT Score (&lt; 15s) &amp; Air Hunger</span></li>
-                <li><span className="dot">•</span> <span>Mouth Breathing &amp; 3 AM Awakening</span></li>
-                <li><span className="dot">•</span> <span>Sympathetic Nervous System Overdrive</span></li>
-              </ul>
-              <Link to="/breathe" className="condition-action-link">
-                <span>Test BOLT Score &rarr;</span>
-              </Link>
-            </div>
-
-            {/* Condition 6: Histamine */}
-            <div className="condition-card">
-              <div className="condition-header">
-                <div className="condition-icon-badge">🛡️</div>
-                <div>
-                  <h3>Histamine &amp; Inflammation</h3>
-                </div>
-              </div>
-              <ul className="condition-symptoms-list">
-                <li><span className="dot">•</span> <span>Skin Eczema, Hives &amp; Unexplained Itching</span></li>
-                <li><span className="dot">•</span> <span>Sensitivities to Fermented Foods</span></li>
-                <li><span className="dot">•</span> <span>Sinus Congestion &amp; Systemic Flare-ups</span></li>
-              </ul>
-              <Link to="/booking" className="condition-action-link">
-                <span>Explore Immune Care &rarr;</span>
-              </Link>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* 4. Clinical Respiration & Autonomic Regulation (Crisp & Direct) */}
-      <section className="section" id="clinical-respiration-spotlight" style={{ position: 'relative', zIndex: 1, background: 'linear-gradient(180deg, #FFFFFF 0%, var(--bg-secondary) 100%)', borderTop: '1px solid var(--border-subtle)', borderBottom: '1px solid var(--border-subtle)', padding: '52px 0' }}>
-        <div className="container">
-          <div
-            className="section-header text-center"
-            style={{ maxWidth: '720px', margin: '0 auto 28px' }}
-          >
-            <span className="badge-pill" style={{ marginBottom: '10px' }}>
-              <span className="pulse-dot"></span>
-              <span>Oxygen Advantage® &bull; Autonomic Regulation</span>
-            </span>
-            <h2>Breath Mechanics &amp; Autonomic Balance</h2>
-            <p style={{ margin: 0 }}>
-              Incorporating respiration diagnostics (BOLT score &amp; vagal tone) directly into your personalized recovery protocol.
-            </p>
-          </div>
-
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '24px', maxWidth: '1020px', margin: '0 auto' }}>
-            
-            {/* Clinical Mechanism Card */}
-            <div style={{ background: '#FFFFFF', padding: '26px 24px', borderRadius: 'var(--radius-xl)', border: '1px solid var(--border-subtle)', boxShadow: 'var(--shadow-md)', display: 'flex', flexDirection: 'column' }}>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '14px' }}>
-                <div style={{ width: '42px', height: '42px', borderRadius: '10px', background: 'var(--emerald-soft)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '1.3rem' }}>
-                  🫁
-                </div>
-                <div>
-                  <h3 style={{ fontSize: '1.15rem', margin: 0, color: 'var(--emerald-deep)' }}>Respiration Diagnostics</h3>
-                  <span style={{ fontSize: '0.8rem', color: 'var(--text-muted)' }}>Vagal Tone &amp; Nervous System Balance</span>
-                </div>
-              </div>
-
-              <ul style={{ listStyle: 'none', padding: 0, margin: '0 0 18px 0', display: 'flex', flexDirection: 'column', gap: '8px' }}>
-                <li style={{ display: 'flex', alignItems: 'flex-start', gap: '8px', fontSize: '0.88rem', color: 'var(--text-primary)' }}>
-                  <span style={{ color: '#15803D', fontWeight: 700 }}>✓</span>
-                  <span><strong>Gut &amp; Motility:</strong> Vagal breath pacing activates the parasympathetic "rest &amp; digest" state.</span>
-                </li>
-                <li style={{ display: 'flex', alignItems: 'flex-start', gap: '8px', fontSize: '0.88rem', color: 'var(--text-primary)' }}>
-                  <span style={{ color: '#15803D', fontWeight: 700 }}>✓</span>
-                  <span><strong>Cortisol &amp; Sleep:</strong> Nasal breathing drills stabilize nocturnal adrenaline and stop 3 AM awakenings.</span>
-                </li>
-                <li style={{ display: 'flex', alignItems: 'flex-start', gap: '8px', fontSize: '0.88rem', color: 'var(--text-primary)' }}>
-                  <span style={{ color: '#15803D', fontWeight: 700 }}>✓</span>
-                  <span><strong>Cellular CO₂ Tolerance:</strong> Personalized BOLT testing measures true oxygen delivery efficiency.</span>
-                </li>
-              </ul>
-
-              <div style={{ marginTop: 'auto', paddingTop: '12px', borderTop: '1px solid var(--border-subtle)' }}>
-                <Link to="/breathe" style={{ display: 'inline-flex', alignItems: 'center', gap: '6px', color: 'var(--emerald-primary)', fontWeight: 600, fontSize: '0.88rem', textDecoration: 'none' }}>
-                  <span>Test your BOLT score in the Breath Lab &rarr;</span>
-                </Link>
-              </div>
-            </div>
-
-            {/* Direct 1:1 Consultation Bridge Card */}
-            <div style={{ background: 'linear-gradient(135deg, var(--emerald-deep) 0%, #064E3B 100%)', color: '#FFFFFF', padding: '26px 24px', borderRadius: 'var(--radius-xl)', boxShadow: 'var(--shadow-lg)', display: 'flex', flexDirection: 'column' }}>
-              <div style={{ marginBottom: '12px' }}>
-                <span className="badge-pill" style={{ background: 'rgba(255, 255, 255, 0.15)', borderColor: 'rgba(255, 255, 255, 0.25)', color: '#FED7AA', fontSize: '0.76rem' }}>
-                  60-Minute 1:1 Video Deep Dive &bull; ₹1,999
-                </span>
-                <h3 style={{ color: '#FFFFFF', fontSize: '1.25rem', marginTop: '10px', marginBottom: '6px' }}>
-                  Integrated Breath &amp; Functional Nutrition Roadmap
-                </h3>
-                <p style={{ color: 'rgba(255, 255, 255, 0.88)', fontSize: '0.88rem', lineHeight: 1.5, margin: 0 }}>
-                  Reshmi Verma evaluates your breathing mechanics alongside blood diagnostics to build your customized 30-day recovery protocol.
-                </p>
-              </div>
-
-              <div style={{ background: 'rgba(255, 255, 255, 0.08)', borderRadius: 'var(--radius-md)', padding: '10px 14px', marginBottom: '16px', border: '1px solid rgba(255, 255, 255, 0.15)', fontSize: '0.84rem', color: '#FFFFFF', lineHeight: 1.5 }}>
-                ✓ 60-min 1:1 with Reshmi Verma &bull; Lab biomarker review &bull; Written 30-day protocol
-              </div>
-
-              <div style={{ marginTop: 'auto' }}>
-                <Link to="/booking" className="btn btn-accent btn-lg" style={{ background: '#FFFFFF', color: 'var(--emerald-deep)', fontWeight: 700, width: '100%', justifyContent: 'center' }}>
-                  <span>Book 1:1 Consultation (₹1,999) &rarr;</span>
-                </Link>
-              </div>
-            </div>
-
-          </div>
-        </div>
-      </section>
-
-      {/* 5. 6 Core Interconnected Clinical Pillars (Your Health. Your Whole Story) */}
-      <section className="section" id="pillars" style={{ background: 'var(--bg-secondary)' }}>
-        <div className="container">
-          <div className="section-header text-center" style={{ maxWidth: '820px', margin: '0 auto 40px' }}>
-            <span className="sub-title">Your Health. Your Whole Story.</span>
-            <h2>Six Interconnected Pillars of Lasting Vitality</h2>
-            <p>
-              Because energy, digestion, hormones, sleep, stress and longevity are not separate conversations. They’re connected.
-            </p>
-          </div>
-
-          <div className="pillars-grid">
-            {/* Pillar 1: Health Insights */}
-            <div className="pillar-card">
-              <div className="pillar-icon-box">
-                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                  <circle cx="12" cy="12" r="10"></circle>
-                  <line x1="12" y1="16" x2="12" y2="12"></line>
-                  <line x1="12" y1="8" x2="12.01" y2="8"></line>
-                </svg>
-              </div>
-              <h3>Health Insights</h3>
-              <p>
-                Bring together your health story, history, and available clinical information to see the bigger picture and identify root patterns.
-              </p>
-              <div className="pillar-tags">
-                <span className="pillar-tag">Health History</span>
-                <span className="pillar-tag">Pattern Discovery</span>
-                <span className="pillar-tag">Big Picture Care</span>
-              </div>
-            </div>
-
-            {/* Pillar 2: Gut Health */}
-            <div className="pillar-card">
-              <div className="pillar-icon-box">
-                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                  <path d="M12 2a9 9 0 0 1 9 9c0 5-4 9-9 9s-9-4-9-9a9 9 0 0 1 9-9z"></path>
-                  <path d="M12 7v5l3 3"></path>
-                </svg>
-              </div>
-              <h3>Gut Health</h3>
-              <p>
-                Understand your digestion, gut patterns, microbiome fermentation, and the factors that may influence how you feel each day.
-              </p>
-              <div className="pillar-tags">
-                <span className="pillar-tag">Mucosal Repair</span>
-                <span className="pillar-tag">Digestion Patterns</span>
-                <span className="pillar-tag">Microbiome Balance</span>
-              </div>
-            </div>
-
-            {/* Pillar 3: Breathwork & Regulation */}
-            <div className="pillar-card">
-              <div className="pillar-icon-box">
-                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                  <circle cx="12" cy="12" r="10"></circle>
-                  <path d="M8 12a4 4 0 0 1 8 0"></path>
-                  <path d="M12 8v8"></path>
-                </svg>
-              </div>
-              <h3>Breathwork &amp; Regulation</h3>
-              <p>
-                Breathe, regulate, and build greater resilience through functional breathing biomechanics, vagal stimulation, and CO₂ tolerance.
-              </p>
-              <div className="pillar-tags">
-                <span className="pillar-tag">Oxygen Advantage</span>
-                <span className="pillar-tag">Vagal Tone</span>
-                <span className="pillar-tag">Stress Modulation</span>
-              </div>
-            </div>
-
-            {/* Pillar 4: Personalised Nutrition */}
-            <div className="pillar-card">
-              <div className="pillar-icon-box">
-                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                  <path d="M18 6L6 18"></path>
-                  <path d="M6 6l12 12"></path>
-                </svg>
-              </div>
-              <h3>Personalised Nutrition</h3>
-              <p>
-                Build an approach to food and cellular nutrition that works for your unique body, metabolic speed, and daily schedule without starvation.
-              </p>
-              <div className="pillar-tags">
-                <span className="pillar-tag">Nutrient Density</span>
-                <span className="pillar-tag">Glycemic Stability</span>
-                <span className="pillar-tag">Real Food First</span>
-              </div>
-            </div>
-
-            {/* Pillar 5: Hormonal Health */}
-            <div className="pillar-card">
-              <div className="pillar-icon-box">
-                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                  <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
-                  <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
-                </svg>
-              </div>
-              <h3>Hormonal Health</h3>
-              <p>
-                Support your body through changing needs, cortisol fluctuations, thyroid receptor sensitivity, and different life stages.
-              </p>
-              <div className="pillar-tags">
-                <span className="pillar-tag">Cortisol Balance</span>
-                <span className="pillar-tag">Metabolic Flow</span>
-                <span className="pillar-tag">Life Stage Support</span>
-              </div>
-            </div>
-
-            {/* Pillar 6: Longevity & Healthy Ageing */}
-            <div className="pillar-card">
-              <div className="pillar-icon-box">
-                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                  <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
-                </svg>
-              </div>
-              <h3>Longevity &amp; Healthy Ageing</h3>
-              <p>
-                Build the foundations for a healthier, stronger future through mitochondrial energy repair, restful sleep cycles, and cellular resilience.
-              </p>
-              <div className="pillar-tags">
-                <span className="pillar-tag">Mitochondrial ATP</span>
-                <span className="pillar-tag">Deep Sleep</span>
-                <span className="pillar-tag">Cellular Vitality</span>
-              </div>
-            </div>
-          </div>
-
-          {/* Post-Pillars Clinical Consultation Banner */}
-          <div style={{ marginTop: '48px', background: '#FFFFFF', padding: '32px 36px', borderRadius: 'var(--radius-xl)', border: '1px solid var(--border-subtle)', boxShadow: 'var(--shadow-md)', display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '24px' }}>
-            <div style={{ maxWidth: '640px' }}>
-              <span className="badge-pill" style={{ fontSize: '0.8rem', marginBottom: '8px' }}>
-                <span>Interconnected Clinical Care</span>
-              </span>
-              <h3 style={{ fontSize: '1.45rem', color: 'var(--emerald-deep)', margin: '8px 0' }}>
-                Which of these pillars is your body struggling with right now?
-              </h3>
-              <p style={{ color: 'var(--text-secondary)', margin: 0, fontSize: '0.96rem', lineHeight: 1.6 }}>
-                In your 60-Minute 1:1 Health Clarity Session, Reshmi Verma connects the dots across your symptom patterns, blood chemistry, and nervous system to build your personalized recovery blueprint.
-              </p>
-            </div>
+          <div className="stories-noir-grid">
             <div>
-              <Link to="/booking" className="btn btn-primary btn-lg" style={{ whiteSpace: 'nowrap' }}>
-                <span>Book 1:1 Health Consultation (₹1,999)</span>
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" style={{ marginLeft: '8px' }}>
-                  <line x1="5" y1="12" x2="19" y2="12"></line>
-                  <polyline points="12 5 19 12 12 19"></polyline>
-                </svg>
+              <span style={{ fontSize: '0.8rem', color: '#8EBE93', textTransform: 'uppercase', letterSpacing: '0.08em', fontWeight: 800 }}>
+                Verified Patient Outcomes
+              </span>
+              <h2 style={{ fontSize: 'clamp(2rem, 4vw, 2.7rem)', color: '#FFFFFF', margin: '8px 0 14px', lineHeight: 1.15 }}>
+                Real People, Real Success Stories
+              </h2>
+              <p style={{ color: '#9CA3AF', fontSize: '1rem', lineHeight: 1.6, marginBottom: '24px' }}>
+                See what our clients have to say about their root-cause recovery journey with Reshmi Verma.
+              </p>
+              <Link
+                to="/booking"
+                className="btn btn-lg"
+                style={{
+                  background: '#FFFFFF',
+                  color: '#121214',
+                  fontWeight: 800,
+                  padding: '13px 26px',
+                  borderRadius: '14px',
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: '8px',
+                  boxShadow: '0 8px 25px rgba(255, 255, 255, 0.18)',
+                  border: 'none'
+                }}
+              >
+                <span>Book 1:1 Consultation</span>
+                <span>&rarr;</span>
               </Link>
+            </div>
+
+            <div className="stories-cards-scroller">
+              <div className="story-client-card">
+                <div className="story-client-header">
+                  <img src="/assets/images/reshmi-transform-user.jpg" alt="Vartika" className="story-client-avatar" />
+                  <div>
+                    <h5 style={{ margin: 0, fontSize: '0.98rem', fontWeight: 700, color: '#FFFFFF' }}>Vartika</h5>
+                    <span style={{ fontSize: '0.78rem', color: '#9CA3AF' }}>Bangalore</span>
+                  </div>
+                </div>
+                <p className="story-client-quote">
+                  "For as long as I can remember, I had been suffering from Hashimoto's, extreme fatigue, and crazy PMS mood swings. Within 8 weeks on Reshmi's gut &amp; breath protocol, my brain fog vanished and energy is at an all-time high!"
+                </p>
+                <Link to="/about" className="story-read-more-btn">READ MORE &rarr;</Link>
+              </div>
+
+              <div className="story-client-card">
+                <div className="story-client-header">
+                  <img src="/assets/images/patient-vitality-energy.jpg" alt="Simrat" className="story-client-avatar" />
+                  <div>
+                    <h5 style={{ margin: 0, fontSize: '0.98rem', fontWeight: 700, color: '#FFFFFF' }}>Simrat</h5>
+                    <span style={{ fontSize: '0.78rem', color: '#9CA3AF' }}>Ludhiana</span>
+                  </div>
+                </div>
+                <p className="story-client-quote">
+                  "This program has done wonders in my life. I had severe chronic constipation, low energy, and food sensitivities. Reshmi's diagnostic approach repaired my digestion without restrictive crash diets."
+                </p>
+                <Link to="/about" className="story-read-more-btn">READ MORE &rarr;</Link>
+              </div>
+
+              <div className="story-client-card">
+                <div className="story-client-header">
+                  <img src="/assets/images/founder.jpg" alt="Pranav" className="story-client-avatar" />
+                  <div>
+                    <h5 style={{ margin: 0, fontSize: '0.98rem', fontWeight: 700, color: '#FFFFFF' }}>Pranav</h5>
+                    <span style={{ fontSize: '0.78rem', color: '#9CA3AF' }}>New Delhi</span>
+                  </div>
+                </div>
+                <p className="story-client-quote">
+                  "I was struggling with anxiety-induced shallow breathing, sleep apnea, and high stress. Oxygen Advantage breathwork with Reshmi boosted my BOLT score from 12s to 32s. Sleep quality is now phenomenal."
+                </p>
+                <Link to="/about" className="story-read-more-btn">READ MORE &rarr;</Link>
+              </div>
+
+              <div className="story-client-card">
+                <div className="story-client-header">
+                  <img src="/assets/images/reshmi-after.jpg" alt="Shoaib" className="story-client-avatar" />
+                  <div>
+                    <h5 style={{ margin: 0, fontSize: '0.98rem', fontWeight: 700, color: '#FFFFFF' }}>Shoaib</h5>
+                    <span style={{ fontSize: '0.78rem', color: '#9CA3AF' }}>Ahmednagar</span>
+                  </div>
+                </div>
+                <p className="story-client-quote">
+                  "I had been suffering from severe gastritis, acidity, and post-meal sluggishness for years. Reshmi pinpointed the exact bacterial imbalance in my lab report and fixed it with whole food biochemistry."
+                </p>
+                <Link to="/about" className="story-read-more-btn">READ MORE &rarr;</Link>
+              </div>
             </div>
           </div>
         </div>
@@ -955,7 +725,7 @@ export default function HomePage() {
 
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '24px', maxWidth: '1100px', margin: '0 auto' }}>
             {/* Review 1 */}
-            <div style={{ background: 'var(--bg-secondary)', border: '1px solid var(--border-subtle)', borderRadius: 'var(--radius-xl)', padding: '28px 24px', display: 'flex', flexDirection: 'column' }}>
+            <div className="review-glass-card">
               <div style={{ color: '#F59E0B', fontSize: '1.05rem', marginBottom: '12px', letterSpacing: '2px' }}>
                 ★★★★★
               </div>
@@ -974,7 +744,7 @@ export default function HomePage() {
             </div>
 
             {/* Review 2 */}
-            <div style={{ background: 'var(--bg-secondary)', border: '1px solid var(--border-subtle)', borderRadius: 'var(--radius-xl)', padding: '28px 24px', display: 'flex', flexDirection: 'column' }}>
+            <div className="review-glass-card">
               <div style={{ color: '#F59E0B', fontSize: '1.05rem', marginBottom: '12px', letterSpacing: '2px' }}>
                 ★★★★★
               </div>
@@ -993,7 +763,7 @@ export default function HomePage() {
             </div>
 
             {/* Review 3 */}
-            <div style={{ background: 'var(--bg-secondary)', border: '1px solid var(--border-subtle)', borderRadius: 'var(--radius-xl)', padding: '28px 24px', display: 'flex', flexDirection: 'column' }}>
+            <div className="review-glass-card">
               <div style={{ color: '#F59E0B', fontSize: '1.05rem', marginBottom: '12px', letterSpacing: '2px' }}>
                 ★★★★★
               </div>
@@ -1022,7 +792,7 @@ export default function HomePage() {
                 Book a 60-minute 1:1 Health Clarity Session with Reshmi Verma for a personalized roadmap.
               </p>
             </div>
-            <div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap' }}>
+            <div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap', alignItems: 'center' }}>
               <Link to="/booking" className="btn btn-primary btn-lg">
                 <span>Book Consultation (₹1,999)</span>
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" style={{ marginLeft: '6px' }}>
@@ -1030,8 +800,11 @@ export default function HomePage() {
                   <polyline points="12 5 19 12 12 19"></polyline>
                 </svg>
               </Link>
-              <Link to="/assessment" className="btn btn-secondary btn-lg">
-                <span>Take Free Assessment</span>
+              <Link to="/assessment" className="btn btn-health btn-lg">
+                <span>🌸 Health Assessment</span>
+              </Link>
+              <Link to="/breathing-assessment" className="btn btn-breath btn-lg">
+                <span>🫁 Breathing Assessment</span>
               </Link>
             </div>
           </div>
@@ -1039,7 +812,7 @@ export default function HomePage() {
       </section>
 
       {/* 9. Instagram Reels & Daily Protocols Side-Scrolling Section */}
-      <section className="reels-section" id="reels-section">
+      <section className="reels-section" id="videos" data-section="reels-section">
         <div className="container">
           <div className="reels-header-row">
             <div className="reels-header-content">
@@ -1167,7 +940,7 @@ export default function HomePage() {
                 <span>Instagram</span>
               </a>
               <a
-                href="https://www.linkedin.com/in/reshmi-verma/"
+                href="https://www.linkedin.com/in/reshmiverma/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="footer-social-btn linkedin"
@@ -1219,6 +992,74 @@ export default function HomePage() {
             <Link to="/booking" className="btn btn-primary btn-lg" style={{ borderRadius: '14px', padding: '12px 26px', fontSize: '0.95rem' }}>
               <span>Book 1:1 Consultation (₹1,999)</span>
             </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* 4A. More About Reshmi Section (3 Cards: About, Instagram, YouTube) */}
+      <section className="more-about-section" id="more-about-reshmi">
+        <div className="container">
+          <div style={{ textAlign: 'center', marginBottom: '40px' }}>
+            <span style={{ fontSize: '0.8rem', color: '#8EBE93', textTransform: 'uppercase', letterSpacing: '0.08em', fontWeight: 700 }}>
+              Connect &bull; Learn &bull; Explore
+            </span>
+            <h2 style={{ fontSize: 'clamp(2rem, 4vw, 2.6rem)', color: 'var(--emerald-deep)', margin: '6px 0 0', fontFamily: 'var(--font-serif)' }}>
+              More about Reshmi
+            </h2>
+          </div>
+
+          <div className="more-about-grid">
+            {/* Card 1: About */}
+            <div className="more-about-card">
+              <div className="more-about-img-box">
+                <img src="/assets/images/reshmi-saree-hero.jpg" alt="About Reshmi Verma" />
+              </div>
+              <div className="more-about-content">
+                <h3 className="more-about-title">About</h3>
+                <Link to="/about" className="more-about-link">
+                  <span>Click here</span>
+                  <span>&rarr;</span>
+                </Link>
+              </div>
+            </div>
+
+            {/* Card 2: Instagram */}
+            <div className="more-about-card">
+              <div className="more-about-img-box social-box">
+                <img src="/assets/images/reshmi-instagram-profile.png" alt="Reshmi Verma Instagram" />
+              </div>
+              <div className="more-about-content">
+                <h3 className="more-about-title">Instagram</h3>
+                <a
+                  href="https://www.instagram.com/healthwithreshmi/?hl=en"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="more-about-link"
+                >
+                  <span>Click here</span>
+                  <span>&rarr;</span>
+                </a>
+              </div>
+            </div>
+
+            {/* Card 3: YouTube */}
+            <div className="more-about-card">
+              <div className="more-about-img-box social-box">
+                <img src="/assets/images/reshmi-youtube-channel.png" alt="Reshmi Verma YouTube" />
+              </div>
+              <div className="more-about-content">
+                <h3 className="more-about-title">YouTube</h3>
+                <a
+                  href="https://youtube.com/@healthwithreshmi?si=J_-3JErcDWbGw6gj"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="more-about-link"
+                >
+                  <span>Click here</span>
+                  <span>&rarr;</span>
+                </a>
+              </div>
+            </div>
           </div>
         </div>
       </section>

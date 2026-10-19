@@ -1119,5 +1119,108 @@
     ],
     "blockedDates": [],
     "customBlockedSlots": {}
-  }
+  },
+  "assessment_leads": [
+    {
+      "id": "lead_1792329716148",
+      "name": "Ajeet Mishra",
+      "phone": "+917058972300",
+      "email": "kuldeept.cse22@sbjit.edu.in",
+      "source": "welcome_modal",
+      "step": "Part 1: Q1 (When do you typically experience bloating, gas, or distension?)",
+      "answers": {
+        "q1_bloat": {
+          "label": "Severe distension within 30–45 mins of eating (Upper GI / Low Stomach Acid signal)",
+          "score": 35,
+          "tag": "Hypochlorhydria / Upper GI"
+        }
+      },
+      "scores": null,
+      "status": "in_progress",
+      "followUpStatus": "pending",
+      "notes": "",
+      "bookingId": null,
+      "createdAt": "2026-10-19T12:34:58.634Z",
+      "updatedAt": "2026-10-19T12:34:58.634Z"
+    },
+    {
+      "id": "lead_1792412848546",
+      "name": "Guest Client",
+      "phone": "",
+      "email": "",
+      "source": "welcome_modal",
+      "step": "Part 2: Q6 (How is your physical stamina and aerobic breath-hold capacity?)",
+      "answers": {
+        "q1_bloat": {
+          "label": "Severe distension within 30–45 mins of eating (Upper GI / Low Stomach Acid signal)",
+          "score": 35,
+          "tag": "Hypochlorhydria / Upper GI"
+        },
+        "q2_motility": {
+          "label": "Hard, pellet-like stools or skipping bowel movements for 1–2 days (Constipation / Slow Transit)",
+          "score": 35,
+          "tag": "Constipation & Toxin Reabsorption"
+        },
+        "q3_reactivity": {
+          "label": "React strongly to gluten, dairy, high-FODMAPs, or oily restaurant meals (Severe Leaky Gut)",
+          "score": 30,
+          "tag": "Systemic Endotoxemia & Reactivity"
+        },
+        "q4_breathing_pattern": {
+          "label": "Frequent upper-chest breathing, sighing, yawning, or feeling of \"air hunger\"",
+          "score": 35,
+          "tag": "Chronic Hyperventilation"
+        },
+        "q5_stress_vagal": {
+          "label": "Constant sympathetic overdrive: Racing heart, muscle tightness, anxiety surges, mental overwhelm",
+          "score": 30,
+          "tag": "Low Vagal Tone / Sympathetic Overdrive"
+        },
+        "q6_stamina": {
+          "label": "Get breathless climbing 1–2 flights of stairs; breath-hold capacity is under 15 seconds",
+          "score": 35,
+          "tag": "Low CO₂ Tolerance"
+        }
+      },
+      "scores": null,
+      "status": "in_progress",
+      "followUpStatus": "pending",
+      "notes": "",
+      "bookingId": null,
+      "createdAt": "2026-10-19T12:27:37.176Z",
+      "updatedAt": "2026-10-19T12:28:15.782Z"
+    },
+    {
+      "id": "lead_1792413284572_0dz4a",
+      "name": "Kuldeep Tiwari Tiwari",
+      "phone": "0987654321",
+      "email": "kuldeept.cse22@sbjit.edu.in",
+      "source": "welcome_modal_step3",
+      "step": "Chosen: Health Assessment",
+      "answers": {},
+      "scores": null,
+      "status": "in_progress",
+      "followUpStatus": "pending",
+      "notes": "",
+      "bookingId": null,
+      "createdAt": "2026-10-19T11:56:25.381Z",
+      "updatedAt": "2026-10-19T12:34:55.017Z"
+    },
+    {
+      "id": "lead_1792411497908_7xfy7",
+      "name": "Kuldeep Tiwari",
+      "phone": "9876543210",
+      "email": "kuldeep@test.com",
+      "source": "welcome_modal_step2",
+      "step": "Details Submitted • Selecting Assessment",
+      "answers": {},
+      "scores": null,
+      "status": "in_progress",
+      "followUpStatus": "pending",
+      "notes": "",
+      "bookingId": null,
+      "createdAt": "2026-10-19T11:06:37.173Z",
+      "updatedAt": "2026-10-19T12:04:57.908Z"
+    }
+  ]
 }

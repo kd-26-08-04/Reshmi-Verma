@@ -39,8 +39,8 @@ export default function Footer() {
                     </svg>
                     <span>Instagram</span>
                   </a>
-                  {/* <a
-                    href="https://www.linkedin.com/in/reshmi-verma/"
+                  <a
+                    href="https://www.linkedin.com/in/reshmiverma/"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="footer-social-btn linkedin"
@@ -52,7 +52,7 @@ export default function Footer() {
                       <circle cx="4" cy="4" r="2"></circle>
                     </svg>
                     <span>LinkedIn</span>
-                  </a> */}
+                  </a>
                   <a
                     href="https://youtube.com/@healthwithreshmi?si=J_-3JErcDWbGw6gj"
                     target="_blank"

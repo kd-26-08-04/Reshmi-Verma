@@ -559,6 +559,46 @@ export default function AssessmentPage() {
       <section className="assessment-page-layout">
         <div className="container assessment-widescreen-container">
           
+          {/* Dual Assessment Track Switcher */}
+          <div style={{ display: 'flex', justifyContent: 'center', gap: '10px', marginBottom: '22px', flexWrap: 'wrap' }}>
+            <Link 
+              to="/assessment"
+              style={{ 
+                padding: '8px 18px', 
+                fontSize: '0.86rem', 
+                borderRadius: '999px', 
+                background: '#FDF1EB', 
+                color: '#FF007F', 
+                border: '1.5px solid #F7BA9E', 
+                fontWeight: 700,
+                textDecoration: 'none',
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: '6px'
+              }}
+            >
+              🌸 Functional Health Assessment
+            </Link>
+            <Link 
+              to="/breathing-assessment"
+              style={{ 
+                padding: '8px 18px', 
+                fontSize: '0.86rem', 
+                borderRadius: '999px', 
+                background: '#FFFFFF', 
+                color: 'var(--text-secondary)', 
+                border: '1.5px solid var(--border-subtle)', 
+                fontWeight: 600,
+                textDecoration: 'none',
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: '6px'
+              }}
+            >
+              🫁 Functional Breathing Assessment
+            </Link>
+          </div>
+
           {/* Step 0: Gate Card (if user arrived directly without popup info) */}
           {!results && !leadInfo ? (
             <div className="glass-assessment-card" style={{ maxWidth: '540px', margin: '0 auto', textAlign: 'center', padding: '40px 32px' }}>
@@ -584,7 +624,7 @@ export default function AssessmentPage() {
                 </div>
               )}
 
-              <form onSubmit={handleStartFromGate} style={{ textAlign: 'left', display: 'flex', flexDirection: 'column', gap: '16px' }}>
+              <form onSubmit={handleStartFromGate} style={{ textAlign: 'left', display: 'flex', flexDirection: 'column', gap: '14px' }}>
                 <div>
                   <label style={{ display: 'block', fontSize: '0.88rem', fontWeight: 600, color: 'var(--text-primary)', marginBottom: '6px' }}>
                     Full Name <span style={{ color: '#DC2626' }}>*</span>
@@ -621,7 +661,7 @@ export default function AssessmentPage() {
                     type="email" 
                     value={leadEmail} 
                     onChange={(e) => setLeadEmail(e.target.value)}
-                    placeholder="yourname@example.com"
+                    placeholder="name@example.com"
                     style={{ width: '100%', padding: '12px 16px', borderRadius: '10px', border: '1px solid var(--border-medium)', fontSize: '0.95rem' }}
                   />
                 </div>
@@ -630,9 +670,18 @@ export default function AssessmentPage() {
                   type="submit" 
                   disabled={leadSaving}
                   className="btn btn-primary btn-lg"
-                  style={{ width: '100%', justifyContent: 'center', marginTop: '8px' }}
+                  style={{ width: '100%', justifyContent: 'center', marginTop: '6px' }}
                 >
                   <span>{leadSaving ? 'Initializing Assessment...' : 'Begin 2-Min Assessment Now &rarr;'}</span>
+                </button>
+
+                <button
+                  type="button"
+                  onClick={() => setLeadInfo({ id: `lead_${Date.now()}`, name: 'Guest Client', phone: '', email: '' })}
+                  className="btn btn-outline"
+                  style={{ width: '100%', justifyContent: 'center', borderColor: 'var(--border-subtle)', fontSize: '0.86rem', padding: '10px' }}
+                >
+                  <span>Or start questions directly &rarr;</span>
                 </button>
               </form>
               <div style={{ marginTop: '16px', fontSize: '0.78rem', color: 'var(--text-muted)' }}>
