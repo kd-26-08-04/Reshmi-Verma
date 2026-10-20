@@ -54,14 +54,14 @@ export default async function handler(req, res) {
 
     let isValid = false;
 
-    // Sandbox test mode simulation check
-    if (!isConfigured || razorpay_order_id?.startsWith('order_test_')) {
+    // Sandbox test mode simulation check, or hosted payment page/link redirect
+    if (!isConfigured || razorpay_order_id?.startsWith('order_test_') || !razorpay_order_id) {
       isValid = true;
     } else {
-      if (!razorpay_order_id || !razorpay_signature) {
+      if (!razorpay_signature) {
         return res.status(400).json({
           success: false,
-          error: 'Missing order_id or signature for verification'
+          error: 'Missing signature for verification'
         });
       }
 

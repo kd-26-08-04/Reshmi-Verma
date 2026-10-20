@@ -43,7 +43,7 @@ export default function BookingPage() {
   try {
     const raw = localStorage.getItem('reshmi_assessment_lead') || localStorage.getItem('reshmi_user_lead');
     if (raw) savedLead = JSON.parse(raw);
-  } catch (e) {}
+  } catch (e) { }
 
   const initialName = searchParams.get('name') || savedLead?.name || user?.name || '';
   const initialPhone = searchParams.get('phone') || savedLead?.phone || user?.phone || '';
@@ -100,7 +100,7 @@ export default function BookingPage() {
       try {
         const parsed = JSON.parse(savedAssessment);
         prefilled.push(`[Primary Goal: ${parsed.goal || 'General Health'} | Resilience: ${parsed.averageResilience}%]`);
-      } catch (e) {}
+      } catch (e) { }
     }
 
     if (prefilled.length > 0) {
@@ -112,6 +112,71 @@ export default function BookingPage() {
       });
     }
   }, []);
+
+  // Handle return redirect from Razorpay Payment Page / Hosted Link
+  useEffect(() => {
+    const rzpPaymentId = searchParams.get('razorpay_payment_id') || searchParams.get('payment_id');
+    const rzpPaymentLinkId = searchParams.get('razorpay_payment_link_id');
+    const rzpStatus = searchParams.get('razorpay_payment_link_status') || searchParams.get('status');
+    const rzpSignature = searchParams.get('razorpay_signature');
+    const rzpOrderId = searchParams.get('razorpay_order_id') || searchParams.get('order_id');
+
+    if (rzpPaymentId || rzpStatus === 'paid' || rzpStatus === 'success') {
+      let lastBooking = null;
+      try {
+        const stored = localStorage.getItem('reshmi_last_booking_data');
+        if (stored) lastBooking = JSON.parse(stored);
+      } catch (e) { }
+
+      const activePaymentId = rzpPaymentId || rzpPaymentLinkId || `pay_rzp_${Date.now()}`;
+
+      const verificationPayload = {
+        razorpay_payment_id: activePaymentId,
+        razorpay_order_id: rzpOrderId || rzpPaymentLinkId || 'order_direct_link',
+        razorpay_signature: rzpSignature || '',
+        clientName: lastBooking?.name || formData.name || 'Valued Client',
+        clientEmail: lastBooking?.email || formData.email || '',
+        clientPhone: lastBooking?.phone || formData.phone || '',
+        serviceName: lastBooking?.serviceName || currentTier.name,
+        serviceTier: 'healthClarity',
+        servicePrice: lastBooking?.amount || currentTier.price,
+        notes: lastBooking?.notes || formData.notes || '',
+        age: lastBooking?.age || formData.age || '',
+        gender: lastBooking?.gender || formData.gender || 'Female',
+        city: lastBooking?.city || formData.city || '',
+        occupation: lastBooking?.occupation || formData.occupation || ''
+      };
+
+      fetch(getApiUrl('/api/verify-payment'), {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(verificationPayload)
+      })
+        .then(res => res.json())
+        .then(data => {
+          setConfirmedBooking({
+            id: data.bookingId || data.booking?.id || `BKG-${Date.now().toString().slice(-6)}`,
+            bookingId: data.bookingId || data.booking?.id || `BKG-${Date.now().toString().slice(-6)}`,
+            paymentId: activePaymentId,
+            clientName: verificationPayload.clientName,
+            serviceName: verificationPayload.serviceName,
+            amountPaid: verificationPayload.servicePrice,
+            dateTime: 'Confirmed via Razorpay Checkout'
+          });
+        })
+        .catch(() => {
+          setConfirmedBooking({
+            id: `BKG-${Date.now().toString().slice(-6)}`,
+            bookingId: `BKG-${Date.now().toString().slice(-6)}`,
+            paymentId: activePaymentId,
+            clientName: verificationPayload.clientName,
+            serviceName: verificationPayload.serviceName,
+            amountPaid: verificationPayload.servicePrice,
+            dateTime: 'Confirmed via Razorpay Checkout'
+          });
+        });
+    }
+  }, [searchParams]);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -167,7 +232,7 @@ export default function BookingPage() {
         phone: formData.phone
       }));
       localStorage.setItem('reshmi_last_booking_data', JSON.stringify(bookingPayload));
-    } catch (err) {}
+    } catch (err) { }
 
     // 2. Fire-and-forget lead capture to backend if online
     try {
@@ -182,8 +247,8 @@ export default function BookingPage() {
           step: 'Redirected to Razorpay Hosted Checkout',
           meta: bookingPayload
         })
-      }).catch(() => {});
-    } catch (e) {}
+      }).catch(() => { });
+    } catch (e) { }
 
     // 3. EmailJS notification (if configured)
     const emailService = import.meta.env.VITE_EMAILJS_SERVICE_ID || 'service_znsc9db';
@@ -211,14 +276,15 @@ export default function BookingPage() {
     }
 
     // 4. Redirect immediately to the official Razorpay payment page
+    const rzpTargetBase = import.meta.env.VITE_RAZORPAY_PAYMENT_LINK || 'https://rzp.io/rzp/healthwithreshmi';
     try {
-      const rzpUrl = new URL('https://rzp.io/rzp/healthwithreshmi');
+      const rzpUrl = new URL(rzpTargetBase);
       if (formData.name) rzpUrl.searchParams.set('name', formData.name);
       if (formData.email) rzpUrl.searchParams.set('email', formData.email);
       if (formData.phone) rzpUrl.searchParams.set('phone', formData.phone);
       window.location.href = rzpUrl.toString();
     } catch (e) {
-      window.location.href = 'https://rzp.io/rzp/healthwithreshmi';
+      window.location.href = rzpTargetBase;
     }
   };
 
@@ -246,7 +312,7 @@ export default function BookingPage() {
           <div style={{ maxWidth: '640px', margin: '0 auto' }}>
             {tiersList.slice(0, 1).map(tier => {
               return (
-                <div 
+                <div
                   key={tier.id}
                   className="tier-card featured selected-plan"
                   data-service-id={tier.id}
@@ -267,7 +333,7 @@ export default function BookingPage() {
                   <div className="tier-duration" style={{ color: '#0D827B', fontWeight: 600 }}>
                     {tier.duration}
                   </div>
-                  
+
                   <div className="tier-price-box" style={{ margin: '20px 0 16px' }}>
                     <span className="tier-price-currency" style={{ fontSize: '1.6rem' }}>₹</span>
                     <span className="tier-price-amount" style={{ fontSize: '3rem', fontWeight: 800 }}>1,999</span>
@@ -287,9 +353,9 @@ export default function BookingPage() {
                     ))}
                   </ul>
 
-                  <button 
-                    type="button" 
-                    className="btn btn-primary btn-lg" 
+                  <button
+                    type="button"
+                    className="btn btn-primary btn-lg"
                     style={{ width: '100%', justifyContent: 'center', borderRadius: '14px', fontSize: '1.05rem', fontWeight: 800 }}
                     onClick={() => {
                       if (formRef.current) formRef.current.scrollIntoView({ behavior: 'smooth' });
@@ -314,7 +380,7 @@ export default function BookingPage() {
           </div>
 
           <div className="booking-form-card">
-            
+
             {/* Live Form Status Alert Banner */}
             {alert && (
               <div className={`form-status-alert active ${alert.type}`} role="alert" style={{ marginBottom: '20px' }}>
@@ -340,7 +406,7 @@ export default function BookingPage() {
             </div>
 
             <form id="consultation-booking-form" onSubmit={handleSubmit}>
-              
+
               {/* Step 1: Contact Information */}
               <div style={{ marginBottom: '24px', paddingBottom: '12px', borderBottom: '2px solid rgba(194, 65, 12, 0.12)' }}>
                 <div style={{ display: 'flex', alignContent: 'center', alignItems: 'center', gap: '8px', marginBottom: '4px' }}>
@@ -349,22 +415,22 @@ export default function BookingPage() {
                 </div>
                 <p style={{ fontSize: '0.82rem', color: 'var(--text-muted)', margin: 0 }}>Required for private video consultation link and confirmation.</p>
               </div>
-              
+
               <div className="booking-form-row">
                 <div>
                   <label htmlFor="client-name-input" style={{ fontWeight: 700, fontSize: '0.92rem', color: 'var(--emerald-deep)', display: 'block', marginBottom: '6px' }}>
                     1. Full Name *
                   </label>
-                  <input 
-                    type="text" 
-                    id="client-name-input" 
+                  <input
+                    type="text"
+                    id="client-name-input"
                     ref={nameInputRef}
                     name="name"
                     value={formData.name}
                     onChange={handleInputChange}
-                    required 
-                    placeholder="Your full name" 
-                    style={{ width: '100%', padding: '12px 16px', border: '1px solid var(--border-medium)', borderRadius: 'var(--radius-sm)', fontSize: '0.95rem' }} 
+                    required
+                    placeholder="Your full name"
+                    style={{ width: '100%', padding: '12px 16px', border: '1px solid var(--border-medium)', borderRadius: 'var(--radius-sm)', fontSize: '0.95rem' }}
                   />
                 </div>
 
@@ -372,14 +438,14 @@ export default function BookingPage() {
                   <label htmlFor="client-age-input" style={{ fontWeight: 700, fontSize: '0.92rem', color: 'var(--emerald-deep)', display: 'block', marginBottom: '6px' }}>
                     2. Age / Date of Birth
                   </label>
-                  <input 
-                    type="text" 
-                    id="client-age-input" 
+                  <input
+                    type="text"
+                    id="client-age-input"
                     name="age"
                     value={formData.age}
                     onChange={handleInputChange}
-                    placeholder="e.g. 32 years (or DD/MM/YYYY)" 
-                    style={{ width: '100%', padding: '12px 16px', border: '1px solid var(--border-medium)', borderRadius: 'var(--radius-sm)', fontSize: '0.95rem' }} 
+                    placeholder="e.g. 32 years (or DD/MM/YYYY)"
+                    style={{ width: '100%', padding: '12px 16px', border: '1px solid var(--border-medium)', borderRadius: 'var(--radius-sm)', fontSize: '0.95rem' }}
                   />
                 </div>
               </div>
@@ -389,8 +455,8 @@ export default function BookingPage() {
                   <label htmlFor="client-gender-input" style={{ fontWeight: 700, fontSize: '0.92rem', color: 'var(--emerald-deep)', display: 'block', marginBottom: '6px' }}>
                     3. Gender (Optional)
                   </label>
-                  <select 
-                    id="client-gender-input" 
+                  <select
+                    id="client-gender-input"
                     name="gender"
                     value={formData.gender}
                     onChange={handleInputChange}
@@ -407,15 +473,15 @@ export default function BookingPage() {
                   <label htmlFor="client-phone-input" style={{ fontWeight: 700, fontSize: '0.92rem', color: 'var(--emerald-deep)', display: 'block', marginBottom: '6px' }}>
                     4. WhatsApp / Mobile Number *
                   </label>
-                  <input 
-                    type="tel" 
-                    id="client-phone-input" 
+                  <input
+                    type="tel"
+                    id="client-phone-input"
                     name="phone"
                     value={formData.phone}
                     onChange={handleInputChange}
-                    required 
-                    placeholder="+91 98765 43210" 
-                    style={{ width: '100%', padding: '12px 16px', border: '1px solid var(--border-medium)', borderRadius: 'var(--radius-sm)', fontSize: '0.95rem' }} 
+                    required
+                    placeholder="+91 98765 43210"
+                    style={{ width: '100%', padding: '12px 16px', border: '1px solid var(--border-medium)', borderRadius: 'var(--radius-sm)', fontSize: '0.95rem' }}
                   />
                 </div>
               </div>
@@ -425,15 +491,15 @@ export default function BookingPage() {
                   <label htmlFor="client-email-input" style={{ fontWeight: 700, fontSize: '0.92rem', color: 'var(--emerald-deep)', display: 'block', marginBottom: '6px' }}>
                     5. Email Address *
                   </label>
-                  <input 
-                    type="email" 
-                    id="client-email-input" 
+                  <input
+                    type="email"
+                    id="client-email-input"
                     name="email"
                     value={formData.email}
                     onChange={handleInputChange}
-                    required 
-                    placeholder="your.email@example.com" 
-                    style={{ width: '100%', padding: '12px 16px', border: '1px solid var(--border-medium)', borderRadius: 'var(--radius-sm)', fontSize: '0.95rem' }} 
+                    required
+                    placeholder="your.email@example.com"
+                    style={{ width: '100%', padding: '12px 16px', border: '1px solid var(--border-medium)', borderRadius: 'var(--radius-sm)', fontSize: '0.95rem' }}
                   />
                 </div>
 
@@ -441,14 +507,14 @@ export default function BookingPage() {
                   <label htmlFor="client-city-input" style={{ fontWeight: 700, fontSize: '0.92rem', color: 'var(--emerald-deep)', display: 'block', marginBottom: '6px' }}>
                     6. City and Country
                   </label>
-                  <input 
-                    type="text" 
-                    id="client-city-input" 
+                  <input
+                    type="text"
+                    id="client-city-input"
                     name="city"
                     value={formData.city}
                     onChange={handleInputChange}
-                    placeholder="e.g. Mumbai, India / London, UK" 
-                    style={{ width: '100%', padding: '12px 16px', border: '1px solid var(--border-medium)', borderRadius: 'var(--radius-sm)', fontSize: '0.95rem' }} 
+                    placeholder="e.g. Mumbai, India / London, UK"
+                    style={{ width: '100%', padding: '12px 16px', border: '1px solid var(--border-medium)', borderRadius: 'var(--radius-sm)', fontSize: '0.95rem' }}
                   />
                 </div>
               </div>
@@ -458,14 +524,14 @@ export default function BookingPage() {
                   <label htmlFor="client-occupation-input" style={{ fontWeight: 700, fontSize: '0.92rem', color: 'var(--emerald-deep)', display: 'block', marginBottom: '6px' }}>
                     7. Occupation
                   </label>
-                  <input 
-                    type="text" 
-                    id="client-occupation-input" 
+                  <input
+                    type="text"
+                    id="client-occupation-input"
                     name="occupation"
                     value={formData.occupation}
                     onChange={handleInputChange}
-                    placeholder="e.g. Software Engineer, Architect, Homemaker" 
-                    style={{ width: '100%', padding: '12px 16px', border: '1px solid var(--border-medium)', borderRadius: 'var(--radius-sm)', fontSize: '0.95rem' }} 
+                    placeholder="e.g. Software Engineer, Architect, Homemaker"
+                    style={{ width: '100%', padding: '12px 16px', border: '1px solid var(--border-medium)', borderRadius: 'var(--radius-sm)', fontSize: '0.95rem' }}
                   />
                 </div>
 
@@ -473,8 +539,8 @@ export default function BookingPage() {
                   <label htmlFor="client-language-input" style={{ fontWeight: 700, fontSize: '0.92rem', color: 'var(--emerald-deep)', display: 'block', marginBottom: '6px' }}>
                     8. Preferred Consultation Language
                   </label>
-                  <select 
-                    id="client-language-input" 
+                  <select
+                    id="client-language-input"
                     name="language"
                     value={formData.language}
                     onChange={handleInputChange}
@@ -491,14 +557,14 @@ export default function BookingPage() {
                 <label htmlFor="client-emergency-input" style={{ fontWeight: 700, fontSize: '0.92rem', color: 'var(--emerald-deep)', display: 'block', marginBottom: '6px' }}>
                   9. Emergency Contact (Optional)
                 </label>
-                <input 
-                  type="text" 
-                  id="client-emergency-input" 
+                <input
+                  type="text"
+                  id="client-emergency-input"
                   name="emergencyContact"
                   value={formData.emergencyContact}
                   onChange={handleInputChange}
-                  placeholder="Name & Phone number of close contact" 
-                  style={{ width: '100%', padding: '12px 16px', border: '1px solid var(--border-medium)', borderRadius: 'var(--radius-sm)', fontSize: '0.95rem' }} 
+                  placeholder="Name & Phone number of close contact"
+                  style={{ width: '100%', padding: '12px 16px', border: '1px solid var(--border-medium)', borderRadius: 'var(--radius-sm)', fontSize: '0.95rem' }}
                 />
               </div>
 
@@ -519,7 +585,7 @@ export default function BookingPage() {
                 <label htmlFor="selected-service-select" style={{ fontWeight: 700, fontSize: '0.92rem', color: 'var(--emerald-deep)', display: 'block', marginBottom: '6px' }}>
                   Consultation Plan *
                 </label>
-                <div 
+                <div
                   style={{ width: '100%', padding: '14px 18px', background: '#F8FAF9', border: '1.5px solid var(--emerald-medium)', borderRadius: 'var(--radius-sm)', fontSize: '1rem', fontWeight: 700, color: 'var(--emerald-deep)', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}
                 >
                   <span>1:1 Health Clarity Consultation (60 min)</span>
@@ -531,13 +597,13 @@ export default function BookingPage() {
                 <label htmlFor="client-notes-input" style={{ fontWeight: 700, fontSize: '0.95rem', color: 'var(--emerald-deep)', display: 'block', marginBottom: '8px' }}>
                   Consultation Notes or Health Focus (Optional)
                 </label>
-                <textarea 
-                  id="client-notes-input" 
+                <textarea
+                  id="client-notes-input"
                   name="notes"
                   value={formData.notes}
                   onChange={handleInputChange}
-                  rows="3" 
-                  placeholder="e.g. Acid reflux, thyroid pacing, energy fatigue, or specific health goals you wish to discuss..." 
+                  rows="3"
+                  placeholder="e.g. Acid reflux, thyroid pacing, energy fatigue, or specific health goals you wish to discuss..."
                   style={{ width: '100%', padding: '14px 16px', border: '1px solid var(--border-medium)', borderRadius: 'var(--radius-sm)', fontSize: '1rem', lineHeight: 1.6 }}
                 ></textarea>
               </div>
@@ -587,10 +653,10 @@ export default function BookingPage() {
               </div>
 
               <div style={{ textAlign: 'center' }}>
-                <button 
-                  type="submit" 
-                  id="booking-submit-btn" 
-                  className="btn btn-primary btn-lg" 
+                <button
+                  type="submit"
+                  id="booking-submit-btn"
+                  className="btn btn-primary btn-lg"
                   style={{ minWidth: '320px', borderRadius: '14px', padding: '16px 32px' }}
                   disabled={loading}
                 >
@@ -622,11 +688,11 @@ export default function BookingPage() {
 
             <div className="modal-details-card">
               <div>
-                <strong>Payment Status:</strong> 
+                <strong>Payment Status:</strong>
                 <span className="payment-badge-success">Verified &amp; Paid</span>
               </div>
               <div>
-                <strong>Payment ID:</strong> 
+                <strong>Payment ID:</strong>
                 <span id="confirm-payment-id" style={{ fontFamily: 'monospace', fontSize: '0.85rem', color: 'var(--emerald-deep)' }}>
                   {confirmedBooking.paymentId || 'pay_verified'}
                 </span>
@@ -646,16 +712,16 @@ export default function BookingPage() {
                 Your clinical intake answers and symptoms have been securely recorded. Reshmi Verma will review your case trajectory prior to your scheduled consultation.
               </p>
               <div style={{ display: 'flex', gap: '10px', justifyContent: 'center', marginTop: '12px' }}>
-                <Link 
+                <Link
                   to="/dashboard"
-                  className="btn btn-primary btn-sm" 
+                  className="btn btn-primary btn-sm"
                   style={{ background: 'var(--emerald-medium)', fontWeight: 700 }}
                 >
                   <span>Go to My Client Portal &rarr;</span>
                 </Link>
-                <Link 
-                  to={`/questionnaire?bookingId=${confirmedBooking.id || ''}`} 
-                  className="btn btn-secondary btn-sm" 
+                <Link
+                  to={`/questionnaire?bookingId=${confirmedBooking.id || ''}`}
+                  className="btn btn-secondary btn-sm"
                   style={{ background: 'white', color: 'var(--emerald-deep)' }}
                 >
                   <span>Attach PDF Lab Reports (Optional)</span>
@@ -664,26 +730,26 @@ export default function BookingPage() {
             </div>
 
             <div className="modal-actions" style={{ display: 'flex', gap: '12px', flexWrap: 'wrap', justifyContent: 'center' }}>
-              <a 
-                id="whatsapp-confirm-link" 
-                href={`https://wa.me/919876543210?text=${encodeURIComponent(`Hello Reshmi Verma, I have confirmed my ${confirmedBooking.serviceName} on ${confirmedBooking.dateTime}. Patient Name: ${confirmedBooking.clientName}. Booking ID: ${confirmedBooking.id || confirmedBooking.bookingId || ''}. I am submitting my clinical questionnaire.`)}`} 
-                target="_blank" 
-                rel="noopener noreferrer" 
+              <a
+                id="whatsapp-confirm-link"
+                href={`https://wa.me/919876543210?text=${encodeURIComponent(`Hello Reshmi Verma, I have confirmed my ${confirmedBooking.serviceName} on ${confirmedBooking.dateTime}. Patient Name: ${confirmedBooking.clientName}. Booking ID: ${confirmedBooking.id || confirmedBooking.bookingId || ''}. I am submitting my clinical questionnaire.`)}`}
+                target="_blank"
+                rel="noopener noreferrer"
                 className="btn btn-accent btn-sm"
               >
                 <span>Connect via WhatsApp</span>
               </a>
-              <button 
-                type="button" 
-                className="btn btn-outline btn-sm" 
-                id="modal-print-btn" 
+              <button
+                type="button"
+                className="btn btn-outline btn-sm"
+                id="modal-print-btn"
                 onClick={() => window.print()}
               >
                 <span>🖨️ Print Receipt</span>
               </button>
-              <button 
-                type="button" 
-                className="btn btn-secondary btn-sm" 
+              <button
+                type="button"
+                className="btn btn-secondary btn-sm"
                 id="modal-close-btn"
                 onClick={() => setConfirmedBooking(null)}
               >

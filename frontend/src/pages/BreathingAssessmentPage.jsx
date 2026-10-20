@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { useAuth } from '../context/AuthContext';
 import { getApiUrl } from '../utils/api';
 
 /**
@@ -220,6 +221,7 @@ const OA_SECTIONS = [
 ];
 
 export default function BreathingAssessmentPage() {
+  const { user } = useAuth();
   const [answers, setAnswers] = useState({});
   const [currentPillar, setCurrentPillar] = useState(0);
   const [isCompleted, setIsCompleted] = useState(false);
@@ -229,25 +231,76 @@ export default function BreathingAssessmentPage() {
   const [isBoltRunning, setIsBoltRunning] = useState(false);
   const [boltRecorded, setBoltRecorded] = useState(null);
 
-  // Lead Data
-  const [leadName, setLeadName] = useState('');
-  const [leadPhone, setLeadPhone] = useState('');
-  const [leadEmail, setLeadEmail] = useState('');
+  // Lead Data & Pre-Assessment Gate
+  const [leadInfo, setLeadInfo] = useState(() => {
+    try {
+      const stored = localStorage.getItem('reshmi_assessment_lead') || localStorage.getItem('reshmi_user_lead');
+      if (stored) return JSON.parse(stored);
+    } catch (e) {}
+    return null;
+  });
+
+  const [leadName, setLeadName] = useState(leadInfo?.name || user?.name || '');
+  const [leadPhone, setLeadPhone] = useState(leadInfo?.phone || user?.phone || '');
+  const [leadEmail, setLeadEmail] = useState(leadInfo?.email || user?.email || '');
+  const [leadError, setLeadError] = useState('');
+  const [leadSaving, setLeadSaving] = useState(false);
   const [isSavingLead, setIsSavingLead] = useState(false);
   const [savedSuccess, setSavedSuccess] = useState(false);
 
   useEffect(() => {
-    // Check if existing lead info exists
+    if (user && !leadInfo) {
+      if (user.name) setLeadName(user.name);
+      if (user.phone) setLeadPhone(user.phone);
+      if (user.email) setLeadEmail(user.email);
+    }
+  }, [user, leadInfo]);
+
+  const handleStartFromGate = async (e) => {
+    e.preventDefault();
+    setLeadError('');
+    if (!leadName.trim()) {
+      setLeadError('Please enter your full name.');
+      return;
+    }
+    if (!leadPhone.trim() || leadPhone.trim().length < 8) {
+      setLeadError('Please enter a valid WhatsApp or Mobile number.');
+      return;
+    }
+
+    setLeadSaving(true);
+    const storedLead = {
+      id: `oa_lead_${Date.now()}`,
+      name: leadName.trim(),
+      phone: leadPhone.trim(),
+      email: leadEmail.trim().toLowerCase()
+    };
+
     try {
-      const stored = localStorage.getItem('reshmi_assessment_lead');
-      if (stored) {
-        const parsed = JSON.parse(stored);
-        if (parsed.name) setLeadName(parsed.name);
-        if (parsed.phone) setLeadPhone(parsed.phone);
-        if (parsed.email) setLeadEmail(parsed.email);
-      }
-    } catch (e) {}
-  }, []);
+      const payload = {
+        name: storedLead.name,
+        phone: storedLead.phone,
+        email: storedLead.email,
+        source: 'breathing_assessment_gate',
+        step: 'Started Oxygen Advantage Assessment (Pillar 1 - Body)',
+        status: 'in_progress'
+      };
+
+      const res = await fetch(getApiUrl('/api/assessment-lead'), {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      });
+      const data = await res.json().catch(() => ({}));
+      if (data.id) storedLead.id = data.id;
+    } catch (err) {
+      // offline fallback
+    } finally {
+      localStorage.setItem('reshmi_assessment_lead', JSON.stringify(storedLead));
+      setLeadInfo(storedLead);
+      setLeadSaving(false);
+    }
+  };
 
   // BOLT Timer effect
   useEffect(() => {
@@ -328,16 +381,23 @@ export default function BreathingAssessmentPage() {
     window.scrollTo({ top: 0, behavior: 'smooth' });
 
     // Try saving assessment lead to backend
-    if (leadPhone || leadName) {
+    const activeLead = leadInfo || {
+      name: leadName,
+      phone: leadPhone,
+      email: leadEmail
+    };
+
+    if (activeLead.phone || activeLead.name) {
       setIsSavingLead(true);
       try {
         await fetch(getApiUrl('/api/assessment-lead'), {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
-            name: leadName,
-            phone: leadPhone,
-            email: leadEmail,
+            id: activeLead.id,
+            name: activeLead.name,
+            phone: activeLead.phone,
+            email: activeLead.email,
             source: 'breathing_assessment_tool',
             step: 'Completed OA Breathing Assessment',
             status: 'completed',
@@ -376,7 +436,7 @@ export default function BreathingAssessmentPage() {
           </p>
 
           {/* Progress Indicator */}
-          {!isCompleted && (
+          {!isCompleted && leadInfo && (
             <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '12px', flexWrap: 'wrap', marginTop: '16px' }}>
               {OA_SECTIONS.map((sec, idx) => (
                 <button
@@ -531,6 +591,100 @@ export default function BreathingAssessmentPage() {
                 🔄 Retake Breathing Assessment
               </button>
             </div>
+          </div>
+        ) : !leadInfo ? (
+          /* =========================================================================
+             PRE-ASSESSMENT LEAD GATE VIEW (DIRECT VISITOR LEAD CAPTURE)
+             ========================================================================= */
+          <div className="glass-assessment-card" style={{ maxWidth: '540px', margin: '0 auto', textAlign: 'center', padding: '40px 32px' }}>
+            <div style={{ width: '64px', height: '64px', borderRadius: '50%', background: '#EBF9F8', border: '2px solid #00E5D9', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', fontSize: '1.8rem', marginBottom: '16px' }}>
+              🫁
+            </div>
+            <div style={{ marginBottom: '12px' }}>
+              <span className="badge-pill" style={{ background: '#EBF9F8', color: '#167A71', borderColor: '#9FE3DD' }}>
+                <span className="pulse-dot" style={{ background: '#00E5D9' }}></span>
+                <span>Step 1 of 2 &bull; Oxygen Advantage® Intake</span>
+              </span>
+            </div>
+            <h2 style={{ fontSize: '1.75rem', color: '#121214', margin: '0 0 10px 0', fontFamily: 'var(--font-serif)' }}>
+              Where Should We Send Your Breathing Scorecard?
+            </h2>
+            <p style={{ color: 'var(--text-secondary)', fontSize: '0.94rem', lineHeight: 1.6, marginBottom: '24px' }}>
+              Please provide your contact information to begin your certified 16-question functional breathing assessment. Reshmi Verma (#13 Certified Coach in India) will calibrate your airway biomechanics, CO₂ tolerance &amp; BOLT score.
+            </p>
+
+            {leadError && (
+              <div style={{ background: '#FEE2E2', border: '1px solid #F87171', color: '#991B1B', padding: '10px 14px', borderRadius: '10px', fontSize: '0.88rem', marginBottom: '16px', textAlign: 'left' }}>
+                ⚠️ {leadError}
+              </div>
+            )}
+
+            <form onSubmit={handleStartFromGate} style={{ textAlign: 'left', display: 'flex', flexDirection: 'column', gap: '14px' }}>
+              <div>
+                <label style={{ display: 'block', fontSize: '0.88rem', fontWeight: 600, color: 'var(--text-primary)', marginBottom: '6px' }}>
+                  Full Name <span style={{ color: '#DC2626' }}>*</span>
+                </label>
+                <input 
+                  type="text" 
+                  value={leadName} 
+                  onChange={(e) => setLeadName(e.target.value)}
+                  placeholder="e.g. Priya Sharma"
+                  required
+                  style={{ width: '100%', padding: '12px 16px', borderRadius: '10px', border: '1.5px solid var(--border-medium)', fontSize: '0.95rem' }}
+                />
+              </div>
+
+              <div>
+                <label style={{ display: 'block', fontSize: '0.88rem', fontWeight: 600, color: 'var(--text-primary)', marginBottom: '6px' }}>
+                  WhatsApp / Mobile Number <span style={{ color: '#DC2626' }}>*</span>
+                </label>
+                <input 
+                  type="tel" 
+                  value={leadPhone} 
+                  onChange={(e) => setLeadPhone(e.target.value)}
+                  placeholder="+91 98765 43210"
+                  required
+                  style={{ width: '100%', padding: '12px 16px', borderRadius: '10px', border: '1.5px solid var(--border-medium)', fontSize: '0.95rem' }}
+                />
+              </div>
+
+              <div>
+                <label style={{ display: 'block', fontSize: '0.88rem', fontWeight: 600, color: 'var(--text-primary)', marginBottom: '6px' }}>
+                  Email Address <span style={{ fontSize: '0.78rem', color: 'var(--text-muted)' }}>(Optional)</span>
+                </label>
+                <input 
+                  type="email" 
+                  value={leadEmail} 
+                  onChange={(e) => setLeadEmail(e.target.value)}
+                  placeholder="name@example.com"
+                  style={{ width: '100%', padding: '12px 16px', borderRadius: '10px', border: '1.5px solid var(--border-medium)', fontSize: '0.95rem' }}
+                />
+              </div>
+
+              <button
+                type="submit"
+                disabled={leadSaving}
+                className="btn btn-primary"
+                style={{ 
+                  width: '100%', 
+                  padding: '14px', 
+                  fontSize: '1rem', 
+                  fontWeight: 700, 
+                  marginTop: '8px', 
+                  borderRadius: '12px',
+                  background: '#00E5D9',
+                  color: '#121214',
+                  border: 'none',
+                  cursor: 'pointer'
+                }}
+              >
+                {leadSaving ? 'Initializing Assessment...' : 'Begin Oxygen Advantage® Breathing Assessment →'}
+              </button>
+
+              <div style={{ textAlign: 'center', fontSize: '0.78rem', color: 'var(--text-muted)', marginTop: '4px' }}>
+                🔒 100% Confidential Clinical Evaluation &bull; Zero Spam Guarantee
+              </div>
+            </form>
           </div>
         ) : (
           /* =========================================================================
