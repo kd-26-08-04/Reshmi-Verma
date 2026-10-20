@@ -58,7 +58,7 @@ export default function Navbar() {
     closeMenu();
   };
 
-  const isAboutActive = location.pathname === '/about' || location.hash === '#videos';
+  const isAboutActive = location.pathname === '/about' || location.pathname === '/videos' || location.pathname === '/testimonials';
   const isAssessmentActive =
     location.pathname === '/assessment' ||
     location.pathname === '/breathing-assessment' ||
@@ -133,9 +133,9 @@ export default function Navbar() {
               </Link>
 
               <Link
-                to="/#videos"
-                className="dropdown-item"
-                onClick={handleVideoClick}
+                to="/videos"
+                className={`dropdown-item ${location.pathname === '/videos' ? 'active' : ''}`}
+                onClick={closeMenu}
               >
                 <div className="dropdown-item-icon video-icon">
                   <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
@@ -144,10 +144,8 @@ export default function Navbar() {
                 </div>
                 <div className="dropdown-item-text">
                   <div className="dropdown-title-row">
-                    <span className="dropdown-item-title">Video</span>
-                    {/* <span className="dropdown-tag-badge live">Watch</span> */}
+                    <span className="dropdown-item-title">Clinical Videos</span>
                   </div>
-                  {/* <span className="dropdown-item-subtitle">Clinical Masterclasses, Reels & YouTube</span> */}
                 </div>
               </Link>
 

@@ -82,6 +82,7 @@ export default function Footer() {
                 <li><Link to="/assessment">Health Assessment</Link></li>
                 <li><Link to="/breathing-assessment">Breathing Assessment</Link></li>
                 <li><Link to="/booking">Book Consultation</Link></li>
+                <li><Link to="/videos">Clinical Video Library</Link></li>
                 <li><Link to="/contact">Contact Us</Link></li>
               </ul>
             </div>
@@ -89,7 +90,7 @@ export default function Footer() {
             <div className="footer-col">
               <h5>Consultations</h5>
               <ul className="footer-links">
-                <li><Link to="/booking">1:1 Health Clarity Session (₹1,999)</Link></li>
+                <li><Link to="/booking">1:1 Health Clarity Session</Link></li>
                 <li><Link to="/assessment">Functional Health Assessment</Link></li>
                 <li><Link to="/breathing-assessment">Functional Breathing Assessment</Link></li>
                 <li><Link to="/breathe">BOLT Breath Test</Link></li>

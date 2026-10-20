@@ -90,11 +90,13 @@ export default function WelcomeAssessmentModal() {
     setError('');
 
     // Save lead in localStorage for pre-filling assessments & booking
-    localStorage.setItem('reshmi_user_lead', JSON.stringify({
+    const leadObj = {
       name: name.trim(),
       phone: phone.trim(),
       email: email.trim()
-    }));
+    };
+    localStorage.setItem('reshmi_user_lead', JSON.stringify(leadObj));
+    localStorage.setItem('reshmi_assessment_lead', JSON.stringify(leadObj));
 
     // Send lead to backend API
     try {
@@ -170,13 +172,14 @@ export default function WelcomeAssessmentModal() {
       <div 
         className="welcome-assessment-modal" 
         style={{ 
-          maxWidth: '560px', 
-          padding: '36px 30px', 
+          maxWidth: step === 2 ? '440px' : '560px', 
+          padding: step === 2 ? '24px 22px 18px' : '36px 30px', 
           borderRadius: '24px', 
           background: '#FAF9F6',
           position: 'relative',
           boxShadow: '0 25px 60px rgba(0, 0, 0, 0.18)',
-          border: '1px solid rgba(18, 18, 20, 0.08)'
+          border: '1px solid rgba(18, 18, 20, 0.08)',
+          transition: 'max-width 0.25s ease, padding 0.25s ease'
         }}
       >
         {/* Dark Circular Close Button */}
@@ -225,7 +228,6 @@ export default function WelcomeAssessmentModal() {
               Free Gut &amp; Breath Health Assessment
             </span>
 
-            {/* Main Question Headline */}
             <h2 id="welcome-modal-title" style={{ 
               fontSize: 'clamp(2.1rem, 5vw, 2.75rem)', 
               color: '#121214', 
@@ -234,8 +236,8 @@ export default function WelcomeAssessmentModal() {
               margin: '0 0 16px',
               fontWeight: 800
             }}>
-              Is your body <br />
-              <span style={{ color: '#FF007F', fontStyle: 'italic', fontWeight: 800 }}>talking to you?</span>
+              What is your body <br />
+              <span style={{ color: '#FF007F', fontStyle: 'italic', fontWeight: 800 }}>trying to tell you?</span>
             </h2>
 
             {/* Description Paragraph */}
@@ -362,36 +364,36 @@ export default function WelcomeAssessmentModal() {
 
         {/* STEP 2: LEAD DATA ENTRY */}
         {step === 2 && (
-          <div style={{ padding: '6px 4px' }}>
-            <div style={{ textAlign: 'center', marginBottom: '8px' }}>
+          <div style={{ padding: '0 4px' }}>
+            <div style={{ textAlign: 'center', marginBottom: '6px' }}>
               <span style={{ 
                 display: 'inline-flex', 
                 alignItems: 'center', 
                 gap: '6px', 
-                padding: '4px 14px', 
+                padding: '3px 12px', 
                 borderRadius: '999px', 
                 background: '#FDE2E8', 
                 color: '#0A0E0C', 
-                fontSize: '0.78rem', 
+                fontSize: '0.74rem', 
                 fontWeight: 700, 
                 letterSpacing: '0.04em' 
               }}>
-                <span style={{ width: '7px', height: '7px', borderRadius: '50%', background: '#E06D85' }}></span>
+                <span style={{ width: '6px', height: '6px', borderRadius: '50%', background: '#E06D85' }}></span>
                 <span>Step 2 of 3 • Enter Your Details</span>
               </span>
             </div>
 
-            <h3 style={{ fontSize: 'clamp(1.3rem, 3.5vw, 1.55rem)', color: 'var(--emerald-deep)', textAlign: 'center', margin: '0 0 6px', fontFamily: 'var(--font-serif)', lineHeight: 1.25 }}>
+            <h3 style={{ fontSize: '1.35rem', color: 'var(--emerald-deep)', textAlign: 'center', margin: '0 0 4px', fontFamily: 'var(--font-serif)', lineHeight: 1.25, fontWeight: 800 }}>
               Where Should We Send Your Score?
             </h3>
 
-            <p style={{ fontSize: '0.88rem', color: 'var(--text-secondary)', textAlign: 'center', margin: '0 auto 18px', maxWidth: '420px', lineHeight: 1.5 }}>
+            <p style={{ fontSize: '0.82rem', color: 'var(--text-secondary)', textAlign: 'center', margin: '0 auto 14px', maxWidth: '380px', lineHeight: 1.45 }}>
               Apna personalized root-cause breakdown paane ke liye apni details enter karein:
             </p>
 
-            <form onSubmit={handleLeadSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '12px', marginBottom: '16px' }}>
-              <div>
-                <label style={{ display: 'block', fontSize: '0.8rem', fontWeight: 600, color: '#374151', marginBottom: '4px' }}>
+            <form onSubmit={handleLeadSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '10px', textAlign: 'left' }}>
+              <div style={{ textAlign: 'left' }}>
+                <label style={{ display: 'block', textAlign: 'left', fontSize: '0.78rem', fontWeight: 700, color: '#374151', marginBottom: '3px' }}>
                   Your Full Name *
                 </label>
                 <input
@@ -403,18 +405,19 @@ export default function WelcomeAssessmentModal() {
                   required
                   style={{
                     width: '100%',
-                    padding: '11px 14px',
-                    borderRadius: '12px',
-                    border: '1.5px solid var(--border-medium)',
-                    fontSize: '0.92rem',
+                    padding: '9px 12px',
+                    borderRadius: '10px',
+                    border: '1.5px solid #D1D5DB',
+                    fontSize: '0.9rem',
                     outline: 'none',
-                    background: '#FAFAF9'
+                    background: '#FFFFFF',
+                    boxSizing: 'border-box'
                   }}
                 />
               </div>
 
-              <div>
-                <label style={{ display: 'block', fontSize: '0.8rem', fontWeight: 600, color: '#374151', marginBottom: '4px' }}>
+              <div style={{ textAlign: 'left' }}>
+                <label style={{ display: 'block', textAlign: 'left', fontSize: '0.78rem', fontWeight: 700, color: '#374151', marginBottom: '3px' }}>
                   WhatsApp / Phone Number *
                 </label>
                 <input
@@ -426,18 +429,19 @@ export default function WelcomeAssessmentModal() {
                   required
                   style={{
                     width: '100%',
-                    padding: '11px 14px',
-                    borderRadius: '12px',
-                    border: '1.5px solid var(--border-medium)',
-                    fontSize: '0.92rem',
+                    padding: '9px 12px',
+                    borderRadius: '10px',
+                    border: '1.5px solid #D1D5DB',
+                    fontSize: '0.9rem',
                     outline: 'none',
-                    background: '#FAFAF9'
+                    background: '#FFFFFF',
+                    boxSizing: 'border-box'
                   }}
                 />
               </div>
 
-              <div>
-                <label style={{ display: 'block', fontSize: '0.8rem', fontWeight: 600, color: '#374151', marginBottom: '4px' }}>
+              <div style={{ textAlign: 'left' }}>
+                <label style={{ display: 'block', textAlign: 'left', fontSize: '0.78rem', fontWeight: 700, color: '#374151', marginBottom: '3px' }}>
                   Email Address *
                 </label>
                 <input
@@ -449,18 +453,19 @@ export default function WelcomeAssessmentModal() {
                   required
                   style={{
                     width: '100%',
-                    padding: '11px 14px',
-                    borderRadius: '12px',
-                    border: '1.5px solid var(--border-medium)',
-                    fontSize: '0.92rem',
+                    padding: '9px 12px',
+                    borderRadius: '10px',
+                    border: '1.5px solid #D1D5DB',
+                    fontSize: '0.9rem',
                     outline: 'none',
-                    background: '#FAFAF9'
+                    background: '#FFFFFF',
+                    boxSizing: 'border-box'
                   }}
                 />
               </div>
 
               {error && (
-                <div style={{ color: '#FF5A1F', fontSize: '0.82rem', fontWeight: 600, background: '#FFF2EB', border: '1px solid #FFB394', padding: '8px 12px', borderRadius: '8px' }}>
+                <div style={{ color: '#FF5A1F', fontSize: '0.8rem', fontWeight: 600, background: '#FFF2EB', border: '1px solid #FFB394', padding: '6px 10px', borderRadius: '8px' }}>
                   ⚠️ {error}
                 </div>
               )}
@@ -471,10 +476,10 @@ export default function WelcomeAssessmentModal() {
                 className="btn"
                 style={{
                   width: '100%',
-                  padding: '13px',
-                  borderRadius: '12px',
+                  padding: '11px',
+                  borderRadius: '10px',
                   fontWeight: 700,
-                  fontSize: '0.95rem',
+                  fontSize: '0.92rem',
                   marginTop: '4px',
                   justifyContent: 'center',
                   background: '#121214',
@@ -485,7 +490,7 @@ export default function WelcomeAssessmentModal() {
                 <span>{submitting ? 'Verifying...' : 'Continue to Assessment Track →'}</span>
               </button>
 
-              <div style={{ textAlign: 'center', marginTop: '6px' }}>
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '6px', padding: '0 2px' }}>
                 <button
                   type="button"
                   onClick={() => setStep(1)}
@@ -493,14 +498,34 @@ export default function WelcomeAssessmentModal() {
                     background: 'none',
                     border: 'none',
                     color: 'var(--text-muted)',
-                    fontSize: '0.82rem',
-                    cursor: 'pointer'
+                    fontSize: '0.8rem',
+                    cursor: 'pointer',
+                    padding: '4px 0'
                   }}
                 >
                   ← Back
                 </button>
+                <button
+                  type="button"
+                  onClick={handleSkip}
+                  style={{
+                    background: 'none',
+                    border: 'none',
+                    color: '#9CA3AF',
+                    fontSize: '0.8rem',
+                    cursor: 'pointer',
+                    textDecoration: 'underline',
+                    padding: '4px 0'
+                  }}
+                >
+                  Skip for now ×
+                </button>
               </div>
             </form>
+
+            <div style={{ marginTop: '8px', textAlign: 'center', fontSize: '0.72rem', color: 'var(--text-muted)' }}>
+              🔒 Reshmi Verma Functional Health &bull; 100% Free &bull; Zero spam guarantee
+            </div>
           </div>
         )}
 
@@ -707,27 +732,31 @@ export default function WelcomeAssessmentModal() {
           </div>
         )}
 
-        {/* Skip Button at bottom */}
-        <div style={{ textAlign: 'center', marginTop: '12px' }}>
-          <button 
-            type="button" 
-            onClick={handleSkip}
-            style={{ 
-              background: 'none',
-              border: 'none',
-              color: '#9CA3AF', 
-              fontSize: '0.84rem',
-              cursor: 'pointer',
-              textDecoration: 'underline'
-            }}
-          >
-            Skip for now &times;
-          </button>
-        </div>
+        {step !== 2 && (
+          <>
+            {/* Skip Button at bottom */}
+            <div style={{ textAlign: 'center', marginTop: '12px' }}>
+              <button 
+                type="button" 
+                onClick={handleSkip}
+                style={{ 
+                  background: 'none',
+                  border: 'none',
+                  color: '#9CA3AF', 
+                  fontSize: '0.84rem',
+                  cursor: 'pointer',
+                  textDecoration: 'underline'
+                }}
+              >
+                Skip for now &times;
+              </button>
+            </div>
 
-        <div style={{ marginTop: '10px', textAlign: 'center', fontSize: '0.74rem', color: 'var(--text-muted)' }}>
-          🔒 Reshmi Verma Functional Health &bull; 100% Free &bull; Zero spam guarantee
-        </div>
+            <div style={{ marginTop: '10px', textAlign: 'center', fontSize: '0.74rem', color: 'var(--text-muted)' }}>
+              🔒 Reshmi Verma Functional Health &bull; 100% Free &bull; Zero spam guarantee
+            </div>
+          </>
+        )}
       </div>
     </div>
   );

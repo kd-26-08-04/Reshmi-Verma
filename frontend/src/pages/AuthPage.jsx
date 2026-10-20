@@ -75,31 +75,16 @@ export default function AuthPage() {
         <div className="auth-ambient-sphere auth-orb-1" aria-hidden="true"></div>
         <div className="auth-ambient-sphere auth-orb-2" aria-hidden="true"></div>
 
-        <div className="auth-luxury-card">
+        <div className="auth-luxury-card" style={{ maxWidth: '440px', padding: '24px 28px 20px' }}>
           <div style={{ textAlign: 'center' }}>
-            <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '16px' }}>
-              <div style={{
-                width: '70px',
-                height: '70px',
-                borderRadius: '50%',
-                background: '#000000',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                padding: '6px',
-                boxShadow: '0 6px 20px rgba(0, 0, 0, 0.35), 0 0 0 1.5px rgba(212, 175, 55, 0.55)'
-              }}>
-                <span style={{ fontWeight: 800, fontSize: "1.4rem", color: "#FFFFFF" }}>HR</span>
-              </div>
-            </div>
-            <div className="auth-security-pill">
+            <div className="auth-security-pill" style={{ marginBottom: '10px' }}>
               <span className="pulse-dot"></span>
               <span>Confidential Clinical Portal</span>
             </div>
-            <h1 id="auth-title" style={{ fontFamily: 'var(--font-serif)', fontSize: '2.2rem', color: 'var(--emerald-deep)', margin: '0 0 6px', lineHeight: 1.15 }}>
+            <h1 id="auth-title" style={{ fontFamily: 'var(--font-serif)', fontSize: '1.75rem', color: 'var(--emerald-deep)', margin: '0 0 4px', lineHeight: 1.2, fontWeight: 800 }}>
               {mode === 'login' ? 'Client Sign In' : 'Create Account'}
             </h1>
-            <p id="auth-desc" style={{ fontSize: '0.92rem', color: 'var(--text-muted)', margin: 0, lineHeight: 1.5 }}>
+            <p id="auth-desc" style={{ fontSize: '0.86rem', color: 'var(--text-muted)', margin: 0, lineHeight: 1.45 }}>
               {mode === 'login' 
                 ? 'Access your personalized consultation records, intake diagnostics, and clinical health blueprint.'
                 : 'Register for your secure patient portal, health intake history, and 1-on-1 consultation scheduling.'}

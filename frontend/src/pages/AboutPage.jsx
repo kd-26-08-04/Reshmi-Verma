@@ -94,7 +94,7 @@ export default function AboutPage() {
 
             <div style={{ display: 'flex', gap: '14px', justifyContent: 'center', flexWrap: 'wrap' }}>
               <Link to="/booking" className="btn btn-primary btn-lg" style={{ borderRadius: '14px', padding: '14px 28px' }}>
-                <span>Book 1:1 Consultation (₹1,999)</span>
+                <span>Book 1:1 Consultation</span>
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
                   <line x1="5" y1="12" x2="19" y2="12"></line>
                   <polyline points="12 5 19 12 12 19"></polyline>
@@ -154,10 +154,10 @@ export default function AboutPage() {
           <div className="about-grid">
             <div className="about-image-wrapper">
               <div className="about-main-image about-portrait-breathe" style={{ aspectRatio: '3/4', maxHeight: '580px', borderRadius: '24px', overflow: 'hidden' }}>
-                <img 
-                  src="/assets/images/founder.jpg" 
-                  alt="Reshmi Verma - Healthcare Executive, Functional Nutritionist & Biohacker" 
-                  style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center 12%' }} 
+                <img
+                  src="/assets/images/founder.jpg"
+                  alt="Reshmi Verma - Healthcare Executive, Functional Nutritionist & Biohacker"
+                  style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center 12%' }}
                 />
               </div>
               <div className="transformation-callout about-badge-float" style={{ bottom: '-16px', right: '-16px' }}>
@@ -182,18 +182,18 @@ export default function AboutPage() {
               </p>
 
               {/* Philosophy Quote Callout */}
-              <div 
+              <div
                 className="quote-interactive-box"
-                style={{ 
-                  background: 'var(--sand-cream)', 
-                  borderLeft: '4px solid var(--emerald-medium)', 
-                  padding: '18px 22px', 
-                  borderRadius: '0 16px 16px 0', 
-                  margin: '18px 0 20px', 
-                  fontStyle: 'italic', 
-                  color: 'var(--emerald-primary)', 
-                  fontSize: '1.02rem', 
-                  lineHeight: 1.6 
+                style={{
+                  background: 'var(--sand-cream)',
+                  borderLeft: '4px solid var(--emerald-medium)',
+                  padding: '18px 22px',
+                  borderRadius: '0 16px 16px 0',
+                  margin: '18px 0 20px',
+                  fontStyle: 'italic',
+                  color: 'var(--emerald-primary)',
+                  fontSize: '1.02rem',
+                  lineHeight: 1.6
                 }}
               >
                 &ldquo;Perhaps my most personal qualification is my own transformation losing more than 38 kg (from 98 kg to the 60s kg) and completely changing my relationship with health. Today, I bring together science, healthcare experience and lived transformation to help people build better health, greater resilience and lasting change.&rdquo;
@@ -228,7 +228,7 @@ export default function AboutPage() {
 
               <div style={{ display: 'flex', gap: '14px', flexWrap: 'wrap', marginTop: '22px' }}>
                 <Link to="/booking" className="btn btn-primary" style={{ borderRadius: '12px', padding: '12px 24px' }}>
-                  <span>Book 1:1 Health Consultation (₹1,999)</span>
+                  <span>Book 1:1 Health Consultation</span>
                 </Link>
                 <Link to="/assessment" className="btn btn-secondary" style={{ borderRadius: '12px', padding: '12px 20px' }}>
                   <span>Take Free Assessment</span>
@@ -426,7 +426,7 @@ export default function AboutPage() {
               className="btn btn-accent btn-lg"
               style={{ background: 'white', color: 'var(--emerald-deep)', borderRadius: '14px', padding: '14px 28px', fontWeight: 700 }}
             >
-              <span>Book Health Clarity Session (₹1,999)</span>
+              <span>Book Health Clarity Session</span>
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
                 <line x1="5" y1="12" x2="19" y2="12"></line>
                 <polyline points="12 5 19 12 12 19"></polyline>

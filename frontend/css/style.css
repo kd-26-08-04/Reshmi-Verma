@@ -7394,3 +7394,34 @@ h6 {
   }
 }
 
+/* Patient Stories Infinite Marquee */
+.stories-marquee-container {
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+  padding: 10px 0;
+  -webkit-mask-image: linear-gradient(to right, transparent, black 4%, black 96%, transparent);
+  mask-image: linear-gradient(to right, transparent, black 4%, black 96%, transparent);
+}
+
+.stories-marquee-track {
+  display: flex;
+  gap: 20px;
+  width: max-content;
+  animation: storiesMarqueeScroll 32s linear infinite;
+}
+
+.stories-marquee-track:hover {
+  animation-play-state: paused;
+}
+
+@keyframes storiesMarqueeScroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+

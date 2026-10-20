@@ -558,47 +558,6 @@ export default function AssessmentPage() {
     <>
       <section className="assessment-page-layout">
         <div className="container assessment-widescreen-container">
-          
-          {/* Dual Assessment Track Switcher */}
-          <div style={{ display: 'flex', justifyContent: 'center', gap: '10px', marginBottom: '22px', flexWrap: 'wrap' }}>
-            <Link 
-              to="/assessment"
-              style={{ 
-                padding: '8px 18px', 
-                fontSize: '0.86rem', 
-                borderRadius: '999px', 
-                background: '#FDF1EB', 
-                color: '#FF007F', 
-                border: '1.5px solid #F7BA9E', 
-                fontWeight: 700,
-                textDecoration: 'none',
-                display: 'inline-flex',
-                alignItems: 'center',
-                gap: '6px'
-              }}
-            >
-              Functional Health Assessment
-            </Link>
-            <Link 
-              to="/breathing-assessment"
-              style={{ 
-                padding: '8px 18px', 
-                fontSize: '0.86rem', 
-                borderRadius: '999px', 
-                background: '#FFFFFF', 
-                color: 'var(--text-secondary)', 
-                border: '1.5px solid var(--border-subtle)', 
-                fontWeight: 600,
-                textDecoration: 'none',
-                display: 'inline-flex',
-                alignItems: 'center',
-                gap: '6px'
-              }}
-            >
-              Functional Breathing Assessment
-            </Link>
-          </div>
-
           {/* Step 0: Gate Card (if user arrived directly without popup info) */}
           {!results && !leadInfo ? (
             <div className="glass-assessment-card" style={{ maxWidth: '540px', margin: '0 auto', textAlign: 'center', padding: '40px 32px' }}>
@@ -925,7 +884,7 @@ export default function AssessmentPage() {
                     className="btn btn-primary" 
                     style={{ background: 'var(--emerald-medium)', color: 'white', fontWeight: 700, padding: '14px 28px', fontSize: '1rem', borderRadius: '14px' }}
                   >
-                    <span>Book 1-on-1 Consultation With These Scores (₹1,999) &rarr;</span>
+                    <span>Book 1-on-1 Consultation With These Scores &rarr;</span>
                   </Link>
                 </div>
               </div>

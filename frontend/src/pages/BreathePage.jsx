@@ -113,7 +113,7 @@ export default function BreathePage() {
         title: 'CRITICAL CLINICAL ALERT: Severe Cellular Oxygen Starvation',
         summary: `Your BOLT score is critically low at ${score.toFixed(1)}s (${marks}/100 Marks). This confirms that your cells, brain, and gut lining are chronically starved of functional oxygen due to rapid carbon dioxide depletion and silent mouth-breathing.`,
         recommendation: 'CONSULTATION ADVISED: Leaving low CO2 tolerance unaddressed leads to chronic gut inflammation and autonomic exhaustion. Reshmi Verma (Functional Nutritionist & Breathwork Facilitator) advises booking a 1-on-1 clinical consultation to restore your Bohr-effect oxygen delivery and repair your gut-mucosal barrier.',
-        buttonText: 'Book 1:1 Health Clarity Consultation (₹1,999)',
+        buttonText: 'Book 1:1 Health Clarity Consultation',
         buttonClass: 'btn btn-primary btn-lg pulse-anim',
         bohr: 'Your red blood cells possess an excessively tight hemoglobin-oxygen bond. Due to chronic over-breathing and depleted CO₂, oxygen is trapped in the bloodstream and cannot discharge into digestive organs or muscle tissue.',
         protocol: 'Immediate Clinical Steps: 100% strict daytime nasal breathing, nocturnal mouth-taping protocol, and immediate clinical breathwork titration with Reshmi Verma.'
@@ -125,12 +125,12 @@ export default function BreathePage() {
         grade: 'Moderate Autonomic Strain',
         tier: 'Sub-Optimal Respiration (Compromised Reserve)',
         urgency: 'warning',
-        badgeColor: '#D97706',
-        badgeBg: '#FFFBEB',
+        badgeColor: '#0D9488',
+        badgeBg: '#F0FDFA',
         title: 'CLINICAL RECOMMENDATION: Consultation Strongly Recommended',
         summary: `Good attempt! Your score is ${score.toFixed(1)}s (${marks}/100 Marks). While you manage day-to-day tasks, your breathing pattern is silently burning 30% to 40% excess cellular energy, causing afternoon fatigue crashes and digestive acidity.`,
         recommendation: 'HIGHLY RECOMMENDED FOR SESSION BOOKING: You are prime for rapid turnaround. A targeted consultation with Reshmi Verma will reset your respiratory chemoreceptors, double your stamina, and eliminate digestive bloating within 21 days.',
-        buttonText: 'Book 1:1 Health Clarity Consultation (₹1,999)',
+        buttonText: 'Book 1:1 Health Clarity Consultation',
         buttonClass: 'btn btn-primary btn-lg',
         bohr: 'Sub-conscious hyperventilation and upper-chest breathing cause intermittent cellular hypoxia. Stress spikes accelerate CO₂ loss, triggering anxiety surges and digestive spasms.',
         protocol: 'Recommended Protocol: Daily 4-7-8 somatic autonomic regulation, 5-5 Coherent Breathing before main meals, and personalized clinical guidance.'
@@ -404,7 +404,7 @@ export default function BreathePage() {
             {/* Result Box with Marks & Clinical Urgency */}
             {boltState === 'completed' && (
               <div id="bolt-result-analysis" style={{ display: 'block', background: 'white', borderRadius: 'var(--radius-lg)', padding: '36px', border: `2px solid ${boltAnalysis.badgeColor}`, boxShadow: '0 20px 45px rgba(15, 23, 42, 0.12)', marginTop: '36px', animation: 'fadeIn 0.4s ease' }}>
-                
+
                 {/* Header with Celebration & Marks Badge */}
                 <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '24px', flexWrap: 'wrap', gap: '16px', paddingBottom: '20px', borderBottom: '1px solid var(--border-subtle)' }}>
                   <div>
@@ -439,7 +439,7 @@ export default function BreathePage() {
                     <span>Status: <strong style={{ color: boltAnalysis.badgeColor }}>{boltAnalysis.tier}</strong></span>
                   </div>
                   <div style={{ width: '100%', height: '10px', background: 'var(--bg-tertiary)', borderRadius: '999px', overflow: 'hidden' }}>
-                    <div style={{ width: `${boltAnalysis.marks}%`, height: '100%', background: `linear-gradient(90deg, ${boltAnalysis.badgeColor}, #EA580C)`, borderRadius: '999px', transition: 'width 1s ease' }}></div>
+                    <div style={{ width: `${boltAnalysis.marks}%`, height: '100%', background: `linear-gradient(90deg, ${boltAnalysis.badgeColor}, #00E5D9)`, borderRadius: '999px', transition: 'width 1s ease' }}></div>
                   </div>
                 </div>
 
@@ -475,7 +475,7 @@ export default function BreathePage() {
                     {boltAnalysis.urgency === 'critical' ? 'Urgent 1-on-1 Consultation Required' : 'Book Your Personalized Clinical Roadmap'}
                   </h4>
                   <div style={{ display: 'flex', gap: '14px', flexWrap: 'wrap', justifyContent: 'center' }}>
-                    <Link 
+                    <Link
                       to={`/booking?bolt=${boltSeconds.toFixed(1)}&score=${boltAnalysis.marks}&plan=discovery`}
                       className={boltAnalysis.buttonClass}
                       style={{ padding: '14px 32px', fontSize: '1.05rem', boxShadow: '0 10px 25px rgba(194, 65, 12, 0.25)' }}
@@ -631,8 +631,8 @@ export default function BreathePage() {
                   {breathTally <= 12
                     ? 'Superb autonomic calm. Your resting rate indicates parasympathetic dominance and healthy carbon dioxide conservation.'
                     : breathTally <= 18
-                    ? 'Normal baseline range. Incorporating daily 5-5 Coherent Breathing will further optimize resting heart rate variability.'
-                    : 'Elevated resting frequency (>18 bpm). You are breathing faster than your metabolic requirements demand, blowing off CO₂ and triggering sympathetic fight-or-flight overdrive.'}
+                      ? 'Normal baseline range. Incorporating daily 5-5 Coherent Breathing will further optimize resting heart rate variability.'
+                      : 'Elevated resting frequency (>18 bpm). You are breathing faster than your metabolic requirements demand, blowing off CO₂ and triggering sympathetic fight-or-flight overdrive.'}
                 </div>
                 <a href="#vagal-station" className="btn btn-secondary btn-sm">Use in Vagal Tone Calculator &darr;</a>
               </div>

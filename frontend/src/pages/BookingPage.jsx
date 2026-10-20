@@ -21,19 +21,11 @@ const DEFAULT_PRICING_TIERS = {
       'Direct 1-on-1 consultation via private secure video call',
       'Tailored, actionable functional recovery blueprint'
     ],
-    buttonText: 'Book 1:1 Consultation (₹1,999)'
+    buttonText: 'Book 1:1 Consultation'
   }
 };
 
 const DEFAULT_TIERS_LIST = Object.values(DEFAULT_PRICING_TIERS);
-
-const TIME_SLOTS = [
-  '10:00 AM - Morning Slot',
-  '11:30 AM - Morning Slot',
-  '02:30 PM - Afternoon Slot',
-  '04:00 PM - Afternoon Slot',
-  '06:00 PM - Evening Slot'
-];
 
 export default function BookingPage() {
   const [searchParams] = useSearchParams();
@@ -42,19 +34,14 @@ export default function BookingPage() {
   const formRef = useRef(null);
   const nameInputRef = useRef(null);
 
-  // Dynamic Tiers state loaded from Admin API
-  const [tiersList, setTiersList] = useState(DEFAULT_TIERS_LIST);
-
-  // Initialize selected tier from URL or fallback
-  const rawTier = searchParams.get('tier') || searchParams.get('plan') || 'healthClarity';
-  const urlTier = rawTier === 'comprehensive' ? 'healthClarity' : rawTier;
-  const initialTierKey = DEFAULT_PRICING_TIERS[urlTier] ? urlTier : 'healthClarity';
-  const [selectedTier, setSelectedTier] = useState(initialTierKey);
+  // Tiers state
+  const tiersList = DEFAULT_TIERS_LIST;
+  const currentTier = DEFAULT_PRICING_TIERS.healthClarity;
 
   // Read any prefilled lead data from URL or localStorage
   let savedLead = null;
   try {
-    const raw = localStorage.getItem('reshmi_assessment_lead');
+    const raw = localStorage.getItem('reshmi_assessment_lead') || localStorage.getItem('reshmi_user_lead');
     if (raw) savedLead = JSON.parse(raw);
   } catch (e) {}
 
@@ -62,8 +49,7 @@ export default function BookingPage() {
   const initialPhone = searchParams.get('phone') || savedLead?.phone || user?.phone || '';
   const initialEmail = searchParams.get('email') || savedLead?.email || user?.email || '';
 
-  // Form State
-  const tomorrow = new Date(Date.now() + 86400000).toISOString().split('T')[0];
+  // Form State (Time & date slot removed as slot selection is handled directly on Razorpay hosted checkout)
   const [formData, setFormData] = useState({
     name: initialName,
     age: '',
@@ -74,10 +60,7 @@ export default function BookingPage() {
     occupation: '',
     language: 'English',
     emergencyContact: '',
-    bookingDate: tomorrow,
-    timeSlot: TIME_SLOTS[0],
     notes: '',
-    // Pre-Consultation Clinical Intake Questions (Pahale Questions, Phir Payment)
     q10_primary_concern: 'Gut and digestive health (Bloating, IBS, SIBO, Reflux)',
     q11_concern_description: '',
     q12_concern_duration: '6 to 12 months (Persistent issue)',
@@ -89,52 +72,8 @@ export default function BookingPage() {
   });
 
   const [loading, setLoading] = useState(false);
-  const [alert, setAlert] = useState(null); // { type: 'success' | 'error', message: string, icon?: string }
+  const [alert, setAlert] = useState(null);
   const [confirmedBooking, setConfirmedBooking] = useState(null);
-
-  // Dynamic slot availability state
-  const [slotsLoading, setSlotsLoading] = useState(false);
-  const [slotsData, setSlotsData] = useState({
-    isDateBlocked: false,
-    blockReason: null,
-    slots: TIME_SLOTS.map(s => ({ slot: s, available: true, status: 'available' })),
-    hasAvailableSlot: true
-  });
-
-  // Fetch slot availability whenever bookingDate changes
-  useEffect(() => {
-    if (!formData.bookingDate) return;
-    let isCancelled = false;
-
-    const fetchSlots = async () => {
-      setSlotsLoading(true);
-      try {
-        const res = await fetch(getApiUrl(`/api/available-slots?date=${encodeURIComponent(formData.bookingDate)}`));
-        const data = await res.json();
-        if (!isCancelled && res.ok && data.success) {
-          setSlotsData(data);
-          // If current selected slot is unavailable or date is blocked, auto-select first available slot
-          const currentSlotItem = (data.slots || []).find(s => s.slot === formData.timeSlot);
-          if (!currentSlotItem || !currentSlotItem.available) {
-            const firstAvailable = (data.slots || []).find(s => s.available);
-            if (firstAvailable) {
-              setFormData(prev => ({ ...prev, timeSlot: firstAvailable.slot }));
-            }
-          }
-        }
-      } catch (e) {
-        console.warn('Slot availability fetch notice:', e);
-      } finally {
-        if (!isCancelled) setSlotsLoading(false);
-      }
-    };
-
-    fetchSlots();
-
-    return () => {
-      isCancelled = true;
-    };
-  }, [formData.bookingDate]);
 
   // Prefill user details if logged in
   useEffect(() => {
@@ -174,39 +113,6 @@ export default function BookingPage() {
     }
   }, []);
 
-  // Ensure Razorpay SDK is loaded & fetch dynamic tiers
-  useEffect(() => {
-    if (!window.Razorpay) {
-      const script = document.createElement('script');
-      script.src = 'https://checkout.razorpay.com/v1/checkout.js';
-      script.async = true;
-      document.body.appendChild(script);
-    }
-
-    // Fetch dynamic pricing tiers configured by Admin
-    fetch(getApiUrl('/api/pricing-tiers'))
-      .then(res => res.json())
-      .then(data => {
-        if (data.success && Array.isArray(data.tiers) && data.tiers.length > 0) {
-          setTiersList(data.tiers);
-        }
-      })
-      .catch(() => {});
-  }, []);
-
-  const currentTier = tiersList.find(t => t.id === selectedTier) || tiersList[0] || DEFAULT_PRICING_TIERS.comprehensive;
-
-  const handleSelectTier = (tierKey) => {
-    setSelectedTier(tierKey);
-    // Smooth scroll down to intake form
-    if (formRef.current) {
-      formRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      setTimeout(() => {
-        nameInputRef.current?.focus();
-      }, 500);
-    }
-  };
-
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormData(prev => ({ ...prev, [name]: value }));
@@ -216,7 +122,7 @@ export default function BookingPage() {
     e.preventDefault();
     setAlert(null);
 
-    // Validation
+    // Form Validation
     if (!formData.name.trim()) {
       setAlert({ type: 'error', message: 'Please enter your Full Name.' });
       return;
@@ -230,236 +136,91 @@ export default function BookingPage() {
       return;
     }
 
-    if (slotsData.isDateBlocked) {
-      setAlert({
-        type: 'error',
-        message: slotsData.blockReason || 'The clinician is unavailable on the selected date. Please choose another date.'
-      });
-      return;
-    }
-
-    const currentSlotItem = (slotsData.slots || []).find(s => s.slot === formData.timeSlot);
-    if (currentSlotItem && !currentSlotItem.available) {
-      setAlert({
-        type: 'error',
-        message: `The slot "${formData.timeSlot}" is already booked or unavailable on this date. Please select an available slot.`
-      });
-      return;
-    }
-
     setLoading(true);
 
+    const bookingPayload = {
+      name: formData.name,
+      email: formData.email,
+      phone: formData.phone,
+      age: formData.age,
+      gender: formData.gender,
+      city: formData.city,
+      occupation: formData.occupation,
+      language: formData.language,
+      emergencyContact: formData.emergencyContact,
+      notes: formData.notes,
+      serviceName: '1:1 Health Clarity Consultation (60 min)',
+      amount: 1999,
+      initiatedAt: new Date().toISOString()
+    };
+
+    // 1. Sync credentials locally so user never has to re-enter
     try {
-      // 1. Create order on backend Express server
-      const orderRes = await fetch(getApiUrl('/api/create-order'), {
+      localStorage.setItem('reshmi_user_lead', JSON.stringify({
+        name: formData.name,
+        email: formData.email,
+        phone: formData.phone
+      }));
+      localStorage.setItem('reshmi_assessment_lead', JSON.stringify({
+        name: formData.name,
+        email: formData.email,
+        phone: formData.phone
+      }));
+      localStorage.setItem('reshmi_last_booking_data', JSON.stringify(bookingPayload));
+    } catch (err) {}
+
+    // 2. Fire-and-forget lead capture to backend if online
+    try {
+      fetch(getApiUrl('/api/assessment-lead'), {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          serviceTier: selectedTier,
-          clientName: formData.name,
-          clientEmail: formData.email,
-          clientPhone: formData.phone,
-          bookingDate: formData.bookingDate,
-          timeSlot: formData.timeSlot
+          phone: formData.phone,
+          name: formData.name,
+          email: formData.email,
+          status: 'initiated_payment',
+          step: 'Redirected to Razorpay Hosted Checkout',
+          meta: bookingPayload
         })
-      });
+      }).catch(() => {});
+    } catch (e) {}
 
-      const orderData = await orderRes.json();
-      if (!orderRes.ok || !orderData.success) {
-        throw new Error(orderData.error || 'Failed to initiate booking order.');
+    // 3. EmailJS notification (if configured)
+    const emailService = import.meta.env.VITE_EMAILJS_SERVICE_ID || 'service_znsc9db';
+    const emailTemplate = import.meta.env.VITE_EMAILJS_BOOKING_TEMPLATE_ID || 'template_206xxey';
+    const emailKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY || '5XBYa7sia2W-qDbgm';
+
+    if (emailKey && !emailKey.includes('YOUR_')) {
+      try {
+        await emailjs.send(
+          emailService,
+          emailTemplate,
+          {
+            to_name: 'Reshmi Verma',
+            from_name: formData.name,
+            from_email: formData.email,
+            phone: formData.phone,
+            service: currentTier.name,
+            message: formData.notes || 'Initiating Razorpay Consultation payment'
+          },
+          emailKey
+        );
+      } catch (e) {
+        console.warn('EmailJS dispatch notice:', e);
       }
+    }
 
-      const razorpayKey = import.meta.env.VITE_RAZORPAY_KEY_ID || 'rzp_test_51234567890abc';
-
-      const finalizeBooking = async (paymentDetails = {}) => {
-        const verifyRes = await fetch(getApiUrl('/api/verify-payment'), {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            razorpay_order_id: paymentDetails.razorpay_order_id || orderData.orderId,
-            razorpay_payment_id: paymentDetails.razorpay_payment_id || `pay_sim_${Date.now()}`,
-            razorpay_signature: paymentDetails.razorpay_signature || 'simulation_sig',
-            serviceTier: selectedTier,
-            serviceName: currentTier.name,
-            servicePrice: String(currentTier.price),
-            amount: currentTier.price,
-            clientName: formData.name,
-            clientEmail: formData.email,
-            clientPhone: formData.phone,
-            clientAge: formData.age,
-            age: formData.age,
-            clientGender: formData.gender,
-            gender: formData.gender,
-            clientCity: formData.city,
-            city: formData.city,
-            clientOccupation: formData.occupation,
-            occupation: formData.occupation,
-            clientLanguage: formData.language,
-            language: formData.language,
-            emergencyContact: formData.emergencyContact,
-            clientEmergencyContact: formData.emergencyContact,
-            bookingDate: formData.bookingDate,
-            bookingTime: formData.timeSlot,
-            timeSlot: formData.timeSlot,
-            notes: formData.notes || '1:1 Health Clarity Session',
-            healthConcerns: formData.notes || '1:1 Health Clarity Consultation'
-          })
-        });
-
-        const verifyData = await verifyRes.json();
-        if (!verifyRes.ok || !verifyData.success) {
-          throw new Error(verifyData.error || 'Failed to confirm booking.');
-        }
-
-        // Auto-submit Clinical Questionnaire Intake using created booking ID
-        const assignedBookingId = verifyData.bookingId || verifyData.booking?.id || `bk_${Date.now()}`;
-        try {
-          fetch(getApiUrl('/api/submit-questionnaire'), {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-              bookingId: assignedBookingId,
-              email: formData.email,
-              formData: {
-                fullName: formData.name,
-                email: formData.email,
-                phone: formData.phone,
-                age: formData.age,
-                gender: formData.gender,
-                city: formData.city,
-                occupation: formData.occupation,
-                q10_primary_concern: formData.q10_primary_concern,
-                q11_concern_description: formData.q11_concern_description,
-                q12_concern_duration: formData.q12_concern_duration,
-                q16_medical_condition: formData.q16_medical_condition,
-                q17_medicines_supplements: formData.q17_medicines_supplements,
-                q29_dietary_preference: formData.q29_dietary_preference,
-                q33_digestive_symptoms: formData.q33_digestive_symptoms,
-                q27_stress_level: formData.q27_stress_level,
-                bookingId: assignedBookingId
-              }
-            })
-          }).catch(() => {});
-        } catch (e) {}
-
-        // Update lead tracking status to 'booked'
-        try {
-          fetch(getApiUrl('/api/assessment-lead'), {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-              id: savedLead?.id,
-              phone: formData.phone,
-              name: formData.name,
-              email: formData.email,
-              bookingId: assignedBookingId,
-              status: 'booked',
-              step: '1:1 Consultation Booked & Confirmed'
-            })
-          }).catch(() => {});
-        } catch (e) {}
-
-        // EmailJS notification
-        const emailService = import.meta.env.VITE_EMAILJS_SERVICE_ID || 'service_znsc9db';
-        const emailTemplate = import.meta.env.VITE_EMAILJS_BOOKING_TEMPLATE_ID || 'template_206xxey';
-        const emailKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY || '5XBYa7sia2W-qDbgm';
-
-        if (emailKey && !emailKey.includes('YOUR_')) {
-          try {
-            await emailjs.send(
-              emailService,
-              emailTemplate,
-              {
-                to_name: 'Reshmi Verma',
-                from_name: formData.name,
-                from_email: formData.email,
-                phone: formData.phone,
-                service: currentTier.name,
-                date: formData.bookingDate,
-                time: formData.timeSlot,
-                booking_ref: verifyData.booking?.id || 'RES-' + Date.now().toString().slice(-6),
-                message: formData.notes || 'None'
-              },
-              emailKey
-            );
-          } catch (e) {
-            console.warn('EmailJS dispatch notice:', e);
-          }
-        }
-
-        setConfirmedBooking({
-          ...verifyData.booking,
-          id: assignedBookingId,
-          bookingId: assignedBookingId,
-          paymentId: paymentDetails.razorpay_payment_id || `pay_verified_${Date.now().toString().slice(-6)}`,
-          clientName: formData.name,
-          clientEmail: formData.email,
-          clientPhone: formData.phone,
-          serviceName: currentTier.name,
-          amountPaid: currentTier.price,
-          dateTime: `${formData.bookingDate} (${formData.timeSlot})`
-        });
-
-        try {
-          localStorage.setItem('reshmi_last_booking_id', assignedBookingId);
-          localStorage.setItem('reshmi_last_booking_data', JSON.stringify({
-            id: assignedBookingId,
-            clientName: formData.name,
-            clientEmail: formData.email,
-            clientPhone: formData.phone,
-            serviceName: currentTier.name,
-            dateTime: `${formData.bookingDate} (${formData.timeSlot})`
-          }));
-        } catch (e) {}
-        setLoading(false);
-      };
-
-      // Real Razorpay gateway checkout
-      if (window.Razorpay && razorpayKey && !razorpayKey.includes('test_51234567890abc')) {
-        const rzp = new window.Razorpay({
-          key: razorpayKey,
-          amount: orderData.amount,
-          currency: orderData.currency || 'INR',
-          name: 'HealthwithReshmi™',
-          description: currentTier.name,
-          order_id: orderData.orderId,
-          prefill: {
-            name: formData.name,
-            email: formData.email,
-            contact: formData.phone
-          },
-          theme: {
-            color: '#15803D'
-          },
-          handler: async function (response) {
-            await finalizeBooking(response);
-          },
-          modal: {
-            ondismiss: function () {
-              setLoading(false);
-              setAlert({ type: 'error', message: 'Payment cancelled. You can retry anytime.' });
-            }
-          }
-        });
-        rzp.open();
-      } else {
-        // Direct simulation / dev mode
-        await finalizeBooking({
-          razorpay_order_id: orderData.orderId,
-          razorpay_payment_id: `pay_direct_${Date.now()}`,
-          razorpay_signature: 'direct_simulation_valid'
-        });
-      }
-    } catch (err) {
-      console.error('Booking flow error:', err);
-      setLoading(false);
-      setAlert({ type: 'error', message: err.message || 'An error occurred during booking. Please try again.' });
+    // 4. Redirect immediately to the official Razorpay payment page
+    try {
+      const rzpUrl = new URL('https://rzp.io/rzp/healthwithreshmi');
+      if (formData.name) rzpUrl.searchParams.set('name', formData.name);
+      if (formData.email) rzpUrl.searchParams.set('email', formData.email);
+      if (formData.phone) rzpUrl.searchParams.set('phone', formData.phone);
+      window.location.href = rzpUrl.toString();
+    } catch (e) {
+      window.location.href = 'https://rzp.io/rzp/healthwithreshmi';
     }
   };
-
-  const whatsappMessage = encodeURIComponent(
-    `Hello Reshmi Verma, I have booked the ${currentTier.name} on ${formData.bookingDate} at ${formData.timeSlot}. Name: ${formData.name}. Booking ID: ${confirmedBooking?.id || confirmedBooking?.bookingId || ''}`
-  );
 
   return (
     <>
@@ -534,7 +295,7 @@ export default function BookingPage() {
                       if (formRef.current) formRef.current.scrollIntoView({ behavior: 'smooth' });
                     }}
                   >
-                    Proceed with 1:1 Consultation (₹1,999) &rarr;
+                    Proceed with 1:1 Consultation &rarr;
                   </button>
                 </div>
               );
@@ -741,115 +502,28 @@ export default function BookingPage() {
                 />
               </div>
 
-              {/* Step 2: Scheduling & Consultation Slot */}
+              {/* Step 2: Consultation Plan & Notes */}
               <div style={{ marginBottom: '24px', paddingBottom: '12px', borderBottom: '2px solid rgba(194, 65, 12, 0.12)', marginTop: '28px' }}>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
                   <span style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', width: '26px', height: '26px', borderRadius: '50%', background: 'var(--emerald-soft)', color: 'var(--emerald-medium)', fontWeight: 700, fontSize: '0.85rem' }}>2</span>
                   <h3 style={{ fontSize: '1.18rem', color: 'var(--emerald-deep)', margin: 0, fontWeight: 700 }}>
-                    Step 2: Consultation Plan &amp; Appointment Slot
+                    Step 2: Consultation Plan &amp; Notes
                   </h3>
                 </div>
+                <p style={{ fontSize: '0.82rem', color: 'var(--text-muted)', margin: '4px 0 0' }}>
+                  Your appointment slot and scheduling will be confirmed directly on the secure Razorpay payment page.
+                </p>
               </div>
 
               <div style={{ marginBottom: '20px' }}>
                 <label htmlFor="selected-service-select" style={{ fontWeight: 700, fontSize: '0.92rem', color: 'var(--emerald-deep)', display: 'block', marginBottom: '6px' }}>
-                  Price Category / Consultation Plan *
+                  Consultation Plan *
                 </label>
-                <select 
-                  id="selected-service-select" 
-                  value="healthClarity"
-                  disabled
-                  style={{ width: '100%', padding: '12px 16px', background: '#F4F5F6', border: '1.5px solid var(--emerald-medium)', borderRadius: 'var(--radius-sm)', fontSize: '1rem', fontWeight: 600, color: 'var(--emerald-deep)', cursor: 'default' }}
+                <div 
+                  style={{ width: '100%', padding: '14px 18px', background: '#F8FAF9', border: '1.5px solid var(--emerald-medium)', borderRadius: 'var(--radius-sm)', fontSize: '1rem', fontWeight: 700, color: 'var(--emerald-deep)', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}
                 >
-                  <option value="healthClarity">1:1 Health Clarity Consultation (60 min) — ₹1,999</option>
-                </select>
-              </div>
-
-              <div className="booking-form-row">
-                <div>
-                  <label htmlFor="booking-date-picker" style={{ fontWeight: 700, fontSize: '0.95rem', color: 'var(--emerald-deep)', display: 'block', marginBottom: '8px' }}>
-                    Preferred Consultation Date *
-                  </label>
-                  <input 
-                    type="date" 
-                    id="booking-date-picker" 
-                    name="bookingDate"
-                    value={formData.bookingDate}
-                    min={new Date().toISOString().split('T')[0]}
-                    onChange={handleInputChange}
-                    required 
-                    style={{ width: '100%', padding: '12px 16px', border: '1px solid var(--border-medium)', borderRadius: 'var(--radius-sm)', fontSize: '1rem' }} 
-                  />
-                  {slotsLoading && (
-                    <span style={{ fontSize: '0.8rem', color: 'var(--emerald-medium)', display: 'block', marginTop: '4px' }}>
-                      ⏳ Checking clinician availability...
-                    </span>
-                  )}
-                  {slotsData.isDateBlocked && (
-                    <div style={{ marginTop: '8px', padding: '8px 12px', background: 'rgba(239, 68, 68, 0.08)', border: '1px solid rgba(239, 68, 68, 0.25)', borderRadius: '8px', color: '#dc2626', fontSize: '0.82rem', lineHeight: 1.4 }}>
-                      ⚠️ <strong>Date Unavailable:</strong> {slotsData.blockReason || 'Reshmi Mam is not taking consultations on this date. Please pick another date.'}
-                    </div>
-                  )}
-                  {!slotsData.isDateBlocked && !slotsData.hasAvailableSlot && !slotsLoading && (
-                    <div style={{ marginTop: '8px', padding: '8px 12px', background: 'rgba(245, 158, 11, 0.1)', border: '1px solid rgba(245, 158, 11, 0.25)', borderRadius: '8px', color: '#b45309', fontSize: '0.82rem', lineHeight: 1.4 }}>
-                      ⚠️ <strong>All slots booked:</strong> All consultation slots for this date are full. Please choose another date.
-                    </div>
-                  )}
-                </div>
-
-                <div>
-                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '8px' }}>
-                    <label htmlFor="booking-time-picker" style={{ fontWeight: 700, fontSize: '0.95rem', color: 'var(--emerald-deep)', margin: 0 }}>
-                      Preferred Time Window *
-                    </label>
-                    {slotsData.hasAvailableSlot && !slotsData.isDateBlocked && (
-                      <span style={{ fontSize: '0.78rem', color: '#16a34a', fontWeight: 600, background: 'rgba(22, 163, 74, 0.1)', padding: '2px 8px', borderRadius: '12px' }}>
-                        ● Live Available
-                      </span>
-                    )}
-                  </div>
-
-                  <select 
-                    id="booking-time-picker" 
-                    name="timeSlot"
-                    value={formData.timeSlot}
-                    onChange={handleInputChange}
-                    disabled={slotsLoading || slotsData.isDateBlocked || !slotsData.hasAvailableSlot}
-                    style={{ 
-                      width: '100%', 
-                      padding: '12px 16px', 
-                      border: '1px solid var(--border-medium)', 
-                      borderRadius: 'var(--radius-sm)', 
-                      fontSize: '0.95rem',
-                      background: slotsData.isDateBlocked || !slotsData.hasAvailableSlot ? '#f8fafc' : 'white',
-                      cursor: slotsData.isDateBlocked || !slotsData.hasAvailableSlot ? 'not-allowed' : 'pointer'
-                    }}
-                  >
-                    {slotsData.isDateBlocked ? (
-                      <option value="">No consultation slots on this date</option>
-                    ) : !slotsData.hasAvailableSlot ? (
-                      <option value="">All slots fully booked for this date</option>
-                    ) : (
-                      (slotsData.slots || []).map((item) => {
-                        const isAvailable = item.available;
-                        const label = isAvailable 
-                          ? `${item.slot} — ✓ Available` 
-                          : item.status === 'booked' 
-                            ? `${item.slot} — ❌ [Already Booked]` 
-                            : `${item.slot} — ⛔ [Doctor Unavailable]`;
-                        return (
-                          <option 
-                            key={item.slot} 
-                            value={item.slot}
-                            disabled={!isAvailable}
-                            style={{ color: isAvailable ? '#0f172a' : '#94a3b8' }}
-                          >
-                            {label}
-                          </option>
-                        );
-                      })
-                    )}
-                  </select>
+                  <span>1:1 Health Clarity Consultation (60 min)</span>
+                  <span style={{ color: 'var(--emerald-medium)', fontWeight: 800 }}>₹1,999</span>
                 </div>
               </div>
 
@@ -872,7 +546,7 @@ export default function BookingPage() {
               <div className="checkout-summary-box">
                 <div className="checkout-summary-header">
                   <h4>
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
                     <span>Consultation Order Summary</span>
                   </h4>
                   <span className="checkout-summary-tier" id="summary-tier-badge">{currentTier.title}</span>
@@ -898,15 +572,15 @@ export default function BookingPage() {
 
                 <div className="checkout-security-badges">
                   <div className="checkout-security-badge-item">
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
                     <span>256-Bit SSL Encrypted</span>
                   </div>
                   <div className="checkout-security-badge-item">
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
                     <span>Secured by Razorpay</span>
                   </div>
                   <div className="checkout-security-badge-item">
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
                     <span>Instant Confirmation</span>
                   </div>
                 </div>
@@ -917,13 +591,13 @@ export default function BookingPage() {
                   type="submit" 
                   id="booking-submit-btn" 
                   className="btn btn-primary btn-lg" 
-                  style={{ minWidth: '320px' }}
+                  style={{ minWidth: '320px', borderRadius: '14px', padding: '16px 32px' }}
                   disabled={loading}
                 >
                   <span id="booking-btn-text">
-                    {loading ? 'Processing...' : `Pay & Confirm Booking (₹${currentTier.price.toLocaleString('en-IN')})`}
+                    {loading ? 'Connecting to Razorpay...' : 'Proceed to Secure Payment'}
                   </span>
-                  <svg id="booking-btn-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                  <svg id="booking-btn-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
                     <line x1="5" y1="12" x2="19" y2="12"></line>
                     <polyline points="12 5 19 12 12 19"></polyline>
                   </svg>

@@ -141,288 +141,422 @@ export default function ClientTransformationShowcase() {
   };
 
   return (
-    <section className="transformation-showcase-section" style={{ background: '#FAF9F6', padding: '80px 0', borderTop: '1px solid var(--border-subtle)', borderBottom: '1px solid var(--border-subtle)' }}>
-      <div className="container">
-        
-        {/* Section Header */}
-        <div style={{ textAlign: 'center', maxWidth: '780px', margin: '0 auto 40px' }}>
-          <span style={{
-            display: 'inline-flex',
-            alignItems: 'center',
-            gap: '8px',
-            padding: '6px 16px',
-            borderRadius: '999px',
-            background: '#EDF6EE',
-            color: '#121214',
-            fontSize: '0.82rem',
-            fontWeight: 800,
-            letterSpacing: '0.08em',
-            textTransform: 'uppercase',
-            border: '1px solid #C6DFC9',
-            marginBottom: '14px'
-          }}>
-            <span>Real Patient Breakthroughs</span>
-            <span>&bull;</span>
-            <span style={{ color: '#FF007F' }}>Before &amp; After Proof</span>
-          </span>
+    <>
+      {/* 1. Verified Client Before & After Transformations (Black Strip Theme) */}
+      <section
+        className="transformation-showcase-section"
+        style={{
+          background: '#0D0F12',
+          padding: '70px 0 55px',
+          borderTop: '1px solid rgba(255, 255, 255, 0.08)',
+          borderBottom: '1px solid rgba(255, 255, 255, 0.08)'
+        }}
+      >
+        <div className="container">
+          {/* Section Header */}
+          <div style={{ textAlign: 'center', maxWidth: '780px', margin: '0 auto 36px' }}>
+            <span
+              style={{
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: '8px',
+                padding: '6px 16px',
+                borderRadius: '999px',
+                background: 'rgba(255, 255, 255, 0.08)',
+                color: '#FFFFFF',
+                fontSize: '0.82rem',
+                fontWeight: 800,
+                letterSpacing: '0.08em',
+                textTransform: 'uppercase',
+                border: '1px solid rgba(255, 255, 255, 0.16)',
+                marginBottom: '14px'
+              }}
+            >
+              <span>Real Patient Breakthroughs</span>
+              <span>&bull;</span>
+              <span style={{ color: '#00E5D9' }}>Before &amp; After Proof</span>
+            </span>
 
-          <h2 style={{
-            fontSize: 'clamp(2rem, 4.2vw, 2.8rem)',
-            color: '#121214',
-            fontFamily: 'var(--font-serif)',
-            margin: '0 0 16px',
-            lineHeight: 1.2,
-            fontWeight: 800
-          }}>
-            Real Transformations. <span style={{ color: '#FF007F', fontStyle: 'italic' }}>Real Stories.</span>
-          </h2>
+            <h2
+              style={{
+                fontSize: 'clamp(2rem, 4.2vw, 2.7rem)',
+                color: '#FFFFFF',
+                fontFamily: 'var(--font-serif)',
+                margin: '0 0 14px',
+                lineHeight: 1.2,
+                fontWeight: 800
+              }}
+            >
+              Real Transformations. <span style={{ color: '#00E5D9', fontStyle: 'italic' }}>Real Stories.</span>
+            </h2>
 
-          <p style={{
-            fontSize: '1.05rem',
-            color: '#4B5563',
-            lineHeight: 1.65,
-            margin: '0 auto'
-          }}>
-            Witness the real outcomes of clients who reversed complex hormonal plateaus, stubborn weight, chronic gut inflammation, and metabolic fatigue under Reshmi Verma's clinical guidance.
-          </p>
+            <p
+              style={{
+                fontSize: '1.02rem',
+                color: 'rgba(255, 255, 255, 0.75)',
+                lineHeight: 1.65,
+                margin: '0 auto'
+              }}
+            >
+              Witness the real outcomes of clients who reversed complex hormonal plateaus, stubborn weight, chronic gut inflammation, and metabolic fatigue under Reshmi Verma's clinical guidance.
+            </p>
+          </div>
         </div>
 
-      </div>
+        {/* Continuous Moving Before & After Infinite Carousel */}
+        <div className="transformation-marquee-container">
+          <div className="transformation-marquee-track">
+            {marqueeList.map((item, idx) => (
+              <div
+                key={`${item.id}-${idx}`}
+                className="transformation-card-item"
+                style={{
+                  background: '#16191D',
+                  borderColor: 'rgba(255, 255, 255, 0.12)',
+                  boxShadow: '0 12px 30px rgba(0,0,0,0.45)'
+                }}
+              >
+                <div className="transformation-image-wrap">
+                  <img
+                    src={item.image}
+                    alt={`${item.name} Before & After Transformation`}
+                    loading="lazy"
+                  />
+                  <div
+                    style={{
+                      position: 'absolute',
+                      top: '12px',
+                      left: '12px',
+                      background: 'rgba(10, 14, 18, 0.88)',
+                      backdropFilter: 'blur(8px)',
+                      color: '#FFFFFF',
+                      padding: '4px 10px',
+                      borderRadius: '999px',
+                      fontSize: '0.72rem',
+                      fontWeight: 800,
+                      letterSpacing: '0.04em',
+                      display: 'flex',
+                      alignItems: 'center',
+                      gap: '6px',
+                      border: '1px solid rgba(255, 255, 255, 0.22)'
+                    }}
+                  >
+                    <span style={{ color: '#FF007F' }}>●</span>
+                    <span>{item.badge}</span>
+                  </div>
 
-      {/* 1. Continuous Moving Before & After Infinite Carousel */}
-      <div className="transformation-marquee-container">
-        <div className="transformation-marquee-track">
-          {marqueeList.map((item, idx) => (
-            <div key={`${item.id}-${idx}`} className="transformation-card-item">
-              <div className="transformation-image-wrap">
-                <img
-                  src={item.image}
-                  alt={`${item.name} Before & After Transformation`}
-                  loading="lazy"
-                />
-                <div style={{
-                  position: 'absolute',
-                  top: '12px',
-                  left: '12px',
-                  background: 'rgba(18, 18, 20, 0.85)',
-                  backdropFilter: 'blur(8px)',
-                  color: '#FFFFFF',
-                  padding: '4px 10px',
-                  borderRadius: '999px',
-                  fontSize: '0.72rem',
-                  fontWeight: 800,
-                  letterSpacing: '0.04em',
-                  display: 'flex',
-                  alignItems: 'center',
-                  gap: '6px',
-                  border: '1px solid rgba(255, 255, 255, 0.2)'
-                }}>
-                  <span style={{ color: '#FF007F' }}>●</span>
-                  <span>{item.badge}</span>
+                  <div
+                    style={{
+                      position: 'absolute',
+                      bottom: '12px',
+                      right: '12px',
+                      background: 'rgba(0, 229, 217, 0.95)',
+                      color: '#0A0E0C',
+                      padding: '4px 10px',
+                      borderRadius: '6px',
+                      fontSize: '0.72rem',
+                      fontWeight: 800,
+                      boxShadow: '0 4px 12px rgba(0, 229, 217, 0.35)'
+                    }}
+                  >
+                    {item.durationTag}
+                  </div>
                 </div>
 
-                <div style={{
-                  position: 'absolute',
-                  bottom: '12px',
-                  right: '12px',
-                  background: 'rgba(0, 229, 217, 0.92)',
-                  color: '#111111',
-                  padding: '3px 9px',
-                  borderRadius: '6px',
-                  fontSize: '0.72rem',
-                  fontWeight: 800
-                }}>
-                  {item.durationTag}
+                <div style={{ padding: '16px 18px', background: '#16191D' }}>
+                  <h4 style={{ margin: '0 0 4px', fontSize: '1.05rem', fontWeight: 800, color: '#FFFFFF' }}>
+                    {item.name}
+                  </h4>
+                  <p style={{ margin: 0, fontSize: '0.84rem', color: '#9CA3AF', lineHeight: 1.4 }}>
+                    {item.title}
+                  </p>
                 </div>
               </div>
+            ))}
+          </div>
+        </div>
 
-              <div style={{ padding: '16px 18px' }}>
-                <h4 style={{ margin: '0 0 4px', fontSize: '1.05rem', fontWeight: 800, color: '#121214' }}>
-                  {item.name}
-                </h4>
-                <p style={{ margin: 0, fontSize: '0.84rem', color: '#6B7280', lineHeight: 1.4 }}>
-                  {item.title}
+        <div style={{ textAlign: 'center', marginTop: '16px' }}>
+          <span style={{ fontSize: '0.82rem', color: 'rgba(255, 255, 255, 0.45)', fontWeight: 600 }}>
+            Hover over any card to pause • Continuous verified client transformations
+          </span>
+        </div>
+      </section>
+
+      {/* 2. Real Client Voice Audio Notes Showcase (Separate Clean Light Section) */}
+      <section
+        className="section client-voice-section"
+        style={{
+          background: '#FAF8F5',
+          borderBottom: '1px solid var(--border-subtle)',
+          padding: '70px 0'
+        }}
+      >
+        <div className="container">
+          <div style={{ maxWidth: '1080px', margin: '0 auto' }}>
+            <div
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'space-between',
+                flexWrap: 'wrap',
+                gap: '16px',
+                marginBottom: '32px'
+              }}
+            >
+              <div>
+                <span
+                  className="badge-pill"
+                  style={{
+                    marginBottom: '10px',
+                    fontSize: '0.78rem',
+                    background: 'var(--emerald-soft)',
+                    color: 'var(--emerald-deep)',
+                    borderColor: 'rgba(46, 196, 182, 0.3)'
+                  }}
+                >
+                  <span>🎙️ Verified Client Audio Notes</span>
+                </span>
+                <h3
+                  style={{
+                    margin: '6px 0 8px',
+                    fontSize: '2.1rem',
+                    fontWeight: 800,
+                    color: 'var(--emerald-deep)',
+                    fontFamily: 'var(--font-serif)'
+                  }}
+                >
+                  Hear Directly From Our Clients
+                </h3>
+                <p style={{ margin: 0, fontSize: '0.98rem', color: 'var(--text-secondary)' }}>
+                  Unfiltered voice feedback shared after finishing their personalized health protocols.
                 </p>
               </div>
-            </div>
-          ))}
-        </div>
-      </div>
 
-      <div style={{ textAlign: 'center', marginTop: '10px', marginBottom: '50px' }}>
-        <span style={{ fontSize: '0.82rem', color: '#9CA3AF', fontWeight: 600 }}>
-          Hover over any card to pause • Continuous verified client transformations
-        </span>
-      </div>
-
-      {/* 2. Real Client Voice Audio Notes Showcase */}
-      <div className="container">
-        <div style={{
-          background: '#FFFFFF',
-          borderRadius: '24px',
-          padding: '40px 32px',
-          border: '1px solid var(--border-subtle)',
-          boxShadow: '0 10px 30px rgba(0, 0, 0, 0.04)',
-          maxWidth: '1080px',
-          margin: '0 auto'
-        }}>
-          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '16px', marginBottom: '32px', borderBottom: '1px solid var(--border-subtle)', paddingBottom: '20px' }}>
-            <div>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '6px' }}>
-                <span style={{ fontSize: '1.4rem' }}>🎙️</span>
-                <h3 style={{ margin: 0, fontSize: '1.4rem', fontWeight: 800, color: '#121214' }}>
-                  Listen to Real Client Voice Notes
-                </h3>
+              <div
+                style={{
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: '8px',
+                  background: '#FFFFFF',
+                  border: '1.5px solid rgba(46, 196, 182, 0.4)',
+                  padding: '8px 16px',
+                  borderRadius: '999px',
+                  fontSize: '0.82rem',
+                  fontWeight: 700,
+                  color: 'var(--emerald-deep)',
+                  boxShadow: '0 4px 12px rgba(0, 0, 0, 0.04)'
+                }}
+              >
+                <span style={{ color: '#00BFA5' }}>🔊</span>
+                <span>100% Genuine Recorded Feedback</span>
               </div>
-              <p style={{ margin: 0, fontSize: '0.92rem', color: '#6B7280' }}>
-                Hear unfiltered audio messages shared directly by clients after their recovery sessions.
-              </p>
             </div>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '8px', background: '#F4F5F6', padding: '6px 14px', borderRadius: '999px', fontSize: '0.8rem', fontWeight: 700, color: '#121214' }}>
-              <span style={{ color: '#00E5D9', fontSize: '1rem' }}>🔊</span>
-              <span>100% Genuine Audio Feedback</span>
-            </div>
-          </div>
 
-          <div style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
-            gap: '20px'
-          }}>
-            {audioTestimonials.map((item) => {
-              const isPlaying = playingAudioId === item.id;
-              const current = currentTime[item.id] || 0;
-              const total = duration[item.id] || 0;
-              const progressPct = total > 0 ? (current / total) * 100 : 0;
+            <div
+              style={{
+                display: 'grid',
+                gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
+                gap: '24px'
+              }}
+            >
+              {audioTestimonials.map((item) => {
+                const isPlaying = playingAudioId === item.id;
+                const current = currentTime[item.id] || 0;
+                const total = duration[item.id] || 0;
+                const progressPct = total > 0 ? (current / total) * 100 : 0;
 
-              return (
-                <div key={item.id} className="voice-audio-card">
-                  {/* Hidden Native Audio Element */}
-                  <audio
-                    ref={(el) => (audioRefs.current[item.id] = el)}
-                    src={item.file}
-                    preload="metadata"
-                    onTimeUpdate={() => handleTimeUpdate(item.id)}
-                    onLoadedMetadata={() => handleLoadedMetadata(item.id)}
-                    onEnded={() => handleAudioEnded(item.id)}
-                  />
+                return (
+                  <div
+                    key={item.id}
+                    className="voice-audio-card"
+                    style={{
+                      background: '#FFFFFF',
+                      borderRadius: '20px',
+                      border: '1px solid var(--border-subtle)',
+                      borderLeft: '4px solid #00BFA5',
+                      padding: '24px 22px',
+                      boxShadow: '0 8px 24px rgba(0, 0, 0, 0.05)',
+                      display: 'flex',
+                      flexDirection: 'column'
+                    }}
+                  >
+                    {/* Hidden Native Audio Element */}
+                    <audio
+                      ref={(el) => (audioRefs.current[item.id] = el)}
+                      src={item.file}
+                      preload="metadata"
+                      onTimeUpdate={() => handleTimeUpdate(item.id)}
+                      onLoadedMetadata={() => handleLoadedMetadata(item.id)}
+                      onEnded={() => handleAudioEnded(item.id)}
+                    />
 
-                  <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '12px' }}>
-                    <div>
-                      <h4 style={{ margin: 0, fontSize: '1rem', fontWeight: 800, color: '#121214' }}>
-                        {item.clientName}
-                      </h4>
-                      <span style={{ fontSize: '0.78rem', color: '#0D827B', fontWeight: 700 }}>
-                        {item.condition}
-                      </span>
-                    </div>
-
-                    {/* Animated Sound Wave Indicator */}
-                    {isPlaying ? (
-                      <div style={{ display: 'flex', alignItems: 'center', gap: '3px', height: '22px' }}>
-                        <span className="soundwave-bar" style={{ animationDelay: '0.1s' }}></span>
-                        <span className="soundwave-bar" style={{ animationDelay: '0.3s' }}></span>
-                        <span className="soundwave-bar" style={{ animationDelay: '0.5s' }}></span>
-                        <span className="soundwave-bar" style={{ animationDelay: '0.2s' }}></span>
-                      </div>
-                    ) : (
-                      <span style={{ fontSize: '0.74rem', background: '#F3F4F6', color: '#6B7280', padding: '3px 8px', borderRadius: '6px', fontWeight: 700 }}>
-                        {item.durationEst}
-                      </span>
-                    )}
-                  </div>
-
-                  {/* Client Quote Snippet */}
-                  <p style={{
-                    fontSize: '0.85rem',
-                    color: '#4B5563',
-                    lineHeight: 1.5,
-                    margin: '0 0 16px',
-                    fontStyle: 'italic',
-                    minHeight: '44px'
-                  }}>
-                    {item.quote}
-                  </p>
-
-                  {/* Audio Controls Bar */}
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '12px', background: '#F8FAFC', padding: '8px 12px', borderRadius: '12px', border: '1px solid #E2E8F0' }}>
-                    <button
-                      type="button"
-                      onClick={() => togglePlayAudio(item.id)}
+                    <div
                       style={{
-                        width: '38px',
-                        height: '38px',
-                        borderRadius: '50%',
-                        border: isPlaying ? '2px solid #FF007F' : 'none',
-                        background: isPlaying ? '#FF007F' : '#121214',
-                        color: '#FFFFFF',
                         display: 'flex',
                         alignItems: 'center',
-                        justifyContent: 'center',
-                        cursor: 'pointer',
-                        fontSize: '0.95rem',
-                        transition: 'all 0.2s ease',
-                        boxShadow: isPlaying ? '0 0 12px rgba(255, 0, 127, 0.4)' : 'none',
-                        flexShrink: 0
+                        justifyContent: 'space-between',
+                        marginBottom: '12px'
                       }}
-                      title={isPlaying ? 'Pause Voice Note' : 'Play Voice Note'}
                     >
-                      {isPlaying ? '⏸' : '▶'}
-                    </button>
+                      <div>
+                        <h4
+                          style={{
+                            margin: 0,
+                            fontSize: '1.02rem',
+                            fontWeight: 800,
+                            color: 'var(--emerald-deep)'
+                          }}
+                        >
+                          {item.clientName}
+                        </h4>
+                        <span style={{ fontSize: '0.8rem', color: '#008B82', fontWeight: 700 }}>
+                          {item.condition}
+                        </span>
+                      </div>
 
-                    <div style={{ flex: 1, minWidth: 0 }}>
-                      <div
-                        onClick={(e) => {
-                          const rect = e.currentTarget.getBoundingClientRect();
-                          const clickX = e.clientX - rect.left;
-                          const ratio = clickX / rect.width;
-                          const el = audioRefs.current[item.id];
-                          if (el && total > 0) {
-                            el.currentTime = ratio * total;
-                          }
-                        }}
+                      {/* Animated Sound Wave Indicator */}
+                      {isPlaying ? (
+                        <div style={{ display: 'flex', alignItems: 'center', gap: '3px', height: '22px' }}>
+                          <span className="soundwave-bar" style={{ animationDelay: '0.1s' }}></span>
+                          <span className="soundwave-bar" style={{ animationDelay: '0.3s' }}></span>
+                          <span className="soundwave-bar" style={{ animationDelay: '0.5s' }}></span>
+                          <span className="soundwave-bar" style={{ animationDelay: '0.2s' }}></span>
+                        </div>
+                      ) : (
+                        <span
+                          style={{
+                            fontSize: '0.74rem',
+                            background: 'var(--sand-cream)',
+                            color: 'var(--text-secondary)',
+                            padding: '3px 8px',
+                            borderRadius: '6px',
+                            fontWeight: 700,
+                            border: '1px solid var(--border-subtle)'
+                          }}
+                        >
+                          {item.durationEst}
+                        </span>
+                      )}
+                    </div>
+
+                    {/* Client Quote Snippet */}
+                    <p
+                      style={{
+                        fontSize: '0.88rem',
+                        color: 'var(--text-primary)',
+                        lineHeight: 1.55,
+                        margin: '0 0 18px',
+                        fontStyle: 'italic',
+                        flexGrow: 1
+                      }}
+                    >
+                      {item.quote}
+                    </p>
+
+                    {/* Audio Controls Bar */}
+                    <div
+                      style={{
+                        display: 'flex',
+                        alignItems: 'center',
+                        gap: '12px',
+                        background: '#FAF8F5',
+                        padding: '10px 14px',
+                        borderRadius: '14px',
+                        border: '1px solid var(--border-subtle)'
+                      }}
+                    >
+                      <button
+                        type="button"
+                        onClick={() => togglePlayAudio(item.id)}
                         style={{
-                          width: '100%',
-                          height: '6px',
-                          background: '#E2E8F0',
-                          borderRadius: '999px',
+                          width: '40px',
+                          height: '40px',
+                          borderRadius: '50%',
+                          border: 'none',
+                          background: '#00E5D0',
+                          color: '#0A0E0C',
+                          display: 'flex',
+                          alignItems: 'center',
+                          justifyContent: 'center',
                           cursor: 'pointer',
-                          overflow: 'hidden',
-                          position: 'relative'
+                          fontSize: '0.95rem',
+                          fontWeight: 800,
+                          transition: 'all 0.2s ease',
+                          boxShadow: '0 4px 12px rgba(0, 229, 208, 0.35)',
+                          flexShrink: 0
                         }}
+                        title={isPlaying ? 'Pause Voice Note' : 'Play Voice Note'}
                       >
+                        {isPlaying ? '⏸' : '▶'}
+                      </button>
+
+                      <div style={{ flex: 1, minWidth: 0 }}>
+                        <div
+                          onClick={(e) => {
+                            const rect = e.currentTarget.getBoundingClientRect();
+                            const clickX = e.clientX - rect.left;
+                            const ratio = clickX / rect.width;
+                            const el = audioRefs.current[item.id];
+                            if (el && total > 0) {
+                              el.currentTime = ratio * total;
+                            }
+                          }}
+                          style={{
+                            width: '100%',
+                            height: '6px',
+                            background: 'rgba(0, 0, 0, 0.1)',
+                            borderRadius: '999px',
+                            cursor: 'pointer',
+                            overflow: 'hidden',
+                            position: 'relative'
+                          }}
+                        >
+                          <div
+                            style={{
+                              width: `${progressPct}%`,
+                              height: '100%',
+                              background: '#00BFA5',
+                              borderRadius: '999px',
+                              transition: 'width 0.1s linear'
+                            }}
+                          />
+                        </div>
                         <div
                           style={{
-                            width: `${progressPct}%`,
-                            height: '100%',
-                            background: isPlaying ? 'linear-gradient(90deg, #00E5D9, #FF007F)' : '#00E5D9',
-                            borderRadius: '999px',
-                            transition: 'width 0.1s linear'
+                            display: 'flex',
+                            justifyContent: 'space-between',
+                            marginTop: '4px',
+                            fontSize: '0.72rem',
+                            color: 'var(--text-muted)',
+                            fontWeight: 600
                           }}
-                        />
-                      </div>
-                      <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: '4px', fontSize: '0.72rem', color: '#64748B', fontWeight: 600 }}>
-                        <span>{formatSeconds(current)}</span>
-                        <span>{total > 0 ? formatSeconds(total) : item.durationEst}</span>
+                        >
+                          <span>{formatSeconds(current)}</span>
+                          <span>{total > 0 ? formatSeconds(total) : item.durationEst}</span>
+                        </div>
                       </div>
                     </div>
                   </div>
-                </div>
-              );
-            })}
-          </div>
+                );
+              })}
+            </div>
 
-          <div style={{ textAlign: 'center', marginTop: '32px' }}>
-            <Link
-              to="/booking"
-              className="btn btn-primary"
-              style={{ padding: '12px 28px', borderRadius: '12px', background: '#121214', color: '#FFFFFF', fontWeight: 700 }}
-            >
-              <span>Begin Your Own Transformation (₹1,999) &rarr;</span>
-            </Link>
+            <div style={{ textAlign: 'center', marginTop: '36px' }}>
+              <Link
+                to="/booking"
+                className="btn btn-primary btn-lg"
+                style={{
+                  padding: '14px 34px',
+                  borderRadius: '14px'
+                }}
+              >
+                <span>Book 1:1 Consultation &rarr;</span>
+              </Link>
+            </div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
+    </>
   );
 }

@@ -404,7 +404,7 @@ export default function AdminPage() {
         'Specific targeted action blueprint',
         'Personalized follow-up guide'
       ],
-      buttonText: 'Select Specialized Care (₹1,999)',
+      buttonText: 'Select Specialized Care',
       featured: false,
       active: true
     };

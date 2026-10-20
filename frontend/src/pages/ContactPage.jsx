@@ -372,7 +372,7 @@ export default function ContactPage() {
                   >
                     <option value="Functional Health & Gut Microbiome Protocol">Functional Health &amp; Gut Microbiome Protocol</option>
                     <option value="Oxygen Advantage & Breathwork Coaching">Oxygen Advantage &amp; Breathwork Coaching</option>
-                    <option value="1:1 Consultation (₹1,999) Query">1:1 Clinical Consultation (₹1,999) Query</option>
+                    <option value="1:1 Consultation Query">1:1 Clinical Consultation Query</option>
                     <option value="Laboratory Biomarker & Blood Review">Laboratory Biomarker &amp; Blood Review</option>
                     <option value="General Health Inquiry">General Health Inquiry</option>
                   </select>
@@ -421,7 +421,7 @@ export default function ContactPage() {
             <div style={{ marginTop: '20px', textAlign: 'center', fontSize: '0.88rem', color: 'var(--text-secondary)' }}>
               Looking to schedule directly?{' '}
               <Link to="/booking" style={{ color: 'var(--emerald-primary)', fontWeight: 700, textDecoration: 'underline' }}>
-                Book 1:1 Consultation (₹1,999) &rarr;
+                Book 1:1 Consultation &rarr;
               </Link>
             </div>
           </div>

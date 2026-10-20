@@ -21,7 +21,7 @@ function ensureLocalDb() {
   if (!fs.existsSync(DATA_DIR)) {
     try {
       fs.mkdirSync(DATA_DIR, { recursive: true });
-    } catch (e) {}
+    } catch (e) { }
   }
   if (!fs.existsSync(DB_FILE)) {
     const initialData = {
@@ -42,7 +42,7 @@ function ensureLocalDb() {
     };
     try {
       fs.writeFileSync(DB_FILE, JSON.stringify(initialData, null, 2), 'utf-8');
-    } catch (e) {}
+    } catch (e) { }
   }
 }
 
@@ -112,7 +112,7 @@ function resolveMongoUri() {
       const m = txt.match(/^MONGODB_URI=(.*)$/m);
       if (m && m[1]) return m[1].trim();
     }
-  } catch (e) {}
+  } catch (e) { }
   return null;
 }
 
@@ -160,7 +160,7 @@ export const db = {
       if (mdb) {
         return await mdb.collection('users').findOne({ email: normalized });
       }
-    } catch (e) {}
+    } catch (e) { }
     const data = readLocalDb();
     return data.users.find(u => (u.email || '').toLowerCase() === normalized) || null;
   },
@@ -176,7 +176,7 @@ export const db = {
           return await mdb.collection('users').findOne({ id });
         }
       }
-    } catch (e) {}
+    } catch (e) { }
     const data = readLocalDb();
     return data.users.find(u => u.id === id || u._id === id) || null;
   },
@@ -253,11 +253,11 @@ export const db = {
         let filter = { id };
         try {
           if (ObjectId.isValid(id)) filter = { $or: [{ _id: new ObjectId(id) }, { id }] };
-        } catch (e) {}
+        } catch (e) { }
         const doc = await mdb.collection('bookings').findOne(filter);
         if (doc) return doc;
       }
-    } catch (e) {}
+    } catch (e) { }
     const data = readLocalDb();
     return data.bookings.find(b => b.id === id || b._id === id) || null;
   },
@@ -282,7 +282,7 @@ export const db = {
           .sort({ createdAt: -1 })
           .toArray();
       }
-    } catch (e) {}
+    } catch (e) { }
     const data = readLocalDb();
     return (data.bookings || [])
       .filter(b => {
@@ -302,7 +302,7 @@ export const db = {
       if (mdb) {
         return await mdb.collection('bookings').find({}).sort({ createdAt: -1 }).toArray();
       }
-    } catch (e) {}
+    } catch (e) { }
     const data = readLocalDb();
     return [...(data.bookings || [])].reverse();
   },
@@ -319,7 +319,7 @@ export const db = {
         writeLocalDb(data);
         updatedLocalDoc = data.bookings[idx];
       }
-    } catch (e) {}
+    } catch (e) { }
 
     try {
       const mdb = await getMongo();
@@ -328,10 +328,10 @@ export const db = {
         let filter = { id };
         try {
           if (ObjectId.isValid(id)) filter = { $or: [{ _id: new ObjectId(id) }, { id }] };
-        } catch (e) {}
+        } catch (e) { }
         await mdb.collection('bookings').updateOne(filter, { $set: patch });
       }
-    } catch (e) {}
+    } catch (e) { }
 
     return updatedLocalDoc || { id, ...updates };
   },
@@ -385,11 +385,11 @@ export const db = {
         let filter = { $or: [{ id }, { uniqueFileName: id }] };
         try {
           if (ObjectId.isValid(id)) filter = { $or: [{ _id: new ObjectId(id) }, { id }, { uniqueFileName: id }] };
-        } catch (e) {}
+        } catch (e) { }
         const doc = await mdb.collection('lab_reports').findOne(filter);
         if (doc) return doc;
       }
-    } catch (e) {}
+    } catch (e) { }
 
     const data = readLocalDb();
     return (data.labReports || []).find(r => r.id === id || r._id === id || r.uniqueFileName === id) || null;
@@ -451,7 +451,7 @@ export const db = {
           'Direct 1-on-1 consultation via private secure video call',
           'Tailored, actionable functional recovery blueprint'
         ],
-        buttonText: 'Book 1:1 Consultation (₹1,999)',
+        buttonText: 'Book 1:1 Consultation',
         featured: true,
         active: true
       }
@@ -469,7 +469,7 @@ export const db = {
           { $set: { key: 'pricing_tiers', tiers: singleTier, updatedAt: new Date().toISOString() } },
           { upsert: true }
         );
-      } catch (e) {}
+      } catch (e) { }
     }
     const data = readLocalDb();
     data.pricingTiers = singleTier;
@@ -583,7 +583,7 @@ export const db = {
           })
           .toArray();
       }
-    } catch (e) {}
+    } catch (e) { }
     const data = readLocalDb();
     return (data.bookings || []).filter(
       b => b.bookingDate === dateStr && b.status !== 'cancelled' && b.status !== 'rejected'
@@ -702,7 +702,7 @@ export const db = {
           .sort({ updatedAt: -1 })
           .toArray();
       }
-    } catch (e) {}
+    } catch (e) { }
     const data = readLocalDb();
     return (data.assessment_leads || []).sort((a, b) => new Date(b.updatedAt || 0) - new Date(a.updatedAt || 0));
   },
@@ -719,7 +719,7 @@ export const db = {
         data.assessment_leads[idx] = { ...data.assessment_leads[idx], ...patch };
         writeLocalDb(data);
       }
-    } catch (e) {}
+    } catch (e) { }
 
     try {
       const mdb = await getMongo();
@@ -729,7 +729,7 @@ export const db = {
           { $set: patch }
         );
       }
-    } catch (e) {}
+    } catch (e) { }
 
     return { id, ...patch };
   }

@@ -59,7 +59,35 @@ const DEFAULT_REELS = [
   }
 ];
 
+const PATIENT_STORIES = [
+  {
+    name: "Vartika",
+    location: "Bangalore",
+    avatar: "/assets/images/real-patient-vartika.jpg",
+    quote: '"For as long as I can remember, I had been suffering from Hashimoto\'s, extreme fatigue, and crazy PMS mood swings. Within 8 weeks on Reshmi\'s gut & breath protocol, my brain fog vanished and energy is at an all-time high!"'
+  },
+  {
+    name: "Simrat",
+    location: "Ludhiana",
+    avatar: "/assets/images/real-patient-simrat.jpg",
+    quote: '"This program has done wonders in my life. I had severe chronic constipation, low energy, and food sensitivities. Reshmi\'s diagnostic approach repaired my digestion without restrictive crash diets."'
+  },
+  {
+    name: "Pranav",
+    location: "New Delhi",
+    avatar: "/assets/images/real-patient-pranav.jpg",
+    quote: '"I was struggling with anxiety-induced shallow breathing, sleep apnea, and high stress. Oxygen Advantage breathwork with Reshmi boosted my BOLT score from 12s to 32s. Sleep quality is now phenomenal."'
+  },
+  {
+    name: "Shoaib",
+    location: "Ahmednagar",
+    avatar: "/assets/images/real-patient-shoaib.jpg",
+    quote: '"I had been suffering from severe gastritis, acidity, and post-meal sluggishness for years. Reshmi pinpointed the exact bacterial imbalance in my lab report and fixed it with whole food biochemistry."'
+  }
+];
+
 export default function HomePage() {
+  const [showScopeDisclaimer, setShowScopeDisclaimer] = useState(false);
   // Dynamic Reels from API
   const [reelsList, setReelsList] = useState(DEFAULT_REELS);
 
@@ -129,7 +157,7 @@ export default function HomePage() {
               <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginTop: '14px', fontSize: '0.88rem', color: 'var(--text-secondary)', flexWrap: 'wrap' }}>
                 <span style={{ display: 'inline-flex', alignItems: 'center', gap: '6px', color: 'var(--emerald-deep)', fontWeight: 600 }}>
                   <span style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#15803D' }}></span>
-                  60-Min 1:1 Session with Reshmi Verma (₹1,999)
+                  60-Min 1:1 Session with Reshmi Verma
                 </span>
                 <span>&bull;</span>
                 <span>Direct Clinical Root-Cause Roadmap</span>
@@ -351,10 +379,56 @@ export default function HomePage() {
             <p className="conditions-scope-text-primary">
               She addresses chronic and debilitating health challenges like <strong>Constant Fatigue, Severe Bloating, Breathing Pattern Disorders, Sinus &amp; Airway Blockages, Chronic Constipation, Acid Reflux, Indigestion, SIBO, Frequent Stomach Upsets, Hormonal Acne, Irregular or Absent Periods, Fibroids, Severe Period Pain, Mood Swings, PCOD / PCOS, Endometriosis, Insulin Resistance, Prediabetes &amp; Diabetes, Fatty Liver, Chronic Itching, Urticaria, Eczema, Psoriasis, Autoimmune Conditions, Hashimoto's Thyroiditis</strong>, and systemic cellular exhaustion using 100% natural, science-backed interventions like functional food biochemistry, #13 Oxygen Advantage® respiratory pacing, and targeted lifestyle optimization.
             </p>
-            <p className="conditions-scope-disclaimer">
-              Reshmi Verma is a functional health coach and certified biohacker with 20+ years in diagnostics, not a conventional medical doctor, and <u>does not prescribe pharmaceutical medicines</u>.<br />
-              Her <em>'Food &amp; Breath as Medicine'</em> clinical methodology complements the work of medical doctors, operating in full synergy with their guidance and clinical protocols.
-            </p>
+            {/* Clinical Advisory & Scope Dropdown Toggle */}
+            <div style={{ marginTop: '18px', borderTop: '1px dashed rgba(18, 18, 20, 0.12)', paddingTop: '14px' }}>
+              <button
+                type="button"
+                onClick={() => setShowScopeDisclaimer(!showScopeDisclaimer)}
+                style={{
+                  width: '100%',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'space-between',
+                  padding: '10px 16px',
+                  borderRadius: '12px',
+                  background: 'rgba(18, 18, 20, 0.04)',
+                  border: '1px solid rgba(18, 18, 20, 0.08)',
+                  cursor: 'pointer',
+                  textAlign: 'left',
+                  transition: 'all 0.2s ease'
+                }}
+                onMouseEnter={(e) => { e.currentTarget.style.background = 'rgba(18, 18, 20, 0.07)'; }}
+                onMouseLeave={(e) => { e.currentTarget.style.background = 'rgba(18, 18, 20, 0.04)'; }}
+              >
+                <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                  <span style={{ fontSize: '1.05rem' }}>🩺</span>
+                  <span style={{ fontSize: '0.86rem', fontWeight: 700, color: '#1F2937' }}>
+                    Clinical Scope of Practice &amp; Medical Advisory
+                  </span>
+                </div>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '6px', fontSize: '0.8rem', color: '#6B7280', fontWeight: 600 }}>
+                  <span>{showScopeDisclaimer ? 'Hide Advisory' : 'Read Full Scope'}</span>
+                  <span style={{ display: 'inline-block', transform: showScopeDisclaimer ? 'rotate(180deg)' : 'rotate(0deg)', transition: 'transform 0.25s ease' }}>
+                    ▼
+                  </span>
+                </div>
+              </button>
+
+              {showScopeDisclaimer && (
+                <div style={{
+                  marginTop: '12px',
+                  padding: '14px 18px',
+                  borderRadius: '12px',
+                  background: '#FDFBF7',
+                  border: '1px solid rgba(18, 18, 20, 0.08)'
+                }}>
+                  <p className="conditions-scope-disclaimer" style={{ margin: 0 }}>
+                    Reshmi Verma is a functional health coach and certified biohacker with 20+ years in diagnostics, not a conventional medical doctor, and <u>does not prescribe pharmaceutical medicines</u>.<br />
+                    Her <em>'Food &amp; Breath as Medicine'</em> clinical methodology complements the work of medical doctors, operating in full synergy with their guidance and clinical protocols.
+                  </p>
+                </div>
+              )}
+            </div>
           </div>
         </div>
       </section>
@@ -557,58 +631,48 @@ export default function HomePage() {
               </Link>
             </div>
 
-            <div className="stories-cards-scroller">
-              <div className="story-client-card">
-                <div className="story-client-header">
-                  <img src="/assets/images/real-patient-vartika.jpg" alt="Vartika" className="story-client-avatar" />
-                  <div>
-                    <h5 style={{ margin: 0, fontSize: '0.98rem', fontWeight: 700, color: '#FFFFFF' }}>Vartika</h5>
-                    <span style={{ fontSize: '0.78rem', color: '#9CA3AF' }}>Bangalore</span>
+            <div className="stories-marquee-container">
+              <div
+                className="stories-marquee-track"
+                onMouseEnter={(e) => { e.currentTarget.style.animationPlayState = 'paused'; }}
+                onMouseLeave={(e) => { e.currentTarget.style.animationPlayState = 'running'; }}
+              >
+                {[...PATIENT_STORIES, ...PATIENT_STORIES].map((story, idx) => (
+                  <div
+                    key={`${story.name}-${idx}`}
+                    className="story-client-card"
+                    style={{
+                      flex: '0 0 290px',
+                      background: 'rgba(255, 255, 255, 0.05)',
+                      backdropFilter: 'blur(20px)',
+                      color: '#FFFFFF',
+                      borderRadius: '20px',
+                      padding: '24px 22px',
+                      border: '1px solid rgba(255, 255, 255, 0.1)',
+                      borderTop: '2.5px solid #FF007F',
+                      boxShadow: '0 10px 30px rgba(0, 0, 0, 0.35)',
+                      display: 'flex',
+                      flexDirection: 'column'
+                    }}
+                  >
+                    <div className="story-client-header" style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '14px' }}>
+                      <img
+                        src={story.avatar}
+                        alt={story.name}
+                        className="story-client-avatar"
+                        style={{ width: '46px', height: '46px', borderRadius: '50%', objectFit: 'cover', border: '2px solid #FF007F' }}
+                      />
+                      <div>
+                        <h5 style={{ margin: 0, fontSize: '0.98rem', fontWeight: 700, color: '#FFFFFF' }}>{story.name}</h5>
+                        <span style={{ fontSize: '0.78rem', color: '#9CA3AF' }}>{story.location}</span>
+                      </div>
+                    </div>
+                    <p className="story-client-quote" style={{ fontSize: '0.88rem', color: 'rgba(255, 255, 255, 0.82)', lineHeight: 1.55, margin: 0, fontStyle: 'italic' }}>
+                      {story.quote}
+                    </p>
                   </div>
-                </div>
-                <p className="story-client-quote">
-                  "For as long as I can remember, I had been suffering from Hashimoto's, extreme fatigue, and crazy PMS mood swings. Within 8 weeks on Reshmi's gut &amp; breath protocol, my brain fog vanished and energy is at an all-time high!"
-                </p>
-                </div>
-
-              <div className="story-client-card">
-                <div className="story-client-header">
-                  <img src="/assets/images/real-patient-simrat.jpg" alt="Simrat" className="story-client-avatar" />
-                  <div>
-                    <h5 style={{ margin: 0, fontSize: '0.98rem', fontWeight: 700, color: '#FFFFFF' }}>Simrat</h5>
-                    <span style={{ fontSize: '0.78rem', color: '#9CA3AF' }}>Ludhiana</span>
-                  </div>
-                </div>
-                <p className="story-client-quote">
-                  "This program has done wonders in my life. I had severe chronic constipation, low energy, and food sensitivities. Reshmi's diagnostic approach repaired my digestion without restrictive crash diets."
-                </p>
-                </div>
-
-              <div className="story-client-card">
-                <div className="story-client-header">
-                  <img src="/assets/images/real-patient-pranav.jpg" alt="Pranav" className="story-client-avatar" />
-                  <div>
-                    <h5 style={{ margin: 0, fontSize: '0.98rem', fontWeight: 700, color: '#FFFFFF' }}>Pranav</h5>
-                    <span style={{ fontSize: '0.78rem', color: '#9CA3AF' }}>New Delhi</span>
-                  </div>
-                </div>
-                <p className="story-client-quote">
-                  "I was struggling with anxiety-induced shallow breathing, sleep apnea, and high stress. Oxygen Advantage breathwork with Reshmi boosted my BOLT score from 12s to 32s. Sleep quality is now phenomenal."
-                </p>
-                </div>
-
-              <div className="story-client-card">
-                <div className="story-client-header">
-                  <img src="/assets/images/real-patient-shoaib.jpg" alt="Shoaib" className="story-client-avatar" />
-                  <div>
-                    <h5 style={{ margin: 0, fontSize: '0.98rem', fontWeight: 700, color: '#FFFFFF' }}>Shoaib</h5>
-                    <span style={{ fontSize: '0.78rem', color: '#9CA3AF' }}>Ahmednagar</span>
-                  </div>
-                </div>
-                <p className="story-client-quote">
-                  "I had been suffering from severe gastritis, acidity, and post-meal sluggishness for years. Reshmi pinpointed the exact bacterial imbalance in my lab report and fixed it with whole food biochemistry."
-                </p>
-                </div>
+                ))}
+              </div>
             </div>
           </div>
         </div>
@@ -641,9 +705,9 @@ export default function HomePage() {
               <div className="how-step-number" style={{ color: 'var(--emerald-medium)' }}>02</div>
               <h3>Health Clarity Session</h3>
               <p>
-                A comprehensive 60-minute 1:1 session with Reshmi Verma (₹1,999) exploring your health history, lab panels, breathing mechanics, and metabolic bottlenecks.
+                A comprehensive 60-minute 1:1 session with Reshmi Verma exploring your health history, lab panels, breathing mechanics, and metabolic bottlenecks.
               </p>
-              <span className="how-step-highlight" style={{ background: 'var(--emerald-soft)' }}>Step 2 • 60-Min 1:1 (₹1,999)</span>
+              <span className="how-step-highlight" style={{ background: 'var(--emerald-soft)' }}>Step 2 • 60-Min 1:1</span>
             </div>
 
             <div className="how-step-card">
@@ -773,7 +837,7 @@ export default function HomePage() {
             </div>
             <div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap', alignItems: 'center' }}>
               <Link to="/booking" className="btn btn-primary btn-lg">
-                <span>Book Consultation (₹1,999)</span>
+                <span>Book Consultation</span>
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" style={{ marginLeft: '6px' }}>
                   <line x1="5" y1="12" x2="19" y2="12"></line>
                   <polyline points="12 5 19 12 12 19"></polyline>
@@ -807,7 +871,15 @@ export default function HomePage() {
               <p>Swipe or scroll sideways to watch Reshmi's latest short-form masterclasses on gut restoration, breathing biomechanics, and cellular energy.</p>
             </div>
 
-            <div className="reels-nav-controls">
+            <div className="reels-nav-controls" style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+              <Link
+                to="/videos"
+                className="btn btn-secondary btn-sm"
+                style={{ padding: '7px 16px', fontSize: '0.82rem', borderRadius: '999px', display: 'inline-flex', alignItems: 'center', gap: '6px' }}
+              >
+                <span>🎥 All Videos</span>
+                <span>&rarr;</span>
+              </Link>
               <button
                 className="reels-scroll-arrow"
                 id="reels-prev-btn"
@@ -914,16 +986,16 @@ export default function HomePage() {
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
                   <defs>
                     <linearGradient id="igFollowGrad" x1="0%" y1="100%" x2="100%" y2="0%">
-                      <stop offset="0%" stopColor="#f09433"/>
-                      <stop offset="25%" stopColor="#e6683c"/>
-                      <stop offset="50%" stopColor="#dc2743"/>
-                      <stop offset="75%" stopColor="#cc2366"/>
-                      <stop offset="100%" stopColor="#bc1888"/>
+                      <stop offset="0%" stopColor="#f09433" />
+                      <stop offset="25%" stopColor="#e6683c" />
+                      <stop offset="50%" stopColor="#dc2743" />
+                      <stop offset="75%" stopColor="#cc2366" />
+                      <stop offset="100%" stopColor="#bc1888" />
                     </linearGradient>
                   </defs>
-                  <rect x="2" y="2" width="20" height="20" rx="5" fill="url(#igFollowGrad)"/>
-                  <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" stroke="#FFFFFF" strokeWidth="1.8" fill="none"/>
-                  <circle cx="17.5" cy="6.5" r="1.2" fill="#FFFFFF"/>
+                  <rect x="2" y="2" width="20" height="20" rx="5" fill="url(#igFollowGrad)" />
+                  <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" stroke="#FFFFFF" strokeWidth="1.8" fill="none" />
+                  <circle cx="17.5" cy="6.5" r="1.2" fill="#FFFFFF" />
                 </svg>
                 <span>Instagram</span>
               </a>
@@ -935,8 +1007,8 @@ export default function HomePage() {
                 aria-label="Connect on LinkedIn"
               >
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
-                  <rect width="24" height="24" rx="4" fill="#0A66C2"/>
-                  <path d="M19 19h-3v-4.5c0-1.08-.02-2.5-1.5-2.5-1.5 0-1.8 1.2-1.8 2.4V19H9.7V9.5h2.9v1.3h.04c.4-.76 1.4-1.56 2.8-1.56 3 0 3.56 2 3.56 4.56V19zM6.4 8.2a1.7 1.7 0 1 1 0-3.4 1.7 1.7 0 0 1 0 3.4zM7.9 19H4.9V9.5h3V19z" fill="#FFFFFF"/>
+                  <rect width="24" height="24" rx="4" fill="#0A66C2" />
+                  <path d="M19 19h-3v-4.5c0-1.08-.02-2.5-1.5-2.5-1.5 0-1.8 1.2-1.8 2.4V19H9.7V9.5h2.9v1.3h.04c.4-.76 1.4-1.56 2.8-1.56 3 0 3.56 2 3.56 4.56V19zM6.4 8.2a1.7 1.7 0 1 1 0-3.4 1.7 1.7 0 0 1 0 3.4zM7.9 19H4.9V9.5h3V19z" fill="#FFFFFF" />
                 </svg>
                 <span>LinkedIn</span>
               </a>
@@ -948,8 +1020,8 @@ export default function HomePage() {
                 aria-label="Subscribe on YouTube"
               >
                 <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
-                  <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814z" fill="#FF0000"/>
-                  <path d="M9.545 15.568V8.432L15.818 12l-6.273 3.568z" fill="#FFFFFF"/>
+                  <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814z" fill="#FF0000" />
+                  <path d="M9.545 15.568V8.432L15.818 12l-6.273 3.568z" fill="#FFFFFF" />
                 </svg>
                 <span>YouTube</span>
               </a>
@@ -977,7 +1049,7 @@ export default function HomePage() {
               <span>Read Reshmi's Full Story &rarr;</span>
             </Link>
             <Link to="/booking" className="btn btn-primary btn-lg" style={{ borderRadius: '14px', padding: '12px 26px', fontSize: '0.95rem' }}>
-              <span>Book 1:1 Consultation (₹1,999)</span>
+              <span>Book 1:1 Consultation</span>
             </Link>
           </div>
         </div>
@@ -1019,16 +1091,16 @@ export default function HomePage() {
                   <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
                     <defs>
                       <linearGradient id="igCardGrad" x1="0%" y1="100%" x2="100%" y2="0%">
-                        <stop offset="0%" stopColor="#f09433"/>
-                        <stop offset="25%" stopColor="#e6683c"/>
-                        <stop offset="50%" stopColor="#dc2743"/>
-                        <stop offset="75%" stopColor="#cc2366"/>
-                        <stop offset="100%" stopColor="#bc1888"/>
+                        <stop offset="0%" stopColor="#f09433" />
+                        <stop offset="25%" stopColor="#e6683c" />
+                        <stop offset="50%" stopColor="#dc2743" />
+                        <stop offset="75%" stopColor="#cc2366" />
+                        <stop offset="100%" stopColor="#bc1888" />
                       </linearGradient>
                     </defs>
-                    <rect x="2" y="2" width="20" height="20" rx="5" fill="url(#igCardGrad)"/>
-                    <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" stroke="#FFFFFF" strokeWidth="1.8" fill="none"/>
-                    <circle cx="17.5" cy="6.5" r="1.2" fill="#FFFFFF"/>
+                    <rect x="2" y="2" width="20" height="20" rx="5" fill="url(#igCardGrad)" />
+                    <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" stroke="#FFFFFF" strokeWidth="1.8" fill="none" />
+                    <circle cx="17.5" cy="6.5" r="1.2" fill="#FFFFFF" />
                   </svg>
                   <h3 className="more-about-title" style={{ margin: 0 }}>Instagram</h3>
                 </div>
@@ -1051,8 +1123,8 @@ export default function HomePage() {
               <div className="more-about-content">
                 <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
                   <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-                    <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814z" fill="#FF0000"/>
-                    <path d="M9.545 15.568V8.432L15.818 12l-6.273 3.568z" fill="#FFFFFF"/>
+                    <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814z" fill="#FF0000" />
+                    <path d="M9.545 15.568V8.432L15.818 12l-6.273 3.568z" fill="#FFFFFF" />
                   </svg>
                   <h3 className="more-about-title" style={{ margin: 0 }}>YouTube</h3>
                 </div>

@@ -308,17 +308,17 @@ export default function BreathingAssessmentPage() {
 
   if (totalScore >= 35) {
     ratingTitle = 'Severe Breathing Pattern Disorder';
-    ratingColor = '#DC2626';
+    ratingColor = '#0F766E';
     ratingBadge = 'High Respiratory Dysregulation';
     ratingSummary = 'Your breathing reflects chronic severe hyperventilation, airway restriction, and low CO₂ tolerance. This directly impacts your sleep, anxiety threshold, and cardiovascular endurance.';
   } else if (totalScore >= 24) {
     ratingTitle = 'Significant Dysfunctional Breathing';
-    ratingColor = '#EA580C';
+    ratingColor = '#0D9488';
     ratingBadge = 'Over-Breathing Compensation';
     ratingSummary = 'Noticeable upper chest breathing, daytime sighing/mouth breathing, and suboptimal CO₂ tolerance. A structured Oxygen Advantage reset will deliver massive energy gains.';
   } else if (totalScore >= 13) {
     ratingTitle = 'Mild-to-Moderate Dysfunctional Breathing';
-    ratingColor = '#D97706';
+    ratingColor = '#0D9488';
     ratingBadge = 'Sub-Clinical Hyperventilation';
     ratingSummary = 'Good baseline mechanics, but chronic stress or postural desk work frequently disrupts your breathing rhythm, causing fatigue dips and intermittent air hunger.';
   }
@@ -363,46 +363,6 @@ export default function BreathingAssessmentPage() {
     <main className="section" style={{ minHeight: '100vh', paddingTop: '100px', paddingBottom: '80px' }}>
       <div className="container" style={{ maxWidth: '920px' }}>
         
-        {/* Dual Assessment Track Switcher */}
-        <div style={{ display: 'flex', justifyContent: 'center', gap: '10px', marginBottom: '22px', flexWrap: 'wrap' }}>
-          <Link 
-            to="/assessment"
-            style={{ 
-              padding: '8px 18px', 
-              fontSize: '0.86rem', 
-              borderRadius: '999px', 
-              background: '#FFFFFF', 
-              color: 'var(--text-secondary)', 
-              border: '1.5px solid var(--border-subtle)', 
-              fontWeight: 600,
-              textDecoration: 'none',
-              display: 'inline-flex',
-              alignItems: 'center',
-              gap: '6px'
-            }}
-          >
-            Functional Health Assessment
-          </Link>
-          <Link 
-            to="/breathing-assessment"
-            style={{ 
-              padding: '8px 18px', 
-              fontSize: '0.86rem', 
-              borderRadius: '999px', 
-              background: '#EBF9F8', 
-              color: '#167A71', 
-              border: '1.5px solid #9FE3DD', 
-              fontWeight: 700,
-              textDecoration: 'none',
-              display: 'inline-flex',
-              alignItems: 'center',
-              gap: '6px'
-            }}
-          >
-            Functional Breathing Assessment
-          </Link>
-        </div>
-
         {/* Header Clinical Credential Badge */}
         <div style={{ textAlign: 'center', marginBottom: '32px' }}>
           <div style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', padding: '6px 16px', borderRadius: '999px', background: '#121214', color: '#00E5D9', fontSize: '0.82rem', fontWeight: 700, letterSpacing: '0.04em', marginBottom: '14px', boxShadow: '0 4px 14px rgba(0,0,0,0.12)' }}>
@@ -492,18 +452,63 @@ export default function BreathingAssessmentPage() {
             </div>
 
             {/* Reshmi Clinical Roadmap CTA */}
-            <div style={{ padding: '24px', borderRadius: '20px', background: 'linear-gradient(135deg, #0A0E0C 0%, #17261E 100%)', color: '#FFFFFF', textAlign: 'center', marginBottom: '24px' }}>
-              <h3 style={{ fontSize: '1.35rem', color: '#00E5D9', margin: '0 0 8px' }}>
+            <div style={{ padding: '28px 24px', borderRadius: '20px', background: 'linear-gradient(135deg, #0A0E0C 0%, #17261E 100%)', color: '#FFFFFF', textAlign: 'center', marginBottom: '24px', boxShadow: '0 12px 30px rgba(0,0,0,0.18)' }}>
+              <h3 style={{ fontSize: '1.35rem', color: '#00E5D9', margin: '0 0 8px', fontWeight: 800 }}>
                 Restore Your Cellular Oxygen Delivery with Reshmi Verma
               </h3>
-              <p style={{ fontSize: '0.92rem', color: 'rgba(255,255,255,0.82)', maxWidth: '620px', margin: '0 auto 20px', lineHeight: 1.55 }}>
+              <p style={{ fontSize: '0.92rem', color: 'rgba(255,255,255,0.85)', maxWidth: '620px', margin: '0 auto 20px', lineHeight: 1.55 }}>
                 Dysfunctional breathing can be systematically reversed in 4–6 weeks through targeted nasal rehabilitation, diaphragmatic vagal pacing, and simulated high-altitude hypoxic breath holds.
               </p>
-              <div style={{ display: 'flex', justifyContent: 'center', gap: '14px', flexWrap: 'wrap' }}>
-                <Link to="/booking" className="btn btn-primary" style={{ padding: '12px 28px', background: '#D4AF37', color: '#000000', fontWeight: 700 }}>
-                  📅 Book 1-on-1 Oxygen Advantage Consultation
+              <div style={{ display: 'flex', justifyContent: 'center', gap: '14px', flexWrap: 'wrap', alignItems: 'center' }}>
+                <Link 
+                  to="/booking" 
+                  style={{ 
+                    padding: '13px 28px', 
+                    background: '#00E5D9', 
+                    color: '#121214', 
+                    fontWeight: 800, 
+                    borderRadius: '12px',
+                    textDecoration: 'none',
+                    display: 'inline-flex',
+                    alignItems: 'center',
+                    gap: '8px',
+                    boxShadow: '0 8px 24px rgba(0, 229, 217, 0.35)',
+                    transition: 'all 0.2s ease'
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.transform = 'translateY(-2px)';
+                    e.currentTarget.style.boxShadow = '0 12px 28px rgba(0, 229, 217, 0.5)';
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.transform = 'translateY(0)';
+                    e.currentTarget.style.boxShadow = '0 8px 24px rgba(0, 229, 217, 0.35)';
+                  }}
+                >
+                  <span>📅</span> Book 1-on-1 Oxygen Advantage Consultation
                 </Link>
-                <Link to="/assessment" className="btn btn-secondary" style={{ padding: '12px 24px', background: 'transparent', color: '#FFFFFF', borderColor: 'rgba(255,255,255,0.3)' }}>
+                <Link 
+                  to="/assessment" 
+                  style={{ 
+                    padding: '12px 24px', 
+                    background: 'rgba(255, 255, 255, 0.12)', 
+                    color: '#FFFFFF', 
+                    border: '1.5px solid rgba(255, 255, 255, 0.45)',
+                    borderRadius: '12px',
+                    fontWeight: 700,
+                    textDecoration: 'none',
+                    display: 'inline-flex',
+                    alignItems: 'center',
+                    transition: 'all 0.2s ease'
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.background = 'rgba(255, 255, 255, 0.22)';
+                    e.currentTarget.style.borderColor = '#FFFFFF';
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.background = 'rgba(255, 255, 255, 0.12)';
+                    e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.45)';
+                  }}
+                >
                   Take Functional Gut Health Assessment
                 </Link>
               </div>
