@@ -75,6 +75,7 @@ function AppContent() {
   const { pathname } = useLocation();
   const isAuthPage = pathname === '/auth' || pathname === '/login';
   const isAdminPage = pathname.startsWith('/admin');
+  const isBookingOrAssessment = pathname === '/booking' || pathname.startsWith('/assessment') || pathname.startsWith('/breathing-assessment') || pathname.startsWith('/functional-breathing-assessment') || pathname === '/questionnaire';
 
   return (
     <>
@@ -103,8 +104,8 @@ function AppContent() {
       </Routes>
 
       {!isAuthPage && !isAdminPage && <Footer />}
-      {!isAdminPage && <EvaAssistant />}
-      {!isAuthPage && !isAdminPage && <MobileBottomBar />}
+      {!isAdminPage && <EvaAssistant isBookingOrAssessment={isBookingOrAssessment} />}
+      {!isAuthPage && !isAdminPage && !isBookingOrAssessment && <MobileBottomBar />}
       <WelcomeAssessmentModal />
       <DragonflyAnimation />
     </>

@@ -320,35 +320,55 @@ export default function BookingPage() {
                     background: '#FFFFFF',
                     border: '2px solid var(--emerald-deep)',
                     borderRadius: '24px',
-                    padding: '36px 32px',
-                    boxShadow: '0 16px 40px rgba(0, 0, 0, 0.08)'
+                    padding: 'clamp(24px, 5vw, 36px) clamp(18px, 4vw, 32px)',
+                    boxShadow: '0 16px 40px rgba(0, 0, 0, 0.08)',
+                    position: 'relative'
                   }}
                 >
-                  <div className="tier-badge" style={{ background: '#121214', color: '#FFFFFF' }}>
-                    {tier.badge || 'Official 1:1 Clinical Consultation'}
+                  {/* Clean Top Integrated Badge */}
+                  <div style={{ textAlign: 'center', marginBottom: '14px' }}>
+                    <span style={{
+                      display: 'inline-flex',
+                      alignItems: 'center',
+                      gap: '6px',
+                      background: '#121214',
+                      color: '#FFFFFF',
+                      padding: '6px 16px',
+                      borderRadius: '999px',
+                      fontSize: '0.76rem',
+                      fontWeight: 800,
+                      letterSpacing: '0.06em',
+                      textTransform: 'uppercase',
+                      boxShadow: '0 4px 14px rgba(0,0,0,0.18)'
+                    }}>
+                      <span style={{ color: '#00E5D9' }}>★</span>
+                      <span>{tier.badge || 'Official 1:1 Clinical Consultation'}</span>
+                    </span>
                   </div>
-                  <h3 style={{ fontSize: '1.75rem', marginTop: '14px', marginBottom: '4px' }}>
+
+                  <h3 style={{ fontSize: 'clamp(1.5rem, 4vw, 1.85rem)', marginTop: '0', marginBottom: '6px', color: 'var(--emerald-deep)', fontWeight: 800, textAlign: 'center' }}>
                     {tier.title || tier.name}
                   </h3>
-                  <div className="tier-duration" style={{ color: '#0D827B', fontWeight: 600 }}>
-                    {tier.duration}
+                  <div className="tier-duration" style={{ color: '#0D827B', fontWeight: 700, fontSize: '0.92rem', textAlign: 'center', marginBottom: '16px', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '6px' }}>
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                    <span>{tier.duration}</span>
                   </div>
 
-                  <div className="tier-price-box" style={{ margin: '20px 0 16px' }}>
-                    <span className="tier-price-currency" style={{ fontSize: '1.6rem' }}>₹</span>
-                    <span className="tier-price-amount" style={{ fontSize: '3rem', fontWeight: 800 }}>1,999</span>
-                    <span className="tier-price-period" style={{ fontSize: '0.95rem' }}>/ 60-min session</span>
+                  <div className="tier-price-box" style={{ margin: '14px 0 16px', display: 'flex', alignItems: 'baseline', justifyContent: 'center', gap: '4px', flexWrap: 'wrap' }}>
+                    <span className="tier-price-currency" style={{ fontSize: '1.6rem', fontWeight: 800, color: '#121214' }}>₹</span>
+                    <span className="tier-price-amount" style={{ fontSize: 'clamp(2.6rem, 7vw, 3.2rem)', fontWeight: 800, color: '#121214', lineHeight: 1 }}>1,999</span>
+                    <span className="tier-price-period" style={{ fontSize: '0.92rem', color: 'var(--text-muted)', fontWeight: 600 }}>/ 60-min session</span>
                   </div>
 
-                  <p style={{ fontSize: '0.95rem', color: 'var(--text-secondary)', lineHeight: 1.6, marginBottom: '20px' }}>
+                  <p style={{ fontSize: '0.92rem', color: 'var(--text-secondary)', lineHeight: 1.6, marginBottom: '22px', textAlign: 'center' }}>
                     {tier.desc}
                   </p>
 
-                  <ul className="tier-features" style={{ marginBottom: '28px' }}>
+                  <ul className="tier-features" style={{ marginBottom: '28px', borderTop: '1px solid rgba(13, 130, 123, 0.15)', paddingTop: '18px' }}>
                     {(tier.features || []).map((feat, fIdx) => (
-                      <li key={fIdx} style={{ fontSize: '0.93rem', padding: '6px 0' }}>
-                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#0D827B" strokeWidth="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                        <span>{feat}</span>
+                      <li key={fIdx} style={{ fontSize: '0.92rem', padding: '7px 0', display: 'flex', alignItems: 'flex-start', gap: '10px', color: '#2C3E50' }}>
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#0D827B" strokeWidth="2.5" style={{ flexShrink: 0, marginTop: '2px' }}><polyline points="20 6 9 17 4 12"></polyline></svg>
+                        <span style={{ lineHeight: 1.45 }}>{feat}</span>
                       </li>
                     ))}
                   </ul>
@@ -356,7 +376,15 @@ export default function BookingPage() {
                   <button
                     type="button"
                     className="btn btn-primary btn-lg"
-                    style={{ width: '100%', justifyContent: 'center', borderRadius: '14px', fontSize: '1.05rem', fontWeight: 800 }}
+                    style={{
+                      width: '100%',
+                      justifyContent: 'center',
+                      borderRadius: '14px',
+                      fontSize: '1.02rem',
+                      fontWeight: 800,
+                      padding: '14px 20px',
+                      boxShadow: '0 8px 24px rgba(13, 130, 123, 0.25)'
+                    }}
                     onClick={() => {
                       if (formRef.current) formRef.current.scrollIntoView({ behavior: 'smooth' });
                     }}
@@ -407,13 +435,10 @@ export default function BookingPage() {
 
             <form id="consultation-booking-form" onSubmit={handleSubmit}>
 
-              {/* Step 1: Contact Information */}
-              <div style={{ marginBottom: '24px', paddingBottom: '12px', borderBottom: '2px solid rgba(194, 65, 12, 0.12)' }}>
-                <div style={{ display: 'flex', alignContent: 'center', alignItems: 'center', gap: '8px', marginBottom: '4px' }}>
-                  <span style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', width: '26px', height: '26px', borderRadius: '50%', background: 'var(--emerald-soft)', color: 'var(--emerald-medium)', fontWeight: 700, fontSize: '0.85rem' }}>1</span>
-                  <h3 style={{ fontSize: '1.15rem', color: 'var(--emerald-deep)', margin: 0, fontWeight: 700 }}>Step 1: Your Contact Information</h3>
-                </div>
-                <p style={{ fontSize: '0.82rem', color: 'var(--text-muted)', margin: 0 }}>Required for private video consultation link and confirmation.</p>
+              {/* Patient Contact Information */}
+              <div style={{ marginBottom: '22px', paddingBottom: '10px', borderBottom: '1.5px solid rgba(13, 130, 123, 0.15)' }}>
+                <h3 style={{ fontSize: '1.18rem', color: 'var(--emerald-deep)', margin: '0 0 4px', fontWeight: 700 }}>Patient Intake &amp; Contact Details</h3>
+                <p style={{ fontSize: '0.82rem', color: 'var(--text-muted)', margin: 0 }}>Required for private video consultation link and session confirmation.</p>
               </div>
 
               <div className="booking-form-row">
@@ -530,71 +555,42 @@ export default function BookingPage() {
                     name="occupation"
                     value={formData.occupation}
                     onChange={handleInputChange}
-                    placeholder="e.g. Software Engineer, Architect, Homemaker"
+                    placeholder="e.g. Software Engineer, Homemaker"
                     style={{ width: '100%', padding: '12px 16px', border: '1px solid var(--border-medium)', borderRadius: 'var(--radius-sm)', fontSize: '0.95rem' }}
                   />
                 </div>
 
                 <div>
-                  <label htmlFor="client-language-input" style={{ fontWeight: 700, fontSize: '0.92rem', color: 'var(--emerald-deep)', display: 'block', marginBottom: '6px' }}>
-                    8. Preferred Consultation Language
+                  <label htmlFor="client-emergency-input" style={{ fontWeight: 700, fontSize: '0.92rem', color: 'var(--emerald-deep)', display: 'block', marginBottom: '6px' }}>
+                    8. Emergency Contact (Optional)
                   </label>
-                  <select
-                    id="client-language-input"
-                    name="language"
-                    value={formData.language}
+                  <input
+                    type="text"
+                    id="client-emergency-input"
+                    name="emergencyContact"
+                    value={formData.emergencyContact}
                     onChange={handleInputChange}
-                    style={{ width: '100%', padding: '12px 16px', border: '1px solid var(--border-medium)', borderRadius: 'var(--radius-sm)', fontSize: '0.95rem', background: 'white' }}
-                  >
-                    <option value="English">English</option>
-                    <option value="Hindi">Hindi</option>
-                    <option value="English & Hindi (Bilingual)">English &amp; Hindi (Bilingual)</option>
-                  </select>
+                    placeholder="Name & Phone of close contact"
+                    style={{ width: '100%', padding: '12px 16px', border: '1px solid var(--border-medium)', borderRadius: 'var(--radius-sm)', fontSize: '0.95rem' }}
+                  />
                 </div>
               </div>
 
-              <div style={{ marginBottom: '24px' }}>
-                <label htmlFor="client-emergency-input" style={{ fontWeight: 700, fontSize: '0.92rem', color: 'var(--emerald-deep)', display: 'block', marginBottom: '6px' }}>
-                  9. Emergency Contact (Optional)
-                </label>
-                <input
-                  type="text"
-                  id="client-emergency-input"
-                  name="emergencyContact"
-                  value={formData.emergencyContact}
-                  onChange={handleInputChange}
-                  placeholder="Name & Phone number of close contact"
-                  style={{ width: '100%', padding: '12px 16px', border: '1px solid var(--border-medium)', borderRadius: 'var(--radius-sm)', fontSize: '0.95rem' }}
-                />
-              </div>
-
-              {/* Step 2: Consultation Plan & Notes */}
-              <div style={{ marginBottom: '24px', paddingBottom: '12px', borderBottom: '2px solid rgba(194, 65, 12, 0.12)', marginTop: '28px' }}>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                  <span style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', width: '26px', height: '26px', borderRadius: '50%', background: 'var(--emerald-soft)', color: 'var(--emerald-medium)', fontWeight: 700, fontSize: '0.85rem' }}>2</span>
-                  <h3 style={{ fontSize: '1.18rem', color: 'var(--emerald-deep)', margin: 0, fontWeight: 700 }}>
-                    Step 2: Consultation Plan &amp; Notes
-                  </h3>
+              {/* Chosen Consultation Plan (Compact) */}
+              <div style={{ margin: '20px 0 16px', padding: '14px 18px', background: '#F8FAF9', border: '1.5px solid var(--emerald-medium)', borderRadius: '14px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '8px' }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+                  <span style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', width: '22px', height: '22px', borderRadius: '50%', background: 'var(--emerald-soft)', color: 'var(--emerald-medium)', fontWeight: 800, fontSize: '0.8rem' }}>✓</span>
+                  <div>
+                    <strong style={{ fontSize: '0.96rem', color: 'var(--emerald-deep)', display: 'block' }}>1:1 Health Clarity Consultation (60 min)</strong>
+                    <span style={{ fontSize: '0.78rem', color: 'var(--text-muted)' }}>Direct 1-on-1 private video session with Reshmi Verma</span>
+                  </div>
                 </div>
-                <p style={{ fontSize: '0.82rem', color: 'var(--text-muted)', margin: '4px 0 0' }}>
-                  Your appointment slot and scheduling will be confirmed directly on the secure Razorpay payment page.
-                </p>
+                <span style={{ fontSize: '1.25rem', fontWeight: 800, color: 'var(--emerald-primary)' }}>₹1,999</span>
               </div>
 
+              {/* Compact Consultation Notes */}
               <div style={{ marginBottom: '20px' }}>
-                <label htmlFor="selected-service-select" style={{ fontWeight: 700, fontSize: '0.92rem', color: 'var(--emerald-deep)', display: 'block', marginBottom: '6px' }}>
-                  Consultation Plan *
-                </label>
-                <div
-                  style={{ width: '100%', padding: '14px 18px', background: '#F8FAF9', border: '1.5px solid var(--emerald-medium)', borderRadius: 'var(--radius-sm)', fontSize: '1rem', fontWeight: 700, color: 'var(--emerald-deep)', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}
-                >
-                  <span>1:1 Health Clarity Consultation (60 min)</span>
-                  <span style={{ color: 'var(--emerald-medium)', fontWeight: 800 }}>₹1,999</span>
-                </div>
-              </div>
-
-              <div style={{ marginBottom: '24px' }}>
-                <label htmlFor="client-notes-input" style={{ fontWeight: 700, fontSize: '0.95rem', color: 'var(--emerald-deep)', display: 'block', marginBottom: '8px' }}>
+                <label htmlFor="client-notes-input" style={{ fontWeight: 700, fontSize: '0.9rem', color: 'var(--emerald-deep)', display: 'block', marginBottom: '6px' }}>
                   Consultation Notes or Health Focus (Optional)
                 </label>
                 <textarea
@@ -602,9 +598,9 @@ export default function BookingPage() {
                   name="notes"
                   value={formData.notes}
                   onChange={handleInputChange}
-                  rows="3"
-                  placeholder="e.g. Acid reflux, thyroid pacing, energy fatigue, or specific health goals you wish to discuss..."
-                  style={{ width: '100%', padding: '14px 16px', border: '1px solid var(--border-medium)', borderRadius: 'var(--radius-sm)', fontSize: '1rem', lineHeight: 1.6 }}
+                  rows="2"
+                  placeholder="e.g. Acid reflux, gut bloating, blood diagnostics, or recovery goals..."
+                  style={{ width: '100%', padding: '10px 14px', border: '1px solid var(--border-medium)', borderRadius: 'var(--radius-sm)', fontSize: '0.92rem', lineHeight: 1.5 }}
                 ></textarea>
               </div>
 

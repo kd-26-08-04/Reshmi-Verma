@@ -111,12 +111,14 @@ export default function WelcomeAssessmentModal() {
           step: 'Details Submitted • Selecting Assessment'
         })
       });
-      const data = await res.json();
-      if (data?.lead?.id) {
-        setLeadId(data.lead.id);
+      if (res && res.ok) {
+        const data = await res.json().catch(() => null);
+        if (data?.lead?.id) {
+          setLeadId(data.lead.id);
+        }
       }
     } catch (err) {
-      console.warn('Backend lead capture notice:', err);
+      // Graceful offline fallback: lead is safely saved in localStorage
     } finally {
       setSubmitting(false);
       setStep(3); // Proceed to 2 Assessment Choices
@@ -140,7 +142,7 @@ export default function WelcomeAssessmentModal() {
           source: 'welcome_modal_step3',
           step: flowType === 'health' ? 'Chosen: Health Assessment' : 'Chosen: Breathing Assessment'
         })
-      }).catch(() => {});
+      }).catch(() => { });
     } catch (e) {
       // ignore
     }
@@ -161,7 +163,7 @@ export default function WelcomeAssessmentModal() {
   if (!isOpen) return null;
 
   return (
-    <div 
+    <div
       className="welcome-assessment-overlay"
       role="dialog"
       aria-modal="true"
@@ -169,12 +171,12 @@ export default function WelcomeAssessmentModal() {
     >
       <div className="welcome-assessment-backdrop" onClick={handleSkip}></div>
 
-      <div 
-        className="welcome-assessment-modal" 
-        style={{ 
-          maxWidth: step === 2 ? '440px' : '560px', 
-          padding: step === 2 ? '24px 22px 18px' : '36px 30px', 
-          borderRadius: '24px', 
+      <div
+        className="welcome-assessment-modal"
+        style={{
+          maxWidth: step === 2 ? '440px' : '560px',
+          padding: step === 2 ? '24px 22px 18px' : '36px 30px',
+          borderRadius: '24px',
           background: '#FAF9F6',
           position: 'relative',
           boxShadow: '0 25px 60px rgba(0, 0, 0, 0.18)',
@@ -183,8 +185,8 @@ export default function WelcomeAssessmentModal() {
         }}
       >
         {/* Dark Circular Close Button */}
-        <button 
-          type="button" 
+        <button
+          type="button"
           onClick={handleSkip}
           aria-label="Close modal"
           style={{
@@ -216,11 +218,11 @@ export default function WelcomeAssessmentModal() {
         {step === 1 && (
           <div style={{ textAlign: 'center', padding: '6px 4px 4px' }}>
             {/* Top Subtitle Pill */}
-            <span style={{ 
+            <span style={{
               display: 'inline-block',
-              color: '#FF007F', 
-              fontSize: '0.78rem', 
-              fontWeight: 800, 
+              color: '#FF007F',
+              fontSize: '0.78rem',
+              fontWeight: 800,
               letterSpacing: '0.12em',
               textTransform: 'uppercase',
               marginBottom: '16px'
@@ -228,9 +230,9 @@ export default function WelcomeAssessmentModal() {
               Free Gut &amp; Breath Health Assessment
             </span>
 
-            <h2 id="welcome-modal-title" style={{ 
-              fontSize: 'clamp(2.1rem, 5vw, 2.75rem)', 
-              color: '#121214', 
+            <h2 id="welcome-modal-title" style={{
+              fontSize: 'clamp(2.1rem, 5vw, 2.75rem)',
+              color: '#121214',
               fontFamily: 'var(--font-serif)',
               lineHeight: 1.15,
               margin: '0 0 16px',
@@ -241,23 +243,23 @@ export default function WelcomeAssessmentModal() {
             </h2>
 
             {/* Description Paragraph */}
-            <p style={{ 
-              fontSize: '0.98rem', 
-              color: '#2C2C30', 
-              lineHeight: 1.6, 
-              maxWidth: '470px', 
-              margin: '0 auto 22px' 
+            <p style={{
+              fontSize: '0.98rem',
+              color: '#2C2C30',
+              lineHeight: 1.6,
+              maxWidth: '470px',
+              margin: '0 auto 22px'
             }}>
               Answer science-backed questions and discover your functional root-cause score out of 100 — with personalised insights from Reshmi Verma, Functional Nutritionist &amp; #13 Oxygen Advantage® Coach.
             </p>
 
             {/* 4 Feature Pills in Natural Sage Gray-Green */}
-            <div style={{ 
-              display: 'flex', 
-              flexWrap: 'wrap', 
-              justifyContent: 'center', 
-              gap: '10px', 
-              marginBottom: '28px' 
+            <div style={{
+              display: 'flex',
+              flexWrap: 'wrap',
+              justifyContent: 'center',
+              gap: '10px',
+              marginBottom: '28px'
             }}>
               <span style={{
                 display: 'inline-flex',
@@ -366,17 +368,17 @@ export default function WelcomeAssessmentModal() {
         {step === 2 && (
           <div style={{ padding: '0 4px' }}>
             <div style={{ textAlign: 'center', marginBottom: '6px' }}>
-              <span style={{ 
-                display: 'inline-flex', 
-                alignItems: 'center', 
-                gap: '6px', 
-                padding: '3px 12px', 
-                borderRadius: '999px', 
-                background: '#FDE2E8', 
-                color: '#0A0E0C', 
-                fontSize: '0.74rem', 
-                fontWeight: 700, 
-                letterSpacing: '0.04em' 
+              <span style={{
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: '6px',
+                padding: '3px 12px',
+                borderRadius: '999px',
+                background: '#FDE2E8',
+                color: '#0A0E0C',
+                fontSize: '0.74rem',
+                fontWeight: 700,
+                letterSpacing: '0.04em'
               }}>
                 <span style={{ width: '6px', height: '6px', borderRadius: '50%', background: '#E06D85' }}></span>
                 <span>Step 2 of 3 • Enter Your Details</span>
@@ -533,16 +535,16 @@ export default function WelcomeAssessmentModal() {
         {step === 3 && (
           <div style={{ padding: '6px 4px' }}>
             <div style={{ textAlign: 'center', marginBottom: '8px' }}>
-              <span style={{ 
-                display: 'inline-flex', 
-                alignItems: 'center', 
-                gap: '6px', 
-                padding: '4px 14px', 
-                borderRadius: '999px', 
-                background: '#EDF6EE', 
-                color: '#3C6642', 
-                fontSize: '0.78rem', 
-                fontWeight: 700, 
+              <span style={{
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: '6px',
+                padding: '4px 14px',
+                borderRadius: '999px',
+                background: '#EDF6EE',
+                color: '#3C6642',
+                fontSize: '0.78rem',
+                fontWeight: 700,
                 letterSpacing: '0.04em',
                 border: '1px solid #C6DFC9'
               }}>
@@ -560,79 +562,109 @@ export default function WelcomeAssessmentModal() {
             </p>
 
             {/* 2 Assessment Choices (Royal, Shiny, High-End Luxury Cards) */}
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '14px', marginBottom: '18px' }}>
-              {/* Choice 1: Functional Health Assessment (#EB5E28 Track) */}
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '14px', marginBottom: '16px' }}>
+              {/* Choice 1: Functional Health Assessment (#FF007F Track) */}
               <div
                 onClick={() => handleSelectFlow('health')}
                 className="welcome-choice-card"
+                role="button"
+                tabIndex={0}
+                onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') handleSelectFlow('health'); }}
                 style={{
                   textAlign: 'left',
                   padding: '16px 18px',
-                  borderRadius: '16px',
-                  border: '2px solid rgba(255, 0, 127, 0.35)',
-                  background: 'linear-gradient(135deg, #FFFFFF 0%, #FFFBF9 100%)',
+                  borderRadius: '18px',
+                  border: '2px solid rgba(255, 0, 127, 0.4)',
+                  background: 'linear-gradient(135deg, #FFFFFF 0%, #FFF6FA 100%)',
                   cursor: 'pointer',
-                  display: 'flex',
-                  alignItems: 'center',
-                  gap: '14px',
-                  boxShadow: '0 8px 24px rgba(255, 0, 127, 0.12)',
+                  boxShadow: '0 6px 20px rgba(255, 0, 127, 0.10)',
                   transition: 'all 0.25s cubic-bezier(0.16, 1, 0.3, 1)',
                   position: 'relative'
                 }}
                 onMouseEnter={(e) => {
-                  e.currentTarget.style.borderColor = '#EB5E28';
+                  e.currentTarget.style.borderColor = '#FF007F';
                   e.currentTarget.style.transform = 'translateY(-2px)';
-                  e.currentTarget.style.boxShadow = '0 12px 30px rgba(255, 0, 127, 0.22)';
+                  e.currentTarget.style.boxShadow = '0 10px 28px rgba(255, 0, 127, 0.22)';
                 }}
                 onMouseLeave={(e) => {
-                  e.currentTarget.style.borderColor = 'rgba(255, 0, 127, 0.35)';
+                  e.currentTarget.style.borderColor = 'rgba(255, 0, 127, 0.4)';
                   e.currentTarget.style.transform = 'translateY(0)';
-                  e.currentTarget.style.boxShadow = '0 8px 24px rgba(255, 0, 127, 0.12)';
+                  e.currentTarget.style.boxShadow = '0 6px 20px rgba(255, 0, 127, 0.10)';
                 }}
               >
-                <div style={{
-                  width: '48px',
-                  height: '48px',
-                  borderRadius: '14px',
-                  background: 'linear-gradient(135deg, #FFF0F6 0%, #FFE0ED 100%)',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  fontSize: '1.45rem',
-                  flexShrink: 0,
-                  border: '1.5px solid #FF80BF',
-                  boxShadow: '0 4px 12px rgba(255, 0, 127, 0.18)'
-                }}>
+                {/* Header Row: Icon + Title + Pill */}
+                <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '10px' }}>
+                  <div style={{
+                    width: '44px',
+                    height: '44px',
+                    borderRadius: '13px',
+                    background: 'linear-gradient(135deg, #FFF0F6 0%, #FFE0ED 100%)',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    flexShrink: 0,
+                    border: '1.5px solid #FF80BF',
+                    color: '#FF007F',
+                    boxShadow: '0 4px 12px rgba(255, 0, 127, 0.18)'
+                  }}>
+                    {/* Gut / Metabolism Leaf & Health Spark SVG Icon */}
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+                      <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
+                    </svg>
                   </div>
-                <div style={{ flex: 1, minWidth: 0 }}>
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '4px', flexWrap: 'wrap' }}>
-                    <strong style={{ fontSize: '1rem', color: '#121214', fontWeight: 800 }}>
-                      Functional Health Assessment
-                    </strong>
-                    <span style={{ fontSize: '0.68rem', padding: '3px 9px', borderRadius: '999px', background: '#FF007F', color: '#FFFFFF', fontWeight: 800, letterSpacing: '0.04em', textTransform: 'uppercase', boxShadow: '0 2px 6px rgba(255, 0, 127, 0.28)' }}>
-                      Gut &amp; Metabolism
-                    </span>
+                  <div style={{ flex: 1, minWidth: 0 }}>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '6px', flexWrap: 'wrap' }}>
+                      <strong style={{ fontSize: '0.98rem', color: '#121214', fontWeight: 800 }}>
+                        Functional Health Assessment
+                      </strong>
+                      <span style={{ 
+                        fontSize: '0.66rem', 
+                        padding: '2px 8px', 
+                        borderRadius: '999px', 
+                        background: '#FF007F', 
+                        color: '#FFFFFF', 
+                        fontWeight: 800, 
+                        letterSpacing: '0.04em', 
+                        textTransform: 'uppercase', 
+                        boxShadow: '0 2px 6px rgba(255, 0, 127, 0.25)' 
+                      }}>
+                        Gut &amp; Metabolism
+                      </span>
+                    </div>
                   </div>
-                  <p style={{ fontSize: '0.8rem', color: '#404045', margin: 0, lineHeight: 1.4 }}>
-                    Bloating, gut mucosa, food sensitivities, hormones, and energy crashes.
-                  </p>
                 </div>
-                <div style={{
-                  padding: '9px 16px',
-                  borderRadius: '10px',
-                  background: 'linear-gradient(135deg, #FF007F 0%, #D9006C 100%)',
-                  color: '#FFFFFF',
-                  fontWeight: 800,
-                  fontSize: '0.82rem',
-                  boxShadow: '0 4px 14px rgba(255, 0, 127, 0.35)',
-                  display: 'inline-flex',
-                  alignItems: 'center',
-                  gap: '6px',
-                  flexShrink: 0,
-                  whiteSpace: 'nowrap'
+
+                {/* Description */}
+                <p style={{ fontSize: '0.82rem', color: '#4B5563', margin: '0 0 12px', lineHeight: 1.45 }}>
+                  Bloating, gut mucosa, food sensitivities, hormones, and energy crashes.
+                </p>
+
+                {/* Footer Action Row */}
+                <div style={{ 
+                  display: 'flex', 
+                  alignItems: 'center', 
+                  justifyContent: 'space-between', 
+                  borderTop: '1px solid rgba(255, 0, 127, 0.15)', 
+                  paddingTop: '10px' 
                 }}>
-                  <span>Start Quiz</span>
-                  <span>&rarr;</span>
+                  <span style={{ fontSize: '0.74rem', color: '#6B7280', fontWeight: 600 }}>
+                    ⏱ Takes ~3 mins &bull; 100% Free
+                  </span>
+                  <span style={{
+                    padding: '7px 16px',
+                    borderRadius: '999px',
+                    background: 'linear-gradient(135deg, #FF007F 0%, #D9006C 100%)',
+                    color: '#FFFFFF',
+                    fontWeight: 800,
+                    fontSize: '0.8rem',
+                    boxShadow: '0 3px 12px rgba(255, 0, 127, 0.35)',
+                    display: 'inline-flex',
+                    alignItems: 'center',
+                    gap: '5px'
+                  }}>
+                    <span>Start Quiz</span>
+                    <span>&rarr;</span>
+                  </span>
                 </div>
               </div>
 
@@ -640,75 +672,105 @@ export default function WelcomeAssessmentModal() {
               <div
                 onClick={() => handleSelectFlow('breathing')}
                 className="welcome-choice-card"
+                role="button"
+                tabIndex={0}
+                onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') handleSelectFlow('breathing'); }}
                 style={{
                   textAlign: 'left',
                   padding: '16px 18px',
-                  borderRadius: '16px',
-                  border: '2px solid rgba(0, 229, 217, 0.4)',
-                  background: 'linear-gradient(135deg, #FFFFFF 0%, #F5FDFD 100%)',
+                  borderRadius: '18px',
+                  border: '2px solid rgba(0, 229, 217, 0.45)',
+                  background: 'linear-gradient(135deg, #FFFFFF 0%, #F2FDFD 100%)',
                   cursor: 'pointer',
-                  display: 'flex',
-                  alignItems: 'center',
-                  gap: '14px',
-                  boxShadow: '0 8px 24px rgba(0, 229, 217, 0.12)',
+                  boxShadow: '0 6px 20px rgba(0, 229, 217, 0.10)',
                   transition: 'all 0.25s cubic-bezier(0.16, 1, 0.3, 1)',
                   position: 'relative'
                 }}
                 onMouseEnter={(e) => {
                   e.currentTarget.style.borderColor = '#00E5D9';
                   e.currentTarget.style.transform = 'translateY(-2px)';
-                  e.currentTarget.style.boxShadow = '0 12px 30px rgba(0, 229, 217, 0.24)';
+                  e.currentTarget.style.boxShadow = '0 10px 28px rgba(0, 229, 217, 0.24)';
                 }}
                 onMouseLeave={(e) => {
-                  e.currentTarget.style.borderColor = 'rgba(0, 229, 217, 0.4)';
+                  e.currentTarget.style.borderColor = 'rgba(0, 229, 217, 0.45)';
                   e.currentTarget.style.transform = 'translateY(0)';
-                  e.currentTarget.style.boxShadow = '0 8px 24px rgba(0, 229, 217, 0.12)';
+                  e.currentTarget.style.boxShadow = '0 6px 20px rgba(0, 229, 217, 0.10)';
                 }}
               >
-                <div style={{
-                  width: '48px',
-                  height: '48px',
-                  borderRadius: '14px',
-                  background: 'linear-gradient(135deg, #E6FCFB 0%, #D1F9F6 100%)',
-                  color: '#00E5D9',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  fontSize: '1.45rem',
-                  flexShrink: 0,
-                  border: '1.5px solid #7AF5EE',
-                  boxShadow: '0 4px 12px rgba(0, 229, 217, 0.18)'
-                }}>
+                {/* Header Row: Icon + Title + Pill */}
+                <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '10px' }}>
+                  <div style={{
+                    width: '44px',
+                    height: '44px',
+                    borderRadius: '13px',
+                    background: 'linear-gradient(135deg, #E6FCFB 0%, #D1F9F6 100%)',
+                    color: '#00A89D',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    flexShrink: 0,
+                    border: '1.5px solid #7AF5EE',
+                    boxShadow: '0 4px 12px rgba(0, 229, 217, 0.18)'
+                  }}>
+                    {/* Breath / Respiratory Wave SVG Icon */}
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+                      <path d="M6 12h12M9 16h6M4 8h16"/>
+                      <circle cx="12" cy="12" r="9"/>
+                    </svg>
                   </div>
-                <div style={{ flex: 1, minWidth: 0 }}>
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '4px', flexWrap: 'wrap' }}>
-                    <strong style={{ fontSize: '1rem', color: '#121214', fontWeight: 800 }}>
-                      Functional Breathing Assessment
-                    </strong>
-                    <span style={{ fontSize: '0.68rem', padding: '3px 9px', borderRadius: '999px', background: '#00E5D9', color: '#121214', fontWeight: 800, letterSpacing: '0.04em', textTransform: 'uppercase', boxShadow: '0 2px 6px rgba(0, 229, 217, 0.28)' }}>
-                      #13 Oxygen Advantage®
-                    </span>
+                  <div style={{ flex: 1, minWidth: 0 }}>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '6px', flexWrap: 'wrap' }}>
+                      <strong style={{ fontSize: '0.98rem', color: '#121214', fontWeight: 800 }}>
+                        Functional Breathing Assessment
+                      </strong>
+                      <span style={{ 
+                        fontSize: '0.66rem', 
+                        padding: '2px 8px', 
+                        borderRadius: '999px', 
+                        background: '#00E5D9', 
+                        color: '#0A3B37', 
+                        fontWeight: 800, 
+                        letterSpacing: '0.04em', 
+                        textTransform: 'uppercase', 
+                        boxShadow: '0 2px 6px rgba(0, 229, 217, 0.28)' 
+                      }}>
+                        #13 Oxygen Advantage®
+                      </span>
+                    </div>
                   </div>
-                  <p style={{ fontSize: '0.8rem', color: '#404045', margin: 0, lineHeight: 1.4 }}>
-                    BOLT score, CO₂ tolerance, shallow breathing, sleep apnea &amp; nervous regulation.
-                  </p>
                 </div>
-                <div style={{
-                  padding: '9px 16px',
-                  borderRadius: '10px',
-                  background: 'linear-gradient(135deg, #00E5D9 0%, #20A699 100%)',
-                  color: '#121214',
-                  fontWeight: 800,
-                  fontSize: '0.82rem',
-                  boxShadow: '0 4px 14px rgba(0, 229, 217, 0.35)',
-                  display: 'inline-flex',
-                  alignItems: 'center',
-                  gap: '6px',
-                  flexShrink: 0,
-                  whiteSpace: 'nowrap'
+
+                {/* Description */}
+                <p style={{ fontSize: '0.82rem', color: '#4B5563', margin: '0 0 12px', lineHeight: 1.45 }}>
+                  BOLT score, CO₂ tolerance, shallow breathing, sleep apnea &amp; nervous regulation.
+                </p>
+
+                {/* Footer Action Row */}
+                <div style={{ 
+                  display: 'flex', 
+                  alignItems: 'center', 
+                  justifyContent: 'space-between', 
+                  borderTop: '1px solid rgba(0, 229, 217, 0.15)', 
+                  paddingTop: '10px' 
                 }}>
-                  <span>Start Quiz</span>
-                  <span>&rarr;</span>
+                  <span style={{ fontSize: '0.74rem', color: '#6B7280', fontWeight: 600 }}>
+                    ⏱ Takes ~3 mins &bull; 100% Free
+                  </span>
+                  <span style={{
+                    padding: '7px 16px',
+                    borderRadius: '999px',
+                    background: 'linear-gradient(135deg, #00E5D9 0%, #00B4A8 100%)',
+                    color: '#0A3B37',
+                    fontWeight: 800,
+                    fontSize: '0.8rem',
+                    boxShadow: '0 3px 12px rgba(0, 229, 217, 0.35)',
+                    display: 'inline-flex',
+                    alignItems: 'center',
+                    gap: '5px'
+                  }}>
+                    <span>Start Quiz</span>
+                    <span>&rarr;</span>
+                  </span>
                 </div>
               </div>
             </div>
@@ -736,13 +798,13 @@ export default function WelcomeAssessmentModal() {
           <>
             {/* Skip Button at bottom */}
             <div style={{ textAlign: 'center', marginTop: '12px' }}>
-              <button 
-                type="button" 
+              <button
+                type="button"
                 onClick={handleSkip}
-                style={{ 
+                style={{
                   background: 'none',
                   border: 'none',
-                  color: '#9CA3AF', 
+                  color: '#9CA3AF',
                   fontSize: '0.84rem',
                   cursor: 'pointer',
                   textDecoration: 'underline'

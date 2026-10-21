@@ -86,24 +86,113 @@ const PATIENT_STORIES = [
   }
 ];
 
+const SAMYA_STEPS = [
+  {
+    letter: 'S',
+    step: 'Step 01',
+    title: 'See the Signs',
+    desc: 'Notice what your body is whispering: erratic digestion, sudden energy drops, brain fog, chest breathing, or fragmented sleep architecture.',
+    tag: 'Signal Awareness',
+    icon: (
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+        <circle cx="11" cy="11" r="8"></circle>
+        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+      </svg>
+    )
+  },
+  {
+    letter: 'A',
+    step: 'Step 02',
+    title: 'Ask Right Questions',
+    desc: 'We look beyond surface symptoms into your medical history, metabolic timeline, and environmental triggers to understand how patterns formed.',
+    tag: 'Deep Root Inquiry',
+    icon: (
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+        <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+      </svg>
+    )
+  },
+  {
+    letter: 'M',
+    step: 'Step 03',
+    title: 'Map the Patterns',
+    desc: 'We connect the dots between blood chemistry, CO₂ breathing tolerance, microbiome ecology, and circadian cortisol curves.',
+    tag: 'Pattern Synthesis',
+    icon: (
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+        <line x1="18" y1="20" x2="18" y2="10"></line>
+        <line x1="12" y1="20" x2="12" y2="4"></line>
+        <line x1="6" y1="20" x2="6" y2="14"></line>
+      </svg>
+    )
+  },
+  {
+    letter: 'Y',
+    step: 'Step 04',
+    title: 'Your Custom Solution',
+    desc: 'A science-backed protocol engineered for your biochemistry: targeted cellular nutrition, gut mucosal repair, and neuromodulation breathwork.',
+    tag: 'Bespoke Protocol',
+    icon: (
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+        <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+      </svg>
+    )
+  },
+  {
+    letter: 'A',
+    step: 'Step 05',
+    title: 'Achieve Lasting Wellness',
+    desc: 'Sustainable cellular vitality that holds for life, monitored through follow-up check-ins and objective biomarker improvements.',
+    tag: 'Sustained Vitality',
+    icon: (
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+        <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+        <polyline points="22 4 12 14.01 9 11.01"></polyline>
+      </svg>
+    )
+  }
+];
+
+const CLINICAL_REVIEWS = [
+  {
+    initials: 'AP',
+    name: 'Ananya Patel',
+    program: 'GERD & SIBO Recovery • 3 Months',
+    stars: '★★★★★',
+    quote: '"Suffered from severe GERD and post-meal bloating for 3 years. Reshmi\'s gut mucosa protocol resolved the burning and reflux within 6 weeks. No more daily antacids."'
+  },
+  {
+    initials: 'RK',
+    name: 'Rahul Kapoor',
+    program: 'Oxygen Advantage & Sleep Program',
+    stars: '★★★★★',
+    quote: '"My BOLT score was just 8 seconds with high anxiety and midnight awakenings. Reshmi\'s breathing pacing and autonomic reset brought my score to 26s. I finally sleep peacefully."'
+  },
+  {
+    initials: 'SM',
+    name: 'Sunita Mehta',
+    program: 'Metabolic Health & Weight Reversal',
+    stars: '★★★★★',
+    quote: '"Knowing that Reshmi herself lost 38 kg gave me immense confidence. She customized my nutrition without starvation. Lost 15 kg and my HbA1c is completely normal."'
+  },
+  {
+    initials: 'VS',
+    name: 'Vikram Singhal',
+    program: 'Circadian Metabolic Reset • 4 Months',
+    stars: '★★★★★',
+    quote: '"Constant post-meal lethargy and stubborn insulin resistance were draining me. Reshmi\'s precise food pairing and vagal breathing restored my stamina and metabolic agility."'
+  }
+];
+
 export default function HomePage() {
   const [showScopeDisclaimer, setShowScopeDisclaimer] = useState(false);
-  // Dynamic Reels from API
-  const [reelsList, setReelsList] = useState(DEFAULT_REELS);
+  // SAMYA Method accordion state (starts with 2 steps shown, rest revealed on click)
+  const [showAllSamya, setShowAllSamya] = useState(false);
+  // Real Clinical Transformations accordion state
+  const [showAllTransformations, setShowAllTransformations] = useState(false);
 
-  useEffect(() => {
-    fetch(getApiUrl('/api/reels'))
-      .then(res => {
-        if (!res.ok) return null;
-        return res.json();
-      })
-      .then(data => {
-        if (data && data.success && Array.isArray(data.reels) && data.reels.length > 0) {
-          setReelsList(data.reels);
-        }
-      })
-      .catch(() => { });
-  }, []);
+  // Static Reels directly from code (no API / no database)
+  const reelsList = DEFAULT_REELS;
 
   // Carousel ref
   const reelsCarouselRef = useRef(null);
@@ -233,18 +322,18 @@ export default function HomePage() {
             Her clinical approach unifies 20+ years of laboratory diagnostic expertise, gut microbiome testing, #13 Oxygen Advantage® breathwork, and identifying the hidden biochemical root causes that trigger chronic inflammation, gut dysbiosis, and metabolic fatigue.
           </p>
 
-          <div className="clinical-approach-buttons" style={{ display: 'flex', gap: '12px', flexWrap: 'wrap', justifyContent: 'center', marginTop: '20px' }}>
+          <div className="clinical-approach-buttons">
             <Link to="/booking" className="btn btn-primary">
               Consult Reshmi
             </Link>
             <Link to="/booking" className="btn btn-secondary">
-              Explore 1:1 UltraWellness
+              1:1 UltraWellness
             </Link>
             <Link to="/assessment" className="btn btn-health">
-              Functional Health Assessment
+              Health Assessment
             </Link>
             <Link to="/breathing-assessment" className="btn btn-breath">
-              Functional Breathing Assessment
+              Breathing Assessment
             </Link>
           </div>
         </div>
@@ -470,99 +559,52 @@ export default function HomePage() {
 
           {/* 5 Prominent Acronym Step Cards */}
           <div className="samya-track">
-            {/* S */}
-            <div className="samya-card">
-              <div className="samya-card-header">
-                <div className="samya-letter-hero">S</div>
-                <span className="samya-step-badge">Step 01</span>
+            {SAMYA_STEPS.map((step, idx) => (
+              <div
+                key={step.step}
+                className={`samya-card ${idx >= 2 && !showAllSamya ? 'samya-card-collapsed' : ''}`}
+              >
+                <div className="samya-card-header">
+                  <div className="samya-letter-hero">{step.letter}</div>
+                  <span className="samya-step-badge">{step.step}</span>
+                </div>
+                <h4>{step.title}</h4>
+                <p>{step.desc}</p>
+                <span className="samya-card-tag">
+                  {step.icon}
+                  {step.tag}
+                </span>
               </div>
-              <h4>See the Signs</h4>
-              <p>
-                Notice what your body is whispering: erratic digestion, sudden energy drops, brain fog, chest breathing, or fragmented sleep architecture.
-              </p>
-              <span className="samya-card-tag">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-                  <circle cx="11" cy="11" r="8"></circle>
-                  <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-                </svg>
-                Signal Awareness
-              </span>
-            </div>
+            ))}
+          </div>
 
-            {/* A */}
-            <div className="samya-card">
-              <div className="samya-card-header">
-                <div className="samya-letter-hero">A</div>
-                <span className="samya-step-badge">Step 02</span>
-              </div>
-              <h4>Ask Right Questions</h4>
-              <p>
-                We look beyond surface symptoms into your medical history, metabolic timeline, and environmental triggers to understand how patterns formed.
-              </p>
-              <span className="samya-card-tag">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-                  <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
-                </svg>
-                Deep Root Inquiry
+          {/* Mobile Dropdown Action Trigger */}
+          <div className="samya-dropdown-action-wrap">
+            <button
+              type="button"
+              className={`samya-dropdown-trigger-btn ${!showAllSamya ? 'pulse-attention' : ''}`}
+              onClick={() => setShowAllSamya(!showAllSamya)}
+              aria-expanded={showAllSamya}
+            >
+              <span className="samya-trigger-icon-pill">
+                {showAllSamya ? (
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                    <polyline points="18 15 12 9 6 15"></polyline>
+                  </svg>
+                ) : (
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" className="bounce-arrow">
+                    <polyline points="6 9 12 15 18 9"></polyline>
+                  </svg>
+                )}
               </span>
-            </div>
-
-            {/* M */}
-            <div className="samya-card">
-              <div className="samya-card-header">
-                <div className="samya-letter-hero">M</div>
-                <span className="samya-step-badge">Step 03</span>
+              <div className="samya-trigger-text">
+                <strong>{showAllSamya ? 'Show Less (Collapse Steps)' : 'Explore All 5 Steps of SAMYA™'}</strong>
+                <span>{showAllSamya ? 'Viewing all 5 clinical stages' : 'Tap to reveal Steps 03, 04 & 05 (Map, Solution & Wellness)'}</span>
               </div>
-              <h4>Map the Patterns</h4>
-              <p>
-                We connect the dots between blood chemistry, CO₂ breathing tolerance, microbiome ecology, and circadian cortisol curves.
-              </p>
-              <span className="samya-card-tag">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-                  <line x1="18" y1="20" x2="18" y2="10"></line>
-                  <line x1="12" y1="20" x2="12" y2="4"></line>
-                  <line x1="6" y1="20" x2="6" y2="14"></line>
-                </svg>
-                Pattern Synthesis
+              <span className="samya-trigger-badge">
+                {showAllSamya ? 'Collapse' : '+3 Steps'}
               </span>
-            </div>
-
-            {/* Y */}
-            <div className="samya-card">
-              <div className="samya-card-header">
-                <div className="samya-letter-hero">Y</div>
-                <span className="samya-step-badge">Step 04</span>
-              </div>
-              <h4>Your Custom Solution</h4>
-              <p>
-                A science-backed protocol engineered for your biochemistry: targeted cellular nutrition, gut mucosal repair, and neuromodulation breathwork.
-              </p>
-              <span className="samya-card-tag">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-                  <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
-                </svg>
-                Bespoke Protocol
-              </span>
-            </div>
-
-            {/* A */}
-            <div className="samya-card">
-              <div className="samya-card-header">
-                <div className="samya-letter-hero">A</div>
-                <span className="samya-step-badge">Step 05</span>
-              </div>
-              <h4>Achieve Lasting Wellness</h4>
-              <p>
-                Sustainable cellular vitality that holds for life, monitored through follow-up check-ins and objective biomarker improvements.
-              </p>
-              <span className="samya-card-tag">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-                  <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
-                  <polyline points="22 4 12 14.01 9 11.01"></polyline>
-                </svg>
-                Sustained Vitality
-              </span>
-            </div>
+            </button>
           </div>
 
           {/* Integrated SAMYA Bridge Action Banner */}
@@ -767,62 +809,57 @@ export default function HomePage() {
           </div>
 
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '24px', maxWidth: '1100px', margin: '0 auto' }}>
-            {/* Review 1 */}
-            <div className="review-glass-card">
-              <div style={{ color: '#F59E0B', fontSize: '1.05rem', marginBottom: '12px', letterSpacing: '2px' }}>
-                ★★★★★
-              </div>
-              <p style={{ color: 'var(--text-primary)', fontSize: '0.94rem', lineHeight: 1.6, marginBottom: '20px', fontStyle: 'italic', flex: 1 }}>
-                "Suffered from severe GERD and post-meal bloating for 3 years. Reshmi's gut mucosa protocol resolved the burning and reflux within 6 weeks. No more daily antacids."
-              </p>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '12px', paddingTop: '14px', borderTop: '1px solid var(--border-subtle)' }}>
-                <div style={{ width: '40px', height: '40px', borderRadius: '50%', background: 'var(--emerald-soft)', color: 'var(--emerald-deep)', fontWeight: 700, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '0.95rem' }}>
-                  AP
+            {CLINICAL_REVIEWS.map((review, idx) => (
+              <div
+                key={review.name}
+                className={`review-glass-card ${idx >= 2 && !showAllTransformations ? 'review-card-collapsed' : ''}`}
+              >
+                <div style={{ color: '#F59E0B', fontSize: '1.05rem', marginBottom: '12px', letterSpacing: '2px' }}>
+                  {review.stars}
                 </div>
-                <div>
-                  <h4 style={{ margin: 0, fontSize: '0.95rem', color: 'var(--emerald-deep)' }}>Ananya Patel</h4>
-                  <span style={{ fontSize: '0.78rem', color: 'var(--text-muted)' }}>GERD &amp; SIBO Recovery • 3 Months</span>
+                <p style={{ color: 'var(--text-primary)', fontSize: '0.94rem', lineHeight: 1.6, marginBottom: '20px', fontStyle: 'italic', flex: 1 }}>
+                  {review.quote}
+                </p>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '12px', paddingTop: '14px', borderTop: '1px solid var(--border-subtle)' }}>
+                  <div style={{ width: '40px', height: '40px', borderRadius: '50%', background: 'var(--emerald-soft)', color: 'var(--emerald-deep)', fontWeight: 700, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '0.95rem' }}>
+                    {review.initials}
+                  </div>
+                  <div>
+                    <h4 style={{ margin: 0, fontSize: '0.95rem', color: 'var(--emerald-deep)' }}>{review.name}</h4>
+                    <span style={{ fontSize: '0.78rem', color: 'var(--text-muted)' }}>{review.program}</span>
+                  </div>
                 </div>
               </div>
-            </div>
+            ))}
+          </div>
 
-            {/* Review 2 */}
-            <div className="review-glass-card">
-              <div style={{ color: '#F59E0B', fontSize: '1.05rem', marginBottom: '12px', letterSpacing: '2px' }}>
-                ★★★★★
+          {/* Mobile Transformations Dropdown Action Trigger */}
+          <div className="transformations-dropdown-wrap">
+            <button
+              type="button"
+              className={`samya-dropdown-trigger-btn ${!showAllTransformations ? 'pulse-attention' : ''}`}
+              onClick={() => setShowAllTransformations(!showAllTransformations)}
+              aria-expanded={showAllTransformations}
+            >
+              <span className="samya-trigger-icon-pill">
+                {showAllTransformations ? (
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                    <polyline points="18 15 12 9 6 15"></polyline>
+                  </svg>
+                ) : (
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" className="bounce-arrow">
+                    <polyline points="6 9 12 15 18 9"></polyline>
+                  </svg>
+                )}
+              </span>
+              <div className="samya-trigger-text">
+                <strong>{showAllTransformations ? 'Show Fewer Stories' : 'View More Clinical Transformations'}</strong>
+                <span>{showAllTransformations ? 'Showing all recovery reviews' : 'Tap to read more verified patient journeys'}</span>
               </div>
-              <p style={{ color: 'var(--text-primary)', fontSize: '0.94rem', lineHeight: 1.6, marginBottom: '20px', fontStyle: 'italic', flex: 1 }}>
-                "My BOLT score was just 8 seconds with high anxiety and midnight awakenings. Reshmi's breathing pacing and autonomic reset brought my score to 26s. I finally sleep peacefully."
-              </p>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '12px', paddingTop: '14px', borderTop: '1px solid var(--border-subtle)' }}>
-                <div style={{ width: '40px', height: '40px', borderRadius: '50%', background: 'var(--emerald-soft)', color: 'var(--emerald-deep)', fontWeight: 700, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '0.95rem' }}>
-                  RK
-                </div>
-                <div>
-                  <h4 style={{ margin: 0, fontSize: '0.95rem', color: 'var(--emerald-deep)' }}>Rahul Kapoor</h4>
-                  <span style={{ fontSize: '0.78rem', color: 'var(--text-muted)' }}>Oxygen Advantage &amp; Sleep Program</span>
-                </div>
-              </div>
-            </div>
-
-            {/* Review 3 */}
-            <div className="review-glass-card">
-              <div style={{ color: '#F59E0B', fontSize: '1.05rem', marginBottom: '12px', letterSpacing: '2px' }}>
-                ★★★★★
-              </div>
-              <p style={{ color: 'var(--text-primary)', fontSize: '0.94rem', lineHeight: 1.6, marginBottom: '20px', fontStyle: 'italic', flex: 1 }}>
-                "Knowing that Reshmi herself lost 38 kg gave me immense confidence. She customized my nutrition without starvation. Lost 15 kg and my HbA1c is completely normal."
-              </p>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '12px', paddingTop: '14px', borderTop: '1px solid var(--border-subtle)' }}>
-                <div style={{ width: '40px', height: '40px', borderRadius: '50%', background: 'var(--emerald-soft)', color: 'var(--emerald-deep)', fontWeight: 700, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '0.95rem' }}>
-                  SM
-                </div>
-                <div>
-                  <h4 style={{ margin: 0, fontSize: '0.95rem', color: 'var(--emerald-deep)' }}>Sunita Mehta</h4>
-                  <span style={{ fontSize: '0.78rem', color: 'var(--text-muted)' }}>Metabolic Health &amp; Weight Reversal</span>
-                </div>
-              </div>
-            </div>
+              <span className="samya-trigger-badge">
+                {showAllTransformations ? 'Collapse' : `+${CLINICAL_REVIEWS.length - 2} Stories`}
+              </span>
+            </button>
           </div>
 
           {/* Simple Consultation CTA Card */}
@@ -835,20 +872,22 @@ export default function HomePage() {
                 Book a 60-minute 1:1 Health Clarity Session with Reshmi Verma for a personalized roadmap.
               </p>
             </div>
-            <div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap', alignItems: 'center' }}>
-              <Link to="/booking" className="btn btn-primary btn-lg">
+            <div className="cta-card-actions-group">
+              <Link to="/booking" className="btn btn-primary btn-cta-main">
                 <span>Book Consultation</span>
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" style={{ marginLeft: '6px' }}>
                   <line x1="5" y1="12" x2="19" y2="12"></line>
                   <polyline points="12 5 19 12 12 19"></polyline>
                 </svg>
               </Link>
-              <Link to="/assessment" className="btn btn-health btn-lg">
-                <span>Health Assessment</span>
-              </Link>
-              <Link to="/breathing-assessment" className="btn btn-breath btn-lg">
-                <span>Breathing Assessment</span>
-              </Link>
+              <div className="cta-card-sub-actions">
+                <Link to="/assessment" className="btn btn-health btn-cta-sub">
+                  <span>Health Assessment</span>
+                </Link>
+                <Link to="/breathing-assessment" className="btn btn-breath btn-cta-sub">
+                  <span>Breathing Assessment</span>
+                </Link>
+              </div>
             </div>
           </div>
         </div>

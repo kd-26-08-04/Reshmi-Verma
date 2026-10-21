@@ -43,7 +43,7 @@ const knowledgeBase = [
   }
 ];
 
-export default function EvaAssistant() {
+export default function EvaAssistant({ isBookingOrAssessment = false }) {
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState([
     {
@@ -102,7 +102,7 @@ export default function EvaAssistant() {
     <>
       {/* Floating Trigger */}
       <div
-        className="eva-floating-trigger"
+        className={`eva-floating-trigger ${isBookingOrAssessment ? 'docked-bottom' : ''}`}
         id="eva-trigger"
         onClick={() => setIsOpen(!isOpen)}
         style={{ cursor: 'pointer' }}
@@ -110,7 +110,7 @@ export default function EvaAssistant() {
         <div className="eva-avatar">E</div>
         <div style={{ display: 'flex', flexDirection: 'column', textAlign: 'left' }}>
           <span style={{ fontWeight: 700, fontSize: '0.9rem', lineHeight: 1.1 }}>Ask Eva</span>
-          <span style={{ fontSize: '0.72rem', color: '#FED7AA' }}>Clinical Health Assistant</span>
+          <span className="eva-trigger-subtitle" style={{ fontSize: '0.72rem', color: '#FED7AA' }}>Clinical Health Assistant</span>
         </div>
       </div>
 

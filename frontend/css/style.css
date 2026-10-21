@@ -226,6 +226,9 @@ body::after {
 ::-webkit-scrollbar-thumb {
   background: var(--emerald-light);
   border-radius: var(--radius-full);
+  white-space: nowrap;
+  max-width: 90%;
+  box-sizing: border-box;
 }
 
 ::-webkit-scrollbar-thumb:hover {
@@ -761,34 +764,97 @@ h6 {
 
   .dropdown-toggle-btn {
     width: 100%;
-    justify-content: space-between;
+    justify-content: space-between !important;
     font-size: 1.05rem;
-    padding: 10px 0;
+    padding: 12px 18px;
+    border-radius: var(--radius-md);
+    background: var(--bg-secondary);
+    color: var(--emerald-deep);
+    border: 1px solid transparent;
+    cursor: pointer;
+  }
+
+  .dropdown-toggle-btn.active {
+    background: var(--emerald-soft);
+    color: var(--emerald-primary);
+    border-color: rgba(13, 130, 123, 0.25);
+  }
+
+  .dropdown-chevron-icon {
+    transition: transform 0.25s ease;
+  }
+
+  .nav-item-dropdown.is-open .dropdown-chevron-icon {
+    transform: rotate(180deg);
   }
 
   .nav-dropdown-menu {
+    display: none;
     position: static;
     transform: none !important;
-    opacity: 1 !important;
-    visibility: visible !important;
-    pointer-events: auto !important;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
     width: 100%;
     min-width: unset;
     box-shadow: none;
-    border: 1px solid rgba(15, 23, 42, 0.08);
+    border: 1.5px solid rgba(13, 130, 123, 0.18);
     background: #FAF9F6;
-    margin-top: 4px;
+    margin-top: 6px;
     margin-bottom: 8px;
-    padding: 6px;
+    padding: 8px;
     border-radius: 14px;
+    transition: all 0.25s ease;
+  }
+
+  .nav-item-dropdown.is-open .nav-dropdown-menu {
+    display: block !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    pointer-events: auto !important;
   }
 
   .dropdown-item {
-    padding: 8px 10px;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: flex-start !important;
+    gap: 12px !important;
+    padding: 10px 12px;
+    border-radius: 12px;
+    text-align: left !important;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .dropdown-item-text {
+    text-align: left !important;
+    flex: 1;
+    min-width: 0;
+  }
+
+  .dropdown-title-row {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    width: 100% !important;
+    text-align: left !important;
   }
 
   .dropdown-item-title {
-    font-size: 0.88rem;
+    font-size: 0.92rem;
+    font-weight: 700;
+    text-align: left !important;
+    color: var(--text-primary);
+  }
+
+  .dropdown-item.active {
+    background: rgba(13, 130, 123, 0.12) !important;
+    border: 1px solid rgba(13, 130, 123, 0.3) !important;
+  }
+
+  .dropdown-item.active .dropdown-item-title {
+    color: var(--emerald-deep) !important;
+    font-weight: 800 !important;
   }
 
   .dropdown-item-subtitle {
@@ -3168,8 +3234,7 @@ h6 {
 
 @media (max-width: 768px) {
   .site-footer {
-    padding: 18px 0 76px;
-    /* clean compact padding with room for mobile bottom bar */
+    padding: 24px 0 16px;
   }
 
   /* REMOVE NAVIGATION ON MOBILE AS REQUESTED */
@@ -3484,8 +3549,7 @@ h6 {
   }
 
   body {
-    padding-bottom: 74px;
-    /* prevent footer overlap with bottom bar */
+    padding-bottom: 0;
   }
 }
 
@@ -3916,6 +3980,14 @@ h6 {
     padding: 8px 14px;
   }
 
+  .eva-floating-trigger.docked-bottom {
+    bottom: 20px;
+  }
+
+  .eva-chat-drawer.docked-bottom {
+    bottom: 20px;
+  }
+
   .eva-avatar {
     width: 28px;
     height: 28px;
@@ -3931,8 +4003,12 @@ h6 {
   }
 }
 
-/* Modal Responsive */
+/* Modal Responsive & Eva Mobile Subtitle */
 @media (max-width: 600px) {
+  .eva-trigger-subtitle {
+    display: none !important;
+  }
+
   .modal-content {
     padding: 28px 18px;
     border-radius: var(--radius-lg);
@@ -7421,6 +7497,209 @@ h6 {
   }
   100% {
     transform: translateX(-50%);
+  }
+}
+
+/* ==========================================================================
+   Mobile Responsive Enhancements (5 User Requested Polish Items)
+   ========================================================================== */
+
+/* 1. Clinical Approach Strip Buttons 2x2 on Mobile */
+@media (max-width: 640px) {
+  .clinical-approach-strip {
+    padding: 28px 0 24px !important;
+  }
+  .clinical-approach-buttons {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+    gap: 10px !important;
+    width: 100% !important;
+    max-width: 480px;
+    margin: 18px auto 0 !important;
+  }
+  .clinical-approach-buttons .btn {
+    width: 100% !important;
+    padding: 11px 8px !important;
+    font-size: 0.82rem !important;
+    text-align: center !important;
+    justify-content: center !important;
+    white-space: normal !important;
+    line-height: 1.25 !important;
+    border-radius: 14px !important;
+  }
+}
+
+/* 2. SAMYA™ Method Mobile Accordion & Animated Dropdown Action */
+.samya-dropdown-action-wrap,
+.transformations-dropdown-wrap {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .samya-card.samya-card-collapsed {
+    display: none !important;
+  }
+  .samya-dropdown-action-wrap {
+    display: block !important;
+    margin-top: 14px;
+    width: 100%;
+  }
+  .transformations-dropdown-wrap {
+    display: block !important;
+    margin-top: 20px;
+    width: 100%;
+  }
+  .review-glass-card.review-card-collapsed {
+    display: none !important;
+  }
+}
+
+/* Interactive Dropdown Button with Attention-Grabbing Action */
+.samya-dropdown-trigger-btn {
+  width: 100%;
+  background: #FFFFFF;
+  border: 1.5px solid var(--emerald-medium);
+  border-radius: 18px;
+  padding: 14px 18px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  box-shadow: 0 4px 16px rgba(16, 185, 129, 0.12);
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  text-align: left;
+  outline: none;
+}
+
+.samya-dropdown-trigger-btn.pulse-attention {
+  animation: dropdownPromptPulse 2.4s ease-in-out infinite;
+  border-color: var(--emerald-medium);
+}
+
+@keyframes dropdownPromptPulse {
+  0%, 100% {
+    box-shadow: 0 4px 16px rgba(16, 185, 129, 0.14), 0 0 0 0 rgba(16, 185, 129, 0.4);
+    transform: translateY(0);
+  }
+  50% {
+    box-shadow: 0 8px 24px rgba(16, 185, 129, 0.28), 0 0 0 6px rgba(16, 185, 129, 0.12);
+    transform: translateY(-2px);
+  }
+}
+
+.samya-trigger-icon-pill {
+  width: 38px;
+  height: 38px;
+  border-radius: 12px;
+  background: var(--emerald-soft);
+  color: var(--emerald-deep);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: transform 0.3s ease;
+}
+
+.bounce-arrow {
+  animation: bounceDown 1.8s infinite ease-in-out;
+}
+
+@keyframes bounceDown {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(3px); }
+}
+
+.samya-trigger-text {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.samya-trigger-text strong {
+  font-size: 0.94rem;
+  color: var(--emerald-deep);
+  font-weight: 700;
+  line-height: 1.3;
+}
+
+.samya-trigger-text span {
+  font-size: 0.76rem;
+  color: var(--text-secondary);
+  margin-top: 2px;
+  line-height: 1.3;
+}
+
+.samya-trigger-badge {
+  font-size: 0.72rem;
+  font-weight: 700;
+  background: linear-gradient(135deg, var(--emerald-medium) 0%, var(--emerald-deep) 100%);
+  color: #FFFFFF;
+  padding: 5px 10px;
+  border-radius: 20px;
+  white-space: nowrap;
+  letter-spacing: 0.02em;
+}
+
+/* 3. Dark Noir Section Mobile Extra Spacing Reduction */
+@media (max-width: 768px) {
+  .stories-noir-section {
+    padding: 32px 0 28px !important;
+  }
+  .stories-noir-grid {
+    gap: 18px !important;
+  }
+  .stories-noir-grid h2 {
+    margin: 6px 0 10px !important;
+  }
+  .stories-noir-grid p {
+    margin-bottom: 16px !important;
+  }
+}
+
+/* 5. CTA Card Buttons Side-by-Side on Mobile */
+.cta-card-actions-group {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.cta-card-sub-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+@media (max-width: 640px) {
+  .cta-card-actions-group {
+    display: flex !important;
+    flex-direction: column !important;
+    width: 100% !important;
+    gap: 10px !important;
+  }
+  .btn-cta-main {
+    width: 100% !important;
+    justify-content: center !important;
+    padding: 13px 18px !important;
+    font-size: 0.92rem !important;
+    border-radius: 14px !important;
+  }
+  .cta-card-sub-actions {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+    gap: 10px !important;
+    width: 100% !important;
+  }
+  .btn-cta-sub {
+    width: 100% !important;
+    padding: 11px 8px !important;
+    font-size: 0.8rem !important;
+    text-align: center !important;
+    justify-content: center !important;
+    white-space: normal !important;
+    line-height: 1.25 !important;
+    border-radius: 12px !important;
   }
 }
 

@@ -127,8 +127,9 @@ export default function Navbar() {
                   </svg>
                 </div>
                 <div className="dropdown-item-text">
-                  <span className="dropdown-item-title">About Reshmi</span>
-                  {/* <span className="dropdown-item-subtitle">Story, 20+ Yrs Diagnostics & Reversal Journey</span> */}
+                  <div className="dropdown-title-row">
+                    <span className="dropdown-item-title">About Reshmi</span>
+                  </div>
                 </div>
               </Link>
 
