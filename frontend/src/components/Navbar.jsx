@@ -26,6 +26,7 @@ export default function Navbar() {
   };
 
   const handleMouseEnter = (menuName) => {
+    if (window.innerWidth <= 992) return;
     if (dropdownTimeoutRef.current) {
       clearTimeout(dropdownTimeoutRef.current);
     }
@@ -33,12 +34,20 @@ export default function Navbar() {
   };
 
   const handleMouseLeave = () => {
+    if (window.innerWidth <= 992) return;
     dropdownTimeoutRef.current = setTimeout(() => {
       setOpenDropdown(null);
     }, 180);
   };
 
-  const toggleDropdown = (menuName) => {
+  const toggleDropdown = (e, menuName) => {
+    if (e) {
+      e.preventDefault();
+      e.stopPropagation();
+    }
+    if (dropdownTimeoutRef.current) {
+      clearTimeout(dropdownTimeoutRef.current);
+    }
     setOpenDropdown((prev) => (prev === menuName ? null : menuName));
   };
 
@@ -96,7 +105,7 @@ export default function Navbar() {
             <button
               type="button"
               className={`nav-link dropdown-toggle-btn ${isAboutActive ? 'active' : ''}`}
-              onClick={() => toggleDropdown('about')}
+              onClick={(e) => toggleDropdown(e, 'about')}
               aria-expanded={openDropdown === 'about'}
               aria-haspopup="true"
             >
@@ -179,7 +188,7 @@ export default function Navbar() {
             <button
               type="button"
               className={`nav-link dropdown-toggle-btn ${isAssessmentActive ? 'active' : ''}`}
-              onClick={() => toggleDropdown('assessment')}
+              onClick={(e) => toggleDropdown(e, 'assessment')}
               aria-expanded={openDropdown === 'assessment'}
               aria-haspopup="true"
             >

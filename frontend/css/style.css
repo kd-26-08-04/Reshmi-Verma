@@ -7704,3 +7704,16 @@ h6 {
 }
 
 
+
+
+/* Mobile Navigation Dropdown Chevron & Visibility Guarantee */
+@media (max-width: 992px) {
+  .nav-item-dropdown .dropdown-chevron-icon,
+  .nav-item-dropdown:hover .dropdown-chevron-icon {
+    transform: rotate(0deg) !important;
+  }
+  .nav-item-dropdown.is-open .dropdown-chevron-icon,
+  .nav-item-dropdown.is-open:hover .dropdown-chevron-icon {
+    transform: rotate(180deg) !important;
+  }
+}
