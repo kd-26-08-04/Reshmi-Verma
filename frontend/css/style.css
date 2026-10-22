@@ -536,7 +536,9 @@ h6 {
   white-space: nowrap;
   display: inline-flex;
   align-items: center;
-  gap: 5px;
+  justify-content: center;
+  text-align: center;
+  gap: 6px;
   cursor: pointer;
   outline: none;
   transition: color var(--transition-fast);
@@ -764,7 +766,9 @@ h6 {
 
   .dropdown-toggle-btn {
     width: 100%;
-    justify-content: space-between !important;
+    justify-content: center !important;
+    text-align: center !important;
+    gap: 8px;
     font-size: 1.05rem;
     padding: 12px 18px;
     border-radius: var(--radius-md);
@@ -7554,37 +7558,59 @@ h6 {
   }
 }
 
-/* Interactive Dropdown Button with Attention-Grabbing Action */
+/* Interactive Dropdown Button with Attention-Grabbing Action ("Aao Mujhe Open Karo") */
 .samya-dropdown-trigger-btn {
   width: 100%;
-  background: #FFFFFF;
-  border: 1.5px solid var(--emerald-medium);
-  border-radius: 18px;
-  padding: 14px 18px;
+  background: linear-gradient(135deg, #FFFFFF 0%, #F3FCFB 100%);
+  border: 2px solid #00E5D9;
+  border-radius: 20px;
+  padding: 16px 22px;
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  gap: 12px;
-  box-shadow: 0 4px 16px rgba(16, 185, 129, 0.12);
+  justify-content: center;
+  text-align: center;
+  gap: 14px;
+  box-shadow: 0 6px 22px rgba(0, 229, 217, 0.16);
   cursor: pointer;
   transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-  text-align: left;
   outline: none;
+  position: relative;
+  overflow: hidden;
+}
+
+.samya-dropdown-trigger-btn::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -120%;
+  width: 60%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(0, 229, 217, 0.28), transparent);
+  transform: skewX(-25deg);
+  animation: shimmerLightSweep 3s infinite ease-in-out;
+  pointer-events: none;
+}
+
+@keyframes shimmerLightSweep {
+  0% { left: -120%; }
+  35%, 100% { left: 160%; }
 }
 
 .samya-dropdown-trigger-btn.pulse-attention {
-  animation: dropdownPromptPulse 2.4s ease-in-out infinite;
-  border-color: var(--emerald-medium);
+  animation: dropdownPromptPulse 2s ease-in-out infinite;
+  border-color: #00E5D9;
 }
 
 @keyframes dropdownPromptPulse {
   0%, 100% {
-    box-shadow: 0 4px 16px rgba(16, 185, 129, 0.14), 0 0 0 0 rgba(16, 185, 129, 0.4);
-    transform: translateY(0);
+    box-shadow: 0 6px 22px rgba(0, 229, 217, 0.2), 0 0 0 0 rgba(0, 229, 217, 0.45);
+    transform: translateY(0) scale(1);
+    border-color: #00E5D9;
   }
   50% {
-    box-shadow: 0 8px 24px rgba(16, 185, 129, 0.28), 0 0 0 6px rgba(16, 185, 129, 0.12);
-    transform: translateY(-2px);
+    box-shadow: 0 10px 32px rgba(0, 229, 217, 0.35), 0 0 0 8px rgba(0, 229, 217, 0.12);
+    transform: translateY(-2px) scale(1.01);
+    border-color: #14B8A6;
   }
 }
 
@@ -7614,6 +7640,8 @@ h6 {
   flex: 1;
   display: flex;
   flex-direction: column;
+  align-items: center;
+  text-align: center;
 }
 
 .samya-trigger-text strong {
@@ -7716,4 +7744,345 @@ h6 {
   .nav-item-dropdown.is-open:hover .dropdown-chevron-icon {
     transform: rotate(180deg) !important;
   }
+}
+
+
+/* ==========================================================================
+   Clinical Scope of Practice Trigger Button ("Aao Mujhe Open Karo" Animation)
+   ========================================================================== */
+.scope-disclaimer-trigger-btn {
+  width: 100%;
+  background: linear-gradient(135deg, #FAFDFB 0%, #EDF8F5 100%);
+  border: 1.8px solid #8EBE93;
+  border-radius: 16px;
+  padding: 13px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: 12px;
+  cursor: pointer;
+  box-shadow: 0 4px 16px rgba(142, 190, 147, 0.14);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  outline: none;
+  position: relative;
+  overflow: hidden;
+}
+
+.scope-disclaimer-trigger-btn::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -120%;
+  width: 60%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(142, 190, 147, 0.3), transparent);
+  transform: skewX(-25deg);
+  animation: shimmerLightSweep 3.2s infinite ease-in-out;
+  pointer-events: none;
+}
+
+.scope-disclaimer-trigger-btn.pulse-attention {
+  animation: scopePromptPulse 2.2s ease-in-out infinite;
+}
+
+@keyframes scopePromptPulse {
+  0%, 100% {
+    box-shadow: 0 4px 16px rgba(142, 190, 147, 0.18), 0 0 0 0 rgba(142, 190, 147, 0.45);
+    border-color: #8EBE93;
+    transform: translateY(0);
+  }
+  50% {
+    box-shadow: 0 8px 26px rgba(142, 190, 147, 0.35), 0 0 0 7px rgba(142, 190, 147, 0.12);
+    border-color: #167A71;
+    transform: translateY(-2px);
+  }
+}
+
+.scope-trigger-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+.scope-trigger-text {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.scope-trigger-text strong {
+  font-size: 0.92rem;
+  color: #121214;
+  font-weight: 700;
+  line-height: 1.3;
+}
+
+.scope-trigger-sub {
+  font-size: 0.78rem;
+  color: #167A71;
+  font-weight: 700;
+  margin-top: 2px;
+}
+
+.scope-trigger-badge {
+  font-size: 0.72rem;
+  font-weight: 800;
+  background: #EBF9F8;
+  color: #167A71;
+  border: 1px solid #9FE3DD;
+  padding: 4px 10px;
+  border-radius: 999px;
+  white-space: nowrap;
+}
+
+/* ==========================================================================
+   Same Series Alignment for SAMYA Banner Actions Buttons
+   ========================================================================== */
+.samya-banner-actions {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+.samya-banner-actions .btn {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  min-height: 52px !important;
+  padding: 14px 28px !important;
+  font-size: 0.98rem !important;
+  font-weight: 700 !important;
+  border-radius: 999px !important;
+  text-align: center !important;
+  box-sizing: border-box !important;
+}
+
+@media (max-width: 768px) {
+  .samya-banner-actions {
+    width: 100% !important;
+    flex-direction: column !important;
+    gap: 12px !important;
+    margin-top: 18px !important;
+  }
+  .samya-banner-actions .btn {
+    width: 100% !important;
+    justify-content: center !important;
+  }
+  .samya-dropdown-trigger-btn {
+    flex-direction: column !important;
+    gap: 8px !important;
+    padding: 16px 14px !important;
+  }
+}
+
+
+/* ==========================================================================
+   Compact Interactive Dropdown Buttons (Minimal Space, Centered & Animated)
+   ========================================================================== */
+.samya-dropdown-trigger-btn {
+  width: 100%;
+  max-width: 540px;
+  margin: 0 auto;
+  background: linear-gradient(135deg, #FFFFFF 0%, #F3FCFB 100%);
+  border: 1.5px solid #00E5D9;
+  border-radius: 14px;
+  padding: 10px 16px;
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: 10px;
+  box-shadow: 0 4px 14px rgba(0, 229, 217, 0.12);
+  cursor: pointer;
+  transition: all 0.25s ease;
+  outline: none;
+  position: relative;
+  overflow: hidden;
+}
+
+.samya-dropdown-trigger-btn::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -120%;
+  width: 60%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(0, 229, 217, 0.28), transparent);
+  transform: skewX(-25deg);
+  animation: shimmerLightSweep 3s infinite ease-in-out;
+  pointer-events: none;
+}
+
+@keyframes shimmerLightSweep {
+  0% { left: -120%; }
+  35%, 100% { left: 160%; }
+}
+
+.samya-dropdown-trigger-btn.pulse-attention {
+  animation: dropdownPromptPulse 2.2s ease-in-out infinite;
+  border-color: #00E5D9;
+}
+
+@keyframes dropdownPromptPulse {
+  0%, 100% {
+    box-shadow: 0 3px 14px rgba(0, 229, 217, 0.18), 0 0 0 0 rgba(0, 229, 217, 0.45);
+    transform: translateY(0);
+    border-color: #00E5D9;
+  }
+  50% {
+    box-shadow: 0 6px 22px rgba(0, 229, 217, 0.32), 0 0 0 6px rgba(0, 229, 217, 0.12);
+    transform: translateY(-1.5px);
+    border-color: #0D827B;
+  }
+}
+
+.samya-trigger-icon-pill {
+  width: 28px;
+  height: 28px;
+  border-radius: 8px;
+  background: var(--emerald-soft);
+  color: var(--emerald-deep);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.samya-trigger-text {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  text-align: center;
+}
+
+.samya-trigger-text strong {
+  font-size: 0.90rem;
+  color: #0A3B37;
+  font-weight: 750;
+  line-height: 1.2;
+}
+
+.samya-trigger-badge {
+  font-size: 0.70rem;
+  font-weight: 800;
+  background: linear-gradient(135deg, #00E5D9 0%, #0D9488 100%);
+  color: #042F2C;
+  padding: 3px 9px;
+  border-radius: 999px;
+  white-space: nowrap;
+  letter-spacing: 0.02em;
+}
+
+/* ==========================================================================
+   Compact Clinical Scope of Practice Trigger Button (Short Space)
+   ========================================================================== */
+.scope-disclaimer-trigger-btn {
+  width: 100%;
+  max-width: 540px;
+  margin: 0 auto;
+  background: linear-gradient(135deg, #FAFDFB 0%, #EDF8F5 100%);
+  border: 1.5px solid #8EBE93;
+  border-radius: 14px;
+  padding: 8px 14px;
+  min-height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: 10px;
+  cursor: pointer;
+  box-shadow: 0 3px 12px rgba(142, 190, 147, 0.12);
+  transition: all 0.25s ease;
+  outline: none;
+  position: relative;
+  overflow: hidden;
+}
+
+.scope-disclaimer-trigger-btn::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -120%;
+  width: 60%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(142, 190, 147, 0.3), transparent);
+  transform: skewX(-25deg);
+  animation: shimmerLightSweep 3.2s infinite ease-in-out;
+  pointer-events: none;
+}
+
+.scope-disclaimer-trigger-btn.pulse-attention {
+  animation: scopePromptPulse 2.2s ease-in-out infinite;
+}
+
+@keyframes scopePromptPulse {
+  0%, 100% {
+    box-shadow: 0 3px 12px rgba(142, 190, 147, 0.16), 0 0 0 0 rgba(142, 190, 147, 0.4);
+    border-color: #8EBE93;
+    transform: translateY(0);
+  }
+  50% {
+    box-shadow: 0 6px 20px rgba(142, 190, 147, 0.3), 0 0 0 5px rgba(142, 190, 147, 0.12);
+    border-color: #167A71;
+    transform: translateY(-1.5px);
+  }
+}
+
+.scope-trigger-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  width: 100%;
+  text-align: center;
+}
+
+.scope-trigger-text {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  text-align: center;
+}
+
+.scope-trigger-text strong {
+  font-size: 0.86rem;
+  color: #121214;
+  font-weight: 700;
+}
+
+.scope-trigger-sub {
+  font-size: 0.74rem;
+  color: #167A71;
+  font-weight: 700;
+}
+
+.scope-trigger-badge {
+  font-size: 0.68rem;
+  font-weight: 800;
+  background: #EBF9F8;
+  color: #167A71;
+  border: 1px solid #9FE3DD;
+  padding: 2px 8px;
+  border-radius: 999px;
+  white-space: nowrap;
+}
+
+/* More About Reshmi - Image Box Clickable Hover */
+.more-about-img-box {
+  cursor: pointer;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.more-about-img-box:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
 }

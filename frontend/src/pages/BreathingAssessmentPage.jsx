@@ -225,7 +225,7 @@ export default function BreathingAssessmentPage() {
   const [answers, setAnswers] = useState({});
   const [currentPillar, setCurrentPillar] = useState(0);
   const [isCompleted, setIsCompleted] = useState(false);
-  
+
   // Interactive BOLT Timer Tool State
   const [boltSeconds, setBoltSeconds] = useState(0);
   const [isBoltRunning, setIsBoltRunning] = useState(false);
@@ -236,7 +236,7 @@ export default function BreathingAssessmentPage() {
     try {
       const stored = localStorage.getItem('reshmi_assessment_lead') || localStorage.getItem('reshmi_user_lead');
       if (stored) return JSON.parse(stored);
-    } catch (e) {}
+    } catch (e) { }
     return null;
   });
 
@@ -422,7 +422,7 @@ export default function BreathingAssessmentPage() {
   return (
     <main className="section" style={{ minHeight: '100vh', paddingTop: '100px', paddingBottom: '80px' }}>
       <div className="container" style={{ maxWidth: '920px' }}>
-        
+
         {/* Header Clinical Credential Badge */}
         <div style={{ textAlign: 'center', marginBottom: '32px' }}>
           <div style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', padding: '6px 16px', borderRadius: '999px', background: '#121214', color: '#00E5D9', fontSize: '0.82rem', fontWeight: 700, letterSpacing: '0.04em', marginBottom: '14px', boxShadow: '0 4px 14px rgba(0,0,0,0.12)' }}>
@@ -468,7 +468,7 @@ export default function BreathingAssessmentPage() {
             ========================================================================= */}
         {isCompleted ? (
           <div className="card" style={{ padding: '36px 30px', borderRadius: '24px', boxShadow: '0 12px 36px rgba(0,0,0,0.08)', border: '1px solid var(--border-medium)', background: '#FFFFFF' }}>
-            
+
             <div style={{ textAlign: 'center', marginBottom: '28px' }}>
               <span style={{ display: 'inline-block', padding: '6px 14px', borderRadius: '999px', background: `${ratingColor}15`, color: ratingColor, fontWeight: 700, fontSize: '0.85rem', marginBottom: '10px' }}>
                 {ratingBadge}
@@ -520,13 +520,13 @@ export default function BreathingAssessmentPage() {
                 Dysfunctional breathing can be systematically reversed in 4–6 weeks through targeted nasal rehabilitation, diaphragmatic vagal pacing, and simulated high-altitude hypoxic breath holds.
               </p>
               <div style={{ display: 'flex', justifyContent: 'center', gap: '14px', flexWrap: 'wrap', alignItems: 'center' }}>
-                <Link 
-                  to="/booking" 
-                  style={{ 
-                    padding: '13px 28px', 
-                    background: '#00E5D9', 
-                    color: '#121214', 
-                    fontWeight: 800, 
+                <Link
+                  to="/booking"
+                  style={{
+                    padding: '13px 28px',
+                    background: '#00E5D9',
+                    color: '#121214',
+                    fontWeight: 800,
                     borderRadius: '12px',
                     textDecoration: 'none',
                     display: 'inline-flex',
@@ -546,12 +546,12 @@ export default function BreathingAssessmentPage() {
                 >
                   <span>📅</span> Book 1-on-1 Oxygen Advantage Consultation
                 </Link>
-                <Link 
-                  to="/assessment" 
-                  style={{ 
-                    padding: '12px 24px', 
-                    background: 'rgba(255, 255, 255, 0.12)', 
-                    color: '#FFFFFF', 
+                <Link
+                  to="/assessment"
+                  style={{
+                    padding: '12px 24px',
+                    background: 'rgba(255, 255, 255, 0.12)',
+                    color: '#FFFFFF',
                     border: '1.5px solid rgba(255, 255, 255, 0.45)',
                     borderRadius: '12px',
                     fontWeight: 700,
@@ -624,9 +624,9 @@ export default function BreathingAssessmentPage() {
                 <label style={{ display: 'block', fontSize: '0.88rem', fontWeight: 600, color: 'var(--text-primary)', marginBottom: '6px' }}>
                   Full Name <span style={{ color: '#DC2626' }}>*</span>
                 </label>
-                <input 
-                  type="text" 
-                  value={leadName} 
+                <input
+                  type="text"
+                  value={leadName}
                   onChange={(e) => setLeadName(e.target.value)}
                   placeholder="e.g. Priya Sharma"
                   required
@@ -638,9 +638,9 @@ export default function BreathingAssessmentPage() {
                 <label style={{ display: 'block', fontSize: '0.88rem', fontWeight: 600, color: 'var(--text-primary)', marginBottom: '6px' }}>
                   WhatsApp / Mobile Number <span style={{ color: '#DC2626' }}>*</span>
                 </label>
-                <input 
-                  type="tel" 
-                  value={leadPhone} 
+                <input
+                  type="tel"
+                  value={leadPhone}
                   onChange={(e) => setLeadPhone(e.target.value)}
                   placeholder="+91 98765 43210"
                   required
@@ -652,9 +652,9 @@ export default function BreathingAssessmentPage() {
                 <label style={{ display: 'block', fontSize: '0.88rem', fontWeight: 600, color: 'var(--text-primary)', marginBottom: '6px' }}>
                   Email Address <span style={{ fontSize: '0.78rem', color: 'var(--text-muted)' }}>(Optional)</span>
                 </label>
-                <input 
-                  type="email" 
-                  value={leadEmail} 
+                <input
+                  type="email"
+                  value={leadEmail}
                   onChange={(e) => setLeadEmail(e.target.value)}
                   placeholder="name@example.com"
                   style={{ width: '100%', padding: '12px 16px', borderRadius: '10px', border: '1.5px solid var(--border-medium)', fontSize: '0.95rem' }}
@@ -665,12 +665,12 @@ export default function BreathingAssessmentPage() {
                 type="submit"
                 disabled={leadSaving}
                 className="btn btn-primary"
-                style={{ 
-                  width: '100%', 
-                  padding: '14px', 
-                  fontSize: '1rem', 
-                  fontWeight: 700, 
-                  marginTop: '8px', 
+                style={{
+                  width: '100%',
+                  padding: '14px',
+                  fontSize: '1rem',
+                  fontWeight: 700,
+                  marginTop: '8px',
                   borderRadius: '12px',
                   background: '#00E5D9',
                   color: '#121214',
@@ -691,7 +691,7 @@ export default function BreathingAssessmentPage() {
              ASSESSMENT ACTIVE VIEW (PILLARS + QUESTIONS)
              ========================================================================= */
           <div>
-            
+
             {/* Interactive BOLT Timer Widget */}
             <div className="card" style={{ padding: '24px', borderRadius: '20px', background: '#EBF9F8', border: '1.5px solid #9FE3DD', marginBottom: '28px' }}>
               <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '14px' }}>
@@ -857,7 +857,7 @@ export default function BreathingAssessmentPage() {
                         className="btn btn-primary"
                         style={{ padding: '12px 28px', background: '#121214', color: '#FFFFFF' }}
                       >
-                        Next Pillar ({OA_SECTIONS[currentPillar + 1].title.split('—')[1]?.trim()}) &rarr;
+                        Next Pillar
                       </button>
                     ) : (
                       <button

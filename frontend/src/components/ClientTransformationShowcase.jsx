@@ -551,7 +551,7 @@ export default function ClientTransformationShowcase() {
                   borderRadius: '14px'
                 }}
               >
-                <span>Book 1:1 Consultation &rarr;</span>
+                <span>Book 1:1 Consultation</span>
               </Link>
             </div>
           </div>

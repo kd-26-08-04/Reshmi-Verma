@@ -93,11 +93,9 @@ export default function AboutPage() {
             </p>
 
             <div style={{ display: 'flex', gap: '14px', justifyContent: 'center', flexWrap: 'wrap' }}>
-              <Link to="/booking" className="btn btn-primary btn-lg" style={{ borderRadius: '14px', padding: '14px 28px' }}>
+              <Link to="/booking" className="btn btn-primary btn-lg" style={{ borderRadius: '14px', padding: '14px 22px' }}>
                 <span>Book 1:1 Consultation</span>
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-                  <line x1="5" y1="12" x2="19" y2="12"></line>
-                  <polyline points="12 5 19 12 12 19"></polyline>
                 </svg>
               </Link>
               <Link to="/assessment" className="btn btn-secondary btn-lg" style={{ borderRadius: '14px', padding: '14px 24px' }}>
@@ -228,7 +226,7 @@ export default function AboutPage() {
 
               <div style={{ display: 'flex', gap: '14px', flexWrap: 'wrap', marginTop: '22px' }}>
                 <Link to="/booking" className="btn btn-primary" style={{ borderRadius: '12px', padding: '12px 24px' }}>
-                  <span>Book 1:1 Health Consultation</span>
+                  <span>Book 1:1 Consultation</span>
                 </Link>
                 <Link to="/assessment" className="btn btn-secondary" style={{ borderRadius: '12px', padding: '12px 20px' }}>
                   <span>Take Free Assessment</span>
@@ -426,11 +424,7 @@ export default function AboutPage() {
               className="btn btn-accent btn-lg"
               style={{ background: 'white', color: 'var(--emerald-deep)', borderRadius: '14px', padding: '14px 28px', fontWeight: 700 }}
             >
-              <span>Book Health Clarity Session</span>
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-                <line x1="5" y1="12" x2="19" y2="12"></line>
-                <polyline points="12 5 19 12 12 19"></polyline>
-              </svg>
+              <span>Book Session</span>
             </Link>
             <Link
               to="/assessment"

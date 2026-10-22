@@ -507,26 +507,11 @@ export default function WelcomeAssessmentModal() {
                 >
                   ← Back
                 </button>
-                <button
-                  type="button"
-                  onClick={handleSkip}
-                  style={{
-                    background: 'none',
-                    border: 'none',
-                    color: '#9CA3AF',
-                    fontSize: '0.8rem',
-                    cursor: 'pointer',
-                    textDecoration: 'underline',
-                    padding: '4px 0'
-                  }}
-                >
-                  Skip for now ×
-                </button>
               </div>
             </form>
 
             <div style={{ marginTop: '8px', textAlign: 'center', fontSize: '0.72rem', color: 'var(--text-muted)' }}>
-              🔒 Reshmi Verma Functional Health &bull; 100% Free &bull; Zero spam guarantee
+              🔒 Reshmi Verma Functional Health
             </div>
           </div>
         )}
@@ -592,60 +577,20 @@ export default function WelcomeAssessmentModal() {
                   e.currentTarget.style.boxShadow = '0 6px 20px rgba(255, 0, 127, 0.10)';
                 }}
               >
-                {/* Header Row: Icon + Title + Pill */}
-                <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '10px' }}>
-                  <div style={{
-                    width: '44px',
-                    height: '44px',
-                    borderRadius: '13px',
-                    background: 'linear-gradient(135deg, #FFF0F6 0%, #FFE0ED 100%)',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    flexShrink: 0,
-                    border: '1.5px solid #FF80BF',
-                    color: '#FF007F',
-                    boxShadow: '0 4px 12px rgba(255, 0, 127, 0.18)'
-                  }}>
-                    {/* Gut / Metabolism Leaf & Health Spark SVG Icon */}
-                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
-                      <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
-                    </svg>
-                  </div>
-                  <div style={{ flex: 1, minWidth: 0 }}>
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '6px', flexWrap: 'wrap' }}>
-                      <strong style={{ fontSize: '0.98rem', color: '#121214', fontWeight: 800 }}>
-                        Functional Health Assessment
-                      </strong>
-                      <span style={{ 
-                        fontSize: '0.66rem', 
-                        padding: '2px 8px', 
-                        borderRadius: '999px', 
-                        background: '#FF007F', 
-                        color: '#FFFFFF', 
-                        fontWeight: 800, 
-                        letterSpacing: '0.04em', 
-                        textTransform: 'uppercase', 
-                        boxShadow: '0 2px 6px rgba(255, 0, 127, 0.25)' 
-                      }}>
-                        Gut &amp; Metabolism
-                      </span>
-                    </div>
-                  </div>
+                {/* Header Row: Title */}
+                <div style={{ marginBottom: '12px' }}>
+                  <strong style={{ fontSize: '1.02rem', color: '#121214', fontWeight: 800 }}>
+                    Functional Health Assessment
+                  </strong>
                 </div>
 
-                {/* Description */}
-                <p style={{ fontSize: '0.82rem', color: '#4B5563', margin: '0 0 12px', lineHeight: 1.45 }}>
-                  Bloating, gut mucosa, food sensitivities, hormones, and energy crashes.
-                </p>
-
                 {/* Footer Action Row */}
-                <div style={{ 
-                  display: 'flex', 
-                  alignItems: 'center', 
-                  justifyContent: 'space-between', 
-                  borderTop: '1px solid rgba(255, 0, 127, 0.15)', 
-                  paddingTop: '10px' 
+                <div style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'space-between',
+                  borderTop: '1px solid rgba(255, 0, 127, 0.15)',
+                  paddingTop: '10px'
                 }}>
                   <span style={{ fontSize: '0.74rem', color: '#6B7280', fontWeight: 600 }}>
                     ⏱ Takes ~3 mins &bull; 100% Free
@@ -697,61 +642,20 @@ export default function WelcomeAssessmentModal() {
                   e.currentTarget.style.boxShadow = '0 6px 20px rgba(0, 229, 217, 0.10)';
                 }}
               >
-                {/* Header Row: Icon + Title + Pill */}
-                <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '10px' }}>
-                  <div style={{
-                    width: '44px',
-                    height: '44px',
-                    borderRadius: '13px',
-                    background: 'linear-gradient(135deg, #E6FCFB 0%, #D1F9F6 100%)',
-                    color: '#00A89D',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    flexShrink: 0,
-                    border: '1.5px solid #7AF5EE',
-                    boxShadow: '0 4px 12px rgba(0, 229, 217, 0.18)'
-                  }}>
-                    {/* Breath / Respiratory Wave SVG Icon */}
-                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
-                      <path d="M6 12h12M9 16h6M4 8h16"/>
-                      <circle cx="12" cy="12" r="9"/>
-                    </svg>
-                  </div>
-                  <div style={{ flex: 1, minWidth: 0 }}>
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '6px', flexWrap: 'wrap' }}>
-                      <strong style={{ fontSize: '0.98rem', color: '#121214', fontWeight: 800 }}>
-                        Functional Breathing Assessment
-                      </strong>
-                      <span style={{ 
-                        fontSize: '0.66rem', 
-                        padding: '2px 8px', 
-                        borderRadius: '999px', 
-                        background: '#00E5D9', 
-                        color: '#0A3B37', 
-                        fontWeight: 800, 
-                        letterSpacing: '0.04em', 
-                        textTransform: 'uppercase', 
-                        boxShadow: '0 2px 6px rgba(0, 229, 217, 0.28)' 
-                      }}>
-                        #13 Oxygen Advantage®
-                      </span>
-                    </div>
-                  </div>
+                {/* Header Row: Title */}
+                <div style={{ marginBottom: '12px' }}>
+                  <strong style={{ fontSize: '1.02rem', color: '#121214', fontWeight: 800 }}>
+                    Functional Breathing Assessment
+                  </strong>
                 </div>
 
-                {/* Description */}
-                <p style={{ fontSize: '0.82rem', color: '#4B5563', margin: '0 0 12px', lineHeight: 1.45 }}>
-                  BOLT score, CO₂ tolerance, shallow breathing, sleep apnea &amp; nervous regulation.
-                </p>
-
                 {/* Footer Action Row */}
-                <div style={{ 
-                  display: 'flex', 
-                  alignItems: 'center', 
-                  justifyContent: 'space-between', 
-                  borderTop: '1px solid rgba(0, 229, 217, 0.15)', 
-                  paddingTop: '10px' 
+                <div style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'space-between',
+                  borderTop: '1px solid rgba(0, 229, 217, 0.15)',
+                  paddingTop: '10px'
                 }}>
                   <span style={{ fontSize: '0.74rem', color: '#6B7280', fontWeight: 600 }}>
                     ⏱ Takes ~3 mins &bull; 100% Free
@@ -796,26 +700,8 @@ export default function WelcomeAssessmentModal() {
 
         {step !== 2 && (
           <>
-            {/* Skip Button at bottom */}
-            <div style={{ textAlign: 'center', marginTop: '12px' }}>
-              <button
-                type="button"
-                onClick={handleSkip}
-                style={{
-                  background: 'none',
-                  border: 'none',
-                  color: '#9CA3AF',
-                  fontSize: '0.84rem',
-                  cursor: 'pointer',
-                  textDecoration: 'underline'
-                }}
-              >
-                Skip for now &times;
-              </button>
-            </div>
-
             <div style={{ marginTop: '10px', textAlign: 'center', fontSize: '0.74rem', color: 'var(--text-muted)' }}>
-              🔒 Reshmi Verma Functional Health &bull; 100% Free &bull; Zero spam guarantee
+              🔒 Reshmi Verma Functional Health &bull;
             </div>
           </>
         )}

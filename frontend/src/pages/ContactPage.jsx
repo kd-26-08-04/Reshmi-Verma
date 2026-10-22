@@ -417,13 +417,6 @@ export default function ContactPage() {
                 </svg>
               </button>
             </form>
-
-            <div style={{ marginTop: '20px', textAlign: 'center', fontSize: '0.88rem', color: 'var(--text-secondary)' }}>
-              Looking to schedule directly?{' '}
-              <Link to="/booking" style={{ color: 'var(--emerald-primary)', fontWeight: 700, textDecoration: 'underline' }}>
-                Book 1:1 Consultation &rarr;
-              </Link>
-            </div>
           </div>
 
         </div>

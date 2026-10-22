@@ -109,7 +109,7 @@ export default function Navbar() {
               aria-expanded={openDropdown === 'about'}
               aria-haspopup="true"
             >
-              <span>About Us</span>
+              <span style={{ textAlign: 'center' }}>About Us</span>
               <svg
                 className="dropdown-chevron-icon"
                 width="13"
@@ -192,7 +192,7 @@ export default function Navbar() {
               aria-expanded={openDropdown === 'assessment'}
               aria-haspopup="true"
             >
-              <span>Assessment</span>
+              <span style={{ textAlign: 'center' }}>Assessment</span>
               <svg
                 className="dropdown-chevron-icon"
                 width="13"

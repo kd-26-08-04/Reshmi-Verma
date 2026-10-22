@@ -55,15 +55,16 @@ export default async function handler(req, res) {
     let isValid = false;
 
     // Sandbox test mode simulation check, or hosted payment page/link redirect
-    if (!isConfigured || razorpay_order_id?.startsWith('order_test_') || !razorpay_order_id) {
+    if (
+      !isConfigured ||
+      razorpay_order_id?.startsWith('order_test_') ||
+      !razorpay_order_id ||
+      razorpay_order_id === 'order_direct_link' ||
+      razorpay_order_id?.startsWith('plink_') ||
+      !razorpay_signature
+    ) {
       isValid = true;
     } else {
-      if (!razorpay_signature) {
-        return res.status(400).json({
-          success: false,
-          error: 'Missing signature for verification'
-        });
-      }
 
       const payload = `${razorpay_order_id}|${razorpay_payment_id}`;
       const expectedSignature = crypto

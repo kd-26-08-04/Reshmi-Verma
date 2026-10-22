@@ -188,8 +188,7 @@ export default function HomePage() {
   const [showScopeDisclaimer, setShowScopeDisclaimer] = useState(false);
   // SAMYA Method accordion state (starts with 2 steps shown, rest revealed on click)
   const [showAllSamya, setShowAllSamya] = useState(false);
-  // Real Clinical Transformations accordion state
-  const [showAllTransformations, setShowAllTransformations] = useState(false);
+
 
   // Static Reels directly from code (no API / no database)
   const reelsList = DEFAULT_REELS;
@@ -327,7 +326,7 @@ export default function HomePage() {
               Consult Reshmi
             </Link>
             <Link to="/booking" className="btn btn-secondary">
-              1:1 UltraWellness
+              1:1 Health Reset Program
             </Link>
             <Link to="/assessment" className="btn btn-health">
               Health Assessment
@@ -406,7 +405,7 @@ export default function HomePage() {
                 {transformationTab === 'before' && (
                   <div className="transformation-single-view">
                     <span className="photo-phase-tag phase-before">BEFORE • Initial Metabolic Resistance</span>
-                    <img src="/assets/images/real-patient-vartika.jpg" alt="Reshmi Verma Before Transformation" />
+                    <img src="/assets/images/reshmi-transform-user.jpg" alt="Reshmi Verma Before Transformation" />
                     <div className="single-phase-caption">
                       <strong>Earlier Phase:</strong> Battling systemic inflammation, sluggish metabolism, and persistent fatigue despite clinical healthcare background.
                     </div>
@@ -416,7 +415,7 @@ export default function HomePage() {
                 {transformationTab === 'after' && (
                   <div className="transformation-single-view">
                     <span className="photo-phase-tag phase-after">AFTER • -38 kg Victory</span>
-                    <img src="/assets/images/real-patient-shoaib.jpg" alt="Reshmi Verma After Transformation" />
+                    <img src="/assets/images/reshmi-after.jpg" alt="Reshmi Verma After Transformation" />
                     <div className="single-phase-caption">
                       <strong>Reversed Phase:</strong> Reclaimed energy, pristine metabolic biomarkers, Functional Nutritionist &amp; Certified Biohacker without crash dieting.
                     </div>
@@ -449,7 +448,7 @@ export default function HomePage() {
 
               <div>
                 <Link to="/booking" className="btn btn-primary btn-lg">
-                  <span>Book a Health Clarity Session</span>
+                  <span>Book Session</span>
                   <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" style={{ marginLeft: '8px' }}>
                     <line x1="5" y1="12" x2="19" y2="12"></line>
                     <polyline points="12 5 19 12 12 19"></polyline>
@@ -469,36 +468,20 @@ export default function HomePage() {
               She addresses chronic and debilitating health challenges like <strong>Constant Fatigue, Severe Bloating, Breathing Pattern Disorders, Sinus &amp; Airway Blockages, Chronic Constipation, Acid Reflux, Indigestion, SIBO, Frequent Stomach Upsets, Hormonal Acne, Irregular or Absent Periods, Fibroids, Severe Period Pain, Mood Swings, PCOD / PCOS, Endometriosis, Insulin Resistance, Prediabetes &amp; Diabetes, Fatty Liver, Chronic Itching, Urticaria, Eczema, Psoriasis, Autoimmune Conditions, Hashimoto's Thyroiditis</strong>, and systemic cellular exhaustion using 100% natural, science-backed interventions like functional food biochemistry, #13 Oxygen Advantage® respiratory pacing, and targeted lifestyle optimization.
             </p>
             {/* Clinical Advisory & Scope Dropdown Toggle */}
-            <div style={{ marginTop: '18px', borderTop: '1px dashed rgba(18, 18, 20, 0.12)', paddingTop: '14px' }}>
+            <div style={{ marginTop: '12px', borderTop: '1px dashed rgba(18, 18, 20, 0.12)', paddingTop: '10px' }}>
               <button
                 type="button"
+                className={`scope-disclaimer-trigger-btn ${!showScopeDisclaimer ? 'pulse-attention' : ''}`}
                 onClick={() => setShowScopeDisclaimer(!showScopeDisclaimer)}
-                style={{
-                  width: '100%',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'space-between',
-                  padding: '10px 16px',
-                  borderRadius: '12px',
-                  background: 'rgba(18, 18, 20, 0.04)',
-                  border: '1px solid rgba(18, 18, 20, 0.08)',
-                  cursor: 'pointer',
-                  textAlign: 'left',
-                  transition: 'all 0.2s ease'
-                }}
-                onMouseEnter={(e) => { e.currentTarget.style.background = 'rgba(18, 18, 20, 0.07)'; }}
-                onMouseLeave={(e) => { e.currentTarget.style.background = 'rgba(18, 18, 20, 0.04)'; }}
+                aria-expanded={showScopeDisclaimer}
               >
-                <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                  <span style={{ fontSize: '1.05rem' }}>🩺</span>
-                  <span style={{ fontSize: '0.86rem', fontWeight: 700, color: '#1F2937' }}>
-                    Clinical Scope of Practice &amp; Medical Advisory
-                  </span>
-                </div>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '6px', fontSize: '0.8rem', color: '#6B7280', fontWeight: 600 }}>
-                  <span>{showScopeDisclaimer ? 'Hide Advisory' : 'Read Full Scope'}</span>
-                  <span style={{ display: 'inline-block', transform: showScopeDisclaimer ? 'rotate(180deg)' : 'rotate(0deg)', transition: 'transform 0.25s ease' }}>
-                    ▼
+                <div className="scope-trigger-content">
+                  <span style={{ fontSize: '1rem' }}>🩺</span>
+                  <div className="scope-trigger-text">
+                    <strong>Clinical Scope &amp; Medical Advisory</strong>
+                  </div>
+                  <span className="scope-trigger-badge">
+                    {showScopeDisclaimer ? 'Hide Advisory ▲' : 'Read Scope ▼'}
                   </span>
                 </div>
               </button>
@@ -579,7 +562,7 @@ export default function HomePage() {
           </div>
 
           {/* Mobile Dropdown Action Trigger */}
-          <div className="samya-dropdown-action-wrap">
+          <div className="samya-dropdown-action-wrap" style={{ marginTop: '14px' }}>
             <button
               type="button"
               className={`samya-dropdown-trigger-btn ${!showAllSamya ? 'pulse-attention' : ''}`}
@@ -588,21 +571,20 @@ export default function HomePage() {
             >
               <span className="samya-trigger-icon-pill">
                 {showAllSamya ? (
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
                     <polyline points="18 15 12 9 6 15"></polyline>
                   </svg>
                 ) : (
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" className="bounce-arrow">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" className="bounce-arrow">
                     <polyline points="6 9 12 15 18 9"></polyline>
                   </svg>
                 )}
               </span>
               <div className="samya-trigger-text">
-                <strong>{showAllSamya ? 'Show Less (Collapse Steps)' : 'Explore All 5 Steps of SAMYA™'}</strong>
-                <span>{showAllSamya ? 'Viewing all 5 clinical stages' : 'Tap to reveal Steps 03, 04 & 05 (Map, Solution & Wellness)'}</span>
+                <strong>{showAllSamya ? 'Collapse SAMYA™ Steps' : 'Explore All 5 Steps of SAMYA™'}</strong>
               </div>
               <span className="samya-trigger-badge">
-                {showAllSamya ? 'Collapse' : '+3 Steps'}
+                {showAllSamya ? '▲' : '+3 Steps ▼'}
               </span>
             </button>
           </div>
@@ -632,7 +614,7 @@ export default function HomePage() {
                 className="btn btn-accent btn-lg"
                 style={{ background: '#FFFFFF', color: 'var(--emerald-deep)', fontWeight: 700 }}
               >
-                <span>Book a Health Clarity Session</span>
+                <span>Book Session</span>
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
                   <line x1="5" y1="12" x2="19" y2="12"></line>
                   <polyline points="12 5 19 12 12 19"></polyline>
@@ -640,6 +622,10 @@ export default function HomePage() {
               </Link>
               <Link to="/assessment" className="btn btn-on-dark btn-lg">
                 <span>Take Free Assessment</span>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                  <line x1="5" y1="12" x2="19" y2="12"></line>
+                  <polyline points="12 5 19 12 12 19"></polyline>
+                </svg>
               </Link>
             </div>
           </div>
@@ -770,7 +756,7 @@ export default function HomePage() {
               </p>
             </div>
             <Link to="/booking" className="btn btn-primary btn-lg">
-              <span>Book a Health Clarity Session</span>
+              <span>Book Session</span>
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" style={{ marginLeft: '8px' }}>
                 <line x1="5" y1="12" x2="19" y2="12"></line>
                 <polyline points="12 5 19 12 12 19"></polyline>
@@ -795,103 +781,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 8. Verified Patient Testimonials & Outcomes */}
-      <section className="section" id="client-breakthroughs" style={{ background: '#FFFFFF', borderTop: '1px solid var(--border-subtle)', borderBottom: '1px solid var(--border-subtle)', padding: '60px 0' }}>
-        <div className="container">
-          <div className="section-header text-center" style={{ maxWidth: '720px', margin: '0 auto 36px' }}>
-            <span className="badge-pill" style={{ marginBottom: '10px' }}>
-              <span>Verified Patient Outcomes</span>
-            </span>
-            <h2>Real Clinical Transformations</h2>
-            <p style={{ margin: 0 }}>
-              Genuine recovery stories from patients who addressed the root biochemical cause of their chronic challenges.
-            </p>
-          </div>
 
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '24px', maxWidth: '1100px', margin: '0 auto' }}>
-            {CLINICAL_REVIEWS.map((review, idx) => (
-              <div
-                key={review.name}
-                className={`review-glass-card ${idx >= 2 && !showAllTransformations ? 'review-card-collapsed' : ''}`}
-              >
-                <div style={{ color: '#F59E0B', fontSize: '1.05rem', marginBottom: '12px', letterSpacing: '2px' }}>
-                  {review.stars}
-                </div>
-                <p style={{ color: 'var(--text-primary)', fontSize: '0.94rem', lineHeight: 1.6, marginBottom: '20px', fontStyle: 'italic', flex: 1 }}>
-                  {review.quote}
-                </p>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '12px', paddingTop: '14px', borderTop: '1px solid var(--border-subtle)' }}>
-                  <div style={{ width: '40px', height: '40px', borderRadius: '50%', background: 'var(--emerald-soft)', color: 'var(--emerald-deep)', fontWeight: 700, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '0.95rem' }}>
-                    {review.initials}
-                  </div>
-                  <div>
-                    <h4 style={{ margin: 0, fontSize: '0.95rem', color: 'var(--emerald-deep)' }}>{review.name}</h4>
-                    <span style={{ fontSize: '0.78rem', color: 'var(--text-muted)' }}>{review.program}</span>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-
-          {/* Mobile Transformations Dropdown Action Trigger */}
-          <div className="transformations-dropdown-wrap">
-            <button
-              type="button"
-              className={`samya-dropdown-trigger-btn ${!showAllTransformations ? 'pulse-attention' : ''}`}
-              onClick={() => setShowAllTransformations(!showAllTransformations)}
-              aria-expanded={showAllTransformations}
-            >
-              <span className="samya-trigger-icon-pill">
-                {showAllTransformations ? (
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-                    <polyline points="18 15 12 9 6 15"></polyline>
-                  </svg>
-                ) : (
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" className="bounce-arrow">
-                    <polyline points="6 9 12 15 18 9"></polyline>
-                  </svg>
-                )}
-              </span>
-              <div className="samya-trigger-text">
-                <strong>{showAllTransformations ? 'Show Fewer Stories' : 'View More Clinical Transformations'}</strong>
-                <span>{showAllTransformations ? 'Showing all recovery reviews' : 'Tap to read more verified patient journeys'}</span>
-              </div>
-              <span className="samya-trigger-badge">
-                {showAllTransformations ? 'Collapse' : `+${CLINICAL_REVIEWS.length - 2} Stories`}
-              </span>
-            </button>
-          </div>
-
-          {/* Simple Consultation CTA Card */}
-          <div style={{ marginTop: '40px', background: 'var(--emerald-soft)', padding: '28px 32px', borderRadius: 'var(--radius-xl)', border: '1px solid var(--emerald-medium)', display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '20px' }}>
-            <div style={{ maxWidth: '600px' }}>
-              <h3 style={{ fontSize: '1.3rem', color: 'var(--emerald-deep)', margin: '0 0 6px 0' }}>
-                Ready to uncover the root cause of your symptoms?
-              </h3>
-              <p style={{ margin: 0, color: 'var(--text-secondary)', fontSize: '0.92rem' }}>
-                Book a 60-minute 1:1 Health Clarity Session with Reshmi Verma for a personalized roadmap.
-              </p>
-            </div>
-            <div className="cta-card-actions-group">
-              <Link to="/booking" className="btn btn-primary btn-cta-main">
-                <span>Book Consultation</span>
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" style={{ marginLeft: '6px' }}>
-                  <line x1="5" y1="12" x2="19" y2="12"></line>
-                  <polyline points="12 5 19 12 12 19"></polyline>
-                </svg>
-              </Link>
-              <div className="cta-card-sub-actions">
-                <Link to="/assessment" className="btn btn-health btn-cta-sub">
-                  <span>Health Assessment</span>
-                </Link>
-                <Link to="/breathing-assessment" className="btn btn-breath btn-cta-sub">
-                  <span>Breathing Assessment</span>
-                </Link>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
 
       {/* 9. Instagram Reels & Daily Protocols Side-Scrolling Section */}
       <section className="reels-section" id="videos" data-section="reels-section">
@@ -1085,7 +975,7 @@ export default function HomePage() {
           </div>
           <div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap', alignItems: 'center' }}>
             <Link to="/about" className="btn btn-secondary btn-lg" style={{ borderRadius: '14px', padding: '12px 24px', fontSize: '0.95rem' }}>
-              <span>Read Reshmi's Full Story &rarr;</span>
+              <span>Read Reshmi's Full Story</span>
             </Link>
             <Link to="/booking" className="btn btn-primary btn-lg" style={{ borderRadius: '14px', padding: '12px 26px', fontSize: '0.95rem' }}>
               <span>Book 1:1 Consultation</span>
@@ -1109,9 +999,11 @@ export default function HomePage() {
           <div className="more-about-grid">
             {/* Card 1: About */}
             <div className="more-about-card">
-              <div className="more-about-img-box">
-                <img src="/assets/images/reshmi-saree-hero.jpg" alt="About Reshmi Verma" />
-              </div>
+              <Link to="/about" style={{ display: 'block', textDecoration: 'none' }}>
+                <div className="more-about-img-box">
+                  <img src="/assets/images/reshmi-saree-hero.jpg" alt="About Reshmi Verma" />
+                </div>
+              </Link>
               <div className="more-about-content">
                 <h3 className="more-about-title">About</h3>
                 <Link to="/about" className="more-about-link">
@@ -1122,9 +1014,16 @@ export default function HomePage() {
 
             {/* Card 2: Instagram */}
             <div className="more-about-card">
-              <div className="more-about-img-box social-box">
-                <img src="/assets/images/reshmi-instagram-profile.png" alt="Reshmi Verma Instagram" />
-              </div>
+              <a
+                href="https://www.instagram.com/healthwithreshmi/?hl=en"
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{ display: 'block', textDecoration: 'none' }}
+              >
+                <div className="more-about-img-box social-box">
+                  <img src="/assets/images/reshmi-instagram-profile.png" alt="Reshmi Verma Instagram" />
+                </div>
+              </a>
               <div className="more-about-content">
                 <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
                   <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
@@ -1156,9 +1055,16 @@ export default function HomePage() {
 
             {/* Card 3: YouTube */}
             <div className="more-about-card">
-              <div className="more-about-img-box social-box">
-                <img src="/assets/images/reshmi-youtube-channel.png" alt="Reshmi Verma YouTube" />
-              </div>
+              <a
+                href="https://youtube.com/@healthwithreshmi?si=J_-3JErcDWbGw6gj"
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{ display: 'block', textDecoration: 'none' }}
+              >
+                <div className="more-about-img-box social-box">
+                  <img src="/assets/images/reshmi-youtube-channel.png" alt="Reshmi Verma YouTube" />
+                </div>
+              </a>
               <div className="more-about-content">
                 <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
                   <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
@@ -1206,7 +1112,7 @@ export default function HomePage() {
               className="btn btn-white-solid btn-lg"
               style={{ padding: '16px 36px', borderRadius: '14px' }}
             >
-              <span>Book a Health Clarity Session</span>
+              <span>Book Session</span>
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
                 <line x1="5" y1="12" x2="19" y2="12"></line>
                 <polyline points="12 5 19 12 12 19"></polyline>

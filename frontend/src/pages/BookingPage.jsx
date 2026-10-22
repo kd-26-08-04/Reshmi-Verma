@@ -35,6 +35,7 @@ export default function BookingPage() {
   const nameInputRef = useRef(null);
 
   // Tiers state
+  const [showPlanDetails, setShowPlanDetails] = useState(false);
   const tiersList = DEFAULT_TIERS_LIST;
   const currentTier = DEFAULT_PRICING_TIERS.healthClarity;
 
@@ -163,6 +164,9 @@ export default function BookingPage() {
             amountPaid: verificationPayload.servicePrice,
             dateTime: 'Confirmed via Razorpay Checkout'
           });
+          try {
+            window.history.replaceState({}, document.title, window.location.pathname);
+          } catch (e) { }
         })
         .catch(() => {
           setConfirmedBooking({
@@ -174,6 +178,9 @@ export default function BookingPage() {
             amountPaid: verificationPayload.servicePrice,
             dateTime: 'Confirmed via Razorpay Checkout'
           });
+          try {
+            window.history.replaceState({}, document.title, window.location.pathname);
+          } catch (e) { }
         });
     }
   }, [searchParams]);
@@ -306,94 +313,97 @@ export default function BookingPage() {
         </div>
       </section>
 
-      {/* Consultation Tiers */}
-      <section className="section" style={{ paddingTop: '20px' }}>
+      {/* Consultation Tier — Compact & On-Demand Inclusions */}
+      <section className="section" style={{ paddingTop: '16px', paddingBottom: '20px' }}>
         <div className="container">
           <div style={{ maxWidth: '640px', margin: '0 auto' }}>
-            {tiersList.slice(0, 1).map(tier => {
-              return (
-                <div
-                  key={tier.id}
-                  className="tier-card featured selected-plan"
-                  data-service-id={tier.id}
-                  style={{
-                    background: '#FFFFFF',
-                    border: '2px solid var(--emerald-deep)',
-                    borderRadius: '24px',
-                    padding: 'clamp(24px, 5vw, 36px) clamp(18px, 4vw, 32px)',
-                    boxShadow: '0 16px 40px rgba(0, 0, 0, 0.08)',
-                    position: 'relative'
-                  }}
-                >
-                  {/* Clean Top Integrated Badge */}
-                  <div style={{ textAlign: 'center', marginBottom: '14px' }}>
-                    <span style={{
-                      display: 'inline-flex',
-                      alignItems: 'center',
-                      gap: '6px',
-                      background: '#121214',
-                      color: '#FFFFFF',
-                      padding: '6px 16px',
-                      borderRadius: '999px',
-                      fontSize: '0.76rem',
-                      fontWeight: 800,
-                      letterSpacing: '0.06em',
-                      textTransform: 'uppercase',
-                      boxShadow: '0 4px 14px rgba(0,0,0,0.18)'
-                    }}>
-                      <span style={{ color: '#00E5D9' }}>★</span>
-                      <span>{tier.badge || 'Official 1:1 Clinical Consultation'}</span>
-                    </span>
-                  </div>
+            <div
+              className="tier-card featured selected-plan"
+              style={{
+                background: '#FFFFFF',
+                border: '2px solid var(--emerald-deep)',
+                borderRadius: '20px',
+                padding: '20px 22px',
+                boxShadow: '0 10px 30px rgba(0, 0, 0, 0.06)',
+                position: 'relative'
+              }}
+            >
+              {/* Top Integrated Row: Badge + Price */}
+              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '10px', marginBottom: '10px' }}>
+                <span style={{
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: '6px',
+                  background: '#121214',
+                  color: '#FFFFFF',
+                  padding: '4px 12px',
+                  borderRadius: '999px',
+                  fontSize: '0.72rem',
+                  fontWeight: 800,
+                  letterSpacing: '0.04em',
+                  textTransform: 'uppercase'
+                }}>
+                  <span style={{ color: '#00E5D9' }}>★</span>
+                  <span>{currentTier.badge || 'Official 1:1 Clinical Consultation'}</span>
+                </span>
 
-                  <h3 style={{ fontSize: 'clamp(1.5rem, 4vw, 1.85rem)', marginTop: '0', marginBottom: '6px', color: 'var(--emerald-deep)', fontWeight: 800, textAlign: 'center' }}>
-                    {tier.title || tier.name}
-                  </h3>
-                  <div className="tier-duration" style={{ color: '#0D827B', fontWeight: 700, fontSize: '0.92rem', textAlign: 'center', marginBottom: '16px', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '6px' }}>
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-                    <span>{tier.duration}</span>
-                  </div>
+                <div style={{ display: 'flex', alignItems: 'baseline', gap: '4px' }}>
+                  <span style={{ fontSize: '1.2rem', fontWeight: 800, color: '#121214' }}>₹</span>
+                  <span style={{ fontSize: '1.75rem', fontWeight: 800, color: '#121214', lineHeight: 1 }}>1,999</span>
+                  <span style={{ fontSize: '0.78rem', color: 'var(--text-muted)', fontWeight: 600 }}>/ 60 mins</span>
+                </div>
+              </div>
 
-                  <div className="tier-price-box" style={{ margin: '14px 0 16px', display: 'flex', alignItems: 'baseline', justifyContent: 'center', gap: '4px', flexWrap: 'wrap' }}>
-                    <span className="tier-price-currency" style={{ fontSize: '1.6rem', fontWeight: 800, color: '#121214' }}>₹</span>
-                    <span className="tier-price-amount" style={{ fontSize: 'clamp(2.6rem, 7vw, 3.2rem)', fontWeight: 800, color: '#121214', lineHeight: 1 }}>1,999</span>
-                    <span className="tier-price-period" style={{ fontSize: '0.92rem', color: 'var(--text-muted)', fontWeight: 600 }}>/ 60-min session</span>
-                  </div>
+              {/* Title & Duration */}
+              <h3 style={{ fontSize: 'clamp(1.2rem, 3.5vw, 1.45rem)', margin: '0 0 4px', color: 'var(--emerald-deep)', fontWeight: 800 }}>
+                {currentTier.title || currentTier.name}
+              </h3>
+              <div style={{ color: '#0D827B', fontWeight: 600, fontSize: '0.84rem', display: 'flex', alignItems: 'center', gap: '6px', marginBottom: '12px' }}>
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                <span>60 Minutes &bull; Direct 1:1 Clinical Video Call with Reshmi Verma</span>
+              </div>
 
-                  <p style={{ fontSize: '0.92rem', color: 'var(--text-secondary)', lineHeight: 1.6, marginBottom: '22px', textAlign: 'center' }}>
-                    {tier.desc}
+              {/* On-Demand Toggle Button */}
+              <button
+                type="button"
+                onClick={() => setShowPlanDetails(!showPlanDetails)}
+                style={{
+                  width: '100%',
+                  background: showPlanDetails ? '#FAF9F6' : 'rgba(0, 229, 217, 0.08)',
+                  border: showPlanDetails ? '1px solid #D1D5DB' : '1.5px solid #00E5D9',
+                  borderRadius: '12px',
+                  padding: '10px 14px',
+                  fontSize: '0.84rem',
+                  fontWeight: 700,
+                  color: '#0A3B37',
+                  cursor: 'pointer',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  gap: '6px',
+                  transition: 'all 0.25s ease'
+                }}
+              >
+                <span>{showPlanDetails ? '▲ Hide Plan Inclusions & Details' : '📋 What\'s Included in this Session? (Tap to View) ▼'}</span>
+              </button>
+
+              {/* Expandable Details Container (On Demand) */}
+              {showPlanDetails && (
+                <div style={{ marginTop: '16px', paddingTop: '16px', borderTop: '1px solid rgba(13, 130, 123, 0.15)', animation: 'fadeIn 0.25s ease' }}>
+                  <p style={{ fontSize: '0.88rem', color: 'var(--text-secondary)', lineHeight: 1.6, margin: '0 0 16px' }}>
+                    {currentTier.desc}
                   </p>
-
-                  <ul className="tier-features" style={{ marginBottom: '28px', borderTop: '1px solid rgba(13, 130, 123, 0.15)', paddingTop: '18px' }}>
-                    {(tier.features || []).map((feat, fIdx) => (
-                      <li key={fIdx} style={{ fontSize: '0.92rem', padding: '7px 0', display: 'flex', alignItems: 'flex-start', gap: '10px', color: '#2C3E50' }}>
-                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#0D827B" strokeWidth="2.5" style={{ flexShrink: 0, marginTop: '2px' }}><polyline points="20 6 9 17 4 12"></polyline></svg>
+                  <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
+                    {(currentTier.features || []).map((feat, fIdx) => (
+                      <li key={fIdx} style={{ fontSize: '0.86rem', padding: '6px 0', display: 'flex', alignItems: 'flex-start', gap: '8px', color: '#374151' }}>
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#0D827B" strokeWidth="2.5" style={{ flexShrink: 0, marginTop: '2px' }}><polyline points="20 6 9 17 4 12"></polyline></svg>
                         <span style={{ lineHeight: 1.45 }}>{feat}</span>
                       </li>
                     ))}
                   </ul>
-
-                  <button
-                    type="button"
-                    className="btn btn-primary btn-lg"
-                    style={{
-                      width: '100%',
-                      justifyContent: 'center',
-                      borderRadius: '14px',
-                      fontSize: '1.02rem',
-                      fontWeight: 800,
-                      padding: '14px 20px',
-                      boxShadow: '0 8px 24px rgba(13, 130, 123, 0.25)'
-                    }}
-                    onClick={() => {
-                      if (formRef.current) formRef.current.scrollIntoView({ behavior: 'smooth' });
-                    }}
-                  >
-                    Proceed with 1:1 Consultation &rarr;
-                  </button>
                 </div>
-              );
-            })}
+              )}
+            </div>
           </div>
         </div>
       </section>
