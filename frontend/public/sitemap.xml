@@ -7,7 +7,7 @@
   <!-- 1. Homepage -->
   <url>
     <loc>https://reshmiverma.com/</loc>
-    <lastmod>2026-10-19</lastmod>
+    <lastmod>2026-10-22</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
@@ -15,7 +15,7 @@
   <!-- 2. About Reshmi Verma (Credentials & Experience) -->
   <url>
     <loc>https://reshmiverma.com/about</loc>
-    <lastmod>2026-10-19</lastmod>
+    <lastmod>2026-10-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.95</priority>
   </url>
@@ -23,7 +23,7 @@
   <!-- 3. 1:1 Clinical Health Consultation Booking -->
   <url>
     <loc>https://reshmiverma.com/booking</loc>
-    <lastmod>2026-10-19</lastmod>
+    <lastmod>2026-10-22</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.95</priority>
   </url>
@@ -31,39 +31,63 @@
   <!-- 4. Free Health Resilience Assessment -->
   <url>
     <loc>https://reshmiverma.com/assessment</loc>
-    <lastmod>2026-10-19</lastmod>
+    <lastmod>2026-10-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.90</priority>
   </url>
 
-  <!-- 5. Functional Nutrition & Protocols -->
+  <!-- 5. Breathing Assessment (Oxygen Advantage BOLT Test) -->
+  <url>
+    <loc>https://reshmiverma.com/breathing-assessment</loc>
+    <lastmod>2026-10-22</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.90</priority>
+  </url>
+
+  <!-- 6. Functional Nutrition & Protocols -->
   <url>
     <loc>https://reshmiverma.com/nutrition</loc>
-    <lastmod>2026-10-19</lastmod>
+    <lastmod>2026-10-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
   </url>
 
-  <!-- 6. Oxygen Advantage & Interactive Breath Lab -->
+  <!-- 7. Oxygen Advantage & Interactive Breath Lab -->
   <url>
     <loc>https://reshmiverma.com/breathe</loc>
-    <lastmod>2026-10-19</lastmod>
+    <lastmod>2026-10-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
   </url>
 
-  <!-- 7. Clinical Intake Questionnaire -->
+  <!-- 8. Client Testimonials & Transformations -->
+  <url>
+    <loc>https://reshmiverma.com/testimonials</loc>
+    <lastmod>2026-10-22</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+
+  <!-- 9. Videos & Instagram Reels -->
+  <url>
+    <loc>https://reshmiverma.com/videos</loc>
+    <lastmod>2026-10-22</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.80</priority>
+  </url>
+
+  <!-- 10. Clinical Intake Questionnaire -->
   <url>
     <loc>https://reshmiverma.com/questionnaire</loc>
-    <lastmod>2026-10-19</lastmod>
+    <lastmod>2026-10-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.75</priority>
   </url>
 
-  <!-- 8. Clinic Contact & Desk Support -->
+  <!-- 11. Clinic Contact & Desk Support -->
   <url>
     <loc>https://reshmiverma.com/contact</loc>
-    <lastmod>2026-10-19</lastmod>
+    <lastmod>2026-10-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.80</priority>
   </url>
