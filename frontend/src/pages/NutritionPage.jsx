@@ -44,7 +44,7 @@ export default function NutritionPage() {
       </section>
 
       {/* The 6 Pillars / Frontiers of Cellular Botanical Nutrition */}
-      <section className="section" id="mucosal-matrix" style={{ background: 'white', borderTop: '1px solid var(--border-subtle)', borderBottom: '1px solid var(--border-subtle)' }}>
+      <section className="section" id="mucosal-matrix">
         <div className="container">
           <div className="section-header">
             <span className="sub-title">Biological Regeneration Matrix</span>
@@ -155,7 +155,7 @@ export default function NutritionPage() {
       </section>
 
       {/* Diagnostic Mapping Section */}
-      <section className="section" style={{ background: 'var(--bg-secondary)' }}>
+      <section className="section">
         <div className="container">
           <div className="diagnostics-mapping-grid">
             <div>

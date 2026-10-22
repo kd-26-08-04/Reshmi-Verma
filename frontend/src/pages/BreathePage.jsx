@@ -498,7 +498,7 @@ export default function BreathePage() {
       </section>
 
       {/* Module 2: Neuromodulation Guided Breathing Sanctuary */}
-      <section className="section" id="sanctuary-station" style={{ background: 'white', borderTop: '1px solid var(--border-subtle)' }}>
+      <section className="section" id="sanctuary-station">
         <div className="container">
           <div className="section-header">
             <span className="sub-title">Interactive Autonomic Sanctuary</span>
@@ -567,7 +567,7 @@ export default function BreathePage() {
       </section>
 
       {/* Module 3: 60-Second Live Resting Breath Counter */}
-      <section className="section" id="counter-station" style={{ background: 'var(--bg-secondary)' }}>
+      <section className="section" id="counter-station">
         <div className="container">
           <div className="section-header">
             <span className="sub-title">Resting Respiratory Rate</span>
@@ -642,7 +642,7 @@ export default function BreathePage() {
       </section>
 
       {/* Module 4: Vagal Tone Multi-Factor Index Calculator */}
-      <section className="section" id="vagal-station" style={{ background: 'white' }}>
+      <section className="section" id="vagal-station">
         <div className="container">
           <div className="section-header">
             <span className="sub-title">Autonomic Equilibrium</span>

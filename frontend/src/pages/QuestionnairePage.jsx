@@ -849,7 +849,7 @@ export default function QuestionnairePage() {
   const currentSection = CLINICAL_SECTIONS[activeStep];
 
   return (
-    <main className="section" style={{ minHeight: 'calc(100vh - 120px)', padding: '40px 0 90px', background: 'linear-gradient(180deg, #F9F7F2 0%, #FFFFFF 100%)' }}>
+    <main className="section" style={{ minHeight: 'calc(100vh - 120px)', padding: '40px 0 90px', background: '#FFFFFF' }}>
       <div className="container questionnaire-portal-wrap">
         
         {!submitted ? (

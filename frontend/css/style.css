@@ -15,12 +15,12 @@
      4. Health Assessment Track: #EB5E28 (Warm Saffron / Terracotta)
      5. Breathing Assessment Track: #2EC4B6 (Oxygen Advantage Turquoise Cyan)
      ========================================================================== */
-  --bg-primary: #F4F5F6;
-  --bg-secondary: #F4F5F6;
-  --bg-tertiary: #EAEBED;
+  --bg-primary: #FFFFFF;
+  --bg-secondary: #FFFFFF;
+  --bg-tertiary: #FFFFFF;
   --bg-card: #FFFFFF;
   --bg-card-hover: #FFFFFF;
-  --bg-glass: rgba(244, 245, 246, 0.95);
+  --bg-glass: rgba(255, 255, 255, 0.95);
 
   /* Deep Jet Obsidian Authority */
   --emerald-deep: #121214;
@@ -60,8 +60,8 @@
   --sky-soft: #E6FCFB;
 
   /* Organic Sand & Universal Structure */
-  --sand-warm: #F4F5F6;
-  --sand-cream: #F4F5F6;
+  --sand-warm: #FFFFFF;
+  --sand-cream: #FFFFFF;
   --sand-gold: #121214;
   --sand-border: #E5E7EB;
 
@@ -129,6 +129,8 @@ html {
   font-size: 16px;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: #000000;
+  overflow-x: hidden;
 }
 
 body {
@@ -328,20 +330,20 @@ h6 {
 }
 
 .section {
-  padding: 96px 0;
+  padding: clamp(48px, 5.5vh, 68px) 0;
   position: relative;
 }
 
 @media (max-width: 768px) {
   .section {
-    padding: 64px 0;
+    padding: 44px 0;
   }
 }
 
 .section-header {
   text-align: center;
   max-width: 760px;
-  margin: 0 auto 64px;
+  margin: 0 auto 36px;
 }
 
 .section-header .sub-title {
@@ -378,7 +380,7 @@ h6 {
   position: sticky;
   top: 0;
   z-index: 1000;
-  background: rgba(250, 253, 251, 0.88);
+  background: rgba(255, 255, 255, 0.95);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
   border-bottom: 1px solid var(--border-subtle);
@@ -386,7 +388,7 @@ h6 {
 }
 
 .site-header.scrolled {
-  background: rgba(255, 255, 255, 0.96);
+  background: rgba(255, 255, 255, 0.98);
   box-shadow: 0 4px 20px rgba(15, 23, 42, 0.06);
 }
 
@@ -398,7 +400,7 @@ h6 {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  height: 78px;
+  height: 70px;
   gap: 20px;
 }
 
@@ -1074,39 +1076,47 @@ h6 {
   box-shadow: 0 8px 22px rgba(142, 190, 147, 0.25);
 }
 
-/* 3. Royal Health Assessment (Electric Neon Saffron — Bright & Radiant) */
+/* 3. Health Assessment Button (Matte Clean Solid — No Glow Halo / No Shine) */
 .btn-health {
-  background: linear-gradient(135deg, #FF007F 0%, #D9006C 100%);
+  background: #E11D48;
   color: #FFFFFF !important;
-  border: 1px solid rgba(255, 255, 255, 0.45);
-  box-shadow: 0 4px 18px rgba(255, 0, 127, 0.45), 0 0 25px rgba(255, 0, 127, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.5);
-  font-weight: 800;
+  border: 1px solid transparent;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+  font-weight: 700;
   letter-spacing: 0.01em;
-  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+  text-shadow: none;
 }
 
 .btn-health:hover {
-  background: linear-gradient(135deg, #FF2E93 0%, #FF007F 100%);
+  background: #BE123C;
   color: #FFFFFF !important;
   transform: translateY(-2px);
-  box-shadow: 0 10px 28px rgba(255, 0, 127, 0.65), 0 0 35px rgba(255, 0, 127, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.6);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
 }
 
-/* 4. Royal Breathing Assessment (Electric Neon Turquoise Cyan — Bright & Radiant) */
+/* 4. Breathing Assessment Button (Matte Clean Solid — No Glow Halo / No Shine) */
 .btn-breath {
-  background: linear-gradient(135deg, #00E5D9 0%, #00B3A8 100%);
-  color: #111111 !important;
-  border: 1px solid rgba(255, 255, 255, 0.6);
-  box-shadow: 0 4px 18px rgba(0, 229, 217, 0.45), 0 0 25px rgba(0, 229, 217, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.7);
-  font-weight: 800;
+  background: #0D9488;
+  color: #FFFFFF !important;
+  border: 1px solid transparent;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+  font-weight: 700;
   letter-spacing: 0.01em;
+  text-shadow: none;
 }
 
 .btn-breath:hover {
-  background: linear-gradient(135deg, #2BF5EC 0%, #00E5D9 100%);
-  color: #000000 !important;
+  background: #0F766E;
+  color: #FFFFFF !important;
   transform: translateY(-2px);
-  box-shadow: 0 10px 28px rgba(0, 229, 217, 0.65), 0 0 35px rgba(0, 229, 217, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.85);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+}
+
+/* Completely remove reflective shine sheen from assessment buttons */
+.btn-health::after,
+.btn-breath::after {
+  display: none !important;
+  content: none !important;
 }
 
 .btn-sm {
@@ -1123,7 +1133,7 @@ h6 {
    Hero Section
    ========================================================================== */
 .hero-section {
-  padding: 60px 0 100px;
+  padding: clamp(20px, 3vh, 40px) 0 clamp(28px, 4vh, 52px);
   position: relative;
   overflow: hidden;
 }
@@ -1132,7 +1142,7 @@ h6 {
   display: grid;
   grid-template-columns: 1.15fr 0.85fr;
   align-items: center;
-  gap: 60px;
+  gap: clamp(32px, 4vw, 56px);
 }
 
 .hero-content {
@@ -1148,9 +1158,9 @@ h6 {
 }
 
 .hero-content h1 {
-  font-size: 3.5rem;
+  font-size: clamp(2.3rem, 3.2vw, 3.1rem);
   line-height: 1.15;
-  margin: 20px 0 24px;
+  margin: 12px 0 16px;
   color: var(--emerald-deep);
   font-weight: 800;
   letter-spacing: -0.02em;
@@ -1174,11 +1184,11 @@ h6 {
 }
 
 .hero-content p.lead {
-  font-size: 1.15rem;
+  font-size: clamp(1rem, 1.15vw, 1.08rem);
   color: var(--text-secondary);
   font-weight: 500;
-  line-height: 1.75;
-  margin-bottom: 32px;
+  line-height: 1.65;
+  margin-bottom: 22px;
   max-width: 620px;
 }
 
@@ -1190,9 +1200,9 @@ h6 {
 .hero-stats-row {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 16px;
-  margin-top: 36px;
-  padding: 18px 22px;
+  gap: 14px;
+  margin-top: 24px;
+  padding: 14px 18px;
   background: rgba(255, 255, 255, 0.88);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
@@ -1250,9 +1260,10 @@ h6 {
 .hero-portrait-card {
   position: relative;
   width: 100%;
-  max-width: 440px;
+  max-width: 390px;
+  margin: 0 auto;
   border-radius: 28px;
-  padding: 12px;
+  padding: 10px;
   background: linear-gradient(145deg, rgba(255, 255, 255, 0.95) 0%, rgba(255, 237, 213, 0.5) 100%);
   border: 1.5px solid rgba(255, 255, 255, 0.95);
   box-shadow: 0 25px 60px -15px rgba(194, 65, 12, 0.18), 0 10px 25px rgba(15, 23, 42, 0.06);
@@ -4159,10 +4170,9 @@ h6 {
    ========================================================================== */
 .reels-section {
   position: relative;
-  background: linear-gradient(180deg, #FFFFFF 0%, var(--bg-secondary) 100%);
-  padding: 80px 0;
-  border-top: 1px solid var(--border-subtle);
-  border-bottom: 1px solid var(--border-subtle);
+  background: transparent;
+  padding: 60px 0;
+  border: none;
   overflow: hidden;
 }
 
@@ -6726,10 +6736,9 @@ h6 {
    Chronic Health Conditions Grid (High Relatability)
    ========================================================================== */
 .conditions-section {
-  padding: 85px 0;
-  background: #FFFFFF;
-  border-top: 1px solid var(--border-subtle);
-  border-bottom: 1px solid var(--border-subtle);
+  padding: 60px 0;
+  background: transparent;
+  border: none;
 }
 
 .conditions-grid {
@@ -6836,19 +6845,32 @@ h6 {
 /* ==========================================================================
    Clinical Approach Strip (Post-Hero Quick Actions)
    ========================================================================== */
-.clinical-approach-strip {
-  background: #FFFFFF;
-  border-top: 1px solid rgba(244, 166, 184, 0.35);
-  border-bottom: 1px solid rgba(244, 166, 184, 0.35);
-  padding: 40px 0;
+.clinical-approach-strip,
+.clinical-approach-section {
+  background: transparent;
+  border: none;
+  padding: 10px 0 35px;
   text-align: center;
+}
+
+.clinical-approach-card {
+  background: #FFFFFF;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(18, 18, 20, 0.08);
+  border-radius: 24px;
+  padding: 34px 32px;
+  max-width: 1060px;
+  margin: 0 auto;
+  text-align: center;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
 }
 
 .clinical-approach-lead {
   font-size: clamp(1rem, 2.2vw, 1.15rem);
   color: var(--text-primary);
   max-width: 960px;
-  margin: 0 auto 28px;
+  margin: 0 auto 26px;
   line-height: 1.7;
   font-weight: 500;
 }
@@ -6879,7 +6901,7 @@ h6 {
 }
 
 .btn-consult-outline:hover {
-  background: #FAF9F6;
+  background: #FFFFFF;
   border-color: #121214;
   color: #121214;
   transform: translateY(-2px);
@@ -6912,22 +6934,24 @@ h6 {
 }
 
 /* ==========================================================================
-   Scope & Chronic Conditions Callout Card (Clean Sage & Bone White Theme)
+   Scope & Chronic Conditions Callout Card (Clean Sage & Glassmorphism Theme)
    ========================================================================== */
 .conditions-scope-wrapper {
-  padding: 60px 0 30px;
-  background: #FAF9F6;
+  padding: 40px 0 30px;
+  background: transparent;
 }
 
 .conditions-scope-card {
   background: #FFFFFF;
-  border: 1.5px solid #8EBE93;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1.5px solid rgba(142, 190, 147, 0.45);
   border-radius: 24px;
   padding: 36px 32px;
   max-width: 1060px;
   margin: 0 auto;
   text-align: center;
-  box-shadow: 0 10px 30px rgba(142, 190, 147, 0.12);
+  box-shadow: 0 10px 30px rgba(142, 190, 147, 0.08);
   position: relative;
 }
 
@@ -7084,10 +7108,8 @@ h6 {
    More About Reshmi Section (3 Cards: About, Instagram, YouTube)
    ========================================================================== */
 .more-about-section {
-  padding: 85px 0;
-  background: #FAF9F6;
-  border-top: 1px solid var(--border-subtle);
-  border-bottom: 1px solid var(--border-subtle);
+  padding: 70px 0;
+  background: transparent;
 }
 
 .more-about-grid {
@@ -7371,12 +7393,12 @@ h6 {
 
 .transformation-marquee-container::before {
   left: 0;
-  background: linear-gradient(90deg, #FFFFFF 0%, rgba(255, 255, 255, 0) 100%);
+  background: linear-gradient(90deg, #0D0F12 0%, rgba(13, 15, 18, 0) 100%);
 }
 
 .transformation-marquee-container::after {
   right: 0;
-  background: linear-gradient(270deg, #FFFFFF 0%, rgba(255, 255, 255, 0) 100%);
+  background: linear-gradient(270deg, #0D0F12 0%, rgba(13, 15, 18, 0) 100%);
 }
 
 .transformation-marquee-track {

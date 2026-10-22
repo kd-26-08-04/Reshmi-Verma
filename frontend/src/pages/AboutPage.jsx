@@ -62,7 +62,7 @@ export default function AboutPage() {
   return (
     <>
       {/* 1. Hero Section */}
-      <section className="section about-anim-fade-up" style={{ paddingTop: '120px', paddingBottom: '60px', background: 'linear-gradient(180deg, var(--sand-warm) 0%, #FFFFFF 100%)' }}>
+      <section className="section about-anim-fade-up" style={{ paddingTop: '120px', paddingBottom: '50px' }}>
         <div className="container">
           <div style={{ maxWidth: '880px', margin: '0 auto', textAlign: 'center' }}>
             <span
@@ -107,9 +107,23 @@ export default function AboutPage() {
       </section>
 
       {/* 2. Key Authority Metrics Strip with Animated Counters */}
-      <section style={{ background: '#FAF8F5', borderTop: '1px solid var(--border-subtle)', borderBottom: '1px solid var(--border-subtle)', padding: '36px 0' }}>
+      <section style={{ padding: '10px 0 40px' }}>
         <div className="container">
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '24px', textAlign: 'center' }}>
+          <div
+            style={{
+              background: '#FFFFFF',
+              backdropFilter: 'blur(16px)',
+              WebkitBackdropFilter: 'blur(16px)',
+              border: '1px solid rgba(18, 18, 20, 0.08)',
+              borderRadius: '24px',
+              padding: '36px 28px',
+              boxShadow: '0 10px 30px rgba(0, 0, 0, 0.04)',
+              display: 'grid',
+              gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
+              gap: '24px',
+              textAlign: 'center'
+            }}
+          >
             <div style={{ transition: 'transform 0.3s ease' }}>
               <div style={{ fontSize: '2.5rem', fontWeight: 800, color: 'var(--emerald-deep)', fontFamily: 'var(--font-serif)' }}>
                 <AnimatedNumber value={20} suffix="+" />
@@ -147,7 +161,7 @@ export default function AboutPage() {
       </section>
 
       {/* 3. Clinical Diagnostics Leadership & Personal Transformation (Meet Reshmi Verma) */}
-      <section className="section" id="about-reshmi" style={{ background: 'white', padding: '80px 0' }}>
+      <section className="section" id="about-reshmi" style={{ padding: '60px 0' }}>
         <div className="container">
           <div className="about-grid">
             <div className="about-image-wrapper">
@@ -238,7 +252,7 @@ export default function AboutPage() {
       </section>
 
       {/* 3B. Diagnostic Philosophy Deep-Dive */}
-      <section className="section" style={{ background: '#FAF8F5', borderTop: '1px solid var(--border-subtle)', borderBottom: '1px solid var(--border-subtle)', padding: '60px 0' }}>
+      <section className="section" style={{ padding: '60px 0' }}>
         <div className="container">
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '44px', alignItems: 'center' }}>
             <div>
@@ -273,7 +287,7 @@ export default function AboutPage() {
       <ClientTransformationShowcase />
 
       {/* 4. Patient Problems & Healing Solutions (With Generated Clinical Images) */}
-      <section className="section" style={{ background: '#FAF8F5' }}>
+      <section className="section" style={{ padding: '60px 0' }}>
         <div className="container">
           <div className="section-header text-center" style={{ maxWidth: '750px', margin: '0 auto 40px' }}>
             <span className="badge-pill" style={{ marginBottom: '12px', fontSize: '0.78rem' }}>
@@ -361,7 +375,7 @@ export default function AboutPage() {
       </section>
 
       {/* 5. Comprehensive Clinical FAQs */}
-      <section className="section" style={{ background: 'white' }}>
+      <section className="section" style={{ padding: '60px 0' }}>
         <div className="container" style={{ maxWidth: '820px' }}>
           <div className="section-header text-center" style={{ marginBottom: '32px' }}>
             <span className="badge-pill" style={{ marginBottom: '10px', fontSize: '0.78rem' }}>

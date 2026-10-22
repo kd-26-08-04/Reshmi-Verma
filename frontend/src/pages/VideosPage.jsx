@@ -99,7 +99,7 @@ export default function VideosPage() {
     : videoLibrary.filter(v => v.category === activeCategory);
 
   return (
-    <main className="section" style={{ minHeight: '100vh', paddingTop: '100px', paddingBottom: '90px', background: '#FAF9F6' }}>
+    <main className="section" style={{ minHeight: '100vh', paddingTop: '100px', paddingBottom: '90px', background: '#FFFFFF' }}>
       <div className="container" style={{ maxWidth: '1180px' }}>
 
         {/* Hero Section Header */}

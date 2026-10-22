@@ -409,7 +409,7 @@ export default function BookingPage() {
       </section>
 
       {/* Clinical Pre-Consultation Intake Form */}
-      <section className="section" id="intake-booking-section" ref={formRef} style={{ background: 'white', borderTop: '1px solid var(--border-subtle)' }}>
+      <section className="section" id="intake-booking-section" ref={formRef}>
         <div className="container">
           <div className="section-header">
             <span className="sub-title">Direct Booking &amp; Secure Checkout</span>

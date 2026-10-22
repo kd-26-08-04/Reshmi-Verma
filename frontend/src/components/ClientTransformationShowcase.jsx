@@ -5,16 +5,25 @@ export default function ClientTransformationShowcase() {
   const [playingAudioId, setPlayingAudioId] = useState(null);
   const [currentTime, setCurrentTime] = useState({});
   const [duration, setDuration] = useState({});
+  const [showAllAudio, setShowAllAudio] = useState(false);
   const audioRefs = useRef({});
 
   const transformations = [
+    {
+      id: 'transformation-1',
+      name: 'Client Transformation',
+      title: 'Sustainable Weight & Metabolic Reset',
+      durationTag: '12 Weeks Protocol',
+      image: '/assets/images/transformation-1.jpeg',
+
+    },
     {
       id: 'dipika',
       name: 'Dipika',
       title: 'Thyroid & Weight Reversal',
       durationTag: '16 Weeks Protocol',
       image: '/assets/images/transformation-dipika.png',
-      badge: 'Verified Client'
+      // badge: 'Verified Client'
     },
     {
       id: 'dr-sandeep',
@@ -22,15 +31,7 @@ export default function ClientTransformationShowcase() {
       title: 'Metabolic Health & Energy Reset',
       durationTag: '12 Weeks Protocol',
       image: '/assets/images/transformation-dr-sandeep.jpg',
-      badge: 'Physician Transformation'
-    },
-    {
-      id: 'kv-dogra',
-      name: 'KV Dogra',
-      title: 'Visceral Fat & Strength Recovery',
-      durationTag: '14 Weeks Protocol',
-      image: '/assets/images/transformation-kv-dogra.jpg',
-      badge: 'Verified Client'
+      // badge: 'Physician Transformation'
     },
     {
       id: 'minakshi',
@@ -38,7 +39,7 @@ export default function ClientTransformationShowcase() {
       title: 'Gut Motility & Hormonal Balance',
       durationTag: '10 Weeks Protocol',
       image: '/assets/images/transformation-minakshi.jpg',
-      badge: 'Verified Client'
+      // badge: 'Verified Client'
     },
     {
       id: 'sonika',
@@ -46,7 +47,7 @@ export default function ClientTransformationShowcase() {
       title: 'PCOS & Sustainable Weight Loss',
       durationTag: '18 Weeks Protocol',
       image: '/assets/images/transformation-sonika.jpg',
-      badge: 'Verified Client'
+      // badge: 'Verified Client'
     },
     {
       id: 'reshmi',
@@ -54,7 +55,7 @@ export default function ClientTransformationShowcase() {
       title: 'Lost 38 kg • Reversed Metabolic Fatigue',
       durationTag: 'Sustained 5+ Years',
       image: '/assets/images/transformation-reshmi-personal.jpg',
-      badge: 'Founder Story'
+      // badge: 'Founder Story'
     }
   ];
 
@@ -93,6 +94,30 @@ export default function ClientTransformationShowcase() {
       file: '/assets/audio/client-voice-4.mp4',
       quote: '"Oxygen Advantage breathing drills ne meri breathing pattern aur raat ki sleep ko 100% stable kar diya."',
       durationEst: '0:58'
+    },
+    {
+      id: 'voice-5',
+      clientName: 'Client Audio Note 5',
+      condition: 'Gut Relief & Bloating Reversal',
+      file: '/assets/audio/client-voice-5.mp3',
+      quote: '"Bloating aur post-meal heaviness me remarkable improvement aaya within few weeks of protocol."',
+      durationEst: '0:48'
+    },
+    {
+      id: 'voice-8',
+      clientName: 'Client Audio Note 8',
+      condition: 'Metabolic Vitality & Inch Loss',
+      file: '/assets/audio/client-voice-8.mp3',
+      quote: '"Metabolism restore hua aur bina extreme restriction ke sustainable inch loss mila."',
+      durationEst: '1:01'
+    },
+    {
+      id: 'voice-9',
+      clientName: 'Client Audio Note 9',
+      condition: 'Sleep Quality & Stress Modulation',
+      file: '/assets/audio/client-voice-9.mp3',
+      quote: '"Oxygen Advantage breathwork aur sleep hygiene se deep restful sleep wapas aayi."',
+      durationEst: '0:40'
     }
   ];
 
@@ -147,9 +172,7 @@ export default function ClientTransformationShowcase() {
         className="transformation-showcase-section"
         style={{
           background: '#0D0F12',
-          padding: '70px 0 55px',
-          borderTop: '1px solid rgba(255, 255, 255, 0.08)',
-          borderBottom: '1px solid rgba(255, 255, 255, 0.08)'
+          padding: '70px 0 55px'
         }}
       >
         <div className="container">
@@ -287,9 +310,7 @@ export default function ClientTransformationShowcase() {
       <section
         className="section client-voice-section"
         style={{
-          background: '#FAF8F5',
-          borderBottom: '1px solid var(--border-subtle)',
-          padding: '70px 0'
+          padding: '60px 0'
         }}
       >
         <div className="container">
@@ -360,7 +381,7 @@ export default function ClientTransformationShowcase() {
                 gap: '24px'
               }}
             >
-              {audioTestimonials.map((item) => {
+              {audioTestimonials.slice(0, showAllAudio ? audioTestimonials.length : 3).map((item) => {
                 const isPlaying = playingAudioId === item.id;
                 const current = currentTime[item.id] || 0;
                 const total = duration[item.id] || 0;
@@ -542,7 +563,48 @@ export default function ClientTransformationShowcase() {
               })}
             </div>
 
-            <div style={{ textAlign: 'center', marginTop: '36px' }}>
+            {/* Expand / Collapse Audio Toggle */}
+            {audioTestimonials.length > 3 && (
+              <div style={{ textAlign: 'center', marginTop: '28px' }}>
+                <button
+                  type="button"
+                  onClick={() => setShowAllAudio(!showAllAudio)}
+                  style={{
+                    display: 'inline-flex',
+                    alignItems: 'center',
+                    gap: '8px',
+                    background: 'transparent',
+                    border: 'none',
+                    cursor: 'pointer',
+                    color: 'var(--emerald-deep)',
+                    fontSize: '0.9rem',
+                    fontWeight: 700,
+                    padding: '10px 20px',
+                    borderRadius: '999px',
+                    transition: 'all 0.2s ease'
+                  }}
+                  aria-expanded={showAllAudio}
+                  title={showAllAudio ? 'Show fewer audio notes' : 'Show all audio notes'}
+                >
+                  <svg
+                    width="22"
+                    height="22"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2.5"
+                    style={{
+                      transform: showAllAudio ? 'rotate(180deg)' : 'rotate(0deg)',
+                      transition: 'transform 0.3s ease'
+                    }}
+                  >
+                    <polyline points="6 9 12 15 18 9" />
+                  </svg>
+                </button>
+              </div>
+            )}
+
+            <div style={{ textAlign: 'center', marginTop: '28px' }}>
               <Link
                 to="/booking"
                 className="btn btn-primary btn-lg"

@@ -228,10 +228,6 @@ export default function HomePage() {
               <div style={{ display: 'flex', gap: '14px', flexWrap: 'wrap', alignItems: 'center' }}>
                 <Link to="/booking" className="btn btn-primary btn-lg">
                   <span>Book 1:1 Health Consultation</span>
-                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-                    <line x1="5" y1="12" x2="19" y2="12"></line>
-                    <polyline points="12 5 19 12 12 19"></polyline>
-                  </svg>
                 </Link>
                 <Link to="/assessment" className="btn btn-health btn-lg">
                   <span>Take Free Health Assessment</span>
@@ -315,25 +311,27 @@ export default function HomePage() {
       </section>
 
       {/* 1A. Post-Hero Clinical Pillars & Quick Actions (Consult Reshmi, 1:1 UltraWellness, Both Assessments) */}
-      <section className="clinical-approach-strip">
+      <section className="clinical-approach-section">
         <div className="container">
-          <p className="clinical-approach-lead">
-            Her clinical approach unifies 20+ years of laboratory diagnostic expertise, gut microbiome testing, #13 Oxygen Advantage® breathwork, and identifying the hidden biochemical root causes that trigger chronic inflammation, gut dysbiosis, and metabolic fatigue.
-          </p>
+          <div className="clinical-approach-card">
+            <p className="clinical-approach-lead">
+              Her clinical approach unifies 20+ years of laboratory diagnostic expertise, gut microbiome testing, #13 Oxygen Advantage® breathwork, and identifying the hidden biochemical root causes that trigger chronic inflammation, gut dysbiosis, and metabolic fatigue.
+            </p>
 
-          <div className="clinical-approach-buttons">
-            <Link to="/booking" className="btn btn-primary">
-              Consult Reshmi
-            </Link>
-            <Link to="/booking" className="btn btn-secondary">
-              1:1 Health Reset Program
-            </Link>
-            <Link to="/assessment" className="btn btn-health">
-              Health Assessment
-            </Link>
-            <Link to="/breathing-assessment" className="btn btn-breath">
-              Breathing Assessment
-            </Link>
+            <div className="clinical-approach-buttons">
+              <Link to="/booking" className="btn btn-primary">
+                Consult Reshmi
+              </Link>
+              <Link to="/booking" className="btn btn-secondary">
+                1:1 Health Reset Program
+              </Link>
+              <Link to="/assessment" className="btn btn-health">
+                Health Assessment
+              </Link>
+              <Link to="/breathing-assessment" className="btn btn-breath">
+                Breathing Assessment
+              </Link>
+            </div>
           </div>
         </div>
       </section>
@@ -343,10 +341,7 @@ export default function HomePage() {
         className="section"
         id="lived-transformation-showcase"
         style={{
-          background: 'var(--bg-primary)',
-          borderTop: '1px solid var(--sand-border)',
-          borderBottom: '1px solid var(--sand-border)',
-          padding: '70px 0'
+          padding: '50px 0 60px'
         }}
       >
         <div className="container">
@@ -491,7 +486,7 @@ export default function HomePage() {
                   marginTop: '12px',
                   padding: '14px 18px',
                   borderRadius: '12px',
-                  background: '#FDFBF7',
+                  background: '#F9FAFB',
                   border: '1px solid rgba(18, 18, 20, 0.08)'
                 }}>
                   <p className="conditions-scope-disclaimer" style={{ margin: 0 }}>
@@ -510,9 +505,6 @@ export default function HomePage() {
         className="section"
         id="samya-methodology"
         style={{
-          background: 'var(--bg-primary)',
-          borderTop: '1px solid var(--border-subtle)',
-          borderBottom: '1px solid var(--border-subtle)',
           padding: '48px 0'
         }}
       >
@@ -709,7 +701,7 @@ export default function HomePage() {
 
 
       {/* 7. How We Work Together Section (No One-Size-Fits-All) */}
-      <section className="section" id="how-we-work" style={{ background: 'var(--sand-warm)', borderTop: '1px solid var(--sand-border)', borderBottom: '1px solid var(--sand-border)' }}>
+      <section className="section" id="how-we-work" style={{ padding: '64px 0' }}>
         <div className="container">
           <div className="section-header text-center" style={{ maxWidth: '820px', margin: '0 auto 30px' }}>
             <span className="sub-title">A Tailored Health Pathway</span>
@@ -767,7 +759,7 @@ export default function HomePage() {
       </section>
 
       {/* 7. Clinic Sanctuary Showcase */}
-      <section className="section" style={{ paddingTop: 0, background: 'white' }}>
+      <section className="section" style={{ paddingTop: 0 }}>
         <div className="container">
           <div style={{ borderRadius: 'var(--radius-xl)', overflow: 'hidden', position: 'relative', height: '380px', boxShadow: 'var(--shadow-lg)', border: '1px solid var(--border-medium)' }}>
             <img src="/assets/images/clinic-sanctuary.jpg" alt="Integrative Wellness Sanctuary" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
@@ -960,26 +952,43 @@ export default function HomePage() {
       </section>
 
       {/* 8. Trust & Founder Spotlight Banner */}
-      <section style={{ background: 'var(--bg-primary)', padding: '44px 0', borderTop: '1px solid var(--border-subtle)', borderBottom: '1px solid var(--border-subtle)' }}>
-        <div className="container" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '24px' }}>
-          <div style={{ maxWidth: '680px' }}>
-            <div style={{ fontSize: '0.82rem', fontWeight: 700, color: 'var(--emerald-medium)', textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: '6px' }}>
-              Led By Reshmi Verma &bull; 20+ Years Clinical Diagnostics Leadership
+      <section style={{ padding: '24px 0 36px' }}>
+        <div className="container">
+          <div
+            style={{
+              background: '#FFFFFF',
+              backdropFilter: 'blur(16px)',
+              WebkitBackdropFilter: 'blur(16px)',
+              border: '1px solid rgba(18, 18, 20, 0.08)',
+              borderRadius: '24px',
+              padding: '36px 36px',
+              boxShadow: '0 10px 30px rgba(0, 0, 0, 0.04)',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'space-between',
+              flexWrap: 'wrap',
+              gap: '24px'
+            }}
+          >
+            <div style={{ maxWidth: '680px' }}>
+              <div style={{ fontSize: '0.82rem', fontWeight: 700, color: 'var(--emerald-medium)', textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: '6px' }}>
+                Led By Reshmi Verma &bull; 20+ Years Clinical Diagnostics Leadership
+              </div>
+              <h3 style={{ fontSize: '1.5rem', color: 'var(--emerald-deep)', margin: '0 0 6px', fontFamily: 'var(--font-serif)' }}>
+                Biotechnologist &bull; Functional Nutritionist &bull; Breathwork Facilitator
+              </h3>
+              <p style={{ margin: 0, color: 'var(--text-secondary)', fontSize: '0.94rem', lineHeight: 1.6 }}>
+                Director of Rainbow Medinova Diagnostic Services and Co-founder of Neofit Gym. Read her journey from pathology diagnostics to personal 38 kg reversal.
+              </p>
             </div>
-            <h3 style={{ fontSize: '1.5rem', color: 'var(--emerald-deep)', margin: '0 0 6px', fontFamily: 'var(--font-serif)' }}>
-              Biotechnologist &bull; Functional Nutritionist &bull; Breathwork Facilitator
-            </h3>
-            <p style={{ margin: 0, color: 'var(--text-secondary)', fontSize: '0.94rem', lineHeight: 1.6 }}>
-              Director of Rainbow Medinova Diagnostic Services and Co-founder of Neofit Gym. Read her journey from pathology diagnostics to personal 38 kg reversal.
-            </p>
-          </div>
-          <div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap', alignItems: 'center' }}>
-            <Link to="/about" className="btn btn-secondary btn-lg" style={{ borderRadius: '14px', padding: '12px 24px', fontSize: '0.95rem' }}>
-              <span>Read Reshmi's Full Story</span>
-            </Link>
-            <Link to="/booking" className="btn btn-primary btn-lg" style={{ borderRadius: '14px', padding: '12px 26px', fontSize: '0.95rem' }}>
-              <span>Book 1:1 Consultation</span>
-            </Link>
+            <div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap', alignItems: 'center' }}>
+              <Link to="/about" className="btn btn-secondary btn-lg" style={{ borderRadius: '14px', padding: '12px 24px', fontSize: '0.95rem' }}>
+                <span>Read Reshmi's Full Story</span>
+              </Link>
+              <Link to="/booking" className="btn btn-primary btn-lg" style={{ borderRadius: '14px', padding: '12px 26px', fontSize: '0.95rem' }}>
+                <span>Book 1:1 Consultation</span>
+              </Link>
+            </div>
           </div>
         </div>
       </section>
