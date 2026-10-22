@@ -23,7 +23,6 @@ export default function ClientTransformationShowcase() {
       title: 'Thyroid & Weight Reversal',
       durationTag: '16 Weeks Protocol',
       image: '/assets/images/transformation-dipika.png',
-      // badge: 'Verified Client'
     },
     {
       id: 'dr-sandeep',
@@ -31,7 +30,6 @@ export default function ClientTransformationShowcase() {
       title: 'Metabolic Health & Energy Reset',
       durationTag: '12 Weeks Protocol',
       image: '/assets/images/transformation-dr-sandeep.jpg',
-      // badge: 'Physician Transformation'
     },
     {
       id: 'minakshi',
@@ -39,7 +37,6 @@ export default function ClientTransformationShowcase() {
       title: 'Gut Motility & Hormonal Balance',
       durationTag: '10 Weeks Protocol',
       image: '/assets/images/transformation-minakshi.jpg',
-      // badge: 'Verified Client'
     },
     {
       id: 'sonika',
@@ -47,7 +44,7 @@ export default function ClientTransformationShowcase() {
       title: 'PCOS & Sustainable Weight Loss',
       durationTag: '18 Weeks Protocol',
       image: '/assets/images/transformation-sonika.jpg',
-      // badge: 'Verified Client'
+
     },
     {
       id: 'reshmi',
@@ -55,7 +52,7 @@ export default function ClientTransformationShowcase() {
       title: 'Lost 38 kg • Reversed Metabolic Fatigue',
       durationTag: 'Sustained 5+ Years',
       image: '/assets/images/transformation-reshmi-personal.jpg',
-      // badge: 'Founder Story'
+
     }
   ];
 
@@ -69,7 +66,7 @@ export default function ClientTransformationShowcase() {
       condition: 'Gut Relief & Chronic Acidity',
       file: '/assets/audio/client-voice-1.mp4',
       quote: '"Reshmi mam ke guidance se meri 3 saal purani acidity aur digestion issue completely heal ho gaya."',
-      durationEst: '0:45'
+
     },
     {
       id: 'voice-2',
@@ -77,7 +74,7 @@ export default function ClientTransformationShowcase() {
       condition: 'Thyroid, Energy & Sleep Quality',
       file: '/assets/audio/client-voice-2.mp4',
       quote: '"Afternoon exhaustion aur brain fog hat gaya. Main ab bina kisi caffeine ya medicines ke active rehti hu."',
-      durationEst: '1:12'
+
     },
     {
       id: 'voice-3',
@@ -85,7 +82,7 @@ export default function ClientTransformationShowcase() {
       condition: 'Sustained Weight & Metabolic Reversal',
       file: '/assets/audio/client-voice-3.mp4',
       quote: '"Bina kisi crash diet ya starvation ke mera weight naturally reduce hua aur inch loss bhi bohot acha mila."',
-      durationEst: '1:30'
+
     },
     {
       id: 'voice-4',
@@ -93,7 +90,7 @@ export default function ClientTransformationShowcase() {
       condition: 'Anxiety & Breathwork Recovery',
       file: '/assets/audio/client-voice-4.mp4',
       quote: '"Oxygen Advantage breathing drills ne meri breathing pattern aur raat ki sleep ko 100% stable kar diya."',
-      durationEst: '0:58'
+
     },
     {
       id: 'voice-5',
@@ -101,7 +98,7 @@ export default function ClientTransformationShowcase() {
       condition: 'Gut Relief & Bloating Reversal',
       file: '/assets/audio/client-voice-5.mp3',
       quote: '"Bloating aur post-meal heaviness me remarkable improvement aaya within few weeks of protocol."',
-      durationEst: '0:48'
+
     },
     {
       id: 'voice-8',
@@ -109,7 +106,6 @@ export default function ClientTransformationShowcase() {
       condition: 'Metabolic Vitality & Inch Loss',
       file: '/assets/audio/client-voice-8.mp3',
       quote: '"Metabolism restore hua aur bina extreme restriction ke sustainable inch loss mila."',
-      durationEst: '1:01'
     },
     {
       id: 'voice-9',
@@ -117,7 +113,6 @@ export default function ClientTransformationShowcase() {
       condition: 'Sleep Quality & Stress Modulation',
       file: '/assets/audio/client-voice-9.mp3',
       quote: '"Oxygen Advantage breathwork aur sleep hygiene se deep restful sleep wapas aayi."',
-      durationEst: '0:40'
     }
   ];
 
@@ -245,7 +240,7 @@ export default function ClientTransformationShowcase() {
                     alt={`${item.name} Before & After Transformation`}
                     loading="lazy"
                   />
-                  <div
+                  {/* <div
                     style={{
                       position: 'absolute',
                       top: '12px',
@@ -266,9 +261,9 @@ export default function ClientTransformationShowcase() {
                   >
                     <span style={{ color: '#FF007F' }}>●</span>
                     <span>{item.badge}</span>
-                  </div>
+                  </div> */}
 
-                  <div
+                  {/* <div
                     style={{
                       position: 'absolute',
                       bottom: '12px',
@@ -283,10 +278,10 @@ export default function ClientTransformationShowcase() {
                     }}
                   >
                     {item.durationTag}
-                  </div>
+                  </div> */}
                 </div>
 
-                <div style={{ padding: '16px 18px', background: '#16191D' }}>
+                <div style={{ padding: '16px 18px', background: '#16191d17' }}>
                   <h4 style={{ margin: '0 0 4px', fontSize: '1.05rem', fontWeight: 800, color: '#FFFFFF' }}>
                     {item.name}
                   </h4>
@@ -326,18 +321,6 @@ export default function ClientTransformationShowcase() {
               }}
             >
               <div>
-                <span
-                  className="badge-pill"
-                  style={{
-                    marginBottom: '10px',
-                    fontSize: '0.78rem',
-                    background: 'var(--emerald-soft)',
-                    color: 'var(--emerald-deep)',
-                    borderColor: 'rgba(46, 196, 182, 0.3)'
-                  }}
-                >
-                  <span>🎙️ Verified Client Audio Notes</span>
-                </span>
                 <h3
                   style={{
                     margin: '6px 0 8px',
@@ -352,25 +335,6 @@ export default function ClientTransformationShowcase() {
                 <p style={{ margin: 0, fontSize: '0.98rem', color: 'var(--text-secondary)' }}>
                   Unfiltered voice feedback shared after finishing their personalized health protocols.
                 </p>
-              </div>
-
-              <div
-                style={{
-                  display: 'inline-flex',
-                  alignItems: 'center',
-                  gap: '8px',
-                  background: '#FFFFFF',
-                  border: '1.5px solid rgba(46, 196, 182, 0.4)',
-                  padding: '8px 16px',
-                  borderRadius: '999px',
-                  fontSize: '0.82rem',
-                  fontWeight: 700,
-                  color: 'var(--emerald-deep)',
-                  boxShadow: '0 4px 12px rgba(0, 0, 0, 0.04)'
-                }}
-              >
-                <span style={{ color: '#00BFA5' }}>🔊</span>
-                <span>100% Genuine Recorded Feedback</span>
               </div>
             </div>
 
