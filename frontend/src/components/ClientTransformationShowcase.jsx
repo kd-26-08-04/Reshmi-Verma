@@ -240,45 +240,6 @@ export default function ClientTransformationShowcase() {
                     alt={`${item.name} Before & After Transformation`}
                     loading="lazy"
                   />
-                  {/* <div
-                    style={{
-                      position: 'absolute',
-                      top: '12px',
-                      left: '12px',
-                      background: 'rgba(10, 14, 18, 0.88)',
-                      backdropFilter: 'blur(8px)',
-                      color: '#FFFFFF',
-                      padding: '4px 10px',
-                      borderRadius: '999px',
-                      fontSize: '0.72rem',
-                      fontWeight: 800,
-                      letterSpacing: '0.04em',
-                      display: 'flex',
-                      alignItems: 'center',
-                      gap: '6px',
-                      border: '1px solid rgba(255, 255, 255, 0.22)'
-                    }}
-                  >
-                    <span style={{ color: '#FF007F' }}>●</span>
-                    <span>{item.badge}</span>
-                  </div> */}
-
-                  {/* <div
-                    style={{
-                      position: 'absolute',
-                      bottom: '12px',
-                      right: '12px',
-                      background: 'rgba(0, 229, 217, 0.95)',
-                      color: '#0A0E0C',
-                      padding: '4px 10px',
-                      borderRadius: '6px',
-                      fontSize: '0.72rem',
-                      fontWeight: 800,
-                      boxShadow: '0 4px 12px rgba(0, 229, 217, 0.35)'
-                    }}
-                  >
-                    {item.durationTag}
-                  </div> */}
                 </div>
 
                 <div style={{ padding: '16px 18px', background: '#16191d17' }}>
