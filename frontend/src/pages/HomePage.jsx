@@ -225,15 +225,15 @@ export default function HomePage() {
                 Led by <strong>Reshmi Verma</strong> — <strong>Functional Nutritionist</strong>, <strong>Breathwork Facilitator</strong> &amp; <strong>Certified Biohacker</strong>. With over 20 years in diagnostics and healthcare (Director of Rainbow Medinova &amp; Co-founder of Neofit Gym), combining personalized nutrition, breathwork, and autonomic resilience to rebuild lasting vitality.
               </p>
 
-              <div style={{ display: 'flex', gap: '14px', flexWrap: 'wrap', alignItems: 'center' }}>
+              <div className="hero-cta-group" style={{ display: 'flex', gap: '10px', flexWrap: 'wrap', alignItems: 'center' }}>
                 <Link to="/booking" className="btn btn-primary btn-lg">
-                  <span>Book 1:1 Health Consultation</span>
+                  <span>Book Consultation</span>
                 </Link>
                 <Link to="/assessment" className="btn btn-health btn-lg">
-                  <span>Take Free Health Assessment</span>
+                  <span>Health Quiz</span>
                 </Link>
                 <Link to="/breathing-assessment" className="btn btn-breath btn-lg">
-                  <span>Breathing Assessment</span>
+                  <span>Breath Test</span>
                 </Link>
               </div>
 
@@ -1111,27 +1111,28 @@ export default function HomePage() {
             <span className="pulse-dot" style={{ background: '#FF007F' }}></span>
             <span>Begin Your Healing Journey</span>
           </span>
-          <h2 style={{ color: '#FFFFFF', fontSize: '2.85rem', marginBottom: '20px' }}>Ready for Clarity on Your Health?</h2>
-          <p style={{ color: '#E5E7EB', maxWidth: '650px', margin: '0 auto 36px', fontSize: '1.15rem' }}>
+          <h2 style={{ color: '#FFFFFF', fontSize: 'clamp(1.45rem, 5.5vw, 2.75rem)', marginBottom: '14px', lineHeight: 1.25 }}>Ready for Clarity on Your Health?</h2>
+          <p style={{ color: '#E5E7EB', maxWidth: '650px', margin: '0 auto 24px', fontSize: 'clamp(0.85rem, 2.5vw, 1.12rem)', lineHeight: 1.5 }}>
             Take our 5-minute Health Resilience Assessment or book a dedicated session with Reshmi Verma to decode your symptoms into an actionable recovery plan.
           </p>
-          <div style={{ display: 'flex', gap: '16px', justifyContent: 'center', flexWrap: 'wrap' }}>
+          <div className="cta-dual-btn-row">
             <Link
               to="/booking"
-              className="btn btn-white-solid btn-lg"
-              style={{ padding: '16px 36px', borderRadius: '14px' }}
+              className="btn btn-white-solid cta-btn-side"
+              style={{ padding: '13px 24px', borderRadius: '12px' }}
             >
               <span>Book Session</span>
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
                 <line x1="5" y1="12" x2="19" y2="12"></line>
                 <polyline points="12 5 19 12 12 19"></polyline>
               </svg>
             </Link>
             <Link
               to="/assessment"
-              className="btn btn-on-dark btn-lg"
+              className="btn btn-on-dark cta-btn-side"
+              style={{ padding: '13px 22px', borderRadius: '12px' }}
             >
-              <span>Take Free Assessment</span>
+              <span>Free Assessment</span>
             </Link>
           </div>
         </div>

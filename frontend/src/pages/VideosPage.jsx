@@ -6,8 +6,7 @@ export default function VideosPage() {
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedVideo, setSelectedVideo] = useState(null);
 
-  // Curated YouTube videos - concise summaries, no custom thumbnails required
-  // Added &color=white to remove YouTube's red progress bar
+  // Curated YouTube videos - concise clinical summaries, zero external thumbnail required
   const videoLibrary = [
     // --- FULL CLINICAL MASTERCLASSES (16:9 Format) ---
     {
@@ -211,12 +210,147 @@ export default function VideosPage() {
   const shorts = filteredVideos.filter(v => v.type === 'short');
 
   return (
-    <main className="section" style={{ minHeight: '100vh', paddingTop: '95px', paddingBottom: '70px', background: '#FAFCFB' }}>
+    <main className="section videos-page-main" style={{ minHeight: '100vh', background: '#FAFCFB' }}>
+      {/* Mobile-Responsive Scoped Stylesheet */}
+      <style>{`
+        .videos-page-main {
+          padding-top: 100px;
+          padding-bottom: 70px;
+        }
+        .videos-hero-title {
+          font-size: clamp(1.85rem, 4vw, 2.7rem);
+        }
+        .videos-filter-bar {
+          display: flex;
+          justify-content: center;
+          gap: 6px;
+          flex-wrap: wrap;
+        }
+        .masterclasses-grid {
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(min(100%, 340px), 1fr));
+          gap: 22px;
+        }
+        .shorts-grid {
+          display: grid;
+          grid-template-columns: repeat(auto-fill, minmax(min(100%, 260px), 1fr));
+          gap: 18px;
+        }
+        .videos-bottom-cta {
+          padding: 34px 28px;
+          border-radius: 20px;
+        }
+        .videos-bottom-cta-btns {
+          display: flex;
+          justify-content: center;
+          gap: 12px;
+          flex-wrap: wrap;
+        }
+
+        /* Mobile Phone Screens (≤ 768px) */
+        @media (max-width: 768px) {
+          .videos-page-main {
+            padding-top: 80px !important;
+            padding-bottom: 50px !important;
+          }
+          .videos-hero-badge {
+            font-size: 0.74rem !important;
+            padding: 4px 12px !important;
+          }
+          .videos-hero-title {
+            font-size: 1.75rem !important;
+            margin-bottom: 8px !important;
+          }
+          .videos-hero-desc {
+            font-size: 0.90rem !important;
+            line-height: 1.45 !important;
+          }
+          .videos-filter-wrapper {
+            padding: 12px 14px !important;
+            border-radius: 14px !important;
+            margin-bottom: 22px !important;
+          }
+          /* Native Horizontal App-style Slider for Pills on Mobile */
+          .videos-filter-bar {
+            justify-content: flex-start !important;
+            overflow-x: auto !important;
+            flex-wrap: nowrap !important;
+            padding-bottom: 6px !important;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+          }
+          .videos-filter-bar::-webkit-scrollbar {
+            display: none;
+          }
+          .videos-filter-btn {
+            flex-shrink: 0 !important;
+            white-space: nowrap !important;
+            padding: 6px 12px !important;
+            font-size: 0.76rem !important;
+          }
+          .masterclasses-grid {
+            grid-template-columns: 1fr !important;
+            gap: 16px !important;
+          }
+          .shorts-grid {
+            grid-template-columns: repeat(auto-fill, minmax(min(100%, 240px), 1fr)) !important;
+            gap: 14px !important;
+          }
+          .videos-bottom-cta {
+            padding: 26px 18px !important;
+            border-radius: 16px !important;
+          }
+          .videos-bottom-cta h2 {
+            font-size: 1.4rem !important;
+          }
+          .videos-bottom-cta p {
+            font-size: 0.88rem !important;
+            margin-bottom: 16px !important;
+          }
+          .videos-bottom-cta-btns {
+            display: flex !important;
+            flex-direction: row !important;
+            flex-wrap: nowrap !important;
+            gap: 8px !important;
+            width: 100% !important;
+          }
+          .videos-bottom-cta-btns a {
+            flex: 1 1 0 !important;
+            min-width: 0 !important;
+            text-align: center !important;
+            padding: 10px 8px !important;
+            font-size: 0.82rem !important;
+            white-space: nowrap !important;
+            text-overflow: ellipsis !important;
+            overflow: hidden !important;
+            border-radius: 10px !important;
+          }
+        }
+
+        /* Small Phones (≤ 480px) */
+        @media (max-width: 480px) {
+          .shorts-grid {
+            grid-template-columns: 1fr !important;
+          }
+          .videos-card {
+            border-radius: 14px !important;
+          }
+          .videos-modal-overlay {
+            padding: 8px !important;
+          }
+          .videos-modal-content {
+            border-radius: 16px !important;
+            max-height: 94vh !important;
+          }
+        }
+      `}</style>
+
       <div className="container" style={{ maxWidth: '1200px' }}>
 
         {/* Hero Section Header */}
-        <div style={{ textAlign: 'center', maxWidth: '720px', margin: '0 auto 28px' }}>
-          <div style={{
+        <div style={{ textAlign: 'center', maxWidth: '720px', margin: '0 auto 24px' }}>
+          <div className="videos-hero-badge" style={{
             display: 'inline-flex',
             alignItems: 'center',
             gap: '8px',
@@ -233,8 +367,7 @@ export default function VideosPage() {
             <span>Clinical Video Library &bull; Reshmi Verma</span>
           </div>
 
-          <h1 style={{
-            fontSize: 'clamp(1.9rem, 3.8vw, 2.6rem)',
+          <h1 className="videos-hero-title" style={{
             color: 'var(--emerald-deep)',
             fontFamily: 'var(--font-serif)',
             margin: '0 0 10px',
@@ -244,7 +377,7 @@ export default function VideosPage() {
             Health <span style={{ color: '#0D9488', fontStyle: 'italic' }}>Masterclasses & Shorts</span>
           </h1>
 
-          <p style={{
+          <p className="videos-hero-desc" style={{
             fontSize: '0.98rem',
             color: 'var(--text-secondary)',
             lineHeight: 1.5,
@@ -255,19 +388,19 @@ export default function VideosPage() {
         </div>
 
         {/* Search & Filter Controls */}
-        <div style={{
+        <div className="videos-filter-wrapper" style={{
           background: '#FFFFFF',
           borderRadius: '16px',
           padding: '16px 20px',
           border: '1px solid var(--border-medium)',
           boxShadow: '0 2px 12px rgba(0,0,0,0.03)',
-          marginBottom: '28px'
+          marginBottom: '26px'
         }}>
           {/* Search Bar */}
           <div style={{
             position: 'relative',
             maxWidth: '480px',
-            margin: '0 auto 14px'
+            margin: '0 auto 12px'
           }}>
             <svg
               width="16"
@@ -303,6 +436,7 @@ export default function VideosPage() {
               <button
                 type="button"
                 onClick={() => setSearchQuery('')}
+                aria-label="Clear search"
                 style={{
                   position: 'absolute',
                   right: '12px',
@@ -320,19 +454,15 @@ export default function VideosPage() {
             )}
           </div>
 
-          {/* Filter Pills */}
-          <div style={{
-            display: 'flex',
-            justifyContent: 'center',
-            gap: '6px',
-            flexWrap: 'wrap'
-          }}>
+          {/* Filter Pills (Smooth Touch Scroll on Mobile) */}
+          <div className="videos-filter-bar">
             {filterTabs.map((tab) => {
               const isActive = activeTab === tab.key;
               return (
                 <button
                   key={tab.key}
                   type="button"
+                  className="videos-filter-btn"
                   onClick={() => setActiveTab(tab.key)}
                   style={{
                     padding: '6px 14px',
@@ -371,39 +501,71 @@ export default function VideosPage() {
           display: 'flex',
           justifyContent: 'space-between',
           alignItems: 'center',
-          marginBottom: '20px',
-          padding: '0 4px'
+          marginBottom: '18px',
+          padding: '0 4px',
+          fontSize: '0.82rem'
         }}>
-          <span style={{ fontSize: '0.85rem', color: 'var(--text-secondary)', fontWeight: 600 }}>
+          <span style={{ color: 'var(--text-secondary)', fontWeight: 600 }}>
             Showing <strong>{filteredVideos.length}</strong> videos
           </span>
-          <span style={{ fontSize: '0.78rem', color: '#0D9488', fontWeight: 700 }}>
-            Click video to play
+          <span style={{ color: '#0D9488', fontWeight: 700 }}>
+            Tap video to play
           </span>
         </div>
 
-        {/* SECTION 1: MASTERCLASSES (16:9) */}
+        {/* Empty State */}
+        {filteredVideos.length === 0 && (
+          <div style={{
+            textAlign: 'center',
+            padding: '40px 16px',
+            background: '#FFFFFF',
+            borderRadius: '16px',
+            border: '1px solid var(--border-medium)',
+            marginBottom: '32px'
+          }}>
+            <p style={{ fontSize: '1.05rem', color: 'var(--text-primary)', fontWeight: 700, margin: '0 0 6px' }}>
+              No videos found
+            </p>
+            <p style={{ fontSize: '0.85rem', color: 'var(--text-muted)', margin: '0 0 16px' }}>
+              Try searching for "breathing", "sleep", "bloating", or click All.
+            </p>
+            <button
+              type="button"
+              onClick={() => { setActiveTab('all'); setSearchQuery(''); }}
+              style={{
+                padding: '8px 20px',
+                borderRadius: '999px',
+                background: '#121214',
+                color: '#00E5D9',
+                border: 'none',
+                fontWeight: 700,
+                fontSize: '0.82rem',
+                cursor: 'pointer'
+              }}
+            >
+              Reset Filters
+            </button>
+          </div>
+        )}
+
+        {/* SECTION 1: MASTERCLASSES (16:9 Widescreen) */}
         {masterclasses.length > 0 && (
-          <div style={{ marginBottom: '40px' }}>
+          <div style={{ marginBottom: '36px' }}>
             <h2 style={{
-              fontSize: '1.25rem',
+              fontSize: '1.2rem',
               color: 'var(--emerald-deep)',
-              margin: '0 0 16px',
+              margin: '0 0 14px',
               fontFamily: 'var(--font-serif)',
               fontWeight: 800
             }}>
               Masterclasses (Full Sessions)
             </h2>
 
-            <div style={{
-              display: 'grid',
-              gridTemplateColumns: 'repeat(auto-fit, minmax(340px, 1fr))',
-              gap: '22px'
-            }}>
+            <div className="masterclasses-grid">
               {masterclasses.map((video) => (
                 <div
                   key={video.id}
-                  className="card"
+                  className="card videos-card"
                   style={{
                     borderRadius: '16px',
                     overflow: 'hidden',
@@ -414,7 +576,7 @@ export default function VideosPage() {
                     flexDirection: 'column'
                   }}
                 >
-                  {/* YouTube Embed (color=white removes red progress bar) */}
+                  {/* YouTube Embed Container (16:9) */}
                   <div style={{
                     position: 'relative',
                     width: '100%',
@@ -438,7 +600,7 @@ export default function VideosPage() {
                     />
                   </div>
 
-                  {/* Card Content (Short & Clean) */}
+                  {/* Card Content */}
                   <div style={{ padding: '14px 16px', flex: 1, display: 'flex', flexDirection: 'column' }}>
                     <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '6px' }}>
                       <span style={{ fontSize: '0.70rem', color: '#0D9488', fontWeight: 800, textTransform: 'uppercase' }}>
@@ -449,7 +611,7 @@ export default function VideosPage() {
                       </span>
                     </div>
 
-                    <h3 style={{ fontSize: '1.02rem', color: 'var(--emerald-deep)', fontWeight: 800, margin: '0 0 6px', lineHeight: 1.3 }}>
+                    <h3 style={{ fontSize: '1rem', color: 'var(--emerald-deep)', fontWeight: 800, margin: '0 0 6px', lineHeight: 1.3 }}>
                       {video.title}
                     </h3>
 
@@ -495,28 +657,24 @@ export default function VideosPage() {
           </div>
         )}
 
-        {/* SECTION 2: SHORTS (9:16) */}
+        {/* SECTION 2: SHORTS (9:16 Portrait) */}
         {shorts.length > 0 && (
-          <div style={{ marginBottom: '46px' }}>
+          <div style={{ marginBottom: '40px' }}>
             <h2 style={{
-              fontSize: '1.25rem',
+              fontSize: '1.2rem',
               color: 'var(--emerald-deep)',
-              margin: '0 0 16px',
+              margin: '0 0 14px',
               fontFamily: 'var(--font-serif)',
               fontWeight: 800
             }}>
               Clinical Shorts & Quick Protocols
             </h2>
 
-            <div style={{
-              display: 'grid',
-              gridTemplateColumns: 'repeat(auto-fill, minmax(260px, 1fr))',
-              gap: '18px'
-            }}>
+            <div className="shorts-grid">
               {shorts.map((video) => (
                 <div
                   key={video.id}
-                  className="card"
+                  className="card videos-card"
                   style={{
                     borderRadius: '16px',
                     overflow: 'hidden',
@@ -527,11 +685,11 @@ export default function VideosPage() {
                     flexDirection: 'column'
                   }}
                 >
-                  {/* YouTube Shorts Player (color=white removes red progress bar) */}
+                  {/* YouTube Shorts Player */}
                   <div style={{
                     position: 'relative',
                     width: '100%',
-                    paddingBottom: '135%', // Compact vertical height
+                    paddingBottom: '135%', // Mobile-optimized vertical height
                     background: '#0F172A'
                   }}>
                     <iframe
@@ -551,7 +709,7 @@ export default function VideosPage() {
                     />
                   </div>
 
-                  {/* Card Content (Short & Clean) */}
+                  {/* Card Content */}
                   <div style={{ padding: '12px 14px', flex: 1, display: 'flex', flexDirection: 'column' }}>
                     <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '4px' }}>
                       <span style={{ fontSize: '0.68rem', color: '#0D9488', fontWeight: 800, textTransform: 'uppercase' }}>
@@ -608,9 +766,10 @@ export default function VideosPage() {
           </div>
         )}
 
-        {/* Video Theater Modal */}
+        {/* Video Theater Modal (Optimized for Mobile Height & Touch) */}
         {selectedVideo && (
           <div
+            className="videos-modal-overlay"
             style={{
               position: 'fixed',
               inset: 0,
@@ -620,34 +779,41 @@ export default function VideosPage() {
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
-              padding: '16px'
+              padding: '14px',
+              overflowY: 'auto'
             }}
             onClick={() => setSelectedVideo(null)}
           >
             <div
+              className="videos-modal-content"
               style={{
                 width: '100%',
-                maxWidth: selectedVideo.type === 'short' ? '420px' : '820px',
+                maxWidth: selectedVideo.type === 'short' ? '400px' : '820px',
                 background: '#121214',
-                borderRadius: '20px',
+                borderRadius: '18px',
                 overflow: 'hidden',
                 boxShadow: '0 25px 60px rgba(0,0,0,0.6)',
                 border: '1px solid rgba(255, 255, 255, 0.15)',
-                position: 'relative'
+                position: 'relative',
+                maxHeight: '92vh',
+                display: 'flex',
+                flexDirection: 'column'
               }}
               onClick={(e) => e.stopPropagation()}
             >
+              {/* Close Button */}
               <button
                 type="button"
                 onClick={() => setSelectedVideo(null)}
+                aria-label="Close modal"
                 style={{
                   position: 'absolute',
-                  top: '12px',
-                  right: '12px',
-                  width: '32px',
-                  height: '32px',
+                  top: '10px',
+                  right: '10px',
+                  width: '34px',
+                  height: '34px',
                   borderRadius: '50%',
-                  background: 'rgba(255, 255, 255, 0.2)',
+                  background: 'rgba(255, 255, 255, 0.22)',
                   border: 'none',
                   color: '#FFFFFF',
                   fontSize: '1rem',
@@ -661,20 +827,23 @@ export default function VideosPage() {
                 ✕
               </button>
 
-              <div style={{ padding: '14px 18px', borderBottom: '1px solid rgba(255, 255, 255, 0.1)' }}>
-                <span style={{ fontSize: '0.72rem', color: '#00E5D9', fontWeight: 800, textTransform: 'uppercase' }}>
+              {/* Modal Header */}
+              <div style={{ padding: '12px 16px', borderBottom: '1px solid rgba(255, 255, 255, 0.1)' }}>
+                <span style={{ fontSize: '0.70rem', color: '#00E5D9', fontWeight: 800, textTransform: 'uppercase' }}>
                   {selectedVideo.categoryLabel}
                 </span>
-                <h3 style={{ margin: '3px 0 0', color: '#FFFFFF', fontSize: '1.05rem', fontWeight: 800, paddingRight: '36px' }}>
+                <h3 style={{ margin: '2px 0 0', color: '#FFFFFF', fontSize: '1rem', fontWeight: 800, paddingRight: '36px', lineHeight: 1.3 }}>
                   {selectedVideo.title}
                 </h3>
               </div>
 
+              {/* Responsive Embed Container */}
               <div style={{
                 position: 'relative',
                 width: '100%',
                 paddingBottom: selectedVideo.type === 'short' ? '135%' : '56.25%',
-                background: '#000000'
+                background: '#000000',
+                flexShrink: 0
               }}>
                 <iframe
                   src={`https://www.youtube.com/embed/${selectedVideo.youtubeId}?autoplay=1&rel=0&modestbranding=1&color=white`}
@@ -692,28 +861,29 @@ export default function VideosPage() {
                 />
               </div>
 
+              {/* Modal Footer */}
               <div style={{
-                padding: '14px 18px',
+                padding: '12px 16px',
                 display: 'flex',
                 justifyContent: 'space-between',
                 alignItems: 'center',
                 flexWrap: 'wrap',
-                gap: '10px',
+                gap: '8px',
                 background: '#16181D'
               }}>
-                <p style={{ margin: 0, fontSize: '0.80rem', color: 'rgba(255, 255, 255, 0.75)', maxWidth: '440px' }}>
+                <p style={{ margin: 0, fontSize: '0.78rem', color: 'rgba(255, 255, 255, 0.75)', maxWidth: '420px', lineHeight: 1.4 }}>
                   {selectedVideo.summary}
                 </p>
                 <Link
                   to="/booking"
                   onClick={() => setSelectedVideo(null)}
                   style={{
-                    padding: '8px 16px',
+                    padding: '8px 14px',
                     borderRadius: '8px',
                     background: '#00E5D9',
                     color: '#121214',
                     fontWeight: 800,
-                    fontSize: '0.80rem',
+                    fontSize: '0.78rem',
                     textDecoration: 'none'
                   }}
                 >
@@ -725,40 +895,38 @@ export default function VideosPage() {
         )}
 
         {/* Bottom Consultation Roadblock */}
-        <div style={{
-          padding: '32px 24px',
-          borderRadius: '20px',
+        <div className="videos-bottom-cta" style={{
           background: 'linear-gradient(135deg, #0A0E0C 0%, #17261E 100%)',
           color: '#FFFFFF',
           textAlign: 'center',
           boxShadow: '0 15px 40px rgba(0, 0, 0, 0.12)',
           border: '1px solid rgba(255, 255, 255, 0.08)'
         }}>
-          <h2 style={{ fontSize: '1.6rem', color: '#FFFFFF', margin: '0 0 8px', fontFamily: 'var(--font-serif)', fontWeight: 800 }}>
+          <h2 style={{ fontSize: '1.5rem', color: '#FFFFFF', margin: '0 0 8px', fontFamily: 'var(--font-serif)', fontWeight: 800 }}>
             Have Questions About Your Symptoms?
           </h2>
-          <p style={{ fontSize: '0.92rem', color: 'rgba(255, 255, 255, 0.8)', maxWidth: '560px', margin: '0 auto 20px', lineHeight: 1.5 }}>
+          <p style={{ fontSize: '0.90rem', color: 'rgba(255, 255, 255, 0.8)', maxWidth: '560px', margin: '0 auto 18px', lineHeight: 1.5 }}>
             Book a 1-on-1 Health Clarity Session with Reshmi Verma to analyze your blood biomarkers, gut symptoms, and breathing mechanics.
           </p>
-          <div style={{ display: 'flex', justifyContent: 'center', gap: '12px', flexWrap: 'wrap' }}>
+          <div className="videos-bottom-cta-btns">
             <Link
               to="/booking"
               className="btn btn-primary"
-              style={{ padding: '11px 24px', background: '#00E5D9', color: '#121214', fontWeight: 800, borderRadius: '10px', fontSize: '0.88rem' }}
+              style={{ padding: '11px 22px', background: '#00E5D9', color: '#121214', fontWeight: 800, borderRadius: '10px', fontSize: '0.86rem' }}
             >
               Book 1:1 Consultation &rarr;
             </Link>
             <Link
               to="/assessment"
               style={{
-                padding: '10px 20px',
+                padding: '10px 18px',
                 background: 'rgba(255, 255, 255, 0.1)',
                 color: '#FFFFFF',
                 border: '1.5px solid rgba(255, 255, 255, 0.3)',
                 borderRadius: '10px',
                 fontWeight: 700,
                 textDecoration: 'none',
-                fontSize: '0.86rem'
+                fontSize: '0.84rem'
               }}
             >
               Free Assessment

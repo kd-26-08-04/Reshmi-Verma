@@ -3,14 +3,11 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import { getApiUrl } from '../utils/api';
 
 /**
- * HealthwithReshmi™ 3-Step Assessment Welcome Modal
- * 
- * Step 1: Hook Screen (Catchy clinical question, 4 pills & "Start the Health Quiz →")
- * Step 2: Lead Data Capture (Name, WhatsApp/Phone, Email)
- * Step 3: 2 Clinical Assessment Tracks (Functional Health vs Functional Breathing)
+ * HealthwithReshmi™ Welcome Assessment Modal
+ * - Desktop: Spacious, elegant, high-converting original design
+ * - Mobile: Compact, space-saving design without extra empty space
  */
 
-// Paste YouTube link here when provided by user (e.g. 'https://youtube.com/watch?v=...')
 export const YOUTUBE_BREATHING_LINK = '';
 
 export default function WelcomeAssessmentModal() {
@@ -33,7 +30,6 @@ export default function WelcomeAssessmentModal() {
     const isHome = location.pathname === '/';
     const isDismissed = sessionStorage.getItem('dismissed_welcome_assessment');
 
-    // Pre-populate if lead already saved locally
     const savedLead = localStorage.getItem('reshmi_user_lead');
     if (savedLead) {
       try {
@@ -89,7 +85,6 @@ export default function WelcomeAssessmentModal() {
     setSubmitting(true);
     setError('');
 
-    // Save lead in localStorage for pre-filling assessments & booking
     const leadObj = {
       name: name.trim(),
       phone: phone.trim(),
@@ -98,7 +93,6 @@ export default function WelcomeAssessmentModal() {
     localStorage.setItem('reshmi_user_lead', JSON.stringify(leadObj));
     localStorage.setItem('reshmi_assessment_lead', JSON.stringify(leadObj));
 
-    // Send lead to backend API
     try {
       const res = await fetch(getApiUrl('/api/assessment-lead'), {
         method: 'POST',
@@ -118,10 +112,10 @@ export default function WelcomeAssessmentModal() {
         }
       }
     } catch (err) {
-      // Graceful offline fallback: lead is safely saved in localStorage
+      // Offline fallback
     } finally {
       setSubmitting(false);
-      setStep(3); // Proceed to 2 Assessment Choices
+      setStep(3);
     }
   };
 
@@ -129,7 +123,6 @@ export default function WelcomeAssessmentModal() {
     sessionStorage.setItem('dismissed_welcome_assessment', 'true');
     setIsOpen(false);
 
-    // Update backend with chosen flow
     try {
       fetch(getApiUrl('/api/assessment-lead'), {
         method: 'POST',
@@ -148,10 +141,8 @@ export default function WelcomeAssessmentModal() {
     }
 
     if (flowType === 'health') {
-      // Redirect to Functional Health Assessment
       navigate('/assessment');
     } else if (flowType === 'breathing') {
-      // Redirect to YouTube link if user provided, otherwise to Breathing Assessment page
       if (YOUTUBE_BREATHING_LINK && YOUTUBE_BREATHING_LINK.trim().startsWith('http')) {
         window.open(YOUTUBE_BREATHING_LINK.trim(), '_blank');
       } else {
@@ -171,203 +162,242 @@ export default function WelcomeAssessmentModal() {
     >
       <div className="welcome-assessment-backdrop" onClick={handleSkip}></div>
 
-      <div
-        className="welcome-assessment-modal"
-        style={{
-          maxWidth: step === 2 ? '440px' : '560px',
-          padding: step === 2 ? '24px 22px 18px' : '36px 30px',
-          borderRadius: '24px',
-          background: '#FAF9F6',
-          position: 'relative',
-          boxShadow: '0 25px 60px rgba(0, 0, 0, 0.18)',
-          border: '1px solid rgba(18, 18, 20, 0.08)',
-          transition: 'max-width 0.25s ease, padding 0.25s ease'
-        }}
-      >
+      {/* Scoped Responsive Styles: Preserves perfect desktop while making mobile compact */}
+      <style>{`
+        .welcome-modal-wrapper {
+          position: relative;
+          z-index: 10;
+          width: 100%;
+          max-width: ${step === 2 ? '440px' : '540px'};
+          background: #FAF9F6;
+          border-radius: 26px;
+          border: 1px solid rgba(18, 18, 20, 0.08);
+          box-shadow: 0 25px 60px rgba(0, 0, 0, 0.18);
+          padding: ${step === 2 ? '28px 24px 20px' : '36px 32px 28px'};
+          text-align: center;
+          box-sizing: border-box;
+          transition: max-width 0.25s ease, padding 0.25s ease;
+        }
+
+        .welcome-close-btn {
+          position: absolute;
+          top: 18px;
+          right: 18px;
+          width: 32px;
+          height: 32px;
+          border-radius: 50%;
+          background: #121214;
+          color: #FAF9F6;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          font-size: 0.85rem;
+          border: none;
+          cursor: pointer;
+          box-shadow: 0 2px 8px rgba(0,0,0,0.18);
+          z-index: 10;
+          transition: transform 0.2s ease;
+        }
+
+        .welcome-sub-pill {
+          display: inline-block;
+          color: #FF007F;
+          font-size: 0.78rem;
+          font-weight: 800;
+          letter-spacing: 0.12em;
+          text-transform: uppercase;
+          margin-bottom: 16px;
+        }
+
+        .welcome-main-title {
+          font-size: clamp(2rem, 4.5vw, 2.6rem);
+          color: #121214;
+          font-family: var(--font-serif);
+          line-height: 1.15;
+          margin: 0 0 16px;
+          font-weight: 800;
+        }
+
+        .welcome-desc-text {
+          font-size: 0.98rem;
+          color: #2C2C30;
+          line-height: 1.6;
+          max-width: 470px;
+          margin: 0 auto 22px;
+        }
+
+        .welcome-pills-row {
+          display: flex;
+          flex-wrap: wrap;
+          justify-content: center;
+          gap: 10px;
+          margin-bottom: 26px;
+        }
+
+        .welcome-feature-pill {
+          display: inline-flex;
+          align-items: center;
+          gap: 6px;
+          padding: 6px 16px;
+          border-radius: 9999px;
+          border: 1px solid #C6DFC9;
+          background: #EDF6EE;
+          color: #121214;
+          font-size: 0.82rem;
+          font-weight: 600;
+        }
+
+        .welcome-cta-btn {
+          width: 100%;
+          max-width: 380px;
+          padding: 14px 28px;
+          background: #FF007F;
+          color: #FFFFFF;
+          border-radius: 12px;
+          font-size: 1.05rem;
+          font-weight: 700;
+          box-shadow: 0 8px 24px rgba(255, 0, 127, 0.35);
+          margin: 0 auto;
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          gap: 8px;
+          border: none;
+          cursor: pointer;
+          transition: all 0.2s ease;
+        }
+
+        .welcome-footer-tag {
+          margin-top: 14px;
+          text-align: center;
+          font-size: 0.74rem;
+          color: var(--text-muted);
+        }
+
+        /* MOBILE OVERRIDES (≤ 640px): Compact, eliminate extra space, fit phone screen */
+        @media (max-width: 640px) {
+          .welcome-modal-wrapper {
+            max-width: 370px !important;
+            padding: 20px 18px 16px !important;
+            border-radius: 20px !important;
+          }
+
+          .welcome-close-btn {
+            top: 12px !important;
+            right: 12px !important;
+            width: 28px !important;
+            height: 28px !important;
+            font-size: 0.75rem !important;
+          }
+
+          .welcome-sub-pill {
+            font-size: 0.68rem !important;
+            letter-spacing: 0.08em !important;
+            margin-bottom: 6px !important;
+          }
+
+          .welcome-main-title {
+            font-size: 1.45rem !important;
+            line-height: 1.2 !important;
+            margin-bottom: 8px !important;
+          }
+
+          .welcome-desc-text {
+            font-size: 0.85rem !important;
+            line-height: 1.4 !important;
+            margin-bottom: 12px !important;
+          }
+
+          .welcome-pills-row {
+            gap: 6px !important;
+            margin-bottom: 14px !important;
+          }
+
+          .welcome-feature-pill {
+            padding: 4px 10px !important;
+            font-size: 0.72rem !important;
+          }
+
+          .welcome-cta-btn {
+            padding: 11px 20px !important;
+            font-size: 0.94rem !important;
+            border-radius: 10px !important;
+          }
+
+          .welcome-footer-tag {
+            margin-top: 8px !important;
+            font-size: 0.70rem !important;
+          }
+        }
+      `}</style>
+
+      <div className="welcome-modal-wrapper">
         {/* Dark Circular Close Button */}
         <button
           type="button"
+          className="welcome-close-btn"
           onClick={handleSkip}
           aria-label="Close modal"
-          style={{
-            position: 'absolute',
-            top: '18px',
-            right: '18px',
-            width: '32px',
-            height: '32px',
-            borderRadius: '50%',
-            background: '#121214',
-            color: '#FAF9F6',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            fontSize: '0.85rem',
-            border: 'none',
-            cursor: 'pointer',
-            boxShadow: '0 2px 8px rgba(0,0,0,0.18)',
-            zIndex: 10,
-            transition: 'transform 0.2s ease'
-          }}
-          onMouseEnter={(e) => { e.currentTarget.style.transform = 'scale(1.1)'; }}
-          onMouseLeave={(e) => { e.currentTarget.style.transform = 'scale(1)'; }}
         >
           ✕
         </button>
 
         {/* STEP 1: HOOK SCREEN */}
         {step === 1 && (
-          <div style={{ textAlign: 'center', padding: '6px 4px 4px' }}>
+          <div style={{ textAlign: 'center' }}>
             {/* Top Subtitle Pill */}
-            <span style={{
-              display: 'inline-block',
-              color: '#FF007F',
-              fontSize: '0.78rem',
-              fontWeight: 800,
-              letterSpacing: '0.12em',
-              textTransform: 'uppercase',
-              marginBottom: '16px'
-            }}>
+            <span className="welcome-sub-pill">
               Free Gut &amp; Breath Health Assessment
             </span>
 
-            <h2 id="welcome-modal-title" style={{
-              fontSize: 'clamp(2.1rem, 5vw, 2.75rem)',
-              color: '#121214',
-              fontFamily: 'var(--font-serif)',
-              lineHeight: 1.15,
-              margin: '0 0 16px',
-              fontWeight: 800
-            }}>
+            <h2 id="welcome-modal-title" className="welcome-main-title">
               What is your body <br />
               <span style={{ color: '#FF007F', fontStyle: 'italic', fontWeight: 800 }}>trying to tell you?</span>
             </h2>
 
             {/* Description Paragraph */}
-            <p style={{
-              fontSize: '0.98rem',
-              color: '#2C2C30',
-              lineHeight: 1.6,
-              maxWidth: '470px',
-              margin: '0 auto 22px'
-            }}>
-              Answer science-backed questions and discover your functional root-cause score out of 100 — with personalised insights from Reshmi Verma, Functional Nutritionist &amp; #13 Oxygen Advantage® Coach.
+            <p className="welcome-desc-text">
+              Answer science-backed questions and discover your functional root-cause score out of 100 — with personalised insights from Reshmi Verma, Functional Nutritionist.
             </p>
 
-            {/* 4 Feature Pills in Natural Sage Gray-Green */}
-            <div style={{
-              display: 'flex',
-              flexWrap: 'wrap',
-              justifyContent: 'center',
-              gap: '10px',
-              marginBottom: '28px'
-            }}>
-              <span style={{
-                display: 'inline-flex',
-                alignItems: 'center',
-                gap: '6px',
-                padding: '6px 16px',
-                borderRadius: '9999px',
-                border: '1px solid #C6DFC9',
-                background: '#EDF6EE',
-                color: '#121214',
-                fontSize: '0.82rem',
-                fontWeight: 600
-              }}>
+            {/* 3 Feature Pills */}
+            <div className="welcome-pills-row">
+              <span className="welcome-feature-pill">
                 <span style={{ width: '6px', height: '6px', borderRadius: '50%', background: '#8EBE93' }}></span>
                 Takes 3 minutes
               </span>
 
-              <span style={{
-                display: 'inline-flex',
-                alignItems: 'center',
-                gap: '6px',
-                padding: '6px 16px',
-                borderRadius: '9999px',
-                border: '1px solid #C6DFC9',
-                background: '#EDF6EE',
-                color: '#121214',
-                fontSize: '0.82rem',
-                fontWeight: 600
-              }}>
-                <span style={{ width: '6px', height: '6px', borderRadius: '50%', background: '#8EBE93' }}></span>
-                Clinically informed
-              </span>
-
-              <span style={{
-                display: 'inline-flex',
-                alignItems: 'center',
-                gap: '6px',
-                padding: '6px 16px',
-                borderRadius: '9999px',
-                border: '1px solid #C6DFC9',
-                background: '#EDF6EE',
-                color: '#121214',
-                fontSize: '0.82rem',
-                fontWeight: 600
-              }}>
+              <span className="welcome-feature-pill">
                 <span style={{ width: '6px', height: '6px', borderRadius: '50%', background: '#8EBE93' }}></span>
                 Personalised Results
               </span>
 
-              <span style={{
-                display: 'inline-flex',
-                alignItems: 'center',
-                gap: '6px',
-                padding: '6px 16px',
-                borderRadius: '9999px',
-                border: '1px solid #C6DFC9',
-                background: '#EDF6EE',
-                color: '#121214',
-                fontSize: '0.82rem',
-                fontWeight: 600
-              }}>
+              <span className="welcome-feature-pill">
                 <span style={{ width: '6px', height: '6px', borderRadius: '50%', background: '#8EBE93' }}></span>
                 Root-cause focused
               </span>
             </div>
 
-            {/* Vibrant Action Button in Saffron (#EB5E28) */}
+            {/* Action Button */}
             <button
               type="button"
+              className="welcome-cta-btn"
               onClick={() => setStep(2)}
-              style={{
-                width: '100%',
-                maxWidth: '380px',
-                padding: '14px 28px',
-                background: '#FF007F',
-                color: '#FFFFFF',
-                borderRadius: '12px',
-                fontSize: '1.05rem',
-                fontWeight: 700,
-                boxShadow: '0 8px 24px rgba(255, 0, 127, 0.35)',
-                margin: '0 auto',
-                display: 'inline-flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                gap: '8px',
-                transition: 'all 0.2s ease',
-                border: 'none',
-                cursor: 'pointer'
-              }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.transform = 'translateY(-2px)';
-                e.currentTarget.style.boxShadow = '0 12px 28px rgba(255, 0, 127, 0.45)';
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.transform = 'translateY(0)';
-                e.currentTarget.style.boxShadow = '0 8px 24px rgba(255, 0, 127, 0.35)';
-              }}
             >
               <span>Start the Health Quiz</span>
               <span>&rarr;</span>
             </button>
+
+            <div className="welcome-footer-tag">
+              🔒 Reshmi Verma Functional Health &bull; 100% Confidential
+            </div>
           </div>
         )}
 
         {/* STEP 2: LEAD DATA ENTRY */}
         {step === 2 && (
-          <div style={{ padding: '0 4px' }}>
-            <div style={{ textAlign: 'center', marginBottom: '6px' }}>
+          <div style={{ padding: '0 4px', textAlign: 'left' }}>
+            <div style={{ textAlign: 'center', marginBottom: '8px' }}>
               <span style={{
                 display: 'inline-flex',
                 alignItems: 'center',
@@ -383,19 +413,15 @@ export default function WelcomeAssessmentModal() {
                 <span style={{ width: '6px', height: '6px', borderRadius: '50%', background: '#E06D85' }}></span>
                 <span>Step 2 of 3 • Enter Your Details</span>
               </span>
+
+              <h3 style={{ fontSize: '1.25rem', color: 'var(--emerald-deep)', margin: '4px 0 2px', fontFamily: 'var(--font-serif)', fontWeight: 800 }}>
+                Where Should We Send Your Score?
+              </h3>
             </div>
 
-            <h3 style={{ fontSize: '1.35rem', color: 'var(--emerald-deep)', textAlign: 'center', margin: '0 0 4px', fontFamily: 'var(--font-serif)', lineHeight: 1.25, fontWeight: 800 }}>
-              Where Should We Send Your Score?
-            </h3>
-
-            <p style={{ fontSize: '0.82rem', color: 'var(--text-secondary)', textAlign: 'center', margin: '0 auto 14px', maxWidth: '380px', lineHeight: 1.45 }}>
-              Apna personalized root-cause breakdown paane ke liye apni details enter karein:
-            </p>
-
-            <form onSubmit={handleLeadSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '10px', textAlign: 'left' }}>
-              <div style={{ textAlign: 'left' }}>
-                <label style={{ display: 'block', textAlign: 'left', fontSize: '0.78rem', fontWeight: 700, color: '#374151', marginBottom: '3px' }}>
+            <form onSubmit={handleLeadSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+              <div>
+                <label style={{ display: 'block', fontSize: '0.76rem', fontWeight: 700, color: '#374151', marginBottom: '2px' }}>
                   Your Full Name *
                 </label>
                 <input
@@ -407,10 +433,10 @@ export default function WelcomeAssessmentModal() {
                   required
                   style={{
                     width: '100%',
-                    padding: '9px 12px',
-                    borderRadius: '10px',
+                    padding: '8px 11px',
+                    borderRadius: '8px',
                     border: '1.5px solid #D1D5DB',
-                    fontSize: '0.9rem',
+                    fontSize: '0.88rem',
                     outline: 'none',
                     background: '#FFFFFF',
                     boxSizing: 'border-box'
@@ -418,8 +444,8 @@ export default function WelcomeAssessmentModal() {
                 />
               </div>
 
-              <div style={{ textAlign: 'left' }}>
-                <label style={{ display: 'block', textAlign: 'left', fontSize: '0.78rem', fontWeight: 700, color: '#374151', marginBottom: '3px' }}>
+              <div>
+                <label style={{ display: 'block', fontSize: '0.76rem', fontWeight: 700, color: '#374151', marginBottom: '2px' }}>
                   WhatsApp / Phone Number *
                 </label>
                 <input
@@ -431,10 +457,10 @@ export default function WelcomeAssessmentModal() {
                   required
                   style={{
                     width: '100%',
-                    padding: '9px 12px',
-                    borderRadius: '10px',
+                    padding: '8px 11px',
+                    borderRadius: '8px',
                     border: '1.5px solid #D1D5DB',
-                    fontSize: '0.9rem',
+                    fontSize: '0.88rem',
                     outline: 'none',
                     background: '#FFFFFF',
                     boxSizing: 'border-box'
@@ -442,8 +468,8 @@ export default function WelcomeAssessmentModal() {
                 />
               </div>
 
-              <div style={{ textAlign: 'left' }}>
-                <label style={{ display: 'block', textAlign: 'left', fontSize: '0.78rem', fontWeight: 700, color: '#374151', marginBottom: '3px' }}>
+              <div>
+                <label style={{ display: 'block', fontSize: '0.76rem', fontWeight: 700, color: '#374151', marginBottom: '2px' }}>
                   Email Address *
                 </label>
                 <input
@@ -455,10 +481,10 @@ export default function WelcomeAssessmentModal() {
                   required
                   style={{
                     width: '100%',
-                    padding: '9px 12px',
-                    borderRadius: '10px',
+                    padding: '8px 11px',
+                    borderRadius: '8px',
                     border: '1.5px solid #D1D5DB',
-                    fontSize: '0.9rem',
+                    fontSize: '0.88rem',
                     outline: 'none',
                     background: '#FFFFFF',
                     boxSizing: 'border-box'
@@ -467,7 +493,7 @@ export default function WelcomeAssessmentModal() {
               </div>
 
               {error && (
-                <div style={{ color: '#FF5A1F', fontSize: '0.8rem', fontWeight: 600, background: '#FFF2EB', border: '1px solid #FFB394', padding: '6px 10px', borderRadius: '8px' }}>
+                <div style={{ color: '#FF5A1F', fontSize: '0.78rem', fontWeight: 600, background: '#FFF2EB', border: '1px solid #FFB394', padding: '5px 8px', borderRadius: '6px' }}>
                   ⚠️ {error}
                 </div>
               )}
@@ -475,24 +501,23 @@ export default function WelcomeAssessmentModal() {
               <button
                 type="submit"
                 disabled={submitting}
-                className="btn"
                 style={{
                   width: '100%',
                   padding: '11px',
                   borderRadius: '10px',
                   fontWeight: 700,
-                  fontSize: '0.92rem',
+                  fontSize: '0.90rem',
                   marginTop: '4px',
-                  justifyContent: 'center',
                   background: '#121214',
-                  borderColor: '#121214',
-                  color: '#FFFFFF'
+                  color: '#FFFFFF',
+                  border: 'none',
+                  cursor: 'pointer'
                 }}
               >
                 <span>{submitting ? 'Verifying...' : 'Continue to Assessment Track →'}</span>
               </button>
 
-              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '6px', padding: '0 2px' }}>
+              <div style={{ textAlign: 'center', marginTop: '4px' }}>
                 <button
                   type="button"
                   onClick={() => setStep(1)}
@@ -500,186 +525,123 @@ export default function WelcomeAssessmentModal() {
                     background: 'none',
                     border: 'none',
                     color: 'var(--text-muted)',
-                    fontSize: '0.8rem',
+                    fontSize: '0.76rem',
                     cursor: 'pointer',
-                    padding: '4px 0'
+                    padding: '2px 0'
                   }}
                 >
                   ← Back
                 </button>
               </div>
             </form>
-
-            <div style={{ marginTop: '8px', textAlign: 'center', fontSize: '0.72rem', color: 'var(--text-muted)' }}>
-              🔒 Reshmi Verma Functional Health
-            </div>
           </div>
         )}
 
         {/* STEP 3: 2 ASSESSMENT TRACK CHOICES */}
         {step === 3 && (
-          <div style={{ padding: '6px 4px' }}>
-            <div style={{ textAlign: 'center', marginBottom: '8px' }}>
+          <div style={{ padding: '0 4px', textAlign: 'left' }}>
+            <div style={{ textAlign: 'center', marginBottom: '12px' }}>
               <span style={{
                 display: 'inline-flex',
                 alignItems: 'center',
                 gap: '6px',
-                padding: '4px 14px',
+                padding: '3px 12px',
                 borderRadius: '999px',
                 background: '#EDF6EE',
                 color: '#3C6642',
-                fontSize: '0.78rem',
+                fontSize: '0.74rem',
                 fontWeight: 700,
                 letterSpacing: '0.04em',
                 border: '1px solid #C6DFC9'
               }}>
-                <span style={{ width: '7px', height: '7px', borderRadius: '50%', background: '#8EBE93' }}></span>
-                <span>Step 3 of 3 • Select Your Assessment Track</span>
+                <span style={{ width: '6px', height: '6px', borderRadius: '50%', background: '#8EBE93' }}></span>
+                <span>Step 3 of 3 • Select Track</span>
               </span>
+
+              <h3 style={{ fontSize: '1.25rem', color: 'var(--emerald-deep)', margin: '4px 0 2px', fontFamily: 'var(--font-serif)', fontWeight: 800 }}>
+                Choose Your Assessment Track
+              </h3>
             </div>
 
-            <h3 style={{ fontSize: 'clamp(1.3rem, 3.5vw, 1.55rem)', color: 'var(--emerald-deep)', textAlign: 'center', margin: '0 0 6px', fontFamily: 'var(--font-serif)', lineHeight: 1.25 }}>
-              Choose Your Assessment Track
-            </h3>
-
-            <p style={{ fontSize: '0.88rem', color: 'var(--text-secondary)', textAlign: 'center', margin: '0 auto 18px', maxWidth: '420px', lineHeight: 1.5 }}>
-              Welcome, <strong>{formData.name || 'there'}</strong>! Apni body ka root cause janne ke liye niche diye gaye dono options me se ek select karein:
-            </p>
-
-            {/* 2 Assessment Choices (Royal, Shiny, High-End Luxury Cards) */}
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '14px', marginBottom: '16px' }}>
-              {/* Choice 1: Functional Health Assessment (#FF007F Track) */}
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '10px', marginBottom: '12px' }}>
+              {/* Choice 1: Functional Health Assessment */}
               <div
                 onClick={() => handleSelectFlow('health')}
-                className="welcome-choice-card"
                 role="button"
                 tabIndex={0}
                 onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') handleSelectFlow('health'); }}
                 style={{
-                  textAlign: 'left',
-                  padding: '16px 18px',
-                  borderRadius: '18px',
-                  border: '2px solid rgba(255, 0, 127, 0.4)',
+                  padding: '14px 16px',
+                  borderRadius: '14px',
+                  border: '1.5px solid rgba(255, 0, 127, 0.4)',
                   background: 'linear-gradient(135deg, #FFFFFF 0%, #FFF6FA 100%)',
                   cursor: 'pointer',
-                  boxShadow: '0 6px 20px rgba(255, 0, 127, 0.10)',
-                  transition: 'all 0.25s cubic-bezier(0.16, 1, 0.3, 1)',
-                  position: 'relative'
-                }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.borderColor = '#FF007F';
-                  e.currentTarget.style.transform = 'translateY(-2px)';
-                  e.currentTarget.style.boxShadow = '0 10px 28px rgba(255, 0, 127, 0.22)';
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.borderColor = 'rgba(255, 0, 127, 0.4)';
-                  e.currentTarget.style.transform = 'translateY(0)';
-                  e.currentTarget.style.boxShadow = '0 6px 20px rgba(255, 0, 127, 0.10)';
+                  display: 'flex',
+                  justifyContent: 'space-between',
+                  alignItems: 'center'
                 }}
               >
-                {/* Header Row: Title */}
-                <div style={{ marginBottom: '12px' }}>
-                  <strong style={{ fontSize: '1.02rem', color: '#121214', fontWeight: 800 }}>
+                <div>
+                  <strong style={{ display: 'block', fontSize: '0.94rem', color: '#121214', fontWeight: 800 }}>
                     Functional Health Assessment
                   </strong>
+                  <span style={{ fontSize: '0.72rem', color: '#6B7280' }}>
+                    Gut &bull; Hormones &bull; Fatigue &bull; Metabolism
+                  </span>
                 </div>
-
-                {/* Footer Action Row */}
-                <div style={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'space-between',
-                  borderTop: '1px solid rgba(255, 0, 127, 0.15)',
-                  paddingTop: '10px'
+                <span style={{
+                  padding: '6px 14px',
+                  borderRadius: '999px',
+                  background: 'linear-gradient(135deg, #FF007F 0%, #D9006C 100%)',
+                  color: '#FFFFFF',
+                  fontWeight: 800,
+                  fontSize: '0.76rem',
+                  flexShrink: 0
                 }}>
-                  <span style={{ fontSize: '0.74rem', color: '#6B7280', fontWeight: 600 }}>
-                    ⏱ Takes ~3 mins &bull; 100% Free
-                  </span>
-                  <span style={{
-                    padding: '7px 16px',
-                    borderRadius: '999px',
-                    background: 'linear-gradient(135deg, #FF007F 0%, #D9006C 100%)',
-                    color: '#FFFFFF',
-                    fontWeight: 800,
-                    fontSize: '0.8rem',
-                    boxShadow: '0 3px 12px rgba(255, 0, 127, 0.35)',
-                    display: 'inline-flex',
-                    alignItems: 'center',
-                    gap: '5px'
-                  }}>
-                    <span>Start Quiz</span>
-                    <span>&rarr;</span>
-                  </span>
-                </div>
+                  Start &rarr;
+                </span>
               </div>
 
-              {/* Choice 2: Functional Breathing Assessment (#00E5D9 Track) */}
+              {/* Choice 2: Functional Breathing Assessment */}
               <div
                 onClick={() => handleSelectFlow('breathing')}
-                className="welcome-choice-card"
                 role="button"
                 tabIndex={0}
                 onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') handleSelectFlow('breathing'); }}
                 style={{
-                  textAlign: 'left',
-                  padding: '16px 18px',
-                  borderRadius: '18px',
-                  border: '2px solid rgba(0, 229, 217, 0.45)',
+                  padding: '14px 16px',
+                  borderRadius: '14px',
+                  border: '1.5px solid rgba(0, 229, 217, 0.45)',
                   background: 'linear-gradient(135deg, #FFFFFF 0%, #F2FDFD 100%)',
                   cursor: 'pointer',
-                  boxShadow: '0 6px 20px rgba(0, 229, 217, 0.10)',
-                  transition: 'all 0.25s cubic-bezier(0.16, 1, 0.3, 1)',
-                  position: 'relative'
-                }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.borderColor = '#00E5D9';
-                  e.currentTarget.style.transform = 'translateY(-2px)';
-                  e.currentTarget.style.boxShadow = '0 10px 28px rgba(0, 229, 217, 0.24)';
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.borderColor = 'rgba(0, 229, 217, 0.45)';
-                  e.currentTarget.style.transform = 'translateY(0)';
-                  e.currentTarget.style.boxShadow = '0 6px 20px rgba(0, 229, 217, 0.10)';
+                  display: 'flex',
+                  justifyContent: 'space-between',
+                  alignItems: 'center'
                 }}
               >
-                {/* Header Row: Title */}
-                <div style={{ marginBottom: '12px' }}>
-                  <strong style={{ fontSize: '1.02rem', color: '#121214', fontWeight: 800 }}>
+                <div>
+                  <strong style={{ display: 'block', fontSize: '0.94rem', color: '#121214', fontWeight: 800 }}>
                     Functional Breathing Assessment
                   </strong>
+                  <span style={{ fontSize: '0.72rem', color: '#6B7280' }}>
+                    BOLT Score &bull; Vagal Tone &bull; Oxygen Advantage
+                  </span>
                 </div>
-
-                {/* Footer Action Row */}
-                <div style={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'space-between',
-                  borderTop: '1px solid rgba(0, 229, 217, 0.15)',
-                  paddingTop: '10px'
+                <span style={{
+                  padding: '6px 14px',
+                  borderRadius: '999px',
+                  background: 'linear-gradient(135deg, #00E5D9 0%, #00B4A8 100%)',
+                  color: '#0A3B37',
+                  fontWeight: 800,
+                  fontSize: '0.76rem',
+                  flexShrink: 0
                 }}>
-                  <span style={{ fontSize: '0.74rem', color: '#6B7280', fontWeight: 600 }}>
-                    ⏱ Takes ~3 mins &bull; 100% Free
-                  </span>
-                  <span style={{
-                    padding: '7px 16px',
-                    borderRadius: '999px',
-                    background: 'linear-gradient(135deg, #00E5D9 0%, #00B4A8 100%)',
-                    color: '#0A3B37',
-                    fontWeight: 800,
-                    fontSize: '0.8rem',
-                    boxShadow: '0 3px 12px rgba(0, 229, 217, 0.35)',
-                    display: 'inline-flex',
-                    alignItems: 'center',
-                    gap: '5px'
-                  }}>
-                    <span>Start Quiz</span>
-                    <span>&rarr;</span>
-                  </span>
-                </div>
+                  Start &rarr;
+                </span>
               </div>
             </div>
 
-            <div style={{ textAlign: 'center', marginBottom: '10px' }}>
+            <div style={{ textAlign: 'center' }}>
               <button
                 type="button"
                 onClick={() => setStep(2)}
@@ -687,7 +649,7 @@ export default function WelcomeAssessmentModal() {
                   background: 'none',
                   border: 'none',
                   color: 'var(--text-muted)',
-                  fontSize: '0.82rem',
+                  fontSize: '0.76rem',
                   cursor: 'pointer',
                   textDecoration: 'underline'
                 }}
@@ -696,14 +658,6 @@ export default function WelcomeAssessmentModal() {
               </button>
             </div>
           </div>
-        )}
-
-        {step !== 2 && (
-          <>
-            <div style={{ marginTop: '10px', textAlign: 'center', fontSize: '0.74rem', color: 'var(--text-muted)' }}>
-              🔒 Reshmi Verma Functional Health &bull;
-            </div>
-          </>
         )}
       </div>
     </div>

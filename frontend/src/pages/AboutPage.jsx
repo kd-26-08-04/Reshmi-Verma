@@ -428,24 +428,24 @@ export default function AboutPage() {
             <span className="pulse-dot" style={{ background: '#FB923C' }}></span>
             <span>Take The First Step</span>
           </span>
-          <h2 style={{ color: 'white', fontSize: '2.6rem', marginBottom: '16px' }}>Ready to Uncover Your Health Blueprint?</h2>
-          <p style={{ color: '#FED7AA', maxWidth: '640px', margin: '0 auto 32px', fontSize: '1.1rem' }}>
+          <h2 style={{ color: 'white', fontSize: 'clamp(1.45rem, 5vw, 2.6rem)', marginBottom: '12px', lineHeight: 1.25 }}>Ready to Uncover Your Health Blueprint?</h2>
+          <p style={{ color: '#FED7AA', maxWidth: '640px', margin: '0 auto 20px', fontSize: 'clamp(0.85rem, 2.5vw, 1.1rem)', lineHeight: 1.5 }}>
             Book your 60-minute 1:1 Health Clarity Consultation with Reshmi Verma (₹1,999) to connect your symptoms, laboratory diagnostics, and recovery roadmap.
           </p>
-          <div style={{ display: 'flex', gap: '16px', justifyContent: 'center', flexWrap: 'wrap' }}>
+          <div className="cta-dual-btn-row">
             <Link
               to="/booking"
-              className="btn btn-accent btn-lg"
-              style={{ background: 'white', color: 'var(--emerald-deep)', borderRadius: '14px', padding: '14px 28px', fontWeight: 700 }}
+              className="btn btn-accent cta-btn-side"
+              style={{ background: 'white', color: 'var(--emerald-deep)', borderRadius: '12px', padding: '12px 24px', fontWeight: 700 }}
             >
               <span>Book Session</span>
             </Link>
             <Link
               to="/assessment"
-              className="btn btn-secondary btn-lg"
-              style={{ background: 'rgba(255, 255, 255, 0.15)', color: 'white', borderColor: 'rgba(255, 255, 255, 0.3)', borderRadius: '14px', padding: '14px 24px' }}
+              className="btn btn-secondary cta-btn-side"
+              style={{ background: 'rgba(255, 255, 255, 0.15)', color: 'white', borderColor: 'rgba(255, 255, 255, 0.3)', borderRadius: '12px', padding: '12px 20px' }}
             >
-              <span>Take Free Assessment First</span>
+              <span>Free Assessment</span>
             </Link>
           </div>
         </div>

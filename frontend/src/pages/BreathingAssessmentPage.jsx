@@ -507,7 +507,7 @@ export default function BreathingAssessmentPage() {
                 <h4 style={{ fontSize: '1.15rem', color: 'var(--emerald-deep)', margin: '8px 0 2px' }}>
                   Reshmi Verma
                 </h4>
-                <span style={{ fontSize: '0.78rem', color: 'var(--text-secondary)' }}>#13 Oxygen Advantage India</span>
+                <span style={{ fontSize: '0.78rem', color: 'var(--text-secondary)' }}>Oxygen Advantage India</span>
               </div>
             </div>
 

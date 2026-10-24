@@ -5927,7 +5927,7 @@ h6 {
   position: relative;
   z-index: 10;
   width: 100%;
-  max-width: 520px;
+  max-width: 540px;
   background: linear-gradient(160deg, #FFFFFF 0%, #FAF8F5 100%);
   border-radius: 28px;
   border: 1.5px solid rgba(255, 255, 255, 0.95);
@@ -5935,6 +5935,18 @@ h6 {
   padding: 36px 32px 30px;
   text-align: center;
   animation: welcomePopIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@media (max-width: 640px) {
+  .welcome-assessment-overlay {
+    padding: 12px !important;
+  }
+  .welcome-assessment-modal {
+    max-width: 380px !important;
+    padding: 20px 18px 16px !important;
+    border-radius: 20px !important;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.22) !important;
+  }
 }
 
 @keyframes welcomeFadeIn {
@@ -8108,3 +8120,72 @@ h6 {
   transform: translateY(-3px);
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
 }
+
+/* ==========================================================================
+   Mobile-Optimized CTA & Side-by-Side Dual Button System
+   - Scales down text sizes proportionally on mobile phones
+   - Displays 2 CTA buttons cleanly side-by-side without vertical stack/overlap
+   ========================================================================== */
+.cta-dual-btn-row {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+@media (max-width: 640px) {
+  /* Side-by-Side Dual CTA Buttons on Mobile */
+  .cta-dual-btn-row,
+  .videos-bottom-cta-btns {
+    display: flex !important;
+    flex-direction: row !important;
+    flex-wrap: nowrap !important;
+    justify-content: center !important;
+    align-items: stretch !important;
+    gap: 8px !important;
+    width: 100% !important;
+  }
+
+  .cta-dual-btn-row > .cta-btn-side,
+  .cta-dual-btn-row > a,
+  .cta-dual-btn-row > button,
+  .videos-bottom-cta-btns > a,
+  .videos-bottom-cta-btns > button {
+    flex: 1 1 0 !important;
+    min-width: 0 !important;
+    padding: 10px 8px !important;
+    font-size: 0.82rem !important;
+    border-radius: 10px !important;
+    white-space: nowrap !important;
+    text-overflow: ellipsis !important;
+    overflow: hidden !important;
+    justify-content: center !important;
+    text-align: center !important;
+    letter-spacing: -0.01em !important;
+  }
+
+  .cta-dual-btn-row > a svg,
+  .videos-bottom-cta-btns > a svg {
+    display: none !important;
+  }
+
+  /* Compact Hero CTA buttons on Mobile */
+  .hero-cta-group {
+    display: flex !important;
+    flex-direction: row !important;
+    flex-wrap: wrap !important;
+    gap: 6px !important;
+  }
+
+  .hero-cta-group > a {
+    flex: 1 1 auto !important;
+    padding: 8px 12px !important;
+    font-size: 0.80rem !important;
+    border-radius: 8px !important;
+    white-space: nowrap !important;
+    text-align: center !important;
+    justify-content: center !important;
+  }
+}
+
