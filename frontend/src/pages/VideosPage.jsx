@@ -1,468 +1,683 @@
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 import { Link } from 'react-router-dom';
 
 export default function VideosPage() {
-  const [activeCategory, setActiveCategory] = useState('all');
+  const [activeTab, setActiveTab] = useState('all');
+  const [searchQuery, setSearchQuery] = useState('');
   const [selectedVideo, setSelectedVideo] = useState(null);
 
-  // Initial curated video masterclasses - user can provide their own links to easily replace or append
+  // Curated YouTube videos - concise summaries, no custom thumbnails required
+  // Added &color=white to remove YouTube's red progress bar
   const videoLibrary = [
+    // --- FULL CLINICAL MASTERCLASSES (16:9 Format) ---
     {
-      id: 'gut-sibo-masterclass',
-      title: 'How Leaky Gut & SIBO Trigger Chronic Fatigue & Brain Fog',
+      id: 'video-478-breathing',
+      type: 'masterclass',
+      title: '4-7-8 Breathing Exercise for Stress & Sleep',
+      category: 'breathwork',
+      categoryLabel: 'Oxygen Advantage® & Breath',
+      duration: '10:30',
+      youtubeId: 'EQP9TE04bvQ',
+      youtubeUrl: 'https://youtu.be/EQP9TE04bvQ?si=cAJWg2l1IxtDaAaC',
+      summary: '4-7-8 breathing to activate the vagus nerve, lower cortisol, and trigger deep sleep.',
+      badge: 'Masterclass',
+      views: '478+ Views'
+    },
+    {
+      id: 'video-432hz-sleep-music',
+      type: 'masterclass',
+      title: 'Sleep Music 432 Hz Frequency 🌙',
+      category: 'sound-sleep',
+      categoryLabel: 'Sound Therapy & Sleep',
+      duration: '6:55',
+      youtubeId: 'HC-ebB_xA0Y',
+      youtubeUrl: 'https://youtu.be/HC-ebB_xA0Y?si=Qrg5qm2IsaySpfRK',
+      summary: 'Tuned 432 Hz sound frequency to calm beta brainwaves and induce deep rest.',
+      badge: 'Sound Healing',
+      views: '11K+ Views'
+    },
+
+    // --- CLINICAL YOUTUBE SHORTS (9:16 Format) ---
+    {
+      id: 'short-box-breathing',
+      type: 'short',
+      title: '4-4-4-4 Box Breathing Drill',
+      category: 'breathwork',
+      categoryLabel: 'Oxygen Advantage® & Breath',
+      duration: '1 min',
+      youtubeId: 'V4ZTrkQEqrM',
+      youtubeUrl: 'https://youtube.com/shorts/V4ZTrkQEqrM?si=lsj_O8Rr1khXiWlB',
+      summary: 'Square breathing drill to halt acute panic and regain mental clarity in 60s.',
+      badge: 'Vagal Reset',
+      views: 'Viral'
+    },
+    {
+      id: 'short-rajgira-ladoo',
+      type: 'short',
+      title: 'Viral Rajgira Motichoor Ladoo',
+      category: 'nutrition',
+      categoryLabel: 'Nutrition & Swaps',
+      duration: '1 min',
+      youtubeId: 'QwXDQP1slMw',
+      youtubeUrl: 'https://youtube.com/shorts/QwXDQP1slMw?si=tjTUqNFnKCIWJuCt',
+      summary: 'Guilt-free puffed Amaranth ladoo with plant protein and zero refined sugar.',
+      badge: 'Healthy Swap',
+      views: 'Recipe'
+    },
+    {
+      id: 'short-best-cheese',
+      type: 'short',
+      title: 'Best Cheese In India for Gut',
       category: 'gut',
       categoryLabel: 'Gut & Microbiome',
-      duration: '18:45',
-      youtubeId: 'dQw4w9WgXcQ', // Placeholder until user provides exact link
-      youtubeUrl: 'https://www.youtube.com/',
-      thumbnail: '/assets/images/mucosal-barrier.png',
-      summary: 'Explore the biological link between mucosal breakdown, systemic LPS endotoxemia, and why normal blood tests fail to identify chronic bloating and lethargy.',
-      views: '12K Views',
-      badge: 'Featured Masterclass'
+      duration: '1 min',
+      youtubeId: 'dz6K34QkZ-k',
+      youtubeUrl: 'https://youtube.com/shorts/dz6K34QkZ-k?si=iakKSW1sZHE2rGzr',
+      summary: 'Processed vs aged cheese: Choosing gut-friendly options without bloating.',
+      badge: 'Gut Guide',
+      views: 'Clinical'
     },
     {
-      id: 'bolt-score-reversal',
-      title: 'Oxygen Advantage®: How Low BOLT Score Starves Your Organs of Oxygen',
-      category: 'breathwork',
-      categoryLabel: 'Oxygen Advantage®',
-      duration: '14:20',
-      youtubeId: 'dQw4w9WgXcQ',
-      youtubeUrl: 'https://www.youtube.com/',
-      thumbnail: '/assets/images/breathing-lungs.png',
-      summary: 'Clinical explanation of the Bohr Effect, why chronic chest breathing dumps essential CO₂, and how nasal rehabilitation reverses afternoon crashes.',
-      views: '9.4K Views',
-      badge: 'Clinical Protocol'
+      id: 'short-society-diet',
+      type: 'short',
+      title: 'Society vs Your Diet Boundaries',
+      category: 'mindset',
+      categoryLabel: 'Mindset & Habits',
+      duration: '1 min',
+      youtubeId: 'yJi6C0sUpro',
+      youtubeUrl: 'https://youtube.com/shorts/yJi6C0sUpro?si=qE1zR1oYOzu7vNEi',
+      summary: 'How to manage social peer pressure and protect your healing journey.',
+      badge: 'Mindset',
+      views: 'Insight'
     },
     {
-      id: 'thyroid-metabolism-guide',
-      title: 'Hypothyroidism, PCOS & Weight Plateaus: Beyond Calorie Deficits',
+      id: 'short-food-crisis',
+      type: 'short',
+      title: 'The Food Crisis & The 4F Threat',
       category: 'metabolism',
-      categoryLabel: 'Hormonal & Thyroid',
-      duration: '22:15',
-      youtubeId: 'dQw4w9WgXcQ',
-      youtubeUrl: 'https://www.youtube.com/',
-      thumbnail: '/assets/images/transformation-reshmi-personal.jpg',
-      summary: 'Why starvation diets backfire on thyroid conversion (T4 to T3) and how targeted cellular micronutrition restored Reshmi’s personal 38 kg metabolic reversal.',
-      views: '15K Views',
-      badge: 'Founder Insight'
+      categoryLabel: 'Metabolic Health',
+      duration: '1 min',
+      youtubeId: 'WO-7u7sgccU',
+      youtubeUrl: 'https://youtube.com/shorts/WO-7u7sgccU?si=qmnGiFZdaZO2dFqg',
+      summary: 'How ultra-processed factory foods trigger metabolic resistance and fatigue.',
+      badge: 'Root Cause',
+      views: '4F Threat'
     },
     {
-      id: 'gut-brain-vagus-nerve',
-      title: 'The Vagus Nerve Reset: Calming Anxiety, Acid Reflux & Gut Spasms',
-      category: 'breathwork',
-      categoryLabel: 'Oxygen Advantage®',
-      duration: '12:30',
-      youtubeId: 'dQw4w9WgXcQ',
-      youtubeUrl: 'https://www.youtube.com/',
-      thumbnail: '/assets/images/transformation-kv-dogra.jpg',
-      summary: 'Learn diaphragmatic vagal pacing to shift from sympathetic fight-or-flight into restorative parasympathetic rest-and-digest within 3 minutes.',
-      views: '8.1K Views',
-      badge: 'Interactive Drills'
+      id: 'short-528hz-frequency',
+      type: 'short',
+      title: '528 Hz Healing Frequency',
+      category: 'sound-sleep',
+      categoryLabel: 'Sound Therapy & Sleep',
+      duration: '1 min',
+      youtubeId: 'QD2yfWdU9rA',
+      youtubeUrl: 'https://youtube.com/shorts/QD2yfWdU9rA?si=_8fYB1T4HYP6O_C_',
+      summary: 'Solfeggio 528 Hz frequency for cellular stress release and nervous calm.',
+      badge: 'Solfeggio',
+      views: 'Harmonic'
     },
     {
-      id: 'fatty-liver-insulin',
-      title: 'Reversing Fatty Liver & Insulin Resistance Without Extreme Starvation',
+      id: 'short-seeds-benefits',
+      type: 'short',
+      title: 'How to Eat Seeds for Max Benefits',
+      category: 'nutrition',
+      categoryLabel: 'Nutrition & Swaps',
+      duration: '1 min',
+      youtubeId: 'joLFGimDqEs',
+      youtubeUrl: 'https://youtube.com/shorts/joLFGimDqEs?si=wLW9cjtF03lc5swC',
+      summary: 'Why soaking and roasting seeds is vital to prevent gut irritation.',
+      badge: 'Bioavailable',
+      views: 'Guide'
+    },
+    {
+      id: 'short-soothing-music',
+      type: 'short',
+      title: 'Soothing Acoustic Music for Calm',
+      category: 'sound-sleep',
+      categoryLabel: 'Sound Therapy & Sleep',
+      duration: '1 min',
+      youtubeId: '6snR2Uj_fbM',
+      youtubeUrl: 'https://youtube.com/shorts/6snR2Uj_fbM?si=iwuL7XbUEawmw3E9',
+      summary: 'Gentle acoustic soundscape to soothe fight-or-flight and ease tension.',
+      badge: 'Relaxation',
+      views: 'Peaceful'
+    },
+    {
+      id: 'short-healthy-hair',
+      type: 'short',
+      title: 'Root Secrets for Healthy Hair',
       category: 'metabolism',
-      categoryLabel: 'Metabolic Reversal',
-      duration: '16:50',
-      youtubeId: 'dQw4w9WgXcQ',
-      youtubeUrl: 'https://www.youtube.com/',
-      thumbnail: '/assets/images/transformation-dr-sandeep.jpg',
-      summary: 'A look at visceral fat deposition, lipid markers beyond cholesterol, and evidence-based clinical protocols that physician clients followed.',
-      views: '11K Views',
-      badge: 'Physician Case Study'
+      categoryLabel: 'Metabolic & Vitality',
+      duration: '1 min',
+      youtubeId: '-_lMmV1gIlM',
+      youtubeUrl: 'https://youtube.com/shorts/-_lMmV1gIlM?si=BxnkYxR72aCy6Asc',
+      summary: 'Targeting internal ferritin and scalp microcirculation for strong hair.',
+      badge: 'Inside Out',
+      views: 'Vitality'
     },
     {
-      id: 'food-sensitivities-elimination',
-      title: 'Food Sensitivities vs Real Root Cause: Why Eliminating Foods Isn’t Enough',
+      id: 'short-do-you-bloat',
+      type: 'short',
+      title: 'Do You Bloat? Real Root Causes',
       category: 'gut',
       categoryLabel: 'Gut & Microbiome',
-      duration: '15:10',
-      youtubeId: 'dQw4w9WgXcQ',
-      youtubeUrl: 'https://www.youtube.com/',
-      thumbnail: '/assets/images/transformation-minakshi.jpg',
-      summary: 'Why cutting dairy, gluten, and histamines only suppresses symptoms temporarily without resolving secretor status and epithelial junction integrity.',
-      views: '7.8K Views',
-      badge: 'Root-Cause Science'
+      duration: '1 min',
+      youtubeId: 'F5Ivcy_SACA',
+      youtubeUrl: 'https://youtube.com/shorts/F5Ivcy_SACA?si=4Bd3vX7MpNjibSCO',
+      summary: 'Why post-meal bloat points to low stomach acid or digestive motility issues.',
+      badge: 'Gut Health',
+      views: 'Clinical'
     }
   ];
 
-  const categories = [
-    { key: 'all', label: 'All Videos' },
-    { key: 'gut', label: 'Gut & Microbiome' },
-    { key: 'breathwork', label: 'Oxygen Advantage® & Breath' },
-    { key: 'metabolism', label: 'Metabolism & Hormones' }
+  // Filter Categories
+  const filterTabs = [
+    { key: 'all', label: 'All', count: 12 },
+    { key: 'masterclass', label: 'Masterclasses', count: 2 },
+    { key: 'short', label: 'Shorts', count: 10 },
+    { key: 'breathwork', label: 'Breathwork', count: 2 },
+    { key: 'sound-sleep', label: 'Sound & Sleep', count: 3 },
+    { key: 'gut', label: 'Gut Health', count: 2 },
+    { key: 'nutrition', label: 'Nutrition', count: 2 },
+    { key: 'metabolism', label: 'Metabolism', count: 2 }
   ];
 
-  const filteredVideos = activeCategory === 'all'
-    ? videoLibrary
-    : videoLibrary.filter(v => v.category === activeCategory);
+  // Filtered List
+  const filteredVideos = useMemo(() => {
+    return videoLibrary.filter((video) => {
+      let matchesTab = true;
+      if (activeTab === 'all') {
+        matchesTab = true;
+      } else if (activeTab === 'masterclass' || activeTab === 'short') {
+        matchesTab = video.type === activeTab;
+      } else {
+        matchesTab = video.category === activeTab;
+      }
+
+      let matchesSearch = true;
+      if (searchQuery.trim()) {
+        const q = searchQuery.toLowerCase();
+        matchesSearch =
+          video.title.toLowerCase().includes(q) ||
+          video.summary.toLowerCase().includes(q) ||
+          video.categoryLabel.toLowerCase().includes(q);
+      }
+
+      return matchesTab && matchesSearch;
+    });
+  }, [activeTab, searchQuery]);
+
+  const masterclasses = filteredVideos.filter(v => v.type === 'masterclass');
+  const shorts = filteredVideos.filter(v => v.type === 'short');
 
   return (
-    <main className="section" style={{ minHeight: '100vh', paddingTop: '100px', paddingBottom: '90px', background: '#FFFFFF' }}>
-      <div className="container" style={{ maxWidth: '1180px' }}>
+    <main className="section" style={{ minHeight: '100vh', paddingTop: '95px', paddingBottom: '70px', background: '#FAFCFB' }}>
+      <div className="container" style={{ maxWidth: '1200px' }}>
 
         {/* Hero Section Header */}
-        <div style={{ textAlign: 'center', maxWidth: '820px', margin: '0 auto 40px' }}>
+        <div style={{ textAlign: 'center', maxWidth: '720px', margin: '0 auto 28px' }}>
           <div style={{
             display: 'inline-flex',
             alignItems: 'center',
             gap: '8px',
-            padding: '6px 16px',
+            padding: '5px 14px',
             borderRadius: '999px',
             background: '#121214',
             color: '#00E5D9',
-            fontSize: '0.82rem',
+            fontSize: '0.78rem',
             fontWeight: 800,
             letterSpacing: '0.04em',
-            marginBottom: '16px',
-            boxShadow: '0 4px 14px rgba(0,0,0,0.12)'
+            marginBottom: '12px'
           }}>
             <span>🎥</span>
-            <span>Clinical Video Masterclasses &bull; Reshmi Verma</span>
+            <span>Clinical Video Library &bull; Reshmi Verma</span>
           </div>
 
           <h1 style={{
-            fontSize: 'clamp(2.1rem, 4.5vw, 3rem)',
+            fontSize: 'clamp(1.9rem, 3.8vw, 2.6rem)',
             color: 'var(--emerald-deep)',
             fontFamily: 'var(--font-serif)',
-            margin: '0 0 16px',
-            lineHeight: 1.15,
+            margin: '0 0 10px',
+            lineHeight: 1.2,
             fontWeight: 800
           }}>
-            Evidence-Based Health <span style={{ color: '#FF007F', fontStyle: 'italic' }}>Masterclasses</span>
+            Health <span style={{ color: '#0D9488', fontStyle: 'italic' }}>Masterclasses & Shorts</span>
           </h1>
 
           <p style={{
-            fontSize: '1.08rem',
+            fontSize: '0.98rem',
             color: 'var(--text-secondary)',
-            lineHeight: 1.65,
+            lineHeight: 1.5,
             margin: '0 auto'
           }}>
-            Deep dives into functional biochemistry, gut mucosa regeneration, Oxygen Advantage® breathing mechanics, and real metabolic transformation protocols by Reshmi Verma.
+            Watch clinically guided breathwork sessions, sound frequencies, and gut protocols.
           </p>
         </div>
 
-        {/* Category Filter Pills */}
+        {/* Search & Filter Controls */}
         <div style={{
-          display: 'flex',
-          justifyContent: 'center',
-          gap: '10px',
-          flexWrap: 'wrap',
-          marginBottom: '38px'
+          background: '#FFFFFF',
+          borderRadius: '16px',
+          padding: '16px 20px',
+          border: '1px solid var(--border-medium)',
+          boxShadow: '0 2px 12px rgba(0,0,0,0.03)',
+          marginBottom: '28px'
         }}>
-          {categories.map((cat) => (
-            <button
-              key={cat.key}
-              type="button"
-              onClick={() => setActiveCategory(cat.key)}
+          {/* Search Bar */}
+          <div style={{
+            position: 'relative',
+            maxWidth: '480px',
+            margin: '0 auto 14px'
+          }}>
+            <svg
+              width="16"
+              height="16"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="var(--text-muted)"
+              strokeWidth="2.2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              style={{ position: 'absolute', left: '14px', top: '50%', transform: 'translateY(-50%)' }}
+            >
+              <circle cx="11" cy="11" r="8"></circle>
+              <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            </svg>
+            <input
+              type="text"
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              placeholder="Search videos (e.g. breathing, sleep, bloat, ladoo)..."
               style={{
-                padding: '9px 20px',
+                width: '100%',
+                padding: '9px 14px 9px 40px',
                 borderRadius: '999px',
+                border: '1.5px solid var(--border-medium)',
                 fontSize: '0.88rem',
-                fontWeight: 700,
-                cursor: 'pointer',
-                transition: 'all 0.2s cubic-bezier(0.16, 1, 0.3, 1)',
-                border: activeCategory === cat.key ? '1.5px solid #121214' : '1.5px solid var(--border-medium)',
-                background: activeCategory === cat.key ? '#121214' : '#FFFFFF',
-                color: activeCategory === cat.key ? '#00E5D9' : 'var(--text-secondary)',
-                boxShadow: activeCategory === cat.key ? '0 6px 18px rgba(18, 18, 20, 0.2)' : '0 2px 6px rgba(0,0,0,0.03)'
+                outline: 'none',
+                background: '#F8FAFC',
+                color: 'var(--text-primary)'
               }}
-            >
-              {cat.label}
-            </button>
-          ))}
-        </div>
-
-        {/* Video Cards Grid */}
-        <div style={{
-          display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fill, minmax(340px, 1fr))',
-          gap: '28px',
-          marginBottom: '60px'
-        }}>
-          {filteredVideos.map((video) => (
-            <div
-              key={video.id}
-              className="card"
-              style={{
-                borderRadius: '20px',
-                overflow: 'hidden',
-                background: '#FFFFFF',
-                border: '1px solid var(--border-medium)',
-                boxShadow: '0 8px 24px rgba(0, 0, 0, 0.05)',
-                transition: 'transform 0.28s ease, box-shadow 0.28s ease',
-                display: 'flex',
-                flexDirection: 'column'
-              }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.transform = 'translateY(-6px)';
-                e.currentTarget.style.boxShadow = '0 16px 36px rgba(0, 0, 0, 0.12)';
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.transform = 'translateY(0)';
-                e.currentTarget.style.boxShadow = '0 8px 24px rgba(0, 0, 0, 0.05)';
-              }}
-            >
-              {/* Video Thumbnail Wrapper */}
-              <div
+            />
+            {searchQuery && (
+              <button
+                type="button"
+                onClick={() => setSearchQuery('')}
                 style={{
-                  position: 'relative',
-                  width: '100%',
-                  height: '210px',
-                  background: '#0F172A',
-                  overflow: 'hidden',
+                  position: 'absolute',
+                  right: '12px',
+                  top: '50%',
+                  transform: 'translateY(-50%)',
+                  background: 'none',
+                  border: 'none',
+                  fontSize: '0.9rem',
+                  color: 'var(--text-muted)',
                   cursor: 'pointer'
                 }}
-                onClick={() => setSelectedVideo(video)}
               >
-                <img
-                  src={video.thumbnail}
-                  alt={video.title}
+                ✕
+              </button>
+            )}
+          </div>
+
+          {/* Filter Pills */}
+          <div style={{
+            display: 'flex',
+            justifyContent: 'center',
+            gap: '6px',
+            flexWrap: 'wrap'
+          }}>
+            {filterTabs.map((tab) => {
+              const isActive = activeTab === tab.key;
+              return (
+                <button
+                  key={tab.key}
+                  type="button"
+                  onClick={() => setActiveTab(tab.key)}
                   style={{
-                    width: '100%',
-                    height: '100%',
-                    objectFit: 'cover',
-                    filter: 'brightness(0.85) contrast(1.05)',
-                    transition: 'transform 0.4s ease'
-                  }}
-                  onMouseEnter={(e) => e.target.style.transform = 'scale(1.05)'}
-                  onMouseLeave={(e) => e.target.style.transform = 'scale(1)'}
-                />
-
-                {/* Dark Gradient Overlay */}
-                <div style={{
-                  position: 'absolute',
-                  inset: 0,
-                  background: 'linear-gradient(180deg, rgba(0,0,0,0.15) 0%, rgba(0,0,0,0.65) 100%)'
-                }}></div>
-
-                {/* Top Badges */}
-                <div style={{
-                  position: 'absolute',
-                  top: '12px',
-                  left: '12px',
-                  right: '12px',
-                  display: 'flex',
-                  justifyContent: 'space-between',
-                  alignItems: 'center'
-                }}>
-                  <span style={{
-                    padding: '4px 10px',
+                    padding: '6px 14px',
                     borderRadius: '999px',
-                    background: 'rgba(18, 18, 20, 0.82)',
-                    backdropFilter: 'blur(8px)',
-                    color: '#00E5D9',
-                    fontSize: '0.74rem',
-                    fontWeight: 800,
-                    letterSpacing: '0.04em',
-                    border: '1px solid rgba(0, 229, 217, 0.3)'
-                  }}>
-                    {video.badge}
-                  </span>
-
+                    fontSize: '0.80rem',
+                    fontWeight: 700,
+                    cursor: 'pointer',
+                    transition: 'all 0.2s ease',
+                    border: isActive ? '1.5px solid #121214' : '1px solid var(--border-medium)',
+                    background: isActive ? '#121214' : '#FFFFFF',
+                    color: isActive ? '#00E5D9' : 'var(--text-secondary)',
+                    display: 'inline-flex',
+                    alignItems: 'center',
+                    gap: '5px'
+                  }}
+                >
+                  <span>{tab.label}</span>
                   <span style={{
-                    padding: '3px 8px',
-                    borderRadius: '6px',
-                    background: 'rgba(0, 0, 0, 0.75)',
-                    color: '#FFFFFF',
-                    fontSize: '0.72rem',
-                    fontWeight: 700
+                    fontSize: '0.68rem',
+                    padding: '1px 6px',
+                    borderRadius: '999px',
+                    background: isActive ? 'rgba(0, 229, 217, 0.2)' : 'rgba(0,0,0,0.06)',
+                    color: isActive ? '#00E5D9' : 'var(--text-muted)',
+                    fontWeight: 800
                   }}>
-                    {video.duration}
+                    {tab.count}
                   </span>
-                </div>
-
-                {/* Centered Circular Play Button */}
-                <div style={{
-                  position: 'absolute',
-                  top: '50%',
-                  left: '50%',
-                  transform: 'translate(-50%, -50%)',
-                  width: '56px',
-                  height: '56px',
-                  borderRadius: '50%',
-                  background: '#FF0000',
-                  color: '#FFFFFF',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  boxShadow: '0 8px 24px rgba(255, 0, 0, 0.45)',
-                  transition: 'transform 0.2s ease'
-                }}>
-                  <svg width="22" height="22" viewBox="0 0 24 24" fill="#FFFFFF">
-                    <polygon points="5 3 19 12 5 21 5 3"></polygon>
-                  </svg>
-                </div>
-
-                {/* Bottom View Counter */}
-                <div style={{
-                  position: 'absolute',
-                  bottom: '10px',
-                  left: '12px',
-                  color: '#FFFFFF',
-                  fontSize: '0.76rem',
-                  fontWeight: 600,
-                  textShadow: '0 1px 3px rgba(0,0,0,0.8)'
-                }}>
-                  <span>▶ {video.views}</span>
-                </div>
-              </div>
-
-              {/* Card Body */}
-              <div style={{ padding: '20px 22px', flex: 1, display: 'flex', flexDirection: 'column' }}>
-                <span style={{
-                  fontSize: '0.78rem',
-                  color: '#0D9488',
-                  fontWeight: 800,
-                  textTransform: 'uppercase',
-                  letterSpacing: '0.05em',
-                  marginBottom: '8px'
-                }}>
-                  {video.categoryLabel}
-                </span>
-
-                <h3 style={{
-                  fontSize: '1.15rem',
-                  color: 'var(--emerald-deep)',
-                  fontWeight: 800,
-                  margin: '0 0 10px',
-                  lineHeight: 1.35
-                }}>
-                  {video.title}
-                </h3>
-
-                <p style={{
-                  fontSize: '0.88rem',
-                  color: 'var(--text-secondary)',
-                  lineHeight: 1.5,
-                  margin: '0 0 18px',
-                  flex: 1
-                }}>
-                  {video.summary}
-                </p>
-
-                <div style={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'space-between',
-                  borderTop: '1px solid var(--border-subtle)',
-                  paddingTop: '14px',
-                  marginTop: 'auto'
-                }}>
-                  <button
-                    type="button"
-                    onClick={() => setSelectedVideo(video)}
-                    style={{
-                      background: 'none',
-                      border: 'none',
-                      color: 'var(--emerald-primary)',
-                      fontWeight: 800,
-                      fontSize: '0.88rem',
-                      cursor: 'pointer',
-                      display: 'inline-flex',
-                      alignItems: 'center',
-                      gap: '6px',
-                      padding: 0
-                    }}
-                  >
-                    <span>Watch Masterclass</span>
-                    <span>&rarr;</span>
-                  </button>
-
-                  <a
-                    href={video.youtubeUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    style={{
-                      display: 'inline-flex',
-                      alignItems: 'center',
-                      gap: '6px',
-                      fontSize: '0.78rem',
-                      color: '#DC2626',
-                      fontWeight: 700,
-                      textDecoration: 'none'
-                    }}
-                  >
-                    <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor">
-                      <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
-                    </svg>
-                    <span>YouTube</span>
-                  </a>
-                </div>
-              </div>
-            </div>
-          ))}
+                </button>
+              );
+            })}
+          </div>
         </div>
 
-        {/* Video Player Modal (When clicked, plays right on the site) */}
+        {/* Results Info */}
+        <div style={{
+          display: 'flex',
+          justifyContent: 'space-between',
+          alignItems: 'center',
+          marginBottom: '20px',
+          padding: '0 4px'
+        }}>
+          <span style={{ fontSize: '0.85rem', color: 'var(--text-secondary)', fontWeight: 600 }}>
+            Showing <strong>{filteredVideos.length}</strong> videos
+          </span>
+          <span style={{ fontSize: '0.78rem', color: '#0D9488', fontWeight: 700 }}>
+            Click video to play
+          </span>
+        </div>
+
+        {/* SECTION 1: MASTERCLASSES (16:9) */}
+        {masterclasses.length > 0 && (
+          <div style={{ marginBottom: '40px' }}>
+            <h2 style={{
+              fontSize: '1.25rem',
+              color: 'var(--emerald-deep)',
+              margin: '0 0 16px',
+              fontFamily: 'var(--font-serif)',
+              fontWeight: 800
+            }}>
+              Masterclasses (Full Sessions)
+            </h2>
+
+            <div style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(auto-fit, minmax(340px, 1fr))',
+              gap: '22px'
+            }}>
+              {masterclasses.map((video) => (
+                <div
+                  key={video.id}
+                  className="card"
+                  style={{
+                    borderRadius: '16px',
+                    overflow: 'hidden',
+                    background: '#FFFFFF',
+                    border: '1px solid var(--border-medium)',
+                    boxShadow: '0 4px 16px rgba(0, 0, 0, 0.04)',
+                    display: 'flex',
+                    flexDirection: 'column'
+                  }}
+                >
+                  {/* YouTube Embed (color=white removes red progress bar) */}
+                  <div style={{
+                    position: 'relative',
+                    width: '100%',
+                    paddingBottom: '56.25%',
+                    background: '#0F172A'
+                  }}>
+                    <iframe
+                      src={`https://www.youtube.com/embed/${video.youtubeId}?rel=0&modestbranding=1&color=white`}
+                      title={video.title}
+                      loading="lazy"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                      allowFullScreen
+                      style={{
+                        position: 'absolute',
+                        top: 0,
+                        left: 0,
+                        width: '100%',
+                        height: '100%',
+                        border: 'none'
+                      }}
+                    />
+                  </div>
+
+                  {/* Card Content (Short & Clean) */}
+                  <div style={{ padding: '14px 16px', flex: 1, display: 'flex', flexDirection: 'column' }}>
+                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '6px' }}>
+                      <span style={{ fontSize: '0.70rem', color: '#0D9488', fontWeight: 800, textTransform: 'uppercase' }}>
+                        {video.badge}
+                      </span>
+                      <span style={{ fontSize: '0.68rem', fontWeight: 700, color: '#475569', background: '#F1F5F9', padding: '2px 6px', borderRadius: '4px' }}>
+                        ⏱ {video.duration}
+                      </span>
+                    </div>
+
+                    <h3 style={{ fontSize: '1.02rem', color: 'var(--emerald-deep)', fontWeight: 800, margin: '0 0 6px', lineHeight: 1.3 }}>
+                      {video.title}
+                    </h3>
+
+                    <p style={{ fontSize: '0.82rem', color: 'var(--text-secondary)', lineHeight: 1.4, margin: '0 0 12px', flex: 1 }}>
+                      {video.summary}
+                    </p>
+
+                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', borderTop: '1px solid var(--border-subtle)', paddingTop: '10px' }}>
+                      <button
+                        type="button"
+                        onClick={() => setSelectedVideo(video)}
+                        style={{
+                          background: 'none',
+                          border: 'none',
+                          color: 'var(--emerald-primary)',
+                          fontWeight: 700,
+                          fontSize: '0.80rem',
+                          cursor: 'pointer',
+                          padding: 0
+                        }}
+                      >
+                        Theater View ⛶
+                      </button>
+
+                      <a
+                        href={video.youtubeUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        style={{
+                          fontSize: '0.78rem',
+                          color: '#0D9488',
+                          fontWeight: 700,
+                          textDecoration: 'none'
+                        }}
+                      >
+                        YouTube ↗
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {/* SECTION 2: SHORTS (9:16) */}
+        {shorts.length > 0 && (
+          <div style={{ marginBottom: '46px' }}>
+            <h2 style={{
+              fontSize: '1.25rem',
+              color: 'var(--emerald-deep)',
+              margin: '0 0 16px',
+              fontFamily: 'var(--font-serif)',
+              fontWeight: 800
+            }}>
+              Clinical Shorts & Quick Protocols
+            </h2>
+
+            <div style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(auto-fill, minmax(260px, 1fr))',
+              gap: '18px'
+            }}>
+              {shorts.map((video) => (
+                <div
+                  key={video.id}
+                  className="card"
+                  style={{
+                    borderRadius: '16px',
+                    overflow: 'hidden',
+                    background: '#FFFFFF',
+                    border: '1px solid var(--border-medium)',
+                    boxShadow: '0 4px 14px rgba(0, 0, 0, 0.03)',
+                    display: 'flex',
+                    flexDirection: 'column'
+                  }}
+                >
+                  {/* YouTube Shorts Player (color=white removes red progress bar) */}
+                  <div style={{
+                    position: 'relative',
+                    width: '100%',
+                    paddingBottom: '135%', // Compact vertical height
+                    background: '#0F172A'
+                  }}>
+                    <iframe
+                      src={`https://www.youtube.com/embed/${video.youtubeId}?rel=0&modestbranding=1&color=white`}
+                      title={video.title}
+                      loading="lazy"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                      allowFullScreen
+                      style={{
+                        position: 'absolute',
+                        top: 0,
+                        left: 0,
+                        width: '100%',
+                        height: '100%',
+                        border: 'none'
+                      }}
+                    />
+                  </div>
+
+                  {/* Card Content (Short & Clean) */}
+                  <div style={{ padding: '12px 14px', flex: 1, display: 'flex', flexDirection: 'column' }}>
+                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '4px' }}>
+                      <span style={{ fontSize: '0.68rem', color: '#0D9488', fontWeight: 800, textTransform: 'uppercase' }}>
+                        {video.badge}
+                      </span>
+                      <span style={{ fontSize: '0.66rem', fontWeight: 700, color: '#0D9488', background: 'rgba(13, 148, 136, 0.1)', padding: '1px 5px', borderRadius: '4px' }}>
+                        ⚡ Short
+                      </span>
+                    </div>
+
+                    <h3 style={{ fontSize: '0.94rem', color: 'var(--emerald-deep)', fontWeight: 800, margin: '0 0 5px', lineHeight: 1.3 }}>
+                      {video.title}
+                    </h3>
+
+                    <p style={{ fontSize: '0.78rem', color: 'var(--text-secondary)', lineHeight: 1.4, margin: '0 0 10px', flex: 1 }}>
+                      {video.summary}
+                    </p>
+
+                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', borderTop: '1px solid var(--border-subtle)', paddingTop: '8px' }}>
+                      <button
+                        type="button"
+                        onClick={() => setSelectedVideo(video)}
+                        style={{
+                          background: 'none',
+                          border: 'none',
+                          color: 'var(--emerald-primary)',
+                          fontWeight: 700,
+                          fontSize: '0.76rem',
+                          cursor: 'pointer',
+                          padding: 0
+                        }}
+                      >
+                        Theater ⛶
+                      </button>
+
+                      <a
+                        href={video.youtubeUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        style={{
+                          fontSize: '0.74rem',
+                          color: '#0D9488',
+                          fontWeight: 700,
+                          textDecoration: 'none'
+                        }}
+                      >
+                        Shorts ↗
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {/* Video Theater Modal */}
         {selectedVideo && (
           <div
             style={{
               position: 'fixed',
               inset: 0,
               zIndex: 9999,
-              background: 'rgba(10, 14, 18, 0.88)',
+              background: 'rgba(10, 14, 18, 0.92)',
               backdropFilter: 'blur(10px)',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
-              padding: '20px'
+              padding: '16px'
             }}
             onClick={() => setSelectedVideo(null)}
           >
             <div
               style={{
                 width: '100%',
-                maxWidth: '860px',
+                maxWidth: selectedVideo.type === 'short' ? '420px' : '820px',
                 background: '#121214',
-                borderRadius: '24px',
+                borderRadius: '20px',
                 overflow: 'hidden',
-                boxShadow: '0 25px 60px rgba(0,0,0,0.5)',
+                boxShadow: '0 25px 60px rgba(0,0,0,0.6)',
                 border: '1px solid rgba(255, 255, 255, 0.15)',
                 position: 'relative'
               }}
               onClick={(e) => e.stopPropagation()}
             >
-              {/* Close Button */}
               <button
                 type="button"
                 onClick={() => setSelectedVideo(null)}
                 style={{
                   position: 'absolute',
-                  top: '16px',
-                  right: '16px',
-                  width: '36px',
-                  height: '36px',
+                  top: '12px',
+                  right: '12px',
+                  width: '32px',
+                  height: '32px',
                   borderRadius: '50%',
-                  background: 'rgba(255, 255, 255, 0.15)',
+                  background: 'rgba(255, 255, 255, 0.2)',
                   border: 'none',
                   color: '#FFFFFF',
-                  fontSize: '1.1rem',
+                  fontSize: '1rem',
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
                   cursor: 'pointer',
-                  zIndex: 10
+                  zIndex: 20
                 }}
               >
                 ✕
               </button>
 
-              {/* Video Embed Header */}
-              <div style={{ padding: '20px 24px', borderBottom: '1px solid rgba(255, 255, 255, 0.1)' }}>
-                <span style={{ fontSize: '0.78rem', color: '#00E5D9', fontWeight: 800, textTransform: 'uppercase' }}>
+              <div style={{ padding: '14px 18px', borderBottom: '1px solid rgba(255, 255, 255, 0.1)' }}>
+                <span style={{ fontSize: '0.72rem', color: '#00E5D9', fontWeight: 800, textTransform: 'uppercase' }}>
                   {selectedVideo.categoryLabel}
                 </span>
-                <h3 style={{ margin: '4px 0 0', color: '#FFFFFF', fontSize: '1.25rem', fontWeight: 800 }}>
+                <h3 style={{ margin: '3px 0 0', color: '#FFFFFF', fontSize: '1.05rem', fontWeight: 800, paddingRight: '36px' }}>
                   {selectedVideo.title}
                 </h3>
               </div>
 
-              {/* Video Player Container */}
-              <div style={{ position: 'relative', width: '100%', paddingBottom: '56.25%', background: '#000000' }}>
+              <div style={{
+                position: 'relative',
+                width: '100%',
+                paddingBottom: selectedVideo.type === 'short' ? '135%' : '56.25%',
+                background: '#000000'
+              }}>
                 <iframe
-                  src={`https://www.youtube.com/embed/${selectedVideo.youtubeId}?autoplay=1&rel=0`}
+                  src={`https://www.youtube.com/embed/${selectedVideo.youtubeId}?autoplay=1&rel=0&modestbranding=1&color=white`}
                   title={selectedVideo.title}
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                   allowFullScreen
@@ -477,25 +692,32 @@ export default function VideosPage() {
                 />
               </div>
 
-              {/* Video Modal Footer */}
-              <div style={{ padding: '20px 24px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '14px' }}>
-                <p style={{ margin: 0, fontSize: '0.88rem', color: 'rgba(255, 255, 255, 0.75)', maxWidth: '580px' }}>
+              <div style={{
+                padding: '14px 18px',
+                display: 'flex',
+                justifyContent: 'space-between',
+                alignItems: 'center',
+                flexWrap: 'wrap',
+                gap: '10px',
+                background: '#16181D'
+              }}>
+                <p style={{ margin: 0, fontSize: '0.80rem', color: 'rgba(255, 255, 255, 0.75)', maxWidth: '440px' }}>
                   {selectedVideo.summary}
                 </p>
                 <Link
                   to="/booking"
                   onClick={() => setSelectedVideo(null)}
                   style={{
-                    padding: '10px 22px',
-                    borderRadius: '10px',
+                    padding: '8px 16px',
+                    borderRadius: '8px',
                     background: '#00E5D9',
                     color: '#121214',
                     fontWeight: 800,
-                    fontSize: '0.86rem',
+                    fontSize: '0.80rem',
                     textDecoration: 'none'
                   }}
                 >
-                  Book 1:1 Consultation &rarr;
+                  Book 1:1 Session &rarr;
                 </Link>
               </div>
             </div>
@@ -504,41 +726,42 @@ export default function VideosPage() {
 
         {/* Bottom Consultation Roadblock */}
         <div style={{
-          padding: '40px 32px',
-          borderRadius: '24px',
+          padding: '32px 24px',
+          borderRadius: '20px',
           background: 'linear-gradient(135deg, #0A0E0C 0%, #17261E 100%)',
           color: '#FFFFFF',
           textAlign: 'center',
-          boxShadow: '0 20px 50px rgba(0, 0, 0, 0.15)',
-          border: '1px solid rgba(255, 255, 255, 0.1)'
+          boxShadow: '0 15px 40px rgba(0, 0, 0, 0.12)',
+          border: '1px solid rgba(255, 255, 255, 0.08)'
         }}>
-          <h2 style={{ fontSize: '1.85rem', color: '#FFFFFF', margin: '0 0 10px', fontFamily: 'var(--font-serif)', fontWeight: 800 }}>
+          <h2 style={{ fontSize: '1.6rem', color: '#FFFFFF', margin: '0 0 8px', fontFamily: 'var(--font-serif)', fontWeight: 800 }}>
             Have Questions About Your Symptoms?
           </h2>
-          <p style={{ fontSize: '0.98rem', color: 'rgba(255, 255, 255, 0.8)', maxWidth: '620px', margin: '0 auto 24px', lineHeight: 1.6 }}>
-            Connect with Reshmi Verma in a dedicated 60-minute 1-on-1 Health Clarity Session to analyze your blood biomarkers, gut symptoms, and breathing mechanics.
+          <p style={{ fontSize: '0.92rem', color: 'rgba(255, 255, 255, 0.8)', maxWidth: '560px', margin: '0 auto 20px', lineHeight: 1.5 }}>
+            Book a 1-on-1 Health Clarity Session with Reshmi Verma to analyze your blood biomarkers, gut symptoms, and breathing mechanics.
           </p>
-          <div style={{ display: 'flex', justifyContent: 'center', gap: '14px', flexWrap: 'wrap' }}>
+          <div style={{ display: 'flex', justifyContent: 'center', gap: '12px', flexWrap: 'wrap' }}>
             <Link
               to="/booking"
               className="btn btn-primary"
-              style={{ padding: '13px 28px', background: '#00E5D9', color: '#121214', fontWeight: 800, borderRadius: '12px' }}
+              style={{ padding: '11px 24px', background: '#00E5D9', color: '#121214', fontWeight: 800, borderRadius: '10px', fontSize: '0.88rem' }}
             >
-              Book 1:1 Health Clarity Consultation &rarr;
+              Book 1:1 Consultation &rarr;
             </Link>
             <Link
               to="/assessment"
               style={{
-                padding: '12px 24px',
-                background: 'rgba(255, 255, 255, 0.12)',
+                padding: '10px 20px',
+                background: 'rgba(255, 255, 255, 0.1)',
                 color: '#FFFFFF',
-                border: '1.5px solid rgba(255, 255, 255, 0.35)',
-                borderRadius: '12px',
+                border: '1.5px solid rgba(255, 255, 255, 0.3)',
+                borderRadius: '10px',
                 fontWeight: 700,
-                textDecoration: 'none'
+                textDecoration: 'none',
+                fontSize: '0.86rem'
               }}
             >
-              Take Free Health Assessment
+              Free Assessment
             </Link>
           </div>
         </div>
