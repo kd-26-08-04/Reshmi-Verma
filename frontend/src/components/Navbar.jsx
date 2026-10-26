@@ -172,7 +172,6 @@ export default function Navbar() {
                 <div className="dropdown-item-text">
                   <div className="dropdown-title-row">
                     <span className="dropdown-item-title">Testimonials</span>
-                    <span className="dropdown-tag-badge" style={{ background: '#FFF0F6', color: '#FF007F', border: '1px solid #FF80BF' }}>500+</span>
                   </div>
                 </div>
               </Link>
@@ -212,15 +211,10 @@ export default function Navbar() {
                 className={`dropdown-item ${location.pathname === '/assessment' ? 'active' : ''}`}
                 onClick={closeMenu}
               >
-                <div className="dropdown-item-icon health-icon">
-                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
-                    <path d="M22 12h-4l-3 9L9 3l-3 9H2"></path>
-                  </svg>
-                </div>
+
                 <div className="dropdown-item-text">
                   <div className="dropdown-title-row">
                     <span className="dropdown-item-title">Health Assessment</span>
-                    <span className="dropdown-tag-badge saffron">Gut &amp; Metabolism</span>
                   </div>
                 </div>
               </Link>
@@ -230,15 +224,10 @@ export default function Navbar() {
                 className={`dropdown-item ${location.pathname === '/breathing-assessment' ? 'active' : ''}`}
                 onClick={closeMenu}
               >
-                <div className="dropdown-item-icon breath-icon">
-                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
-                    <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
-                  </svg>
-                </div>
                 <div className="dropdown-item-text">
                   <div className="dropdown-title-row">
                     <span className="dropdown-item-title">Breathing Assessment</span>
-                    <span className="dropdown-tag-badge gold">Oxygen Advantage®</span>
+
                   </div>
                 </div>
               </Link>

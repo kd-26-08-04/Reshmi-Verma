@@ -62,6 +62,15 @@
       "role": "client",
       "id": "usr_1791696203172_ly6lv",
       "createdAt": "2026-10-11T05:23:23.172Z"
+    },
+    {
+      "name": "Kuldeep Tiwari KRISHNA KUMAR Tiwari",
+      "email": "kdkuldeeptiwari26@gmail.com",
+      "phone": "+917058972300",
+      "passwordHash": "$2b$10$NMZvfIkQ2AMSY5T3vJut4.9/G8lPag7JEmiI1cbxP/W.Y3clBGeC2",
+      "role": "client",
+      "id": "usr_1792997036632_cto84",
+      "createdAt": "2026-10-26T06:43:56.632Z"
     }
   ],
   "bookings": [
@@ -1158,20 +1167,20 @@
       "updatedAt": "2026-10-19T12:28:15.782Z"
     },
     {
-      "id": "lead_1792413284572_0dz4a",
+      "id": "lead_1792997109787_0mfuy",
       "name": "Kuldeep Tiwari Tiwari",
       "phone": "0987654321",
       "email": "kuldeept.cse22@sbjit.edu.in",
-      "source": "welcome_modal_step3",
-      "step": "Chosen: Health Assessment",
+      "source": "welcome_modal",
+      "step": "Redirected to Razorpay Hosted Checkout",
       "answers": {},
       "scores": null,
-      "status": "in_progress",
+      "status": "initiated_payment",
       "followUpStatus": "pending",
       "notes": "",
       "bookingId": null,
       "createdAt": "2026-10-19T11:56:25.381Z",
-      "updatedAt": "2026-10-19T12:34:55.017Z"
+      "updatedAt": "2026-10-26T06:45:09.787Z"
     },
     {
       "id": "lead_1792411497908_7xfy7",

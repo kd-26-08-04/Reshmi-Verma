@@ -914,7 +914,7 @@ export default function VideosPage() {
               className="btn btn-primary"
               style={{ padding: '11px 22px', background: '#00E5D9', color: '#121214', fontWeight: 800, borderRadius: '10px', fontSize: '0.86rem' }}
             >
-              Book 1:1 Consultation &rarr;
+              Book 1:1 Consultation
             </Link>
             <Link
               to="/assessment"

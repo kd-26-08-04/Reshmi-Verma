@@ -315,7 +315,7 @@ export default function HomePage() {
         <div className="container">
           <div className="clinical-approach-card">
             <p className="clinical-approach-lead">
-              Her clinical approach unifies 20+ years of laboratory diagnostic expertise, gut microbiome testing, #13 Oxygen Advantage® breathwork, and identifying the hidden biochemical root causes that trigger chronic inflammation, gut dysbiosis, and metabolic fatigue.
+              Her clinical approach unifies 20+ years of laboratory diagnostic expertise, gut microbiome testing, Oxygen Advantage® breathwork, and identifying the hidden biochemical root causes that trigger chronic inflammation, gut dysbiosis, and metabolic fatigue.
             </p>
 
             <div className="clinical-approach-buttons">
@@ -460,7 +460,7 @@ export default function HomePage() {
         <div className="container">
           <div className="conditions-scope-card">
             <p className="conditions-scope-text-primary">
-              She addresses chronic and debilitating health challenges like <strong>Constant Fatigue, Severe Bloating, Breathing Pattern Disorders, Sinus &amp; Airway Blockages, Chronic Constipation, Acid Reflux, Indigestion, SIBO, Frequent Stomach Upsets, Hormonal Acne, Irregular or Absent Periods, Fibroids, Severe Period Pain, Mood Swings, PCOD / PCOS, Endometriosis, Insulin Resistance, Prediabetes &amp; Diabetes, Fatty Liver, Chronic Itching, Urticaria, Eczema, Psoriasis, Autoimmune Conditions, Hashimoto's Thyroiditis</strong>, and systemic cellular exhaustion using 100% natural, science-backed interventions like functional food biochemistry, #13 Oxygen Advantage® respiratory pacing, and targeted lifestyle optimization.
+              She addresses chronic and debilitating health challenges like <strong>Constant Fatigue, Severe Bloating, Breathing Pattern Disorders, Sinus &amp; Airway Blockages, Chronic Constipation, Acid Reflux, Indigestion, SIBO, Frequent Stomach Upsets, Hormonal Acne, Irregular or Absent Periods, Fibroids, Severe Period Pain, Mood Swings, PCOD / PCOS, Endometriosis, Insulin Resistance, Prediabetes &amp; Diabetes, Fatty Liver, Chronic Itching, Urticaria, Eczema, Psoriasis, Autoimmune Conditions, Hashimoto's Thyroiditis</strong>, and systemic cellular exhaustion using 100% natural, science-backed interventions like functional food biochemistry, Oxygen Advantage® respiratory pacing, and targeted lifestyle optimization.
             </p>
             {/* Clinical Advisory & Scope Dropdown Toggle */}
             <div style={{ marginTop: '12px', borderTop: '1px dashed rgba(18, 18, 20, 0.12)', paddingTop: '10px' }}>

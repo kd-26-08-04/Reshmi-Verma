@@ -127,7 +127,7 @@ export default function TestimonialsPage() {
   return (
     <main className="testimonials-page" style={{ background: 'var(--bg-primary)', minHeight: '100vh', paddingTop: '100px', paddingBottom: '90px' }}>
       <div className="container">
-        
+
         {/* Hero Header */}
         <div style={{ textAlign: 'center', maxWidth: '820px', margin: '0 auto 40px' }}>
           <span style={{
@@ -392,7 +392,7 @@ export default function TestimonialsPage() {
             </p>
             <div style={{ display: 'flex', gap: '14px', flexWrap: 'wrap' }}>
               <Link to="/booking" className="btn btn-primary" style={{ padding: '12px 26px', background: '#FFFFFF', color: '#111111', fontWeight: 800 }}>
-                Book 1:1 Consultation &rarr;
+                Book 1:1 Consultation
               </Link>
               <Link to="/about" className="btn btn-secondary" style={{ padding: '12px 24px', background: 'transparent', color: '#FFFFFF', borderColor: 'rgba(255,255,255,0.3)' }}>
                 Read Reshmi's Full Journey &rarr;
