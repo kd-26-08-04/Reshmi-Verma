@@ -30,6 +30,8 @@ import availableSlotsHandler from './api/available-slots.js';
 import adminScheduleHandler from './api/admin-schedule.js';
 import assessmentLeadHandler from './api/assessment-lead.js';
 import adminLeadsHandler from './api/admin-leads.js';
+import adminWhatsappConfigHandler from './api/admin-whatsapp-config.js';
+import whatsappSendReportHandler from './api/whatsapp-send-report.js';
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -113,6 +115,11 @@ app.post('/api/assessment-lead', wrapHandler(assessmentLeadHandler));
 app.get('/api/admin-leads', wrapHandler(adminLeadsHandler));
 app.post('/api/admin-leads', wrapHandler(adminLeadsHandler));
 app.post('/api/admin-update-lead', wrapHandler(adminLeadsHandler));
+
+// WhatsApp Automation endpoints
+app.get('/api/admin-whatsapp-config', wrapHandler(adminWhatsappConfigHandler));
+app.post('/api/admin-whatsapp-config', wrapHandler(adminWhatsappConfigHandler));
+app.post('/api/whatsapp-send-report', wrapHandler(whatsappSendReportHandler));
 
 // Clinical Intake Questionnaire endpoints
 app.get('/api/questionnaire-template', wrapHandler(questionnaireTemplateHandler));

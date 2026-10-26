@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://reshmiverma.com/sitemap.xml
+Sitemap: https://healthwithreshmi.com/sitemap.xml

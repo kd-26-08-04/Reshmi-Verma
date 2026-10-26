@@ -1,4 +1,5 @@
 import { db } from './lib/db.js';
+import { whatsappService } from './lib/whatsapp.js';
 
 export default async function handler(req, res) {
   // Allow CORS preflight
@@ -33,9 +34,20 @@ export default async function handler(req, res) {
       bookingId
     });
 
+    // Auto-dispatch assessment report to client WhatsApp if completed and not already sent
+    let whatsappResult = null;
+    if (scores && (status === 'completed_not_booked' || step?.includes('Completed Assessment'))) {
+      try {
+        whatsappResult = await whatsappService.sendAssessmentReportToClient(lead);
+      } catch (waErr) {
+        console.warn('Auto-WhatsApp dispatch notice:', waErr.message);
+      }
+    }
+
     return res.status(200).json({
       success: true,
-      lead
+      lead,
+      whatsapp: whatsappResult
     });
   } catch (err) {
     console.error('Assessment lead error:', err);

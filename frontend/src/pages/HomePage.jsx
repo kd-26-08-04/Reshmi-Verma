@@ -226,14 +226,14 @@ export default function HomePage() {
               </p>
 
               <div className="hero-cta-group" style={{ display: 'flex', gap: '10px', flexWrap: 'wrap', alignItems: 'center' }}>
-                <Link to="/booking" className="btn btn-primary btn-lg">
-                  <span>Book Consultation</span>
-                </Link>
                 <Link to="/assessment" className="btn btn-health btn-lg">
                   <span>Health Quiz</span>
                 </Link>
                 <Link to="/breathing-assessment" className="btn btn-breath btn-lg">
                   <span>Breath Test</span>
+                </Link>
+                <Link to="/booking" className="btn btn-primary btn-lg">
+                  <span>Book Consultation</span>
                 </Link>
               </div>
 

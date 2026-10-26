@@ -761,6 +761,30 @@ export default function AssessmentPage() {
                 </p>
               </div>
 
+              {/* WhatsApp Report Sent Confirmation Banner */}
+              <div
+                style={{
+                  background: 'linear-gradient(135deg, #ECFDF5 0%, #D1FAE5 100%)',
+                  border: '1px solid #6EE7B7',
+                  borderRadius: '14px',
+                  padding: '12px 18px',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  gap: '10px',
+                  marginBottom: '22px',
+                  color: '#065F46',
+                  fontSize: '0.9rem',
+                  fontWeight: 600,
+                  boxShadow: '0 2px 8px rgba(5, 150, 105, 0.08)'
+                }}
+              >
+                <span style={{ fontSize: '1.25rem' }}>📲</span>
+                <span>
+                  <strong>WhatsApp Notification:</strong> Your clinical resilience score summary is being dispatched directly to your registered WhatsApp number.
+                </span>
+              </div>
+
               {/* Composite Overall Index Box */}
               <div style={{
                 background: 'linear-gradient(135deg, rgba(255,237,213,0.7) 0%, rgba(255,255,255,0.85) 100%)',
