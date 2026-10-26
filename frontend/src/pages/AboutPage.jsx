@@ -126,7 +126,8 @@ export default function AboutPage() {
           >
             <div style={{ transition: 'transform 0.3s ease' }}>
               <div style={{ fontSize: '2.5rem', fontWeight: 800, color: 'var(--emerald-deep)', fontFamily: 'var(--font-serif)' }}>
-                <AnimatedNumber value={20} suffix="+" />
+                <AnimatedNumber value={20} />
+                <span> Yrs</span>
               </div>
               <div style={{ fontSize: '0.88rem', color: 'var(--text-secondary)', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.04em' }}>
                 Years in Clinical Diagnostics
@@ -137,7 +138,7 @@ export default function AboutPage() {
                 <AnimatedNumber value={38} suffix=" kg" />
               </div>
               <div style={{ fontSize: '0.88rem', color: 'var(--text-secondary)', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.04em' }}>
-                Personal Reversal &amp; Transformation
+                Personal Transformation
               </div>
             </div>
             <div style={{ transition: 'transform 0.3s ease' }}>
@@ -179,18 +180,18 @@ export default function AboutPage() {
             </div>
 
             <div className="about-content">
-              <span className="sub-title">Integrative Perspective to Health</span>
+              <span className="sub-title">Functional & Integrative Perspective to Health</span>
               <h2 style={{ fontSize: '2.5rem', color: 'var(--emerald-deep)', margin: '4px 0 10px' }}>Meet Reshmi Verma</h2>
               <p className="lead" style={{ fontSize: '1rem', color: 'var(--emerald-deep)', fontWeight: 600, fontStyle: 'italic', marginBottom: '18px' }}>
                 Don’t Wait to Feel Unwell to Start Living Well.
               </p>
 
               <p style={{ color: 'var(--text-secondary)', marginBottom: '14px', lineHeight: 1.7, fontSize: '1.02rem' }}>
-                Reshmi Verma is the <strong>Director of Rainbow Medinova Diagnostic Services, Nagpur</strong>, with <strong>18 years of experience</strong> in diagnostics. A Functional Nutritionist, Breathwork Facilitator, Oxygen Advantage Coach, Certified Biohacker, and Breath Resilience Instructor, she brings together healthcare insights, root-cause nutrition, breathwork, and lifestyle strategies to help people take a more proactive, personalised approach to health.
+                Reshmi Verma is the <strong>Director of Rainbow Medinova Diagnostic Services, Nagpur</strong>, with <strong>20 years of experience</strong> in diagnostics. A Functional Nutritionist, Breathwork Facilitator, Oxygen Advantage Coach, Certified Biohacker, and Breath Resilience Instructor, she brings together healthcare insights, root-cause nutrition, breathwork, and lifestyle strategies to help people take a more proactive, personalised approach to health.
               </p>
 
               <p style={{ color: 'var(--text-secondary)', marginBottom: '16px', lineHeight: 1.7, fontSize: '1.02rem' }}>
-                Her work is deeply informed by her own transformation — losing <strong>38 kg, from 98 kg to 65 kg</strong> — and learning that lasting health goes far beyond weight loss. She believes in understanding the body, looking beyond symptoms, and building sustainable habits that support metabolic health, energy, resilience, and healthy ageing.
+                Her work is deeply informed by her own transformation,losing <strong>38 kg, from 98 kg to 65 kg</strong> and learning that lasting health goes far beyond weight loss. She believes in understanding the body, looking beyond symptoms, and building sustainable habits that support metabolic health, energy, resilience, and healthy ageing.
               </p>
 
               {/* Philosophy Quote Callout */}
@@ -216,7 +217,7 @@ export default function AboutPage() {
                   <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
                     <polyline points="20 6 9 17 4 12"></polyline>
                   </svg>
-                  <span>20+ Years in Healthcare &amp; Diagnostics</span>
+                  <span>20+ Yrs in Healthcare &amp; Diagnostics</span>
                 </div>
                 <div className="credential-item">
                   <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">

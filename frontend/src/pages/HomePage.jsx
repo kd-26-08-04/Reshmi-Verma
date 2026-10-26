@@ -259,8 +259,8 @@ export default function HomePage() {
               {/* Hero Clinical Highlights */}
               <div className="hero-stats-row">
                 <div className="stat-item">
-                  <div className="stat-num">18+</div>
-                  <div className="stat-label">Years Healthcare &amp; Diagnostics</div>
+                  <div className="stat-num">20+ Yrs</div>
+                  <div className="stat-label">Healthcare &amp; Diagnostics</div>
                 </div>
                 <div className="stat-item">
                   <div className="stat-num">100%</div>
@@ -293,9 +293,8 @@ export default function HomePage() {
 
                 {/* Floating Top Trust Badge */}
                 <div className="hero-floating-badge badge-top-right">
-                  <div className="badge-icon" style={{ fontSize: "1rem", fontWeight: 800 }}>18+</div>
                   <div className="badge-text">
-                    <strong>18+ Years</strong>
+                    <strong>20+ Years</strong>
                     <span>Healthcare &amp; Diagnostics</span>
                   </div>
                 </div>
@@ -815,20 +814,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 7. Clinic Sanctuary Showcase */}
-      <section className="section" style={{ paddingTop: 0 }}>
-        <div className="container">
-          <div style={{ borderRadius: 'var(--radius-xl)', overflow: 'hidden', position: 'relative', height: '380px', boxShadow: 'var(--shadow-lg)', border: '1px solid var(--border-medium)' }}>
-            <img src="/assets/images/clinic-sanctuary.jpg" alt="Integrative Wellness Sanctuary" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
-            <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, padding: '40px', background: 'linear-gradient(180deg, transparent 0%, rgba(15, 23, 42, 0.92) 100%)', color: 'white' }}>
-              <h3 style={{ color: 'white', fontSize: '1.85rem', marginBottom: '8px' }}>A Space Designed For Deep Biological Restoration</h3>
-              <p style={{ color: '#FED7AA', maxWidth: '600px', fontSize: '0.95rem' }}>
-                Clean, light-filled, nature-immersed clinical environment where advanced diagnostics converge with compassionate functional care.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
+
 
 
 

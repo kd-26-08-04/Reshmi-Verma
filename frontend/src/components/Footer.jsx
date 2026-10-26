@@ -102,7 +102,7 @@ export default function Footer() {
               <ul className="footer-links">
                 <li style={{ color: 'var(--text-secondary)', fontSize: '0.82rem', lineHeight: 1.4 }}>
                   <strong>Clinical Diagnostics &amp; Health Sanctuary</strong><br />
-                  Rainbow Medinova, 4B,
+                  Rainbow Medinova, 4B, Central Bazar road, Ramdaspeth, Nagpur 440010.
                 </li>
                 <li>
                   <a href="mailto:support.reshmiverma@gmail.com" style={{ display: 'flex', alignItems: 'center', gap: '8px', wordBreak: 'break-all' }}>
