@@ -219,7 +219,12 @@ export default function HomePage() {
                 <span>Functional Nutritionist &bull; Somatic Breathwork Facilitator &bull; Biohacker</span>
               </div>
 
-              <h1>Don't Wait to Feel Unwell to <span className="text-gradient">Start Living Well</span>.</h1>
+              <h1 style={{
+                background: 'linear-gradient(135deg, #0a0a0a 0%, #1a2a2a 35%, #00A99D 70%, #00E5D9 100%)',
+                WebkitBackgroundClip: 'text',
+                WebkitTextFillColor: 'transparent',
+                backgroundClip: 'text'
+              }}>Don’t Wait to Feel Unwell to Start Living Well.</h1>
 
               <p style={{ fontSize: 'clamp(1.1rem, 2.5vw, 1.25rem)', fontWeight: 600, color: 'var(--emerald-deep)', margin: '-4px 0 16px', lineHeight: 1.45 }}>
                 A More Proactive, Root-Cause Approach to Health, Built Around You.
@@ -231,10 +236,10 @@ export default function HomePage() {
 
               <div className="hero-cta-group" style={{ display: 'flex', gap: '10px', flexWrap: 'wrap', alignItems: 'center' }}>
                 <Link to="/assessment" className="btn btn-health btn-lg">
-                  <span>Health Quiz</span>
+                  <span>Health Assessment</span>
                 </Link>
                 <Link to="/breathing-assessment" className="btn btn-breath btn-lg">
-                  <span>Breath Test</span>
+                  <span>Breath Assessment</span>
                 </Link>
                 <Link to="/booking" className="btn btn-primary btn-lg">
                   <span>Book Consultation</span>

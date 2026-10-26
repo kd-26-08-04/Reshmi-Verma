@@ -55,7 +55,7 @@ export default function AboutPage() {
     },
     {
       q: 'What is the fee for the 1:1 Health Clarity Consultation?',
-      a: 'The 1:1 Health Clarity Consultation is ₹1,999 for a full 60-minute in-depth video session. This includes pre-session review of your lab reports, interactive symptom decoding, and a tailored recovery roadmap.'
+      a: 'The 1:1 Health Clarity Consultation is ₹2,999 for a full 60-minute in-depth video session. This includes pre-session review of your lab reports, interactive symptom decoding, and a tailored recovery roadmap.'
     }
   ];
 
@@ -181,16 +181,16 @@ export default function AboutPage() {
             <div className="about-content">
               <span className="sub-title">Integrative Perspective to Health</span>
               <h2 style={{ fontSize: '2.5rem', color: 'var(--emerald-deep)', margin: '4px 0 10px' }}>Meet Reshmi Verma</h2>
-              <p className="lead" style={{ fontSize: '1.12rem', color: 'var(--emerald-deep)', fontWeight: 700, marginBottom: '18px' }}>
-                Biotechnologist &bull; MBA &bull; Functional Nutritionist &bull; Breathwork Facilitator &bull; Biohacker
+              <p className="lead" style={{ fontSize: '1rem', color: 'var(--emerald-deep)', fontWeight: 600, fontStyle: 'italic', marginBottom: '18px' }}>
+                Don’t Wait to Feel Unwell to Start Living Well.
               </p>
 
               <p style={{ color: 'var(--text-secondary)', marginBottom: '14px', lineHeight: 1.7, fontSize: '1.02rem' }}>
-                I’m a <strong>Biotechnologist and MBA in Marketing &amp; HR</strong>, with a specialization in <strong>Medical Tourism</strong>, and have spent <strong>over 20 years</strong> in the world of diagnostics and healthcare. I’m the <strong>Director of Rainbow Medinova Diagnostic Services</strong> &amp; <strong>Co-founder of Neofit Gym</strong>.
+                Reshmi Verma is the <strong>Director of Rainbow Medinova Diagnostic Services, Nagpur</strong>, with <strong>18 years of experience</strong> in diagnostics. A Functional Nutritionist, Breathwork Facilitator, Oxygen Advantage Coach, Certified Biohacker, and Breath Resilience Instructor, she brings together healthcare insights, root-cause nutrition, breathwork, and lifestyle strategies to help people take a more proactive, personalised approach to health.
               </p>
 
               <p style={{ color: 'var(--text-secondary)', marginBottom: '16px', lineHeight: 1.7, fontSize: '1.02rem' }}>
-                As a Functional Nutritionist, Biohacker &amp; Gut Health Coach, I’ve studied Functional Nutrition across <strong>India, the USA and Australia</strong>, and trained as a Breath Resilience Instructor and Circular Connected Breathwork Facilitator, with a deep interest in Longevity.
+                Her work is deeply informed by her own transformation — losing <strong>38 kg, from 98 kg to 65 kg</strong> — and learning that lasting health goes far beyond weight loss. She believes in understanding the body, looking beyond symptoms, and building sustainable habits that support metabolic health, energy, resilience, and healthy ageing.
               </p>
 
               {/* Philosophy Quote Callout */}
@@ -208,7 +208,7 @@ export default function AboutPage() {
                   lineHeight: 1.6
                 }}
               >
-                &ldquo;Perhaps my most personal qualification is my own transformation losing more than 38 kg (from 98 kg to the 60s kg) and completely changing my relationship with health. Today, I bring together science, healthcare experience and lived transformation to help people build better health, greater resilience and lasting change.&rdquo;
+                Her philosophy is simple: <strong style={{ fontStyle: 'normal' }}>Fitness is cheaper than illness.</strong> She empowers people to take charge of their health today, so they can live with greater vitality, confidence, and wellbeing tomorrow.
               </div>
 
               <div className="credentials-list">
@@ -430,7 +430,7 @@ export default function AboutPage() {
           </span>
           <h2 style={{ color: 'white', fontSize: 'clamp(1.45rem, 5vw, 2.6rem)', marginBottom: '12px', lineHeight: 1.25 }}>Ready to Uncover Your Health Blueprint?</h2>
           <p style={{ color: '#FED7AA', maxWidth: '640px', margin: '0 auto 20px', fontSize: 'clamp(0.85rem, 2.5vw, 1.1rem)', lineHeight: 1.5 }}>
-            Book your 60-minute 1:1 Health Clarity Consultation with Reshmi Verma (₹1,999) to connect your symptoms, laboratory diagnostics, and recovery roadmap.
+            Book your 60-minute 1:1 Health Clarity Consultation with Reshmi Verma (₹2,999) to connect your symptoms, laboratory diagnostics, and recovery roadmap.
           </p>
           <div className="cta-dual-btn-row">
             <Link

@@ -3,11 +3,11 @@ import React, { useState, useRef, useEffect } from 'react';
 const knowledgeBase = [
   {
     triggers: ['price', 'fee', 'cost', 'charge', 'rate', 'how much', 'pricing'],
-    reply: "Our official 1:1 consultation is the Health Clarity Session — ₹1,999 for a comprehensive 60-minute deep dive directly with Reshmi Verma. In this session, Reshmi connects the dots across your health history, reviews previous blood diagnostics, evaluates gut permeability and breathing biomechanics, and designs your tailored recovery roadmap."
+    reply: "Our official 1:1 consultation is the Health Clarity Session — ₹2,999 for a comprehensive 60-minute deep dive directly with Reshmi Verma. In this session, Reshmi connects the dots across your health history, reviews previous blood diagnostics, evaluates gut permeability and breathing biomechanics, and designs your tailored recovery roadmap."
   },
   {
     triggers: ['clarity', 'health clarity', 'session', 'consultation', 'what happens', 'book', 'appointment'],
-    reply: "The Health Clarity Session (60 min • ₹1,999) is the bridge from insight to lasting wellness. Reshmi Verma explores your whole health story, analyzes your gut mucosal ecosystem, assesses breathing tolerance, and establishes your customized health pathway. You can click 'Book a Health Clarity Session' anytime to select your preferred date and slot."
+    reply: "The Health Clarity Session (60 min • ₹2,999) is the bridge from insight to lasting wellness. Reshmi Verma explores your whole health story, analyzes your gut mucosal ecosystem, assesses breathing tolerance, and establishes your customized health pathway. You can click 'Book a Health Clarity Session' anytime to select your preferred date and slot."
   },
   {
     triggers: ['reshmi', 'who is', 'qualification', 'credential', 'background', 'bio'],
@@ -48,7 +48,7 @@ export default function EvaAssistant({ isBookingOrAssessment = false }) {
   const [messages, setMessages] = useState([
     {
       sender: 'bot',
-      text: "Hi, I'm Eva, your HealthwithReshmi AI Assistant! How can I guide you today regarding nutrition, gut health, breathwork, taking our free health assessment, or booking a Health Clarity Session (₹1,999)?"
+      text: "Hi, I'm Eva, your HealthwithReshmi AI Assistant! How can I guide you today regarding nutrition, gut health, breathwork, taking our free health assessment, or booking a Health Clarity Session (₹2,999)?"
     }
   ]);
   const [inputVal, setInputVal] = useState('');

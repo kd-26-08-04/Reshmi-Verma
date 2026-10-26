@@ -11,7 +11,7 @@ const DEFAULT_PRICING_TIERS = {
     badge: 'Official 1:1 Clinical Consultation',
     title: '1:1 Health Clarity Session',
     duration: '60 Minutes • Deep Clinical Video Session',
-    price: 1999,
+    price: 2999,
     featured: true,
     desc: 'A comprehensive 60-minute 1:1 deep dive with Reshmi Verma to explore your health story, analyze symptom patterns, review blood diagnostics, evaluate breathing mechanics, and build your personalized recovery blueprint.',
     features: [
@@ -222,7 +222,7 @@ export default function BookingPage() {
       emergencyContact: formData.emergencyContact,
       notes: formData.notes,
       serviceName: '1:1 Health Clarity Consultation (60 min)',
-      amount: 1999,
+      amount: 2999,
       initiatedAt: new Date().toISOString()
     };
 
@@ -349,7 +349,7 @@ export default function BookingPage() {
 
                 <div style={{ display: 'flex', alignItems: 'baseline', gap: '4px' }}>
                   <span style={{ fontSize: '1.2rem', fontWeight: 800, color: '#121214' }}>₹</span>
-                  <span style={{ fontSize: '1.75rem', fontWeight: 800, color: '#121214', lineHeight: 1 }}>1,999</span>
+                  <span style={{ fontSize: '1.75rem', fontWeight: 800, color: '#121214', lineHeight: 1 }}>2,999</span>
                   <span style={{ fontSize: '0.78rem', color: 'var(--text-muted)', fontWeight: 600 }}>/ 60 mins</span>
                 </div>
               </div>
@@ -359,7 +359,7 @@ export default function BookingPage() {
                 {currentTier.title || currentTier.name}
               </h3>
               <div style={{ color: '#0D827B', fontWeight: 600, fontSize: '0.84rem', display: 'flex', alignItems: 'center', gap: '6px', marginBottom: '12px' }}>
-                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2"><circle cx="12" cy="12" r="10" /><polyline points="12 6 12 12 16 14" /></svg>
                 <span>60 Minutes &bull; Direct 1:1 Clinical Video Call with Reshmi Verma</span>
               </div>
 
@@ -595,7 +595,7 @@ export default function BookingPage() {
                     <span style={{ fontSize: '0.78rem', color: 'var(--text-muted)' }}>Direct 1-on-1 private video session with Reshmi Verma</span>
                   </div>
                 </div>
-                <span style={{ fontSize: '1.25rem', fontWeight: 800, color: 'var(--emerald-primary)' }}>₹1,999</span>
+                <span style={{ fontSize: '1.25rem', fontWeight: 800, color: 'var(--emerald-primary)' }}>₹2,999</span>
               </div>
 
               {/* Compact Consultation Notes */}

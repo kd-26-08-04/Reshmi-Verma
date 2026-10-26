@@ -515,7 +515,7 @@ export default function AdminPage() {
       title: 'Specialized Clinical Session',
       badge: 'Specialized Care',
       duration: '45 Minutes • Focused Care',
-      price: 1999,
+      price: 2999,
       desc: 'Focused 1-on-1 session to target specific health objectives and biomarker calibration.',
       features: [
         'Detailed symptom & diet assessment',
@@ -649,7 +649,7 @@ export default function AdminPage() {
   return (
     <>
       <main className="admin-container">
-        
+
         {/* Admin Header Card */}
         <div className="admin-header-card">
           <div style={{ display: 'flex', alignItems: 'center', gap: '18px', flexWrap: 'wrap' }}>
@@ -1381,7 +1381,7 @@ export default function AdminPage() {
             </div>
 
             <div className="admin-schedule-grid" style={{ marginBottom: '24px' }}>
-              
+
               {/* Card 1: Working Days of the Week */}
               <div style={{ background: 'white', borderRadius: '20px', padding: '24px', border: '1px solid var(--border-subtle)', boxShadow: 'var(--shadow-sm)' }}>
                 <h4 style={{ fontSize: '1.05rem', color: 'var(--emerald-deep)', margin: '0 0 8px', display: 'flex', alignItems: 'center', gap: '8px' }}>
@@ -1505,7 +1505,7 @@ export default function AdminPage() {
             </div>
 
             <div className="admin-schedule-grid" style={{ marginBottom: '24px' }}>
-              
+
               {/* Card 3: Block Full Dates (Holidays, Leaves, Travel) */}
               <div style={{ background: 'white', borderRadius: '20px', padding: '24px', border: '1px solid var(--border-subtle)', boxShadow: 'var(--shadow-sm)' }}>
                 <h4 style={{ fontSize: '1.05rem', color: 'var(--emerald-deep)', margin: '0 0 8px', display: 'flex', alignItems: 'center', gap: '8px' }}>
@@ -1646,7 +1646,7 @@ export default function AdminPage() {
                     </div>
                   ) : (
                     <div style={{ display: 'flex', flexDirection: 'column', gap: '6px', maxHeight: '180px', overflowY: 'auto' }}>
-                      {Object.entries(scheduleData.customBlockedSlots || {}).flatMap(([dateKey, slotsArr]) => 
+                      {Object.entries(scheduleData.customBlockedSlots || {}).flatMap(([dateKey, slotsArr]) =>
                         slotsArr.map(s => (
                           <div
                             key={`${dateKey}-${s}`}
@@ -2068,7 +2068,7 @@ export default function AdminPage() {
 
             {/* Main 2-Column Layout: Settings on Left, Test Bench & Guide on Right */}
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(340px, 1fr))', gap: '24px' }}>
-              
+
               {/* Left Column: WhatsApp Settings Form */}
               <div
                 style={{
@@ -2082,7 +2082,7 @@ export default function AdminPage() {
                 <h3 style={{ fontSize: '1.25rem', color: 'var(--emerald-deep)', margin: '0 0 16px', fontWeight: 700 }}>
                   ⚙️ Gateway Configuration
                 </h3>
-                
+
                 <form onSubmit={handleSaveWhatsappConfig} style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
                   <div>
                     <label style={{ display: 'block', fontSize: '0.85rem', fontWeight: 700, color: 'var(--text-primary)', marginBottom: '6px' }}>
@@ -2177,7 +2177,7 @@ export default function AdminPage() {
 
               {/* Right Column: Test Bench & 2-Minute Setup Guide */}
               <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
-                
+
                 {/* Test Bench Card */}
                 <div
                   style={{
@@ -2259,7 +2259,7 @@ export default function AdminPage() {
         {selectedPatientReport && (
           <div className="admin-modal-overlay">
             <div className="admin-modal-card">
-              
+
               {/* Modal Header */}
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', paddingBottom: '20px', borderBottom: '2px solid var(--border-subtle)', marginBottom: '24px' }}>
                 <div>
