@@ -201,7 +201,7 @@ export default function WelcomeAssessmentModal() {
 
         .welcome-sub-pill {
           display: inline-block;
-          color: #FF007F;
+          color: #0D9488;
           font-size: 0.78rem;
           font-weight: 800;
           letter-spacing: 0.12em;
@@ -251,12 +251,12 @@ export default function WelcomeAssessmentModal() {
           width: 100%;
           max-width: 380px;
           padding: 14px 28px;
-          background: #FF007F;
+          background: #0D9488;
           color: #FFFFFF;
           border-radius: 12px;
           font-size: 1.05rem;
           font-weight: 700;
-          box-shadow: 0 8px 24px rgba(255, 0, 127, 0.35);
+          box-shadow: 0 8px 24px rgba(13, 148, 136, 0.25);
           margin: 0 auto;
           display: inline-flex;
           align-items: center;
@@ -352,7 +352,7 @@ export default function WelcomeAssessmentModal() {
 
             <h2 id="welcome-modal-title" className="welcome-main-title">
               What is your body <br />
-              <span style={{ color: '#FF007F', fontStyle: 'italic', fontWeight: 800 }}>trying to tell you?</span>
+              <span style={{ color: '#0D9488', fontStyle: 'italic', fontWeight: 800 }}>trying to tell you?</span>
             </h2>
 
             {/* Description Paragraph */}
@@ -573,8 +573,8 @@ export default function WelcomeAssessmentModal() {
                 style={{
                   padding: '14px 16px',
                   borderRadius: '14px',
-                  border: '1.5px solid rgba(255, 0, 127, 0.4)',
-                  background: 'linear-gradient(135deg, #FFFFFF 0%, #FFF6FA 100%)',
+                  border: '1.5px solid rgba(235, 94, 40, 0.3)',
+                  background: 'linear-gradient(135deg, #FFFFFF 0%, #FFF8F5 100%)',
                   cursor: 'pointer',
                   display: 'flex',
                   justifyContent: 'space-between',
@@ -592,7 +592,7 @@ export default function WelcomeAssessmentModal() {
                 <span style={{
                   padding: '6px 14px',
                   borderRadius: '999px',
-                  background: 'linear-gradient(135deg, #FF007F 0%, #D9006C 100%)',
+                  background: 'linear-gradient(135deg, #EB5E28 0%, #C2410C 100%)',
                   color: '#FFFFFF',
                   fontWeight: 800,
                   fontSize: '0.76rem',

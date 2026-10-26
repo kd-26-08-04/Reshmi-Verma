@@ -624,75 +624,123 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 4. Real People, Real Success Stories (Dark Noir Section) */}
-      <section className="stories-noir-section" id="client-success-stories">
+      {/* 4. Real People, Real Success Stories (Contained Luxury Noir Section) */}
+      <section style={{ padding: '36px 0 44px', background: 'transparent' }} id="client-success-stories">
         <div className="container">
-          <div className="stories-noir-grid">
-            <div>
-              <span style={{ fontSize: '0.8rem', color: '#9CA3AF', textTransform: 'uppercase', letterSpacing: '0.08em', fontWeight: 800 }}>
+          <div
+            style={{
+              background: 'linear-gradient(145deg, #121418 0%, #0D0F12 100%)',
+              border: '1px solid rgba(255, 255, 255, 0.1)',
+              borderRadius: '24px',
+              padding: '36px 28px 32px',
+              boxShadow: '0 16px 40px rgba(0, 0, 0, 0.18)',
+              color: '#FFFFFF'
+            }}
+          >
+            {/* Centered Section Header */}
+            <div style={{ textAlign: 'center', maxWidth: '720px', margin: '0 auto 26px' }}>
+              <span
+                style={{
+                  display: 'inline-block',
+                  fontSize: '0.78rem',
+                  color: '#00E5D9',
+                  textTransform: 'uppercase',
+                  letterSpacing: '0.08em',
+                  fontWeight: 800,
+                  background: 'rgba(0, 229, 217, 0.1)',
+                  padding: '4px 14px',
+                  borderRadius: '999px',
+                  border: '1px solid rgba(0, 229, 217, 0.25)',
+                  marginBottom: '10px'
+                }}
+              >
                 Verified Patient Outcomes
               </span>
-              <h2 style={{ fontSize: 'clamp(2rem, 4vw, 2.7rem)', color: '#FFFFFF', margin: '8px 0 14px', lineHeight: 1.15 }}>
+              <h2
+                style={{
+                  fontSize: 'clamp(1.75rem, 3.8vw, 2.35rem)',
+                  color: '#FFFFFF',
+                  margin: '0 0 10px',
+                  lineHeight: 1.2,
+                  fontFamily: 'var(--font-serif)',
+                  fontWeight: 800
+                }}
+              >
                 Their Results, Their Words
               </h2>
-              <p style={{ color: '#9CA3AF', fontSize: '1rem', lineHeight: 1.6, marginBottom: '24px' }}>
-                Every health journey is different. Discover our clients’ experiences with personalised, root-cause-focused care.
+              <p style={{ color: '#E2E8F0', fontSize: '0.94rem', lineHeight: 1.55, margin: 0 }}>
+                Every health journey is different. Real experiences with personalised, root-cause-focused clinical care.
               </p>
-              <Link
-                to="/booking"
-                className="btn btn-white-solid btn-lg"
-                style={{ padding: '14px 28px', borderRadius: '14px' }}
-              >
-                <span>Book 1:1 Consultation</span>
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-                  <line x1="5" y1="12" x2="19" y2="12"></line>
-                  <polyline points="12 5 19 12 12 19"></polyline>
-                </svg>
-              </Link>
             </div>
 
-            <div className="stories-marquee-container">
-              <div
-                className="stories-marquee-track"
-                onMouseEnter={(e) => { e.currentTarget.style.animationPlayState = 'paused'; }}
-                onMouseLeave={(e) => { e.currentTarget.style.animationPlayState = 'running'; }}
-              >
+            {/* Continuous Sliding Infinite Marquee Track */}
+            <div className="stories-marquee-container" style={{ marginBottom: '26px' }}>
+              <div className="stories-marquee-track">
                 {[...PATIENT_STORIES, ...PATIENT_STORIES].map((story, idx) => (
                   <div
                     key={`${story.name}-${idx}`}
-                    className="story-client-card"
+                    className="story-client-compact-card"
                     style={{
-                      flex: '0 0 290px',
-                      background: 'rgba(255, 255, 255, 0.05)',
-                      backdropFilter: 'blur(20px)',
-                      color: '#FFFFFF',
-                      borderRadius: '20px',
-                      padding: '24px 22px',
-                      border: '1px solid rgba(255, 255, 255, 0.1)',
-                      borderTop: '2.5px solid #FF007F',
-                      boxShadow: '0 10px 30px rgba(0, 0, 0, 0.35)',
+                      flex: '0 0 320px',
+                      background: 'rgba(255, 255, 255, 0.04)',
+                      backdropFilter: 'blur(16px)',
+                      WebkitBackdropFilter: 'blur(16px)',
+                      border: '1px solid rgba(255, 255, 255, 0.08)',
+                      borderTop: '2.5px solid #00E5D9',
+                      borderRadius: '16px',
+                      padding: '18px 18px',
                       display: 'flex',
-                      flexDirection: 'column'
+                      flexDirection: 'column',
+                      transition: 'all 0.25s ease'
                     }}
                   >
-                    <div className="story-client-header" style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '14px' }}>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '10px' }}>
                       <img
                         src={story.avatar}
                         alt={story.name}
-                        className="story-client-avatar"
-                        style={{ width: '46px', height: '46px', borderRadius: '50%', objectFit: 'cover', border: '2px solid #FF007F' }}
+                        style={{
+                          width: '44px',
+                          height: '44px',
+                          borderRadius: '50%',
+                          objectFit: 'cover',
+                          border: '1.5px solid #00E5D9',
+                          flexShrink: 0
+                        }}
                       />
-                      <div>
-                        <h5 style={{ margin: 0, fontSize: '0.98rem', fontWeight: 700, color: '#FFFFFF' }}>{story.name}</h5>
-                        <span style={{ fontSize: '0.78rem', color: '#9CA3AF' }}>{story.location}</span>
+                      <div style={{ minWidth: 0 }}>
+                        <h4 style={{ margin: 0, fontSize: '0.96rem', fontWeight: 800, color: '#FFFFFF' }}>
+                          {story.name}
+                        </h4>
+                        <span style={{ fontSize: '0.74rem', color: '#00E5D9', fontWeight: 700 }}>
+                          {story.location} &bull; Verified
+                        </span>
                       </div>
                     </div>
-                    <p className="story-client-quote" style={{ fontSize: '0.88rem', color: 'rgba(255, 255, 255, 0.82)', lineHeight: 1.55, margin: 0, fontStyle: 'italic' }}>
+                    <p style={{ fontSize: '0.86rem', color: '#F1F5F9', lineHeight: 1.55, margin: 0, fontStyle: 'italic', flex: 1 }}>
                       {story.quote}
                     </p>
                   </div>
                 ))}
               </div>
+            </div>
+
+            {/* Centered Action Button */}
+            <div style={{ textAlign: 'center' }}>
+              <Link
+                to="/booking"
+                className="btn btn-white-solid btn-lg"
+                style={{
+                  padding: '12px 28px',
+                  borderRadius: '12px',
+                  fontSize: '0.95rem'
+                }}
+              >
+                <span>Book 1:1 Consultation</span>
+                <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                  <line x1="5" y1="12" x2="19" y2="12"></line>
+                  <polyline points="12 5 19 12 12 19"></polyline>
+                </svg>
+              </Link>
             </div>
           </div>
         </div>
@@ -1016,7 +1064,7 @@ export default function HomePage() {
               <div className="more-about-content">
                 <h3 className="more-about-title">About</h3>
                 <Link to="/about" className="more-about-link">
-                  <span>Click here</span>
+                  <span>Explore Journey &rarr;</span>
                 </Link>
               </div>
             </div>
@@ -1057,7 +1105,7 @@ export default function HomePage() {
                   rel="noopener noreferrer"
                   className="more-about-link"
                 >
-                  <span>Click here</span>
+                  <span>Follow &rarr;</span>
                 </a>
               </div>
             </div>
@@ -1088,7 +1136,7 @@ export default function HomePage() {
                   rel="noopener noreferrer"
                   className="more-about-link"
                 >
-                  <span>Click here</span>
+                  <span>Watch Videos &rarr;</span>
                 </a>
               </div>
             </div>
@@ -1108,7 +1156,7 @@ export default function HomePage() {
               marginBottom: '24px'
             }}
           >
-            <span className="pulse-dot" style={{ background: '#FF007F' }}></span>
+            <span className="pulse-dot" style={{ background: '#00E5D9' }}></span>
             <span>Begin Your Healing Journey</span>
           </span>
           <h2 style={{ color: '#FFFFFF', fontSize: 'clamp(1.45rem, 5.5vw, 2.75rem)', marginBottom: '14px', lineHeight: 1.25 }}>Ready for Clarity on Your Health?</h2>

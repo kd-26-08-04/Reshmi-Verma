@@ -36,11 +36,11 @@
   --accent-gray-border: #E5E7EB;
   --accent-gray-deep: #3C6642;
 
-  /* Health Track EXCLUSIVELY — Electric Neon Saffron (Bright & Radiant) */
-  --health-saffron: #FF007F;
-  --health-saffron-hover: #FF2E93;
-  --health-saffron-light: #FFF0F6;
-  --health-saffron-border: #FF80BF;
+  /* Health Track EXCLUSIVELY — Warm Saffron / Terracotta (#EB5E28) */
+  --health-saffron: #EB5E28;
+  --health-saffron-hover: #D44D1B;
+  --health-saffron-light: #FFF4EE;
+  --health-saffron-border: #FCD5C5;
   --health-saffron-shadow: rgba(0, 0, 0, 0.08);
   --health-saffron-glow: none;
 
@@ -2297,15 +2297,15 @@ h6 {
 .how-steps-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 28px;
-  margin-top: 40px;
+  gap: 20px;
+  margin-top: 30px;
 }
 
 .how-step-card {
   background: #FFFFFF;
   border-radius: var(--radius-lg);
   border: 1.5px solid var(--border-subtle);
-  padding: 38px 30px;
+  padding: 24px 22px;
   position: relative;
   transition: all 0.35s ease;
   box-shadow: var(--shadow-sm);
@@ -2321,24 +2321,24 @@ h6 {
 
 .how-step-number {
   font-family: var(--font-serif);
-  font-size: 3rem;
+  font-size: 2.2rem;
   font-weight: 800;
   color: var(--emerald-soft);
   line-height: 1;
-  margin-bottom: 12px;
+  margin-bottom: 6px;
 }
 
 .how-step-card h3 {
-  font-size: 1.45rem;
+  font-size: 1.2rem;
   color: var(--emerald-deep);
-  margin-bottom: 14px;
+  margin-bottom: 8px;
 }
 
 .how-step-card p {
-  font-size: 0.98rem;
+  font-size: 0.9rem;
   color: var(--text-secondary);
-  line-height: 1.65;
-  margin-bottom: 20px;
+  line-height: 1.55;
+  margin-bottom: 14px;
   flex-grow: 1;
 }
 
@@ -5383,7 +5383,7 @@ h6 {
   padding: 15px 24px;
   border-radius: 14px;
   border: none;
-  background: linear-gradient(135deg, #0F172A 0%, #1E293B 55%, #C2410C 100%);
+  background: linear-gradient(135deg, #121214 0%, #1E293B 55%, #0D9488 100%);
   background-size: 200% auto;
   color: white;
   font-size: 1rem;
@@ -5394,7 +5394,7 @@ h6 {
   align-items: center;
   justify-content: center;
   gap: 10px;
-  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.16), 0 2px 4px rgba(194, 65, 12, 0.1);
+  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.16), 0 2px 4px rgba(13, 148, 136, 0.1);
   transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
   margin-top: 10px;
   position: relative;
@@ -5404,7 +5404,7 @@ h6 {
 .auth-btn-luxury:hover {
   background-position: right center;
   transform: translateY(-2px);
-  box-shadow: 0 12px 30px rgba(194, 65, 12, 0.25), 0 4px 8px rgba(15, 23, 42, 0.12);
+  box-shadow: 0 12px 30px rgba(13, 148, 136, 0.25), 0 4px 8px rgba(15, 23, 42, 0.12);
 }
 
 .auth-btn-luxury:active {
@@ -7056,7 +7056,7 @@ h6 {
   display: flex;
   flex-direction: column;
   border: 1px solid rgba(255, 255, 255, 0.1);
-  border-top: 2.5px solid #FF007F;
+  border-top: 2.5px solid #00E5D9;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
   transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
   position: relative;
@@ -7070,8 +7070,15 @@ h6 {
 .story-client-card:hover {
   transform: translateY(-5px);
   background: rgba(255, 255, 255, 0.08);
-  border-color: rgba(255, 0, 127, 0.3);
-  box-shadow: 0 -3px 14px rgba(255, 0, 127, 0.35), 0 18px 40px rgba(0, 0, 0, 0.55);
+  border-color: rgba(0, 229, 217, 0.35);
+  box-shadow: 0 -3px 14px rgba(0, 229, 217, 0.3), 0 18px 40px rgba(0, 0, 0, 0.55);
+}
+
+.story-client-compact-card:hover {
+  transform: translateY(-4px);
+  background: rgba(255, 255, 255, 0.07) !important;
+  border-color: rgba(0, 229, 217, 0.4) !important;
+  box-shadow: 0 8px 24px rgba(0, 229, 217, 0.16);
 }
 
 .story-client-header {
@@ -7086,7 +7093,7 @@ h6 {
   height: 48px;
   border-radius: 50%;
   object-fit: cover;
-  border: 1.5px solid #FF007F;
+  border: 1.5px solid #00E5D9;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.35);
 }
 
@@ -7103,7 +7110,7 @@ h6 {
   font-weight: 800;
   text-transform: uppercase;
   letter-spacing: 0.05em;
-  color: #FF007F;
+  color: #00E5D9;
   text-decoration: none;
   display: inline-flex;
   align-items: center;
@@ -7112,7 +7119,7 @@ h6 {
 }
 
 .story-read-more-btn:hover {
-  color: #FF80BF;
+  color: #5EEAD4;
   gap: 8px;
 }
 
@@ -7224,17 +7231,17 @@ h6 {
 }
 
 /* ==========================================================================
-   Review Glass Cards with Shiny Neon Pink Top Border
+   Review Glass Cards with Breath Cyan Top Border
    ========================================================================== */
 .review-glass-card {
   background: #FFFFFF;
   border: 1px solid var(--border-subtle);
-  border-top: 2.5px solid #FF007F !important;
+  border-top: 2.5px solid #00E5D9 !important;
   border-radius: 20px;
-  padding: 28px 24px;
+  padding: 24px 20px;
   display: flex;
   flex-direction: column;
-  box-shadow: 0 -2px 10px rgba(255, 0, 127, 0.14), 0 8px 24px rgba(0, 0, 0, 0.04);
+  box-shadow: 0 -2px 10px rgba(0, 229, 217, 0.12), 0 8px 24px rgba(0, 0, 0, 0.04);
   transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
   position: relative;
   overflow: hidden;
@@ -7246,8 +7253,8 @@ h6 {
 
 .review-glass-card:hover {
   transform: translateY(-5px);
-  box-shadow: 0 -3px 14px rgba(255, 0, 127, 0.25), 0 16px 36px rgba(0, 0, 0, 0.08);
-  border-color: rgba(255, 0, 127, 0.25);
+  box-shadow: 0 -3px 14px rgba(0, 229, 217, 0.25), 0 16px 36px rgba(0, 0, 0, 0.08);
+  border-color: rgba(0, 229, 217, 0.35);
 }
 
 
@@ -7440,7 +7447,7 @@ h6 {
   border-radius: 20px;
   overflow: hidden;
   border: 1px solid rgba(0, 0, 0, 0.08);
-  border-top: 3px solid #FF007F;
+  border-top: 3px solid #00E5D9;
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.05);
   transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease;
   position: relative;
@@ -7448,7 +7455,7 @@ h6 {
 
 .transformation-card-item:hover {
   transform: translateY(-6px) scale(1.02);
-  box-shadow: 0 16px 36px rgba(255, 0, 127, 0.15), 0 4px 12px rgba(0, 0, 0, 0.06);
+  box-shadow: 0 16px 36px rgba(0, 229, 217, 0.2), 0 4px 12px rgba(0, 0, 0, 0.06);
 }
 
 .transformation-image-wrap {

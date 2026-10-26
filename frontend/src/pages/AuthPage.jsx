@@ -85,7 +85,7 @@ export default function AuthPage() {
               {mode === 'login' ? 'Client Sign In' : 'Create Account'}
             </h1>
             <p id="auth-desc" style={{ fontSize: '0.86rem', color: 'var(--text-muted)', margin: 0, lineHeight: 1.45 }}>
-              {mode === 'login' 
+              {mode === 'login'
                 ? 'Access your personalized consultation records, intake diagnostics, and clinical health blueprint.'
                 : 'Register for your secure patient portal, health intake history, and 1-on-1 consultation scheduling.'}
             </p>
@@ -298,31 +298,6 @@ export default function AuthPage() {
               </button>
             </form>
           )}
-
-          {/* Trust Badges */}
-          <div className="auth-trust-strip">
-            <div className="auth-trust-item">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-                <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
-                <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
-              </svg>
-              <span>256-Bit Encrypted</span>
-            </div>
-            <div className="auth-trust-item">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
-                <polyline points="22 4 12 14.01 9 11.01"></polyline>
-              </svg>
-              <span>Telehealth Safe</span>
-            </div>
-            <div className="auth-trust-item">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-                <circle cx="12" cy="12" r="10"></circle>
-                <path d="M12 8v4l3 3"></path>
-              </svg>
-              <span>18 Yrs Diagnostics</span>
-            </div>
-          </div>
         </div>
       </main>
     </>

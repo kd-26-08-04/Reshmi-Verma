@@ -162,12 +162,15 @@ export default function ClientTransformationShowcase() {
 
   return (
     <>
-      {/* 1. Verified Client Before & After Transformations (Black Strip Theme) */}
+      {/* 1. Verified Client Before & After Transformations (Black Strip Theme - End to End) */}
       <section
         className="transformation-showcase-section"
         style={{
           background: '#0D0F12',
-          padding: '70px 0 55px'
+          padding: '56px 0 44px',
+          width: '100%',
+          maxWidth: '100vw',
+          overflow: 'hidden'
         }}
       >
         <div className="container">
@@ -490,30 +493,32 @@ export default function ClientTransformationShowcase() {
 
             {/* Expand / Collapse Audio Toggle */}
             {audioTestimonials.length > 3 && (
-              <div style={{ textAlign: 'center', marginTop: '28px' }}>
+              <div style={{ textAlign: 'center', marginTop: '22px' }}>
                 <button
                   type="button"
                   onClick={() => setShowAllAudio(!showAllAudio)}
                   style={{
                     display: 'inline-flex',
                     alignItems: 'center',
-                    gap: '8px',
-                    background: 'transparent',
-                    border: 'none',
+                    gap: '10px',
+                    background: '#FFFFFF',
+                    border: '1.5px solid var(--border-medium)',
                     cursor: 'pointer',
                     color: 'var(--emerald-deep)',
-                    fontSize: '0.9rem',
+                    fontSize: '0.88rem',
                     fontWeight: 700,
-                    padding: '10px 20px',
+                    padding: '10px 22px',
                     borderRadius: '999px',
+                    boxShadow: '0 2px 8px rgba(0, 0, 0, 0.05)',
                     transition: 'all 0.2s ease'
                   }}
                   aria-expanded={showAllAudio}
                   title={showAllAudio ? 'Show fewer audio notes' : 'Show all audio notes'}
                 >
+                  <span>{showAllAudio ? 'Show Fewer Voice Notes' : `Listen to All ${audioTestimonials.length} Patient Stories`}</span>
                   <svg
-                    width="22"
-                    height="22"
+                    width="18"
+                    height="18"
                     viewBox="0 0 24 24"
                     fill="none"
                     stroke="currentColor"

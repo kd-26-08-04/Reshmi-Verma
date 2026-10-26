@@ -147,7 +147,7 @@ export default function TestimonialsPage() {
           }}>
             <span>Verified Patient Outcomes</span>
             <span>&bull;</span>
-            <span style={{ color: '#FF007F' }}>100% Root-Cause Recovery</span>
+            <span style={{ color: '#0D827B', fontWeight: 800 }}>100% Root-Cause Recovery</span>
           </span>
 
           <h1 style={{
@@ -158,7 +158,7 @@ export default function TestimonialsPage() {
             lineHeight: 1.15,
             fontWeight: 800
           }}>
-            Real People. <span style={{ color: '#FF007F', fontStyle: 'italic' }}>Real Transformations.</span>
+            Real People. <span style={{ color: '#0D9488', fontStyle: 'italic' }}>Real Transformations.</span>
           </h1>
 
           <p style={{
@@ -189,7 +189,7 @@ export default function TestimonialsPage() {
               <div style={{ fontSize: '0.76rem', color: '#6B7280', textTransform: 'uppercase', fontWeight: 700 }}>Lives Transformed</div>
             </div>
             <div>
-              <div style={{ fontSize: '1.75rem', fontWeight: 800, color: '#FF007F' }}>94%</div>
+              <div style={{ fontSize: '1.75rem', fontWeight: 800, color: '#0D9488' }}>94%</div>
               <div style={{ fontSize: '0.76rem', color: '#6B7280', textTransform: 'uppercase', fontWeight: 700 }}>Symptom Reversal</div>
             </div>
             <div>
@@ -221,10 +221,10 @@ export default function TestimonialsPage() {
                 borderRadius: '999px',
                 fontSize: '0.9rem',
                 fontWeight: 700,
-                border: activeCategory === cat.id ? '1.5px solid #FF007F' : '1px solid var(--border-subtle)',
+                border: activeCategory === cat.id ? '1.5px solid #00E5D9' : '1px solid var(--border-subtle)',
                 background: activeCategory === cat.id ? '#121214' : '#FFFFFF',
                 color: activeCategory === cat.id ? '#FFFFFF' : '#374151',
-                boxShadow: activeCategory === cat.id ? '0 4px 14px rgba(255, 0, 127, 0.25)' : 'none',
+                boxShadow: activeCategory === cat.id ? '0 4px 14px rgba(0, 229, 217, 0.25)' : 'none',
                 cursor: 'pointer',
                 transition: 'all 0.2s ease'
               }}
@@ -249,10 +249,10 @@ export default function TestimonialsPage() {
               style={{
                 background: '#FFFFFF',
                 borderRadius: '22px',
-                padding: '28px 26px',
+                padding: '24px 22px',
                 border: '1px solid var(--border-subtle)',
-                borderTop: '3px solid #FF007F',
-                boxShadow: '0 -2px 10px rgba(255, 0, 127, 0.18), 0 10px 28px rgba(0, 0, 0, 0.04)',
+                borderTop: '3px solid #00E5D9',
+                boxShadow: '0 -2px 10px rgba(0, 229, 217, 0.12), 0 10px 28px rgba(0, 0, 0, 0.04)',
                 display: 'flex',
                 flexDirection: 'column',
                 transition: 'transform 0.25s ease'
@@ -264,12 +264,12 @@ export default function TestimonialsPage() {
                   src={item.avatar}
                   alt={item.name}
                   style={{
-                    width: '54px',
-                    height: '54px',
+                    width: '52px',
+                    height: '52px',
                     borderRadius: '50%',
                     objectFit: 'cover',
-                    border: '2px solid #FF007F',
-                    boxShadow: '0 0 10px rgba(255, 0, 127, 0.35)'
+                    border: '2px solid #00E5D9',
+                    boxShadow: '0 0 10px rgba(0, 229, 217, 0.25)'
                   }}
                 />
                 <div style={{ flex: 1, minWidth: 0 }}>
@@ -277,7 +277,7 @@ export default function TestimonialsPage() {
                     <h3 style={{ margin: 0, fontSize: '1.05rem', fontWeight: 800, color: '#121214' }}>
                       {item.name}
                     </h3>
-                    <span style={{ fontSize: '0.72rem', background: '#FFF0F6', color: '#FF007F', padding: '3px 8px', borderRadius: '6px', fontWeight: 800 }}>
+                    <span style={{ fontSize: '0.72rem', background: '#E6FCFB', color: '#0D827B', padding: '3px 8px', borderRadius: '6px', fontWeight: 800 }}>
                       Verified
                     </span>
                   </div>
@@ -347,10 +347,12 @@ export default function TestimonialsPage() {
             </div>
           ))}
         </div>
+      </div>
 
-        {/* Real Patient Before & After Transformations Continuous Showcase & Audio Notes */}
-        <ClientTransformationShowcase />
+      {/* Real Patient Before & After Transformations Continuous Showcase & Audio Notes (End-to-End Full Bleed) */}
+      <ClientTransformationShowcase />
 
+      <div className="container" style={{ marginTop: '60px' }}>
         {/* Reshmi's Personal 38 kg Transformation Feature */}
         <div style={{
           background: 'linear-gradient(135deg, #111111 0%, #1A1A1E 100%)',
@@ -369,7 +371,7 @@ export default function TestimonialsPage() {
           <div>
             <span style={{
               fontSize: '0.8rem',
-              color: '#FF007F',
+              color: '#00E5D9',
               fontWeight: 800,
               textTransform: 'uppercase',
               letterSpacing: '0.08em',
@@ -391,11 +393,11 @@ export default function TestimonialsPage() {
               Reshmi Verma personally lost 38 kg and reversed severe metabolic fatigue, chronic gut distress, and dysregulated breathing. She built the SAMYA™ Method so you never have to guess your way through confusing diets or band-aid prescriptions again.
             </p>
             <div style={{ display: 'flex', gap: '14px', flexWrap: 'wrap' }}>
-              <Link to="/booking" className="btn btn-primary" style={{ padding: '12px 26px', background: '#FFFFFF', color: '#111111', fontWeight: 800 }}>
-                Book 1:1 Consultation
+              <Link to="/booking" className="btn btn-white-solid" style={{ padding: '12px 26px', borderRadius: '12px', fontSize: '0.95rem' }}>
+                <span>Book 1:1 Consultation</span>
               </Link>
-              <Link to="/about" className="btn btn-secondary" style={{ padding: '12px 24px', background: 'transparent', color: '#FFFFFF', borderColor: 'rgba(255,255,255,0.3)' }}>
-                Read Reshmi's Full Journey &rarr;
+              <Link to="/about" className="btn btn-on-dark" style={{ padding: '12px 24px', borderRadius: '12px', fontSize: '0.95rem' }}>
+                <span>Read Reshmi's Full Journey &rarr;</span>
               </Link>
             </div>
           </div>
