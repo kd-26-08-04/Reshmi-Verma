@@ -32,6 +32,7 @@ import assessmentLeadHandler from './api/assessment-lead.js';
 import adminLeadsHandler from './api/admin-leads.js';
 import adminWhatsappConfigHandler from './api/admin-whatsapp-config.js';
 import whatsappSendReportHandler from './api/whatsapp-send-report.js';
+import whatsappWebhookHandler from './api/whatsapp-webhook.js';
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -120,6 +121,8 @@ app.post('/api/admin-update-lead', wrapHandler(adminLeadsHandler));
 app.get('/api/admin-whatsapp-config', wrapHandler(adminWhatsappConfigHandler));
 app.post('/api/admin-whatsapp-config', wrapHandler(adminWhatsappConfigHandler));
 app.post('/api/whatsapp-send-report', wrapHandler(whatsappSendReportHandler));
+app.get('/api/whatsapp-webhook', wrapHandler(whatsappWebhookHandler));
+app.post('/api/whatsapp-webhook', wrapHandler(whatsappWebhookHandler));
 
 // Clinical Intake Questionnaire endpoints
 app.get('/api/questionnaire-template', wrapHandler(questionnaireTemplateHandler));

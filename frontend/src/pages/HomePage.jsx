@@ -219,10 +219,14 @@ export default function HomePage() {
                 <span>Functional Nutritionist &bull; Somatic Breathwork Facilitator &bull; Biohacker</span>
               </div>
 
-              <h1>Root-Cause <span className="text-gradient">Functional Nutrition</span> &amp; <span className="text-gradient-breath">Breathwork Facilitator</span>.</h1>
+              <h1>Don't Wait to Feel Unwell to <span className="text-gradient">Start Living Well</span>.</h1>
 
-              <p className="lead">
-                Led by <strong>Reshmi Verma</strong> — <strong>Functional Nutritionist</strong>, <strong>Breathwork Facilitator</strong> &amp; <strong>Certified Biohacker</strong>. With over 20 years in diagnostics and healthcare (Director of Rainbow Medinova &amp; Co-founder of Neofit Gym), combining personalized nutrition, breathwork, and autonomic resilience to rebuild lasting vitality.
+              <p style={{ fontSize: 'clamp(1.1rem, 2.5vw, 1.25rem)', fontWeight: 600, color: 'var(--emerald-deep)', margin: '-4px 0 16px', lineHeight: 1.45 }}>
+                A More Proactive, Root-Cause Approach to Health, Built Around You.
+              </p>
+
+              <p className="lead" style={{ fontSize: '1.02rem', lineHeight: 1.7, color: 'var(--text-secondary)' }}>
+                <strong>Reshmi Verma</strong> is the Director of Rainbow Medinova Diagnostic Services, Nagpur, with 18 years of experience in diagnostics. As a Functional Nutritionist, Breathwork Facilitator, Oxygen Advantage Coach, Breath Resilience Instructor, and Certified Biohacker, she brings together diagnostic insights, personalized nutrition, breathwork, breath resilience, and lifestyle strategies to help people understand their bodies, explore underlying imbalances, and make informed choices for long-term health and vitality.
               </p>
 
               <div className="hero-cta-group" style={{ display: 'flex', gap: '10px', flexWrap: 'wrap', alignItems: 'center' }}>
@@ -250,7 +254,7 @@ export default function HomePage() {
               {/* Hero Clinical Highlights */}
               <div className="hero-stats-row">
                 <div className="stat-item">
-                  <div className="stat-num">20+</div>
+                  <div className="stat-num">18+</div>
                   <div className="stat-label">Years Healthcare &amp; Diagnostics</div>
                 </div>
                 <div className="stat-item">
@@ -284,9 +288,9 @@ export default function HomePage() {
 
                 {/* Floating Top Trust Badge */}
                 <div className="hero-floating-badge badge-top-right">
-                  <div className="badge-icon" style={{ fontSize: "1rem", fontWeight: 800 }}>20+</div>
+                  <div className="badge-icon" style={{ fontSize: "1rem", fontWeight: 800 }}>18+</div>
                   <div className="badge-text">
-                    <strong>20+ Years</strong>
+                    <strong>18+ Years</strong>
                     <span>Healthcare &amp; Diagnostics</span>
                   </div>
                 </div>
