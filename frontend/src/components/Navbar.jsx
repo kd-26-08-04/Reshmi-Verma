@@ -274,7 +274,7 @@ export default function Navbar() {
                   style={{ width: '100%', padding: '11px', justifyContent: 'center' }}
                   onClick={closeMenu}
                 >
-                  <span>🔐 Client Sign In</span>
+                  <span>🔐 Sign In</span>
                 </Link>
                 <Link
                   to="/booking"
