@@ -9,14 +9,18 @@ export default function Footer() {
           <div className="footer-grid">
             <div className="footer-brand">
               <div className="brand-logo" style={{ marginBottom: '16px', display: 'flex', alignItems: 'center', gap: '14px' }}>
+                <img
+                  src="/assets/images/Reshmi_Logo_transparent.png"
+                  alt="HealthwithReshmi Official Logo"
+                  className="footer-brand-logo-img"
+                />
                 <div className="brand-text">
                   <span className="name" style={{ color: 'var(--emerald-deep)' }}>HealthwithReshmi™</span>
                   <span className="tagline">Reshmi Verma &bull; Functional Nutritionist</span>
                 </div>
               </div>
               <p>
-                Science-led, human-centred functional nutrition, respiratory resilience, and cellular longevity protocols with Reshmi Verma.
-              </p>
+                Science-led, human-centred functional nutrition, breathwork, and longevity with Reshmi Verma.              </p>
               <div className="footer-social-wrapper">
                 <span className="footer-social-label">Follow &amp; Connect</span>
                 <div className="footer-social-buttons">

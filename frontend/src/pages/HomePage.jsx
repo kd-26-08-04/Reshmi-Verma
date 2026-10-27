@@ -90,9 +90,9 @@ const SAMYA_STEPS = [
   {
     letter: 'S',
     step: 'Step 01',
-    title: 'See the Signs',
-    desc: 'Notice what your body is whispering: erratic digestion, sudden energy drops, brain fog, chest breathing, or fragmented sleep architecture.',
-    tag: 'Signal Awareness',
+    title: 'Spot the Signals',
+    desc: 'Recognise symptoms and early patterns.',
+    tag: 'Signal Discovery',
     icon: (
       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
         <circle cx="11" cy="11" r="8"></circle>
@@ -103,9 +103,9 @@ const SAMYA_STEPS = [
   {
     letter: 'A',
     step: 'Step 02',
-    title: 'Ask Right Questions',
-    desc: 'We look beyond surface symptoms into your medical history, metabolic timeline, and environmental triggers to understand how patterns formed.',
-    tag: 'Deep Root Inquiry',
+    title: 'Ask & Assess',
+    desc: 'Explore health history, lifestyle and relevant bloodwork.',
+    tag: 'Root-Cause Assessment',
     icon: (
       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
         <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
@@ -115,9 +115,9 @@ const SAMYA_STEPS = [
   {
     letter: 'M',
     step: 'Step 03',
-    title: 'Map the Patterns',
-    desc: 'We connect the dots between blood chemistry, CO₂ breathing tolerance, microbiome ecology, and circadian cortisol curves.',
-    tag: 'Pattern Synthesis',
+    title: 'Map the Root Causes',
+    desc: 'Connect biomarkers, symptoms and underlying patterns.',
+    tag: 'Biomarker Mapping',
     icon: (
       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
         <line x1="18" y1="20" x2="18" y2="10"></line>
@@ -129,9 +129,9 @@ const SAMYA_STEPS = [
   {
     letter: 'Y',
     step: 'Step 04',
-    title: 'Your Custom Solution',
-    desc: 'A science-backed protocol engineered for your biochemistry: targeted cellular nutrition, gut mucosal repair, and neuromodulation breathwork.',
-    tag: 'Bespoke Protocol',
+    title: 'Your Personalised Strategy',
+    desc: 'Build a tailored nutrition, lifestyle and breathwork plan.',
+    tag: 'Tailored Protocol',
     icon: (
       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
         <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
@@ -141,9 +141,9 @@ const SAMYA_STEPS = [
   {
     letter: 'A',
     step: 'Step 05',
-    title: 'Achieve Lasting Wellness',
-    desc: 'Sustainable cellular vitality that holds for life, monitored through follow-up check-ins and objective biomarker improvements.',
-    tag: 'Sustained Vitality',
+    title: 'Assess & Advance',
+    desc: 'Track progress and refine the approach.',
+    tag: 'Measurable Progress',
     icon: (
       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
         <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
@@ -185,7 +185,6 @@ const CLINICAL_REVIEWS = [
 ];
 
 export default function HomePage() {
-  const [showScopeDisclaimer, setShowScopeDisclaimer] = useState(false);
   // SAMYA Method accordion state (starts with 2 steps shown, rest revealed on click)
   const [showAllSamya, setShowAllSamya] = useState(false);
 
@@ -214,6 +213,8 @@ export default function HomePage() {
         <div className="container">
           <div className="hero-grid">
             <div className="hero-content">
+
+
               <div className="badge-pill">
                 <span className="pulse-dot"></span>
                 <span>Functional Nutritionist &bull; Somatic Breathwork Facilitator &bull; Biohacker</span>
@@ -224,7 +225,7 @@ export default function HomePage() {
                 WebkitBackgroundClip: 'text',
                 WebkitTextFillColor: 'transparent',
                 backgroundClip: 'text'
-              }}>Don’t Wait to Feel Unwell to Start Living Well.</h1>
+              }}>Science-Led &bull; Human-Centered</h1>
 
               <p style={{ fontSize: 'clamp(1.1rem, 2.5vw, 1.25rem)', fontWeight: 600, color: 'var(--emerald-deep)', margin: '-4px 0 16px', lineHeight: 1.45 }}>
                 A More Proactive, Root-Cause Approach to Health, Built Around You.
@@ -356,9 +357,6 @@ export default function HomePage() {
           <div className="section-header" style={{ marginBottom: '40px' }}>
             <span className="sub-title">Proof of Concept &bull; Walking The Talk</span>
             <h2>Real Transformation: Meet Your Guide</h2>
-            <p>
-              Why patient trust starts here: Before designing clinical protocols for others, Reshmi Verma reversed her own metabolic resistance and achieved a sustainable -38 kg transformation without crash diets.
-            </p>
           </div>
 
           <div className="about-grid">
@@ -433,29 +431,72 @@ export default function HomePage() {
             </div>
 
             <div className="about-content">
-              <span className="sub-title">Lived Experience Meets Clinical Science</span>
-              <h2>"I Didn't Just Study Health — I Lived The Struggle."</h2>
-              <p className="lead" style={{ fontSize: '1.1rem', color: 'var(--emerald-deep)', fontWeight: 600 }}>
-                Reshmi Verma — Biotechnologist, Functional Nutritionist &amp; Breathwork Facilitator
+              <span className="sub-title">HER STORY</span>
+              <h2 style={{ fontSize: 'clamp(1.85rem, 3.2vw, 2.3rem)', lineHeight: 1.25, marginBottom: '6px' }}>
+                Fitness Is Cheaper Than Illness.
+              </h2>
+              <p className="lead" style={{ fontSize: '1.08rem', color: 'var(--emerald-deep)', fontWeight: 700, margin: '0 0 16px' }}>
+                Her Mantra, Her Purpose.
               </p>
 
-              <div style={{ background: 'white', padding: '20px 24px', borderRadius: 'var(--radius-md)', borderLeft: '4px solid var(--emerald-medium)', boxShadow: 'var(--shadow-sm)', marginBottom: '20px' }}>
-                <p style={{ margin: 0, fontStyle: 'italic', color: 'var(--text-primary)', fontSize: '0.98rem', lineHeight: 1.65 }}>
-                  "I don't just teach functional protocols — I lived through the exact same metabolic resistance, persistent fatigue, and weight struggles my clients face. Even with over 18 years in diagnostics and healthcare, conventional diet charts failed me. Only when I targeted cellular gut mucosa, mitochondrial energy, and autonomic breathwork did my body release 38+ kg (from 98 kg down to the 60s kg) effortlessly."
+              {/* Mantra Highlight Card */}
+              <div style={{
+                background: '#FFFFFF',
+                padding: '16px 20px',
+                borderRadius: '16px',
+                boxShadow: '0 4px 16px rgba(0, 0, 0, 0.04)',
+                border: '1px solid rgba(0, 169, 157, 0.15)',
+                borderLeftWidth: '4px',
+                borderLeftColor: '#00A99D',
+                marginBottom: '18px'
+              }}>
+                <p style={{ margin: 0, fontStyle: 'italic', color: '#1F2937', fontSize: '0.96rem', lineHeight: 1.6, fontWeight: 500 }}>
+                  “Fitness is cheaper than illness” is her personal mantra, shaped by her own transformation and years in healthcare.
                 </p>
               </div>
 
-              <p style={{ color: 'var(--text-secondary)', marginBottom: '20px', lineHeight: 1.65 }}>
-                When you work with Reshmi, you are guided by someone who understands the physical and mental hurdles firsthand, backed by over 18 years of diagnostics and healthcare leadership.
-              </p>
+              {/* Story Narrative */}
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '14px', color: 'var(--text-secondary)', fontSize: '0.94rem', lineHeight: 1.7, marginBottom: '20px' }}>
+                <p style={{ margin: 0 }}>
+                  As a <strong>Biotechnologist and Director of Rainbow Medinova Diagnostic Services</strong>, Reshmi works alongside her father, a doctor and proprietor of Nagpur’s first diagnostic centre, carrying forward his legacy of bringing advanced diagnostic technologies to the city. His hospitalisation profoundly impacted her, strengthening her commitment to proactive health and prevention. Today, they continue this shared mission of advancing healthcare in Nagpur.
+                </p>
 
-              <div>
+                <p style={{ margin: 0 }}>
+                  <strong>Losing 38 kg transformed her understanding of wellbeing.</strong> She realised nutrition and fitness were only part of the picture. <em>Breath was the missing piece in her puzzle.</em> This led her to explore the connection between breathing, nervous system regulation, and resilience.
+                </p>
+
+                <p style={{ margin: 0 }}>
+                  As a <strong>Functional and Integrative Nutritionist, Oxygen Advantage Coach, Breath Resilience Instructor, and trauma-informed facilitator</strong>, Reshmi brings together science, personalised nutrition, Breathwork, and Longevity.
+                </p>
+
+                <p style={{ margin: 0 }}>
+                  Through <strong>HealthwithReshmi™</strong>, her vision is to help people move beyond reacting to illness and build sustainable foundations for lifelong wellbeing. Her own journey has helped her show up better in every role she holds, reinforcing her belief that when people prioritise their health, they show up better in every aspect of life.
+                </p>
+              </div>
+
+              {/* Closing Mantra Box */}
+              <div style={{
+                padding: '12px 18px',
+                borderRadius: '12px',
+                background: 'rgba(0, 169, 157, 0.08)',
+                border: '1px dashed rgba(0, 169, 157, 0.35)',
+                marginBottom: '22px'
+              }}>
+                <p style={{ margin: 0, fontWeight: 700, color: 'var(--emerald-deep)', fontSize: '0.92rem' }}>
+                  Fitness is cheaper than illness. It is the mantra behind Reshmi’s journey and the purpose behind her work.
+                </p>
+              </div>
+
+              <div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap', alignItems: 'center' }}>
                 <Link to="/booking" className="btn btn-primary btn-lg">
-                  <span>Book Session</span>
+                  <span>Book 1:1 Consultation</span>
                   <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" style={{ marginLeft: '8px' }}>
                     <line x1="5" y1="12" x2="19" y2="12"></line>
                     <polyline points="12 5 19 12 12 19"></polyline>
                   </svg>
+                </Link>
+                <Link to="/about" className="btn btn-secondary btn-lg">
+                  <span>Explore Her Full Story</span>
                 </Link>
               </div>
             </div>
@@ -463,46 +504,151 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 2A. Conditions Addressed & Scope of Practice (Clinical Sage & Bone White Theme Card) */}
-      <section className="conditions-scope-wrapper">
+      {/* 2A. 5 Core Health Pillars Section */}
+      <section className="clinical-pillars-section" id="core-pillars">
         <div className="container">
-          <div className="conditions-scope-card">
-            <p className="conditions-scope-text-primary">
-              She addresses chronic and debilitating health challenges like <strong>Constant Fatigue, Severe Bloating, Breathing Pattern Disorders, Sinus &amp; Airway Blockages, Chronic Constipation, Acid Reflux, Indigestion, SIBO, Frequent Stomach Upsets, Hormonal Acne, Irregular or Absent Periods, Fibroids, Severe Period Pain, Mood Swings, PCOD / PCOS, Endometriosis, Insulin Resistance, Prediabetes &amp; Diabetes, Fatty Liver, Chronic Itching, Urticaria, Eczema, Psoriasis, Autoimmune Conditions, Hashimoto's Thyroiditis</strong>, and systemic cellular exhaustion using 100% natural, science-backed interventions like functional food biochemistry, Oxygen Advantage® respiratory pacing, and targeted lifestyle optimization.
-            </p>
-            {/* Clinical Advisory & Scope Dropdown Toggle */}
-            <div style={{ marginTop: '12px', borderTop: '1px dashed rgba(18, 18, 20, 0.12)', paddingTop: '10px' }}>
-              <button
-                type="button"
-                className={`scope-disclaimer-trigger-btn ${!showScopeDisclaimer ? 'pulse-attention' : ''}`}
-                onClick={() => setShowScopeDisclaimer(!showScopeDisclaimer)}
-                aria-expanded={showScopeDisclaimer}
-              >
-                <div className="scope-trigger-content">
-                  <span style={{ fontSize: '1rem' }}>🩺</span>
-                  <div className="scope-trigger-text">
-                    <strong>Clinical Scope &amp; Medical Advisory</strong>
-                  </div>
-                  <span className="scope-trigger-badge">
-                    {showScopeDisclaimer ? 'Hide Advisory ▲' : 'Read Scope ▼'}
-                  </span>
-                </div>
-              </button>
+          <div className="pillars-header">
 
-              {showScopeDisclaimer && (
-                <div style={{
-                  marginTop: '12px',
-                  padding: '14px 18px',
-                  borderRadius: '12px',
-                  background: '#F9FAFB',
-                  border: '1px solid rgba(18, 18, 20, 0.08)'
-                }}>
-                  <p className="conditions-scope-disclaimer" style={{ margin: 0 }}>
-                    Reshmi Verma is a functional health coach and certified biohacker with 18+ years in diagnostics, not a conventional medical doctor, and <u>does not prescribe pharmaceutical medicines</u>.<br />
-                    Her <em>'Food &amp; Breath as Medicine'</em> clinical methodology complements the work of medical doctors, operating in full synergy with their guidance and clinical protocols.
-                  </p>
+            <h2 className="pillars-title">
+              5 Core Health Pillars
+            </h2>
+            <p className="pillars-lead">
+              Personalised, science-backed functional nutrition and root-cause strategies designed around your body's unique biology.
+            </p>
+          </div>
+
+          {/* Single-Row 5-Pillar Track (Aligned exactly like SAMYA) */}
+          <div className="pillars-track">
+            {/* Pillar 01: Gut Health & Digestion */}
+            <div className="pillar-card">
+              <div className="pillar-card-top">
+                <span className="pillar-number">01</span>
+                <div className="pillar-icon-pill" aria-hidden="true">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M12 2a5 5 0 0 0-5 5v3a5 5 0 0 0 10 0V7a5 5 0 0 0-5-5z"></path>
+                    <path d="M7 13a6 6 0 0 0 10 0"></path>
+                    <path d="M12 17v5"></path>
+                  </svg>
                 </div>
-              )}
+              </div>
+              <h3>Gut Health &amp; Digestion</h3>
+              <div className="pillar-content">
+                <ul className="pillar-bullet-list">
+                  <li className="pillar-bullet-item">
+                    <strong>Upper GI:</strong> Acidity, reflux, GERD, indigestion
+                  </li>
+                  <li className="pillar-bullet-item">
+                    <strong>Lower GI:</strong> Constipation, diarrhoea, IBS, bloating
+                  </li>
+                  <li className="pillar-bullet-item">
+                    <strong>Other:</strong> SIBO, food intolerances, IBD support
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+            {/* Pillar 02: Hormonal Health */}
+            <div className="pillar-card">
+              <div className="pillar-card-top">
+                <span className="pillar-number">02</span>
+                <div className="pillar-icon-pill" aria-hidden="true">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+                    <circle cx="12" cy="8" r="5"></circle>
+                    <path d="M12 13v9"></path>
+                    <path d="M9 18h6"></path>
+                  </svg>
+                </div>
+              </div>
+              <h3>Hormonal Health</h3>
+              <div className="pillar-content">
+                <ul className="pillar-bullet-list">
+                  <li className="pillar-bullet-item">
+                    <strong>PMOS</strong> (formerly PCOS)
+                  </li>
+                  <li className="pillar-bullet-item">
+                    Irregular cycles &amp; hormonal symptoms
+                  </li>
+                  <li className="pillar-bullet-item">
+                    Perimenopause and menopause support
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+            {/* Pillar 03: Metabolic Health */}
+            <div className="pillar-card">
+              <div className="pillar-card-top">
+                <span className="pillar-number">03</span>
+                <div className="pillar-icon-pill" aria-hidden="true">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"></path>
+                  </svg>
+                </div>
+              </div>
+              <h3>Metabolic Health</h3>
+              <div className="pillar-content">
+                <ul className="pillar-bullet-list">
+                  <li className="pillar-bullet-item">
+                    Insulin resistance &amp; prediabetes
+                  </li>
+                  <li className="pillar-bullet-item">
+                    Sustainable fat loss &amp; metabolic balance
+                  </li>
+                  <li className="pillar-bullet-item">
+                    Fatty liver support &amp; recovery
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+            {/* Pillar 04: Thyroid & Autoimmune Support */}
+            <div className="pillar-card">
+              <div className="pillar-card-top">
+                <span className="pillar-number">04</span>
+                <div className="pillar-icon-pill" aria-hidden="true">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                  </svg>
+                </div>
+              </div>
+              <h3>Thyroid &amp; Autoimmune Support</h3>
+              <div className="pillar-content">
+                <ul className="pillar-bullet-list">
+                  <li className="pillar-bullet-item">
+                    Hashimoto’s &amp; thyroid health
+                  </li>
+                  <li className="pillar-bullet-item">
+                    Nutrition support for autoimmune conditions
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+            {/* Pillar 05: Stress & Resilience */}
+            <div className="pillar-card">
+              <div className="pillar-card-top">
+                <span className="pillar-number">05</span>
+                <div className="pillar-icon-pill" aria-hidden="true">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M18.36 6.64a9 9 0 1 1-12.73 0"></path>
+                    <line x1="12" y1="2" x2="12" y2="12"></line>
+                  </svg>
+                </div>
+              </div>
+              <h3>Stress &amp; Resilience</h3>
+              <div className="pillar-content">
+                <ul className="pillar-bullet-list">
+                  <li className="pillar-bullet-item">
+                    Stress management &amp; nervous system regulation
+                  </li>
+                  <li className="pillar-bullet-item">
+                    Breathwork &amp; respiratory pacing
+                  </li>
+                  <li className="pillar-bullet-item">
+                    Energy restoration &amp; physical recovery
+                  </li>
+                </ul>
+              </div>
             </div>
           </div>
         </div>
@@ -518,25 +664,24 @@ export default function HomePage() {
       >
         <div className="container">
           <div className="section-header text-center" style={{ maxWidth: '780px', margin: '0 auto 16px' }}>
-            <span
-              className="badge-pill"
-              style={{
-                background: 'var(--emerald-soft)',
-                borderColor: 'var(--emerald-medium)',
-                color: 'var(--emerald-deep)',
-                marginBottom: '10px',
-                fontWeight: 700,
-                fontSize: '0.78rem'
-              }}
-            >
-              <span className="pulse-dot" style={{ background: 'var(--emerald-medium)' }}></span>
-              <span>Proprietary Methodology • A Different Way To Look At Health</span>
-            </span>
             <h2 style={{ fontSize: '2.2rem', lineHeight: 1.2, marginBottom: '10px' }}>
-              The <span className="text-gradient">SAMYA™</span> Method
+              The{' '}
+              <span
+                style={{
+                  background: 'linear-gradient(135deg, #FF1493 0%, #FF007F 50%, #FF69B4 100%)',
+                  WebkitBackgroundClip: 'text',
+                  WebkitTextFillColor: 'transparent',
+                  backgroundClip: 'text',
+                  fontWeight: 800,
+                  display: 'inline-block'
+                }}
+              >
+                SAMYA™
+              </span>{' '}
+              Method
             </h2>
             <p style={{ fontSize: '1rem', color: 'var(--text-secondary)', lineHeight: 1.55 }}>
-              Connecting gut, breath, hormones, and sleep patterns into a unified clinical blueprint.
+              From understanding your body's signals to personalised, measurable progress.
             </p>
           </div>
 
@@ -587,47 +732,6 @@ export default function HomePage() {
                 {showAllSamya ? '▲' : '+3 Steps ▼'}
               </span>
             </button>
-          </div>
-
-          {/* Integrated SAMYA Bridge Action Banner */}
-          <div className="samya-banner-bridge">
-            <div className="samya-banner-content">
-              <span
-                className="badge-pill"
-                style={{
-                  background: 'rgba(255, 255, 255, 0.15)',
-                  borderColor: 'rgba(255, 255, 255, 0.25)',
-                  color: '#FED7AA',
-                  marginBottom: '14px'
-                }}
-              >
-                <span>From Insight To Clarity</span>
-              </span>
-              <h3>Your assessment highlights the patterns. Your Clarity Session explores your story.</h3>
-              <p>
-                Experience the SAMYA Method firsthand. In a 60-minute 1:1 Health Clarity Session, Reshmi Verma connects the dots across your health history, lab work, and breathing biomechanics.
-              </p>
-            </div>
-            <div className="samya-banner-actions">
-              <Link
-                to="/booking"
-                className="btn btn-accent btn-lg"
-                style={{ background: '#FFFFFF', color: 'var(--emerald-deep)', fontWeight: 700 }}
-              >
-                <span>Book Session</span>
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-                  <line x1="5" y1="12" x2="19" y2="12"></line>
-                  <polyline points="12 5 19 12 12 19"></polyline>
-                </svg>
-              </Link>
-              <Link to="/assessment" className="btn btn-on-dark btn-lg">
-                <span>Take Free Assessment</span>
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-                  <line x1="5" y1="12" x2="19" y2="12"></line>
-                  <polyline points="12 5 19 12 12 19"></polyline>
-                </svg>
-              </Link>
-            </div>
           </div>
         </div>
       </section>
@@ -761,9 +865,9 @@ export default function HomePage() {
         <div className="container">
           <div className="section-header text-center" style={{ maxWidth: '820px', margin: '0 auto 30px' }}>
             <span className="sub-title">A Tailored Health Pathway</span>
-            <h2>How We Work Together</h2>
+            <h2>Your Journey to Better Health</h2>
             <p>
-              After your Health Clarity Session, the appropriate health pathway is determined based on your individual needs. There is no one-size-fits-all program.
+              Every health journey is unique. We begin by understanding your concerns, uncovering the underlying factors, and creating a personalised approach that aligns with your health goals.
             </p>
           </div>
 
@@ -772,44 +876,28 @@ export default function HomePage() {
               <div className="how-step-number">01</div>
               <h3>Free Health Assessment</h3>
               <p>
-                Take our 5-minute Health Resilience Assessment to capture your health baseline, pinpoint gut patterns, and understand the signals your body is giving.
+                Complete a brief assessment to share your health concerns, current challenges and goals.
               </p>
-              <span className="how-step-highlight">Step 1 • Signal Discovery</span>
+              <span className="how-step-highlight">Step 1 • Discovery Call</span>
             </div>
 
             <div className="how-step-card" style={{ borderColor: 'var(--emerald-medium)', boxShadow: 'var(--shadow-md)', background: '#FFFFFF' }}>
               <div className="how-step-number" style={{ color: 'var(--emerald-medium)' }}>02</div>
               <h3>Health Clarity Session</h3>
               <p>
-                A comprehensive 60-minute 1:1 session with Reshmi Verma exploring your health history, lab panels, breathing mechanics, and metabolic bottlenecks.
+                Discuss your health concerns and goals with Reshmi to understand your needs and determine whether the programme is the right fit. If you’re aligned, Reshmi will walk you through the programme and its approach.
               </p>
-              <span className="how-step-highlight" style={{ background: 'var(--emerald-soft)' }}>Step 2 • 60-Min 1:1</span>
+              <span className="how-step-highlight" style={{ background: 'var(--emerald-soft)' }}>Step 2 • Clarity Conversation</span>
             </div>
 
             <div className="how-step-card">
               <div className="how-step-number">03</div>
-              <h3>Tailored Health Pathway</h3>
+              <h3>Your Personalised 90-Day Roadmap</h3>
               <p>
-                Receive an individualized protocol built around your unique biochemistry: targeted cellular nutrition, gut mucosal repair, and respiratory modulation.
+                A structured, root-cause-oriented approach integrating relevant SAMYA™ pillars, root cause analysis, personalised nutrition, targeted strategies and ongoing support to address your health priorities.
               </p>
-              <span className="how-step-highlight">Step 3 • Customized Protocol</span>
+              <span className="how-step-highlight">Step 3 • Programme Fit Check</span>
             </div>
-          </div>
-
-          <div className="how-manifesto-box">
-            <div className="how-manifesto-text">
-              <strong>There is no one-size-fits-all program.</strong>
-              <p>
-                Your personalized plan is built directly around your health story, goals, and biochemical assessment. That is vastly more powerful and sustainable than generic diet charts.
-              </p>
-            </div>
-            <Link to="/booking" className="btn btn-primary btn-lg">
-              <span>Book Session</span>
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" style={{ marginLeft: '8px' }}>
-                <line x1="5" y1="12" x2="19" y2="12"></line>
-                <polyline points="12 5 19 12 12 19"></polyline>
-              </svg>
-            </Link>
           </div>
         </div>
       </section>
@@ -994,47 +1082,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 8. Trust & Founder Spotlight Banner */}
-      <section style={{ padding: '24px 0 36px' }}>
-        <div className="container">
-          <div
-            style={{
-              background: '#FFFFFF',
-              backdropFilter: 'blur(16px)',
-              WebkitBackdropFilter: 'blur(16px)',
-              border: '1px solid rgba(18, 18, 20, 0.08)',
-              borderRadius: '24px',
-              padding: '36px 36px',
-              boxShadow: '0 10px 30px rgba(0, 0, 0, 0.04)',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'space-between',
-              flexWrap: 'wrap',
-              gap: '24px'
-            }}
-          >
-            <div style={{ maxWidth: '680px' }}>
-              <div style={{ fontSize: '0.82rem', fontWeight: 700, color: 'var(--emerald-medium)', textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: '6px' }}>
-                Led By Reshmi Verma &bull; 18+ Years Clinical Diagnostics Leadership
-              </div>
-              <h3 style={{ fontSize: '1.5rem', color: 'var(--emerald-deep)', margin: '0 0 6px', fontFamily: 'var(--font-serif)' }}>
-                Biotechnologist &bull; Functional Nutritionist &bull; Breathwork Facilitator
-              </h3>
-              <p style={{ margin: 0, color: 'var(--text-secondary)', fontSize: '0.94rem', lineHeight: 1.6 }}>
-                Director of Rainbow Medinova Diagnostic Services and Co-founder of Neofit Gym. Read her journey from pathology diagnostics to personal 38 kg reversal.
-              </p>
-            </div>
-            <div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap', alignItems: 'center' }}>
-              <Link to="/about" className="btn btn-secondary btn-lg" style={{ borderRadius: '14px', padding: '12px 24px', fontSize: '0.95rem' }}>
-                <span>Read Reshmi's Full Story</span>
-              </Link>
-              <Link to="/booking" className="btn btn-primary btn-lg" style={{ borderRadius: '14px', padding: '12px 26px', fontSize: '0.95rem' }}>
-                <span>Book 1:1 Consultation</span>
-              </Link>
-            </div>
-          </div>
-        </div>
-      </section>
+
 
       {/* 4A. More About Reshmi Section (3 Cards: About, Instagram, YouTube) */}
       <section className="more-about-section" id="more-about-reshmi">
@@ -1154,28 +1202,23 @@ export default function HomePage() {
             <span className="pulse-dot" style={{ background: '#00E5D9' }}></span>
             <span>Begin Your Healing Journey</span>
           </span>
-          <h2 style={{ color: '#FFFFFF', fontSize: 'clamp(1.45rem, 5.5vw, 2.75rem)', marginBottom: '14px', lineHeight: 1.25 }}>Ready for Clarity on Your Health?</h2>
+          <h2 style={{ color: '#FFFFFF', fontSize: 'clamp(1.45rem, 5.5vw, 2.75rem)', marginBottom: '14px', lineHeight: 1.25 }}>Tired of Guessing About Your Health?</h2>
           <p style={{ color: '#E5E7EB', maxWidth: '650px', margin: '0 auto 24px', fontSize: 'clamp(0.85rem, 2.5vw, 1.12rem)', lineHeight: 1.5 }}>
-            Take our 5-minute Health Resilience Assessment or book a dedicated session with Reshmi Verma to decode your symptoms into an actionable recovery plan.
-          </p>
+            Take our free 5-minute Health Resilience Assessment to identify your key health priorities and explore the next steps that may be right for you. </p>
           <div className="cta-dual-btn-row">
             <Link
               to="/booking"
               className="btn btn-white-solid cta-btn-side"
               style={{ padding: '13px 24px', borderRadius: '12px' }}
             >
-              <span>Book Session</span>
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-                <line x1="5" y1="12" x2="19" y2="12"></line>
-                <polyline points="12 5 19 12 12 19"></polyline>
-              </svg>
+              <span>Book 1:1 Consultation</span>
             </Link>
             <Link
               to="/assessment"
               className="btn btn-on-dark cta-btn-side"
               style={{ padding: '13px 22px', borderRadius: '12px' }}
             >
-              <span>Free Assessment</span>
+              <span>Take Free Assessment</span>
             </Link>
           </div>
         </div>

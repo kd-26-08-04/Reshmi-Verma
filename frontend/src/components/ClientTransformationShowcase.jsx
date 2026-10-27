@@ -62,7 +62,6 @@ export default function ClientTransformationShowcase() {
   const audioTestimonials = [
     {
       id: 'voice-1',
-      clientName: 'Client Audio Note 1',
       condition: 'Gut Relief & Chronic Acidity',
       file: '/assets/audio/client-voice-1.mp4',
       quote: '"Reshmi mam ke guidance se meri 3 saal purani acidity aur digestion issue completely heal ho gaya."',
@@ -70,7 +69,6 @@ export default function ClientTransformationShowcase() {
     },
     {
       id: 'voice-2',
-      clientName: 'Client Audio Note 2',
       condition: 'Thyroid, Energy & Sleep Quality',
       file: '/assets/audio/client-voice-2.mp4',
       quote: '"Afternoon exhaustion aur brain fog hat gaya. Main ab bina kisi caffeine ya medicines ke active rehti hu."',
@@ -78,7 +76,6 @@ export default function ClientTransformationShowcase() {
     },
     {
       id: 'voice-3',
-      clientName: 'Client Audio Note 3',
       condition: 'Sustained Weight & Metabolic Reversal',
       file: '/assets/audio/client-voice-3.mp4',
       quote: '"Bina kisi crash diet ya starvation ke mera weight naturally reduce hua aur inch loss bhi bohot acha mila."',
@@ -86,7 +83,6 @@ export default function ClientTransformationShowcase() {
     },
     {
       id: 'voice-4',
-      clientName: 'Client Audio Note 4',
       condition: 'Anxiety & Breathwork Recovery',
       file: '/assets/audio/client-voice-4.mp4',
       quote: '"Oxygen Advantage breathing drills ne meri breathing pattern aur raat ki sleep ko 100% stable kar diya."',
@@ -94,7 +90,7 @@ export default function ClientTransformationShowcase() {
     },
     {
       id: 'voice-5',
-      clientName: 'Client Audio Note 5',
+
       condition: 'Gut Relief & Bloating Reversal',
       file: '/assets/audio/client-voice-5.mp3',
       quote: '"Bloating aur post-meal heaviness me remarkable improvement aaya within few weeks of protocol."',
@@ -102,14 +98,12 @@ export default function ClientTransformationShowcase() {
     },
     {
       id: 'voice-8',
-      clientName: 'Client Audio Note 8',
       condition: 'Metabolic Vitality & Inch Loss',
       file: '/assets/audio/client-voice-8.mp3',
       quote: '"Metabolism restore hua aur bina extreme restriction ke sustainable inch loss mila."',
     },
     {
       id: 'voice-9',
-      clientName: 'Client Audio Note 9',
       condition: 'Sleep Quality & Stress Modulation',
       file: '/assets/audio/client-voice-9.mp3',
       quote: '"Oxygen Advantage breathwork aur sleep hygiene se deep restful sleep wapas aayi."',
@@ -296,9 +290,8 @@ export default function ClientTransformationShowcase() {
                 >
                   Hear Directly From Our Clients
                 </h3>
-                <p style={{ margin: 0, fontSize: '0.98rem', color: 'var(--text-secondary)' }}>
-                  Unfiltered voice feedback shared after finishing their personalized health protocols.
-                </p>
+
+                <h3>Client Audio Note</h3>
               </div>
             </div>
 

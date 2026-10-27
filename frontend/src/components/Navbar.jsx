@@ -77,6 +77,11 @@ export default function Navbar() {
     <header className={`site-header ${scrolled ? 'scrolled' : ''}`}>
       <div className="container nav-container">
         <Link to="/" className="brand-logo" onClick={closeMenu}>
+          <img
+            src="/assets/images/Reshmi_Logo_transparent.png"
+            alt="HealthwithReshmi Official Logo"
+            className="brand-logo-img"
+          />
           <div className="brand-text">
             <span className="name">HealthwithReshmi™</span>
             <span className="tagline">Reshmi Verma &bull; Functional Nutritionist</span>
