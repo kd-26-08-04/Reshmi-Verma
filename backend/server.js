@@ -23,8 +23,7 @@ import adminUpdateBookingHandler from './api/admin-update-booking.js';
 import questionnaireTemplateHandler from './api/questionnaire-template.js';
 import pricingTiersHandler from './api/pricing-tiers.js';
 import adminPricingTiersHandler from './api/admin-pricing-tiers.js';
-import reelsHandler from './api/reels.js';
-import adminReelsHandler from './api/admin-reels.js';
+
 import uploadPdfHandler from './api/upload-pdf.js';
 import availableSlotsHandler from './api/available-slots.js';
 import adminScheduleHandler from './api/admin-schedule.js';
@@ -136,10 +135,7 @@ app.get('/api/pricing-tiers', wrapHandler(pricingTiersHandler));
 app.post('/api/admin-pricing-tiers', wrapHandler(adminPricingTiersHandler));
 app.put('/api/admin-pricing-tiers', wrapHandler(adminPricingTiersHandler));
 
-// Instagram Reels endpoints
-app.get('/api/reels', wrapHandler(reelsHandler));
-app.post('/api/admin-reels', wrapHandler(adminReelsHandler));
-app.put('/api/admin-reels', wrapHandler(adminReelsHandler));
+
 
 // ==============================================================================
 // Static file serving & SPA production fallback

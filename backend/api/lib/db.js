@@ -497,43 +497,6 @@ export const db = {
     return tiers;
   },
 
-  // --- INSTAGRAM REELS (ADMIN EDITABLE) ---
-  async getReels() {
-    const mdb = await getMongo();
-    if (mdb) {
-      const doc = await mdb.collection('configs').findOne({ key: 'reels' });
-      if (doc && doc.reels && Array.isArray(doc.reels) && doc.reels.length > 0) return doc.reels;
-    }
-    const data = readLocalDb();
-    if (data.reels && Array.isArray(data.reels) && data.reels.length > 0) {
-      return data.reels;
-    }
-    const defaultReels = getDefaultReels();
-    data.reels = defaultReels;
-    writeLocalDb(data);
-    return defaultReels;
-  },
-
-  async updateReels(reels) {
-    const patch = {
-      reels,
-      updatedAt: new Date().toISOString()
-    };
-    const mdb = await getMongo();
-    if (mdb) {
-      await mdb.collection('configs').updateOne(
-        { key: 'reels' },
-        { $set: { key: 'reels', reels, updatedAt: patch.updatedAt } },
-        { upsert: true }
-      );
-      return reels;
-    }
-    const data = readLocalDb();
-    data.reels = reels;
-    writeLocalDb(data);
-    return reels;
-  },
-
   // --- CLINIC SCHEDULE & SLOTS MANAGEMENT ---
   async getClinicSchedule() {
     const mdb = await getMongo();
@@ -880,64 +843,6 @@ export function getDefaultPricingTiers() {
   ];
 }
 
-export function getDefaultReels() {
-  return [
-    {
-      id: "reel-1",
-      title: "Why Morning Coffee On An Empty Stomach Causes Gut Dysbiosis & Acidity",
-      url: "https://www.instagram.com/reel/DEvM_3Yvx4D/?utm_source=ig_web_copy_link",
-      image: "/assets/images/founder.jpeg",
-      views: "48.2K",
-      duration: "0:58",
-      topic: "Gut Acidity & Coffee"
-    },
-    {
-      id: "reel-2",
-      title: "Breathe Light To Breathe Right — The Bohr Effect In 45 Seconds",
-      url: "https://www.instagram.com/reel/DEvM_3Yvx4D/?utm_source=ig_web_copy_link",
-      image: "/assets/images/reshmi-saree-hero.jpg",
-      views: "62.4K",
-      duration: "0:45",
-      topic: "Oxygen Advantage #13"
-    },
-    {
-      id: "reel-3",
-      title: "Stop Counting Calories: 3 Real Food Swaps For Fatty Liver & Insulin Resistance",
-      url: "https://www.instagram.com/reel/DEvM_3Yvx4D/?utm_source=ig_web_copy_link",
-      image: "/assets/images/reel-3-food-swaps.jpg",
-      views: "39.1K",
-      duration: "1:15",
-      topic: "Metabolic Healing"
-    },
-    {
-      id: "reel-4",
-      title: "Bloating After Every Meal? Here Is How To Heal Your Gut Mucosa",
-      url: "https://www.instagram.com/reel/DEvM_3Yvx4D/?utm_source=ig_web_copy_link",
-      image: "/assets/images/reel-4-gut-mucosa.jpg",
-      views: "71.8K",
-      duration: "1:02",
-      topic: "Gut Barrier Repair"
-    },
-    {
-      id: "reel-5",
-      title: "Why Mouth Breathing Ruins Deep REM Sleep & Causes Brain Fog",
-      url: "https://www.instagram.com/reel/DEvM_3Yvx4D/?utm_source=ig_web_copy_link",
-      image: "/assets/images/clinic-sanctuary.jpg",
-      views: "54.6K",
-      duration: "0:52",
-      topic: "Nasal Breathing Biohack"
-    },
-    {
-      id: "reel-6",
-      title: "From 98kg to Resilient Vitality: My Real -38kg Transformation Story",
-      url: "https://www.instagram.com/reel/DEvM_3Yvx4D/?utm_source=ig_web_copy_link",
-      image: "/assets/images/reshmi-verma.jpg",
-      views: "94.3K",
-      duration: "1:30",
-      topic: "Real Transformation"
-    }
-  ];
-}
 
 export function getDefaultQuestionnaireTemplate() {
   return {

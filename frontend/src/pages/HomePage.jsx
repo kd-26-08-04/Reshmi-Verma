@@ -5,48 +5,48 @@ import { getApiUrl } from '../utils/api';
 const DEFAULT_REELS = [
   {
     id: "reel-1",
-    title: "The 4F Food Crisis: Building Metabolic Resilience Beyond the Pantry",
-    url: "https://www.instagram.com/reel/DeFXQs5TaNs/?utm_source=ig_web_copy_link&stkn=NTc4MTIwNjQ2YQ==",
+    title: "Food Controlling You vs. You Controlling Food: Root Cause Healing",
+    url: "https://www.instagram.com/reel/Dbt0IfST8hF/?xtok=c3ExNWwxN2pwd3hp",
     image: "/assets/images/reshmi-verma.jpg",
     views: "52.4K",
     duration: "0:59",
-    topic: "Metabolic Resilience"
+    topic: "Food Freedom"
   },
   {
     id: "reel-2",
-    title: "Good, Better, Best: Everyday Nutrition Without Extreme Restrictions",
-    url: "https://www.instagram.com/reel/Ddtm1wMTrRn/?utm_source=ig_web_copy_link&stkn=MzRlODBiNWFlZA==",
+    title: "How to Eat Seeds the Right Way: Chia, Flax, Sesame, Pumpkin & More",
+    url: "https://www.instagram.com/reel/DeBgLUCzomt/?psln=aXkwYXExNWd5end2",
     image: "/assets/images/functional-nutrition.jpg",
     views: "68.1K",
     duration: "0:54",
-    topic: "Nutrient Density"
+    topic: "Seed Nutrition"
   },
   {
     id: "reel-3",
-    title: "Smart Everyday Food Swaps: Micronutrient & Antioxidant Density",
-    url: "https://www.instagram.com/reel/Ddw9A1SzBKH/?utm_source=ig_web_copy_link&stkn=MzRlODBiNWFlZA==",
+    title: "4-7-8 Breathing Technique: Calm Your Nervous System & Beat Stress",
+    url: "https://www.instagram.com/reel/DaqrVQzz5No/?dlrf=MTh3Y29xaXIxdXFzbQ==",
     image: "/assets/images/reel-3-food-swaps.jpg",
     views: "81.6K",
     duration: "0:48",
-    topic: "Functional Nutrition"
+    topic: "Breathwork & Stress Relief"
   },
   {
     id: "reel-4",
-    title: "Gut Mucosal Repair: Addressing Root Leaky Gut & Food Reactivity",
-    url: "https://www.instagram.com/reel/DdFEn_gzhbQ/?utm_source=ig_web_copy_link&stkn=MzRlODBiNWFlZA==",
+    title: "Mudras & Breathwork: How Hand Positions Change Your Nervous System",
+    url: "https://www.instagram.com/reel/DZVtU4TTQbS/?cplk=cjRmeHA0aWE4ZzJr",
     image: "/assets/images/reel-4-gut-mucosa.jpg",
     views: "44.9K",
     duration: "0:56",
-    topic: "Gut Restoration"
+    topic: "Mudras & Breathwork"
   },
   {
     id: "reel-5",
-    title: "Autonomic Nervous System Reset: The 3-Minute Vagal Breathing Cue",
-    url: "https://www.instagram.com/reel/DdW0ClVTnB7/?utm_source=ig_web_copy_link&stkn=MzRlODBiNWFlZA==",
+    title: "Protein Won't Damage Your Kidneys: Busting the Biggest Indian Diet Myth",
+    url: "https://www.instagram.com/reel/DY5Q--ATcKt/?vrfl=bWp5NGJvZjYydWZv",
     image: "/assets/images/clinic-sanctuary.jpg",
     views: "73.2K",
     duration: "0:51",
-    topic: "Oxygen Advantage"
+    topic: "Protein Myths"
   },
   {
     id: "reel-6",
