@@ -200,7 +200,7 @@ export default function BookingPage() {
       return;
     }
     if (!formData.phone.trim()) {
-      setAlert({ type: 'error', message: 'Please enter your WhatsApp / Mobile Number.' });
+      setAlert({ type: 'error', message: 'Please enter your Mobile Number.' });
       return;
     }
     if (!formData.email.trim() || !formData.email.includes('@')) {
@@ -506,7 +506,7 @@ export default function BookingPage() {
 
                 <div>
                   <label htmlFor="client-phone-input" style={{ fontWeight: 700, fontSize: '0.92rem', color: 'var(--emerald-deep)', display: 'block', marginBottom: '6px' }}>
-                    4. WhatsApp / Mobile Number *
+                    4. Mobile Number *
                   </label>
                   <input
                     type="tel"
@@ -736,15 +736,6 @@ export default function BookingPage() {
             </div>
 
             <div className="modal-actions" style={{ display: 'flex', gap: '12px', flexWrap: 'wrap', justifyContent: 'center' }}>
-              <a
-                id="whatsapp-confirm-link"
-                href={`https://wa.me/919876543210?text=${encodeURIComponent(`Hello Reshmi Verma, I have confirmed my ${confirmedBooking.serviceName} on ${confirmedBooking.dateTime}. Patient Name: ${confirmedBooking.clientName}. Booking ID: ${confirmedBooking.id || confirmedBooking.bookingId || ''}. I am submitting my clinical questionnaire.`)}`}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="btn btn-accent btn-sm"
-              >
-                <span>Connect via WhatsApp</span>
-              </a>
               <button
                 type="button"
                 className="btn btn-outline btn-sm"

@@ -215,10 +215,6 @@ export default function HomePage() {
             <div className="hero-content">
 
 
-              <div className="badge-pill">
-                <span className="pulse-dot"></span>
-                <span>Functional Nutritionist &bull; Somatic Breathwork Facilitator &bull; Biohacker</span>
-              </div>
 
               <h1 style={{ lineHeight: 1.15, margin: '12px 0 16px' }}>
                 <span style={{ color: '#121214' }}>Science-Led</span>

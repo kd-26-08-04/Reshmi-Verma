@@ -57,22 +57,6 @@ export default function AdminPage() {
   const [leadsSearch, setLeadsSearch] = useState('');
   const [updatingLeadId, setUpdatingLeadId] = useState(null);
 
-  // WhatsApp Automation State
-  const [waConfig, setWaConfig] = useState({
-    enabled: true,
-    provider: 'ultramsg',
-    instanceId: '',
-    token: '',
-    adminPhone: '+919876543210',
-    autoSendReportToClient: true,
-    sendAlertToAdmin: true
-  });
-  const [loadingWaConfig, setLoadingWaConfig] = useState(false);
-  const [savingWaConfig, setSavingWaConfig] = useState(false);
-  const [testPhone, setTestPhone] = useState('');
-  const [testingWa, setTestingWa] = useState(false);
-  const [sendingReportId, setSendingReportId] = useState(null);
-
   // Status Alerts
   const [alertMsg, setAlertMsg] = useState(null); // { type: 'success' | 'error', text: string }
 
@@ -211,108 +195,6 @@ export default function AdminPage() {
     }
   };
 
-  // 6. Fetch WhatsApp Config
-  const fetchWhatsappConfig = async () => {
-    setLoadingWaConfig(true);
-    try {
-      const headers = {};
-      if (token) headers['Authorization'] = `Bearer ${token}`;
-      const res = await fetch(getApiUrl('/api/admin-whatsapp-config'), { headers });
-      const data = await res.json();
-      if (res.ok && data.success && data.config) {
-        setWaConfig(data.config);
-      }
-    } catch (err) {
-      console.error('WhatsApp config fetch error:', err);
-    } finally {
-      setLoadingWaConfig(false);
-    }
-  };
-
-  // Save WhatsApp Config
-  const handleSaveWhatsappConfig = async (e) => {
-    if (e && e.preventDefault) e.preventDefault();
-    setSavingWaConfig(true);
-    try {
-      const headers = { 'Content-Type': 'application/json' };
-      if (token) headers['Authorization'] = `Bearer ${token}`;
-      const res = await fetch(getApiUrl('/api/admin-whatsapp-config'), {
-        method: 'POST',
-        headers,
-        body: JSON.stringify(waConfig)
-      });
-      const data = await res.json();
-      if (res.ok && data.success) {
-        showNotification('success', data.message || 'WhatsApp automation settings saved successfully!');
-        if (data.config) setWaConfig(data.config);
-      } else {
-        showNotification('error', data.error || 'Failed to save WhatsApp configuration.');
-      }
-    } catch (err) {
-      console.error('Save WhatsApp config error:', err);
-      showNotification('error', 'Error saving WhatsApp configuration.');
-    } finally {
-      setSavingWaConfig(false);
-    }
-  };
-
-  // Test WhatsApp message
-  const handleTestWhatsapp = async () => {
-    if (!testPhone.trim()) {
-      alert('Please enter a mobile/WhatsApp number to receive the test message.');
-      return;
-    }
-    setTestingWa(true);
-    try {
-      const res = await fetch(getApiUrl('/api/whatsapp-send-report'), {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ isTest: true, phone: testPhone.trim() })
-      });
-      const data = await res.json();
-      if (res.ok && data.success) {
-        showNotification('success', data.message || 'Test WhatsApp message dispatched successfully!');
-        if (data.waUrl && data.simulated) {
-          window.open(data.waUrl, '_blank');
-        }
-      } else {
-        showNotification('error', data.error || 'Failed to send test WhatsApp message.');
-      }
-    } catch (err) {
-      console.error('Test WhatsApp error:', err);
-      showNotification('error', 'Error sending test WhatsApp message.');
-    } finally {
-      setTestingWa(false);
-    }
-  };
-
-  // Send Report to Specific Lead
-  const handleSendReportToLead = async (leadId) => {
-    setSendingReportId(leadId);
-    try {
-      const res = await fetch(getApiUrl('/api/whatsapp-send-report'), {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ leadId })
-      });
-      const data = await res.json();
-      if (res.ok && data.success) {
-        showNotification('success', data.message || 'Assessment report sent to client via WhatsApp!');
-        fetchAdminLeads();
-        if (data.waUrl && data.simulated) {
-          window.open(data.waUrl, '_blank');
-        }
-      } else {
-        showNotification('error', data.error || 'Failed to dispatch report to WhatsApp.');
-      }
-    } catch (err) {
-      console.error('Send report error:', err);
-      showNotification('error', 'Error sending report.');
-    } finally {
-      setSendingReportId(null);
-    }
-  };
-
   // Save Schedule Config
   const handleSaveScheduleConfig = async (patch) => {
     setSavingSchedule(true);
@@ -443,7 +325,6 @@ export default function AdminPage() {
         fetchPricingTiers();
         fetchSchedule();
         fetchAdminLeads();
-        fetchWhatsappConfig();
       }
     }
   }, [authLoading, isAuthenticated, isAdmin]);
@@ -690,11 +571,6 @@ export default function AdminPage() {
                 {loadingLeads ? 'Refreshing...' : '↻ Refresh Leads'}
               </button>
             )}
-            {activeTab === 'whatsapp' && (
-              <button className="btn btn-secondary btn-sm" onClick={fetchWhatsappConfig} disabled={loadingWaConfig}>
-                {loadingWaConfig ? 'Refreshing...' : '↻ Refresh WhatsApp'}
-              </button>
-            )}
           </div>
         </div>
 
@@ -772,16 +648,6 @@ export default function AdminPage() {
             </span>
           </button>
 
-          <button
-            type="button"
-            className={`admin-tab-btn ${activeTab === 'whatsapp' ? 'active' : ''}`}
-            onClick={() => setActiveTab('whatsapp')}
-          >
-            <span>📲 WhatsApp Automation</span>
-            <span className="admin-tab-badge" style={{ background: waConfig?.hasToken ? '#DCFCE7' : '#FEF3C7', color: waConfig?.hasToken ? '#15803D' : '#92400E' }}>
-              {waConfig?.hasToken ? 'Live' : 'Ready'}
-            </span>
-          </button>
         </div>
 
         {/* =========================================================================
@@ -1705,7 +1571,7 @@ export default function AdminPage() {
                 <div style={{ fontSize: '2rem', fontWeight: 800, color: '#B45309', marginTop: '4px' }}>
                   {leads.filter(l => l.status === 'completed_not_booked').length}
                 </div>
-                <div style={{ fontSize: '0.78rem', color: '#92400E', marginTop: '4px' }}>Know their health score; ready for 1-click WhatsApp</div>
+                <div style={{ fontSize: '0.78rem', color: '#92400E', marginTop: '4px' }}>Know their health score; ready for client consultation outreach</div>
               </div>
 
               <div style={{ background: '#FFF7ED', padding: '20px', borderRadius: '20px', border: '1px solid #FFEDD5', boxShadow: '0 4px 14px rgba(0,0,0,0.02)' }}>
@@ -1788,7 +1654,7 @@ export default function AdminPage() {
                 <div style={{ fontSize: '2.5rem', marginBottom: '10px' }}>🎯</div>
                 <h3 style={{ color: 'var(--emerald-deep)', margin: '0 0 8px' }}>No Assessment Leads Yet</h3>
                 <p style={{ color: 'var(--text-muted)', maxWidth: '480px', margin: '0 auto', fontSize: '0.9rem' }}>
-                  Whenever a visitor enters their Name and WhatsApp number on the welcome popup or begins the Health Assessment, their data is instantly tracked here for follow-up.
+                  Whenever a visitor enters their Name and Mobile number on the welcome popup or begins the Health Assessment, their data is instantly tracked here for follow-up.
                 </p>
               </div>
             ) : (
@@ -1807,12 +1673,6 @@ export default function AdminPage() {
                     return true;
                   })
                   .map((lead) => {
-                    const cleanPhone = (lead.phone || '').replace(/\D/g, '');
-                    const waText = encodeURIComponent(
-                      `Hello ${lead.name || 'there'}! This is the clinical team at HealthwithReshmi™. We saw that you completed your Functional Health Assessment. Would you like to schedule your 1:1 Consultation with Reshmi Verma to review your personalized protocol?`
-                    );
-                    const waUrl = `https://wa.me/91${cleanPhone.length === 10 ? cleanPhone : cleanPhone.slice(-10)}?text=${waText}`;
-
                     return (
                       <div
                         key={lead.id}
@@ -1859,53 +1719,8 @@ export default function AdminPage() {
                             </div>
                           </div>
 
-                          {/* Quick Contact & WhatsApp Dispatch Buttons */}
+                          {/* Direct Contact Actions */}
                           <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap' }}>
-                            {lead.phone && (
-                              <button
-                                type="button"
-                                onClick={() => handleSendReportToLead(lead.id)}
-                                disabled={sendingReportId === lead.id}
-                                className="btn btn-sm"
-                                title="Auto-send full clinical assessment report from your Business WhatsApp"
-                                style={{
-                                  background: lead.whatsappSent ? '#047857' : 'linear-gradient(135deg, #059669 0%, #047857 100%)',
-                                  color: 'white',
-                                  fontWeight: 700,
-                                  display: 'inline-flex',
-                                  alignItems: 'center',
-                                  gap: '6px',
-                                  padding: '8px 14px',
-                                  borderRadius: '10px',
-                                  border: 'none',
-                                  cursor: 'pointer',
-                                  boxShadow: '0 2px 6px rgba(4, 120, 87, 0.25)'
-                                }}
-                              >
-                                <span>{sendingReportId === lead.id ? '⏳ Sending...' : lead.whatsappSent ? '✅ Report Dispatched' : '📲 Send Report to WA'}</span>
-                              </button>
-                            )}
-                            {lead.phone && (
-                              <a
-                                href={waUrl}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="btn btn-sm"
-                                style={{
-                                  background: '#25D366',
-                                  color: 'white',
-                                  fontWeight: 700,
-                                  textDecoration: 'none',
-                                  display: 'inline-flex',
-                                  alignItems: 'center',
-                                  gap: '6px',
-                                  padding: '8px 14px',
-                                  borderRadius: '10px'
-                                }}
-                              >
-                                <span>💬 Chat Direct</span>
-                              </a>
-                            )}
                             {lead.phone && (
                               <a
                                 href={`tel:${lead.phone}`}
@@ -1919,7 +1734,23 @@ export default function AdminPage() {
                                   fontWeight: 600
                                 }}
                               >
-                                <span>📞 Direct Call</span>
+                                <span>📞 Call</span>
+                              </a>
+                            )}
+                            {lead.email && (
+                              <a
+                                href={`mailto:${lead.email}?subject=Your Health Assessment Consultation - HealthwithReshmi`}
+                                className="btn btn-secondary btn-sm"
+                                style={{
+                                  padding: '8px 14px',
+                                  borderRadius: '10px',
+                                  display: 'inline-flex',
+                                  alignItems: 'center',
+                                  gap: '6px',
+                                  fontWeight: 600
+                                }}
+                              >
+                                <span>✉️ Email</span>
                               </a>
                             )}
                           </div>
@@ -1989,7 +1820,7 @@ export default function AdminPage() {
                               }}
                             >
                               <option value="pending">⏳ Pending Follow-up</option>
-                              <option value="contacted">💬 Contacted via WhatsApp</option>
+                              <option value="contacted">💬 Contacted Client</option>
                               <option value="called">📞 Called Client</option>
                               <option value="converted">✅ Converted to Consultation</option>
                               <option value="not_interested">❌ Not Interested</option>
@@ -2006,252 +1837,6 @@ export default function AdminPage() {
                   })}
               </div>
             )}
-          </div>
-        )}
-
-        {/* =========================================================================
-            WHATSAPP AUTOMATION COMMAND DESK
-            ========================================================================= */}
-        {activeTab === 'whatsapp' && (
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
-            {/* Top Overview Banner */}
-            <div
-              style={{
-                background: 'linear-gradient(135deg, #064E3B 0%, #065F46 100%)',
-                color: 'white',
-                borderRadius: '20px',
-                padding: '28px 32px',
-                boxShadow: '0 8px 24px rgba(6, 78, 59, 0.25)',
-                display: 'flex',
-                justifyContent: 'space-between',
-                alignItems: 'center',
-                flexWrap: 'wrap',
-                gap: '20px'
-              }}
-            >
-              <div style={{ maxWidth: '650px' }}>
-                <div style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', padding: '4px 12px', background: 'rgba(255,255,255,0.15)', borderRadius: '999px', fontSize: '0.78rem', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: '10px' }}>
-                  <span>📲 WhatsApp Business Direct Reporting</span>
-                </div>
-                <h2 style={{ fontSize: 'clamp(1.4rem, 3.5vw, 1.85rem)', margin: '0 0 10px', color: '#FFFFFF', fontWeight: 800 }}>
-                  Automated Assessment Reports to Client WhatsApp
-                </h2>
-                <p style={{ margin: 0, fontSize: '0.94rem', opacity: 0.9, lineHeight: 1.6 }}>
-                  जब भी कोई क्लाइंट आपकी वेबसाइट पर Health Assessment पूरा करेगा, उसका क्लिनिकल स्कोर और पर्सनलाइज़्ड प्रोटोकॉल रिपोर्ट आपके Business WhatsApp से सीधे क्लाइंट के मोबाइल पर ऑटोमैटिकली पहुँच जाएगी।
-                </p>
-              </div>
-
-              <div
-                style={{
-                  background: 'rgba(255, 255, 255, 0.1)',
-                  backdropFilter: 'blur(8px)',
-                  border: '1px solid rgba(255, 255, 255, 0.2)',
-                  borderRadius: '16px',
-                  padding: '16px 22px',
-                  textAlign: 'center'
-                }}
-              >
-                <div style={{ fontSize: '0.75rem', textTransform: 'uppercase', letterSpacing: '0.05em', opacity: 0.8, marginBottom: '6px' }}>
-                  Gateway Status
-                </div>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '8px', justifyContent: 'center' }}>
-                  <span style={{ width: '10px', height: '10px', borderRadius: '50%', background: waConfig?.hasToken ? '#34D399' : '#FBBF24' }}></span>
-                  <span style={{ fontWeight: 800, fontSize: '1.05rem' }}>
-                    {waConfig?.hasToken ? 'Live Automated' : 'Simulator / Ready'}
-                  </span>
-                </div>
-                <div style={{ fontSize: '0.75rem', marginTop: '6px', opacity: 0.85 }}>
-                  {waConfig?.hasToken ? 'UltraMsg / Gateway Connected' : 'One-Click Direct WA Active'}
-                </div>
-              </div>
-            </div>
-
-            {/* Main 2-Column Layout: Settings on Left, Test Bench & Guide on Right */}
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(340px, 1fr))', gap: '24px' }}>
-
-              {/* Left Column: WhatsApp Settings Form */}
-              <div
-                style={{
-                  background: 'white',
-                  borderRadius: '20px',
-                  padding: '28px',
-                  border: '1px solid var(--border-subtle)',
-                  boxShadow: '0 4px 16px rgba(0,0,0,0.03)'
-                }}
-              >
-                <h3 style={{ fontSize: '1.25rem', color: 'var(--emerald-deep)', margin: '0 0 16px', fontWeight: 700 }}>
-                  ⚙️ Gateway Configuration
-                </h3>
-
-                <form onSubmit={handleSaveWhatsappConfig} style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
-                  <div>
-                    <label style={{ display: 'block', fontSize: '0.85rem', fontWeight: 700, color: 'var(--text-primary)', marginBottom: '6px' }}>
-                      Gateway Provider
-                    </label>
-                    <select
-                      value={waConfig.provider || 'meta'}
-                      onChange={(e) => setWaConfig({ ...waConfig, provider: e.target.value })}
-                      style={{ width: '100%', padding: '10px 14px', borderRadius: '10px', border: '1px solid var(--border-subtle)', fontSize: '0.92rem' }}
-                    >
-                      <option value="meta">⭐ Meta Official WhatsApp Cloud API (1,000 Free Messages/Month)</option>
-                      <option value="ultramsg">UltraMsg (QR / Web Gateway)</option>
-                      <option value="greenapi">Green-API (Cloud Gateway)</option>
-                      <option value="custom_gateway">Custom Webhook / Self-Hosted Gateway</option>
-                    </select>
-                  </div>
-
-                  <div>
-                    <label style={{ display: 'block', fontSize: '0.85rem', fontWeight: 700, color: 'var(--text-primary)', marginBottom: '6px' }}>
-                      {waConfig.provider === 'meta' ? 'Meta Phone Number ID' : 'Instance ID'}
-                    </label>
-                    <input
-                      type="text"
-                      placeholder={waConfig.provider === 'meta' ? 'e.g., 104592837261829' : 'e.g., instance12345'}
-                      value={waConfig.instanceId || ''}
-                      onChange={(e) => setWaConfig({ ...waConfig, instanceId: e.target.value })}
-                      style={{ width: '100%', padding: '10px 14px', borderRadius: '10px', border: '1px solid var(--border-subtle)', fontSize: '0.92rem' }}
-                    />
-                    <small style={{ color: 'var(--text-muted)', fontSize: '0.78rem' }}>
-                      {waConfig.provider === 'meta'
-                        ? 'Found in Meta Developers Dashboard under WhatsApp > API Setup.'
-                        : 'Provided by your gateway dashboard after linking phone.'}
-                    </small>
-                  </div>
-
-                  <div>
-                    <label style={{ display: 'block', fontSize: '0.85rem', fontWeight: 700, color: 'var(--text-primary)', marginBottom: '6px' }}>
-                      {waConfig.provider === 'meta' ? 'Meta Permanent Access Token' : 'API Token / Secret Key'}
-                    </label>
-                    <input
-                      type="password"
-                      placeholder={waConfig.hasToken ? '•••••••• (Stored securely - leave blank to keep)' : waConfig.provider === 'meta' ? 'EAAG...' : 'Enter API Token'}
-                      value={waConfig.token || ''}
-                      onChange={(e) => setWaConfig({ ...waConfig, token: e.target.value })}
-                      style={{ width: '100%', padding: '10px 14px', borderRadius: '10px', border: '1px solid var(--border-subtle)', fontSize: '0.92rem' }}
-                    />
-                  </div>
-
-                  <div>
-                    <label style={{ display: 'block', fontSize: '0.85rem', fontWeight: 700, color: 'var(--text-primary)', marginBottom: '6px' }}>
-                      Reshmi Mam / Clinic Alert Phone Number
-                    </label>
-                    <input
-                      type="text"
-                      placeholder="+91 98765 43210"
-                      value={waConfig.adminPhone || ''}
-                      onChange={(e) => setWaConfig({ ...waConfig, adminPhone: e.target.value })}
-                      style={{ width: '100%', padding: '10px 14px', borderRadius: '10px', border: '1px solid var(--border-subtle)', fontSize: '0.92rem' }}
-                    />
-                    <small style={{ color: 'var(--text-muted)', fontSize: '0.78rem' }}>जब भी कोई नया क्लाइंट असेसमेंट सबमिट करेगा, इस नंबर पर तुरंत अलर्ट जाएगा।</small>
-                  </div>
-
-                  <div style={{ display: 'flex', flexDirection: 'column', gap: '10px', marginTop: '4px', background: '#F8FAFC', padding: '14px', borderRadius: '12px', border: '1px solid var(--border-subtle)' }}>
-                    <label style={{ display: 'flex', alignItems: 'center', gap: '10px', fontSize: '0.88rem', cursor: 'pointer', fontWeight: 600 }}>
-                      <input
-                        type="checkbox"
-                        checked={waConfig.autoSendReportToClient !== false}
-                        onChange={(e) => setWaConfig({ ...waConfig, autoSendReportToClient: e.target.checked })}
-                      />
-                      <span>Auto-send assessment report to client on submission</span>
-                    </label>
-                    <label style={{ display: 'flex', alignItems: 'center', gap: '10px', fontSize: '0.88rem', cursor: 'pointer', fontWeight: 600 }}>
-                      <input
-                        type="checkbox"
-                        checked={waConfig.sendAlertToAdmin !== false}
-                        onChange={(e) => setWaConfig({ ...waConfig, sendAlertToAdmin: e.target.checked })}
-                      />
-                      <span>Send instant intake notification alert to Reshmi Mam</span>
-                    </label>
-                  </div>
-
-                  <button
-                    type="submit"
-                    className="btn btn-primary"
-                    disabled={savingWaConfig}
-                    style={{ marginTop: '8px', padding: '12px' }}
-                  >
-                    {savingWaConfig ? 'Saving Settings...' : '💾 Save WhatsApp Settings'}
-                  </button>
-                </form>
-              </div>
-
-              {/* Right Column: Test Bench & 2-Minute Setup Guide */}
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
-
-                {/* Test Bench Card */}
-                <div
-                  style={{
-                    background: 'white',
-                    borderRadius: '20px',
-                    padding: '24px',
-                    border: '1px solid var(--border-subtle)',
-                    boxShadow: '0 4px 16px rgba(0,0,0,0.03)'
-                  }}
-                >
-                  <h3 style={{ fontSize: '1.15rem', color: 'var(--emerald-deep)', margin: '0 0 10px', fontWeight: 700, display: 'flex', alignItems: 'center', gap: '8px' }}>
-                    <span>🧪 WhatsApp Test Bench</span>
-                  </h3>
-                  <p style={{ fontSize: '0.86rem', color: 'var(--text-muted)', margin: '0 0 14px' }}>
-                    Verify your connection by sending a real-time test message to any mobile number right now:
-                  </p>
-
-                  <div style={{ display: 'flex', gap: '10px', flexWrap: 'wrap' }}>
-                    <input
-                      type="text"
-                      placeholder="e.g. 9876543210 or +919876543210"
-                      value={testPhone}
-                      onChange={(e) => setTestPhone(e.target.value)}
-                      style={{ flex: 1, minWidth: '180px', padding: '10px 14px', borderRadius: '10px', border: '1px solid var(--border-subtle)', fontSize: '0.92rem' }}
-                    />
-                    <button
-                      type="button"
-                      className="btn btn-primary"
-                      onClick={handleTestWhatsapp}
-                      disabled={testingWa}
-                      style={{ background: '#25D366', borderColor: '#25D366', color: 'white', fontWeight: 700 }}
-                    >
-                      {testingWa ? 'Sending...' : '🚀 Send Test Message'}
-                    </button>
-                  </div>
-                </div>
-
-                {/* Setup Guide Card */}
-                <div
-                  style={{
-                    background: '#F0FDF4',
-                    borderRadius: '20px',
-                    padding: '24px',
-                    border: '1px solid #BBF7D0'
-                  }}
-                >
-                  <h3 style={{ fontSize: '1.1rem', color: '#166534', margin: '0 0 12px', fontWeight: 800 }}>
-                    ⭐ Meta WhatsApp Official Setup (1,000 Free Messages/Month)
-                  </h3>
-                  <ol style={{ margin: 0, paddingLeft: '20px', fontSize: '0.88rem', color: '#14532D', lineHeight: 1.7 }}>
-                    <li>
-                      <strong>developers.facebook.com</strong> पर जाकर अपने Facebook अकाउंट से लॉगिन करें।
-                    </li>
-                    <li>
-                      <strong>Create App</strong> ➡️ <strong>"Other"</strong> ➡️ <strong>"Business"</strong> चुनें और <strong>WhatsApp</strong> जोड़ें।
-                    </li>
-                    <li>
-                      <strong>WhatsApp ➡️ API Setup</strong> पेज पर जाएँ। वहाँ आपको <strong>"Phone Number ID"</strong> और <strong>"Temporary Access Token"</strong> दिखेगा।
-                    </li>
-                    <li>
-                      उसे यहाँ बाईं तरफ पेस्ट करें और <strong>"Save WhatsApp Settings"</strong> दबाएँ।
-                    </li>
-                    <li>
-                      <strong>Permanent Token:</strong> Business Settings ➡️ System Users ➡️ Generate Token पर जाकर permanent token ले सकते हैं।
-                    </li>
-                  </ol>
-                  <div style={{ marginTop: '14px', background: 'white', padding: '10px 14px', borderRadius: '10px', border: '1px solid #86EFAC', fontSize: '0.82rem', color: '#15803D', fontWeight: 600 }}>
-                    💡 <strong>100% Safe:</strong> Meta का ऑफिशियल API होने के कारण नंबर ब्लॉक होने का कभी कोई खतरा नहीं रहता और हर महीने 1,000 मैसेज बिल्कुल फ़्री मिलते हैं!
-                  </div>
-                </div>
-
-              </div>
-
-            </div>
           </div>
         )}
 
@@ -2307,7 +1892,7 @@ export default function AdminPage() {
                     <div style={{ fontWeight: 600 }}>{selectedPatientReport.clientName || 'N/A'}</div>
                   </div>
                   <div>
-                    <span style={{ fontSize: '0.75rem', color: 'var(--text-muted)', textTransform: 'uppercase', fontWeight: 700 }}>WhatsApp Number</span>
+                    <span style={{ fontSize: '0.75rem', color: 'var(--text-muted)', textTransform: 'uppercase', fontWeight: 700 }}>Phone Number</span>
                     <div style={{ fontWeight: 600 }}>{selectedPatientReport.clientPhone || selectedPatientReport.phone || 'N/A'}</div>
                   </div>
                   <div>

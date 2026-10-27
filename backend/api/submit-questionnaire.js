@@ -10,7 +10,6 @@
  */
 
 import { db } from './lib/db.js';
-import { whatsappService } from './lib/whatsapp.js';
 
 export default async function handler(req, res) {
   res.setHeader('X-Content-Type-Options', 'nosniff');
@@ -195,19 +194,6 @@ export default async function handler(req, res) {
       questionnaireData,
       clinicalScores: calculatedScores
     });
-
-    // Auto-dispatch assessment summary to client WhatsApp and instant alert to Reshmi Mam
-    try {
-      await whatsappService.sendAssessmentReportToClient({
-        ...booking,
-        ...updatedBooking,
-        phone: finalAnswers.phone || booking.phone,
-        name: finalAnswers.fullName || booking.clientName || booking.name,
-        scores: calculatedScores
-      });
-    } catch (waErr) {
-      console.warn('Auto-WhatsApp questionnaire dispatch notice:', waErr.message);
-    }
 
     // Client response: Confirmation ONLY (No raw diagnostic scores exposed)
     return res.status(200).json({

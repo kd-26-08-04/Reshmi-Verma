@@ -415,7 +415,7 @@ def build_pdf(filename):
             "items": [
                 ("Q1", "Full Legal Name", "Text input (e.g. Patient Full Name)", "Mandatory identity verification"),
                 ("Q2", "Email Address", "Email input", "Secure telehealth link & report delivery"),
-                ("Q3", "Contact / WhatsApp Number", "Phone with country code", "Direct clinical coordinator channel"),
+                ("Q3", "Contact / Mobile Number", "Phone with country code", "Direct clinical coordinator channel"),
                 ("Q4", "Age (Years)", "Numeric", "Metabolic baseline calibration"),
                 ("Q5", "Biological Gender", "Female / Male / Other", "Endocrine and cycle reference metrics"),
                 ("Q6", "City & Country", "Text input", "Timezone scheduling & food availability"),

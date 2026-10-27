@@ -13,7 +13,7 @@ const CLINICAL_SECTIONS = [
     questions: [
       { id: 'fullName', qNum: 'Q1', text: 'Full Legal Name', type: 'text', required: true, placeholder: 'e.g. Ananya Sharma', grid: 'col-2' },
       { id: 'email', qNum: 'Q2', text: 'Email Address', type: 'email', required: true, placeholder: 'e.g. ananya@example.com', grid: 'col-2' },
-      { id: 'phone', qNum: 'Q3', text: 'Contact / WhatsApp Number', type: 'tel', required: true, placeholder: 'e.g. +91 98765 43210', grid: 'col-2' },
+      { id: 'phone', qNum: 'Q3', text: 'Contact / Mobile Number', type: 'tel', required: true, placeholder: 'e.g. +91 98765 43210', grid: 'col-2' },
       { id: 'age', qNum: 'Q4', text: 'Age (Years)', type: 'number', required: false, placeholder: 'e.g. 34', grid: 'col-4' },
       {
         id: 'gender',

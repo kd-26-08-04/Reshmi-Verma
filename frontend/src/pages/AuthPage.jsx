@@ -236,7 +236,7 @@ export default function AuthPage() {
 
               <div className="auth-field-wrapper">
                 <div className="auth-field-header">
-                  <label className="auth-field-title" htmlFor="reg-phone">WhatsApp / Phone Number</label>
+                  <label className="auth-field-title" htmlFor="reg-phone">Phone Number</label>
                 </div>
                 <div className="auth-input-container">
                   <input

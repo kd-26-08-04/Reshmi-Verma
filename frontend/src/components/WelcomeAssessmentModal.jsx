@@ -74,7 +74,7 @@ export default function WelcomeAssessmentModal() {
       return;
     }
     if (!phone.trim() || phone.trim().replace(/\D/g, '').length < 10) {
-      setError('Kripya 10-digit WhatsApp/Phone number enter karein.');
+      setError('Kripya 10-digit Phone number enter karein.');
       return;
     }
     if (!email.trim() || !email.includes('@')) {
@@ -427,7 +427,7 @@ export default function WelcomeAssessmentModal() {
 
               <div>
                 <label style={{ display: 'block', fontSize: '0.76rem', fontWeight: 700, color: '#374151', marginBottom: '2px' }}>
-                  WhatsApp / Phone Number *
+                  Phone Number *
                 </label>
                 <input
                   type="tel"

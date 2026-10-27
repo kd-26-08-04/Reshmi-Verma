@@ -707,69 +707,8 @@ export const db = {
     } catch (e) { }
     const data = readLocalDb();
     return (data.assessment_leads || []).find(l => l.id === id) || null;
-  },
-
-  // --- WHATSAPP AUTOMATION CONFIGURATION ---
-  async getWhatsappConfig() {
-    try {
-      const mdb = await getMongo();
-      if (mdb) {
-        const doc = await mdb.collection('configs').findOne({ key: 'whatsapp_config' });
-        if (doc && doc.config) {
-          return { ...getDefaultWhatsappConfig(), ...doc.config };
-        }
-      }
-    } catch (e) { }
-
-    const data = readLocalDb();
-    if (data.whatsappConfig) {
-      return { ...getDefaultWhatsappConfig(), ...data.whatsappConfig };
-    }
-
-    const defaultConfig = getDefaultWhatsappConfig();
-    data.whatsappConfig = defaultConfig;
-    writeLocalDb(data);
-    return defaultConfig;
-  },
-
-  async updateWhatsappConfig(configPatch) {
-    const current = await this.getWhatsappConfig();
-    const updated = {
-      ...current,
-      ...configPatch,
-      updatedAt: new Date().toISOString()
-    };
-
-    try {
-      const mdb = await getMongo();
-      if (mdb) {
-        await mdb.collection('configs').updateOne(
-          { key: 'whatsapp_config' },
-          { $set: { key: 'whatsapp_config', config: updated, updatedAt: updated.updatedAt } },
-          { upsert: true }
-        );
-      }
-    } catch (e) { }
-
-    const data = readLocalDb();
-    data.whatsappConfig = updated;
-    writeLocalDb(data);
-    return updated;
   }
 };
-
-export function getDefaultWhatsappConfig() {
-  return {
-    enabled: true,
-    provider: process.env.WHATSAPP_PROVIDER || 'meta',
-    instanceId: process.env.WHATSAPP_INSTANCE_ID || process.env.META_PHONE_NUMBER_ID || '',
-    token: process.env.WHATSAPP_TOKEN || process.env.META_ACCESS_TOKEN || '',
-    apiUrl: process.env.WHATSAPP_API_URL || '',
-    adminPhone: process.env.ADMIN_WHATSAPP_PHONE || process.env.CLINIC_PHONE || '+919876543210',
-    autoSendReportToClient: true,
-    sendAlertToAdmin: true
-  };
-}
 
 export function getDefaultClinicSchedule() {
   return {

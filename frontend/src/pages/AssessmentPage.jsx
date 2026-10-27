@@ -332,7 +332,7 @@ export default function AssessmentPage() {
       return;
     }
     if (!leadPhone.trim() || leadPhone.trim().length < 8) {
-      setLeadError('Please enter a valid WhatsApp or Mobile number.');
+      setLeadError('Please enter a valid mobile number.');
       return;
     }
 
@@ -742,8 +742,259 @@ ${websiteUrl}`;
     }
   };
 
-  const handlePrintScorecard = () => {
-    window.print();
+  const handleDownloadScorecard = () => {
+    if (!results) return;
+
+    const clientName = leadInfo?.name || user?.name || 'Valued Client';
+    const clientPhone = leadInfo?.phone || user?.phone || 'Not provided';
+    const clientEmail = emailInput || leadInfo?.email || user?.email || 'Not provided';
+    const currentDate = new Date().toLocaleDateString('en-IN', {
+      day: 'numeric',
+      month: 'long',
+      year: 'numeric'
+    });
+
+    const highSymptomsList = (results.reportedHighSymptoms || [])
+      .map(s => `<li><strong>${s.title}:</strong> ${s.response} (${s.points} pts)</li>`)
+      .join('') || '<li>No high-frequency symptoms reported.</li>';
+
+    const timingList = Array.isArray(results.timingAssociations) && results.timingAssociations.length > 0
+      ? results.timingAssociations.join(', ')
+      : 'None highlighted';
+
+    const foodList = Array.isArray(results.foodAssociations) && results.foodAssociations.length > 0
+      ? results.foodAssociations.join(', ')
+      : 'None highlighted';
+
+    const reportHtml = `<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Gut Health Snapshot — ${clientName} | Health with Reshmi</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+      background: #FAF9F6;
+      color: #121214;
+      line-height: 1.6;
+      padding: 30px 20px;
+    }
+    .report-card {
+      max-width: 800px;
+      margin: 0 auto;
+      background: #FFFFFF;
+      border-radius: 18px;
+      border: 1px solid #E2E8F0;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.06);
+      overflow: hidden;
+    }
+    .report-header {
+      background: linear-gradient(135deg, #121214 0%, #1F1B24 100%);
+      color: #FFFFFF;
+      padding: 36px 32px;
+      border-bottom: 4px solid #FF1493;
+    }
+    .brand-title {
+      font-size: 24px;
+      font-weight: 700;
+      letter-spacing: -0.5px;
+      margin-bottom: 6px;
+    }
+    .brand-script {
+      color: #FF1493;
+      font-family: 'Brush Script MT', cursive, sans-serif;
+      font-size: 28px;
+    }
+    .report-badge {
+      display: inline-block;
+      background: rgba(255, 20, 147, 0.2);
+      color: #FF66B2;
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      padding: 4px 12px;
+      border-radius: 20px;
+      margin-bottom: 12px;
+    }
+    .client-meta {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 12px;
+      background: rgba(255, 255, 255, 0.08);
+      padding: 16px;
+      border-radius: 12px;
+      margin-top: 20px;
+      font-size: 13px;
+    }
+    .client-meta div strong { color: #FF66B2; display: block; font-size: 11px; text-transform: uppercase; }
+    .report-body { padding: 36px 32px; }
+    .score-banner {
+      background: #FFF0F6;
+      border: 1.5px solid #FF1493;
+      border-radius: 16px;
+      padding: 24px;
+      text-align: center;
+      margin-bottom: 30px;
+    }
+    .score-value {
+      font-size: 54px;
+      font-weight: 800;
+      color: #FF1493;
+      line-height: 1;
+      margin: 8px 0;
+    }
+    .score-tier {
+      font-size: 20px;
+      font-weight: 700;
+      color: #121214;
+    }
+    .section-title {
+      font-size: 17px;
+      font-weight: 700;
+      color: #121214;
+      border-bottom: 2px solid #F1F5F9;
+      padding-bottom: 8px;
+      margin: 28px 0 16px;
+    }
+    .symptom-list {
+      padding-left: 20px;
+      color: #334155;
+      font-size: 14px;
+    }
+    .symptom-list li { margin-bottom: 8px; }
+    .info-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 14px;
+      margin-bottom: 20px;
+    }
+    .info-box {
+      background: #F8FAFC;
+      border: 1px solid #E2E8F0;
+      padding: 14px;
+      border-radius: 10px;
+      font-size: 13px;
+    }
+    .info-box strong { display: block; color: #475569; font-size: 11px; text-transform: uppercase; margin-bottom: 4px; }
+    .next-steps {
+      background: #F0FDF4;
+      border: 1px solid #86EFAC;
+      border-radius: 14px;
+      padding: 20px;
+      margin-top: 30px;
+    }
+    .next-steps h4 { color: #166534; font-size: 16px; margin-bottom: 6px; }
+    .next-steps p { color: #14532D; font-size: 13px; }
+    .report-footer {
+      background: #F8FAFC;
+      border-top: 1px solid #E2E8F0;
+      padding: 24px 32px;
+      text-align: center;
+      font-size: 12px;
+      color: #64748B;
+    }
+    .btn-booking {
+      display: inline-block;
+      margin-top: 14px;
+      background: #FF1493;
+      color: white !important;
+      text-decoration: none;
+      padding: 10px 22px;
+      border-radius: 10px;
+      font-weight: 700;
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+  <div class="report-card">
+    <div class="report-header">
+      <div class="report-badge">Diagnostic Assessment Summary</div>
+      <div class="brand-title">Healthwith<span class="brand-script">Reshmi</span></div>
+      <div style="font-size: 13px; opacity: 0.85;">Reshmi Verma &bull; Functional Nutritionist &bull; Certified Biohacker</div>
+      
+      <div class="client-meta">
+        <div><strong>Patient Name</strong>${clientName}</div>
+        <div><strong>Date Generated</strong>${currentDate}</div>
+        <div><strong>Primary Concern</strong>${results.primaryConcern || 'General Gut Health'}</div>
+        <div><strong>Contact</strong>${clientPhone}</div>
+      </div>
+    </div>
+
+    <div class="report-body">
+      <div class="score-banner">
+        <div style="font-size: 12px; font-weight: 700; color: #64748B; text-transform: uppercase; letter-spacing: 0.5px;">Gut Symptom Score</div>
+        <div class="score-value">${results.gutSymptomScore} <span style="font-size: 24px; color: #64748B; font-weight: 500;">/ 100</span></div>
+        <div class="score-tier">${results.category?.label || 'Assessment Completed'}</div>
+        <p style="font-size: 13px; color: #475569; margin-top: 8px; max-width: 580px; margin-left: auto; margin-right: auto;">
+          ${results.category?.message || ''}
+        </p>
+      </div>
+
+      <div class="section-title">Priority High-Frequency Symptoms</div>
+      <ul class="symptom-list">
+        ${highSymptomsList}
+      </ul>
+
+      <div class="section-title">Clinical Correlates &amp; Lifestyle Triggers</div>
+      <div class="info-grid">
+        <div class="info-box">
+          <strong>Bowel Frequency</strong>
+          ${results.bowelFrequency}
+        </div>
+        <div class="info-box">
+          <strong>Stool Consistency</strong>
+          ${results.stoolConsistency}
+        </div>
+        <div class="info-box">
+          <strong>Symptom Timing</strong>
+          ${timingList}
+        </div>
+        <div class="info-box">
+          <strong>Food Sensitivity Triggers</strong>
+          ${foodList}
+        </div>
+        <div class="info-box">
+          <strong>Stress Level</strong>
+          ${results.stressLevel}
+        </div>
+        <div class="info-box">
+          <strong>Sleep Quality</strong>
+          ${results.sleepQuality}
+        </div>
+      </div>
+
+      <div class="next-steps">
+        <h4>Clinical Next Step: 1-on-1 Consultation</h4>
+        <p>
+          Discuss this diagnostic snapshot directly with Reshmi Verma (18+ years experience in laboratory diagnostics, Functional Nutritionist, Certified Oxygen Advantage Coach). She will evaluate your symptom patterns alongside routine bloodwork to formulate your personalized root-cause protocol.
+        </p>
+        <a href="https://healthwithreshmi.com/booking?tier=healthClarity&name=${encodeURIComponent(clientName)}&phone=${encodeURIComponent(clientPhone)}&email=${encodeURIComponent(clientEmail)}&gutScore=${results.gutSymptomScore}" class="btn-booking" target="_blank">
+          Book Health Clarity Session with Reshmi Verma &rarr;
+        </a>
+      </div>
+    </div>
+
+    <div class="report-footer">
+      <strong>HealthwithReshmi™ &bull; Rainbow Medinova Diagnostic Services, Nagpur</strong><br>
+      This digital report is confidential and generated for functional health evaluation.
+    </div>
+  </div>
+</body>
+</html>`;
+
+    const blob = new Blob([reportHtml], { type: 'text/html;charset=utf-8' });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    const sanitizedName = (leadInfo?.name || 'Client').trim().replace(/[^a-zA-Z0-9_-]/g, '_');
+    link.href = url;
+    link.download = `Reshmi_Verma_Gut_Health_Snapshot_${sanitizedName}.html`;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    URL.revokeObjectURL(url);
   };
 
   const restartAssessment = () => {
@@ -757,36 +1008,14 @@ ${websiteUrl}`;
   return (
     <>
       <section className="assessment-page-layout">
-        <div className="container assessment-widescreen-container" style={{ maxWidth: '780px', margin: '0 auto' }}>
+        <div className="container assessment-widescreen-container">
 
           {/* ============================================================== */}
           {/* STEP 0: CONTACT REGISTRATION GATE (IF ARRIVED DIRECTLY)         */}
           {/* ============================================================== */}
           {!results && !leadInfo ? (
             <div className="glass-assessment-card" style={{ maxWidth: '540px', margin: '0 auto', textAlign: 'center', padding: '40px 32px', borderColor: 'rgba(255, 20, 147, 0.25)' }}>
-              <div
-                style={{
-                  width: '68px',
-                  height: '68px',
-                  borderRadius: '50%',
-                  background: 'linear-gradient(135deg, #FFE4F0 0%, #FFF0F6 100%)',
-                  display: 'inline-flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  fontSize: '2rem',
-                  marginBottom: '16px',
-                  border: '1.5px solid #FF66B2',
-                  boxShadow: '0 4px 14px rgba(255, 20, 147, 0.25)'
-                }}
-              >
-                🌸
-              </div>
-              <div style={{ marginBottom: '12px' }}>
-                <span className="badge-pill" style={{ background: '#FFF0F6', borderColor: '#FF1493', color: '#FF1493' }}>
-                  <span className="pulse-dot" style={{ background: '#FF1493' }}></span>
-                  <span>Gut Health Self-Assessment</span>
-                </span>
-              </div>
+
               <h1 style={{ fontSize: '1.85rem', color: '#121214', margin: '0 0 10px 0', fontFamily: 'var(--font-serif)' }}>
                 Your Gut Health Snapshot
               </h1>
@@ -817,7 +1046,7 @@ ${websiteUrl}`;
 
                 <div>
                   <label style={{ display: 'block', fontSize: '0.88rem', fontWeight: 600, color: 'var(--text-primary)', marginBottom: '6px' }}>
-                    WhatsApp / Mobile Number <span style={{ color: '#FF1493' }}>*</span>
+                    Mobile Number <span style={{ color: '#FF1493' }}>*</span>
                   </label>
                   <input
                     type="tel"
@@ -849,15 +1078,6 @@ ${websiteUrl}`;
                   style={{ width: '100%', justifyContent: 'center', marginTop: '6px', background: 'linear-gradient(135deg, #FF1493 0%, #FF007F 100%)', borderColor: '#FF1493', boxShadow: '0 8px 24px rgba(255, 20, 147, 0.35)' }}
                 >
                   <span>{leadSaving ? 'Preparing Questionnaire...' : 'Begin Gut Health Assessment →'}</span>
-                </button>
-
-                <button
-                  type="button"
-                  onClick={() => setLeadInfo({ id: `lead_${Date.now()}`, name: 'Guest Client', phone: '', email: '' })}
-                  className="btn btn-outline"
-                  style={{ width: '100%', justifyContent: 'center', borderColor: 'rgba(255, 20, 147, 0.3)', color: '#FF1493', fontSize: '0.86rem', padding: '10px' }}
-                >
-                  <span>Or start questions directly →</span>
                 </button>
               </form>
               <div style={{ marginTop: '16px', fontSize: '0.78rem', color: 'var(--text-muted)' }}>
@@ -1373,15 +1593,15 @@ ${websiteUrl}`;
                 <div style={{ display: 'flex', gap: '12px', marginTop: '14px', flexWrap: 'wrap', alignItems: 'center' }}>
                   <button
                     type="button"
-                    onClick={handlePrintScorecard}
+                    onClick={handleDownloadScorecard}
                     className="btn btn-secondary btn-sm"
-                    style={{ padding: '7px 14px', fontSize: '0.82rem', background: 'white', border: '1px solid rgba(255, 20, 147, 0.3)', color: '#FF1493', display: 'flex', alignItems: 'center', gap: '6px' }}
+                    style={{ padding: '8px 16px', fontSize: '0.85rem', background: '#FFF0F6', border: '1.5px solid rgba(255, 20, 147, 0.4)', color: '#FF1493', fontWeight: 700, borderRadius: '10px', display: 'flex', alignItems: 'center', gap: '8px', cursor: 'pointer' }}
                   >
-                    <span>🖨️</span>
-                    <span>Download / Print Scorecard (PDF)</span>
+                    <span>📥</span>
+                    <span>Direct Download Scorecard</span>
                   </button>
-                  <span style={{ fontSize: '0.78rem', color: '#64748B' }}>
-                    Instant offline copy without email
+                  <span style={{ fontSize: '0.8rem', color: '#64748B' }}>
+                    Instant offline report file &bull; No print dialog
                   </span>
                 </div>
               </div>

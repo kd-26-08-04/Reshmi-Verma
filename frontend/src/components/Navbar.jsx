@@ -86,7 +86,6 @@ export default function Navbar() {
             <span className="name">
               Healthwith<span className="brand-reshmi-script">Reshmi</span>
             </span>
-            <span className="tagline">Reshmi Verma &bull; Functional Nutritionist</span>
           </div>
         </Link>
 

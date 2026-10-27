@@ -264,7 +264,7 @@ export default function BreathingAssessmentPage() {
       return;
     }
     if (!leadPhone.trim() || leadPhone.trim().length < 8) {
-      setLeadError('Please enter a valid WhatsApp or Mobile number.');
+      setLeadError('Please enter a valid mobile number.');
       return;
     }
 
@@ -419,9 +419,168 @@ export default function BreathingAssessmentPage() {
     }
   };
 
+  const handleDownloadBreathingScorecard = () => {
+    const clientName = leadInfo?.name || leadName || 'Valued Client';
+    const clientPhone = leadInfo?.phone || leadPhone || 'Not provided';
+    const currentDate = new Date().toLocaleDateString('en-IN', {
+      day: 'numeric',
+      month: 'long',
+      year: 'numeric'
+    });
+
+    const reportHtml = `<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Oxygen Advantage Breathing Scorecard — ${clientName} | Reshmi Verma</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+      background: #F4FBFB;
+      color: #121214;
+      line-height: 1.6;
+      padding: 30px 20px;
+    }
+    .report-card {
+      max-width: 800px;
+      margin: 0 auto;
+      background: #FFFFFF;
+      border-radius: 18px;
+      border: 1px solid #CCFBF1;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.06);
+      overflow: hidden;
+    }
+    .report-header {
+      background: linear-gradient(135deg, #0A0E0C 0%, #17261E 100%);
+      color: #FFFFFF;
+      padding: 36px 32px;
+      border-bottom: 4px solid #00E5D9;
+    }
+    .brand-title {
+      font-size: 24px;
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+    .client-meta {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 12px;
+      background: rgba(255, 255, 255, 0.08);
+      padding: 16px;
+      border-radius: 12px;
+      margin-top: 20px;
+      font-size: 13px;
+    }
+    .client-meta div strong { color: #00E5D9; display: block; font-size: 11px; text-transform: uppercase; }
+    .report-body { padding: 36px 32px; }
+    .score-banner {
+      background: #E6FCFB;
+      border: 1.5px solid #00E5D9;
+      border-radius: 16px;
+      padding: 24px;
+      text-align: center;
+      margin-bottom: 30px;
+    }
+    .score-value {
+      font-size: 52px;
+      font-weight: 800;
+      color: #0D9488;
+      line-height: 1;
+      margin: 8px 0;
+    }
+    .score-tier {
+      font-size: 20px;
+      font-weight: 700;
+      color: #121214;
+    }
+    .next-steps {
+      background: #F0FDF4;
+      border: 1px solid #86EFAC;
+      border-radius: 14px;
+      padding: 20px;
+      margin-top: 24px;
+    }
+    .btn-booking {
+      display: inline-block;
+      margin-top: 14px;
+      background: #00E5D9;
+      color: #121214 !important;
+      text-decoration: none;
+      padding: 10px 22px;
+      border-radius: 10px;
+      font-weight: 800;
+      font-size: 14px;
+    }
+    .report-footer {
+      background: #F8FAFC;
+      border-top: 1px solid #E2E8F0;
+      padding: 24px 32px;
+      text-align: center;
+      font-size: 12px;
+      color: #64748B;
+    }
+  </style>
+</head>
+<body>
+  <div class="report-card">
+    <div class="report-header">
+      <div style="display:inline-block;background:rgba(0,229,217,0.2);color:#00E5D9;font-size:11px;font-weight:700;padding:4px 12px;border-radius:20px;text-transform:uppercase;margin-bottom:12px;">Oxygen Advantage® Clinical Assessment</div>
+      <div class="brand-title">HealthwithReshmi™</div>
+      <div style="font-size:13px;opacity:0.85;">Reshmi Verma &bull; Certified Oxygen Advantage® Coach (#13 India)</div>
+      
+      <div class="client-meta">
+        <div><strong>Patient Name</strong>${clientName}</div>
+        <div><strong>Date Generated</strong>${currentDate}</div>
+        <div><strong>Recorded BOLT Score</strong>${boltRecorded ? `${boltRecorded} Seconds` : 'Not recorded'}</div>
+        <div><strong>Phone</strong>${clientPhone}</div>
+      </div>
+    </div>
+
+    <div class="report-body">
+      <div class="score-banner">
+        <div style="font-size: 12px; font-weight: 700; color: #64748B; text-transform: uppercase;">Dysfunctional Breathing Score</div>
+        <div class="score-value">${totalScore} <span style="font-size: 24px; color: #64748B; font-weight: 500;">/ 48</span></div>
+        <div class="score-tier">${ratingTitle}</div>
+        <p style="font-size: 13px; color: #475569; margin-top: 8px; max-width: 580px; margin-left: auto; margin-right: auto;">
+          ${ratingSummary}
+        </p>
+      </div>
+
+      <div class="next-steps">
+        <h4 style="color:#166534;font-size:16px;margin-bottom:6px;">Next Clinical Step: 1-on-1 Oxygen Advantage Reset</h4>
+        <p style="color:#14532D;font-size:13px;">
+          Dysfunctional breathing patterns and low CO₂ tolerance directly diminish cellular ATP and trigger nervous system tension. Work 1-on-1 with Reshmi Verma to reset your biomechanical, biochemical, and psychophysiological breathing rhythms.
+        </p>
+        <a href="https://healthwithreshmi.com/booking" class="btn-booking" target="_blank">
+          Book 1-on-1 Oxygen Advantage Consultation &rarr;
+        </a>
+      </div>
+    </div>
+
+    <div class="report-footer">
+      <strong>HealthwithReshmi™ &bull; Oxygen Advantage Clinical Coaching</strong><br>
+      Official Clinical Assessment Snapshot.
+    </div>
+  </div>
+</body>
+</html>`;
+
+    const blob = new Blob([reportHtml], { type: 'text/html;charset=utf-8' });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    const sanitizedName = clientName.trim().replace(/[^a-zA-Z0-9_-]/g, '_');
+    link.href = url;
+    link.download = `Reshmi_Verma_Oxygen_Advantage_Scorecard_${sanitizedName}.html`;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    URL.revokeObjectURL(url);
+  };
+
   return (
     <main className="section" style={{ minHeight: '100vh', paddingTop: '100px', paddingBottom: '80px' }}>
-      <div className="container" style={{ maxWidth: '920px' }}>
+      <div className="container assessment-widescreen-container">
 
         {/* Header Clinical Credential Badge */}
         <div style={{ textAlign: 'center', marginBottom: '32px' }}>
@@ -431,9 +590,7 @@ export default function BreathingAssessmentPage() {
           <h1 style={{ fontSize: 'clamp(1.8rem, 4vw, 2.7rem)', color: 'var(--emerald-deep)', fontFamily: 'var(--font-serif)', margin: '0 0 10px', lineHeight: 1.2 }}>
             Oxygen Advantage® Functional Breathing Assessment
           </h1>
-          <p style={{ fontSize: '1.05rem', color: 'var(--text-secondary)', maxWidth: '720px', margin: '0 auto 20px', lineHeight: 1.6 }}>
-            Decode your involuntary breathing mechanics across <strong>Body, Mind, and Sport</strong>. Developed under Patrick McKeown's clinical methodology and interpreted by <strong>Reshmi Verma</strong>.
-          </p>
+
 
           {/* Progress Indicator */}
           {!isCompleted && leadInfo && (
@@ -546,6 +703,31 @@ export default function BreathingAssessmentPage() {
                 >
                   <span>📅</span> Book 1-on-1 Oxygen Advantage Consultation
                 </Link>
+                <button
+                  type="button"
+                  onClick={handleDownloadBreathingScorecard}
+                  style={{
+                    padding: '12px 24px',
+                    background: '#FFFFFF',
+                    color: '#0D827B',
+                    border: '1.5px solid #00E5D9',
+                    borderRadius: '12px',
+                    fontWeight: 700,
+                    display: 'inline-flex',
+                    alignItems: 'center',
+                    gap: '8px',
+                    cursor: 'pointer',
+                    transition: 'all 0.2s ease'
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.background = '#E6FCFB';
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.background = '#FFFFFF';
+                  }}
+                >
+                  <span>📥</span> Direct Download Scorecard
+                </button>
                 <Link
                   to="/assessment"
                   style={{
@@ -597,9 +779,6 @@ export default function BreathingAssessmentPage() {
              PRE-ASSESSMENT LEAD GATE VIEW (DIRECT VISITOR LEAD CAPTURE)
              ========================================================================= */
           <div className="glass-assessment-card" style={{ maxWidth: '540px', margin: '0 auto', textAlign: 'center', padding: '40px 32px' }}>
-            <div style={{ width: '64px', height: '64px', borderRadius: '50%', background: '#EBF9F8', border: '2px solid #00E5D9', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', fontSize: '1.8rem', marginBottom: '16px' }}>
-              🫁
-            </div>
             <div style={{ marginBottom: '12px' }}>
               <span className="badge-pill" style={{ background: '#EBF9F8', color: '#167A71', borderColor: '#9FE3DD' }}>
                 <span className="pulse-dot" style={{ background: '#00E5D9' }}></span>
@@ -610,7 +789,7 @@ export default function BreathingAssessmentPage() {
               Where Should We Send Your Breathing Scorecard?
             </h2>
             <p style={{ color: 'var(--text-secondary)', fontSize: '0.94rem', lineHeight: 1.6, marginBottom: '24px' }}>
-              Please provide your contact information to begin your certified 16-question functional breathing assessment. Reshmi Verma (#13 Certified Coach in India) will calibrate your airway biomechanics, CO₂ tolerance &amp; BOLT score.
+              Please provide your contact information to begin your certified 16-question functional breathing assessment.
             </p>
 
             {leadError && (
@@ -636,7 +815,7 @@ export default function BreathingAssessmentPage() {
 
               <div>
                 <label style={{ display: 'block', fontSize: '0.88rem', fontWeight: 600, color: 'var(--text-primary)', marginBottom: '6px' }}>
-                  WhatsApp / Mobile Number <span style={{ color: '#DC2626' }}>*</span>
+                  Mobile Number <span style={{ color: '#DC2626' }}>*</span>
                 </label>
                 <input
                   type="tel"

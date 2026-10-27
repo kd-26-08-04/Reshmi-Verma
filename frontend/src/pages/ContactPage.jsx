@@ -31,7 +31,7 @@ export default function ContactPage() {
     }
 
     if (!formData.name.trim() || !formData.email.trim() || !formData.phone.trim() || !formData.message.trim()) {
-      setAlert({ type: 'error', text: 'Please fill in all required fields (Name, Email, WhatsApp number, and Message).' });
+      setAlert({ type: 'error', text: 'Please fill in all required fields (Name, Email, Phone number, and Message).' });
       return;
     }
 
@@ -297,7 +297,7 @@ export default function ContactPage() {
               <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '16px', marginBottom: '16px' }}>
                 <div>
                   <label htmlFor="contact-phone" style={{ display: 'block', fontSize: '0.88rem', fontWeight: 700, color: 'var(--emerald-deep)', marginBottom: '6px' }}>
-                    WhatsApp / Phone Number *
+                    Phone Number *
                   </label>
                   <input
                     type="tel"
