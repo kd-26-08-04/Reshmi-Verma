@@ -171,36 +171,6 @@ export default function TestimonialsPage() {
             See how hundreds of clients reversed complex digestive, respiratory, thyroid, and metabolic challenges through diagnostic biochemistry and Oxygen Advantage® breathwork.
           </p>
 
-          {/* Key Metric Highlights Strip */}
-          <div style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(130px, 1fr))',
-            gap: '14px',
-            background: '#FFFFFF',
-            padding: '20px',
-            borderRadius: '20px',
-            border: '1px solid var(--border-subtle)',
-            boxShadow: '0 8px 24px rgba(0, 0, 0, 0.04)',
-            maxWidth: '680px',
-            margin: '0 auto'
-          }}>
-            <div>
-              <div style={{ fontSize: '1.75rem', fontWeight: 800, color: '#121214' }}>500+</div>
-              <div style={{ fontSize: '0.76rem', color: '#6B7280', textTransform: 'uppercase', fontWeight: 700 }}>Lives Transformed</div>
-            </div>
-            <div>
-              <div style={{ fontSize: '1.75rem', fontWeight: 800, color: '#0D9488' }}>94%</div>
-              <div style={{ fontSize: '0.76rem', color: '#6B7280', textTransform: 'uppercase', fontWeight: 700 }}>Symptom Reversal</div>
-            </div>
-            <div>
-              <div style={{ fontSize: '1.75rem', fontWeight: 800, color: '#00E5D9' }}>#13</div>
-              <div style={{ fontSize: '0.76rem', color: '#6B7280', textTransform: 'uppercase', fontWeight: 700 }}>Oxygen Adv. Coach</div>
-            </div>
-            <div>
-              <div style={{ fontSize: '1.75rem', fontWeight: 800, color: '#121214' }}>5.0 Rating</div>
-              <div style={{ fontSize: '0.76rem', color: '#6B7280', textTransform: 'uppercase', fontWeight: 700 }}>Client Trust</div>
-            </div>
-          </div>
         </div>
 
         {/* Category Filter Pills */}

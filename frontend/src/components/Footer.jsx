@@ -16,9 +16,8 @@ export default function Footer() {
                 />
                 <div className="brand-text">
                   <span className="name" style={{ color: 'var(--emerald-deep)' }}>
-                    Healthwith<span className="brand-reshmi-script">Reshmi</span>
+                    <h2>HealthwithReshmi</h2>
                   </span>
-                  <span className="tagline">Reshmi Verma &bull; Functional Nutritionist</span>
                 </div>
               </div>
               <p>
