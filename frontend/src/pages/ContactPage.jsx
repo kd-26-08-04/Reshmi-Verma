@@ -125,7 +125,7 @@ export default function ContactPage() {
               Clinical Diagnostics &amp; Health Sanctuary
             </h2>
             <p style={{ color: 'var(--text-secondary)', fontSize: '0.94rem', lineHeight: 1.6, marginBottom: '28px' }}>
-              Combining 20+ years in diagnostics with functional nutrition and breathwork to uncover biochemical root causes and guide lasting metabolic recovery.
+              Combining 18+ years in diagnostics with functional nutrition and breathwork to uncover biochemical root causes and guide lasting metabolic recovery.
             </p>
 
             <div style={{ display: 'flex', flexDirection: 'column', gap: '20px', marginBottom: '28px' }}>

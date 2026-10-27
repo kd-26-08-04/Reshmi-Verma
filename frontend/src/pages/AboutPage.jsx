@@ -47,7 +47,7 @@ export default function AboutPage() {
     },
     {
       q: 'What makes Reshmi Verma’s approach unique?',
-      a: 'Reshmi brings rare dual authority: over 20 years of experience directing clinical diagnostic laboratories (Rainbow Medinova) combined with formal credentials in Functional Nutrition, Certified Breathwork, and Human Biohacking. Moreover, she personally reversed 38 kg of weight and chronic metabolic fatigue, so every protocol is forged through genuine lived experience and clinical empathy.'
+      a: 'Reshmi brings rare dual authority: over 18 years of experience directing clinical diagnostic laboratories (Rainbow Medinova) combined with formal credentials in Functional Nutrition, Certified Breathwork, and Human Biohacking. Moreover, she personally reversed 38 kg of weight and chronic metabolic fatigue, so every protocol is forged through genuine lived experience and clinical empathy.'
     },
     {
       q: 'Can online consultations be effective for gut and hormonal issues?',
@@ -126,27 +126,11 @@ export default function AboutPage() {
           >
             <div style={{ transition: 'transform 0.3s ease' }}>
               <div style={{ fontSize: '2.5rem', fontWeight: 800, color: 'var(--emerald-deep)', fontFamily: 'var(--font-serif)' }}>
-                <AnimatedNumber value={20} />
-                <span> Yrs</span>
+                <AnimatedNumber value={18} />
+                <span>+ Yrs</span>
               </div>
               <div style={{ fontSize: '0.88rem', color: 'var(--text-secondary)', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.04em' }}>
-                Years in Clinical Diagnostics
-              </div>
-            </div>
-            <div style={{ transition: 'transform 0.3s ease' }}>
-              <div style={{ fontSize: '2.5rem', fontWeight: 800, color: 'var(--emerald-medium)', fontFamily: 'var(--font-serif)' }}>
-                <AnimatedNumber value={38} suffix=" kg" />
-              </div>
-              <div style={{ fontSize: '0.88rem', color: 'var(--text-secondary)', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.04em' }}>
-                Personal Transformation
-              </div>
-            </div>
-            <div style={{ transition: 'transform 0.3s ease' }}>
-              <div style={{ fontSize: '2.5rem', fontWeight: 800, color: 'var(--emerald-deep)', fontFamily: 'var(--font-serif)' }}>
-                <AnimatedNumber value={1000} suffix="+" />
-              </div>
-              <div style={{ fontSize: '0.88rem', color: 'var(--text-secondary)', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.04em' }}>
-                Patient Consultations Guided
+                Director, Rainbow Medinova
               </div>
             </div>
             <div style={{ transition: 'transform 0.3s ease' }}>
@@ -154,7 +138,23 @@ export default function AboutPage() {
                 <AnimatedNumber value={100} suffix="%" />
               </div>
               <div style={{ fontSize: '0.88rem', color: 'var(--text-secondary)', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.04em' }}>
-                Root-Cause, Drug-Free Focus
+                Personalised Health Approach
+              </div>
+            </div>
+            <div style={{ transition: 'transform 0.3s ease' }}>
+              <div style={{ fontSize: '2.5rem', fontWeight: 800, color: 'var(--emerald-deep)', fontFamily: 'var(--font-serif)' }}>
+                <AnimatedNumber value={3} suffix=" Pillars" />
+              </div>
+              <div style={{ fontSize: '0.88rem', color: 'var(--text-secondary)', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.04em' }}>
+                Nutrition, Breathwork & Longevity
+              </div>
+            </div>
+            <div style={{ transition: 'transform 0.3s ease' }}>
+              <div style={{ fontSize: '2.5rem', fontWeight: 800, color: 'var(--emerald-medium)', fontFamily: 'var(--font-serif)' }}>
+                <AnimatedNumber value={38} suffix="Kg" />
+              </div>
+              <div style={{ fontSize: '0.88rem', color: 'var(--text-secondary)', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.04em' }}>
+                Personal Transformation
               </div>
             </div>
           </div>
@@ -174,7 +174,7 @@ export default function AboutPage() {
                 />
               </div>
               <div className="transformation-callout about-badge-float" style={{ bottom: '-16px', right: '-16px' }}>
-                <div className="metric">20+ Yrs</div>
+                <div className="metric">18+ Yrs</div>
                 <p>Healthcare &amp; Diagnostics Experience</p>
               </div>
             </div>
@@ -187,7 +187,7 @@ export default function AboutPage() {
               </p>
 
               <p style={{ color: 'var(--text-secondary)', marginBottom: '14px', lineHeight: 1.7, fontSize: '1.02rem' }}>
-                Reshmi Verma is the <strong>Director of Rainbow Medinova Diagnostic Services, Nagpur</strong>, with <strong>20 years of experience</strong> in diagnostics. A Functional Nutritionist, Breathwork Facilitator, Oxygen Advantage Coach, Certified Biohacker, and Breath Resilience Instructor, she brings together healthcare insights, root-cause nutrition, breathwork, and lifestyle strategies to help people take a more proactive, personalised approach to health.
+                Reshmi Verma is the <strong>Director of Rainbow Medinova Diagnostic Services, Nagpur</strong>, with <strong>18+ years of experience</strong> in diagnostics. A Functional Nutritionist, Breathwork Facilitator, Oxygen Advantage Coach, Certified Biohacker, and Breath Resilience Instructor, she brings together healthcare insights, root-cause nutrition, breathwork, and lifestyle strategies to help people take a more proactive, personalised approach to health.
               </p>
 
               <p style={{ color: 'var(--text-secondary)', marginBottom: '16px', lineHeight: 1.7, fontSize: '1.02rem' }}>
@@ -217,7 +217,7 @@ export default function AboutPage() {
                   <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
                     <polyline points="20 6 9 17 4 12"></polyline>
                   </svg>
-                  <span>20+ Yrs in Healthcare &amp; Diagnostics</span>
+                  <span>18+ Yrs in Healthcare &amp; Diagnostics</span>
                 </div>
                 <div className="credential-item">
                   <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">

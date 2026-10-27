@@ -259,7 +259,7 @@ export default function HomePage() {
               {/* Hero Clinical Highlights */}
               <div className="hero-stats-row">
                 <div className="stat-item">
-                  <div className="stat-num">20+ Yrs</div>
+                  <div className="stat-num">18+ Yrs</div>
                   <div className="stat-label">Healthcare &amp; Diagnostics</div>
                 </div>
                 <div className="stat-item">
@@ -294,7 +294,7 @@ export default function HomePage() {
                 {/* Floating Top Trust Badge */}
                 <div className="hero-floating-badge badge-top-right">
                   <div className="badge-text">
-                    <strong>20+ Years</strong>
+                    <strong>18+ Years</strong>
                     <span>Healthcare &amp; Diagnostics</span>
                   </div>
                 </div>
@@ -323,7 +323,7 @@ export default function HomePage() {
         <div className="container">
           <div className="clinical-approach-card">
             <p className="clinical-approach-lead">
-              Her clinical approach unifies 20+ years of laboratory diagnostic expertise, gut microbiome testing, Oxygen Advantage® breathwork, and identifying the hidden biochemical root causes that trigger chronic inflammation, gut dysbiosis, and metabolic fatigue.
+              She integrates Functional Nutrition, Diagnostic Insights, Gut Health, Breathwork, and Longevity to uncover underlying health imbalances and create personalised, science-backed strategies for better health, sustainable wellbeing, and long-term vitality.
             </p>
 
             <div className="clinical-approach-buttons">
@@ -441,12 +441,12 @@ export default function HomePage() {
 
               <div style={{ background: 'white', padding: '20px 24px', borderRadius: 'var(--radius-md)', borderLeft: '4px solid var(--emerald-medium)', boxShadow: 'var(--shadow-sm)', marginBottom: '20px' }}>
                 <p style={{ margin: 0, fontStyle: 'italic', color: 'var(--text-primary)', fontSize: '0.98rem', lineHeight: 1.65 }}>
-                  "I don't just teach functional protocols — I lived through the exact same metabolic resistance, persistent fatigue, and weight struggles my clients face. Even with over 20 years in diagnostics and healthcare, conventional diet charts failed me. Only when I targeted cellular gut mucosa, mitochondrial energy, and autonomic breathwork did my body release 38+ kg (from 98 kg down to the 60s kg) effortlessly."
+                  "I don't just teach functional protocols — I lived through the exact same metabolic resistance, persistent fatigue, and weight struggles my clients face. Even with over 18 years in diagnostics and healthcare, conventional diet charts failed me. Only when I targeted cellular gut mucosa, mitochondrial energy, and autonomic breathwork did my body release 38+ kg (from 98 kg down to the 60s kg) effortlessly."
                 </p>
               </div>
 
               <p style={{ color: 'var(--text-secondary)', marginBottom: '20px', lineHeight: 1.65 }}>
-                When you work with Reshmi, you are guided by someone who understands the physical and mental hurdles firsthand, backed by over 20 years of diagnostics and healthcare leadership.
+                When you work with Reshmi, you are guided by someone who understands the physical and mental hurdles firsthand, backed by over 18 years of diagnostics and healthcare leadership.
               </p>
 
               <div>
@@ -498,7 +498,7 @@ export default function HomePage() {
                   border: '1px solid rgba(18, 18, 20, 0.08)'
                 }}>
                   <p className="conditions-scope-disclaimer" style={{ margin: 0 }}>
-                    Reshmi Verma is a functional health coach and certified biohacker with 20+ years in diagnostics, not a conventional medical doctor, and <u>does not prescribe pharmaceutical medicines</u>.<br />
+                    Reshmi Verma is a functional health coach and certified biohacker with 18+ years in diagnostics, not a conventional medical doctor, and <u>does not prescribe pharmaceutical medicines</u>.<br />
                     Her <em>'Food &amp; Breath as Medicine'</em> clinical methodology complements the work of medical doctors, operating in full synergy with their guidance and clinical protocols.
                   </p>
                 </div>
@@ -1015,7 +1015,7 @@ export default function HomePage() {
           >
             <div style={{ maxWidth: '680px' }}>
               <div style={{ fontSize: '0.82rem', fontWeight: 700, color: 'var(--emerald-medium)', textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: '6px' }}>
-                Led By Reshmi Verma &bull; 20+ Years Clinical Diagnostics Leadership
+                Led By Reshmi Verma &bull; 18+ Years Clinical Diagnostics Leadership
               </div>
               <h3 style={{ fontSize: '1.5rem', color: 'var(--emerald-deep)', margin: '0 0 6px', fontFamily: 'var(--font-serif)' }}>
                 Biotechnologist &bull; Functional Nutritionist &bull; Breathwork Facilitator
