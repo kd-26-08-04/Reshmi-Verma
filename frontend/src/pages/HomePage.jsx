@@ -220,12 +220,11 @@ export default function HomePage() {
                 <span>Functional Nutritionist &bull; Somatic Breathwork Facilitator &bull; Biohacker</span>
               </div>
 
-              <h1 style={{
-                background: 'linear-gradient(135deg, #0a0a0a 0%, #1a2a2a 35%, #00A99D 70%, #00E5D9 100%)',
-                WebkitBackgroundClip: 'text',
-                WebkitTextFillColor: 'transparent',
-                backgroundClip: 'text'
-              }}>Science-Led &bull; Human-Centered</h1>
+              <h1 style={{ lineHeight: 1.15, margin: '12px 0 16px' }}>
+                <span style={{ color: '#121214' }}>Science-Led</span>
+                <br />
+                <span style={{ color: '#007A78', whiteSpace: 'nowrap' }}>Human-Centered</span>
+              </h1>
 
               <p style={{ fontSize: 'clamp(1.1rem, 2.5vw, 1.25rem)', fontWeight: 600, color: 'var(--emerald-deep)', margin: '-4px 0 16px', lineHeight: 1.45 }}>
                 A More Proactive, Root-Cause Approach to Health, Built Around You.

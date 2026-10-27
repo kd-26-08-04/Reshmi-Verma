@@ -351,32 +351,13 @@ export default function WelcomeAssessmentModal() {
             </span>
 
             <h2 id="welcome-modal-title" className="welcome-main-title">
-              What is your body <br />
-              <span style={{ color: '#0D9488', fontStyle: 'italic', fontWeight: 800 }}>trying to tell you?</span>
+              Your health has a story. <br />
+              <span style={{ color: '#0D9488', fontStyle: 'italic', fontWeight: 800 }}>Let's Understand It.</span>
             </h2>
 
             {/* Description Paragraph */}
             <p className="welcome-desc-text">
-              Answer science-backed questions and discover your functional root-cause score out of 100 — with personalised insights from Reshmi Verma, Functional Nutritionist.
-            </p>
-
-            {/* 3 Feature Pills */}
-            <div className="welcome-pills-row">
-              <span className="welcome-feature-pill">
-                <span style={{ width: '6px', height: '6px', borderRadius: '50%', background: '#8EBE93' }}></span>
-                Takes 3 minutes
-              </span>
-
-              <span className="welcome-feature-pill">
-                <span style={{ width: '6px', height: '6px', borderRadius: '50%', background: '#8EBE93' }}></span>
-                Personalised Results
-              </span>
-
-              <span className="welcome-feature-pill">
-                <span style={{ width: '6px', height: '6px', borderRadius: '50%', background: '#8EBE93' }}></span>
-                Root-cause focused
-              </span>
-            </div>
+              Your body communicates through the way you feel,digest,breathe, sleep and respond to everyday life.Understanding these patterns is a meaningful first step towards more personalised health. </p>
 
             {/* Action Button */}
             <button
@@ -389,7 +370,7 @@ export default function WelcomeAssessmentModal() {
             </button>
 
             <div className="welcome-footer-tag">
-              🔒 Reshmi Verma Functional Health &bull; 100% Confidential
+              <p style={{ margin: 0 }}>A starting point for self-awareness, not a diagnosis. Your results will help you identify areas you may wish to explore further.</p>
             </div>
           </div>
         )}
@@ -415,7 +396,7 @@ export default function WelcomeAssessmentModal() {
               </span>
 
               <h3 style={{ fontSize: '1.25rem', color: 'var(--emerald-deep)', margin: '4px 0 2px', fontFamily: 'var(--font-serif)', fontWeight: 800 }}>
-                Where Should We Send Your Score?
+                Score &amp; Report Send On Mail.
               </h3>
             </div>
 
@@ -559,7 +540,7 @@ export default function WelcomeAssessmentModal() {
               </span>
 
               <h3 style={{ fontSize: '1.25rem', color: 'var(--emerald-deep)', margin: '4px 0 2px', fontFamily: 'var(--font-serif)', fontWeight: 800 }}>
-                Choose Your Assessment Track
+                Where Would You Like To Begin?
               </h3>
             </div>
 
@@ -573,7 +554,7 @@ export default function WelcomeAssessmentModal() {
                 style={{
                   padding: '14px 16px',
                   borderRadius: '14px',
-                  border: '1.5px solid rgba(235, 94, 40, 0.3)',
+                  border: '1.5px solid hsla(177, 92%, 63%, 0.09)',
                   background: 'linear-gradient(135deg, #FFFFFF 0%, #FFF8F5 100%)',
                   cursor: 'pointer',
                   display: 'flex',
@@ -592,7 +573,7 @@ export default function WelcomeAssessmentModal() {
                 <span style={{
                   padding: '6px 14px',
                   borderRadius: '999px',
-                  background: 'linear-gradient(135deg, #EB5E28 0%, #C2410C 100%)',
+                  background: '#FF1493',
                   color: '#FFFFFF',
                   fontWeight: 800,
                   fontSize: '0.76rem',

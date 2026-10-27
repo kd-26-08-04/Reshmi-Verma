@@ -156,36 +156,6 @@ export default function ContactPage() {
                 </div>
               </div>
 
-              {/* WhatsApp */}
-              <div style={{ display: 'flex', gap: '16px', alignItems: 'flex-start' }}>
-                <div style={{
-                  width: '42px',
-                  height: '42px',
-                  borderRadius: '12px',
-                  background: '#ECFDF5',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  flexShrink: 0,
-                  border: '1px solid #A7F3D0'
-                }}>
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#059669" strokeWidth="2">
-                    <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path>
-                  </svg>
-                </div>
-                <div>
-                  <h4 style={{ margin: '0 0 2px', fontSize: '0.95rem', fontWeight: 700, color: 'var(--emerald-deep)' }}>Clinic WhatsApp</h4>
-                  <a
-                    href="https://wa.me/?text=Hello%20Reshmi%20Verma%20Clinic%2C%20I%20have%20an%20inquiry%20regarding%20functional%20consultations."
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    style={{ fontSize: '0.92rem', color: '#059669', fontWeight: 700 }}
-                  >
-                    Chat via WhatsApp &rarr;
-                  </a>
-                  <p style={{ margin: '2px 0 0', fontSize: '0.8rem', color: 'var(--text-muted)' }}>Fastest response for scheduling queries</p>
-                </div>
-              </div>
 
               {/* Consultation Hours */}
               <div style={{ display: 'flex', gap: '16px', alignItems: 'flex-start' }}>

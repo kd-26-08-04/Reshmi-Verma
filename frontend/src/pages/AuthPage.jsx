@@ -77,6 +77,11 @@ export default function AuthPage() {
 
         <div className="auth-luxury-card" style={{ maxWidth: '440px', padding: '24px 28px 20px' }}>
           <div style={{ textAlign: 'center' }}>
+            <img
+              src="/assets/images/Reshmi_Logo.png"
+              alt="Health with Reshmi"
+              style={{ width: '80px', height: '80px', objectFit: 'contain', margin: '0 auto 12px', display: 'block', filter: 'drop-shadow(0 4px 14px rgba(255, 20, 147, 0.28))' }}
+            />
             <div className="auth-security-pill" style={{ marginBottom: '10px' }}>
               <span className="pulse-dot"></span>
               <span>Confidential Clinical Portal</span>
@@ -84,11 +89,6 @@ export default function AuthPage() {
             <h1 id="auth-title" style={{ fontFamily: 'var(--font-serif)', fontSize: '1.75rem', color: 'var(--emerald-deep)', margin: '0 0 4px', lineHeight: 1.2, fontWeight: 800 }}>
               {mode === 'login' ? 'Client Sign In' : 'Create Account'}
             </h1>
-            <p id="auth-desc" style={{ fontSize: '0.86rem', color: 'var(--text-muted)', margin: 0, lineHeight: 1.45 }}>
-              {mode === 'login'
-                ? 'Access your personalized consultation records, intake diagnostics, and clinical health blueprint.'
-                : 'Register for your secure patient portal, health intake history, and 1-on-1 consultation scheduling.'}
-            </p>
           </div>
 
           {/* Segmented Switcher */}

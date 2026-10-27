@@ -10,12 +10,14 @@ export default function Footer() {
             <div className="footer-brand">
               <div className="brand-logo" style={{ marginBottom: '16px', display: 'flex', alignItems: 'center', gap: '14px' }}>
                 <img
-                  src="/assets/images/Reshmi_Logo_transparent.png"
+                  src="/assets/images/Reshmi_Logo.png"
                   alt="HealthwithReshmi Official Logo"
                   className="footer-brand-logo-img"
                 />
                 <div className="brand-text">
-                  <span className="name" style={{ color: 'var(--emerald-deep)' }}>HealthwithReshmi™</span>
+                  <span className="name" style={{ color: 'var(--emerald-deep)' }}>
+                    Healthwith<span className="brand-reshmi-script">Reshmi</span>
+                  </span>
                   <span className="tagline">Reshmi Verma &bull; Functional Nutritionist</span>
                 </div>
               </div>
@@ -122,7 +124,7 @@ export default function Footer() {
           </div>
 
           <div className="footer-bottom">
-            <p>&copy; {new Date().getFullYear()} HealthwithReshmi™. All rights reserved. Clinical nutrition, somatic breathwork &amp; biohacking protocols.</p>
+            <p>&copy; {new Date().getFullYear()} HealthwithReshmi. All rights reserved. Clinical nutrition, somatic breathwork &amp; biohacking protocols.</p>
             <div className="footer-legal-links">
               <span>Medical Disclaimer</span>
               <span>&bull;</span>

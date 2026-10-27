@@ -78,12 +78,14 @@ export default function Navbar() {
       <div className="container nav-container">
         <Link to="/" className="brand-logo" onClick={closeMenu}>
           <img
-            src="/assets/images/Reshmi_Logo_transparent.png"
+            src="/assets/images/Reshmi_Logo.png"
             alt="HealthwithReshmi Official Logo"
             className="brand-logo-img"
           />
           <div className="brand-text">
-            <span className="name">HealthwithReshmi™</span>
+            <span className="name">
+              Healthwith<span className="brand-reshmi-script">Reshmi</span>
+            </span>
             <span className="tagline">Reshmi Verma &bull; Functional Nutritionist</span>
           </div>
         </Link>
