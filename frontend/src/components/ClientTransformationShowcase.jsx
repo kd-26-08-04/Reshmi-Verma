@@ -508,7 +508,7 @@ export default function ClientTransformationShowcase() {
                   aria-expanded={showAllAudio}
                   title={showAllAudio ? 'Show fewer audio notes' : 'Show all audio notes'}
                 >
-                  <span>{showAllAudio ? 'Show Fewer Voice Notes' : `Listen to All ${audioTestimonials.length} Patient Stories`}</span>
+                  <span>{showAllAudio ? 'Show Fewer Voice Notes' : `Listen to Patient Stories`}</span>
                   <svg
                     width="18"
                     height="18"

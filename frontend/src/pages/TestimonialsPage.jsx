@@ -2,8 +2,54 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import ClientTransformationShowcase from '../components/ClientTransformationShowcase';
 
+// Helper function to extract clean YouTube Embed URL from any YouTube link format
+const getYouTubeEmbedUrl = (url) => {
+  if (!url) return '';
+  const trimmed = url.trim();
+
+  // If already an embed url
+  if (trimmed.includes('youtube.com/embed/')) {
+    return trimmed;
+  }
+
+  // Match youtube watch URL, youtu.be, shorts, or embed URL
+  const match = trimmed.match(/(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=|shorts\/))([\w-]{11})/i);
+  if (match && match[1]) {
+    return `https://www.youtube.com/embed/${match[1]}?rel=0&modestbranding=1`;
+  }
+
+  // If pure 11-char ID
+  if (/^[\w-]{11}$/.test(trimmed)) {
+    return `https://www.youtube.com/embed/${trimmed}?rel=0&modestbranding=1`;
+  }
+
+  return trimmed;
+};
+
 export default function TestimonialsPage() {
   const [activeCategory, setActiveCategory] = useState('all');
+
+  // =========================================================================
+  // 🎥 3 CLIENT VIDEO TESTIMONIALS (YOUTUBE VIDEOS)
+  // 💡 Aap yahan niche apni YouTube video links (youtubeUrl) direct daal sakte hain!
+  // Any YouTube link works: https://www.youtube.com/watch?v=..., https://youtu.be/..., https://youtube.com/shorts/...
+  // =========================================================================
+  const videoTestimonials = [
+    {
+      id: 1,
+      youtubeUrl: 'https://www.youtube.com/watch?v=EQP9TE04bvQ', // 👈 Yahan apni 1st YouTube Video Link paste karein
+
+    },
+    {
+      id: 2,
+      youtubeUrl: 'https://www.youtube.com/watch?v=HC-ebB_xA0Y', // 👈 Yahan apni 2nd YouTube Video Link paste karein
+
+    },
+    {
+      id: 3,
+      youtubeUrl: 'https://www.youtube.com/watch?v=EQP9TE04bvQ', // 👈 Yahan apni 3rd YouTube Video Link paste karein
+    }
+  ];
 
   const categories = [
     { id: 'all', label: 'All Stories' },
@@ -321,6 +367,162 @@ export default function TestimonialsPage() {
 
       {/* Real Patient Before & After Transformations Continuous Showcase & Audio Notes (End-to-End Full Bleed) */}
       <ClientTransformationShowcase />
+
+      {/* 3. Real Client Video Testimonials (After Client Audio) */}
+      <section
+        className="client-video-testimonials-section"
+        style={{
+          padding: '60px 0 30px',
+          background: 'linear-gradient(180deg, #FFFFFF 0%, #F5FBFA 100%)',
+          borderTop: '1px solid var(--border-subtle)',
+          borderBottom: '1px solid var(--border-subtle)',
+          marginBottom: '50px'
+        }}
+      >
+        <div className="container">
+          {/* Header */}
+          <div style={{ textAlign: 'center', maxWidth: '800px', margin: '0 auto 40px' }}>
+            <span
+              style={{
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: '8px',
+                padding: '6px 18px',
+                borderRadius: '999px',
+                background: '#EDF6EE',
+                color: '#121214',
+                fontSize: '0.82rem',
+                fontWeight: 800,
+                letterSpacing: '0.08em',
+                textTransform: 'uppercase',
+                border: '1px solid #C6DFC9',
+                marginBottom: '14px'
+              }}
+            >
+              <span>🎥 Video Testimonials</span>
+              <span>•</span>
+              <span style={{ color: '#0D827B' }}>Direct Patient Reviews</span>
+            </span>
+
+            <h2
+              style={{
+                fontSize: 'clamp(2rem, 4vw, 2.7rem)',
+                color: '#121214',
+                fontFamily: 'var(--font-serif)',
+                margin: '0 0 14px',
+                fontWeight: 800,
+                lineHeight: 1.2
+              }}
+            >
+              Real Patients. <span style={{ color: '#0D9488', fontStyle: 'italic' }}>Watch Their Stories.</span>
+            </h2>
+
+            <p
+              style={{
+                fontSize: '1.02rem',
+                color: '#4B5563',
+                lineHeight: 1.65,
+                margin: '0 auto'
+              }}
+            >
+              Watch direct video feedback and genuine recovery journeys of clients who transformed their digestion, thyroid, sleep, and metabolic health.
+            </p>
+          </div>
+
+          {/* 3 Video Cards Grid */}
+          <div
+            style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
+              gap: '28px',
+              maxWidth: '1160px',
+              margin: '0 auto'
+            }}
+          >
+            {videoTestimonials.map((video) => {
+              const embedUrl = getYouTubeEmbedUrl(video.youtubeUrl);
+              return (
+                <div
+                  key={video.id}
+                  className="review-glass-card"
+                  style={{
+                    background: '#FFFFFF',
+                    borderRadius: '22px',
+                    overflow: 'hidden',
+                    border: '1px solid var(--border-subtle)',
+                    borderTop: '3px solid #00E5D9',
+                    boxShadow: '0 10px 28px rgba(0, 0, 0, 0.05)',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    transition: 'transform 0.25s ease, box-shadow 0.25s ease'
+                  }}
+                >
+                  {/* YouTube Video Embed Container (16:9) */}
+                  <div
+                    style={{
+                      position: 'relative',
+                      width: '100%',
+                      paddingBottom: '56.25%',
+                      backgroundColor: '#0F172A'
+                    }}
+                  >
+                    {embedUrl ? (
+                      <iframe
+                        src={embedUrl}
+                        title={`${video.name} - Testimonial Video`}
+                        loading="lazy"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowFullScreen
+                        style={{
+                          position: 'absolute',
+                          top: 0,
+                          left: 0,
+                          width: '100%',
+                          height: '100%',
+                          border: 'none'
+                        }}
+                      />
+                    ) : (
+                      <div
+                        style={{
+                          position: 'absolute',
+                          top: 0,
+                          left: 0,
+                          width: '100%',
+                          height: '100%',
+                          display: 'flex',
+                          alignItems: 'center',
+                          justifyContent: 'center',
+                          color: '#9CA3AF',
+                          fontSize: '0.85rem'
+                        }}
+                      >
+                        YouTube Link Not Set
+                      </div>
+                    )}
+                  </div>
+
+                  {/* Card Body */}
+                  <div style={{ padding: '22px', display: 'flex', flexDirection: 'column', flex: 1 }}>
+                    {/* Category & Recovery Badges */}
+                    <div
+                      style={{
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'space-between',
+                        gap: '8px',
+                        marginBottom: '10px'
+                      }}
+                    >
+
+                    </div>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      </section>
 
       <div className="container" style={{ marginTop: '60px' }}>
         {/* Reshmi's Personal 38 kg Transformation Feature */}
