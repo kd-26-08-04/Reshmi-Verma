@@ -84,7 +84,7 @@ export default function Navbar() {
           />
           <div className="brand-text">
             <span className="name">
-              Healthwith<span className="brand-reshmi-script">Reshmi</span>
+              <h2>HealthwithReshmi</h2>
             </span>
           </div>
         </Link>
