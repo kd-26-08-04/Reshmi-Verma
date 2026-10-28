@@ -263,12 +263,12 @@ export default function HomePage() {
                   <div className="stat-label">Personalised Health Approach</div>
                 </div>
                 <div className="stat-item">
-                  <div className="stat-num">6+</div>
-                  <div className="stat-label">Global Functional &amp; Breath Certs</div>
+                  <div className="stat-num">3 Pillars</div>
+                  <div className="stat-label">Nutrition, Breathwork & Longevity</div>
                 </div>
                 <div className="stat-item">
                   <div className="stat-num">38+<span style={{ fontSize: '1.25rem' }}>kg</span></div>
-                  <div className="stat-label">Personal Transformation (98→60s kg)</div>
+                  <div className="stat-label">Personal Transformation</div>
                 </div>
               </div>
             </div>

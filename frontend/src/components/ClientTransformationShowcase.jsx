@@ -252,12 +252,6 @@ export default function ClientTransformationShowcase() {
             ))}
           </div>
         </div>
-
-        <div style={{ textAlign: 'center', marginTop: '16px' }}>
-          <span style={{ fontSize: '0.82rem', color: 'rgba(255, 255, 255, 0.45)', fontWeight: 600 }}>
-            Hover over any card to pause • Continuous verified client transformations
-          </span>
-        </div>
       </section>
 
       {/* 2. Real Client Voice Audio Notes Showcase (Separate Clean Light Section) */}
