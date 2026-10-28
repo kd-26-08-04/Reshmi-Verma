@@ -15,14 +15,12 @@ export default function Footer() {
                   alt="HealthwithReshmi Official Logo"
                   className="footer-brand-logo-img"
                 />
-                <div className="brand-text">
-                  <span className="name" style={{ color: 'var(--emerald-deep)' }}>
-                    <h2>
-                      <span>Healthwith</span>
-                      <span className="brand-reshmi-script">Reshmi</span>
-                    </h2>
-                  </span>
-                </div>
+                <img
+                  src="/assets/images/healthwithreshmi-brand.png"
+                  alt="Health with Reshmi"
+                  className="brand-wordmark-img"
+                  style={{ height: '44px', width: 'auto', maxWidth: '240px' }}
+                />
               </div>
               <p>
                 Science-led, human-centred functional nutrition, breathwork, and longevity with Reshmi Verma.              </p>
@@ -111,7 +109,7 @@ export default function Footer() {
               <ul className="footer-links">
                 <li style={{ color: 'var(--text-secondary)', fontSize: '0.82rem', lineHeight: 1.4 }}>
                   <strong>Clinical Diagnostics</strong><br />
-                  Rainbow Medinova, 4B, Central Bazar road, Ramdaspeth, Nagpur 440010.
+                  Rainbow Medinova, Central Bazar road, Ramdaspeth, Nagpur 440010.
                 </li>
                 <li>
                   <a href="mailto:support.reshmiverma@gmail.com" style={{ display: 'flex', alignItems: 'center', gap: '8px', wordBreak: 'break-all' }}>
@@ -127,7 +125,7 @@ export default function Footer() {
           </div>
 
           <div className="footer-bottom">
-            <p>&copy; {new Date().getFullYear()} HealthwithReshmi. All rights reserved. Clinical nutrition, somatic breathwork &amp; biohacking protocols.</p>
+            <p>&copy; {new Date().getFullYear()} HealthwithReshmi. All rights reserved. Functional nutrition, somatic breathwork &amp; biohacking protocols.</p>
             <div className="footer-legal-links">
               <span>Medical Disclaimer</span>
               <span>&bull;</span>

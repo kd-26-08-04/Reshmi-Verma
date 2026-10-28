@@ -5,6 +5,15 @@ import { getApiUrl, RAZORPAY_PAYMENT_URL } from '../utils/api';
 const DEFAULT_REELS = [
   {
     id: "reel-1",
+    title: "Food Controlling You vs. You Controlling Food: Root Cause Healing",
+    url: "https://www.instagram.com/reel/Dbt0IfST8hF/?xtok=c3ExNWwxN2pwd3hp",
+    image: "/assets/images/1streel.png",
+    views: "52.4K",
+    duration: "0:59",
+    topic: "Food Freedom"
+  },
+  {
+    id: "reel-2",
     title: "How to Eat Seeds the Right Way: Chia, Flax, Sesame, Pumpkin & More",
     url: "https://www.instagram.com/reel/DeBgLUCzomt/?psln=aXkwYXExNWd5end2",
     image: "/assets/images/2ndreel.png",
@@ -13,7 +22,7 @@ const DEFAULT_REELS = [
     topic: "Seed Nutrition"
   },
   {
-    id: "reel-2",
+    id: "reel-3",
     title: "4-7-8 Breathing Technique: Calm Your Nervous System & Beat Stress",
     url: "https://www.instagram.com/reel/DaqrVQzz5No/?dlrf=MTh3Y29xaXIxdXFzbQ==",
     image: "/assets/images/3rdreel.png",
@@ -22,7 +31,7 @@ const DEFAULT_REELS = [
     topic: "Breathwork & Stress Relief"
   },
   {
-    id: "reel-3",
+    id: "reel-4",
     title: "Mudras & Breathwork: How Hand Positions Change Your Nervous System",
     url: "https://www.instagram.com/reel/DZVtU4TTQbS/?cplk=cjRmeHA0aWE4ZzJr",
     image: "/assets/images/4threel.png",
@@ -31,7 +40,7 @@ const DEFAULT_REELS = [
     topic: "Mudras & Breathwork"
   },
   {
-    id: "reel-4",
+    id: "reel-5",
     title: "Protein Won't Damage Your Kidneys: Busting the Biggest Indian Diet Myth",
     url: "https://www.instagram.com/reel/DY5Q--ATcKt/?vrfl=bWp5NGJvZjYydWZv",
     image: "/assets/images/5threel.png",
@@ -40,22 +49,13 @@ const DEFAULT_REELS = [
     topic: "Protein Myths"
   },
   {
-    id: "reel-5",
-    title: "Food Controlling You vs. You Controlling Food: Root Cause Healing",
-    url: "https://www.instagram.com/reel/Dbt0IfST8hF/?xtok=c3ExNWwxN2pwd3hp",
-    image: "/assets/images/reshmi-verma.jpeg",
-    views: "52.4K",
-    duration: "0:59",
-    topic: "Food Freedom"
-  },
-  {
     id: "reel-6",
-    title: "Root-Cause Longevity: Why Sustainable Habit Stacking Beats Crash Diets",
+    title: "Menopause & Hormonal Balance: Know Your Body's Natural Shift",
     url: "https://www.instagram.com/reel/DcVi6zjzhY9/?utm_source=ig_web_copy_link&stkn=MzRlODBiNWFlZA==",
-    image: "/assets/images/reshmi-verma.jpeg",
+    image: "/assets/images/6threel.png",
     views: "95.7K",
     duration: "1:00",
-    topic: "Longevity & Habits"
+    topic: "Hormonal Health"
   }
 ];
 
@@ -320,11 +320,10 @@ export default function HomePage() {
       >
         <div className="container">
           <div className="section-header" style={{ marginBottom: '40px' }}>
-            <span className="sub-title">Proof of Concept &bull; Walking The Talk</span>
             <h2>Real Transformation: Meet Your Guide</h2>
           </div>
 
-          <div className="about-grid">
+          <div className="about-grid" style={{ alignItems: 'flex-start' }}>
             <div className="about-image-wrapper">
               {/* Transformation View Switcher */}
               <div className="transformation-tabs-nav">
@@ -355,11 +354,8 @@ export default function HomePage() {
               <div className="transformation-visual-container">
                 {transformationTab === 'compare' && (
                   <div className="transformation-split-view combined-mode">
-                    <span className="photo-phase-tag phase-before">BEFORE • Chronic Fatigue</span>
-                    <div className="split-divider-line">
-                      <span className="divider-badge">-38 KG</span>
-                    </div>
-                    <span className="photo-phase-tag phase-after">AFTER • Metabolic Reversal</span>
+                    <span className="photo-phase-tag phase-before">BEFORE</span>
+                    <span className="photo-phase-tag phase-after">AFTER</span>
                     <img
                       src="/assets/images/reshmi-transformation-side-by-side.jpg"
                       alt="Reshmi Verma Before and After 38 kg Health Transformation"
@@ -370,28 +366,17 @@ export default function HomePage() {
 
                 {transformationTab === 'before' && (
                   <div className="transformation-single-view">
-                    <span className="photo-phase-tag phase-before">BEFORE • Initial Metabolic Resistance</span>
+                    <span className="photo-phase-tag phase-before">BEFORE</span>
                     <img src="/assets/images/reshmi-transform-user.jpg" alt="Reshmi Verma Before Transformation" />
-                    <div className="single-phase-caption">
-                      <strong>Earlier Phase:</strong> Battling systemic inflammation, sluggish metabolism, and persistent fatigue despite clinical healthcare background.
-                    </div>
                   </div>
                 )}
 
                 {transformationTab === 'after' && (
                   <div className="transformation-single-view">
-                    <span className="photo-phase-tag phase-after">AFTER • -38 kg Victory</span>
+                    <span className="photo-phase-tag phase-after">AFTER</span>
                     <img src="/assets/images/reshmi-after.jpg" alt="Reshmi Verma After Transformation" />
-                    <div className="single-phase-caption">
-                      <strong>Reversed Phase:</strong> Reclaimed energy, pristine metabolic biomarkers, Functional Nutritionist &amp; Certified Biohacker without crash dieting.
-                    </div>
                   </div>
                 )}
-              </div>
-
-              <div className="transformation-callout">
-                <div className="metric">-38+ kg</div>
-                <p>Personal transformation: 98 kg to 60s kg. Lived experience meets hard clinical science.</p>
               </div>
             </div>
 
@@ -439,32 +424,36 @@ export default function HomePage() {
                 </p>
               </div>
 
-              {/* Closing Mantra Box */}
-              <div style={{
-                padding: '12px 18px',
-                borderRadius: '12px',
-                background: 'rgba(0, 169, 157, 0.08)',
-                border: '1px dashed rgba(0, 169, 157, 0.35)',
-                marginBottom: '22px'
-              }}>
-                <p style={{ margin: 0, fontWeight: 700, color: 'var(--emerald-deep)', fontSize: '0.92rem' }}>
-                  Fitness is cheaper than illness. It is the mantra behind Reshmi’s journey and the purpose behind her work.
-                </p>
-              </div>
-
-              <div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap', alignItems: 'center' }}>
-                <a href={RAZORPAY_PAYMENT_URL} target="_blank" rel="noopener noreferrer" className="btn btn-primary btn-lg">
-                  <span>Book 1:1 Consultation</span>
-                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" style={{ marginLeft: '8px' }}>
-                    <line x1="5" y1="12" x2="19" y2="12"></line>
-                    <polyline points="12 5 19 12 12 19"></polyline>
-                  </svg>
-                </a>
-                <Link to="/about" className="btn btn-secondary btn-lg">
-                  <span>Explore Her Full Story</span>
-                </Link>
-              </div>
             </div>
+          </div>
+
+          {/* Centered Closing Thought / Mantra - Below Image & Content */}
+          <div style={{
+            maxWidth: '860px',
+            margin: '36px auto 24px',
+            padding: '16px 28px',
+            borderRadius: '16px',
+            background: 'rgba(1, 183, 180, 0.08)',
+            border: '1.5px dashed rgba(1, 183, 180, 0.4)',
+            textAlign: 'center'
+          }}>
+            <p style={{ margin: 0, fontWeight: 700, color: 'var(--emerald-deep)', fontSize: '1.02rem', lineHeight: 1.8 }}>
+              Fitness is cheaper than illness. It is the mantra behind Reshmi’s journey and the purpose behind her work.
+            </p>
+          </div>
+
+          {/* Centered Action Buttons */}
+          <div style={{ display: 'flex', gap: '16px', justifyContent: 'center', alignItems: 'center', flexWrap: 'wrap' }}>
+            <a href={RAZORPAY_PAYMENT_URL} target="_blank" rel="noopener noreferrer" className="btn btn-primary btn-lg">
+              <span>Book 1:1 Consultation</span>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" style={{ marginLeft: '8px' }}>
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+                <polyline points="12 5 19 12 12 19"></polyline>
+              </svg>
+            </a>
+            <Link to="/about" className="btn btn-secondary btn-lg">
+              <span>Explore Her Full Story</span>
+            </Link>
           </div>
         </div>
       </section>
@@ -669,7 +658,7 @@ export default function HomePage() {
             ))}
           </div>
 
-</div>
+        </div>
       </section>
 
       {/* 4. Real People, Real Success Stories (Contained Luxury Noir Section) */}
@@ -687,23 +676,6 @@ export default function HomePage() {
           >
             {/* Centered Section Header */}
             <div style={{ textAlign: 'center', maxWidth: '720px', margin: '0 auto 26px' }}>
-              <span
-                style={{
-                  display: 'inline-block',
-                  fontSize: '0.78rem',
-                  color: 'rgb(1, 183, 180)',
-                  textTransform: 'uppercase',
-                  letterSpacing: '0.08em',
-                  fontWeight: 800,
-                  background: 'rgba(0, 229, 217, 0.1)',
-                  padding: '4px 14px',
-                  borderRadius: '999px',
-                  border: '1px solid rgba(0, 229, 217, 0.25)',
-                  marginBottom: '10px'
-                }}
-              >
-                Verified Patient Outcomes
-              </span>
               <h2
                 style={{
                   fontSize: 'clamp(1.75rem, 3.8vw, 2.35rem)',
@@ -717,8 +689,7 @@ export default function HomePage() {
                 Their Results, Their Words
               </h2>
               <p style={{ color: '#E2E8F0', fontSize: '0.94rem', lineHeight: 1.55, margin: 0 }}>
-                Every health journey is different. Real experiences with personalised, root-cause-focused clinical care.
-              </p>
+                Every health journey is unique. Discover real stories of personalised care that focuses on understanding the root causes and supporting lasting wellness.              </p>
             </div>
 
             {/* Continuous Sliding Infinite Marquee Track */}
@@ -963,7 +934,7 @@ export default function HomePage() {
               <img src="/assets/images/reshmi-verma.jpeg" alt="Reshmi Verma" className="reels-channels-avatar" />
               <div className="reels-channels-text">
                 <h4>Follow Reshmi Across Platforms</h4>
-                <p>New evidence-based reels, video masterclasses, and functional health breakdowns published weekly.</p>
+                <p>New evidence-based reels, video, and functional health breakdowns published weekly.</p>
               </div>
             </div>
 
@@ -1130,18 +1101,6 @@ export default function HomePage() {
       {/* 11. CTA Banner Section (High Contrast Noir Strip) */}
       <section className="section" style={{ background: '#111111', color: '#FFFFFF' }}>
         <div className="container text-center">
-          <span
-            className="badge-pill"
-            style={{
-              background: 'rgba(255, 255, 255, 0.12)',
-              borderColor: 'rgba(255, 255, 255, 0.22)',
-              color: '#FFFFFF',
-              marginBottom: '24px'
-            }}
-          >
-            <span className="pulse-dot" style={{ background: 'rgb(1, 183, 180)' }}></span>
-            <span>Begin Your Healing Journey</span>
-          </span>
           <h2 style={{ color: '#FFFFFF', fontSize: 'clamp(1.45rem, 5.5vw, 2.75rem)', marginBottom: '14px', lineHeight: 1.25 }}>Tired of Guessing About Your Health?</h2>
           <p style={{ color: '#E5E7EB', maxWidth: '650px', margin: '0 auto 24px', fontSize: 'clamp(0.85rem, 2.5vw, 1.12rem)', lineHeight: 1.5 }}>
             Take our free Health Resilience Assessment to identify your key health priorities and explore the next steps that may be right for you. </p>

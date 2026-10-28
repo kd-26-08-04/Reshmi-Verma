@@ -470,7 +470,7 @@ export default function AdminPage() {
       id: `reel_${Date.now()}`,
       title: 'New Clinical Health & Breathwork Reel',
       url: 'https://www.instagram.com/healthwithreshmi/',
-      image: '/assets/images/reshmi-verma.jpg',
+      image: '/assets/images/reshmi-verma.jpeg',
       views: '50K',
       duration: '0:50',
       topic: 'Functional Health'

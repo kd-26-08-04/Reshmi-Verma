@@ -325,22 +325,6 @@ export default function VideosPage() {
 
         {/* Hero Section Header */}
         <div style={{ textAlign: 'center', maxWidth: '720px', margin: '0 auto 24px' }}>
-          <div className="videos-hero-badge" style={{
-            display: 'inline-flex',
-            alignItems: 'center',
-            gap: '8px',
-            padding: '5px 14px',
-            borderRadius: '999px',
-            background: '#121214',
-            color: 'rgb(1, 183, 180)',
-            fontSize: '0.78rem',
-            fontWeight: 800,
-            letterSpacing: '0.04em',
-            marginBottom: '12px'
-          }}>
-            <span>🎥</span>
-            <span>Clinical Video Library &bull; Reshmi Verma</span>
-          </div>
 
           <h1 className="videos-hero-title" style={{
             color: 'var(--emerald-deep)',
@@ -349,7 +333,7 @@ export default function VideosPage() {
             lineHeight: 1.2,
             fontWeight: 800
           }}>
-            Health <span style={{ color: '#0D9488', fontStyle: 'italic' }}>Masterclasses & Shorts</span>
+            Health <span style={{ color: '#0D9488', fontStyle: 'italic' }}>Videos & Shorts</span>
           </h1>
 
           <p className="videos-hero-desc" style={{
@@ -358,79 +342,10 @@ export default function VideosPage() {
             lineHeight: 1.5,
             margin: '0 auto'
           }}>
-            Watch clinically guided breathwork sessions, sound frequencies, and gut protocols.
+            Watch guided breathwork sessions, sound frequencies, and gut protocols.
           </p>
         </div>
 
-        {/* Search & Filter Controls */}
-        <div className="videos-filter-wrapper" style={{
-          background: '#FFFFFF',
-          borderRadius: '16px',
-          padding: '16px 20px',
-          border: '1px solid var(--border-medium)',
-          boxShadow: '0 2px 12px rgba(0,0,0,0.03)',
-          marginBottom: '26px'
-        }}>
-          {/* Search Bar */}
-          <div style={{
-            position: 'relative',
-            maxWidth: '480px',
-            margin: '0 auto'
-          }}>
-            <svg
-              width="16"
-              height="16"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="var(--text-muted)"
-              strokeWidth="2.2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              style={{ position: 'absolute', left: '14px', top: '50%', transform: 'translateY(-50%)' }}
-            >
-              <circle cx="11" cy="11" r="8"></circle>
-              <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-            </svg>
-            <input
-              type="text"
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-              placeholder="Search videos (e.g. breathing, sleep, bloat, ladoo)..."
-              style={{
-                width: '100%',
-                padding: '9px 14px 9px 40px',
-                borderRadius: '999px',
-                border: '1.5px solid var(--border-medium)',
-                fontSize: '0.88rem',
-                outline: 'none',
-                background: '#F8FAFC',
-                color: 'var(--text-primary)'
-              }}
-            />
-            {searchQuery && (
-              <button
-                type="button"
-                onClick={() => setSearchQuery('')}
-                aria-label="Clear search"
-                style={{
-                  position: 'absolute',
-                  right: '12px',
-                  top: '50%',
-                  transform: 'translateY(-50%)',
-                  background: 'none',
-                  border: 'none',
-                  fontSize: '0.9rem',
-                  color: 'var(--text-muted)',
-                  cursor: 'pointer'
-                }}
-              >
-                ✕
-              </button>
-            )}
-          </div>
-
-
-        </div>
 
         {/* Results Info */}
         <div style={{

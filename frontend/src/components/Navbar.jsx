@@ -83,14 +83,11 @@ export default function Navbar() {
             alt="HealthwithReshmi Official Logo"
             className="brand-logo-img"
           />
-          <div className="brand-text">
-            <span className="name">
-              <h3>
-                <span>Healthwith</span>
-                <span className="brand-reshmi-script">Reshmi</span>
-              </h3>
-            </span>
-          </div>
+          <img
+            src="/assets/images/healthwithreshmi-brand.png"
+            alt="Health with Reshmi"
+            className="brand-wordmark-img"
+          />
         </Link>
 
         {/* Streamlined, high-converting navigation with interactive dropdowns */}

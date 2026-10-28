@@ -6,14 +6,13 @@ export default function ClientTransformationShowcase() {
   const [playingAudioId, setPlayingAudioId] = useState(null);
   const [currentTime, setCurrentTime] = useState({});
   const [duration, setDuration] = useState({});
-  
+
   const audioRefs = useRef({});
 
   const transformations = [
     {
       id: 'transformation-1',
       name: 'Client Transformation',
-      title: 'Sustainable Weight & Metabolic Reset',
       durationTag: '12 Weeks Protocol',
       image: '/assets/images/transformation-1.jpeg',
 
@@ -21,28 +20,24 @@ export default function ClientTransformationShowcase() {
     {
       id: 'dipika',
       name: 'Dipika',
-      title: 'Thyroid & Weight Reversal',
       durationTag: '16 Weeks Protocol',
       image: '/assets/images/transformation-dipika.png',
     },
     {
       id: 'dr-sandeep',
       name: 'Dr. Sandeep Kalra',
-      title: 'Metabolic Health & Energy Reset',
       durationTag: '12 Weeks Protocol',
       image: '/assets/images/transformation-dr-sandeep.jpg',
     },
     {
       id: 'minakshi',
       name: 'Minakshi Surjuse',
-      title: 'Gut Motility & Hormonal Balance',
       durationTag: '10 Weeks Protocol',
       image: '/assets/images/transformation-minakshi.jpg',
     },
     {
       id: 'sonika',
       name: 'Sonika',
-      title: 'PCOS & Sustainable Weight Loss',
       durationTag: '18 Weeks Protocol',
       image: '/assets/images/transformation-sonika.jpg',
 
@@ -50,7 +45,6 @@ export default function ClientTransformationShowcase() {
     {
       id: 'reshmi',
       name: 'Reshmi Verma (Founder)',
-      title: 'Lost 38 kg • Reversed Metabolic Fatigue',
       durationTag: 'Sustained 5+ Years',
       image: '/assets/images/transformation-reshmi-personal.jpg',
 
@@ -244,29 +238,37 @@ export default function ClientTransformationShowcase() {
           <div style={{ maxWidth: '1080px', margin: '0 auto' }}>
             <div
               style={{
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'space-between',
-                flexWrap: 'wrap',
-                gap: '16px',
-                marginBottom: '32px'
+                textAlign: 'center',
+                maxWidth: '820px',
+                margin: '0 auto 36px'
               }}
             >
-              <div>
-                <h3
-                  style={{
-                    margin: '6px 0 8px',
-                    fontSize: '2.1rem',
-                    fontWeight: 800,
-                    color: 'var(--emerald-deep)',
-                    fontFamily: 'var(--font-serif)'
-                  }}
-                >
-                  Hear It From Them
-                </h3>
+              <h2
+                style={{
+                  fontSize: 'clamp(2rem, 4vw, 2.7rem)',
+                  color: '#121214',
+                  fontFamily: 'var(--font-serif)',
+                  margin: '0 0 12px',
+                  fontWeight: 800,
+                  lineHeight: 1.2,
+                  textAlign: 'center'
+                }}
+              >
+                <span style={{ color: 'rgb(1, 183, 180)', fontStyle: 'italic' }}>Hear It From Them..</span>
+              </h2>
 
-                <h3>Listen to our clients share their experiences with our programmes and personalised approach to health.</h3>
-              </div>
+              <p
+                style={{
+                  fontSize: '1.05rem',
+                  color: '#4B5563',
+                  lineHeight: 1.6,
+                  margin: '0 auto',
+                  textAlign: 'center',
+                  fontWeight: 500
+                }}
+              >
+                Listen to our clients share their experiences with our programmes and personalised approach to health.
+              </p>
             </div>
 
             <div

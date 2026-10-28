@@ -499,6 +499,21 @@ h6 {
   filter: drop-shadow(0 4px 12px rgba(243, 1, 132, 0.25));
 }
 
+.brand-wordmark-img {
+  height: 38px;
+  width: auto;
+  max-width: 220px;
+  object-fit: contain;
+  display: block;
+}
+
+@media (max-width: 768px) {
+  .brand-wordmark-img {
+    height: 30px;
+    max-width: 170px;
+  }
+}
+
 .brand-text {
   display: flex;
   flex-direction: column;
@@ -2503,7 +2518,7 @@ h6 {
   display: grid;
   grid-template-columns: 0.9fr 1.1fr;
   gap: 60px;
-  align-items: center;
+  align-items: flex-start;
 }
 
 .about-image-wrapper {
@@ -8800,5 +8815,24 @@ h6 {
   .email-dispatch-card {
     padding: 18px 14px !important;
     border-radius: 14px !important;
+  }
+}
+
+.credentials-single-line {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  margin: 36px 0 28px;
+}
+
+@media (max-width: 1024px) {
+  .credentials-single-line {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+}
+
+@media (max-width: 640px) {
+  .credentials-single-line {
+    grid-template-columns: 1fr !important;
   }
 }

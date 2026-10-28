@@ -66,19 +66,6 @@ export default function AboutPage() {
       <section className="section about-anim-fade-up" style={{ paddingTop: '120px', paddingBottom: '50px' }}>
         <div className="container">
           <div style={{ maxWidth: '880px', margin: '0 auto', textAlign: 'center' }}>
-            <span
-              className="badge-pill"
-              style={{
-                background: 'var(--emerald-soft)',
-                borderColor: 'var(--emerald-medium)',
-                color: 'var(--emerald-deep)',
-                marginBottom: '16px',
-                fontWeight: 700
-              }}
-            >
-              <span className="pulse-dot" style={{ background: 'var(--emerald-medium)' }}></span>
-              <span>Clinical Diagnostics &bull; Functional Nutrition &bull; Somatic Breathwork</span>
-            </span>
 
             <h1 style={{ lineHeight: 1.18, marginBottom: '24px', fontFamily: 'var(--font-serif)' }}>
               <span className="about-heading-line-1">
@@ -165,7 +152,7 @@ export default function AboutPage() {
       {/* 3. Clinical Diagnostics Leadership & Personal Transformation (Meet Reshmi Verma) */}
       <section className="section" id="about-reshmi" style={{ padding: '60px 0' }}>
         <div className="container">
-          <div className="about-grid">
+          <div className="about-grid" style={{ alignItems: 'flex-start' }}>
             <div className="about-image-wrapper">
               <div className="about-main-image about-portrait-breathe" style={{ aspectRatio: '3/4', maxHeight: '580px', borderRadius: '24px', overflow: 'hidden' }}>
                 <img
@@ -173,10 +160,6 @@ export default function AboutPage() {
                   alt="Reshmi Verma - Healthcare Executive, Functional Nutritionist & Biohacker"
                   style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center 12%' }}
                 />
-              </div>
-              <div className="transformation-callout about-badge-float" style={{ bottom: '-16px', right: '-16px' }}>
-                <div className="metric">18+ Yrs</div>
-                <p>Healthcare &amp; Diagnostics Experience</p>
               </div>
             </div>
 
@@ -213,42 +196,45 @@ export default function AboutPage() {
                 Her philosophy is simple: <strong style={{ fontStyle: 'normal' }}>Fitness is cheaper than illness.</strong> She empowers people to take charge of their health today, so they can live with greater vitality, confidence, and wellbeing tomorrow.
               </div>
 
-              <div className="credentials-list">
-                <div className="credential-item">
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-                    <polyline points="20 6 9 17 4 12"></polyline>
-                  </svg>
-                  <span>18+ Yrs in Healthcare &amp; Diagnostics</span>
-                </div>
-                <div className="credential-item">
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-                    <polyline points="20 6 9 17 4 12"></polyline>
-                  </svg>
-                  <span>Director, Rainbow Medinova &amp; Co-founder, Neofit Gym</span>
-                </div>
-                <div className="credential-item">
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-                    <polyline points="20 6 9 17 4 12"></polyline>
-                  </svg>
-                  <span>Functional Nutritionist (India, USA &amp; Australia)</span>
-                </div>
-                <div className="credential-item">
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-                    <polyline points="20 6 9 17 4 12"></polyline>
-                  </svg>
-                  <span>Breath Resilience &amp; Somatic Instructor</span>
-                </div>
-              </div>
+                          </div>
+          </div>
 
-              <div style={{ display: 'flex', gap: '14px', flexWrap: 'wrap', marginTop: '22px' }}>
-                <a href={RAZORPAY_PAYMENT_URL} target="_blank" rel="noopener noreferrer" className="btn btn-primary" style={{ borderRadius: '12px', padding: '12px 24px' }}>
-                  <span>Book 1:1 Consultation</span>
-                </a>
-                <Link to="/assessment" className="btn btn-secondary" style={{ borderRadius: '12px', padding: '12px 20px' }}>
-                  <span>Take Free Assessment</span>
-                </Link>
-              </div>
+          {/* 4 Credential Cards Spanning Full Width (Single Line Across Image & Content) */}
+          <div className="credentials-list credentials-single-line">
+            <div className="credential-item">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                <polyline points="20 6 9 17 4 12"></polyline>
+              </svg>
+              <span>18+ Yrs in Healthcare &amp; Diagnostics</span>
             </div>
+            <div className="credential-item">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                <polyline points="20 6 9 17 4 12"></polyline>
+              </svg>
+              <span>Director, Rainbow Medinova &amp; Co-founder, Neofit Gym</span>
+            </div>
+            <div className="credential-item">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                <polyline points="20 6 9 17 4 12"></polyline>
+              </svg>
+              <span>Functional Nutritionist (India, USA &amp; Australia)</span>
+            </div>
+            <div className="credential-item">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                <polyline points="20 6 9 17 4 12"></polyline>
+              </svg>
+              <span>Breath Resilience &amp; Somatic Instructor</span>
+            </div>
+          </div>
+
+          {/* Centered Action Buttons */}
+          <div style={{ display: 'flex', gap: '16px', justifyContent: 'center', alignItems: 'center', flexWrap: 'wrap', marginTop: '12px' }}>
+            <a href={RAZORPAY_PAYMENT_URL} target="_blank" rel="noopener noreferrer" className="btn btn-primary btn-lg" style={{ borderRadius: '14px', padding: '14px 32px' }}>
+              <span>Book 1:1 Consultation</span>
+            </a>
+            <Link to="/assessment" className="btn btn-secondary btn-lg" style={{ borderRadius: '14px', padding: '14px 28px' }}>
+              <span>Take Free Assessment</span>
+            </Link>
           </div>
         </div>
       </section>
@@ -292,9 +278,7 @@ export default function AboutPage() {
       <section className="section" style={{ padding: '60px 0' }}>
         <div className="container">
           <div className="section-header text-center" style={{ maxWidth: '750px', margin: '0 auto 40px' }}>
-            <span className="badge-pill" style={{ marginBottom: '12px', fontSize: '0.78rem' }}>
-              <span>Clinical Focus Areas</span>
-            </span>
+
             <h2 style={{ fontSize: '2.4rem', color: 'var(--emerald-deep)' }}>
               Conditions We Help You Overcome
             </h2>

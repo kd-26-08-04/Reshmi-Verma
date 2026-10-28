@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, useLocation, Navigate } from 'react-router-dom';
 import { AuthProvider } from './context/AuthContext';
 
 // Components
@@ -16,7 +16,6 @@ import HomePage from './pages/HomePage';
 import AboutPage from './pages/AboutPage';
 import NutritionPage from './pages/NutritionPage';
 import BreathePage from './pages/BreathePage';
-import BookingPage from './pages/BookingPage';
 import AssessmentPage from './pages/AssessmentPage';
 import BreathingAssessmentPage from './pages/BreathingAssessmentPage';
 import QuestionnairePage from './pages/QuestionnairePage';
@@ -75,7 +74,7 @@ function AppContent() {
   const { pathname } = useLocation();
   const isAuthPage = pathname === '/auth' || pathname === '/login';
   const isAdminPage = pathname.startsWith('/admin');
-  const isBookingOrAssessment = pathname === '/booking' || pathname.startsWith('/assessment') || pathname.startsWith('/breathing-assessment') || pathname.startsWith('/functional-breathing-assessment') || pathname === '/questionnaire';
+  const isBookingOrAssessment = pathname.startsWith('/assessment') || pathname.startsWith('/breathing-assessment') || pathname.startsWith('/functional-breathing-assessment') || pathname === '/questionnaire';
 
   return (
     <>
@@ -89,7 +88,7 @@ function AppContent() {
         <Route path="/testimonials" element={<TestimonialsPage />} />
         <Route path="/nutrition" element={<NutritionPage />} />
         <Route path="/breathe" element={<BreathePage />} />
-        <Route path="/booking" element={<BookingPage />} />
+        <Route path="/booking" element={<Navigate to="/" replace />} />
         <Route path="/assessment" element={<AssessmentPage />} />
         <Route path="/breathing-assessment" element={<BreathingAssessmentPage />} />
         <Route path="/functional-breathing-assessment" element={<BreathingAssessmentPage />} />
