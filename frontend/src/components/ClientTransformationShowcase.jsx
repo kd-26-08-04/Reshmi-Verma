@@ -165,7 +165,8 @@ export default function ClientTransformationShowcase() {
           padding: '56px 0 44px',
           width: '100%',
           maxWidth: '100vw',
-          overflow: 'hidden'
+          overflow: 'hidden',
+          borderTop: '3.5px solid rgb(1, 183, 180)'
         }}
       >
         <div className="container">
@@ -206,7 +207,8 @@ export default function ClientTransformationShowcase() {
                 className="transformation-card-item"
                 style={{
                   background: '#16191D',
-                  borderColor: 'rgba(255, 255, 255, 0.12)',
+                  border: '1px solid rgba(255, 255, 255, 0.12)',
+                  borderTop: '3px solid rgb(1, 183, 180)',
                   boxShadow: '0 12px 30px rgba(0,0,0,0.45)'
                 }}
               >
@@ -261,10 +263,10 @@ export default function ClientTransformationShowcase() {
                     fontFamily: 'var(--font-serif)'
                   }}
                 >
-                  Hear Directly From Our Clients
+                  Hear It From Them
                 </h3>
 
-                <h3>Client Audio Note</h3>
+                <h3>Listen to our clients share their experiences with our programmes and personalised approach to health.</h3>
               </div>
             </div>
 

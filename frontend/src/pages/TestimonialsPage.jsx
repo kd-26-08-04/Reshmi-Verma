@@ -177,18 +177,17 @@ export default function TestimonialsPage() {
       <div className="container">
 
         {/* Hero Header */}
-        <div style={{ textAlign: 'center', maxWidth: '820px', margin: '0 auto 40px' }}>
-
-
+        <div style={{ textAlign: 'center', maxWidth: '1060px', margin: '0 auto 40px' }}>
           <h1 style={{
-            fontSize: 'clamp(2.4rem, 5vw, 3.4rem)',
+            fontSize: 'clamp(1.75rem, 3.4vw, 2.75rem)',
             color: '#121214',
             fontFamily: 'var(--font-serif)',
             margin: '0 0 16px',
-            lineHeight: 1.15,
-            fontWeight: 800
+            lineHeight: 1.25,
+            fontWeight: 800,
+            letterSpacing: '-0.01em'
           }}>
-            Voices of Healing. <span style={{ color: '#0D9488', fontStyle: 'italic' }}>Verified by Results.</span>
+            Voices of Healing.&nbsp;<span style={{ color: 'rgb(1, 183, 180)', fontStyle: 'italic' }}>Verified by Results.</span>
           </h1>
 
           <p style={{

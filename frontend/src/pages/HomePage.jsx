@@ -277,10 +277,13 @@ export default function HomePage() {
                 <div className="hero-portrait-glow-ring"></div>
                 <div className="hero-portrait-image-wrap">
                   <img
-                    src="/assets/images/verma.png"
+                    src="/assets/images/Verma.PNG"
                     alt="Reshmi Verma — Functional Nutritionist & Breathwork Facilitator"
                     className="hero-portrait-img"
-                    onError={(e) => { e.target.src = '/assets/images/Verma.png'; }}
+                    onError={(e) => {
+                      e.target.onerror = null;
+                      e.target.src = '/assets/images/reshmi-verma.jpeg';
+                    }}
                   />
                   <div className="hero-portrait-overlay"></div>
                 </div>
@@ -1071,7 +1074,7 @@ export default function HomePage() {
             <div className="more-about-card">
               <Link to="/about" style={{ display: 'block', textDecoration: 'none' }}>
                 <div className="more-about-img-box">
-                  <img src="/assets/images/verma.png" alt="About Reshmi Verma" />
+                  <img src="/assets/images/Verma.PNG" alt="About Reshmi Verma" onError={(e) => { e.target.onerror = null; e.target.src = '/assets/images/reshmi-verma.jpeg'; }} />
                 </div>
               </Link>
               <div className="more-about-content">
