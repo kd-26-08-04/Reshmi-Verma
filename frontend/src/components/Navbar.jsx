@@ -67,7 +67,7 @@ export default function Navbar() {
     closeMenu();
   };
 
-  const isAboutActive = location.pathname === '/about' || location.pathname === '/videos' || location.pathname === '/testimonials';
+  const isAboutActive = location.pathname === '/about' || location.pathname === '/videos';
   const isAssessmentActive =
     location.pathname === '/assessment' ||
     location.pathname === '/breathing-assessment' ||
@@ -84,7 +84,7 @@ export default function Navbar() {
           />
           <div className="brand-text">
             <span className="name">
-              <h2>HealthwithReshmi</h2>
+              <h3>HealthwithReshmi</h3>
             </span>
           </div>
         </Link>
@@ -137,8 +137,9 @@ export default function Navbar() {
               >
                 <div className="dropdown-item-icon doctor-icon">
                   <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
-                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
-                    <circle cx="12" cy="7" r="4"></circle>
+                    <path d="M4.5 3v5a3.5 3.5 0 0 0 7 0V3"></path>
+                    <path d="M8 11.5v3.5a4 4 0 0 0 4 4h1a4 4 0 0 0 4-4V12"></path>
+                    <circle cx="17" cy="10" r="2"></circle>
                   </svg>
                 </div>
                 <div className="dropdown-item-text">
@@ -155,7 +156,8 @@ export default function Navbar() {
               >
                 <div className="dropdown-item-icon video-icon">
                   <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
-                    <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                    <polygon points="23 7 16 12 23 17 23 7"></polygon>
+                    <rect x="1" y="5" width="15" height="14" rx="3" ry="3"></rect>
                   </svg>
                 </div>
                 <div className="dropdown-item-text">
@@ -164,26 +166,18 @@ export default function Navbar() {
                   </div>
                 </div>
               </Link>
-
-              <Link
-                to="/testimonials"
-                className={`dropdown-item ${location.pathname === '/testimonials' ? 'active' : ''}`}
-                onClick={closeMenu}
-              >
-                <div className="dropdown-item-icon" style={{ background: '#E6FCFB', color: '#0D9488' }}>
-                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
-                    <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
-                  </svg>
-                </div>
-                <div className="dropdown-item-text">
-                  <div className="dropdown-title-row">
-                    <span className="dropdown-item-title">Testimonials</span>
-                  </div>
-                </div>
-              </Link>
             </div>
           </li>
 
+          <li>
+            <NavLink
+              to="/testimonials"
+              className={({ isActive }) => `nav-link ${isActive ? 'active' : ''}`}
+              onClick={closeMenu}
+            >
+              Testimonials
+            </NavLink>
+          </li>
           {/* 2. Assessment Dropdown (Health Assessment, Breathing Assessment) */}
           <li
             className={`nav-item-dropdown ${openDropdown === 'assessment' ? 'is-open' : ''}`}

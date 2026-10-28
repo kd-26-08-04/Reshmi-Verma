@@ -106,7 +106,7 @@ export default function Footer() {
               <h5>Direct Contact</h5>
               <ul className="footer-links">
                 <li style={{ color: 'var(--text-secondary)', fontSize: '0.82rem', lineHeight: 1.4 }}>
-                  <strong>Clinical Diagnostics &amp; Health Sanctuary</strong><br />
+                  <strong>Clinical Diagnostics</strong><br />
                   Rainbow Medinova, 4B, Central Bazar road, Ramdaspeth, Nagpur 440010.
                 </li>
                 <li>

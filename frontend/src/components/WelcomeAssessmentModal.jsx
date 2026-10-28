@@ -274,12 +274,13 @@ export default function WelcomeAssessmentModal() {
           color: var(--text-muted);
         }
 
-        /* MOBILE OVERRIDES (≤ 640px): Compact, eliminate extra space, fit phone screen */
         @media (max-width: 640px) {
           .welcome-modal-wrapper {
-            max-width: 370px !important;
-            padding: 20px 18px 16px !important;
-            border-radius: 20px !important;
+            max-width: 100% !important;
+            padding: 20px 16px 20px !important;
+            border-radius: 22px 22px 0 0 !important;
+            max-height: 88vh !important;
+            overflow-y: auto !important;
           }
 
           .welcome-close-btn {

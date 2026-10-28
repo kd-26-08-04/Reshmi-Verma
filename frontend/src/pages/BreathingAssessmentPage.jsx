@@ -584,9 +584,6 @@ export default function BreathingAssessmentPage() {
 
         {/* Header Clinical Credential Badge */}
         <div style={{ textAlign: 'center', marginBottom: '32px' }}>
-          <div style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', padding: '6px 16px', borderRadius: '999px', background: '#121214', color: '#00E5D9', fontSize: '0.82rem', fontWeight: 700, letterSpacing: '0.04em', marginBottom: '14px', boxShadow: '0 4px 14px rgba(0,0,0,0.12)' }}>
-            <span>#13 Certified Oxygen Advantage® Coach in India</span>
-          </div>
           <h1 style={{ fontSize: 'clamp(1.8rem, 4vw, 2.7rem)', color: 'var(--emerald-deep)', fontFamily: 'var(--font-serif)', margin: '0 0 10px', lineHeight: 1.2 }}>
             Oxygen Advantage® Functional Breathing Assessment
           </h1>

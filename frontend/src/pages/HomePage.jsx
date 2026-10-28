@@ -7,7 +7,7 @@ const DEFAULT_REELS = [
     id: "reel-1",
     title: "Food Controlling You vs. You Controlling Food: Root Cause Healing",
     url: "https://www.instagram.com/reel/Dbt0IfST8hF/?xtok=c3ExNWwxN2pwd3hp",
-    image: "/assets/images/reshmi-verma.jpg",
+    image: "/assets/images/reshmi-verma.jpeg",
     views: "52.4K",
     duration: "0:59",
     topic: "Food Freedom"
@@ -52,7 +52,7 @@ const DEFAULT_REELS = [
     id: "reel-6",
     title: "Root-Cause Longevity: Why Sustainable Habit Stacking Beats Crash Diets",
     url: "https://www.instagram.com/reel/DcVi6zjzhY9/?utm_source=ig_web_copy_link&stkn=MzRlODBiNWFlZA==",
-    image: "/assets/images/reshmi-verma.jpg",
+    image: "/assets/images/reshmi-verma.jpeg",
     views: "95.7K",
     duration: "1:00",
     topic: "Longevity & Habits"
@@ -256,11 +256,11 @@ export default function HomePage() {
               <div className="hero-stats-row">
                 <div className="stat-item">
                   <div className="stat-num">18+ Yrs</div>
-                  <div className="stat-label">Healthcare &amp; Diagnostics</div>
+                  <div className="stat-label">Director, Rainbow Medinova</div>
                 </div>
                 <div className="stat-item">
                   <div className="stat-num">100%</div>
-                  <div className="stat-label">Personalized 1:1 Care Pathway</div>
+                  <div className="stat-label">Personalised Health Approach</div>
                 </div>
                 <div className="stat-item">
                   <div className="stat-num">6+</div>
@@ -282,7 +282,7 @@ export default function HomePage() {
                     src="/assets/images/reshmi-saree-hero.jpg"
                     alt="Reshmi Verma — Functional Nutritionist & Breathwork Facilitator"
                     className="hero-portrait-img"
-                    onError={(e) => { e.target.src = '/assets/images/reshmi-verma-executive.jpg'; }}
+                    onError={(e) => { e.target.src = '/assets/images/reshmi-verma.jpeg'; }}
                   />
                   <div className="hero-portrait-overlay"></div>
                 </div>
@@ -291,7 +291,7 @@ export default function HomePage() {
                 <div className="hero-floating-badge badge-top-right">
                   <div className="badge-text">
                     <strong>18+ Years</strong>
-                    <span>Healthcare &amp; Diagnostics</span>
+                    <span>DIRECTOR, RAINBOW MEDINOVA</span>
                   </div>
                 </div>
 
@@ -325,9 +325,6 @@ export default function HomePage() {
             <div className="clinical-approach-buttons">
               <Link to="/booking" className="btn btn-primary">
                 Consult Reshmi
-              </Link>
-              <Link to="/booking" className="btn btn-secondary">
-                1:1 Health Reset Program
               </Link>
               <Link to="/assessment" className="btn btn-health">
                 Health Assessment
@@ -660,7 +657,6 @@ export default function HomePage() {
         <div className="container">
           <div className="section-header text-center" style={{ maxWidth: '780px', margin: '0 auto 16px' }}>
             <h2 style={{ fontSize: '2.2rem', lineHeight: 1.2, marginBottom: '10px' }}>
-              The{' '}
               <span
                 style={{
                   background: 'linear-gradient(135deg, #FF1493 0%, #FF007F 50%, #FF69B4 100%)',
@@ -671,9 +667,8 @@ export default function HomePage() {
                   display: 'inline-block'
                 }}
               >
-                SAMYA™
-              </span>{' '}
-              Method
+                THE SAMYA Method
+              </span>
             </h2>
             <p style={{ fontSize: '1rem', color: 'var(--text-secondary)', lineHeight: 1.55 }}>
               From understanding your body's signals to personalised, measurable progress.
@@ -721,11 +716,9 @@ export default function HomePage() {
                 )}
               </span>
               <div className="samya-trigger-text">
-                <strong>{showAllSamya ? 'Collapse SAMYA™ Steps' : 'Explore All 5 Steps of SAMYA™'}</strong>
+                <strong>{showAllSamya ? 'Collapse SAMYA Steps' : 'Explore All Steps of SAMYA'}</strong>
               </div>
-              <span className="samya-trigger-badge">
-                {showAllSamya ? '▲' : '+3 Steps ▼'}
-              </span>
+
             </button>
           </div>
         </div>
@@ -859,7 +852,6 @@ export default function HomePage() {
       <section className="section" id="how-we-work" style={{ padding: '64px 0' }}>
         <div className="container">
           <div className="section-header text-center" style={{ maxWidth: '820px', margin: '0 auto 30px' }}>
-            <span className="sub-title">A Tailored Health Pathway</span>
             <h2>Your Journey to Better Health</h2>
             <p>
               Every health journey is unique. We begin by understanding your concerns, uncovering the underlying factors, and creating a personalised approach that aligns with your health goals.
@@ -876,13 +868,13 @@ export default function HomePage() {
               <span className="how-step-highlight">Step 1 • Discovery Call</span>
             </div>
 
-            <div className="how-step-card" style={{ borderColor: 'var(--emerald-medium)', boxShadow: 'var(--shadow-md)', background: '#FFFFFF' }}>
-              <div className="how-step-number" style={{ color: 'var(--emerald-medium)' }}>02</div>
+            <div className="how-step-card" style={{ borderColor: 'var(--emerald-primary)', boxShadow: '0 8px 24px rgba(13, 148, 136, 0.12)' }}>
+              <div className="how-step-number">02</div>
               <h3>Health Clarity Session</h3>
               <p>
                 Discuss your health concerns and goals with Reshmi to understand your needs and determine whether the programme is the right fit. If you’re aligned, Reshmi will walk you through the programme and its approach.
               </p>
-              <span className="how-step-highlight" style={{ background: 'var(--emerald-soft)' }}>Step 2 • Clarity Conversation</span>
+              <span className="how-step-highlight">Step 2 • Clarity Conversation</span>
             </div>
 
             <div className="how-step-card">
@@ -915,7 +907,7 @@ export default function HomePage() {
                 <span>Instagram Reels & Video Bites</span>
               </div>
               <h2>Daily Protocols & Clinical Insights</h2>
-              <p>Swipe or scroll sideways to watch Reshmi's latest short-form masterclasses on gut restoration, breathing biomechanics, and cellular energy.</p>
+              <p>Scroll sideways to watch Reshmi's latest short-form masterclasses on gut restoration, breathing biomechanics, and cellular energy.</p>
             </div>
 
             <div className="reels-nav-controls" style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
@@ -965,13 +957,16 @@ export default function HomePage() {
                     aria-label={`Watch Reel on Instagram: ${reel.title}`}
                   ></a>
                   <img
-                    src={reel.image || '/assets/images/reshmi-verma.jpg'}
+                    src={reel.image || '/assets/images/reshmi-verma.jpeg'}
                     alt={reel.title}
                     className="reel-cover-img"
-                    style={{ filter: 'brightness(0.7) contrast(1.1)' }}
+                    style={{
+                      filter: 'brightness(0.85) contrast(1.05)',
+                      objectPosition: (reel.image && reel.image.includes('reshmi-verma')) ? '68% 18%' : 'center 20%'
+                    }}
                     onError={(e) => {
                       e.target.onerror = null;
-                      e.target.src = '/assets/images/reshmi-verma.jpg';
+                      e.target.src = '/assets/images/reshmi-verma.jpeg';
                     }}
                   />
                   <div className="reel-gradient-overlay"></div>
@@ -1015,7 +1010,7 @@ export default function HomePage() {
           {/* Social Channels Redirect Bar (Luxury Sleek Black Strip with Real Brand Icons) */}
           <div className="reels-channels-bar">
             <div className="reels-channels-info">
-              <img src="/assets/images/reshmi-verma.jpg" alt="Reshmi Verma" className="reels-channels-avatar" />
+              <img src="/assets/images/reshmi-verma.jpeg" alt="Reshmi Verma" className="reels-channels-avatar" />
               <div className="reels-channels-text">
                 <h4>Follow Reshmi Across Platforms</h4>
                 <p>New evidence-based reels, video masterclasses, and functional health breakdowns published weekly.</p>
@@ -1199,7 +1194,7 @@ export default function HomePage() {
           </span>
           <h2 style={{ color: '#FFFFFF', fontSize: 'clamp(1.45rem, 5.5vw, 2.75rem)', marginBottom: '14px', lineHeight: 1.25 }}>Tired of Guessing About Your Health?</h2>
           <p style={{ color: '#E5E7EB', maxWidth: '650px', margin: '0 auto 24px', fontSize: 'clamp(0.85rem, 2.5vw, 1.12rem)', lineHeight: 1.5 }}>
-            Take our free 5-minute Health Resilience Assessment to identify your key health priorities and explore the next steps that may be right for you. </p>
+            Take our free Health Resilience Assessment to identify your key health priorities and explore the next steps that may be right for you. </p>
           <div className="cta-dual-btn-row">
             <Link
               to="/booking"
