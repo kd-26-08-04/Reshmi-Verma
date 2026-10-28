@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { RAZORPAY_PAYMENT_URL } from '../utils/api';
 
 export default function Footer() {
   return (
@@ -86,7 +87,7 @@ export default function Footer() {
                 <li><Link to="/testimonials">Patient Testimonials</Link></li>
                 <li><Link to="/assessment">Health Assessment</Link></li>
                 <li><Link to="/breathing-assessment">Breathing Assessment</Link></li>
-                <li><Link to="/booking">Book Consultation</Link></li>
+                <li><a href={RAZORPAY_PAYMENT_URL} target="_blank" rel="noopener noreferrer">Book Consultation</a></li>
                 <li><Link to="/videos">Clinical Video Library</Link></li>
                 <li><Link to="/contact">Contact Us</Link></li>
               </ul>
@@ -95,7 +96,7 @@ export default function Footer() {
             <div className="footer-col">
               <h5>Consultations</h5>
               <ul className="footer-links">
-                <li><Link to="/booking">1:1 Health Clarity Session</Link></li>
+                <li><a href={RAZORPAY_PAYMENT_URL} target="_blank" rel="noopener noreferrer">1:1 Health Clarity Session</a></li>
                 <li><Link to="/assessment">Functional Health Assessment</Link></li>
                 <li><Link to="/breathing-assessment">Functional Breathing Assessment</Link></li>
                 <li><Link to="/breathe">BOLT Breath Test</Link></li>

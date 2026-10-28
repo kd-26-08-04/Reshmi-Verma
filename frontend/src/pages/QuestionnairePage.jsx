@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useSearchParams, useNavigate, Link } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
-import { getApiUrl } from '../utils/api';
+import { getApiUrl, RAZORPAY_PAYMENT_URL } from '../utils/api';
 
 // Built-in clinical questionnaire specification (Sections A through F)
 const CLINICAL_SECTIONS = [
@@ -1097,13 +1097,15 @@ export default function QuestionnairePage() {
 
             <div style={{ display: 'flex', gap: '16px', justifyContent: 'center', flexWrap: 'wrap' }}>
               {!formData.bookingId && (
-                <Link 
-                  to={`/booking?email=${encodeURIComponent(formData.email || '')}&name=${encodeURIComponent(formData.fullName || '')}`} 
+                <a
+                  href={RAZORPAY_PAYMENT_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="btn btn-primary btn-lg"
                   style={{ background: 'var(--emerald-medium)', fontWeight: 700 }}
                 >
                   <span>Select Consultation Slot &amp; Lock Appointment &rarr;</span>
-                </Link>
+                </a>
               )}
               <Link to="/dashboard" className="btn btn-secondary btn-lg">
                 <span>View in Client Portal</span>

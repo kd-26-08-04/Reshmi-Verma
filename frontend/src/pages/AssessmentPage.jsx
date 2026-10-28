@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import emailjs from '@emailjs/browser';
 import { useAuth } from '../context/AuthContext';
-import { getApiUrl } from '../utils/api';
+import { getApiUrl, RAZORPAY_PAYMENT_URL } from '../utils/api';
 
 /**
  * CLINICAL GUT HEALTH ASSESSMENT
@@ -646,7 +646,7 @@ export default function AssessmentPage() {
       const clientName = leadInfo?.name || user?.name || 'Valued Client';
       const firstName = clientName.split(' ')[0] || clientName;
       const clientPhone = leadInfo?.phone || user?.phone || 'Not provided';
-      const consultationBookingLink = `https://healthwithreshmi.com/booking?tier=healthClarity&name=${encodeURIComponent(clientName)}&phone=${encodeURIComponent(clientPhone)}&email=${encodeURIComponent(targetEmail)}&gutScore=${results.gutSymptomScore}`;
+      const consultationBookingLink = 'https://rzp.io/rzp/healthwithreshmi';
       const websiteUrl = 'https://healthwithreshmi.com';
       const logoUrl = 'https://healthwithreshmi.com/assets/images/Reshmi_Logo.png';
 
@@ -971,7 +971,7 @@ ${websiteUrl}`;
         <p>
           Discuss this diagnostic snapshot directly with Reshmi Verma (18+ years experience in laboratory diagnostics, Functional Nutritionist, Certified Oxygen Advantage Coach). She will evaluate your symptom patterns alongside routine bloodwork to formulate your personalized root-cause protocol.
         </p>
-        <a href="https://healthwithreshmi.com/booking?tier=healthClarity&name=${encodeURIComponent(clientName)}&phone=${encodeURIComponent(clientPhone)}&email=${encodeURIComponent(clientEmail)}&gutScore=${results.gutSymptomScore}" class="btn-booking" target="_blank">
+        <a href="https://rzp.io/rzp/healthwithreshmi" class="btn-booking" target="_blank">
           Book Health Clarity Session with Reshmi Verma &rarr;
         </a>
       </div>
@@ -1644,13 +1644,15 @@ ${websiteUrl}`;
                   Reshmi Verma (MSc Clinical Nutrition, Functional Health &amp; Oxygen Advantage Coach) translates your symptom frequency into a structured, phased dietary &amp; lifestyle protocol.
                 </p>
                 <div style={{ display: 'flex', gap: '12px', justifyContent: 'center', flexWrap: 'wrap' }}>
-                  <Link
-                    to={`/booking?tier=healthClarity&name=${encodeURIComponent(leadInfo?.name || '')}&phone=${encodeURIComponent(leadInfo?.phone || '')}&email=${encodeURIComponent(emailInput || leadInfo?.email || '')}&gutScore=${results.gutSymptomScore}`}
+                  <a
+                    href={RAZORPAY_PAYMENT_URL}
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="btn btn-primary"
                     style={{ background: 'linear-gradient(135deg, #FF1493 0%, #FF007F 100%)', color: 'white', fontWeight: 700, padding: '14px 28px', fontSize: '1rem', borderRadius: '14px', border: 'none', boxShadow: '0 8px 25px rgba(255, 20, 147, 0.4)' }}
                   >
                     <span>Book 1-on-1 Consultation With This Snapshot →</span>
-                  </Link>
+                  </a>
                 </div>
               </div>
 

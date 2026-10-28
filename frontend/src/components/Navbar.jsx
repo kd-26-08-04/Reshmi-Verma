@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { NavLink, Link, useNavigate, useLocation } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
+import { RAZORPAY_PAYMENT_URL } from '../utils/api';
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
@@ -135,13 +136,6 @@ export default function Navbar() {
                 className={`dropdown-item ${location.pathname === '/about' ? 'active' : ''}`}
                 onClick={closeMenu}
               >
-                <div className="dropdown-item-icon doctor-icon">
-                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
-                    <path d="M4.5 3v5a3.5 3.5 0 0 0 7 0V3"></path>
-                    <path d="M8 11.5v3.5a4 4 0 0 0 4 4h1a4 4 0 0 0 4-4V12"></path>
-                    <circle cx="17" cy="10" r="2"></circle>
-                  </svg>
-                </div>
                 <div className="dropdown-item-text">
                   <div className="dropdown-title-row">
                     <span className="dropdown-item-title">About Reshmi</span>
@@ -154,12 +148,6 @@ export default function Navbar() {
                 className={`dropdown-item ${location.pathname === '/videos' ? 'active' : ''}`}
                 onClick={closeMenu}
               >
-                <div className="dropdown-item-icon video-icon">
-                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
-                    <polygon points="23 7 16 12 23 17 23 7"></polygon>
-                    <rect x="1" y="5" width="15" height="14" rx="3" ry="3"></rect>
-                  </svg>
-                </div>
                 <div className="dropdown-item-text">
                   <div className="dropdown-title-row">
                     <span className="dropdown-item-title">Clinical Videos</span>
@@ -276,14 +264,16 @@ export default function Navbar() {
                 >
                   <span>🔐 Sign In</span>
                 </Link>
-                <Link
-                  to="/booking"
+                <a
+                  href={RAZORPAY_PAYMENT_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="btn btn-primary"
                   style={{ width: '100%', padding: '12px', justifyContent: 'center' }}
                   onClick={closeMenu}
                 >
                   <span>📅 Book Consultation</span>
-                </Link>
+                </a>
               </div>
             </li>
           )}
@@ -322,13 +312,19 @@ export default function Navbar() {
                 </svg>
                 <span>Sign In</span>
               </Link>
-              <Link to="/booking" className="btn btn-primary btn-sm" id="header-book-btn">
+              <a
+                href={RAZORPAY_PAYMENT_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn btn-primary btn-sm"
+                id="header-book-btn"
+              >
                 <span>Book Consultation</span>
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
                   <line x1="5" y1="12" x2="19" y2="12"></line>
                   <polyline points="12 5 19 12 12 19"></polyline>
                 </svg>
-              </Link>
+              </a>
             </div>
           )}
 

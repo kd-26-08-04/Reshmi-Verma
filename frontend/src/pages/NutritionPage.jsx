@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { RAZORPAY_PAYMENT_URL } from '../utils/api';
 
 export default function NutritionPage() {
   return (
@@ -21,13 +22,13 @@ export default function NutritionPage() {
               </p>
 
               <div style={{ display: 'flex', gap: '16px', flexWrap: 'wrap' }}>
-                <Link to="/booking" className="btn btn-primary btn-lg">
+                <a href={RAZORPAY_PAYMENT_URL} target="_blank" rel="noopener noreferrer" className="btn btn-primary btn-lg">
                   <span>Book Diagnostic Consultation</span>
                   <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
                     <line x1="5" y1="12" x2="19" y2="12"></line>
                     <polyline points="12 5 19 12 12 19"></polyline>
                   </svg>
-                </Link>
+                </a>
                 <a href="#mucosal-matrix" className="btn btn-secondary btn-lg">
                   <span>Explore Gut Matrix &darr;</span>
                 </a>
@@ -180,7 +181,7 @@ export default function NutritionPage() {
                 </li>
               </ul>
 
-              <Link to="/booking" className="btn btn-primary">Schedule Diagnostic Mapping Consultation</Link>
+              <a href={RAZORPAY_PAYMENT_URL} target="_blank" rel="noopener noreferrer" className="btn btn-primary">Schedule Diagnostic Mapping Consultation</a>
             </div>
 
             <div style={{ background: 'white', borderRadius: 'var(--radius-xl)', padding: '36px', border: '1px solid var(--border-medium)', boxShadow: 'var(--shadow-md)' }}>

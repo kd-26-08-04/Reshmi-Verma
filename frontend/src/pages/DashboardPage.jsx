@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import { RAZORPAY_PAYMENT_URL } from '../utils/api';
 import { useAuth } from '../context/AuthContext';
 import { getApiUrl } from '../utils/api';
 
@@ -77,9 +78,9 @@ export default function DashboardPage() {
             </p>
           </div>
           <div>
-            <Link to="/booking" className="btn btn-primary">
+            <a href={RAZORPAY_PAYMENT_URL} target="_blank" rel="noopener noreferrer" className="btn btn-primary">
               <span>+ Book New Consultation</span>
-            </Link>
+            </a>
           </div>
         </div>
 
@@ -116,9 +117,9 @@ export default function DashboardPage() {
             <p style={{ color: 'var(--text-secondary)', fontSize: '0.95rem', maxWidth: '480px', margin: '0 auto 20px' }}>
               You don't have any booked consultation sessions yet. Choose a session tier to get started with Reshmi Verma.
             </p>
-            <Link to="/booking" className="btn btn-primary">
+            <a href={RAZORPAY_PAYMENT_URL} target="_blank" rel="noopener noreferrer" className="btn btn-primary">
               <span>Book Your First Session</span>
-            </Link>
+            </a>
           </div>
         ) : (
           <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>

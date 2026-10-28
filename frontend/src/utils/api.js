@@ -15,6 +15,8 @@ const RAW_API_URL = import.meta.env.DEV && import.meta.env.VITE_FORCE_LIVE_API !
 
 export const API_BASE_URL = RAW_API_URL.replace(/\/+$/, '');
 
+export const RAZORPAY_PAYMENT_URL = import.meta.env.VITE_RAZORPAY_PAYMENT_LINK || 'https://rzp.io/rzp/healthwithreshmi';
+
 export function getApiUrl(endpoint) {
   const cleanEndpoint = endpoint.startsWith('/') ? endpoint : `/${endpoint}`;
   if (!API_BASE_URL) return cleanEndpoint;

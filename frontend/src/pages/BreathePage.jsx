@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
+import { RAZORPAY_PAYMENT_URL } from '../utils/api';
 import { soundSynth } from '../utils/soundSynth';
 
 const BREATH_PROTOCOLS = {
@@ -475,13 +476,15 @@ export default function BreathePage() {
                     {boltAnalysis.urgency === 'critical' ? 'Urgent 1-on-1 Consultation Required' : 'Book Your Personalized Clinical Roadmap'}
                   </h4>
                   <div style={{ display: 'flex', gap: '14px', flexWrap: 'wrap', justifyContent: 'center' }}>
-                    <Link
-                      to={`/booking?bolt=${boltSeconds.toFixed(1)}&score=${boltAnalysis.marks}&plan=discovery`}
+                    <a
+                      href={RAZORPAY_PAYMENT_URL}
+                      target="_blank"
+                      rel="noopener noreferrer"
                       className={boltAnalysis.buttonClass}
                       style={{ padding: '14px 32px', fontSize: '1.05rem', boxShadow: '0 10px 25px rgba(194, 65, 12, 0.25)' }}
                     >
                       {boltAnalysis.buttonText}
-                    </Link>
+                    </a>
                     <a href="#sanctuary-station" className="btn btn-secondary btn-lg">
                       Explore Guided Breathing Pacer &darr;
                     </a>
@@ -743,7 +746,7 @@ export default function BreathePage() {
                 </div>
 
                 <div style={{ marginTop: '24px', textAlign: 'center' }}>
-                  <Link to="/booking" className="btn btn-primary">Schedule Consultation to Discuss Recovery Blueprint &rarr;</Link>
+                  <a href={RAZORPAY_PAYMENT_URL} target="_blank" rel="noopener noreferrer" className="btn btn-primary">Schedule Consultation to Discuss Recovery Blueprint &rarr;</a>
                 </div>
               </div>
             )}

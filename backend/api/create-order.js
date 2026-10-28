@@ -15,12 +15,12 @@ const PRICING_TIERS = {
   discovery: {
     id: 'discovery',
     name: 'Initial Discovery Call (20 min)',
-    amount: 99900 // 999 INR in paise
+    amount: 199900 // 1999 INR in paise
   },
   comprehensive: {
     id: 'comprehensive',
     name: 'Comprehensive Consultation (60 min)',
-    amount: 299900 // 2999 INR in paise
+    amount: 299900 // 1999 INR in paise
   },
   followup: {
     id: 'followup',
@@ -69,7 +69,7 @@ export default async function handler(req, res) {
     let dynamicTiers = [];
     try {
       dynamicTiers = await db.getPricingTiers();
-    } catch (e) {}
+    } catch (e) { }
 
     const matchingTier = Array.isArray(dynamicTiers) ? dynamicTiers.find(t => t.id === serviceTier) : null;
     const fallbackTier = PRICING_TIERS[serviceTier] || PRICING_TIERS.comprehensive;

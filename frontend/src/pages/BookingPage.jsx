@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { Link, useNavigate, useSearchParams } from 'react-router-dom';
 import emailjs from '@emailjs/browser';
 import { useAuth } from '../context/AuthContext';
-import { getApiUrl } from '../utils/api';
+import { getApiUrl, RAZORPAY_PAYMENT_URL } from '../utils/api';
 
 const DEFAULT_PRICING_TIERS = {
   healthClarity: {
@@ -363,6 +363,30 @@ export default function BookingPage() {
                 <span>60 Minutes &bull; Direct 1:1 Clinical Video Call with Reshmi Verma</span>
               </div>
 
+              {/* Direct Razorpay Instant Checkout */}
+              <div style={{ margin: '0 0 12px' }}>
+                <a
+                  href={RAZORPAY_PAYMENT_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn btn-primary"
+                  style={{
+                    width: '100%',
+                    padding: '13px 20px',
+                    borderRadius: '12px',
+                    fontWeight: 800,
+                    fontSize: '0.96rem',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    gap: '8px',
+                    boxShadow: '0 4px 16px rgba(0, 229, 217, 0.3)'
+                  }}
+                >
+                  <span>⚡ Instant Direct Razorpay Checkout &rarr;</span>
+                </a>
+              </div>
+
               {/* On-Demand Toggle Button */}
               <button
                 type="button"
@@ -427,22 +451,7 @@ export default function BookingPage() {
               </div>
             )}
 
-            {/* Auth Banner */}
-            <div id="booking-auth-banner" style={{ marginBottom: '24px', padding: '14px 20px', borderRadius: '14px', background: 'var(--bg-secondary)', border: '1px solid var(--border-subtle)', display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '10px' }}>
-              <div style={{ fontSize: '0.9rem', color: 'var(--text-secondary)' }}>
-                {isAuthenticated ? (
-                  <span>✅ Signed in as <strong>{user?.name}</strong> ({user?.email}). This session will sync to your patient portal.</span>
-                ) : (
-                  <span>🔒 Have an account? Sign in so this consultation is saved to your personal portal.</span>
-                )}
-              </div>
-              {!isAuthenticated && (
-                <Link to="/auth?redirect=booking" className="btn btn-secondary btn-sm" style={{ padding: '6px 16px', fontSize: '0.82rem' }}>
-                  Sign In / Register
-                </Link>
-              )}
-            </div>
-
+            {/* Direct booking without intermediate signin */}
             <form id="consultation-booking-form" onSubmit={handleSubmit}>
 
               {/* Patient Contact Information */}
@@ -667,7 +676,7 @@ export default function BookingPage() {
                   disabled={loading}
                 >
                   <span id="booking-btn-text">
-                    {loading ? 'Connecting to Razorpay...' : 'Proceed to Secure Payment'}
+                    {loading ? 'Connecting to Razorpay...' : 'Proceed to Razorpay Payment'}
                   </span>
                   <svg id="booking-btn-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
                     <line x1="5" y1="12" x2="19" y2="12"></line>

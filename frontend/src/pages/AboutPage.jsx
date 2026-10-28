@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { RAZORPAY_PAYMENT_URL } from '../utils/api';
 import ClientTransformationShowcase from '../components/ClientTransformationShowcase';
 
 function AnimatedNumber({ value, suffix = '', duration = 1600 }) {
@@ -93,11 +94,11 @@ export default function AboutPage() {
             </p>
 
             <div style={{ display: 'flex', gap: '14px', justifyContent: 'center', flexWrap: 'wrap' }}>
-              <Link to="/booking" className="btn btn-primary btn-lg" style={{ borderRadius: '14px', padding: '14px 22px' }}>
+              <a href={RAZORPAY_PAYMENT_URL} target="_blank" rel="noopener noreferrer" className="btn btn-primary btn-lg" style={{ borderRadius: '14px', padding: '14px 22px' }}>
                 <span>Book 1:1 Consultation</span>
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
                 </svg>
-              </Link>
+              </a>
               <Link to="/assessment" className="btn btn-secondary btn-lg" style={{ borderRadius: '14px', padding: '14px 24px' }}>
                 <span>Take Free Health Check</span>
               </Link>
@@ -168,7 +169,7 @@ export default function AboutPage() {
             <div className="about-image-wrapper">
               <div className="about-main-image about-portrait-breathe" style={{ aspectRatio: '3/4', maxHeight: '580px', borderRadius: '24px', overflow: 'hidden' }}>
                 <img
-                  src="/assets/images/founder.jpg"
+                  src="/assets/images/reshmi-verma.jpeg"
                   alt="Reshmi Verma - Healthcare Executive, Functional Nutritionist & Biohacker"
                   style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center 12%' }}
                 />
@@ -240,9 +241,9 @@ export default function AboutPage() {
               </div>
 
               <div style={{ display: 'flex', gap: '14px', flexWrap: 'wrap', marginTop: '22px' }}>
-                <Link to="/booking" className="btn btn-primary" style={{ borderRadius: '12px', padding: '12px 24px' }}>
+                <a href={RAZORPAY_PAYMENT_URL} target="_blank" rel="noopener noreferrer" className="btn btn-primary" style={{ borderRadius: '12px', padding: '12px 24px' }}>
                   <span>Book 1:1 Consultation</span>
-                </Link>
+                </a>
                 <Link to="/assessment" className="btn btn-secondary" style={{ borderRadius: '12px', padding: '12px 20px' }}>
                   <span>Take Free Assessment</span>
                 </Link>
@@ -434,13 +435,15 @@ export default function AboutPage() {
             Book your 60-minute 1:1 Health Clarity Consultation with Reshmi Verma (₹2,999) to connect your symptoms, laboratory diagnostics, and recovery roadmap.
           </p>
           <div className="cta-dual-btn-row">
-            <Link
-              to="/booking"
+            <a
+              href={RAZORPAY_PAYMENT_URL}
+              target="_blank"
+              rel="noopener noreferrer"
               className="btn btn-accent cta-btn-side"
               style={{ background: 'white', color: 'var(--emerald-deep)', borderRadius: '12px', padding: '12px 24px', fontWeight: 700 }}
             >
               <span>Book Session</span>
-            </Link>
+            </a>
             <Link
               to="/assessment"
               className="btn btn-secondary cta-btn-side"

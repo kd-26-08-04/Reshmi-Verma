@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { RAZORPAY_PAYMENT_URL } from '../utils/api';
 import ClientTransformationShowcase from '../components/ClientTransformationShowcase';
 
 // Helper function to extract clean YouTube Embed URL from any YouTube link format
@@ -27,7 +28,6 @@ const getYouTubeEmbedUrl = (url) => {
 };
 
 export default function TestimonialsPage() {
-  const [activeCategory, setActiveCategory] = useState('all');
 
   // =========================================================================
   // 🎥 3 CLIENT VIDEO TESTIMONIALS (YOUTUBE VIDEOS)
@@ -37,27 +37,24 @@ export default function TestimonialsPage() {
   const videoTestimonials = [
     {
       id: 1,
-      youtubeUrl: 'https://www.youtube.com/watch?v=EQP9TE04bvQ', // 👈 Yahan apni 1st YouTube Video Link paste karein
+      youtubeUrl: 'https://youtube.com/shorts/-dU93I_ABaA?feature=share',
+      title: 'Real Patient Recovery Journey',
 
     },
     {
       id: 2,
-      youtubeUrl: 'https://www.youtube.com/watch?v=HC-ebB_xA0Y', // 👈 Yahan apni 2nd YouTube Video Link paste karein
+      youtubeUrl: 'https://youtube.com/shorts/EPUG9oP0S_Y?feature=share',
+      title: 'Clinical Transformation Experience',
 
     },
     {
       id: 3,
-      youtubeUrl: 'https://www.youtube.com/watch?v=EQP9TE04bvQ', // 👈 Yahan apni 3rd YouTube Video Link paste karein
+      youtubeUrl: 'https://youtube.com/shorts/drNdbF5r_lc?feature=share',
+      title: 'Root-Cause Healing Testimonial',
+
     }
   ];
 
-  const categories = [
-    { id: 'all', label: 'All Stories' },
-    { id: 'gut', label: 'Gut & Digestion' },
-    { id: 'breath', label: 'Breathwork & Sleep' },
-    { id: 'hormones', label: 'Thyroid & Hormones' },
-    { id: 'weight', label: 'Metabolic & Weight' }
-  ];
 
   const stories = [
     {
@@ -166,9 +163,6 @@ export default function TestimonialsPage() {
     }
   ];
 
-  const filteredStories = activeCategory === 'all'
-    ? stories
-    : stories.filter((s) => s.category === activeCategory);
 
   return (
     <main className="testimonials-page" style={{ background: 'var(--bg-primary)', minHeight: '100vh', paddingTop: '100px', paddingBottom: '90px' }}>
@@ -219,36 +213,6 @@ export default function TestimonialsPage() {
 
         </div>
 
-        {/* Category Filter Pills */}
-        <div style={{
-          display: 'flex',
-          justifyContent: 'center',
-          gap: '10px',
-          flexWrap: 'wrap',
-          marginBottom: '40px'
-        }}>
-          {categories.map((cat) => (
-            <button
-              key={cat.id}
-              type="button"
-              onClick={() => setActiveCategory(cat.id)}
-              style={{
-                padding: '10px 20px',
-                borderRadius: '999px',
-                fontSize: '0.9rem',
-                fontWeight: 700,
-                border: activeCategory === cat.id ? '1.5px solid #00E5D9' : '1px solid var(--border-subtle)',
-                background: activeCategory === cat.id ? '#121214' : '#FFFFFF',
-                color: activeCategory === cat.id ? '#FFFFFF' : '#374151',
-                boxShadow: activeCategory === cat.id ? '0 4px 14px rgba(0, 229, 217, 0.25)' : 'none',
-                cursor: 'pointer',
-                transition: 'all 0.2s ease'
-              }}
-            >
-              {cat.label}
-            </button>
-          ))}
-        </div>
 
         {/* Stories Grid */}
         <div style={{
@@ -258,7 +222,7 @@ export default function TestimonialsPage() {
           maxWidth: '1160px',
           margin: '0 auto 60px'
         }}>
-          {filteredStories.map((item) => (
+          {stories.map((item) => (
             <div
               key={item.id}
               className="review-glass-card"
@@ -462,7 +426,7 @@ export default function TestimonialsPage() {
                     style={{
                       position: 'relative',
                       width: '100%',
-                      paddingBottom: '56.25%',
+                      paddingBottom: '125%',
                       backgroundColor: '#0F172A'
                     }}
                   >
@@ -503,19 +467,23 @@ export default function TestimonialsPage() {
                   </div>
 
                   {/* Card Body */}
-                  <div style={{ padding: '22px', display: 'flex', flexDirection: 'column', flex: 1 }}>
-                    {/* Category & Recovery Badges */}
+                  <div style={{ padding: '16px 20px 20px', display: 'flex', flexDirection: 'column', flex: 1 }}>
                     <div
                       style={{
                         display: 'flex',
                         alignItems: 'center',
                         justifyContent: 'space-between',
                         gap: '8px',
-                        marginBottom: '10px'
+                        marginBottom: '8px'
                       }}
                     >
-
+                      <span style={{ fontSize: '0.74rem', fontWeight: 700, color: '#0D827B', background: '#E6FCFB', padding: '3px 10px', borderRadius: '999px', border: '1px solid #7AF5EE' }}>
+                        {video.tag || 'Patient Story'}
+                      </span>
                     </div>
+                    <h3 style={{ margin: '4px 0 0', fontSize: '1rem', fontWeight: 700, color: '#121214', lineHeight: 1.4 }}>
+                      {video.title}
+                    </h3>
                   </div>
                 </div>
               );
@@ -565,9 +533,9 @@ export default function TestimonialsPage() {
               Reshmi Verma personally lost 38 kg and reversed severe metabolic fatigue, chronic gut distress, and dysregulated breathing. She built the SAMYA™ Method so you never have to guess your way through confusing diets or band-aid prescriptions again.
             </p>
             <div style={{ display: 'flex', gap: '14px', flexWrap: 'wrap' }}>
-              <Link to="/booking" className="btn btn-white-solid" style={{ padding: '12px 26px', borderRadius: '12px', fontSize: '0.95rem' }}>
+              <a href={RAZORPAY_PAYMENT_URL} target="_blank" rel="noopener noreferrer" className="btn btn-white-solid" style={{ padding: '12px 26px', borderRadius: '12px', fontSize: '0.95rem' }}>
                 <span>Book 1:1 Consultation</span>
-              </Link>
+              </a>
               <Link to="/about" className="btn btn-on-dark" style={{ padding: '12px 24px', borderRadius: '12px', fontSize: '0.95rem' }}>
                 <span>Read Reshmi's Full Journey &rarr;</span>
               </Link>
@@ -609,9 +577,9 @@ export default function TestimonialsPage() {
             Take our 2-minute diagnostic assessment or schedule a comprehensive 1:1 clinical consultation directly with Reshmi Verma.
           </p>
           <div style={{ display: 'flex', justifyContent: 'center', gap: '14px', flexWrap: 'wrap' }}>
-            <Link to="/booking" className="btn btn-primary" style={{ padding: '14px 32px', fontWeight: 800 }}>
+            <a href={RAZORPAY_PAYMENT_URL} target="_blank" rel="noopener noreferrer" className="btn btn-primary" style={{ padding: '14px 32px', fontWeight: 800 }}>
               Book 1:1 Consultation
-            </Link>
+            </a>
             <Link to="/assessment" className="btn btn-health" style={{ padding: '14px 28px' }}>
               Take Free Health Assessment
             </Link>

@@ -1,5 +1,6 @@
 import React, { useState, useRef } from 'react';
 import { Link } from 'react-router-dom';
+import { RAZORPAY_PAYMENT_URL } from '../utils/api';
 
 export default function ClientTransformationShowcase() {
   const [playingAudioId, setPlayingAudioId] = useState(null);
@@ -528,8 +529,10 @@ export default function ClientTransformationShowcase() {
             )}
 
             <div style={{ textAlign: 'center', marginTop: '28px' }}>
-              <Link
-                to="/booking"
+              <a
+                href={RAZORPAY_PAYMENT_URL}
+                target="_blank"
+                rel="noopener noreferrer"
                 className="btn btn-primary btn-lg"
                 style={{
                   padding: '14px 34px',
@@ -537,7 +540,7 @@ export default function ClientTransformationShowcase() {
                 }}
               >
                 <span>Book 1:1 Consultation</span>
-              </Link>
+              </a>
             </div>
           </div>
         </div>

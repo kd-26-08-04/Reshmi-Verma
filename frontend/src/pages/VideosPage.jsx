@@ -1,8 +1,8 @@
 import React, { useState, useMemo } from 'react';
 import { Link } from 'react-router-dom';
+import { RAZORPAY_PAYMENT_URL } from '../utils/api';
 
 export default function VideosPage() {
-  const [activeTab, setActiveTab] = useState('all');
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedVideo, setSelectedVideo] = useState(null);
 
@@ -169,42 +169,17 @@ export default function VideosPage() {
     }
   ];
 
-  // Filter Categories
-  const filterTabs = [
-    { key: 'all', label: 'All', count: 12 },
-    { key: 'masterclass', label: 'Masterclasses', count: 2 },
-    { key: 'short', label: 'Shorts', count: 10 },
-    { key: 'breathwork', label: 'Breathwork', count: 2 },
-    { key: 'sound-sleep', label: 'Sound & Sleep', count: 3 },
-    { key: 'gut', label: 'Gut Health', count: 2 },
-    { key: 'nutrition', label: 'Nutrition', count: 2 },
-    { key: 'metabolism', label: 'Metabolism', count: 2 }
-  ];
 
-  // Filtered List
+  // Filtered List (Search-only, category filter pills removed)
   const filteredVideos = useMemo(() => {
-    return videoLibrary.filter((video) => {
-      let matchesTab = true;
-      if (activeTab === 'all') {
-        matchesTab = true;
-      } else if (activeTab === 'masterclass' || activeTab === 'short') {
-        matchesTab = video.type === activeTab;
-      } else {
-        matchesTab = video.category === activeTab;
-      }
-
-      let matchesSearch = true;
-      if (searchQuery.trim()) {
-        const q = searchQuery.toLowerCase();
-        matchesSearch =
-          video.title.toLowerCase().includes(q) ||
-          video.summary.toLowerCase().includes(q) ||
-          video.categoryLabel.toLowerCase().includes(q);
-      }
-
-      return matchesTab && matchesSearch;
-    });
-  }, [activeTab, searchQuery]);
+    if (!searchQuery.trim()) return videoLibrary;
+    const q = searchQuery.toLowerCase();
+    return videoLibrary.filter((video) =>
+      video.title.toLowerCase().includes(q) ||
+      video.summary.toLowerCase().includes(q) ||
+      video.categoryLabel.toLowerCase().includes(q)
+    );
+  }, [searchQuery]);
 
   const masterclasses = filteredVideos.filter(v => v.type === 'masterclass');
   const shorts = filteredVideos.filter(v => v.type === 'short');
@@ -400,7 +375,7 @@ export default function VideosPage() {
           <div style={{
             position: 'relative',
             maxWidth: '480px',
-            margin: '0 auto 12px'
+            margin: '0 auto'
           }}>
             <svg
               width="16"
@@ -454,46 +429,7 @@ export default function VideosPage() {
             )}
           </div>
 
-          {/* Filter Pills (Smooth Touch Scroll on Mobile) */}
-          <div className="videos-filter-bar">
-            {filterTabs.map((tab) => {
-              const isActive = activeTab === tab.key;
-              return (
-                <button
-                  key={tab.key}
-                  type="button"
-                  className="videos-filter-btn"
-                  onClick={() => setActiveTab(tab.key)}
-                  style={{
-                    padding: '6px 14px',
-                    borderRadius: '999px',
-                    fontSize: '0.80rem',
-                    fontWeight: 700,
-                    cursor: 'pointer',
-                    transition: 'all 0.2s ease',
-                    border: isActive ? '1.5px solid #121214' : '1px solid var(--border-medium)',
-                    background: isActive ? '#121214' : '#FFFFFF',
-                    color: isActive ? '#00E5D9' : 'var(--text-secondary)',
-                    display: 'inline-flex',
-                    alignItems: 'center',
-                    gap: '5px'
-                  }}
-                >
-                  <span>{tab.label}</span>
-                  <span style={{
-                    fontSize: '0.68rem',
-                    padding: '1px 6px',
-                    borderRadius: '999px',
-                    background: isActive ? 'rgba(0, 229, 217, 0.2)' : 'rgba(0,0,0,0.06)',
-                    color: isActive ? '#00E5D9' : 'var(--text-muted)',
-                    fontWeight: 800
-                  }}>
-                    {tab.count}
-                  </span>
-                </button>
-              );
-            })}
-          </div>
+
         </div>
 
         {/* Results Info */}
@@ -505,12 +441,6 @@ export default function VideosPage() {
           padding: '0 4px',
           fontSize: '0.82rem'
         }}>
-          <span style={{ color: 'var(--text-secondary)', fontWeight: 600 }}>
-            Showing <strong>{filteredVideos.length}</strong> videos
-          </span>
-          <span style={{ color: '#0D9488', fontWeight: 700 }}>
-            Tap video to play
-          </span>
         </div>
 
         {/* Empty State */}
@@ -531,7 +461,7 @@ export default function VideosPage() {
             </p>
             <button
               type="button"
-              onClick={() => { setActiveTab('all'); setSearchQuery(''); }}
+              onClick={() => setSearchQuery('')}
               style={{
                 padding: '8px 20px',
                 borderRadius: '999px',
@@ -543,7 +473,7 @@ export default function VideosPage() {
                 cursor: 'pointer'
               }}
             >
-              Reset Filters
+              Clear Search
             </button>
           </div>
         )}
@@ -874,8 +804,10 @@ export default function VideosPage() {
                 <p style={{ margin: 0, fontSize: '0.78rem', color: 'rgba(255, 255, 255, 0.75)', maxWidth: '420px', lineHeight: 1.4 }}>
                   {selectedVideo.summary}
                 </p>
-                <Link
-                  to="/booking"
+                <a
+                  href={RAZORPAY_PAYMENT_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   onClick={() => setSelectedVideo(null)}
                   style={{
                     padding: '8px 14px',
@@ -888,7 +820,7 @@ export default function VideosPage() {
                   }}
                 >
                   Book 1:1 Session &rarr;
-                </Link>
+                </a>
               </div>
             </div>
           </div>
@@ -909,13 +841,15 @@ export default function VideosPage() {
             Book a 1-on-1 Health Clarity Session with Reshmi Verma to analyze your blood biomarkers, gut symptoms, and breathing mechanics.
           </p>
           <div className="videos-bottom-cta-btns">
-            <Link
-              to="/booking"
+            <a
+              href={RAZORPAY_PAYMENT_URL}
+              target="_blank"
+              rel="noopener noreferrer"
               className="btn btn-primary"
               style={{ padding: '11px 22px', background: '#00E5D9', color: '#121214', fontWeight: 800, borderRadius: '10px', fontSize: '0.86rem' }}
             >
               Book 1:1 Consultation
-            </Link>
+            </a>
             <Link
               to="/assessment"
               style={{
