@@ -242,13 +242,7 @@ export default function HomePage() {
                 </a>
               </div>
 
-              {/* Consultation Micro-Trust Badge */}
-              <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginTop: '14px', fontSize: '0.88rem', color: 'var(--text-secondary)', flexWrap: 'wrap' }}>
-                <span style={{ display: 'inline-flex', alignItems: 'center', gap: '6px', color: 'var(--emerald-deep)', fontWeight: 600 }}>
-                  <span style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#15803D' }}></span>
-                  60-Min 1:1 Consultation with Reshmi Verma
-                </span>
-              </div>
+
 
               {/* Hero Clinical Highlights */}
               <div className="hero-stats-row">

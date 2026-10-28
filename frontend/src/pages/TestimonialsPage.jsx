@@ -38,19 +38,19 @@ export default function TestimonialsPage() {
     {
       id: 1,
       youtubeUrl: 'https://youtube.com/shorts/-dU93I_ABaA?feature=share',
-      title: 'Real Patient Recovery Journey',
+
 
     },
     {
       id: 2,
       youtubeUrl: 'https://youtube.com/shorts/EPUG9oP0S_Y?feature=share',
-      title: 'Clinical Transformation Experience',
+
 
     },
     {
       id: 3,
       youtubeUrl: 'https://youtube.com/shorts/drNdbF5r_lc?feature=share',
-      title: 'Root-Cause Healing Testimonial',
+
 
     }
   ];
@@ -197,8 +197,7 @@ export default function TestimonialsPage() {
             maxWidth: '680px',
             margin: '0 auto 28px'
           }}>
-            See how hundreds of clients reversed complex digestive, respiratory, thyroid, and metabolic challenges through diagnostic biochemistry and Oxygen Advantage® breathwork.
-          </p>
+            Hear from clients about their experience with our personalised programmes, our approach, and the difference it has made to their health.          </p>
 
         </div>
 
@@ -252,7 +251,7 @@ export default function TestimonialsPage() {
                 lineHeight: 1.2
               }}
             >
-              <span style={{ color: '#0D9488', fontStyle: 'italic' }}>Watch Their Stories.</span>
+              <span style={{ color: '#0D9488', fontStyle: 'italic' }}>It’s Always a Joy to Hear From Our Clients..</span>
             </h2>
 
             <p
@@ -263,8 +262,7 @@ export default function TestimonialsPage() {
                 margin: '0 auto'
               }}
             >
-              Watch direct video feedback and genuine recovery journeys of clients who transformed their digestion, thyroid, sleep, and metabolic health.
-            </p>
+              Nothing makes us happier than hearing about our clients’ experiences and what their journey has meant to them.            </p>
           </div>
 
           {/* 3 Video Cards Grid */}
@@ -342,7 +340,7 @@ export default function TestimonialsPage() {
 
                   {/* Card Body */}
                   <div style={{ padding: '16px 20px 20px', display: 'flex', flexDirection: 'column', flex: 1 }}>
-                    <div
+                    {/* <div
                       style={{
                         display: 'flex',
                         alignItems: 'center',
@@ -354,7 +352,7 @@ export default function TestimonialsPage() {
                       <span style={{ fontSize: '0.74rem', fontWeight: 700, color: '#0D827B', background: '#E6FCFB', padding: '3px 10px', borderRadius: '999px', border: '1px solid #7AF5EE' }}>
                         {video.tag || 'Patient Story'}
                       </span>
-                    </div>
+                    </div> */}
                     <h3 style={{ margin: '4px 0 0', fontSize: '1rem', fontWeight: 700, color: '#121214', lineHeight: 1.4 }}>
                       {video.title}
                     </h3>

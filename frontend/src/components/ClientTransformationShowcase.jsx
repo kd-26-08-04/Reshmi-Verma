@@ -193,8 +193,7 @@ export default function ClientTransformationShowcase() {
                 margin: '0 auto'
               }}
             >
-              Witness the real outcomes of clients who reversed complex hormonal plateaus, stubborn weight, chronic gut inflammation, and metabolic fatigue under Reshmi Verma's clinical guidance.
-            </p>
+              Every before-and-after reflects a unique journey, consistent effort, and the progress clients have made towards their health and wellness goals.            </p>
           </div>
         </div>
 
