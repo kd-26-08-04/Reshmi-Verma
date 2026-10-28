@@ -171,28 +171,6 @@ export default function ClientTransformationShowcase() {
         <div className="container">
           {/* Section Header */}
           <div style={{ textAlign: 'center', maxWidth: '780px', margin: '0 auto 36px' }}>
-            <span
-              style={{
-                display: 'inline-flex',
-                alignItems: 'center',
-                gap: '8px',
-                padding: '6px 16px',
-                borderRadius: '999px',
-                background: 'rgba(255, 255, 255, 0.08)',
-                color: '#FFFFFF',
-                fontSize: '0.82rem',
-                fontWeight: 800,
-                letterSpacing: '0.08em',
-                textTransform: 'uppercase',
-                border: '1px solid rgba(255, 255, 255, 0.16)',
-                marginBottom: '14px'
-              }}
-            >
-              <span>Real Patient Breakthroughs</span>
-              <span>&bull;</span>
-              <span style={{ color: '#00E5D9' }}>Before &amp; After Proof</span>
-            </span>
-
             <h2
               style={{
                 fontSize: 'clamp(2rem, 4.2vw, 2.7rem)',
@@ -203,7 +181,7 @@ export default function ClientTransformationShowcase() {
                 fontWeight: 800
               }}
             >
-              Real Transformations. <span style={{ color: '#00E5D9', fontStyle: 'italic' }}>Real Stories.</span>
+              Real Transformations. <span style={{ color: 'rgb(1, 183, 180)', fontStyle: 'italic' }}>Real Stories.</span>
             </h2>
 
             <p

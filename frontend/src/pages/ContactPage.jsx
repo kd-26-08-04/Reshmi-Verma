@@ -114,7 +114,7 @@ export default function ContactPage() {
             background: '#FFFFFF',
             borderRadius: '24px',
             border: '1px solid var(--border-subtle)',
-            borderTop: '3px solid #00E5D9',
+            borderTop: '3px solid rgb(1, 183, 180)',
             padding: '36px 32px',
             boxShadow: '0 10px 30px rgba(0, 0, 0, 0.04)'
           }}>
@@ -204,7 +204,7 @@ export default function ContactPage() {
             background: '#FFFFFF',
             borderRadius: '24px',
             border: '1px solid var(--border-subtle)',
-            borderTop: '3px solid #00E5D9',
+            borderTop: '3px solid rgb(1, 183, 180)',
             padding: '36px 32px',
             boxShadow: '0 10px 30px rgba(0, 0, 0, 0.04)'
           }}>

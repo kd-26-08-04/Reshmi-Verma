@@ -60,7 +60,7 @@ export default function TestimonialsPage() {
     {
       id: 1,
       category: 'hormones',
-      name: 'Vartika',
+      name: 'Vartika Sharma',
       city: 'Bangalore',
       avatar: '/assets/images/real-patient-vartika.jpg',
       condition: "Hashimoto's & Low Energy",
@@ -73,7 +73,7 @@ export default function TestimonialsPage() {
     {
       id: 2,
       category: 'gut',
-      name: 'Simrat',
+      name: 'Simrat Kaur',
       city: 'Ludhiana',
       avatar: '/assets/images/real-patient-simrat.jpg',
       condition: 'Chronic Bloating & Digestion',
@@ -86,7 +86,7 @@ export default function TestimonialsPage() {
     {
       id: 3,
       category: 'breath',
-      name: 'Pranav',
+      name: 'Pranav Nair',
       city: 'New Delhi',
       avatar: '/assets/images/real-patient-pranav.jpg',
       condition: 'Anxiety & Disturbed Sleep',
@@ -99,7 +99,7 @@ export default function TestimonialsPage() {
     {
       id: 4,
       category: 'gut',
-      name: 'Shoaib',
+      name: 'Shoaib Ansari',
       city: 'Ahmednagar',
       avatar: '/assets/images/real-patient-shoaib.jpg',
       condition: 'Acidity & Severe Reflux',
@@ -114,7 +114,9 @@ export default function TestimonialsPage() {
       category: 'weight',
       name: 'Ananya Patel',
       city: 'Mumbai',
-      avatar: '/assets/images/real-patient-vartika.jpg',
+      avatar: null,
+      initials: 'AP',
+      avatarColor: '#DB2777',
       condition: 'PCOD & Stubborn Weight',
       recoveryTime: '10 Weeks',
       stars: 5,
@@ -127,7 +129,9 @@ export default function TestimonialsPage() {
       category: 'hormones',
       name: 'Sunita Mehta',
       city: 'Gurugram',
-      avatar: '/assets/images/real-patient-simrat.jpg',
+      avatar: null,
+      initials: 'SM',
+      avatarColor: '#059669',
       condition: 'Hot Flashes & Poor Sleep',
       recoveryTime: '8 Weeks',
       stars: 5,
@@ -140,7 +144,9 @@ export default function TestimonialsPage() {
       category: 'weight',
       name: 'Rohit Malhotra',
       city: 'Pune',
-      avatar: '/assets/images/real-patient-pranav.jpg',
+      avatar: null,
+      initials: 'RM',
+      avatarColor: '#DC2626',
       condition: 'Fatty Liver & Afternoon Slump',
       recoveryTime: '8 Weeks',
       stars: 5,
@@ -153,7 +159,9 @@ export default function TestimonialsPage() {
       category: 'gut',
       name: 'Kavita Rao',
       city: 'Hyderabad',
-      avatar: '/assets/images/real-patient-shoaib.jpg',
+      avatar: null,
+      initials: 'KR',
+      avatarColor: '#6D28D9',
       condition: 'Migraines & Constipation',
       recoveryTime: '5 Weeks',
       stars: 5,
@@ -170,25 +178,7 @@ export default function TestimonialsPage() {
 
         {/* Hero Header */}
         <div style={{ textAlign: 'center', maxWidth: '820px', margin: '0 auto 40px' }}>
-          <span style={{
-            display: 'inline-flex',
-            alignItems: 'center',
-            gap: '8px',
-            padding: '6px 16px',
-            borderRadius: '999px',
-            background: '#EDF6EE',
-            color: '#121214',
-            fontSize: '0.82rem',
-            fontWeight: 800,
-            letterSpacing: '0.08em',
-            textTransform: 'uppercase',
-            border: '1px solid #C6DFC9',
-            marginBottom: '16px'
-          }}>
-            <span>Verified Patient Outcomes</span>
-            <span>&bull;</span>
-            <span style={{ color: '#0D827B', fontWeight: 800 }}>100% Root-Cause Recovery</span>
-          </span>
+
 
           <h1 style={{
             fontSize: 'clamp(2.4rem, 5vw, 3.4rem)',
@@ -198,7 +188,7 @@ export default function TestimonialsPage() {
             lineHeight: 1.15,
             fontWeight: 800
           }}>
-            Real People. <span style={{ color: '#0D9488', fontStyle: 'italic' }}>Real Transformations.</span>
+            Voices of Healing. <span style={{ color: '#0D9488', fontStyle: 'italic' }}>Verified by Results.</span>
           </h1>
 
           <p style={{
@@ -214,119 +204,6 @@ export default function TestimonialsPage() {
         </div>
 
 
-        {/* Stories Grid */}
-        <div style={{
-          display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
-          gap: '28px',
-          maxWidth: '1160px',
-          margin: '0 auto 60px'
-        }}>
-          {stories.map((item) => (
-            <div
-              key={item.id}
-              className="review-glass-card"
-              style={{
-                background: '#FFFFFF',
-                borderRadius: '22px',
-                padding: '24px 22px',
-                border: '1px solid var(--border-subtle)',
-                borderTop: '3px solid #00E5D9',
-                boxShadow: '0 -2px 10px rgba(0, 229, 217, 0.12), 0 10px 28px rgba(0, 0, 0, 0.04)',
-                display: 'flex',
-                flexDirection: 'column',
-                transition: 'transform 0.25s ease'
-              }}
-            >
-              {/* Header with Avatar & Details */}
-              <div style={{ display: 'flex', alignItems: 'center', gap: '14px', marginBottom: '16px' }}>
-                <img
-                  src={item.avatar}
-                  alt={item.name}
-                  style={{
-                    width: '52px',
-                    height: '52px',
-                    borderRadius: '50%',
-                    objectFit: 'cover',
-                    border: '2px solid #00E5D9',
-                    boxShadow: '0 0 10px rgba(0, 229, 217, 0.25)'
-                  }}
-                />
-                <div style={{ flex: 1, minWidth: 0 }}>
-                  <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '6px' }}>
-                    <h3 style={{ margin: 0, fontSize: '1.05rem', fontWeight: 800, color: '#121214' }}>
-                      {item.name}
-                    </h3>
-                    <span style={{ fontSize: '0.72rem', background: '#E6FCFB', color: '#0D827B', padding: '3px 8px', borderRadius: '6px', fontWeight: 800 }}>
-                      Verified
-                    </span>
-                  </div>
-                  <span style={{ fontSize: '0.8rem', color: '#6B7280' }}>
-                    {item.city} &bull; <strong style={{ color: '#121214' }}>{item.condition}</strong>
-                  </span>
-                </div>
-              </div>
-
-              {/* Stars & Recovery Badge */}
-              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '14px' }}>
-                <div style={{ color: '#F59E0B', fontSize: '0.92rem', letterSpacing: '2px' }}>
-                  {'★'.repeat(item.stars)}
-                </div>
-                <span style={{ fontSize: '0.75rem', fontWeight: 700, color: '#0D827B', background: '#E6FCFB', padding: '3px 10px', borderRadius: '999px', border: '1px solid #7AF5EE' }}>
-                  {item.recoveryTime}
-                </span>
-              </div>
-
-              {/* Headline */}
-              <h4 style={{
-                fontSize: '1rem',
-                color: '#121214',
-                fontWeight: 700,
-                lineHeight: 1.45,
-                margin: '0 0 12px',
-                fontFamily: 'var(--font-serif)'
-              }}>
-                "{item.headline}"
-              </h4>
-
-              {/* Story Paragraph */}
-              <p style={{
-                fontSize: '0.9rem',
-                color: '#4B5563',
-                lineHeight: 1.65,
-                margin: '0 0 18px',
-                flex: 1
-              }}>
-                {item.story}
-              </p>
-
-              {/* Protocol Pillars Tags */}
-              <div style={{ borderTop: '1px solid var(--border-subtle)', paddingTop: '14px' }}>
-                <span style={{ fontSize: '0.7rem', textTransform: 'uppercase', color: '#9CA3AF', fontWeight: 800, display: 'block', marginBottom: '6px' }}>
-                  Protocol Highlights
-                </span>
-                <div style={{ display: 'flex', flexWrap: 'wrap', gap: '6px' }}>
-                  {item.protocolPillars.map((pillar, pIdx) => (
-                    <span
-                      key={pIdx}
-                      style={{
-                        fontSize: '0.74rem',
-                        background: '#FAF9F6',
-                        border: '1px solid #E5E7EB',
-                        padding: '3px 8px',
-                        borderRadius: '6px',
-                        color: '#374151',
-                        fontWeight: 600
-                      }}
-                    >
-                      ✓ {pillar}
-                    </span>
-                  ))}
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
       </div>
 
       {/* Real Patient Before & After Transformations Continuous Showcase & Audio Notes (End-to-End Full Bleed) */}
@@ -376,7 +253,7 @@ export default function TestimonialsPage() {
                 lineHeight: 1.2
               }}
             >
-              Real Patients. <span style={{ color: '#0D9488', fontStyle: 'italic' }}>Watch Their Stories.</span>
+              <span style={{ color: '#0D9488', fontStyle: 'italic' }}>Watch Their Stories.</span>
             </h2>
 
             <p
@@ -412,7 +289,7 @@ export default function TestimonialsPage() {
                     borderRadius: '22px',
                     overflow: 'hidden',
                     border: '1px solid var(--border-subtle)',
-                    borderTop: '3px solid #00E5D9',
+                    borderTop: '3px solid rgb(1, 183, 180)',
                     boxShadow: '0 10px 28px rgba(0, 0, 0, 0.05)',
                     display: 'flex',
                     flexDirection: 'column',
@@ -491,6 +368,113 @@ export default function TestimonialsPage() {
       </section>
 
       <div className="container" style={{ marginTop: '60px' }}>
+
+        {/* Stories Grid */}
+        <div style={{
+          display: 'grid',
+          gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
+          gap: '28px',
+          maxWidth: '1160px',
+          margin: '0 auto 60px'
+        }}>
+          {stories.map((item) => (
+            <div
+              key={item.id}
+              className="review-glass-card"
+              style={{
+                background: '#FFFFFF',
+                borderRadius: '22px',
+                padding: '24px 22px',
+                border: '1px solid var(--border-subtle)',
+                borderTop: '3px solid rgb(1, 183, 180)',
+                boxShadow: '0 -2px 10px rgba(0, 229, 217, 0.12), 0 10px 28px rgba(0, 0, 0, 0.04)',
+                display: 'flex',
+                flexDirection: 'column',
+                transition: 'transform 0.25s ease'
+              }}
+            >
+              {/* Header with Avatar & Details */}
+              <div style={{ display: 'flex', alignItems: 'center', gap: '14px', marginBottom: '16px' }}>
+                {item.avatar ? (
+                  <img
+                    src={item.avatar}
+                    alt={item.name}
+                    style={{
+                      width: '52px',
+                      height: '52px',
+                      borderRadius: '50%',
+                      objectFit: 'cover',
+                      border: '2px solid rgb(1, 183, 180)',
+                      boxShadow: '0 0 10px rgba(0, 229, 217, 0.25)',
+                      flexShrink: 0
+                    }}
+                  />
+                ) : (
+                  <div style={{
+                    width: '52px',
+                    height: '52px',
+                    borderRadius: '50%',
+                    background: item.avatarColor || '#0D9488',
+                    border: '2px solid rgb(1, 183, 180)',
+                    boxShadow: '0 0 10px rgba(0, 229, 217, 0.25)',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    fontSize: '1.1rem',
+                    fontWeight: 800,
+                    color: '#FFFFFF',
+                    flexShrink: 0,
+                    fontFamily: 'var(--font-sans)'
+                  }}>
+                    {item.initials}
+                  </div>
+                )}
+                <div style={{ flex: 1, minWidth: 0 }}>
+                  <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '6px' }}>
+                    <h3 style={{ margin: 0, fontSize: '1.05rem', fontWeight: 800, color: '#121214' }}>
+                      {item.name}
+                    </h3>
+
+                  </div>
+                  <span style={{ fontSize: '0.8rem', color: '#6B7280' }}>
+                    {item.city} &bull; <strong style={{ color: '#121214' }}>{item.condition}</strong>
+                  </span>
+                </div>
+              </div>
+
+              {/* Recovery Badge */}
+              <div style={{ display: 'flex', justifyContent: 'flex-end', marginBottom: '12px' }}>
+                <span style={{ fontSize: '0.75rem', fontWeight: 700, color: '#0D827B', background: '#E6FCFB', padding: '3px 10px', borderRadius: '999px', border: '1px solid #7AF5EE' }}>
+                  {item.recoveryTime}
+                </span>
+              </div>
+
+              {/* Headline */}
+              <h4 style={{
+                fontSize: '1rem',
+                color: '#121214',
+                fontWeight: 700,
+                lineHeight: 1.45,
+                margin: '0 0 12px',
+                fontFamily: 'var(--font-serif)'
+              }}>
+                "{item.headline}"
+              </h4>
+
+              {/* Story Paragraph */}
+              <p style={{
+                fontSize: '0.9rem',
+                color: '#4B5563',
+                lineHeight: 1.65,
+                margin: '0',
+                flex: 1
+              }}>
+                {item.story}
+              </p>
+            </div>
+          ))}
+        </div>
+
         {/* Reshmi's Personal 38 kg Transformation Feature */}
         <div style={{
           background: 'linear-gradient(135deg, #111111 0%, #1A1A1E 100%)',
@@ -509,7 +493,7 @@ export default function TestimonialsPage() {
           <div>
             <span style={{
               fontSize: '0.8rem',
-              color: '#00E5D9',
+              color: 'rgb(1, 183, 180)',
               fontWeight: 800,
               textTransform: 'uppercase',
               letterSpacing: '0.08em',
@@ -525,7 +509,7 @@ export default function TestimonialsPage() {
               margin: '0 0 16px',
               lineHeight: 1.2
             }}>
-              "I didn't just study functional nutrition. <span style={{ color: '#00E5D9' }}>I lived the recovery.</span>"
+              "I didn't just study functional nutrition. <span style={{ color: 'rgb(1, 183, 180)' }}>I lived the recovery.</span>"
             </h2>
             <p style={{ color: '#D1D5DB', fontSize: '0.95rem', lineHeight: 1.7, marginBottom: '22px' }}>
               Reshmi Verma personally lost 38 kg and reversed severe metabolic fatigue, chronic gut distress, and dysregulated breathing. She built the SAMYA™ Method so you never have to guess your way through confusing diets or band-aid prescriptions again.

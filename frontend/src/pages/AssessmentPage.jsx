@@ -6,7 +6,7 @@ import { getApiUrl, RAZORPAY_PAYMENT_URL } from '../utils/api';
 
 /**
  * CLINICAL GUT HEALTH ASSESSMENT
- * Theme: Strictly Neon Pink (#FF1493 / #FF007F) Luxury Medical Aesthetics
+ * Theme: Strictly Neon Pink (rgb(243, 1, 132) / #FF007F) Luxury Medical Aesthetics
  * Scored Questions Q1–Q8 (0–4 points, Raw max 32, scaled to 100)
  * Personalisation Questions Q9–Q18
  * EmailJS Direct Client Dispatch with user's exact draft & parameters
@@ -505,7 +505,7 @@ export default function AssessmentPage() {
         message:
           "You've reported relatively few or infrequent digestive symptoms. Your answers can help identify any specific concerns you would still like to explore.",
         badgeClass: 'category-badge-0',
-        color: '#FF1493',
+        color: 'rgb(243, 1, 132)',
         bg: '#FFF0F6'
       };
     } else if (gutSymptomScore <= 49) {
@@ -516,7 +516,7 @@ export default function AssessmentPage() {
         message:
           'Your answers suggest some digestive symptoms worth paying attention to. Understanding when they occur and what seems to influence them may help guide your next steps.',
         badgeClass: 'category-badge-1',
-        color: '#FF1493',
+        color: 'rgb(243, 1, 132)',
         bg: '#FFF0F6'
       };
     } else if (gutSymptomScore <= 74) {
@@ -527,7 +527,7 @@ export default function AssessmentPage() {
         message:
           "You've reported recurring digestive symptoms. A closer look at your symptom patterns, bowel habits, food associations and health history may help you understand what to discuss next.",
         badgeClass: 'category-badge-2',
-        color: '#FF1493',
+        color: 'rgb(243, 1, 132)',
         bg: '#FFF0F6'
       };
     } else {
@@ -538,7 +538,7 @@ export default function AssessmentPage() {
         message:
           "You've reported frequent digestive symptoms. Consider discussing these concerns with a qualified healthcare professional to determine whether further medical evaluation is appropriate.",
         badgeClass: 'category-badge-3',
-        color: '#FF1493',
+        color: 'rgb(243, 1, 132)',
         bg: '#FFF0F6'
       };
     }
@@ -793,7 +793,7 @@ ${websiteUrl}`;
       background: linear-gradient(135deg, #121214 0%, #1F1B24 100%);
       color: #FFFFFF;
       padding: 36px 32px;
-      border-bottom: 4px solid #FF1493;
+      border-bottom: 4px solid rgb(243, 1, 132);
     }
     .brand-title {
       font-size: 24px;
@@ -802,13 +802,13 @@ ${websiteUrl}`;
       margin-bottom: 6px;
     }
     .brand-script {
-      color: #FF1493;
+      color: rgb(243, 1, 132);
       font-family: 'Brush Script MT', cursive, sans-serif;
       font-size: 28px;
     }
     .report-badge {
       display: inline-block;
-      background: rgba(255, 20, 147, 0.2);
+      background: rgba(243, 1, 132, 0.2);
       color: #FF66B2;
       font-size: 11px;
       font-weight: 700;
@@ -832,7 +832,7 @@ ${websiteUrl}`;
     .report-body { padding: 36px 32px; }
     .score-banner {
       background: #FFF0F6;
-      border: 1.5px solid #FF1493;
+      border: 1.5px solid rgb(243, 1, 132);
       border-radius: 16px;
       padding: 24px;
       text-align: center;
@@ -841,7 +841,7 @@ ${websiteUrl}`;
     .score-value {
       font-size: 54px;
       font-weight: 800;
-      color: #FF1493;
+      color: rgb(243, 1, 132);
       line-height: 1;
       margin: 8px 0;
     }
@@ -898,7 +898,7 @@ ${websiteUrl}`;
     .btn-booking {
       display: inline-block;
       margin-top: 14px;
-      background: #FF1493;
+      background: rgb(243, 1, 132);
       color: white !important;
       text-decoration: none;
       padding: 10px 22px;
@@ -1014,7 +1014,7 @@ ${websiteUrl}`;
           {/* STEP 0: CONTACT REGISTRATION GATE (IF ARRIVED DIRECTLY)         */}
           {/* ============================================================== */}
           {!results && !leadInfo ? (
-            <div className="glass-assessment-card" style={{ maxWidth: '540px', margin: '0 auto', textAlign: 'center', padding: '40px 32px', borderColor: 'rgba(255, 20, 147, 0.25)' }}>
+            <div className="glass-assessment-card" style={{ maxWidth: '540px', margin: '0 auto', textAlign: 'center', padding: '40px 32px', borderColor: 'rgba(243, 1, 132, 0.25)' }}>
 
               <h1 style={{ fontSize: '1.85rem', color: '#121214', margin: '0 0 10px 0', fontFamily: 'var(--font-serif)' }}>
                 Your Gut Health Snapshot
@@ -1024,7 +1024,7 @@ ${websiteUrl}`;
               </p>
 
               {leadError && (
-                <div style={{ background: '#FFF0F6', border: '1px solid #FF1493', color: '#D8006C', padding: '10px 14px', borderRadius: '10px', fontSize: '0.88rem', marginBottom: '16px', textAlign: 'left' }}>
+                <div style={{ background: '#FFF0F6', border: '1px solid rgb(243, 1, 132)', color: '#D8006C', padding: '10px 14px', borderRadius: '10px', fontSize: '0.88rem', marginBottom: '16px', textAlign: 'left' }}>
                   ⚠️ {leadError}
                 </div>
               )}
@@ -1032,7 +1032,7 @@ ${websiteUrl}`;
               <form onSubmit={handleStartFromGate} style={{ textAlign: 'left', display: 'flex', flexDirection: 'column', gap: '14px' }}>
                 <div>
                   <label style={{ display: 'block', fontSize: '0.88rem', fontWeight: 600, color: 'var(--text-primary)', marginBottom: '6px' }}>
-                    Full Name <span style={{ color: '#FF1493' }}>*</span>
+                    Full Name <span style={{ color: 'rgb(243, 1, 132)' }}>*</span>
                   </label>
                   <input
                     type="text"
@@ -1040,13 +1040,13 @@ ${websiteUrl}`;
                     onChange={(e) => setLeadName(e.target.value)}
                     placeholder="e.g. Priya Sharma"
                     required
-                    style={{ width: '100%', padding: '12px 16px', borderRadius: '10px', border: '1.5px solid rgba(255, 20, 147, 0.25)', fontSize: '0.95rem' }}
+                    style={{ width: '100%', padding: '12px 16px', borderRadius: '10px', border: '1.5px solid rgba(243, 1, 132, 0.25)', fontSize: '0.95rem' }}
                   />
                 </div>
 
                 <div>
                   <label style={{ display: 'block', fontSize: '0.88rem', fontWeight: 600, color: 'var(--text-primary)', marginBottom: '6px' }}>
-                    Mobile Number <span style={{ color: '#FF1493' }}>*</span>
+                    Mobile Number <span style={{ color: 'rgb(243, 1, 132)' }}>*</span>
                   </label>
                   <input
                     type="tel"
@@ -1054,7 +1054,7 @@ ${websiteUrl}`;
                     onChange={(e) => setLeadPhone(e.target.value)}
                     placeholder="+91 98765 43210"
                     required
-                    style={{ width: '100%', padding: '12px 16px', borderRadius: '10px', border: '1.5px solid rgba(255, 20, 147, 0.25)', fontSize: '0.95rem' }}
+                    style={{ width: '100%', padding: '12px 16px', borderRadius: '10px', border: '1.5px solid rgba(243, 1, 132, 0.25)', fontSize: '0.95rem' }}
                   />
                 </div>
 
@@ -1067,7 +1067,7 @@ ${websiteUrl}`;
                     value={leadEmail}
                     onChange={(e) => setLeadEmail(e.target.value)}
                     placeholder="name@example.com"
-                    style={{ width: '100%', padding: '12px 16px', borderRadius: '10px', border: '1.5px solid rgba(255, 20, 147, 0.25)', fontSize: '0.95rem' }}
+                    style={{ width: '100%', padding: '12px 16px', borderRadius: '10px', border: '1.5px solid rgba(243, 1, 132, 0.25)', fontSize: '0.95rem' }}
                   />
                 </div>
 
@@ -1075,7 +1075,7 @@ ${websiteUrl}`;
                   type="submit"
                   disabled={leadSaving}
                   className="btn btn-primary btn-lg"
-                  style={{ width: '100%', justifyContent: 'center', marginTop: '6px', background: 'linear-gradient(135deg, #FF1493 0%, #FF007F 100%)', borderColor: '#FF1493', boxShadow: '0 8px 24px rgba(255, 20, 147, 0.35)' }}
+                  style={{ width: '100%', justifyContent: 'center', marginTop: '6px', background: 'linear-gradient(135deg, rgb(243, 1, 132) 0%, #FF007F 100%)', borderColor: 'rgb(243, 1, 132)', boxShadow: '0 8px 24px rgba(243, 1, 132, 0.35)' }}
                 >
                   <span>{leadSaving ? 'Preparing Questionnaire...' : 'Begin Gut Health Assessment →'}</span>
                 </button>
@@ -1088,7 +1088,7 @@ ${websiteUrl}`;
             /* ============================================================== */
             /* ACTIVE QUESTIONNAIRE VIEW (Q3 TO Q20) — NEON PINK THEME       */
             /* ============================================================== */
-            <div className="glass-assessment-card" id="assessment-quiz-container" style={{ borderColor: 'rgba(255, 20, 147, 0.25)' }}>
+            <div className="glass-assessment-card" id="assessment-quiz-container" style={{ borderColor: 'rgba(243, 1, 132, 0.25)' }}>
 
               {/* Header Bar: Navigation + Progress */}
               <div style={{ marginBottom: '22px' }}>
@@ -1098,7 +1098,7 @@ ${websiteUrl}`;
                       type="button"
                       onClick={handlePrevious}
                       className="btn btn-secondary btn-sm"
-                      style={{ padding: '6px 14px', fontSize: '0.82rem', background: '#FFFFFF', border: '1px solid rgba(255, 20, 147, 0.25)', color: '#FF1493' }}
+                      style={{ padding: '6px 14px', fontSize: '0.82rem', background: '#FFFFFF', border: '1px solid rgba(243, 1, 132, 0.25)', color: 'rgb(243, 1, 132)' }}
                     >
                       &larr; Back
                     </button>
@@ -1109,7 +1109,7 @@ ${websiteUrl}`;
                   <span
                     style={{
                       background: '#FFF0F6',
-                      color: '#FF1493',
+                      color: 'rgb(243, 1, 132)',
                       border: '1px solid #FF66B2',
                       padding: '4px 14px',
                       borderRadius: '20px',
@@ -1133,8 +1133,8 @@ ${websiteUrl}`;
                     style={{
                       height: '100%',
                       width: `${progressPercent}%`,
-                      background: 'linear-gradient(90deg, #FF66B2 0%, #FF1493 50%, #FF007F 100%)',
-                      boxShadow: '0 0 12px rgba(255, 20, 147, 0.45)',
+                      background: 'linear-gradient(90deg, #FF66B2 0%, rgb(243, 1, 132) 50%, #FF007F 100%)',
+                      boxShadow: '0 0 12px rgba(243, 1, 132, 0.45)',
                       transition: 'width 0.35s ease'
                     }}
                   ></div>
@@ -1145,7 +1145,7 @@ ${websiteUrl}`;
               <div
                 style={{
                   background: 'rgba(241, 245, 249, 0.95)',
-                  borderLeft: '4px solid rgba(255, 20, 147, 0.35)',
+                  borderLeft: '4px solid rgba(243, 1, 132, 0.35)',
                   padding: '12px 18px',
                   borderRadius: '10px',
                   marginBottom: '22px'
@@ -1191,7 +1191,7 @@ ${websiteUrl}`;
                             {opt.label}
                           </span>
                         </div>
-                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" style={{ color: '#FF1493', flexShrink: 0 }}>
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" style={{ color: 'rgb(243, 1, 132)', flexShrink: 0 }}>
                           <polyline points="9 18 15 12 9 6"></polyline>
                         </svg>
                       </button>
@@ -1218,7 +1218,7 @@ ${websiteUrl}`;
                               width: '18px',
                               height: '18px',
                               borderRadius: '50%',
-                              border: isSelected ? '5px solid #FF1493' : '2px solid rgba(255, 20, 147, 0.3)',
+                              border: isSelected ? '5px solid rgb(243, 1, 132)' : '2px solid rgba(243, 1, 132, 0.3)',
                               background: 'white',
                               flexShrink: 0
                             }}
@@ -1227,7 +1227,7 @@ ${websiteUrl}`;
                             {optText}
                           </span>
                         </div>
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" style={{ color: '#FF1493', flexShrink: 0 }}>
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" style={{ color: 'rgb(243, 1, 132)', flexShrink: 0 }}>
                           <polyline points="9 18 15 12 9 6"></polyline>
                         </svg>
                       </button>
@@ -1267,7 +1267,7 @@ ${websiteUrl}`;
                       type="button"
                       onClick={handleMultiSubmit}
                       className="btn btn-primary"
-                      style={{ background: 'linear-gradient(135deg, #FF1493 0%, #FF007F 100%)', borderColor: '#FF1493', padding: '12px 28px', borderRadius: '12px', boxShadow: '0 6px 20px rgba(255, 20, 147, 0.3)' }}
+                      style={{ background: 'linear-gradient(135deg, rgb(243, 1, 132) 0%, #FF007F 100%)', borderColor: 'rgb(243, 1, 132)', padding: '12px 28px', borderRadius: '12px', boxShadow: '0 6px 20px rgba(243, 1, 132, 0.3)' }}
                     >
                       <span>Continue →</span>
                     </button>
@@ -1287,7 +1287,7 @@ ${websiteUrl}`;
                       width: '100%',
                       padding: '14px 18px',
                       borderRadius: '14px',
-                      border: '1.5px solid rgba(255, 20, 147, 0.3)',
+                      border: '1.5px solid rgba(243, 1, 132, 0.3)',
                       fontSize: '0.95rem',
                       lineHeight: 1.6,
                       marginBottom: '20px',
@@ -1303,7 +1303,7 @@ ${websiteUrl}`;
                       type="button"
                       onClick={handleFinishAssessment}
                       className="btn btn-primary btn-lg"
-                      style={{ background: 'linear-gradient(135deg, #FF1493 0%, #FF007F 100%)', borderColor: '#FF1493', padding: '14px 32px', borderRadius: '14px', boxShadow: '0 8px 24px rgba(255, 20, 147, 0.35)' }}
+                      style={{ background: 'linear-gradient(135deg, rgb(243, 1, 132) 0%, #FF007F 100%)', borderColor: 'rgb(243, 1, 132)', padding: '14px 32px', borderRadius: '14px', boxShadow: '0 8px 24px rgba(243, 1, 132, 0.35)' }}
                     >
                       <span>Generate My Gut Health Snapshot →</span>
                     </button>
@@ -1316,12 +1316,12 @@ ${websiteUrl}`;
             /* ============================================================== */
             /* RESULTS SCORECARD: STRICTLY NEON PINK THEME & EMAIL DISPATCH    */
             /* ============================================================== */
-            <div id="assessment-results-box" className="glass-assessment-card" style={{ padding: '36px 28px', borderColor: 'rgba(255, 20, 147, 0.35)' }}>
+            <div id="assessment-results-box" className="glass-assessment-card" style={{ padding: '36px 28px', borderColor: 'rgba(243, 1, 132, 0.35)' }}>
 
               {/* Header */}
               <div style={{ textAlign: 'center', marginBottom: '24px' }}>
-                <span className="badge-pill" style={{ marginBottom: '8px', background: '#FFF0F6', borderColor: '#FF1493', color: '#FF1493' }}>
-                  <span className="pulse-dot" style={{ background: '#FF1493' }}></span>
+                <span className="badge-pill" style={{ marginBottom: '8px', background: '#FFF0F6', borderColor: 'rgb(243, 1, 132)', color: 'rgb(243, 1, 132)' }}>
+                  <span className="pulse-dot" style={{ background: 'rgb(243, 1, 132)' }}></span>
                   <span>Assessment Complete</span>
                 </span>
                 <h1 style={{ fontSize: '2.2rem', color: '#121214', margin: '4px 0 6px', fontFamily: 'var(--font-serif)' }}>
@@ -1336,7 +1336,7 @@ ${websiteUrl}`;
               {/* PROMINENT SCORE DISPLAY CARD — NEON PINK THEME            */}
               {/* ========================================================== */}
               <div className="scorecard-banner-box" style={{ marginBottom: '24px' }}>
-                <span style={{ fontSize: '0.82rem', color: '#FF1493', textTransform: 'uppercase', fontWeight: 700, letterSpacing: '0.08em' }}>
+                <span style={{ fontSize: '0.82rem', color: 'rgb(243, 1, 132)', textTransform: 'uppercase', fontWeight: 700, letterSpacing: '0.08em' }}>
                   Symptom Frequency Metric
                 </span>
 
@@ -1345,7 +1345,7 @@ ${websiteUrl}`;
                     Your Gut Symptom Score
                   </div>
                   <div style={{ fontFamily: 'var(--font-serif)', fontSize: 'clamp(2.5rem, 7vw, 3.6rem)', fontWeight: 700, color: '#121214', lineHeight: 1 }}>
-                    <span style={{ color: '#FF1493', textShadow: '0 0 20px rgba(255, 20, 147, 0.35)' }}>{results.gutSymptomScore}</span>
+                    <span style={{ color: 'rgb(243, 1, 132)', textShadow: '0 0 20px rgba(243, 1, 132, 0.35)' }}>{results.gutSymptomScore}</span>
                     <span style={{ fontSize: 'clamp(1.3rem, 4vw, 1.8rem)', color: '#64748B', fontWeight: 500, marginLeft: '4px' }}>/100</span>
                   </div>
                 </div>
@@ -1376,7 +1376,7 @@ ${websiteUrl}`;
                 <div
                   style={{
                     background: 'rgba(255, 255, 255, 0.95)',
-                    border: '1.5px solid rgba(255, 20, 147, 0.35)',
+                    border: '1.5px solid rgba(243, 1, 132, 0.35)',
                     borderRadius: '14px',
                     padding: '16px 20px',
                     color: '#1E293B',
@@ -1409,14 +1409,14 @@ ${websiteUrl}`;
                 }}
               >
                 <div>
-                  <div style={{ fontSize: '0.78rem', textTransform: 'uppercase', letterSpacing: '0.06em', color: '#FF1493', fontWeight: 700 }}>
+                  <div style={{ fontSize: '0.78rem', textTransform: 'uppercase', letterSpacing: '0.06em', color: 'rgb(243, 1, 132)', fontWeight: 700 }}>
                     Primary Stated Goal (Q17)
                   </div>
                   <div style={{ fontSize: '1.35rem', fontWeight: 700, color: '#121214', fontFamily: 'var(--font-serif)', marginTop: '2px' }}>
                     {results.primaryConcern}
                   </div>
                 </div>
-                <div style={{ background: '#FF1493', color: 'white', padding: '6px 16px', borderRadius: '20px', fontSize: '0.82rem', fontWeight: 600, boxShadow: '0 2px 10px rgba(255, 20, 147, 0.3)' }}>
+                <div style={{ background: 'rgb(243, 1, 132)', color: 'white', padding: '6px 16px', borderRadius: '20px', fontSize: '0.82rem', fontWeight: 600, boxShadow: '0 2px 10px rgba(243, 1, 132, 0.3)' }}>
                   Personalised Clinical Focus
                 </div>
               </div>
@@ -1463,7 +1463,7 @@ ${websiteUrl}`;
                       ))}
                     </div>
                   ) : (
-                    <p style={{ color: '#FF1493', fontSize: '0.9rem', margin: 0 }}>
+                    <p style={{ color: 'rgb(243, 1, 132)', fontSize: '0.9rem', margin: 0 }}>
                       ✅ You reported <strong>Never</strong> or <strong>Occasionally</strong> across all 8 symptom questions.
                     </p>
                   )}
@@ -1504,7 +1504,7 @@ ${websiteUrl}`;
                     </div>
                   </div>
 
-                  <div style={{ marginTop: '12px', fontSize: '0.78rem', color: '#64748B', fontStyle: 'italic', borderTop: '1px dashed rgba(255, 20, 147, 0.25)', paddingTop: '8px' }}>
+                  <div style={{ marginTop: '12px', fontSize: '0.78rem', color: '#64748B', fontStyle: 'italic', borderTop: '1px dashed rgba(243, 1, 132, 0.25)', paddingTop: '8px' }}>
                     Note: Food associations indicate perceived triggers only; they must not be interpreted as confirmed food intolerances.
                   </div>
                 </div>
@@ -1532,7 +1532,7 @@ ${websiteUrl}`;
                   <div
                     style={{
                       background: '#FFF0F6',
-                      border: '1px solid #FF1493',
+                      border: '1px solid rgb(243, 1, 132)',
                       color: '#D8006C',
                       padding: '10px 14px',
                       borderRadius: '10px',
@@ -1553,7 +1553,7 @@ ${websiteUrl}`;
                   <div
                     style={{
                       background: '#FFF0F6',
-                      border: '1px solid #FF1493',
+                      border: '1px solid rgb(243, 1, 132)',
                       color: '#D8006C',
                       padding: '10px 14px',
                       borderRadius: '10px',
@@ -1576,7 +1576,7 @@ ${websiteUrl}`;
                       flex: '1 1 240px',
                       padding: '12px 16px',
                       borderRadius: '10px',
-                      border: '1.5px solid rgba(255, 20, 147, 0.35)',
+                      border: '1.5px solid rgba(243, 1, 132, 0.35)',
                       fontSize: '0.94rem'
                     }}
                   />
@@ -1584,7 +1584,7 @@ ${websiteUrl}`;
                     type="submit"
                     disabled={emailStatus === 'sending'}
                     className="btn btn-primary"
-                    style={{ background: 'linear-gradient(135deg, #FF1493 0%, #FF007F 100%)', borderColor: '#FF1493', padding: '12px 22px', borderRadius: '10px', boxShadow: '0 6px 20px rgba(255, 20, 147, 0.3)' }}
+                    style={{ background: 'linear-gradient(135deg, rgb(243, 1, 132) 0%, #FF007F 100%)', borderColor: 'rgb(243, 1, 132)', padding: '12px 22px', borderRadius: '10px', boxShadow: '0 6px 20px rgba(243, 1, 132, 0.3)' }}
                   >
                     <span>{emailStatus === 'sending' ? 'Sending Scorecard...' : emailStatus === 'success' ? 'Resend Scorecard' : 'Email My Scorecard →'}</span>
                   </button>
@@ -1595,7 +1595,7 @@ ${websiteUrl}`;
                     type="button"
                     onClick={handleDownloadScorecard}
                     className="btn btn-secondary btn-sm"
-                    style={{ padding: '8px 16px', fontSize: '0.85rem', background: '#FFF0F6', border: '1.5px solid rgba(255, 20, 147, 0.4)', color: '#FF1493', fontWeight: 700, borderRadius: '10px', display: 'flex', alignItems: 'center', gap: '8px', cursor: 'pointer' }}
+                    style={{ padding: '8px 16px', fontSize: '0.85rem', background: '#FFF0F6', border: '1.5px solid rgba(243, 1, 132, 0.4)', color: 'rgb(243, 1, 132)', fontWeight: 700, borderRadius: '10px', display: 'flex', alignItems: 'center', gap: '8px', cursor: 'pointer' }}
                   >
                     <span>📥</span>
                     <span>Direct Download Scorecard</span>
@@ -1614,18 +1614,18 @@ ${websiteUrl}`;
                 style={{
                   background: 'linear-gradient(135deg, #121214 0%, #200D18 100%)',
                   borderRadius: '18px',
-                  border: '1.5px solid rgba(255, 20, 147, 0.35)',
+                  border: '1.5px solid rgba(243, 1, 132, 0.35)',
                   padding: '28px 24px',
                   color: 'white',
                   textAlign: 'center',
-                  boxShadow: '0 12px 30px rgba(255, 20, 147, 0.15)',
+                  boxShadow: '0 12px 30px rgba(243, 1, 132, 0.15)',
                   marginBottom: '22px'
                 }}
               >
                 <div
                   style={{
                     display: 'inline-block',
-                    background: 'rgba(255, 20, 147, 0.22)',
+                    background: 'rgba(243, 1, 132, 0.22)',
                     color: '#FF66B2',
                     padding: '3px 12px',
                     borderRadius: '16px',
@@ -1649,7 +1649,7 @@ ${websiteUrl}`;
                     target="_blank"
                     rel="noopener noreferrer"
                     className="btn btn-primary"
-                    style={{ background: 'linear-gradient(135deg, #FF1493 0%, #FF007F 100%)', color: 'white', fontWeight: 700, padding: '14px 28px', fontSize: '1rem', borderRadius: '14px', border: 'none', boxShadow: '0 8px 25px rgba(255, 20, 147, 0.4)' }}
+                    style={{ background: 'linear-gradient(135deg, rgb(243, 1, 132) 0%, #FF007F 100%)', color: 'white', fontWeight: 700, padding: '14px 28px', fontSize: '1rem', borderRadius: '14px', border: 'none', boxShadow: '0 8px 25px rgba(243, 1, 132, 0.4)' }}
                   >
                     <span>Book 1-on-1 Consultation With This Snapshot →</span>
                   </a>
@@ -1662,7 +1662,7 @@ ${websiteUrl}`;
                   type="button"
                   onClick={restartAssessment}
                   className="btn btn-secondary btn-sm"
-                  style={{ padding: '6px 16px', fontSize: '0.8rem', background: '#FFF0F6', border: '1px solid rgba(255, 20, 147, 0.3)', color: '#FF1493' }}
+                  style={{ padding: '6px 16px', fontSize: '0.8rem', background: '#FFF0F6', border: '1px solid rgba(243, 1, 132, 0.3)', color: 'rgb(243, 1, 132)' }}
                 >
                   &larr; Retake Assessment
                 </button>

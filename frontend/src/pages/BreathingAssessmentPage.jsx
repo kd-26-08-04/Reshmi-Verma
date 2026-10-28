@@ -592,7 +592,7 @@ Website: https://healthwithreshmi.com`;
       background: linear-gradient(135deg, #0A0E0C 0%, #17261E 100%);
       color: #FFFFFF;
       padding: 36px 32px;
-      border-bottom: 4px solid #00E5D9;
+      border-bottom: 4px solid rgb(1, 183, 180);
     }
     .brand-title {
       font-size: 24px;
@@ -609,11 +609,11 @@ Website: https://healthwithreshmi.com`;
       margin-top: 20px;
       font-size: 13px;
     }
-    .client-meta div strong { color: #00E5D9; display: block; font-size: 11px; text-transform: uppercase; }
+    .client-meta div strong { color: rgb(1, 183, 180); display: block; font-size: 11px; text-transform: uppercase; }
     .report-body { padding: 36px 32px; }
     .score-banner {
       background: #E6FCFB;
-      border: 1.5px solid #00E5D9;
+      border: 1.5px solid rgb(1, 183, 180);
       border-radius: 16px;
       padding: 24px;
       text-align: center;
@@ -641,7 +641,7 @@ Website: https://healthwithreshmi.com`;
     .btn-booking {
       display: inline-block;
       margin-top: 14px;
-      background: #00E5D9;
+      background: rgb(1, 183, 180);
       color: #121214 !important;
       text-decoration: none;
       padding: 10px 22px;
@@ -662,7 +662,7 @@ Website: https://healthwithreshmi.com`;
 <body>
   <div class="report-card">
     <div class="report-header">
-      <div style="display:inline-block;background:rgba(0,229,217,0.2);color:#00E5D9;font-size:11px;font-weight:700;padding:4px 12px;border-radius:20px;text-transform:uppercase;margin-bottom:12px;">Oxygen Advantage® Clinical Assessment</div>
+      <div style="display:inline-block;background:rgba(0,229,217,0.2);color:rgb(1, 183, 180);font-size:11px;font-weight:700;padding:4px 12px;border-radius:20px;text-transform:uppercase;margin-bottom:12px;">Oxygen Advantage® Clinical Assessment</div>
       <div class="brand-title">HealthwithReshmi™</div>
       <div style="font-size:13px;opacity:0.85;">Reshmi Verma &bull; Certified Oxygen Advantage® Coach (#13 India)</div>
       
@@ -738,7 +738,7 @@ Website: https://healthwithreshmi.com`;
                     padding: '8px 16px',
                     borderRadius: '999px',
                     border: '1.5px solid',
-                    borderColor: currentPillar === idx ? '#00E5D9' : 'var(--border-subtle)',
+                    borderColor: currentPillar === idx ? 'rgb(1, 183, 180)' : 'var(--border-subtle)',
                     background: currentPillar === idx ? '#EBF9F8' : 'white',
                     color: currentPillar === idx ? '#167A71' : 'var(--text-secondary)',
                     fontWeight: 700,
@@ -806,7 +806,7 @@ Website: https://healthwithreshmi.com`;
             <div
               style={{
                 background: '#F0FDFA',
-                border: '1.5px solid #00E5D9',
+                border: '1.5px solid rgb(1, 183, 180)',
                 borderRadius: '20px',
                 padding: '28px 24px',
                 marginBottom: '24px',
@@ -898,7 +898,7 @@ Website: https://healthwithreshmi.com`;
 
             {/* Reshmi Clinical Roadmap CTA */}
             <div style={{ padding: '28px 24px', borderRadius: '20px', background: 'linear-gradient(135deg, #0A0E0C 0%, #17261E 100%)', color: '#FFFFFF', textAlign: 'center', marginBottom: '24px', boxShadow: '0 12px 30px rgba(0,0,0,0.18)' }}>
-              <h3 style={{ fontSize: '1.35rem', color: '#00E5D9', margin: '0 0 8px', fontWeight: 800 }}>
+              <h3 style={{ fontSize: '1.35rem', color: 'rgb(1, 183, 180)', margin: '0 0 8px', fontWeight: 800 }}>
                 Restore Your Cellular Oxygen Delivery with Reshmi Verma
               </h3>
               <p style={{ fontSize: '0.92rem', color: 'rgba(255,255,255,0.85)', maxWidth: '620px', margin: '0 auto 20px', lineHeight: 1.55 }}>
@@ -911,7 +911,7 @@ Website: https://healthwithreshmi.com`;
                   rel="noopener noreferrer"
                   style={{
                     padding: '13px 28px',
-                    background: '#00E5D9',
+                    background: 'rgb(1, 183, 180)',
                     color: '#121214',
                     fontWeight: 800,
                     borderRadius: '12px',
@@ -940,7 +940,7 @@ Website: https://healthwithreshmi.com`;
                     padding: '12px 24px',
                     background: '#FFFFFF',
                     color: '#0D827B',
-                    border: '1.5px solid #00E5D9',
+                    border: '1.5px solid rgb(1, 183, 180)',
                     borderRadius: '12px',
                     fontWeight: 700,
                     display: 'inline-flex',
@@ -1011,7 +1011,7 @@ Website: https://healthwithreshmi.com`;
           <div className="glass-assessment-card" style={{ maxWidth: '540px', margin: '0 auto', textAlign: 'center', padding: '40px 32px' }}>
             <div style={{ marginBottom: '12px' }}>
               <span className="badge-pill" style={{ background: '#EBF9F8', color: '#167A71', borderColor: '#9FE3DD' }}>
-                <span className="pulse-dot" style={{ background: '#00E5D9' }}></span>
+                <span className="pulse-dot" style={{ background: 'rgb(1, 183, 180)' }}></span>
                 <span>Step 1 of 2 &bull; Oxygen Advantage® Intake</span>
               </span>
             </div>
@@ -1081,7 +1081,7 @@ Website: https://healthwithreshmi.com`;
                   fontWeight: 700,
                   marginTop: '8px',
                   borderRadius: '12px',
-                  background: '#00E5D9',
+                  background: 'rgb(1, 183, 180)',
                   color: '#121214',
                   border: 'none',
                   cursor: 'pointer'
@@ -1125,7 +1125,7 @@ Website: https://healthwithreshmi.com`;
                       type="button"
                       onClick={handleStartBolt}
                       className="btn"
-                      style={{ padding: '10px 20px', fontSize: '0.9rem', background: '#00E5D9', color: '#121214', fontWeight: 700, border: 'none', borderRadius: '12px', cursor: 'pointer' }}
+                      style={{ padding: '10px 20px', fontSize: '0.9rem', background: 'rgb(1, 183, 180)', color: '#121214', fontWeight: 700, border: 'none', borderRadius: '12px', cursor: 'pointer' }}
                     >
                       ▶️ Start BOLT Test
                     </button>
@@ -1155,7 +1155,7 @@ Website: https://healthwithreshmi.com`;
               return (
                 <div key={section.id}>
                   {/* Pillar Banner */}
-                  <div style={{ marginBottom: '22px', padding: '16px 20px', borderRadius: '16px', background: '#FAF9F6', borderLeft: '4px solid #00E5D9', borderTop: '1px solid var(--border-subtle)', borderRight: '1px solid var(--border-subtle)', borderBottom: '1px solid var(--border-subtle)' }}>
+                  <div style={{ marginBottom: '22px', padding: '16px 20px', borderRadius: '16px', background: '#FAF9F6', borderLeft: '4px solid rgb(1, 183, 180)', borderTop: '1px solid var(--border-subtle)', borderRight: '1px solid var(--border-subtle)', borderBottom: '1px solid var(--border-subtle)' }}>
                     <div style={{ fontSize: '0.82rem', fontWeight: 700, color: '#167A71', textTransform: 'uppercase' }}>
                       {section.badge}
                     </div>
@@ -1179,7 +1179,7 @@ Website: https://healthwithreshmi.com`;
                           style={{
                             padding: '24px',
                             borderRadius: '18px',
-                            border: selected ? '1.5px solid #00E5D9' : '1px solid var(--border-subtle)',
+                            border: selected ? '1.5px solid rgb(1, 183, 180)' : '1px solid var(--border-subtle)',
                             background: '#FFFFFF',
                             boxShadow: selected ? '0 8px 24px rgba(0, 229, 217,0.12)' : 'var(--shadow-sm)',
                             transition: 'all 0.2s'
@@ -1207,7 +1207,7 @@ Website: https://healthwithreshmi.com`;
                                     padding: '12px 14px',
                                     borderRadius: '12px',
                                     border: '1.5px solid',
-                                    borderColor: isOptSelected ? '#00E5D9' : 'var(--border-subtle)',
+                                    borderColor: isOptSelected ? 'rgb(1, 183, 180)' : 'var(--border-subtle)',
                                     background: isOptSelected ? '#EBF9F8' : '#FAF9F6',
                                     color: isOptSelected ? '#121214' : 'var(--text-primary)',
                                     cursor: 'pointer',
@@ -1225,8 +1225,8 @@ Website: https://healthwithreshmi.com`;
                                     height: '18px',
                                     borderRadius: '50%',
                                     border: '2px solid',
-                                    borderColor: isOptSelected ? '#00E5D9' : '#CBD5E1',
-                                    background: isOptSelected ? '#00E5D9' : 'white',
+                                    borderColor: isOptSelected ? 'rgb(1, 183, 180)' : '#CBD5E1',
+                                    background: isOptSelected ? 'rgb(1, 183, 180)' : 'white',
                                     flexShrink: 0,
                                     marginTop: '2px'
                                   }}></span>
@@ -1273,7 +1273,7 @@ Website: https://healthwithreshmi.com`;
                         type="button"
                         onClick={handleFinish}
                         className="btn btn-primary btn-lg"
-                        style={{ padding: '14px 36px', background: '#00E5D9', color: '#121214', fontWeight: 800, border: 'none' }}
+                        style={{ padding: '14px 36px', background: 'rgb(1, 183, 180)', color: '#121214', fontWeight: 800, border: 'none' }}
                       >
                         📊 View My Oxygen Advantage Scorecard &rarr;
                       </button>

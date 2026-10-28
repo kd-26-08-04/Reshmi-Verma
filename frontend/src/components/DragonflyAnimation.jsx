@@ -41,7 +41,7 @@ const SPECIES_PALETTES = [
   {
     id: 'neon-turquoise',
     name: 'Neon Turquoise Dragonfly',
-    bodyColors: ['#004D48', '#00998F', '#00E5D9', '#007A73'],
+    bodyColors: ['#004D48', '#00998F', 'rgb(1, 183, 180)', '#007A73'],
     thoraxColors: ['#007A73', '#33EBE1', '#004D48'],
     wingGradients: [
       'rgba(255, 255, 255, 0.9)',
@@ -51,7 +51,7 @@ const SPECIES_PALETTES = [
     ],
     wingVein: 'rgba(0, 229, 217, 0.65)',
     eyeColor: '#007A73',
-    eyeStroke: '#00E5D9',
+    eyeStroke: 'rgb(1, 183, 180)',
     eyeHighlight: '#E6FCFB',
     segmentColor: '#4DF0E7',
     accentColor: '#B3FAF6',

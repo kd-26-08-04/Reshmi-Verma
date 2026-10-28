@@ -332,7 +332,7 @@ export default function VideosPage() {
             padding: '5px 14px',
             borderRadius: '999px',
             background: '#121214',
-            color: '#00E5D9',
+            color: 'rgb(1, 183, 180)',
             fontSize: '0.78rem',
             fontWeight: 800,
             letterSpacing: '0.04em',
@@ -466,7 +466,7 @@ export default function VideosPage() {
                 padding: '8px 20px',
                 borderRadius: '999px',
                 background: '#121214',
-                color: '#00E5D9',
+                color: 'rgb(1, 183, 180)',
                 border: 'none',
                 fontWeight: 700,
                 fontSize: '0.82rem',
@@ -759,7 +759,7 @@ export default function VideosPage() {
 
               {/* Modal Header */}
               <div style={{ padding: '12px 16px', borderBottom: '1px solid rgba(255, 255, 255, 0.1)' }}>
-                <span style={{ fontSize: '0.70rem', color: '#00E5D9', fontWeight: 800, textTransform: 'uppercase' }}>
+                <span style={{ fontSize: '0.70rem', color: 'rgb(1, 183, 180)', fontWeight: 800, textTransform: 'uppercase' }}>
                   {selectedVideo.categoryLabel}
                 </span>
                 <h3 style={{ margin: '2px 0 0', color: '#FFFFFF', fontSize: '1rem', fontWeight: 800, paddingRight: '36px', lineHeight: 1.3 }}>
@@ -812,7 +812,7 @@ export default function VideosPage() {
                   style={{
                     padding: '8px 14px',
                     borderRadius: '8px',
-                    background: '#00E5D9',
+                    background: 'rgb(1, 183, 180)',
                     color: '#121214',
                     fontWeight: 800,
                     fontSize: '0.78rem',
@@ -846,7 +846,7 @@ export default function VideosPage() {
               target="_blank"
               rel="noopener noreferrer"
               className="btn btn-primary"
-              style={{ padding: '11px 22px', background: '#00E5D9', color: '#121214', fontWeight: 800, borderRadius: '10px', fontSize: '0.86rem' }}
+              style={{ padding: '11px 22px', background: 'rgb(1, 183, 180)', color: '#121214', fontWeight: 800, borderRadius: '10px', fontSize: '0.86rem' }}
             >
               Book 1:1 Consultation
             </a>

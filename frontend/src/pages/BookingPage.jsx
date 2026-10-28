@@ -343,7 +343,7 @@ export default function BookingPage() {
                   letterSpacing: '0.04em',
                   textTransform: 'uppercase'
                 }}>
-                  <span style={{ color: '#00E5D9' }}>★</span>
+                  <span style={{ color: 'rgb(1, 183, 180)' }}>★</span>
                   <span>{currentTier.badge || 'Official 1:1 Clinical Consultation'}</span>
                 </span>
 
@@ -394,7 +394,7 @@ export default function BookingPage() {
                 style={{
                   width: '100%',
                   background: showPlanDetails ? '#FAF9F6' : 'rgba(0, 229, 217, 0.08)',
-                  border: showPlanDetails ? '1px solid #D1D5DB' : '1.5px solid #00E5D9',
+                  border: showPlanDetails ? '1px solid #D1D5DB' : '1.5px solid rgb(1, 183, 180)',
                   borderRadius: '12px',
                   padding: '10px 14px',
                   fontSize: '0.84rem',

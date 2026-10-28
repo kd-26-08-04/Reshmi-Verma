@@ -80,7 +80,7 @@ export default function AuthPage() {
             <img
               src="/assets/images/Reshmi_Logo.png"
               alt="Health with Reshmi"
-              style={{ width: '80px', height: '80px', objectFit: 'contain', margin: '0 auto 12px', display: 'block', filter: 'drop-shadow(0 4px 14px rgba(255, 20, 147, 0.28))' }}
+              style={{ width: '80px', height: '80px', objectFit: 'contain', margin: '0 auto 12px', display: 'block', filter: 'drop-shadow(0 4px 14px rgba(243, 1, 132, 0.28))' }}
             />
             <div className="auth-security-pill" style={{ marginBottom: '10px' }}>
               <span className="pulse-dot"></span>

@@ -5,48 +5,48 @@ import { getApiUrl, RAZORPAY_PAYMENT_URL } from '../utils/api';
 const DEFAULT_REELS = [
   {
     id: "reel-1",
+    title: "How to Eat Seeds the Right Way: Chia, Flax, Sesame, Pumpkin & More",
+    url: "https://www.instagram.com/reel/DeBgLUCzomt/?psln=aXkwYXExNWd5end2",
+    image: "/assets/images/2ndreel.png",
+    views: "68.1K",
+    duration: "0:54",
+    topic: "Seed Nutrition"
+  },
+  {
+    id: "reel-2",
+    title: "4-7-8 Breathing Technique: Calm Your Nervous System & Beat Stress",
+    url: "https://www.instagram.com/reel/DaqrVQzz5No/?dlrf=MTh3Y29xaXIxdXFzbQ==",
+    image: "/assets/images/3rdreel.png",
+    views: "81.6K",
+    duration: "0:48",
+    topic: "Breathwork & Stress Relief"
+  },
+  {
+    id: "reel-3",
+    title: "Mudras & Breathwork: How Hand Positions Change Your Nervous System",
+    url: "https://www.instagram.com/reel/DZVtU4TTQbS/?cplk=cjRmeHA0aWE4ZzJr",
+    image: "/assets/images/4threel.png",
+    views: "44.9K",
+    duration: "0:56",
+    topic: "Mudras & Breathwork"
+  },
+  {
+    id: "reel-4",
+    title: "Protein Won't Damage Your Kidneys: Busting the Biggest Indian Diet Myth",
+    url: "https://www.instagram.com/reel/DY5Q--ATcKt/?vrfl=bWp5NGJvZjYydWZv",
+    image: "/assets/images/5threel.png",
+    views: "73.2K",
+    duration: "0:51",
+    topic: "Protein Myths"
+  },
+  {
+    id: "reel-5",
     title: "Food Controlling You vs. You Controlling Food: Root Cause Healing",
     url: "https://www.instagram.com/reel/Dbt0IfST8hF/?xtok=c3ExNWwxN2pwd3hp",
     image: "/assets/images/reshmi-verma.jpeg",
     views: "52.4K",
     duration: "0:59",
     topic: "Food Freedom"
-  },
-  {
-    id: "reel-2",
-    title: "How to Eat Seeds the Right Way: Chia, Flax, Sesame, Pumpkin & More",
-    url: "https://www.instagram.com/reel/DeBgLUCzomt/?psln=aXkwYXExNWd5end2",
-    image: "/assets/images/functional-nutrition.jpg",
-    views: "68.1K",
-    duration: "0:54",
-    topic: "Seed Nutrition"
-  },
-  {
-    id: "reel-3",
-    title: "4-7-8 Breathing Technique: Calm Your Nervous System & Beat Stress",
-    url: "https://www.instagram.com/reel/DaqrVQzz5No/?dlrf=MTh3Y29xaXIxdXFzbQ==",
-    image: "/assets/images/reel-3-food-swaps.jpg",
-    views: "81.6K",
-    duration: "0:48",
-    topic: "Breathwork & Stress Relief"
-  },
-  {
-    id: "reel-4",
-    title: "Mudras & Breathwork: How Hand Positions Change Your Nervous System",
-    url: "https://www.instagram.com/reel/DZVtU4TTQbS/?cplk=cjRmeHA0aWE4ZzJr",
-    image: "/assets/images/reel-4-gut-mucosa.jpg",
-    views: "44.9K",
-    duration: "0:56",
-    topic: "Mudras & Breathwork"
-  },
-  {
-    id: "reel-5",
-    title: "Protein Won't Damage Your Kidneys: Busting the Biggest Indian Diet Myth",
-    url: "https://www.instagram.com/reel/DY5Q--ATcKt/?vrfl=bWp5NGJvZjYydWZv",
-    image: "/assets/images/clinic-sanctuary.jpg",
-    views: "73.2K",
-    duration: "0:51",
-    topic: "Protein Myths"
   },
   {
     id: "reel-6",
@@ -277,7 +277,7 @@ export default function HomePage() {
                 <div className="hero-portrait-glow-ring"></div>
                 <div className="hero-portrait-image-wrap">
                   <img
-                    src="/assets/images/Verma.png"
+                    src="/assets/images/verma.png"
                     alt="Reshmi Verma — Functional Nutritionist & Breathwork Facilitator"
                     className="hero-portrait-img"
                     onError={(e) => { e.target.src = '/assets/images/Verma.png'; }}
@@ -637,7 +637,7 @@ export default function HomePage() {
             <h2 style={{ fontSize: '2.2rem', lineHeight: 1.2, marginBottom: '10px' }}>
               <span
                 style={{
-                  background: 'linear-gradient(135deg, #FF1493 0%, #FF007F 50%, #FF69B4 100%)',
+                  background: 'linear-gradient(135deg, rgb(243, 1, 132) 0%, #FF007F 50%, #FF69B4 100%)',
                   WebkitBackgroundClip: 'text',
                   WebkitTextFillColor: 'transparent',
                   backgroundClip: 'text',
@@ -721,7 +721,7 @@ export default function HomePage() {
                 style={{
                   display: 'inline-block',
                   fontSize: '0.78rem',
-                  color: '#00E5D9',
+                  color: 'rgb(1, 183, 180)',
                   textTransform: 'uppercase',
                   letterSpacing: '0.08em',
                   fontWeight: 800,
@@ -764,7 +764,7 @@ export default function HomePage() {
                       backdropFilter: 'blur(16px)',
                       WebkitBackdropFilter: 'blur(16px)',
                       border: '1px solid rgba(255, 255, 255, 0.08)',
-                      borderTop: '2.5px solid #00E5D9',
+                      borderTop: '2.5px solid rgb(1, 183, 180)',
                       borderRadius: '16px',
                       padding: '18px 18px',
                       display: 'flex',
@@ -781,7 +781,7 @@ export default function HomePage() {
                           height: '44px',
                           borderRadius: '50%',
                           objectFit: 'cover',
-                          border: '1.5px solid #00E5D9',
+                          border: '1.5px solid rgb(1, 183, 180)',
                           flexShrink: 0
                         }}
                       />
@@ -789,7 +789,7 @@ export default function HomePage() {
                         <h4 style={{ margin: 0, fontSize: '0.96rem', fontWeight: 800, color: '#FFFFFF' }}>
                           {story.name}
                         </h4>
-                        <span style={{ fontSize: '0.74rem', color: '#00E5D9', fontWeight: 700 }}>
+                        <span style={{ fontSize: '0.74rem', color: 'rgb(1, 183, 180)', fontWeight: 700 }}>
                           {story.location} &bull; Verified
                         </span>
                       </div>
@@ -1071,7 +1071,7 @@ export default function HomePage() {
             <div className="more-about-card">
               <Link to="/about" style={{ display: 'block', textDecoration: 'none' }}>
                 <div className="more-about-img-box">
-                  <img src="/assets/images/reshmi-saree-hero.jpg" alt="About Reshmi Verma" />
+                  <img src="/assets/images/verma.png" alt="About Reshmi Verma" />
                 </div>
               </Link>
               <div className="more-about-content">
@@ -1169,7 +1169,7 @@ export default function HomePage() {
               marginBottom: '24px'
             }}
           >
-            <span className="pulse-dot" style={{ background: '#00E5D9' }}></span>
+            <span className="pulse-dot" style={{ background: 'rgb(1, 183, 180)' }}></span>
             <span>Begin Your Healing Journey</span>
           </span>
           <h2 style={{ color: '#FFFFFF', fontSize: 'clamp(1.45rem, 5.5vw, 2.75rem)', marginBottom: '14px', lineHeight: 1.25 }}>Tired of Guessing About Your Health?</h2>
