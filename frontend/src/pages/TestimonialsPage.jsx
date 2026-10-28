@@ -364,8 +364,6 @@ export default function TestimonialsPage() {
               }}
             >
               <span>🎥 Video Testimonials</span>
-              <span>•</span>
-              <span style={{ color: '#0D827B' }}>Direct Patient Reviews</span>
             </span>
 
             <h2

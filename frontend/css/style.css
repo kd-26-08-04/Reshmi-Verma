@@ -115,6 +115,7 @@
   --font-serif: 'Playfair Display', Georgia, serif;
   --font-editorial: 'Newsreader', Georgia, serif;
   --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  --font-script: 'Allura', 'Alex Brush', cursive;
 
   /* Radii */
   --radius-sm: 10px;
@@ -509,7 +510,8 @@ h6 {
   font-size: 1.35rem;
   font-weight: 700;
   color: var(--emerald-deep);
-  letter-spacing: -0.01em;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
   line-height: 1.1;
   white-space: nowrap;
   display: inline-flex;
@@ -517,16 +519,16 @@ h6 {
 }
 
 .brand-reshmi-script {
-  font-family: 'Brittany', 'Brittany Signature', 'Alex Brush', 'Great Vibes', cursive;
+  font-family: 'Allura', 'Alex Brush', 'Brittany', 'Great Vibes', cursive;
   color: #FF1493;
-  font-size: 1.6em;
+  font-size: 1.7em;
   font-weight: 400;
   letter-spacing: 0.02em;
-  margin-left: 2px;
+  margin-left: 3px;
   display: inline-block;
   line-height: 0.85;
-  text-shadow: 0 0 10px rgba(255, 20, 147, 0.28);
-  vertical-align: -1px;
+  text-shadow: 0 0 12px rgba(255, 20, 147, 0.3);
+  vertical-align: -2px;
 }
 
 .brand-text .tagline {

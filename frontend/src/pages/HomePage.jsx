@@ -246,10 +246,8 @@ export default function HomePage() {
               <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginTop: '14px', fontSize: '0.88rem', color: 'var(--text-secondary)', flexWrap: 'wrap' }}>
                 <span style={{ display: 'inline-flex', alignItems: 'center', gap: '6px', color: 'var(--emerald-deep)', fontWeight: 600 }}>
                   <span style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#15803D' }}></span>
-                  60-Min 1:1 Session with Reshmi Verma
+                  60-Min 1:1 Consultation with Reshmi Verma
                 </span>
-                <span>&bull;</span>
-                <span>Direct Clinical Root-Cause Roadmap</span>
               </div>
 
               {/* Hero Clinical Highlights */}
@@ -279,35 +277,15 @@ export default function HomePage() {
                 <div className="hero-portrait-glow-ring"></div>
                 <div className="hero-portrait-image-wrap">
                   <img
-                    src="/assets/images/reshmi-saree-hero.jpg"
+                    src="/assets/images/Verma.png"
                     alt="Reshmi Verma — Functional Nutritionist & Breathwork Facilitator"
                     className="hero-portrait-img"
-                    onError={(e) => { e.target.src = '/assets/images/reshmi-verma.jpeg'; }}
+                    onError={(e) => { e.target.src = '/assets/images/Verma.png'; }}
                   />
                   <div className="hero-portrait-overlay"></div>
                 </div>
 
-                {/* Floating Top Trust Badge */}
-                <div className="hero-floating-badge badge-top-right">
-                  <div className="badge-text">
-                    <strong>18+ Years</strong>
-                    <span>DIRECTOR, RAINBOW MEDINOVA</span>
-                  </div>
-                </div>
 
-                {/* Floating Bottom Identity Badge */}
-                <div className="hero-floating-badge badge-bottom-left">
-                  <div className="badge-text">
-                    <strong>Reshmi Verma</strong>
-                    <span>Functional Nutritionist</span>
-                  </div>
-                </div>
-
-                {/* Floating Breathwork Pill */}
-                <div className="hero-floating-pill badge-bottom-right">
-                  <span className="pill-dot"></span>
-                  <span>Breathwork &amp; Resilience Coach</span>
-                </div>
               </div>
             </div>
           </div>
