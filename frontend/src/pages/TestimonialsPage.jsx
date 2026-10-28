@@ -63,9 +63,6 @@ export default function TestimonialsPage() {
       name: 'Vartika Sharma',
       city: 'Bangalore',
       avatar: '/assets/images/real-patient-vartika.jpg',
-      condition: "Hashimoto's & Low Energy",
-      recoveryTime: '8 Weeks',
-      stars: 5,
       headline: 'My brain fog is gone and energy is back.',
       story: "I used to feel completely exhausted by 3 PM every day because of thyroid issues. Reshmi mam adjusted my diet and guided me step-by-step. Within 8 weeks, my energy levels are back to normal and I feel active again.",
       protocolPillars: ['Gut-Thyroid Diet', 'Energy Routine', 'Breathwork']
@@ -76,9 +73,6 @@ export default function TestimonialsPage() {
       name: 'Simrat Kaur',
       city: 'Ludhiana',
       avatar: '/assets/images/real-patient-simrat.jpg',
-      condition: 'Chronic Bloating & Digestion',
-      recoveryTime: '6 Weeks',
-      stars: 5,
       headline: 'Fixed my bloating without extreme diets.',
       story: "I was dealing with severe bloating and gas after almost every meal. Reshmi mam's simple food swaps and meal timings solved my issue in just 6 weeks. No crash diets, just realistic healthy eating.",
       protocolPillars: ['Digestive Timing', 'Natural Food Swaps', 'Gut Recovery']
@@ -89,9 +83,6 @@ export default function TestimonialsPage() {
       name: 'Pranav Nair',
       city: 'New Delhi',
       avatar: '/assets/images/real-patient-pranav.jpg',
-      condition: 'Anxiety & Disturbed Sleep',
-      recoveryTime: '4 Weeks',
-      stars: 5,
       headline: 'Sleeping soundly through the night now.',
       story: "I used to wake up anxious with shallow chest breathing at night. Learning the Oxygen Advantage nasal breathing drills from Reshmi mam completely changed my sleep quality. I wake up fresh every single morning.",
       protocolPillars: ['Nasal Breathing', 'Sleep Routine', 'Stress Relief']
@@ -102,9 +93,6 @@ export default function TestimonialsPage() {
       name: 'Shoaib Ansari',
       city: 'Ahmednagar',
       avatar: '/assets/images/real-patient-shoaib.jpg',
-      condition: 'Acidity & Severe Reflux',
-      recoveryTime: '6 Weeks',
-      stars: 5,
       headline: 'Off daily antacids after almost 3 years.',
       story: "Taking antacids was my daily routine for 3 years. Reshmi mam identified the root foods causing my acidity and helped heal my stomach. I have zero reflux now and eat comfortably without fear.",
       protocolPillars: ['Acidity Protocol', 'Food Triggers Plan', 'Gentle Digestion']
@@ -117,9 +105,6 @@ export default function TestimonialsPage() {
       avatar: null,
       initials: 'AP',
       avatarColor: '#DB2777',
-      condition: 'PCOD & Stubborn Weight',
-      recoveryTime: '10 Weeks',
-      stars: 5,
       headline: 'Periods regularized and lost 6 kg naturally.',
       story: "I struggled with irregular cycles and stubborn weight for years. Reshmi mam's food plate structure was easy to follow even with my busy corporate job. My cycle is now on time and I feel so much lighter.",
       protocolPillars: ['Hormonal Balance', 'Plate Method', 'Cycle Care']
@@ -132,9 +117,6 @@ export default function TestimonialsPage() {
       avatar: null,
       initials: 'SM',
       avatarColor: '#059669',
-      condition: 'Hot Flashes & Poor Sleep',
-      recoveryTime: '8 Weeks',
-      stars: 5,
       headline: 'Peaceful sleep after months of restless nights.',
       story: "Perimenopause hot flashes made it impossible to sleep properly. With Reshmi mam's dietary guidance and calming breathing drills, my hot flashes dropped drastically and I finally get uninterrupted rest.",
       protocolPillars: ['Hormone Support', 'Evening Routine', 'Vagal Calming']
@@ -147,9 +129,6 @@ export default function TestimonialsPage() {
       avatar: null,
       initials: 'RM',
       avatarColor: '#DC2626',
-      condition: 'Fatty Liver & Afternoon Slump',
-      recoveryTime: '8 Weeks',
-      stars: 5,
       headline: 'Liver enzymes normal on recent test.',
       story: "I was diagnosed with grade 1 fatty liver and constant afternoon fatigue. Following Reshmi’s guidance on meal spacing and simple daily walking habits normalized my liver markers on my latest ultrasound.",
       protocolPillars: ['Liver Friendly Diet', 'Walking Drills', 'Metabolic Boost']
@@ -162,9 +141,6 @@ export default function TestimonialsPage() {
       avatar: null,
       initials: 'KR',
       avatarColor: '#6D28D9',
-      condition: 'Migraines & Constipation',
-      recoveryTime: '5 Weeks',
-      stars: 5,
       headline: 'No more weekly migraines or sluggish gut.',
       story: "My chronic constipation was triggering severe weekly migraines. Reshmi mam fixed my gut motility with hydration habits and wholesome foods. My gut feels light and head is completely clear.",
       protocolPillars: ['Hydration Routine', 'Motility Support', 'Clean Wholefoods']
@@ -340,19 +316,6 @@ export default function TestimonialsPage() {
 
                   {/* Card Body */}
                   <div style={{ padding: '16px 20px 20px', display: 'flex', flexDirection: 'column', flex: 1 }}>
-                    {/* <div
-                      style={{
-                        display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: 'space-between',
-                        gap: '8px',
-                        marginBottom: '8px'
-                      }}
-                    >
-                      <span style={{ fontSize: '0.74rem', fontWeight: 700, color: '#0D827B', background: '#E6FCFB', padding: '3px 10px', borderRadius: '999px', border: '1px solid #7AF5EE' }}>
-                        {video.tag || 'Patient Story'}
-                      </span>
-                    </div> */}
                     <h3 style={{ margin: '4px 0 0', fontSize: '1rem', fontWeight: 700, color: '#121214', lineHeight: 1.4 }}>
                       {video.title}
                     </h3>

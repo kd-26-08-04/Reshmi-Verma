@@ -185,8 +185,6 @@ const CLINICAL_REVIEWS = [
 ];
 
 export default function HomePage() {
-  // SAMYA Method accordion state (starts with 2 steps shown, rest revealed on click)
-  const [showAllSamya, setShowAllSamya] = useState(false);
 
 
   // Static Reels directly from code (no API / no database)
@@ -655,7 +653,7 @@ export default function HomePage() {
             {SAMYA_STEPS.map((step, idx) => (
               <div
                 key={step.step}
-                className={`samya-card ${idx >= 2 && !showAllSamya ? 'samya-card-collapsed' : ''}`}
+                className="samya-card"
               >
                 <div className="samya-card-header">
                   <div className="samya-letter-hero">{step.letter}</div>
@@ -671,32 +669,7 @@ export default function HomePage() {
             ))}
           </div>
 
-          {/* Mobile Dropdown Action Trigger */}
-          <div className="samya-dropdown-action-wrap" style={{ marginTop: '14px' }}>
-            <button
-              type="button"
-              className={`samya-dropdown-trigger-btn ${!showAllSamya ? 'pulse-attention' : ''}`}
-              onClick={() => setShowAllSamya(!showAllSamya)}
-              aria-expanded={showAllSamya}
-            >
-              <span className="samya-trigger-icon-pill">
-                {showAllSamya ? (
-                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-                    <polyline points="18 15 12 9 6 15"></polyline>
-                  </svg>
-                ) : (
-                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" className="bounce-arrow">
-                    <polyline points="6 9 12 15 18 9"></polyline>
-                  </svg>
-                )}
-              </span>
-              <div className="samya-trigger-text">
-                <strong>{showAllSamya ? 'Collapse SAMYA Steps' : 'Explore All Steps of SAMYA'}</strong>
-              </div>
-
-            </button>
-          </div>
-        </div>
+</div>
       </section>
 
       {/* 4. Real People, Real Success Stories (Contained Luxury Noir Section) */}

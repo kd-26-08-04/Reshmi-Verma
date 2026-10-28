@@ -35,7 +35,6 @@ export default function BookingPage() {
   const nameInputRef = useRef(null);
 
   // Tiers state
-  const [showPlanDetails, setShowPlanDetails] = useState(false);
   const tiersList = DEFAULT_TIERS_LIST;
   const currentTier = DEFAULT_PRICING_TIERS.healthClarity;
 
@@ -388,31 +387,7 @@ export default function BookingPage() {
               </div>
 
               {/* On-Demand Toggle Button */}
-              <button
-                type="button"
-                onClick={() => setShowPlanDetails(!showPlanDetails)}
-                style={{
-                  width: '100%',
-                  background: showPlanDetails ? '#FAF9F6' : 'rgba(0, 229, 217, 0.08)',
-                  border: showPlanDetails ? '1px solid #D1D5DB' : '1.5px solid rgb(1, 183, 180)',
-                  borderRadius: '12px',
-                  padding: '10px 14px',
-                  fontSize: '0.84rem',
-                  fontWeight: 700,
-                  color: '#0A3B37',
-                  cursor: 'pointer',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  gap: '6px',
-                  transition: 'all 0.25s ease'
-                }}
-              >
-                <span>{showPlanDetails ? '▲ Hide Plan Inclusions & Details' : '📋 What\'s Included in this Session? (Tap to View) ▼'}</span>
-              </button>
-
-              {/* Expandable Details Container (On Demand) */}
-              {showPlanDetails && (
+              
                 <div style={{ marginTop: '16px', paddingTop: '16px', borderTop: '1px solid rgba(13, 130, 123, 0.15)', animation: 'fadeIn 0.25s ease' }}>
                   <p style={{ fontSize: '0.88rem', color: 'var(--text-secondary)', lineHeight: 1.6, margin: '0 0 16px' }}>
                     {currentTier.desc}
@@ -426,7 +401,6 @@ export default function BookingPage() {
                     ))}
                   </ul>
                 </div>
-              )}
             </div>
           </div>
         </div>
