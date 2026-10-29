@@ -9,7 +9,7 @@ An ultra-premium, light-mode clinical portfolio and interactive health applicati
 - **Ultra-Luxury Warm Terracotta & Obsidian Aesthetic:** Warm Terracotta (`#C2410C`, `#EA580C`), Soft Peach Cream (`#FFEDD5`, `#FFFDF9`), Obsidian Slate (`#0F172A`, `#1E293B`), and crisp medical clarity.
 - **Living Somatic Ambient Background:** Slow-motion, breathing radial gradients that expand and contract in gentle 22s–26s respiration cycles behind frosted glass cards.
 - **Mobile-First Responsive Engine:** Dedicated floating bottom action bar (`Free Assessment` & `Book Consultation`), touch-friendly BOLT timer, and smooth frosted navigation drawer.
-
+--------------
 ---
 
 ## 🫁 Core Interactive Features
