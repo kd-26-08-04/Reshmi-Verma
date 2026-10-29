@@ -397,7 +397,7 @@ export default function WelcomeAssessmentModal() {
               </span>
 
               <h3 style={{ fontSize: '1.25rem', color: 'var(--emerald-deep)', margin: '4px 0 2px', fontFamily: 'var(--font-serif)', fontWeight: 800 }}>
-                Score &amp; Report Send On Mail.
+                Instant Assessment &amp; Scorecard
               </h3>
             </div>
 

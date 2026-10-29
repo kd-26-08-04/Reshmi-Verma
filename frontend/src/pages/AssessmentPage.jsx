@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import emailjs from '@emailjs/browser';
 import { useAuth } from '../context/AuthContext';
 import { getApiUrl, RAZORPAY_PAYMENT_URL } from '../utils/api';
 
@@ -9,7 +8,7 @@ import { getApiUrl, RAZORPAY_PAYMENT_URL } from '../utils/api';
  * Theme: Strictly Neon Pink (rgb(243, 1, 132) / #FF007F) Luxury Medical Aesthetics
  * Scored Questions Q1–Q8 (0–4 points, Raw max 32, scaled to 100)
  * Personalisation Questions Q9–Q18
- * EmailJS Direct Client Dispatch with user's exact draft & parameters
+ * Direct on-site scorecard viewing and instant report download
  */
 
 // Universal options for Scored Questions Q1 – Q8 (Pure Neon Pink Scale)
@@ -278,8 +277,17 @@ export default function AssessmentPage() {
   const [answers, setAnswers] = useState({});
   const [results, setResults] = useState(null);
 
-  // Lead Info State — always starts as null so gate form is shown on every visit
-  const [leadInfo, setLeadInfo] = useState(null);
+  // Lead Info State — populated if user already submitted popup; null if popup was skipped
+  const [leadInfo, setLeadInfo] = useState(() => {
+    try {
+      const stored = localStorage.getItem('reshmi_assessment_lead') || localStorage.getItem('reshmi_user_lead');
+      if (stored) {
+        const parsed = JSON.parse(stored);
+        if (parsed?.name || parsed?.phone) return parsed;
+      }
+    } catch (e) { }
+    return null;
+  });
 
   // Pre-Assessment Gate Form state — pre-fill from localStorage if available
   const [leadName, setLeadName] = useState(() => {
@@ -308,19 +316,6 @@ export default function AssessmentPage() {
   });
   const [leadError, setLeadError] = useState('');
   const [leadSaving, setLeadSaving] = useState(false);
-
-  // Email Scorecard Dispatch state
-  const [emailInput, setEmailInput] = useState('');
-  const [emailStatus, setEmailStatus] = useState('idle'); // 'idle' | 'sending' | 'success' | 'error'
-  const [emailError, setEmailError] = useState('');
-
-  useEffect(() => {
-    if (leadInfo?.email) {
-      setEmailInput(leadInfo.email);
-    } else if (user?.email) {
-      setEmailInput(user.email);
-    }
-  }, [leadInfo, user]);
 
   useEffect(() => {
     if (user && !leadInfo) {
@@ -637,132 +632,14 @@ export default function AssessmentPage() {
   };
 
   // =========================================================================
-  // EMAILJS SCORECARD DISPATCH INFRASTRUCTURE WITH USER'S EXACT DRAFT
+  // DIRECT CLIENT SCORECARD DOWNLOAD REPORT
   // =========================================================================
-  const handleSendScorecardEmail = async (e) => {
-    if (e) e.preventDefault();
-    setEmailError('');
-
-    const targetEmail = (emailInput || leadInfo?.email || user?.email || '').trim();
-    if (!targetEmail || !targetEmail.includes('@')) {
-      setEmailError('Please enter a valid email address to receive your scorecard.');
-      return;
-    }
-
-    setEmailStatus('sending');
-
-    try {
-      const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID || 'service_znsc9db';
-      const templateId =
-        import.meta.env.VITE_EMAILJS_SCORECARD_TEMPLATE_ID ||
-        'template_31l839e';
-      const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY || '5XBYa7sia2W-qDbgm';
-
-      const clientName = leadInfo?.name || user?.name || 'Valued Client';
-      const firstName = clientName.split(' ')[0] || clientName;
-      const clientPhone = leadInfo?.phone || user?.phone || 'Not provided';
-      const consultationBookingLink = 'https://rzp.io/rzp/healthwithreshmi';
-      const websiteUrl = 'https://healthwithreshmi.com';
-      const logoUrl = 'https://healthwithreshmi.com/assets/images/Reshmi_Logo.png';
-
-      // Exact email draft specified by user
-      const exactDraftText = `Hi ${firstName},
-
-I’m Sakshi from Team Health with Reshmi. Thank you for taking the time to complete our Gut Health Assessment.
-
-Based on your responses, your Gut Symptom Score is ${results.gutSymptomScore}/100, indicating ${results.category.label}.
-
-${results.category.message}
-
-Your assessment is a useful starting point, but understanding your gut health often means looking beyond individual symptoms. Your digestive patterns, food responses, health history, stress and lifestyle may all be relevant to the bigger picture.
-
-The next step is an opportunity to discuss your concerns personally with Reshmi.
-
-When you book a Health Clarity Session, you’ll have the opportunity to speak directly with Reshmi Verma herself. She will help you explore your health priorities, discuss your concerns in greater detail and understand what a personalised approach could look like for you.
-
-This one-to-one conversation gives you dedicated time with Reshmi to gain clarity on your concerns and consider the next steps best suited to your needs.
-
-Ready to take the next step?
-
-👉 Book Your Health Clarity Session with Reshmi:
-${consultationBookingLink}
-
-We look forward to helping you take a more informed and personalised approach to your health.
-
-If you have any questions about booking, simply reply to this email. I’ll be happy to assist you.
-
-Warm regards,
-Sakshi
-Team Health with Reshmi
-${websiteUrl}`;
-
-      const templateParams = {
-        // Exact variables for the user's template
-        'First Name': firstName,
-        first_name: firstName,
-        Score: `${results.gutSymptomScore}`,
-        score: `${results.gutSymptomScore}`,
-        'Score Category': results.category.label,
-        score_category: results.category.label,
-        'Personalised Result Paragraph': results.category.message,
-        personalized_result_paragraph: results.category.message,
-        'Consultation Booking Link': consultationBookingLink,
-        consultation_booking_link: consultationBookingLink,
-        'Website URL': websiteUrl,
-        website_url: websiteUrl,
-        logo_url: logoUrl,
-
-        // Universal Recipient fields for EmailJS (resolves {{email}}, {{to_email}}, {{user_email}}, etc.)
-        email: targetEmail,
-        to_email: targetEmail,
-        client_email: targetEmail,
-        user_email: targetEmail,
-        recipient_email: targetEmail,
-        recipient: targetEmail,
-        to: targetEmail,
-        target_email: targetEmail,
-        reply_to: 'support.reshmiverma@gmail.com',
-
-        // Standard EmailJS recipient/client info
-        to_name: clientName,
-        name: clientName,
-        client_name: clientName,
-        client_phone: clientPhone,
-        phone: clientPhone,
-        subject: `Your Gut Health Assessment Results (${results.gutSymptomScore}/100) — Health with Reshmi`,
-        message: exactDraftText
-      };
-
-      if (publicKey && !publicKey.includes('YOUR_')) {
-        await emailjs.send(serviceId, templateId, templateParams, publicKey);
-      }
-
-      setEmailStatus('success');
-
-      if (leadInfo?.id) {
-        fetch(getApiUrl('/api/assessment-lead'), {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            id: leadInfo.id,
-            email: targetEmail,
-            step: `Scorecard Emailed to ${targetEmail}`
-          })
-        }).catch(() => { });
-      }
-    } catch (err) {
-      console.error('Email dispatch error:', err);
-      setEmailStatus('error');
-      setEmailError(err?.text || err?.message || 'Could not send email directly. Please check connection.');
-    }
-  };
-
   const handleDownloadScorecard = () => {
     if (!results) return;
 
     const clientName = leadInfo?.name || user?.name || 'Valued Client';
     const clientPhone = leadInfo?.phone || user?.phone || 'Not provided';
-    const clientEmail = emailInput || leadInfo?.email || user?.email || 'Not provided';
+    const clientEmail = leadInfo?.email || user?.email || 'Not provided';
     const currentDate = new Date().toLocaleDateString('en-IN', {
       day: 'numeric',
       month: 'long',
@@ -1075,7 +952,7 @@ ${websiteUrl}`;
 
                 <div>
                   <label style={{ display: 'block', fontSize: '0.88rem', fontWeight: 600, color: 'var(--text-primary)', marginBottom: '6px' }}>
-                    Email Address <span style={{ fontSize: '0.78rem', color: 'var(--text-muted)' }}>(To receive your scorecard directly)</span>
+                    Email Address <span style={{ fontSize: '0.78rem', color: 'var(--text-muted)' }}>(Optional)</span>
                   </label>
                   <input
                     type="email"
@@ -1528,94 +1405,53 @@ ${websiteUrl}`;
 
 
               {/* ========================================================== */}
-              {/* DIRECT CLIENT EMAIL DISPATCH INFRASTRUCTURE               */}
+              {/* DIRECT CLIENT SCORECARD DOWNLOAD ACTION                   */}
               {/* ========================================================== */}
-              <div className="email-dispatch-card non-printable" style={{ marginBottom: '26px' }}>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '8px' }}>
-                  <span style={{ fontSize: '1.4rem' }}>📧</span>
-                  <div>
-                    <h3 style={{ fontSize: '1.15rem', color: '#D8006C', margin: 0, fontWeight: 700 }}>
-                      Send Scorecard Directly To Your Email
-                    </h3>
-                    <p style={{ margin: '2px 0 0', color: '#475569', fontSize: '0.84rem' }}>
-                      Receive a copy of your score, symptom patterns, and focus priority directly in your inbox.
-                    </p>
-                  </div>
+              <div
+                className="non-printable"
+                style={{
+                  background: 'linear-gradient(135deg, #FFF0F6 0%, #FFFFFF 100%)',
+                  borderRadius: '18px',
+                  border: '1.5px solid rgba(243, 1, 132, 0.35)',
+                  padding: '24px 28px',
+                  marginBottom: '26px',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'space-between',
+                  flexWrap: 'wrap',
+                  gap: '16px',
+                  boxShadow: '0 8px 24px rgba(243, 1, 132, 0.1)'
+                }}
+              >
+                <div>
+                  <h3 style={{ fontSize: '1.2rem', color: '#D8006C', margin: '0 0 4px', fontWeight: 800 }}>
+                    Download Your Full Gut Health Scorecard
+                  </h3>
+                  <p style={{ margin: 0, color: '#475569', fontSize: '0.88rem' }}>
+                    Save a copy of your score, priority focus areas, and high-frequency symptom breakdown directly to your device.
+                  </p>
                 </div>
-
-                {emailStatus === 'success' && (
-                  <div
-                    style={{
-                      background: '#FFF0F6',
-                      border: '1px solid rgb(243, 1, 132)',
-                      color: '#D8006C',
-                      padding: '10px 14px',
-                      borderRadius: '10px',
-                      fontSize: '0.88rem',
-                      fontWeight: 600,
-                      marginBottom: '14px',
-                      display: 'flex',
-                      alignItems: 'center',
-                      gap: '8px'
-                    }}
-                  >
-                    <span>✅</span>
-                    <span>Scorecard successfully dispatched to <strong>{emailInput}</strong>! Please check your inbox (and spam/promotions folder).</span>
-                  </div>
-                )}
-
-                {emailStatus === 'error' && (
-                  <div
-                    style={{
-                      background: '#FFF0F6',
-                      border: '1px solid rgb(243, 1, 132)',
-                      color: '#D8006C',
-                      padding: '10px 14px',
-                      borderRadius: '10px',
-                      fontSize: '0.88rem',
-                      marginBottom: '14px'
-                    }}
-                  >
-                    ⚠️ {emailError || 'Failed to dispatch email. Please check your address or download PDF below.'}
-                  </div>
-                )}
-
-                <form onSubmit={handleSendScorecardEmail} style={{ display: 'flex', gap: '10px', flexWrap: 'wrap' }}>
-                  <input
-                    type="email"
-                    value={emailInput}
-                    onChange={(e) => setEmailInput(e.target.value)}
-                    placeholder="Enter your email address"
-                    required
-                    style={{
-                      flex: '1 1 240px',
-                      padding: '12px 16px',
-                      borderRadius: '10px',
-                      border: '1.5px solid rgba(243, 1, 132, 0.35)',
-                      fontSize: '0.94rem'
-                    }}
-                  />
-                  <button
-                    type="submit"
-                    disabled={emailStatus === 'sending'}
-                    className="btn btn-primary"
-                    style={{ background: 'linear-gradient(135deg, rgb(243, 1, 132) 0%, #FF007F 100%)', borderColor: 'rgb(243, 1, 132)', padding: '12px 22px', borderRadius: '10px', boxShadow: '0 6px 20px rgba(243, 1, 132, 0.3)' }}
-                  >
-                    <span>{emailStatus === 'sending' ? 'Sending Scorecard...' : emailStatus === 'success' ? 'Resend Scorecard' : 'Email My Scorecard →'}</span>
-                  </button>
-                </form>
-
-                <div style={{ display: 'flex', gap: '12px', marginTop: '14px', flexWrap: 'wrap', alignItems: 'center' }}>
-                  <button
-                    type="button"
-                    onClick={handleDownloadScorecard}
-                    className="btn btn-secondary btn-sm"
-                    style={{ padding: '8px 16px', fontSize: '0.85rem', background: '#FFF0F6', border: '1.5px solid rgba(243, 1, 132, 0.4)', color: 'rgb(243, 1, 132)', fontWeight: 700, borderRadius: '10px', display: 'flex', alignItems: 'center', gap: '8px', cursor: 'pointer' }}
-                  >
-                    <span>📥</span>
-                    <span>Direct Download Scorecard</span>
-                  </button>
-                </div>
+                <button
+                  type="button"
+                  onClick={handleDownloadScorecard}
+                  className="btn btn-primary"
+                  style={{
+                    background: 'linear-gradient(135deg, rgb(243, 1, 132) 0%, #FF007F 100%)',
+                    borderColor: 'rgb(243, 1, 132)',
+                    padding: '12px 24px',
+                    borderRadius: '12px',
+                    fontWeight: 700,
+                    fontSize: '0.95rem',
+                    display: 'inline-flex',
+                    alignItems: 'center',
+                    gap: '8px',
+                    boxShadow: '0 6px 20px rgba(243, 1, 132, 0.35)',
+                    cursor: 'pointer'
+                  }}
+                >
+                  <span>📥</span>
+                  <span>Download Scorecard Report</span>
+                </button>
               </div>
 
               {/* ========================================================== */}

@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
-import emailjs from '@emailjs/browser';
 import { getApiUrl, RAZORPAY_PAYMENT_URL } from '../utils/api';
 
 /**
@@ -249,11 +248,6 @@ export default function BreathingAssessmentPage() {
   const [isSavingLead, setIsSavingLead] = useState(false);
   const [savedSuccess, setSavedSuccess] = useState(false);
 
-  // Email Scorecard State
-  const [emailInput, setEmailInput] = useState(leadInfo?.email || user?.email || '');
-  const [emailStatus, setEmailStatus] = useState(null); // 'sending' | 'success' | 'error'
-  const [emailError, setEmailError] = useState('');
-
   useEffect(() => {
     if (user && !leadInfo) {
       if (user.name) setLeadName(user.name);
@@ -383,139 +377,9 @@ export default function BreathingAssessmentPage() {
     ratingSummary = 'Good baseline mechanics, but chronic stress or postural desk work frequently disrupts your breathing rhythm, causing fatigue dips and intermittent air hunger.';
   }
 
-  const handleSendBreathingScorecardEmail = async (e, overrideEmail = null) => {
-    if (e && e.preventDefault) e.preventDefault();
-    setEmailError('');
-
-    const targetEmail = (overrideEmail || emailInput || leadInfo?.email || user?.email || '').trim().toLowerCase();
-    if (!targetEmail || !targetEmail.includes('@')) {
-      setEmailError('Please enter a valid email address to receive your breathing scorecard.');
-      return;
-    }
-
-    setEmailStatus('sending');
-
-    try {
-      const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID || 'service_znsc9db';
-      const templateId =
-        import.meta.env.VITE_EMAILJS_BREATHING_TEMPLATE_ID ||
-        import.meta.env.VITE_EMAILJS_BREATH_TEMPLATE_ID ||
-        'template_breathing_scorecard';
-      const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY || '5XBYa7sia2W-qDbgm';
-
-      const clientName = leadInfo?.name || leadName || user?.name || 'Valued Client';
-      const firstName = clientName.split(' ')[0] || 'there';
-      const clientPhone = leadInfo?.phone || leadPhone || user?.phone || 'Not provided';
-      const currentDate = new Date().toLocaleDateString('en-IN', {
-        day: 'numeric',
-        month: 'long',
-        year: 'numeric'
-      });
-
-      const boltText = boltRecorded ? `${boltRecorded} Seconds` : (answers['oa_q16']?.tag || 'Not tested');
-
-      const exactDraftText = `Hi ${firstName},
-
-Thank you for completing your Oxygen Advantage® Functional Breathing Assessment with HealthwithReshmi™.
-
-Here is your Confidential Breathing Scorecard Snapshot:
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-• Patient Name: ${clientName}
-• Recorded BOLT Score: ${boltText}
-• Dysfunctional Breathing Score: ${totalScore} / 48 (Lower score = healthier)
-• Clinical Assessment: ${ratingTitle}
-• Respiratory Category: ${ratingBadge}
-• Date: ${currentDate}
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-
-CLINICAL INTERPRETATION:
-${ratingSummary}
-
-PHYSIOLOGICAL CONTEXT (THE BOHR EFFECT):
-Your Body Oxygen Level Test (BOLT) reveals how efficiently oxygen discharges from hemoglobin into active tissues. When breathing pattern disorders or chronic mouth-breathing exist, carbon dioxide (CO₂) drops, constricting blood vessels and depriving the gut, muscles, and brain of cellular oxygen.
-
-RECOMMENDED CLINICAL STEPS:
-1. 100% Daytime Nasal Breathing at rest and desk work.
-2. Daily Somatic 4-7-8 and 5-5 Coherent Breathing for vagal autonomic regulation.
-3. Structured Oxygen Advantage airway restoration with Reshmi Verma.
-
-READY FOR DIRECT 1:1 GUIDANCE?
-Reshmi Verma (#13 Certified Oxygen Advantage Coach in India & Functional Nutritionist) will analyze your respiration biomechanics, breathing chemistry, and gut-axis connection.
-
-📅 Book Your 1-on-1 Clinical Consultation:
-${RAZORPAY_PAYMENT_URL}
-
-Warm regards,
-Reshmi Verma
-Director, Rainbow Medinova Diagnostic Services
-Certified Oxygen Advantage® Coach & Functional Nutritionist
-Website: https://healthwithreshmi.com`;
-
-      const templateParams = {
-        to_name: clientName,
-        name: clientName,
-        client_name: clientName,
-        first_name: firstName,
-        to_email: targetEmail,
-        email: targetEmail,
-        client_email: targetEmail,
-        user_email: targetEmail,
-        recipient_email: targetEmail,
-        client_phone: clientPhone,
-        phone: clientPhone,
-
-        bolt_score: boltText,
-        dysfunction_score: `${totalScore} / 48`,
-        score: `${totalScore} / 48`,
-        dysfunction_points: totalScore,
-        rating_title: ratingTitle,
-        rating_badge: ratingBadge,
-        rating_summary: ratingSummary,
-        questions_answered: `${totalAnswered} / 16`,
-
-        consultation_booking_link: RAZORPAY_PAYMENT_URL,
-        booking_link: RAZORPAY_PAYMENT_URL,
-        website_url: 'https://healthwithreshmi.com',
-
-        subject: `Your Oxygen Advantage® Breathing Scorecard (${totalScore}/48) - HealthwithReshmi™`,
-        message: exactDraftText,
-        date: currentDate,
-        current_date: currentDate
-      };
-
-      if (publicKey && !publicKey.includes('YOUR_')) {
-        await emailjs.send(serviceId, templateId, templateParams, publicKey);
-      }
-
-      setEmailStatus('success');
-
-      if (leadInfo?.id) {
-        fetch(getApiUrl('/api/assessment-lead'), {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            id: leadInfo.id,
-            email: targetEmail,
-            step: `Breathing Scorecard Emailed to ${targetEmail}`
-          })
-        }).catch(() => { });
-      }
-    } catch (err) {
-      console.error('EmailJS Breathing scorecard error:', err);
-      setEmailStatus('error');
-      setEmailError(err?.text || err?.message || 'Could not send email directly. Please check network connection.');
-    }
-  };
-
   const handleFinish = async () => {
     setIsCompleted(true);
     window.scrollTo({ top: 0, behavior: 'smooth' });
-
-    // Auto-trigger email dispatch if email is available
-    const candidateEmail = leadInfo?.email || leadEmail || emailInput;
-    if (candidateEmail && candidateEmail.includes('@')) {
-      handleSendBreathingScorecardEmail(null, candidateEmail);
-    }
 
     // Try saving assessment lead to backend
     const activeLead = leadInfo || {
@@ -802,98 +666,52 @@ Website: https://healthwithreshmi.com`;
               </div>
             </div>
 
-            {/* Email Breathing Scorecard Interactive Card */}
+            {/* Direct Scorecard Download Action Card */}
             <div
               style={{
                 background: '#F0FDFA',
                 border: '1.5px solid rgb(1, 183, 180)',
                 borderRadius: '20px',
-                padding: '28px 24px',
+                padding: '24px 28px',
                 marginBottom: '24px',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'space-between',
+                flexWrap: 'wrap',
+                gap: '16px',
                 boxShadow: '0 8px 25px rgba(0, 229, 217, 0.12)'
               }}
             >
-              <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '8px' }}>
-                <span style={{ fontSize: '1.4rem' }}>📧</span>
-                <h3 style={{ margin: 0, fontSize: '1.25rem', color: '#0F766E', fontWeight: 800 }}>
-                  Receive Your Breathing Scorecard &amp; Protocol via Email
+              <div>
+                <h3 style={{ margin: '0 0 4px', fontSize: '1.2rem', color: '#0F766E', fontWeight: 800 }}>
+                  Download Your Oxygen Advantage® Scorecard
                 </h3>
+                <p style={{ fontSize: '0.88rem', color: '#4B5563', margin: 0, lineHeight: 1.5 }}>
+                  Save your complete BOLT assessment, dysfunctional score breakdown, and custom vagal breathing drills directly to your device.
+                </p>
               </div>
-              <p style={{ fontSize: '0.9rem', color: '#4B5563', margin: '0 0 16px', lineHeight: 1.55 }}>
-                Enter your email address below to receive your complete Oxygen Advantage® breakdown, BOLT interpretation, and customized vagal breathwork drills directly in your inbox.
-              </p>
-
-              {emailStatus === 'success' && (
-                <div
-                  style={{
-                    background: '#ECFDF5',
-                    border: '1px solid #10B981',
-                    color: '#065F46',
-                    padding: '12px 16px',
-                    borderRadius: '12px',
-                    fontSize: '0.9rem',
-                    fontWeight: 600,
-                    marginBottom: '16px',
-                    display: 'flex',
-                    alignItems: 'center',
-                    gap: '8px'
-                  }}
-                >
-                  <span>✅</span>
-                  <span>Scorecard successfully dispatched to <strong>{emailInput}</strong>! Please check your inbox (and spam/promotions folder).</span>
-                </div>
-              )}
-
-              {emailStatus === 'error' && (
-                <div
-                  style={{
-                    background: '#FFF1F2',
-                    border: '1px solid #F43F5E',
-                    color: '#9F1239',
-                    padding: '12px 16px',
-                    borderRadius: '12px',
-                    fontSize: '0.88rem',
-                    marginBottom: '16px'
-                  }}
-                >
-                  ⚠️ {emailError || 'Failed to dispatch email. Please check your address or download your scorecard below.'}
-                </div>
-              )}
-
-              <form onSubmit={handleSendBreathingScorecardEmail} style={{ display: 'flex', gap: '10px', flexWrap: 'wrap' }}>
-                <input
-                  type="email"
-                  value={emailInput}
-                  onChange={(e) => setEmailInput(e.target.value)}
-                  placeholder="Enter your email address..."
-                  required
-                  style={{
-                    flex: '1 1 240px',
-                    padding: '12px 16px',
-                    borderRadius: '10px',
-                    border: '1.5px solid #0D9488',
-                    fontSize: '0.94rem',
-                    outline: 'none'
-                  }}
-                />
-                <button
-                  type="submit"
-                  disabled={emailStatus === 'sending'}
-                  className="btn btn-primary"
-                  style={{
-                    background: '#0D9488',
-                    color: '#FFFFFF',
-                    border: 'none',
-                    padding: '12px 24px',
-                    borderRadius: '10px',
-                    fontWeight: 700,
-                    boxShadow: '0 4px 14px rgba(13, 148, 136, 0.3)',
-                    cursor: emailStatus === 'sending' ? 'not-allowed' : 'pointer'
-                  }}
-                >
-                  <span>{emailStatus === 'sending' ? 'Sending Scorecard...' : emailStatus === 'success' ? 'Resend Scorecard' : 'Email My Scorecard →'}</span>
-                </button>
-              </form>
+              <button
+                type="button"
+                onClick={handleDownloadBreathingScorecard}
+                className="btn btn-primary"
+                style={{
+                  background: '#0D9488',
+                  color: '#FFFFFF',
+                  border: 'none',
+                  padding: '12px 24px',
+                  borderRadius: '12px',
+                  fontWeight: 700,
+                  fontSize: '0.95rem',
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: '8px',
+                  boxShadow: '0 6px 20px rgba(13, 148, 136, 0.35)',
+                  cursor: 'pointer'
+                }}
+              >
+                <span>📥</span>
+                <span>Download Scorecard Report</span>
+              </button>
             </div>
 
             {/* Reshmi Clinical Roadmap CTA */}
@@ -933,7 +751,7 @@ Website: https://healthwithreshmi.com`;
                 >
                   <span>📅</span> Book 1-on-1 Oxygen Advantage Consultation
                 </a>
-                <button
+                {/* <button
                   type="button"
                   onClick={handleDownloadBreathingScorecard}
                   style={{
@@ -957,7 +775,7 @@ Website: https://healthwithreshmi.com`;
                   }}
                 >
                   <span>📥</span> Direct Download Scorecard
-                </button>
+                </button> */}
                 <Link
                   to="/assessment"
                   style={{
@@ -1016,7 +834,7 @@ Website: https://healthwithreshmi.com`;
               </span>
             </div>
             <h2 style={{ fontSize: '1.75rem', color: '#121214', margin: '0 0 10px 0', fontFamily: 'var(--font-serif)' }}>
-              Where Should We Send Your Breathing Scorecard?
+              Functional Breathing Assessment
             </h2>
             <p style={{ color: 'var(--text-secondary)', fontSize: '0.94rem', lineHeight: 1.6, marginBottom: '24px' }}>
               Please provide your contact information to begin your certified 16-question functional breathing assessment.
