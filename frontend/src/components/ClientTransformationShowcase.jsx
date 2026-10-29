@@ -147,7 +147,7 @@ export default function ClientTransformationShowcase() {
           width: '100%',
           maxWidth: '100vw',
           overflow: 'hidden',
-          borderTop: '3.5px solid rgb(1, 183, 180)'
+          borderTop: '3.5px solid rgb(0, 229, 226)'
         }}
       >
         <div className="container">
@@ -163,7 +163,7 @@ export default function ClientTransformationShowcase() {
                 fontWeight: 800
               }}
             >
-              Real Transformations. <span style={{ color: 'rgb(1, 183, 180)', fontStyle: 'italic' }}>Real Stories.</span>
+              Real Transformations. <span style={{ color: 'rgb(0, 229, 226)', fontStyle: 'italic' }}>Real Stories.</span>
             </h2>
 
             <p
@@ -188,7 +188,7 @@ export default function ClientTransformationShowcase() {
                 style={{
                   background: '#16191D',
                   border: '1px solid rgba(255, 255, 255, 0.12)',
-                  borderTop: '3px solid rgb(1, 183, 180)',
+                  borderTop: '3px solid rgb(0 229 226)',
                   boxShadow: '0 12px 30px rgba(0,0,0,0.45)'
                 }}
               >
@@ -241,7 +241,7 @@ export default function ClientTransformationShowcase() {
                   textAlign: 'center'
                 }}
               >
-                <span style={{ color: 'rgb(1, 183, 180)', fontStyle: 'italic' }}>Hear It From Them..</span>
+                <span style={{ color: 'rgb(0 229 226)', fontStyle: 'italic' }}>Hear It From Them..</span>
               </h2>
 
               <p

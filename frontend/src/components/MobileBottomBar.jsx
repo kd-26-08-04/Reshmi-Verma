@@ -147,7 +147,7 @@ export default function MobileBottomBar() {
               <span style={{
                 padding: '6px 14px',
                 borderRadius: '999px',
-                background: 'linear-gradient(135deg, rgb(1, 183, 180) 0%, #00B4A8 100%)',
+                background: 'linear-gradient(135deg, rgb(0 229 226) 0%, #03e9d9ff 100%)',
                 color: '#0A3B37',
                 fontWeight: 800,
                 fontSize: '0.74rem',

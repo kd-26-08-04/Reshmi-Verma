@@ -41,19 +41,19 @@ const SPECIES_PALETTES = [
   {
     id: 'neon-turquoise',
     name: 'Neon Turquoise Dragonfly',
-    bodyColors: ['#004D48', '#00998F', 'rgb(1, 183, 180)', '#007A73'],
+    bodyColors: ['#004D48', '#00998F', 'rgb(0 229 226)', '#007A73'],
     thoraxColors: ['#007A73', '#33EBE1', '#004D48'],
     wingGradients: [
       'rgba(255, 255, 255, 0.9)',
-      'rgba(179, 250, 246, 0.65)',
+      'rgba(129, 250, 244, 0.65)',
       'rgba(204, 252, 250, 0.45)',
       'rgba(0, 229, 217, 0.25)'
     ],
-    wingVein: 'rgba(0, 229, 217, 0.65)',
+    wingVein: 'rgba(2, 238, 226, 0.65)',
     eyeColor: '#007A73',
-    eyeStroke: 'rgb(1, 183, 180)',
+    eyeStroke: 'rgb(0 229 226)',
     eyeHighlight: '#E6FCFB',
-    segmentColor: '#4DF0E7',
+    segmentColor: '#08ece1ff',
     accentColor: '#B3FAF6',
     particleRGB: '0, 229, 217', // Neon Turquoise
     glowShadow: 'rgba(0, 229, 217, 0.25)'
@@ -433,7 +433,7 @@ export default function DragonflyAnimation() {
           {/* ============================================================== */}
           {/* DRAGONFLY WINGS (Independent 3D Flap Rotations)                 */}
           {/* ============================================================== */}
-          
+
           {/* Left Forewing */}
           <g className="df-wing df-wing-fore-left" style={{ transformOrigin: '48px 38px' }}>
             <path

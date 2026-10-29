@@ -201,7 +201,7 @@ export default function WelcomeAssessmentModal() {
 
         .welcome-sub-pill {
           display: inline-block;
-          color: #0D9488;
+          color: #00E5E2;
           font-size: 0.78rem;
           font-weight: 800;
           letter-spacing: 0.12em;
@@ -251,7 +251,7 @@ export default function WelcomeAssessmentModal() {
           width: 100%;
           max-width: 380px;
           padding: 14px 28px;
-          background: #0D9488;
+          background: #00E5E2;
           color: #FFFFFF;
           border-radius: 12px;
           font-size: 1.05rem;
@@ -353,7 +353,7 @@ export default function WelcomeAssessmentModal() {
 
             <h2 id="welcome-modal-title" className="welcome-main-title">
               Your health has a story. <br />
-              <span style={{ color: '#0D9488', fontStyle: 'italic', fontWeight: 800 }}>Let's Understand It.</span>
+              <span style={{ color: '#00E5E2', fontStyle: 'italic', fontWeight: 800 }}>Let's Understand It.</span>
             </h2>
 
             {/* Description Paragraph */}
@@ -612,7 +612,7 @@ export default function WelcomeAssessmentModal() {
                 <span style={{
                   padding: '6px 14px',
                   borderRadius: '999px',
-                  background: 'linear-gradient(135deg, rgb(1, 183, 180) 0%, #00B4A8 100%)',
+                  background: 'linear-gradient(135deg, rgb(0, 229, 226) 0%, #00E5E2 100%)',
                   color: '#0A3B37',
                   fontWeight: 800,
                   fontSize: '0.76rem',

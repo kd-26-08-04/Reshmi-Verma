@@ -217,7 +217,7 @@ export default function HomePage() {
               <h1 style={{ lineHeight: 1.15, margin: '12px 0 16px' }}>
                 <span style={{ color: '#121214' }}>Science-Led</span>
                 <br />
-                <span style={{ color: '#007A78', whiteSpace: 'nowrap' }}>Human-Centered</span>
+                <span style={{ color: 'rgb(0, 229, 226)', whiteSpace: 'nowrap' }}>Human-Centered</span>
               </h1>
 
               <p style={{ fontSize: 'clamp(1.1rem, 2.5vw, 1.25rem)', fontWeight: 600, color: 'var(--emerald-deep)', margin: '-4px 0 16px', lineHeight: 1.45 }}>
@@ -705,7 +705,7 @@ export default function HomePage() {
                       backdropFilter: 'blur(16px)',
                       WebkitBackdropFilter: 'blur(16px)',
                       border: '1px solid rgba(255, 255, 255, 0.08)',
-                      borderTop: '2.5px solid rgb(1, 183, 180)',
+                      borderTop: '2.5px solid rgb(0, 229, 226)',
                       borderRadius: '16px',
                       padding: '18px 18px',
                       display: 'flex',
@@ -722,7 +722,7 @@ export default function HomePage() {
                           height: '44px',
                           borderRadius: '50%',
                           objectFit: 'cover',
-                          border: '1.5px solid rgb(1, 183, 180)',
+                          border: '1.5px solid rgb(0, 229, 226)',
                           flexShrink: 0
                         }}
                       />
@@ -730,7 +730,7 @@ export default function HomePage() {
                         <h4 style={{ margin: 0, fontSize: '0.96rem', fontWeight: 800, color: '#FFFFFF' }}>
                           {story.name}
                         </h4>
-                        <span style={{ fontSize: '0.74rem', color: 'rgb(1, 183, 180)', fontWeight: 700 }}>
+                        <span style={{ fontSize: '0.74rem', color: 'rgb(0, 229, 226)', fontWeight: 700 }}>
                           {story.location} &bull; Verified
                         </span>
                       </div>

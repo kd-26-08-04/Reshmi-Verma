@@ -163,7 +163,7 @@ export default function TestimonialsPage() {
             fontWeight: 800,
             letterSpacing: '-0.01em'
           }}>
-            Voices of Healing.&nbsp;<span style={{ color: 'rgb(1, 183, 180)', fontStyle: 'italic' }}>Verified by Results.</span>
+            Voices of Healing.&nbsp;<span style={{ color: 'rgb(0, 229, 226)', fontStyle: 'italic' }}>Verified by Results.</span>
           </h1>
 
           <p style={{
@@ -227,7 +227,7 @@ export default function TestimonialsPage() {
                 lineHeight: 1.2
               }}
             >
-              <span style={{ color: '#0D9488', fontStyle: 'italic' }}>It’s Always a Joy to Hear From Our Clients..</span>
+              <span style={{ color: '#00E5E2', fontStyle: 'italic' }}>It’s Always a Joy to Hear From Our Clients..</span>
             </h2>
 
             <p
@@ -262,7 +262,7 @@ export default function TestimonialsPage() {
                     borderRadius: '22px',
                     overflow: 'hidden',
                     border: '1px solid var(--border-subtle)',
-                    borderTop: '3px solid rgb(1, 183, 180)',
+                    borderTop: '3px solid rgb(0, 229, 226)',
                     boxShadow: '0 10px 28px rgba(0, 0, 0, 0.05)',
                     display: 'flex',
                     flexDirection: 'column',
@@ -346,7 +346,7 @@ export default function TestimonialsPage() {
                 borderRadius: '22px',
                 padding: '24px 22px',
                 border: '1px solid var(--border-subtle)',
-                borderTop: '3px solid rgb(1, 183, 180)',
+                borderTop: '3px solid rgb(0, 229, 226)',
                 boxShadow: '0 -2px 10px rgba(0, 229, 217, 0.12), 0 10px 28px rgba(0, 0, 0, 0.04)',
                 display: 'flex',
                 flexDirection: 'column',
@@ -364,7 +364,7 @@ export default function TestimonialsPage() {
                       height: '52px',
                       borderRadius: '50%',
                       objectFit: 'cover',
-                      border: '2px solid rgb(1, 183, 180)',
+                      border: '2px solid rgb(0, 229, 226)',
                       boxShadow: '0 0 10px rgba(0, 229, 217, 0.25)',
                       flexShrink: 0
                     }}
@@ -374,8 +374,8 @@ export default function TestimonialsPage() {
                     width: '52px',
                     height: '52px',
                     borderRadius: '50%',
-                    background: item.avatarColor || '#0D9488',
-                    border: '2px solid rgb(1, 183, 180)',
+                    background: item.avatarColor || '#00E5E2',
+                    border: '2px solid rgb(0, 229, 226)',
                     boxShadow: '0 0 10px rgba(0, 229, 217, 0.25)',
                     display: 'flex',
                     alignItems: 'center',
@@ -453,7 +453,7 @@ export default function TestimonialsPage() {
           <div>
             <span style={{
               fontSize: '0.8rem',
-              color: 'rgb(1, 183, 180)',
+              color: 'rgb(0, 229, 226)',
               fontWeight: 800,
               textTransform: 'uppercase',
               letterSpacing: '0.08em',
@@ -469,7 +469,7 @@ export default function TestimonialsPage() {
               margin: '0 0 16px',
               lineHeight: 1.2
             }}>
-              "I didn't just study functional nutrition. <span style={{ color: 'rgb(1, 183, 180)' }}>I lived the recovery.</span>"
+              "I didn't just study functional nutrition. <span style={{ color: 'rgb(0, 229, 226)' }}>I lived the recovery.</span>"
             </h2>
             <p style={{ color: '#D1D5DB', fontSize: '0.95rem', lineHeight: 1.7, marginBottom: '22px' }}>
               Reshmi Verma personally lost 38 kg and reversed severe metabolic fatigue, chronic gut distress, and dysregulated breathing. She built the SAMYA™ Method so you never have to guess your way through confusing diets or band-aid prescriptions again.

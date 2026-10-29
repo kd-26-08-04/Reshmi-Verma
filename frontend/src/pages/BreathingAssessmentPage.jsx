@@ -367,12 +367,12 @@ export default function BreathingAssessmentPage() {
     ratingSummary = 'Your breathing reflects chronic severe hyperventilation, airway restriction, and low CO₂ tolerance. This directly impacts your sleep, anxiety threshold, and cardiovascular endurance.';
   } else if (totalScore >= 24) {
     ratingTitle = 'Significant Dysfunctional Breathing';
-    ratingColor = '#0D9488';
+    ratingColor = '#00E5E2';
     ratingBadge = 'Over-Breathing Compensation';
     ratingSummary = 'Noticeable upper chest breathing, daytime sighing/mouth breathing, and suboptimal CO₂ tolerance. A structured Oxygen Advantage reset will deliver massive energy gains.';
   } else if (totalScore >= 13) {
     ratingTitle = 'Mild-to-Moderate Dysfunctional Breathing';
-    ratingColor = '#0D9488';
+    ratingColor = '#00E5E2';
     ratingBadge = 'Sub-Clinical Hyperventilation';
     ratingSummary = 'Good baseline mechanics, but chronic stress or postural desk work frequently disrupts your breathing rhythm, causing fatigue dips and intermittent air hunger.';
   }
@@ -456,7 +456,7 @@ export default function BreathingAssessmentPage() {
       background: linear-gradient(135deg, #0A0E0C 0%, #17261E 100%);
       color: #FFFFFF;
       padding: 36px 32px;
-      border-bottom: 4px solid rgb(1, 183, 180);
+      border-bottom: 4px solid rgb(0, 229, 226);
     }
     .brand-title {
       font-size: 24px;
@@ -473,11 +473,11 @@ export default function BreathingAssessmentPage() {
       margin-top: 20px;
       font-size: 13px;
     }
-    .client-meta div strong { color: rgb(1, 183, 180); display: block; font-size: 11px; text-transform: uppercase; }
+    .client-meta div strong { color: rgb(0, 229, 226); display: block; font-size: 11px; text-transform: uppercase; }
     .report-body { padding: 36px 32px; }
     .score-banner {
       background: #E6FCFB;
-      border: 1.5px solid rgb(1, 183, 180);
+      border: 1.5px solid rgb(0, 229, 226);
       border-radius: 16px;
       padding: 24px;
       text-align: center;
@@ -486,7 +486,7 @@ export default function BreathingAssessmentPage() {
     .score-value {
       font-size: 52px;
       font-weight: 800;
-      color: #0D9488;
+      color: #00E5E2;
       line-height: 1;
       margin: 8px 0;
     }
@@ -505,7 +505,7 @@ export default function BreathingAssessmentPage() {
     .btn-booking {
       display: inline-block;
       margin-top: 14px;
-      background: rgb(1, 183, 180);
+      background: rgb(0, 229, 226);
       color: #121214 !important;
       text-decoration: none;
       padding: 10px 22px;
@@ -526,7 +526,7 @@ export default function BreathingAssessmentPage() {
 <body>
   <div class="report-card">
     <div class="report-header">
-      <div style="display:inline-block;background:rgba(0,229,217,0.2);color:rgb(1, 183, 180);font-size:11px;font-weight:700;padding:4px 12px;border-radius:20px;text-transform:uppercase;margin-bottom:12px;">Oxygen Advantage® Clinical Assessment</div>
+      <div style="display:inline-block;background:rgba(0,229,217,0.2);color:rgb(0, 229, 226);font-size:11px;font-weight:700;padding:4px 12px;border-radius:20px;text-transform:uppercase;margin-bottom:12px;">Oxygen Advantage® Clinical Assessment</div>
       <div class="brand-title">HealthwithReshmi™</div>
       <div style="font-size:13px;opacity:0.85;">Reshmi Verma &bull; Certified Oxygen Advantage® Coach (#13 India)</div>
       
@@ -602,7 +602,7 @@ export default function BreathingAssessmentPage() {
                     padding: '8px 16px',
                     borderRadius: '999px',
                     border: '1.5px solid',
-                    borderColor: currentPillar === idx ? 'rgb(1, 183, 180)' : 'var(--border-subtle)',
+                    borderColor: currentPillar === idx ? 'rgb(0, 229, 226)' : 'var(--border-subtle)',
                     background: currentPillar === idx ? '#EBF9F8' : 'white',
                     color: currentPillar === idx ? '#167A71' : 'var(--text-secondary)',
                     fontWeight: 700,
@@ -670,7 +670,7 @@ export default function BreathingAssessmentPage() {
             <div
               style={{
                 background: '#F0FDFA',
-                border: '1.5px solid rgb(1, 183, 180)',
+                border: '1.5px solid rgb(0, 229, 226)',
                 borderRadius: '20px',
                 padding: '24px 28px',
                 marginBottom: '24px',
@@ -695,7 +695,7 @@ export default function BreathingAssessmentPage() {
                 onClick={handleDownloadBreathingScorecard}
                 className="btn btn-primary"
                 style={{
-                  background: '#0D9488',
+                  background: '#00E5E2',
                   color: '#FFFFFF',
                   border: 'none',
                   padding: '12px 24px',
@@ -716,7 +716,7 @@ export default function BreathingAssessmentPage() {
 
             {/* Reshmi Clinical Roadmap CTA */}
             <div style={{ padding: '28px 24px', borderRadius: '20px', background: 'linear-gradient(135deg, #0A0E0C 0%, #17261E 100%)', color: '#FFFFFF', textAlign: 'center', marginBottom: '24px', boxShadow: '0 12px 30px rgba(0,0,0,0.18)' }}>
-              <h3 style={{ fontSize: '1.35rem', color: 'rgb(1, 183, 180)', margin: '0 0 8px', fontWeight: 800 }}>
+              <h3 style={{ fontSize: '1.35rem', color: 'rgb(0, 229, 226)', margin: '0 0 8px', fontWeight: 800 }}>
                 Restore Your Cellular Oxygen Delivery with Reshmi Verma
               </h3>
               <p style={{ fontSize: '0.92rem', color: 'rgba(255,255,255,0.85)', maxWidth: '620px', margin: '0 auto 20px', lineHeight: 1.55 }}>
@@ -729,7 +729,7 @@ export default function BreathingAssessmentPage() {
                   rel="noopener noreferrer"
                   style={{
                     padding: '13px 28px',
-                    background: 'rgb(1, 183, 180)',
+                    background: 'rgb(0, 229, 226)',
                     color: '#121214',
                     fontWeight: 800,
                     borderRadius: '12px',
@@ -758,7 +758,7 @@ export default function BreathingAssessmentPage() {
                     padding: '12px 24px',
                     background: '#FFFFFF',
                     color: '#0D827B',
-                    border: '1.5px solid rgb(1, 183, 180)',
+                    border: '1.5px solid rgb(0, 229, 226)',
                     borderRadius: '12px',
                     fontWeight: 700,
                     display: 'inline-flex',
@@ -829,7 +829,7 @@ export default function BreathingAssessmentPage() {
           <div className="glass-assessment-card" style={{ maxWidth: '540px', margin: '0 auto', textAlign: 'center', padding: '40px 32px' }}>
             <div style={{ marginBottom: '12px' }}>
               <span className="badge-pill" style={{ background: '#EBF9F8', color: '#167A71', borderColor: '#9FE3DD' }}>
-                <span className="pulse-dot" style={{ background: 'rgb(1, 183, 180)' }}></span>
+                <span className="pulse-dot" style={{ background: 'rgb(0, 229, 226)' }}></span>
                 <span>Step 1 of 2 &bull; Oxygen Advantage® Intake</span>
               </span>
             </div>
@@ -899,7 +899,7 @@ export default function BreathingAssessmentPage() {
                   fontWeight: 700,
                   marginTop: '8px',
                   borderRadius: '12px',
-                  background: 'rgb(1, 183, 180)',
+                  background: 'rgb(0 229 226)',
                   color: '#121214',
                   border: 'none',
                   cursor: 'pointer'
@@ -943,7 +943,7 @@ export default function BreathingAssessmentPage() {
                       type="button"
                       onClick={handleStartBolt}
                       className="btn"
-                      style={{ padding: '10px 20px', fontSize: '0.9rem', background: 'rgb(1, 183, 180)', color: '#121214', fontWeight: 700, border: 'none', borderRadius: '12px', cursor: 'pointer' }}
+                      style={{ padding: '10px 20px', fontSize: '0.9rem', background: 'rgb(0 229 226))', color: '#121214', fontWeight: 700, border: 'none', borderRadius: '12px', cursor: 'pointer' }}
                     >
                       ▶️ Start BOLT Test
                     </button>
@@ -973,7 +973,7 @@ export default function BreathingAssessmentPage() {
               return (
                 <div key={section.id}>
                   {/* Pillar Banner */}
-                  <div style={{ marginBottom: '22px', padding: '16px 20px', borderRadius: '16px', background: '#FAF9F6', borderLeft: '4px solid rgb(1, 183, 180)', borderTop: '1px solid var(--border-subtle)', borderRight: '1px solid var(--border-subtle)', borderBottom: '1px solid var(--border-subtle)' }}>
+                  <div style={{ marginBottom: '22px', padding: '16px 20px', borderRadius: '16px', background: '#FAF9F6', borderLeft: '4px solid rgb(0 229 226)', borderTop: '1px solid var(--border-subtle)', borderRight: '1px solid var(--border-subtle)', borderBottom: '1px solid var(--border-subtle)' }}>
                     <div style={{ fontSize: '0.82rem', fontWeight: 700, color: '#167A71', textTransform: 'uppercase' }}>
                       {section.badge}
                     </div>
@@ -997,7 +997,7 @@ export default function BreathingAssessmentPage() {
                           style={{
                             padding: '24px',
                             borderRadius: '18px',
-                            border: selected ? '1.5px solid rgb(1, 183, 180)' : '1px solid var(--border-subtle)',
+                            border: selected ? '1.5px solid rgb(0 229 226)' : '1px solid var(--border-subtle)',
                             background: '#FFFFFF',
                             boxShadow: selected ? '0 8px 24px rgba(0, 229, 217,0.12)' : 'var(--shadow-sm)',
                             transition: 'all 0.2s'
@@ -1025,7 +1025,7 @@ export default function BreathingAssessmentPage() {
                                     padding: '12px 14px',
                                     borderRadius: '12px',
                                     border: '1.5px solid',
-                                    borderColor: isOptSelected ? 'rgb(1, 183, 180)' : 'var(--border-subtle)',
+                                    borderColor: isOptSelected ? 'rgb(0, 229, 226)' : 'var(--border-subtle)',
                                     background: isOptSelected ? '#EBF9F8' : '#FAF9F6',
                                     color: isOptSelected ? '#121214' : 'var(--text-primary)',
                                     cursor: 'pointer',
@@ -1043,8 +1043,8 @@ export default function BreathingAssessmentPage() {
                                     height: '18px',
                                     borderRadius: '50%',
                                     border: '2px solid',
-                                    borderColor: isOptSelected ? 'rgb(1, 183, 180)' : '#CBD5E1',
-                                    background: isOptSelected ? 'rgb(1, 183, 180)' : 'white',
+                                    borderColor: isOptSelected ? 'rgb(0, 229, 226)' : '#CBD5E1',
+                                    background: isOptSelected ? 'rgb(0, 229, 226)' : 'white',
                                     flexShrink: 0,
                                     marginTop: '2px'
                                   }}></span>
@@ -1091,7 +1091,7 @@ export default function BreathingAssessmentPage() {
                         type="button"
                         onClick={handleFinish}
                         className="btn btn-primary btn-lg"
-                        style={{ padding: '14px 36px', background: 'rgb(1, 183, 180)', color: '#121214', fontWeight: 800, border: 'none' }}
+                        style={{ padding: '14px 36px', background: 'rgb(0, 229, 226)', color: '#121214', fontWeight: 800, border: 'none' }}
                       >
                         📊 View My Oxygen Advantage Scorecard &rarr;
                       </button>

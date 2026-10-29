@@ -61,18 +61,18 @@
   --health-saffron-glow: none;
 
   /* Breathwork Track EXCLUSIVELY — Electric Neon Cyan (Bright & Radiant) */
-  --breath-cyan: rgb(1, 183, 180);
-  --breath-cyan-hover: #26F0E6;
+  --breath-cyan: rgb(3, 236, 232);
+  --breath-cyan-hover: #18e9de;
   --breath-cyan-light: #E6FCFB;
-  --breath-cyan-border: #7AF5EE;
+  --breath-cyan-border: #11fcf0;
   --breath-cyan-shadow: rgba(0, 0, 0, 0.08);
   --breath-cyan-deep: #0D827B;
   --breath-cyan-glow: none;
 
   /* Respiratory & Accents */
-  --teal-accent: rgb(1, 183, 180);
+  --teal-accent: rgb(0 229 226);
   --teal-soft: #E6FCFB;
-  --sky-breath: rgb(1, 183, 180);
+  --sky-breath: rgb(0 229 226);
   --sky-soft: #E6FCFB;
 
   /* Organic Sand & Universal Structure */
@@ -89,7 +89,7 @@
   --text-white: #FFFFFF;
 
   /* Functional Status Colors */
-  --status-optimal: #2EC4B6;
+  --status-optimal: #00E5E2;
   --status-optimal-bg: #EBF9F8;
   --status-warning: #EB5E28;
   --status-warning-bg: #FDF1EB;
@@ -536,7 +536,7 @@ h6 {
 .brand-reshmi-script {
   font-family: 'Allura', 'Alex Brush', 'Brittany', 'Great Vibes', cursive;
   text-transform: none;
-  color: rgb(243, 1, 132);
+  color: rgb(255, 5, 163);
   font-size: 1.7em;
   font-weight: 400;
   letter-spacing: 0.02em;
@@ -755,8 +755,8 @@ h6 {
 
 .dropdown-item-icon.doctor-icon {
   background: #E6FCFB;
-  color: #0D9488;
-  border: 1px solid rgba(13, 148, 136, 0.2);
+  color: #00E5E2;
+  border: 1px s#00E5E2 0.2;
 }
 
 .dropdown-item-icon.video-icon {
@@ -891,7 +891,7 @@ h6 {
     width: 100%;
     min-width: unset;
     box-shadow: none;
-    border: 1.5px solid rgba(13, 130, 123, 0.18);
+    border: 1.5px solid rgba(4, 236, 221, 0.18);
     background: #FAF9F6;
     margin-top: 6px;
     margin-bottom: 8px;
@@ -942,7 +942,7 @@ h6 {
 
   .dropdown-item.active {
     background: rgba(13, 130, 123, 0.12) !important;
-    border: 1px solid rgba(13, 130, 123, 0.3) !important;
+    border: 1px solid rgba(4, 231, 216, 0.3) !important;
   }
 
   .dropdown-item.active .dropdown-item-title {
@@ -1170,7 +1170,7 @@ h6 {
 
 /* 3. Health Assessment Button (Matte Clean Solid — No Glow Halo / No Shine) */
 .btn-health {
-  background: #E11D48;
+  background: #f30184;
   color: #FFFFFF !important;
   border: 1px solid transparent;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
@@ -1188,7 +1188,7 @@ h6 {
 
 /* 4. Breathing Assessment Button (Matte Clean Solid — No Glow Halo / No Shine) */
 .btn-breath {
-  background: #0D9488;
+  background: #00E5E2;
   color: #FFFFFF !important;
   border: 1px solid transparent;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
@@ -1198,7 +1198,7 @@ h6 {
 }
 
 .btn-breath:hover {
-  background: #0F766E;
+  background: #03e6d3;
   color: #FFFFFF !important;
   transform: translateY(-2px);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
@@ -1268,7 +1268,7 @@ h6 {
 
 .hero-content h1 .text-gradient-terracotta,
 .hero-content h1 .text-gradient-breath {
-  background: linear-gradient(135deg, rgb(1, 183, 180) 0%, #00998F 100%);
+  background: linear-gradient(135deg, rgb(1, 229, 226) 0%, #02e6d6 100%);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -1682,7 +1682,7 @@ h6 {
   height: 14px;
   border-radius: 50%;
   background: var(--teal-accent);
-  box-shadow: 0 0 0 0 rgba(13, 148, 136, 0.6);
+  box-shadow: 0 0 0 0 rgba(2, 233, 214, 0.6);
   animation: pulseGlow 2s infinite;
 }
 
@@ -2120,7 +2120,7 @@ h6 {
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
   border-radius: var(--radius-lg);
-  border: 1.5px solid rgba(46, 196, 182, 0.25);
+  border: 1.5px solid rgba(4, 240, 216, 0.25);
   border-top: 3px solid var(--breath-cyan);
   box-shadow: 0 16px 40px -10px rgba(18, 18, 20, 0.08), 0 0 25px rgba(46, 196, 182, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.95);
   padding: 36px;
@@ -2131,7 +2131,7 @@ h6 {
 .bolt-test-card:hover {
   transform: translateY(-6px);
   border-color: var(--breath-cyan);
-  box-shadow: 0 24px 50px -10px rgba(46, 196, 182, 0.18), 0 0 30px rgba(46, 196, 182, 0.15);
+  box-shadow: 0 24px 50px -10px rgba(1, 236, 213, 0.18), 0 0 30px rgba(46, 196, 182, 0.15);
 }
 
 .bolt-test-card h3 {
@@ -2254,7 +2254,7 @@ h6 {
 
 .samya-card:hover {
   transform: translateY(-5px);
-  box-shadow: 0 14px 28px -6px rgba(13, 148, 136, 0.18);
+  box-shadow: 0 14px 28px -6px rgba(2, 247, 226, 0.18);
   border-color: var(--emerald-primary);
   background: #FFFFFF;
 }
@@ -2278,14 +2278,14 @@ h6 {
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 4px 12px rgba(13, 148, 136, 0.25);
+  box-shadow: 0 4px 12px rgba(2, 241, 222, 0.25);
   line-height: 1;
   transition: transform 0.3s ease;
 }
 
 .samya-card:hover .samya-letter-hero {
   transform: scale(1.06) rotate(-2deg);
-  box-shadow: 0 6px 16px rgba(13, 148, 136, 0.35);
+  box-shadow: 0 6px 16px rgba(0, 243, 223, 0.35);
 }
 
 .samya-step-badge {
@@ -7171,7 +7171,7 @@ h6 {
   line-height: 1.25;
   margin: 0 0 10px;
   font-weight: 800;
-  background: linear-gradient(135deg, #0F766E 0%, #0D9488 45%, rgb(1, 183, 180) 100%);
+  background: linear-gradient(135deg, #0F766E 0%, #00E5E2 45%, rgb(0, 229, 226) 100%);
   /* Line 7029: TEAL BLUE GRADIENT FOR 5 CORE PILLARS */
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -7197,7 +7197,7 @@ h6 {
 .pillar-card {
   background: #FFFFFF;
   border: 1px solid rgba(13, 148, 136, 0.2);
-  border-top: 3.5px solid #0D9488;
+  border-top: 3.5px solid #00E5E2;
   /* Line 7050: TEAL BLUE TOP BORDER (Breathwork Color) */
   border-radius: 14px;
   padding: 14px 12px 12px;
@@ -7211,7 +7211,7 @@ h6 {
 .pillar-card:hover {
   transform: translateY(-4px);
   box-shadow: 0 10px 24px rgba(13, 148, 136, 0.2);
-  border-color: #0D9488;
+  border-color: #00E5E2;
   /* Line 7063: HOVER TEAL BLUE BORDER */
 }
 
@@ -7396,7 +7396,7 @@ h6 {
   display: flex;
   flex-direction: column;
   border: 1px solid rgba(255, 255, 255, 0.1);
-  border-top: 2.5px solid rgb(1, 183, 180);
+  border-top: 2.5px solid rgb(0, 229, 226);
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
   transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
   position: relative;
@@ -7433,7 +7433,7 @@ h6 {
   height: 48px;
   border-radius: 50%;
   object-fit: cover;
-  border: 1.5px solid rgb(1, 183, 180);
+  border: 1.5px solid rgb(0, 229, 226);
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.35);
 }
 
@@ -7450,7 +7450,7 @@ h6 {
   font-weight: 800;
   text-transform: uppercase;
   letter-spacing: 0.05em;
-  color: rgb(1, 183, 180);
+  color: rgb(0, 229, 226);
   text-decoration: none;
   display: inline-flex;
   align-items: center;
@@ -7576,7 +7576,7 @@ h6 {
 .review-glass-card {
   background: #FFFFFF;
   border: 1px solid var(--border-subtle);
-  border-top: 2.5px solid rgb(1, 183, 180) !important;
+  border-top: 2.5px solid rgb(0, 229, 226) !important;
   border-radius: 20px;
   padding: 24px 20px;
   display: flex;
@@ -7800,7 +7800,7 @@ h6 {
   border-radius: 20px;
   overflow: hidden;
   border: 1px solid rgba(0, 0, 0, 0.08);
-  border-top: 3px solid rgb(1, 183, 180);
+  border-top: 3px solid rgb(0, 229, 226);
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.05);
   transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease;
   position: relative;
@@ -7837,7 +7837,7 @@ h6 {
   background: #FFFFFF;
   border-radius: 20px;
   border: 1px solid rgba(0, 0, 0, 0.08);
-  border-left: 4px solid rgb(1, 183, 180);
+  border-left: 4px solid rgb(0, 229, 226);
   padding: 22px 24px;
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.04);
   transition: all 0.25s ease;
@@ -7851,7 +7851,7 @@ h6 {
 .soundwave-bar {
   width: 3px;
   height: 14px;
-  background: rgb(1, 183, 180);
+  background: rgb(0, 229, 226);
   border-radius: 3px;
   animation: soundwaveBounce 1.2s ease-in-out infinite alternate;
 }
@@ -7964,7 +7964,7 @@ h6 {
 .samya-dropdown-trigger-btn {
   width: 100%;
   background: linear-gradient(135deg, #FFFFFF 0%, #F3FCFB 100%);
-  border: 2px solid rgb(1, 183, 180);
+  border: 2px solid rgb(0, 229, 226);
   border-radius: 20px;
   padding: 16px 22px;
   display: flex;
@@ -8006,7 +8006,7 @@ h6 {
 
 .samya-dropdown-trigger-btn.pulse-attention {
   animation: dropdownPromptPulse 2s ease-in-out infinite;
-  border-color: rgb(1, 183, 180);
+  border-color: rgb(0, 229, 226);
 }
 
 @keyframes dropdownPromptPulse {
@@ -8015,7 +8015,7 @@ h6 {
   100% {
     box-shadow: 0 6px 22px rgba(0, 229, 217, 0.2), 0 0 0 0 rgba(0, 229, 217, 0.45);
     transform: translateY(0) scale(1);
-    border-color: rgb(1, 183, 180);
+    border-color: rgb(0, 229, 226);
   }
 
   50% {
@@ -8321,7 +8321,7 @@ h6 {
   max-width: 540px;
   margin: 0 auto;
   background: linear-gradient(135deg, #FFFFFF 0%, #F3FCFB 100%);
-  border: 1.5px solid rgb(1, 183, 180);
+  border: 1.5px solid rgb(0, 229, 226);
   border-radius: 14px;
   padding: 10px 16px;
   min-height: 44px;
@@ -8364,7 +8364,7 @@ h6 {
 
 .samya-dropdown-trigger-btn.pulse-attention {
   animation: dropdownPromptPulse 2.2s ease-in-out infinite;
-  border-color: rgb(1, 183, 180);
+  border-color: rgb(0, 229, 226);
 }
 
 @keyframes dropdownPromptPulse {
@@ -8373,7 +8373,7 @@ h6 {
   100% {
     box-shadow: 0 3px 14px rgba(0, 229, 217, 0.18), 0 0 0 0 rgba(0, 229, 217, 0.45);
     transform: translateY(0);
-    border-color: rgb(1, 183, 180);
+    border-color: rgb(0, 229, 226);
   }
 
   50% {
@@ -8413,7 +8413,7 @@ h6 {
 .samya-trigger-badge {
   font-size: 0.70rem;
   font-weight: 800;
-  background: linear-gradient(135deg, rgb(1, 183, 180) 0%, #0D9488 100%);
+  background: linear-gradient(135deg, rgb(0, 229, 226) 0%, #00E5E2 100%);
   color: #042F2C;
   padding: 3px 9px;
   border-radius: 999px;

@@ -109,7 +109,7 @@ export default function BreathePage() {
         grade: 'High Physiological Risk',
         tier: 'Critically Compromised (Severe Oxygen Deficit)',
         urgency: 'critical',
-        badgeColor: '#E11D48',
+        badgeColor: '#f30184',
         badgeBg: '#FFF1F2',
         title: 'CRITICAL CLINICAL ALERT: Severe Cellular Oxygen Starvation',
         summary: `Your BOLT score is critically low at ${score.toFixed(1)}s (${marks}/100 Marks). This confirms that your cells, brain, and gut lining are chronically starved of functional oxygen due to rapid carbon dioxide depletion and silent mouth-breathing.`,
@@ -126,7 +126,7 @@ export default function BreathePage() {
         grade: 'Moderate Autonomic Strain',
         tier: 'Sub-Optimal Respiration (Compromised Reserve)',
         urgency: 'warning',
-        badgeColor: '#0D9488',
+        badgeColor: '#00E5E2',
         badgeBg: '#F0FDFA',
         title: 'CLINICAL RECOMMENDATION: Consultation Strongly Recommended',
         summary: `Good attempt! Your score is ${score.toFixed(1)}s (${marks}/100 Marks). While you manage day-to-day tasks, your breathing pattern is silently burning 30% to 40% excess cellular energy, causing afternoon fatigue crashes and digestive acidity.`,
@@ -440,7 +440,7 @@ export default function BreathePage() {
                     <span>Status: <strong style={{ color: boltAnalysis.badgeColor }}>{boltAnalysis.tier}</strong></span>
                   </div>
                   <div style={{ width: '100%', height: '10px', background: 'var(--bg-tertiary)', borderRadius: '999px', overflow: 'hidden' }}>
-                    <div style={{ width: `${boltAnalysis.marks}%`, height: '100%', background: `linear-gradient(90deg, ${boltAnalysis.badgeColor}, rgb(1, 183, 180))`, borderRadius: '999px', transition: 'width 1s ease' }}></div>
+                    <div style={{ width: `${boltAnalysis.marks}%`, height: '100%', background: `linear-gradient(90deg, ${boltAnalysis.badgeColor}, rgb(0 229 226))`, borderRadius: '999px', transition: 'width 1s ease' }}></div>
                   </div>
                 </div>
 

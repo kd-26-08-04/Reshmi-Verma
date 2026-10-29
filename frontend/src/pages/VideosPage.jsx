@@ -333,7 +333,7 @@ export default function VideosPage() {
             lineHeight: 1.2,
             fontWeight: 800
           }}>
-            Health <span style={{ color: '#0D9488', fontStyle: 'italic' }}>Videos & Shorts</span>
+            Health <span style={{ color: '#00E5E2', fontStyle: 'italic' }}>Videos & Shorts</span>
           </h1>
 
           <p className="videos-hero-desc" style={{
@@ -381,7 +381,7 @@ export default function VideosPage() {
                 padding: '8px 20px',
                 borderRadius: '999px',
                 background: '#121214',
-                color: 'rgb(1, 183, 180)',
+                color: 'rgb(0, 229, 226)',
                 border: 'none',
                 fontWeight: 700,
                 fontSize: '0.82rem',
@@ -448,7 +448,7 @@ export default function VideosPage() {
                   {/* Card Content */}
                   <div style={{ padding: '14px 16px', flex: 1, display: 'flex', flexDirection: 'column' }}>
                     <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '6px' }}>
-                      <span style={{ fontSize: '0.70rem', color: '#0D9488', fontWeight: 800, textTransform: 'uppercase' }}>
+                      <span style={{ fontSize: '0.70rem', color: '#00E5E2', fontWeight: 800, textTransform: 'uppercase' }}>
                         {video.badge}
                       </span>
                       <span style={{ fontSize: '0.68rem', fontWeight: 700, color: '#475569', background: '#F1F5F9', padding: '2px 6px', borderRadius: '4px' }}>
@@ -487,7 +487,7 @@ export default function VideosPage() {
                         rel="noopener noreferrer"
                         style={{
                           fontSize: '0.78rem',
-                          color: '#0D9488',
+                          color: '#00E5E2',
                           fontWeight: 700,
                           textDecoration: 'none'
                         }}
@@ -557,10 +557,10 @@ export default function VideosPage() {
                   {/* Card Content */}
                   <div style={{ padding: '12px 14px', flex: 1, display: 'flex', flexDirection: 'column' }}>
                     <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '4px' }}>
-                      <span style={{ fontSize: '0.68rem', color: '#0D9488', fontWeight: 800, textTransform: 'uppercase' }}>
+                      <span style={{ fontSize: '0.68rem', color: '#00E5E2', fontWeight: 800, textTransform: 'uppercase' }}>
                         {video.badge}
                       </span>
-                      <span style={{ fontSize: '0.66rem', fontWeight: 700, color: '#0D9488', background: 'rgba(13, 148, 136, 0.1)', padding: '1px 5px', borderRadius: '4px' }}>
+                      <span style={{ fontSize: '0.66rem', fontWeight: 700, color: '#00E5E2', background: 'rgba(13, 148, 136, 0.1)', padding: '1px 5px', borderRadius: '4px' }}>
                         ⚡ Short
                       </span>
                     </div>
@@ -596,7 +596,7 @@ export default function VideosPage() {
                         rel="noopener noreferrer"
                         style={{
                           fontSize: '0.74rem',
-                          color: '#0D9488',
+                          color: '#00E5E2',
                           fontWeight: 700,
                           textDecoration: 'none'
                         }}
@@ -719,7 +719,7 @@ export default function VideosPage() {
 
               {/* Modal Header */}
               <div style={{ padding: '12px 16px', borderBottom: '1px solid rgba(255, 255, 255, 0.1)' }}>
-                <span style={{ fontSize: '0.70rem', color: 'rgb(1, 183, 180)', fontWeight: 800, textTransform: 'uppercase' }}>
+                <span style={{ fontSize: '0.70rem', color: 'rgb(0, 229, 226)', fontWeight: 800, textTransform: 'uppercase' }}>
                   {selectedVideo.categoryLabel}
                 </span>
                 <h3 style={{ margin: '2px 0 0', color: '#FFFFFF', fontSize: '1rem', fontWeight: 800, paddingRight: '36px', lineHeight: 1.3 }}>
@@ -772,7 +772,7 @@ export default function VideosPage() {
                   style={{
                     padding: '8px 14px',
                     borderRadius: '8px',
-                    background: 'rgb(1, 183, 180)',
+                    background: 'rgb(0, 229, 226)',
                     color: '#121214',
                     fontWeight: 800,
                     fontSize: '0.78rem',
@@ -806,7 +806,7 @@ export default function VideosPage() {
               target="_blank"
               rel="noopener noreferrer"
               className="btn btn-primary"
-              style={{ padding: '11px 22px', background: 'rgb(1, 183, 180)', color: '#121214', fontWeight: 800, borderRadius: '10px', fontSize: '0.86rem' }}
+              style={{ padding: '11px 22px', background: 'rgb(0, 229, 226)', color: '#121214', fontWeight: 800, borderRadius: '10px', fontSize: '0.86rem' }}
             >
               Book 1:1 Consultation
             </a>
