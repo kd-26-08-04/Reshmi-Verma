@@ -150,7 +150,7 @@ export default function Navbar() {
               >
                 <div className="dropdown-item-text">
                   <div className="dropdown-title-row">
-                    <span className="dropdown-item-title">Clinical Videos</span>
+                    <span className="dropdown-item-title">Videos</span>
                   </div>
                 </div>
               </Link>

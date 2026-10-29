@@ -157,6 +157,7 @@ export default function ContactPage() {
               </div>
 
 
+
               {/* Consultation Hours */}
               <div style={{ display: 'flex', gap: '16px', alignItems: 'flex-start' }}>
                 <div style={{
@@ -180,7 +181,7 @@ export default function ContactPage() {
                   <p style={{ margin: 0, fontSize: '0.92rem', color: 'var(--text-secondary)' }}>
                     <strong>Mon – Sat:</strong> 9:00 AM – 6:30 PM IST
                   </p>
-                  <p style={{ margin: '2px 0 0', fontSize: '0.8rem', color: 'var(--text-muted)' }}>Telehealth consultations conducted globally</p>
+                  <p style={{ margin: '2px 0 0', fontSize: '0.8rem', color: 'var(--text-muted)' }}>Health consultations conducted globally</p>
                 </div>
               </div>
             </div>
@@ -194,7 +195,7 @@ export default function ContactPage() {
               lineHeight: 1.55,
               border: '1px solid var(--border-subtle)'
             }}>
-              <strong style={{ color: 'var(--emerald-deep)', display: 'block', marginBottom: '4px' }}>Clinical Confidentiality Guarantee</strong>
+              <strong style={{ color: 'var(--emerald-deep)', display: 'block', marginBottom: '4px' }}>Confidentiality Guarantee</strong>
               All diagnostic records, symptoms, and health information shared with Reshmi Verma are strictly confidential and encrypted under medical ethics standards.
             </div>
           </div>

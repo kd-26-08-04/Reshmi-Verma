@@ -57,51 +57,38 @@ export default function ClientTransformationShowcase() {
   const audioTestimonials = [
     {
       id: 'voice-1',
-      condition: 'Gut Relief & Chronic Acidity',
+      condition: 'Acidity & Digestion Healing',
       file: '/assets/audio/client-voice-1.mp4',
-      quote: '"Reshmi mam ke guidance se meri 3 saal purani acidity aur digestion issue completely heal ho gaya."',
-
     },
     {
       id: 'voice-2',
-      condition: 'Thyroid, Energy & Sleep Quality',
+      condition: 'Sustainable Fat Loss Journey',
       file: '/assets/audio/client-voice-2.mp4',
-      quote: '"Afternoon exhaustion aur brain fog hat gaya. Main ab bina kisi caffeine ya medicines ke active rehti hu."',
-
     },
     {
       id: 'voice-3',
-      condition: 'Sustained Weight & Metabolic Reversal',
+      condition: 'Thyroid & Blood-Work Driven Nutrition',
       file: '/assets/audio/client-voice-3.mp4',
-      quote: '"Bina kisi crash diet ya starvation ke mera weight naturally reduce hua aur inch loss bhi bohot acha mila."',
-
     },
     {
       id: 'voice-4',
-      condition: 'Anxiety & Breathwork Recovery',
+      condition: 'Skin & Acne Transformation',
       file: '/assets/audio/client-voice-4.mp4',
-      quote: '"Oxygen Advantage breathing drills ne meri breathing pattern aur raat ki sleep ko 100% stable kar diya."',
-
     },
     {
       id: 'voice-5',
-
-      condition: 'Gut Relief & Bloating Reversal',
+      condition: 'Diabetes & Metabolic Recovery',
       file: '/assets/audio/client-voice-5.mp3',
-      quote: '"Bloating aur post-meal heaviness me remarkable improvement aaya within few weeks of protocol."',
-
     },
     {
       id: 'voice-8',
-      condition: 'Metabolic Vitality & Inch Loss',
+      condition: 'Weight Loss & Inch Loss Protocol',
       file: '/assets/audio/client-voice-8.mp3',
-      quote: '"Metabolism restore hua aur bina extreme restriction ke sustainable inch loss mila."',
     },
     {
       id: 'voice-9',
-      condition: 'Sleep Quality & Stress Modulation',
+      condition: 'Nutrition Consultation & Motivation',
       file: '/assets/audio/client-voice-9.mp3',
-      quote: '"Oxygen Advantage breathwork aur sleep hygiene se deep restful sleep wapas aayi."',
     }
   ];
 
@@ -326,11 +313,8 @@ export default function ClientTransformationShowcase() {
                             color: 'var(--emerald-deep)'
                           }}
                         >
-                          {item.clientName}
-                        </h4>
-                        <span style={{ fontSize: '0.8rem', color: '#008B82', fontWeight: 700 }}>
                           {item.condition}
-                        </span>
+                        </h4>
                       </div>
 
                       {/* Animated Sound Wave Indicator */}
@@ -358,20 +342,6 @@ export default function ClientTransformationShowcase() {
                       )}
                     </div>
 
-                    {/* Client Quote Snippet */}
-                    <p
-                      style={{
-                        fontSize: '0.88rem',
-                        color: 'var(--text-primary)',
-                        lineHeight: 1.55,
-                        margin: '0 0 18px',
-                        fontStyle: 'italic',
-                        flexGrow: 1
-                      }}
-                    >
-                      {item.quote}
-                    </p>
-
                     {/* Audio Controls Bar */}
                     <div
                       style={{
@@ -381,7 +351,8 @@ export default function ClientTransformationShowcase() {
                         background: '#FAF8F5',
                         padding: '10px 14px',
                         borderRadius: '14px',
-                        border: '1px solid var(--border-subtle)'
+                        border: '1px solid var(--border-subtle)',
+                        marginTop: 'auto'
                       }}
                     >
                       <button

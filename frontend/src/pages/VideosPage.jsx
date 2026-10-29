@@ -403,7 +403,7 @@ export default function VideosPage() {
               fontFamily: 'var(--font-serif)',
               fontWeight: 800
             }}>
-              Masterclasses (Full Sessions)
+              Full Sessions
             </h2>
 
             <div className="masterclasses-grid">
@@ -607,6 +607,51 @@ export default function VideosPage() {
                   </div>
                 </div>
               ))}
+
+              {/* YouTube Arrow — grid cell, appears in the empty space next to last short */}
+              <div style={{
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+              }}>
+                <a
+                  href="https://youtube.com/@healthwithreshmi?si=J_-3JErcDWbGw6gj"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  title="More Videos on YouTube"
+                  style={{
+                    display: 'inline-flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    width: '64px',
+                    height: '64px',
+                    borderRadius: '50%',
+                    border: '3px solid #FF0000',
+                    background: '#FFFFFF',
+                    textDecoration: 'none',
+                    boxShadow: '0 4px 20px rgba(255, 0, 0, 0.20)',
+                    transition: 'transform 0.22s cubic-bezier(0.16,1,0.3,1), background 0.22s ease',
+                    flexShrink: 0
+                  }}
+                  onMouseEnter={e => {
+                    e.currentTarget.style.transform = 'scale(1.14)';
+                    e.currentTarget.style.background = '#FF0000';
+                    e.currentTarget.querySelector('svg').style.stroke = '#FFFFFF';
+                  }}
+                  onMouseLeave={e => {
+                    e.currentTarget.style.transform = 'scale(1)';
+                    e.currentTarget.style.background = '#FFFFFF';
+                    e.currentTarget.querySelector('svg').style.stroke = '#FF0000';
+                  }}
+                >
+                  <svg width="26" height="26" viewBox="0 0 24 24" fill="none"
+                    stroke="#FF0000" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"
+                    style={{ transition: 'stroke 0.22s ease' }}>
+                    <line x1="5" y1="12" x2="19" y2="12" />
+                    <polyline points="12 5 19 12 12 19" />
+                  </svg>
+                </a>
+              </div>
             </div>
           </div>
         )}

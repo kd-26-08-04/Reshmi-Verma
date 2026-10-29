@@ -69,11 +69,7 @@ export default function AboutPage() {
 
             <h1 style={{ lineHeight: 1.18, marginBottom: '24px', fontFamily: 'var(--font-serif)' }}>
               <span className="about-heading-line-1">
-                From Reading 100,000+ Blood Panels to
-              </span>
-              <span className="about-heading-line-2 text-gradient">
-                Reversing Chronic Health Roadblocks
-              </span>
+                Transforming Health Through a Root-Cause Approach              </span>
             </h1>
 
             <p style={{ fontSize: '1.18rem', color: 'var(--text-secondary)', lineHeight: 1.7, maxWidth: '780px', margin: '0 auto 32px' }}>
@@ -139,7 +135,7 @@ export default function AboutPage() {
             </div>
             <div style={{ transition: 'transform 0.3s ease' }}>
               <div style={{ fontSize: '2.5rem', fontWeight: 800, color: 'var(--emerald-medium)', fontFamily: 'var(--font-serif)' }}>
-                <AnimatedNumber value={38} suffix="Kg" />
+                <AnimatedNumber value={38} suffix="+Kg" />
               </div>
               <div style={{ fontSize: '0.88rem', color: 'var(--text-secondary)', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.04em' }}>
                 Personal Transformation
@@ -196,7 +192,7 @@ export default function AboutPage() {
                 Her philosophy is simple: <strong style={{ fontStyle: 'normal' }}>Fitness is cheaper than illness.</strong> She empowers people to take charge of their health today, so they can live with greater vitality, confidence, and wellbeing tomorrow.
               </div>
 
-                          </div>
+            </div>
           </div>
 
           {/* 4 Credential Cards Spanning Full Width (Single Line Across Image & Content) */}

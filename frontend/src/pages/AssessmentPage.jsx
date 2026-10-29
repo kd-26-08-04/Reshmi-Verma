@@ -278,19 +278,34 @@ export default function AssessmentPage() {
   const [answers, setAnswers] = useState({});
   const [results, setResults] = useState(null);
 
-  // Lead Info State
-  const [leadInfo, setLeadInfo] = useState(() => {
+  // Lead Info State — always starts as null so gate form is shown on every visit
+  const [leadInfo, setLeadInfo] = useState(null);
+
+  // Pre-Assessment Gate Form state — pre-fill from localStorage if available
+  const [leadName, setLeadName] = useState(() => {
+    if (user?.name) return user.name;
     try {
       const stored = localStorage.getItem('reshmi_assessment_lead') || localStorage.getItem('reshmi_user_lead');
-      if (stored) return JSON.parse(stored);
-    } catch (e) { }
-    return null;
+      if (stored) return JSON.parse(stored)?.name || '';
+    } catch (e) {}
+    return '';
   });
-
-  // Pre-Assessment Gate Form state
-  const [leadName, setLeadName] = useState(user?.name || '');
-  const [leadPhone, setLeadPhone] = useState(user?.phone || '');
-  const [leadEmail, setLeadEmail] = useState(user?.email || '');
+  const [leadPhone, setLeadPhone] = useState(() => {
+    if (user?.phone) return user.phone;
+    try {
+      const stored = localStorage.getItem('reshmi_assessment_lead') || localStorage.getItem('reshmi_user_lead');
+      if (stored) return JSON.parse(stored)?.phone || '';
+    } catch (e) {}
+    return '';
+  });
+  const [leadEmail, setLeadEmail] = useState(() => {
+    if (user?.email) return user.email;
+    try {
+      const stored = localStorage.getItem('reshmi_assessment_lead') || localStorage.getItem('reshmi_user_lead');
+      if (stored) return JSON.parse(stored)?.email || '';
+    } catch (e) {}
+    return '';
+  });
   const [leadError, setLeadError] = useState('');
   const [leadSaving, setLeadSaving] = useState(false);
 
@@ -1600,9 +1615,6 @@ ${websiteUrl}`;
                     <span>📥</span>
                     <span>Direct Download Scorecard</span>
                   </button>
-                  <span style={{ fontSize: '0.8rem', color: '#64748B' }}>
-                    Instant offline report file &bull; No print dialog
-                  </span>
                 </div>
               </div>
 
