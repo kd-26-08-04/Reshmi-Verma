@@ -73,7 +73,7 @@ export default function AboutPage() {
             </h1>
 
             <p style={{ fontSize: '1.18rem', color: 'var(--text-secondary)', lineHeight: 1.7, maxWidth: '780px', margin: '0 auto 32px' }}>
-              Meet <strong>Reshmi Verma</strong> — Functional Nutritionist, Certified Breathwork Facilitator, and Biohacker. Bridging two decades of laboratory diagnostic leadership with root-cause medicine to help you reclaim energy, gut harmony, and metabolic freedom.
+              Meet <strong>Reshmi Verma</strong>  Functional Nutritionist, Certified Breathwork Facilitator, and Biohacker. Bridging two decades of laboratory diagnostic leadership with root-cause medicine to help you reclaim energy, gut harmony, and metabolic freedom.
             </p>
 
             <div style={{ display: 'flex', gap: '14px', justifyContent: 'center', flexWrap: 'wrap' }}>
@@ -213,7 +213,7 @@ export default function AboutPage() {
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
                 <polyline points="20 6 9 17 4 12"></polyline>
               </svg>
-              <span>Functional Nutritionist (India, USA &amp; Australia)</span>
+              <span>Functional & Integrative Nutritionist </span>
             </div>
             <div className="credential-item">
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">

@@ -704,7 +704,7 @@ export default function HomePage() {
             </div>
 
             <div className="about-content">
-              <span className="sub-title">HER STORY</span>
+
 
               <h2
                 style={{
@@ -771,7 +771,7 @@ export default function HomePage() {
                 <p style={{ margin: 0 }}>
                   Through <strong>Health with Reshmi</strong>, her vision is to
                   make preventive health more accessible, practical, and
-                  personalised — helping individuals understand their health,
+                  personalised helping individuals understand their health,
                   identify opportunities for improvement, and build sustainable
                   foundations for lifelong wellbeing.
                 </p>
@@ -1296,7 +1296,7 @@ export default function HomePage() {
                     style={{
                       flex: "0 0 320px",
 
-                      background: "rgba(255, 255, 255, 0.04)",
+                      background: "rgba(22, 27, 34, 0.92)",
 
                       backdropFilter: "blur(16px)",
 

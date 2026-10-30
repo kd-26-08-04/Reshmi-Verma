@@ -15781,15 +15781,23 @@ h6 {
 
   width: max-content;
 
-  animation: storiesMarqueeScroll 32s linear infinite;
+  animation: storiesMarqueeScroll 65s linear infinite;
+
+  will-change: transform;
 
 }
 
 
 
-.stories-marquee-track:hover {
+/* Only pause on hover if device has a real mouse cursor, NOT on mobile touch */
 
-  animation-play-state: paused;
+@media (hover: hover) and (pointer: fine) {
+
+  .stories-marquee-track:hover {
+
+    animation-play-state: paused;
+
+  }
 
 }
 
@@ -15799,7 +15807,7 @@ h6 {
 
   0% {
 
-    transform: translateX(0);
+    transform: translate3d(0, 0, 0);
 
   }
 
@@ -15807,7 +15815,51 @@ h6 {
 
   100% {
 
-    transform: translateX(-50%);
+    transform: translate3d(-50%, 0, 0);
+
+  }
+
+}
+
+
+
+/* Mobile Responsive Fixes for Patient Stories Marquee */
+
+@media (max-width: 768px) {
+
+  .stories-marquee-container {
+
+    -webkit-mask-image: none !important;
+
+    mask-image: none !important;
+
+    padding: 6px 0;
+
+  }
+
+
+
+  .stories-marquee-track {
+
+    gap: 14px;
+
+    animation-duration: 75s;
+
+  }
+
+
+
+  .story-client-compact-card {
+
+    flex: 0 0 280px !important;
+
+    max-width: 82vw !important;
+
+    background: #171d24 !important;
+
+    backdrop-filter: none !important;
+
+    -webkit-backdrop-filter: none !important;
 
   }
 
