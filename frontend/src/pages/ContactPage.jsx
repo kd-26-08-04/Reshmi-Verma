@@ -44,13 +44,12 @@ export default function ContactPage() {
 
     if (
       !formData.name.trim() ||
-      !formData.email.trim() ||
       !formData.phone.trim() ||
       !formData.message.trim()
     ) {
       setAlert({
         type: "error",
-        text: "Please fill in all required fields (Name, Email, Phone number, and Message).",
+        text: "Please fill in all required fields (Name, Phone number, and Message).",
       });
 
       return;
@@ -77,7 +76,7 @@ export default function ContactPage() {
           {
             from_name: formData.name,
 
-            from_email: formData.email,
+            from_email: formData.email.trim() || "Not Provided",
 
             phone: formData.phone,
 
@@ -142,11 +141,7 @@ export default function ContactPage() {
             margin: "0 auto 48px",
           }}
         >
-          <div className="badge-pill" style={{ marginBottom: "14px" }}>
-            <span className="pulse-dot"></span>
 
-            <span>Clinic Inquiries &bull; Direct Support</span>
-          </div>
 
           <h1
             style={{
@@ -156,8 +151,7 @@ export default function ContactPage() {
               lineHeight: 1.2,
             }}
           >
-            Get in Touch with{" "}
-            <span className="text-gradient">Reshmi Verma</span>
+            Get in Touch with Us
           </h1>
 
           <p
@@ -168,9 +162,7 @@ export default function ContactPage() {
               margin: 0,
             }}
           >
-            Have questions regarding functional nutrition, gut health
-            restoration, or Oxygen Advantage breathwork? Send a message directly
-            to our healthcare desk.
+            Have questions about your health, nutrition, gut health, or breathing? We'd love to hear from you. Share your details and let our team guide you on the next steps.
           </p>
         </div>
 
@@ -233,18 +225,6 @@ export default function ContactPage() {
             >
               Direct Inquiry
             </h3>
-
-            <p
-              style={{
-                fontSize: "0.92rem",
-                color: "var(--text-secondary)",
-                marginBottom: "24px",
-                lineHeight: 1.55,
-              }}
-            >
-              Fill out your details below. Your inquiry is transmitted directly
-              to Reshmi Verma's clinical desk.
-            </p>
 
             {alert && (
               <div
@@ -356,7 +336,7 @@ export default function ContactPage() {
                       marginBottom: "6px",
                     }}
                   >
-                    Email Address *
+                    Email Address (Optional)
                   </label>
 
                   <input
@@ -365,8 +345,6 @@ export default function ContactPage() {
                     id="contact-email"
 
                     name="email"
-
-                    required
 
                     value={formData.email}
 

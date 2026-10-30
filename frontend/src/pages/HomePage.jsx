@@ -151,13 +151,6 @@ const PATIENT_STORIES = [
       '"Perimenopause hot flashes and night sweats were making my life miserable. Reshmi mam guided me through hormone-balancing nutrition and simple evening slow-paced breathing. The hot flashes reduced by 80% and I feel calm in my own body again."',
   },
   {
-    name: "Dr. Sandeep Verma",
-    location: "Pune",
-    avatar: "/assets/images/transformation-dr-sandeep.jpg",
-    quote:
-      '"As a practicing physician, I was genuinely impressed by Reshmi\'s clinical depth in functional biochemistry. She analyzed my fasting insulin and liver markers with exceptional precision. Her root-cause interventions reversed my chronic fatigue and normalized my lipid profile completely."',
-  },
-  {
     name: "Rohit Malhotra",
     location: "Jaipur",
     avatar: null,
@@ -519,7 +512,7 @@ export default function HomePage() {
                       fontWeight: 500,
                     }}
                   >
-                    Director, Rainbow Medinova
+                    Director, Rainbow Medinova Diagnostic Services
                   </p>
 
                   <p
@@ -654,7 +647,7 @@ export default function HomePage() {
                     <span className="photo-phase-tag phase-after">AFTER</span>
 
                     <img
-                      src="/assets/images/reshmi-transformation-side-by-side.jpg"
+                      src="/assets/images/collage.jpeg"
 
                       alt="Reshmi Verma Before and After 38 kg Health Transformation"
 
@@ -673,7 +666,7 @@ export default function HomePage() {
                     </span>
 
                     <img
-                      src="/assets/images/Befrore.jpg"
+                      src="/assets/images/Before.jpg"
 
                       alt="Reshmi Verma Before Transformation"
 
@@ -720,58 +713,8 @@ export default function HomePage() {
                   marginBottom: "6px",
                 }}
               >
-                Fitness Is Cheaper Than Illness.
+                Where Science Meets Preventive Care.
               </h2>
-
-              <p
-                className="lead"
-                style={{
-                  fontSize: "1.08rem",
-                  color: "var(--emerald-deep)",
-                  fontWeight: 700,
-                  margin: "0 0 16px",
-                }}
-              >
-                Her Mantra, Her Purpose.
-              </p>
-
-              {/* Mantra Highlight Card */}
-
-              <div
-                style={{
-                  background: "#FFFFFF",
-
-                  padding: "16px 20px",
-
-                  borderRadius: "16px",
-
-                  boxShadow: "0 4px 16px rgba(0, 0, 0, 0.04)",
-
-                  border: "1px solid rgba(0, 169, 157, 0.15)",
-
-                  borderLeftWidth: "4px",
-
-                  borderLeftColor: "#00A99D",
-
-                  marginBottom: "18px",
-                }}
-              >
-                <p
-                  style={{
-                    margin: 0,
-                    fontStyle: "italic",
-                    color: "#1F2937",
-                    fontSize: "0.96rem",
-                    lineHeight: 1.6,
-                    fontWeight: 500,
-                  }}
-                >
-                  “Fitness is cheaper than illness” is her personal mantra,
-                  shaped by her own transformation and years in healthcare.
-                </p>
-              </div>
-
-              {/* Story Narrative */}
 
               <div
                 style={{
@@ -785,48 +728,65 @@ export default function HomePage() {
                 }}
               >
                 <p style={{ margin: 0 }}>
-                  As a{" "}
+                  Reshmi Verma brings together a strong foundation in
+                  biotechnology, over 18 years of association with the diagnostic
+                  healthcare sector, and specialised expertise in functional and
+                  integrative nutrition, breathwork, and longevity.
+                </p>
+
+                <p style={{ margin: 0 }}>
+                  As{" "}
                   <strong>
-                    Biotechnologist and Director of Rainbow Medinova Diagnostic
-                    Services
+                    Director of Rainbow Medinova Diagnostic Services, Nagpur
                   </strong>
-                  , Reshmi works alongside her father, a doctor and proprietor
-                  of Nagpur’s first diagnostic centre, carrying forward his
-                  legacy of bringing advanced diagnostic technologies to the
-                  city. His hospitalisation profoundly impacted her,
-                  strengthening her commitment to proactive health and
-                  prevention. Today, they continue this shared mission of
-                  advancing healthcare in Nagpur.
+                  , she works alongside her father, a doctor and proprietor of
+                  one of the city’s pioneering diagnostic centres. Together, they
+                  continue to contribute to the advancement of diagnostic
+                  healthcare and access to evolving medical technologies.
                 </p>
 
                 <p style={{ margin: 0 }}>
-                  <strong>
-                    Losing 38 kg transformed her understanding of wellbeing.
-                  </strong>{" "}
-                  She realised nutrition and fitness were only part of the
-                  picture. <em>Breath was the missing piece in her puzzle.</em>{" "}
-                  This led her to explore the connection between breathing,
-                  nervous system regulation, and resilience.
+                  Her professional philosophy is rooted in an increasingly
+                  important shift in healthcare: moving beyond disease management
+                  towards proactive, preventive, and personalised health. In a
+                  world where chronic lifestyle-related conditions are
+                  increasingly common, Reshmi believes that health needs to be
+                  understood beyond symptoms and routine reports. Metabolic
+                  health, nutritional status, gut function, breathing patterns,
+                  stress response, and lifestyle behaviours all contribute to the
+                  bigger picture of long-term wellbeing.
                 </p>
 
                 <p style={{ margin: 0 }}>
-                  As a{" "}
+                  Her expertise as a{" "}
                   <strong>
                     Functional and Integrative Nutritionist, Oxygen Advantage
                     Coach, Breath Resilience Instructor, and trauma-informed
                     facilitator
-                  </strong>
-                  , Reshmi brings together science, personalised nutrition,
-                  Breathwork, and Longevity.
+                  </strong>{" "}
+                  allows her to bring together these interconnected aspects of
+                  health through a science-led, individualised approach.
                 </p>
 
                 <p style={{ margin: 0 }}>
-                  Through <strong>HealthwithReshmi™</strong>, her vision is to
-                  help people move beyond reacting to illness and build
-                  sustainable foundations for lifelong wellbeing. Her own
-                  journey has helped her show up better in every role she holds,
-                  reinforcing her belief that when people prioritise their
-                  health, they show up better in every aspect of life.
+                  Through <strong>Health with Reshmi</strong>, her vision is to
+                  make preventive health more accessible, practical, and
+                  personalised — helping individuals understand their health,
+                  identify opportunities for improvement, and build sustainable
+                  foundations for lifelong wellbeing.
+                </p>
+
+                <p
+                  style={{
+                    margin: 0,
+                    fontStyle: "italic",
+                    color: "var(--teal-primary, #0d9488)",
+                    fontWeight: 500,
+                  }}
+                >
+                  Because better healthcare isn’t just about treating illness.
+                  It’s about understanding health early, making informed choices,
+                  and protecting it for the future.
                 </p>
               </div>
             </div>

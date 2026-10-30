@@ -113,7 +113,6 @@ export default function Footer() {
                 <li><Link to="/assessment">Functional Health Assessment</Link></li>
                 <li><Link to="/breathing-assessment">Functional Breathing Assessment</Link></li>
                 <li><Link to="/breathe">BOLT Breath Test</Link></li>
-                <li><Link to="/breathe">BOLT Breath Test</Link></li>
                 <li style={{ fontSize: '0.8rem', color: 'var(--text-muted)' }}>Nervous System Regulation</li>
                 <li style={{ fontSize: '0.8rem', color: 'var(--text-muted)' }}>Gut Health Support</li>
                 <li style={{ fontSize: '0.8rem', color: 'var(--text-muted)' }}>Breathwork & Stress Management</li>
@@ -126,7 +125,7 @@ export default function Footer() {
               <h5>Contact Information</h5>
               <ul className="footer-links">
                 <li style={{ color: 'var(--text-secondary)', fontSize: '0.82rem', lineHeight: 1.4 }}>
-                  Rainbow Medinova, Central Bazar road, Ramdaspeth, Nagpur 440010.
+                  282,Rainbow Medinova Diagnostic Services, Central Bazar road, Ramdaspeth, Nagpur 440010.
                 </li>
                 <li>
                   <a href="mailto:support.reshmiverma@gmail.com" style={{ display: 'flex', alignItems: 'center', gap: '8px', wordBreak: 'break-all' }}>
@@ -134,7 +133,7 @@ export default function Footer() {
                     support.reshmiverma@gmail.com
                   </a>
                   <li style={{ fontSize: '0.8rem', color: 'var(--text-muted)' }}>
-                    Phone : +91 75560 5566
+                    Phone : +91 9175533125
                   </li>
                 </li>
                 <li style={{ fontSize: '0.8rem', color: 'var(--text-muted)' }}>
