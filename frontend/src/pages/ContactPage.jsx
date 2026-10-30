@@ -223,7 +223,7 @@ export default function ContactPage() {
                 lineHeight: 1.25,
               }}
             >
-              Direct Inquiry
+              Send Message
             </h3>
 
             {alert && (
@@ -566,7 +566,7 @@ export default function ContactPage() {
                 disabled={loading}
               >
                 <span>
-                  {loading ? "Transmitting to Clinic..." : "Send Message"}
+                  {loading ? "Sending..." : "Send Message"}
                 </span>
 
                 <svg
