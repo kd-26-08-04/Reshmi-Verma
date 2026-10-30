@@ -1,0 +1,211 @@
+stories-marquee-container" style={{ marginBottom: '26px' }}>
+
+
+
+
+
+
+
+              <div className="stories-marquee-track">
+
+
+
+
+
+
+
+                {[...PATIENT_STORIES, ...PATIENT_STORIES].map((story, idx) => (
+
+
+
+
+
+
+
+                  <div
+
+
+
+
+
+
+
+                    key={`${story.name}-${idx}`}
+
+
+
+
+
+
+
+                    className="story-client-compact-card"
+
+
+
+
+
+
+
+                    style={{
+
+
+
+
+
+
+
+                      flex: '0 0 320px',
+
+
+
+
+
+
+
+                      background: 'rgba(255, 255, 255, 0.04)',
+
+
+
+
+
+
+
+                      backdropFilter: 'blur(16px)',
+
+
+
+
+
+
+
+                      WebkitBackdropFilter: 'blur(16px)',
+
+
+
+
+
+
+
+                      border: '1px solid rgba(255, 255, 255, 0.08)',
+
+
+
+
+
+
+
+                      borderTop: '2.5px solid rgb(0, 229, 226)',
+
+
+
+
+
+
+
+                      borderRadius: '16px',
+
+
+
+
+
+
+
+                      padding: '18px 18px',
+
+
+
+
+
+
+
+                      display: 'flex',
+
+
+
+
+
+
+
+                      flexDirection: 'column',
+
+
+
+
+
+
+
+                      transition: 'all 0.25s ease'
+
+
+
+
+
+
+
+                    }}
+
+
+
+
+
+
+
+                  >
+
+
+
+
+
+
+
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '10px' }}>
+
+
+
+
+
+
+
+                      {story.avatar ? (
+
+
+
+
+
+
+
+                        <img
+
+
+
+
+
+
+
+                          src={story.avatar}
+
+
+
+
+
+
+
+                          alt={story.name}
+
+
+
+
+
+
+
+                          style={{
+
+
+
+
+
+
+
+                            width: '44px',
+
+

@@ -51,6 +51,19 @@ export default function Footer() {
                     <span>Instagram</span>
                   </a>
                   <a
+                    href="https://youtube.com/@healthwithreshmi?si=J_-3JErcDWbGw6g"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="footer-social-btn"
+                    aria-label="YouTube"
+                  >
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                      <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814z" fill="#FF0000" />
+                      <path d="M9.545 15.568V8.432L15.818 12l-6.273 3.568z" fill="#FFFFFF" />
+                    </svg>
+                    <span>YouTube</span>
+                  </a>
+                  <a
                     href="https://www.linkedin.com/in/reshmiverma/"
                     target="_blank"
                     rel="noopener noreferrer"
@@ -63,33 +76,32 @@ export default function Footer() {
                     </svg>
                     <span>LinkedIn</span>
                   </a>
+
                   <a
-                    href="https://youtube.com/@healthwithreshmi?si=J_-3JErcDWbGw6gj"
+                    href="https://www.facebook.com/share/1FLvn91q3T/?mibextid=wwXIfr"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="footer-social-btn"
-                    aria-label="YouTube"
+                    aria-label="Facebook"
                   >
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
-                      <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814z" fill="#FF0000" />
-                      <path d="M9.545 15.568V8.432L15.818 12l-6.273 3.568z" fill="#FFFFFF" />
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                      <circle cx="12" cy="12" r="10" fill="#1877F2" />
+                      <path d="M13.5 8H15V6h-2c-2.2 0-3 1.3-3 3v2H8v2h2v7h3v-7h2.2l.3-2H13V9c0-.6.4-1 1-1z" fill="#FFFFFF" />
                     </svg>
-                    <span>YouTube</span>
+                    <span>Facebook</span>
                   </a>
                 </div>
               </div>
             </div>
 
             <div className="footer-col footer-col-nav">
-              <h5>Navigation</h5>
+              <h5>EXPLORE</h5>
               <ul className="footer-links">
                 <li><Link to="/">Home</Link></li>
-                <li><Link to="/about">About Reshmi Verma</Link></li>
-                <li><Link to="/testimonials">Patient Testimonials</Link></li>
-                <li><Link to="/assessment">Health Assessment</Link></li>
-                <li><Link to="/breathing-assessment">Breathing Assessment</Link></li>
+                <li><Link to="/about">Meet Reshmi Verma</Link></li>
+                <li><Link to="/home">What We Can Help With</Link></li>
                 <li><a href={RAZORPAY_PAYMENT_URL} target="_blank" rel="noopener noreferrer">Book Consultation</a></li>
-                <li><Link to="/videos">Clinical Video Library</Link></li>
+                <li><Link to="/testimonials">Client Testimonials</Link></li>
                 <li><Link to="/contact">Contact Us</Link></li>
               </ul>
             </div>
@@ -101,14 +113,19 @@ export default function Footer() {
                 <li><Link to="/assessment">Functional Health Assessment</Link></li>
                 <li><Link to="/breathing-assessment">Functional Breathing Assessment</Link></li>
                 <li><Link to="/breathe">BOLT Breath Test</Link></li>
+                <li><Link to="/breathe">BOLT Breath Test</Link></li>
+                <li style={{ fontSize: '0.8rem', color: 'var(--text-muted)' }}>Nervous System Regulation</li>
+                <li style={{ fontSize: '0.8rem', color: 'var(--text-muted)' }}>Gut Health Support</li>
+                <li style={{ fontSize: '0.8rem', color: 'var(--text-muted)' }}>Breathwork & Stress Management</li>
+                <li style={{ fontSize: '0.8rem', color: 'var(--text-muted)' }}>Personalised Nutrition & Lifestyle Guidance</li>
+
               </ul>
             </div>
 
             <div className="footer-col">
-              <h5>Direct Contact</h5>
+              <h5>Contact Information</h5>
               <ul className="footer-links">
                 <li style={{ color: 'var(--text-secondary)', fontSize: '0.82rem', lineHeight: 1.4 }}>
-                  <strong>Clinical Diagnostics</strong><br />
                   Rainbow Medinova, Central Bazar road, Ramdaspeth, Nagpur 440010.
                 </li>
                 <li>
@@ -116,16 +133,22 @@ export default function Footer() {
                     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
                     support.reshmiverma@gmail.com
                   </a>
+                  <li style={{ fontSize: '0.8rem', color: 'var(--text-muted)' }}>
+                    Phone : +91 75560 5566
+                  </li>
                 </li>
                 <li style={{ fontSize: '0.8rem', color: 'var(--text-muted)' }}>
-                  Mon – Sat: 9:00 AM – 6:30 PM IST
+                  Monday – Friday: 12:00 PM – 6:00 PM IST
+                </li>
+                <li style={{ fontSize: '1.0rem', color: '#131112', fontWeight: '700' }}>
+                  Appointments by prior booking only.
                 </li>
               </ul>
             </div>
           </div>
 
           <div className="footer-bottom">
-            <p>&copy; {new Date().getFullYear()} HealthwithReshmi. All rights reserved. Functional nutrition, somatic breathwork &amp; biohacking protocols.</p>
+            <p>&copy; {new Date().getFullYear()} HealthwithReshmi. All rights reserved.</p>
             <div className="footer-legal-links">
               <span>Medical Disclaimer</span>
               <span>&bull;</span>

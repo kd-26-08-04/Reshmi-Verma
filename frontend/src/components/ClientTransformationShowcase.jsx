@@ -12,15 +12,13 @@ export default function ClientTransformationShowcase() {
   const transformations = [
     {
       id: 'transformation-1',
-      name: 'Client Transformation',
-      durationTag: '12 Weeks Protocol',
+      name: 'Meher Ahuja',
       image: '/assets/images/transformation-1.jpeg',
 
     },
     {
       id: 'dipika',
       name: 'Dipika',
-      durationTag: '16 Weeks Protocol',
       image: '/assets/images/transformation-dipika.png',
     },
     {
@@ -37,17 +35,22 @@ export default function ClientTransformationShowcase() {
     },
     {
       id: 'sonika',
-      name: 'Sonika',
+      name: 'Sonika Choudhary',
       durationTag: '18 Weeks Protocol',
       image: '/assets/images/transformation-sonika.jpg',
 
     },
     {
       id: 'reshmi',
-      name: 'Reshmi Verma (Founder)',
+      name: 'Reshmi Verma',
       durationTag: 'Sustained 5+ Years',
       image: '/assets/images/transformation-reshmi-personal.jpg',
 
+    },
+    {
+      id: "myraa",
+      name: "Myraa Tarwani",
+      image: '/assets/images/Myraa.jpeg',
     }
   ];
 

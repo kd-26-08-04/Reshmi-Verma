@@ -1,0 +1,393 @@
+<div className="reels-header-row">
+
+
+
+
+
+
+
+            <div className="reels-header-content">
+
+
+
+
+
+
+
+              <div className="badge-pill">
+
+
+
+
+
+
+
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+
+
+
+
+
+
+
+                  <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+
+
+
+
+
+
+
+                  <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+
+
+
+
+
+
+
+                  <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+
+
+
+
+
+
+
+                </svg>
+
+
+
+
+
+
+
+                <span>Instagram Reels & Video Bites</span>
+
+
+
+
+
+
+
+              </div>
+
+
+
+
+
+
+
+              <h2>Your Daily Dose of Health</h2>
+
+
+
+
+
+
+
+              <p>Explore Reshmi’s latest reels on nutrition, gut health, breathing, and overall wellbeing..</p>
+
+
+
+
+
+
+
+            </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            <div className="reels-nav-controls" style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+
+
+
+
+
+
+
+              <Link
+
+
+
+
+
+
+
+                to="/videos"
+
+
+
+
+
+
+
+                className="btn btn-secondary btn-sm"
+
+
+
+
+
+
+
+                style={{ padding: '7px 16px', fontSize: '0.82rem', borderRadius: '999px', display: 'inline-flex', alignItems: 'center', gap: '6px' }}
+
+
+
+
+
+
+
+              >
+
+
+
+
+
+
+
+                <span>🎥 All Videos</span>
+
+
+
+
+
+
+
+                <span>&rarr;</span>
+
+
+
+
+
+
+
+              </Link>
+
+
+
+
+
+
+
+              <button
+
+
+
+
+
+
+
+                className="reels-scroll-arrow"
+
+
+
+
+
+
+
+                id="reels-prev-btn"
+
+
+
+
+
+
+
+                aria-label="Previous reels"
+
+
+
+
+
+
+
+                title="Scroll left"
+
+
+
+
+
+
+
+                onClick={() => scrollReels('left')}
+
+
+
+
+
+
+
+              >
+
+
+
+
+
+
+
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+
+
+
+
+
+
+
+                  <polyline points="15 18 9 12 15 6"></polyline>
+
+
+
+
+
+
+
+                </svg>
+
+
+
+
+
+
+
+              </button>
+
+
+
+
+
+
+
+              <button
+
+
+
+
+
+
+
+                className="reels-scroll-arrow"
+
+
+
+
+
+
+
+                id="reels-next-btn"
+
+
+
+
+
+
+
+                aria-label="Next reels"
+
+
+
+
+
+
+
+                title="Scroll right"
+
+
+
+
+
+
+
+                onClick={() => scrollReels('right')}
+
+
+
+
+
+
+
+              >
+
+
+
+
+
+
+
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+
+
+
+
+
+
+
+                  <polyline points="9 18 15 12 9 6"></polyline>
+
+
+
+
+
+
+
+                </svg>
+
+
+
+
+
+
+
+              </button>
+
+
+
+
+
+
+
+            </div>
+
+
+
+
+
+
+
+          </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+          {/* Side-Scrolling Carousel Container (Touch & Arrow Enabled) */}
+
+
+
+
+
+
+
+          

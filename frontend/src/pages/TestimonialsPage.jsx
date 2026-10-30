@@ -144,6 +144,18 @@ export default function TestimonialsPage() {
       headline: 'No more weekly migraines or sluggish gut.',
       story: "My chronic constipation was triggering severe weekly migraines. Reshmi mam fixed my gut motility with hydration habits and wholesome foods. My gut feels light and head is completely clear.",
       protocolPillars: ['Hydration Routine', 'Motility Support', 'Clean Wholefoods']
+    },
+    {
+      id: 8,
+      category: 'Fart',
+      name: 'Kuldeep Tiwari',
+      city: 'Nagpur',
+      avatar: null,
+      initials: 'KT',
+      avatarColor: '#13ecf3ff',
+      headline: 'No more excessive gas or embarrassing bloating.    ',
+      story: "I used to experience frequent gas, excessive flatulence, and uncomfortable bloating throughout the day. With Reshmi ma'am's personalised guidance, I focused on improving my gut health through mindful eating, better digestion habits, and dietary changes. Now I feel lighter, more comfortable, and confident in my daily routine    .",
+      protocolPillars: ['Digestive Support', 'Mindful Eating', 'Gut Heal']
     }
   ];
 
@@ -433,72 +445,6 @@ export default function TestimonialsPage() {
               </p>
             </div>
           ))}
-        </div>
-
-        {/* Reshmi's Personal 38 kg Transformation Feature */}
-        <div style={{
-          background: 'linear-gradient(135deg, #111111 0%, #1A1A1E 100%)',
-          borderRadius: '26px',
-          padding: '40px 32px',
-          color: '#FFFFFF',
-          maxWidth: '1060px',
-          margin: '0 auto 60px',
-          display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
-          gap: '36px',
-          alignItems: 'center',
-          border: '1px solid rgba(255, 255, 255, 0.1)',
-          boxShadow: '0 18px 45px rgba(0, 0, 0, 0.25)'
-        }}>
-          <div>
-            <span style={{
-              fontSize: '0.8rem',
-              color: 'rgb(0, 229, 226)',
-              fontWeight: 800,
-              textTransform: 'uppercase',
-              letterSpacing: '0.08em',
-              display: 'inline-block',
-              marginBottom: '10px'
-            }}>
-              The Founder's Personal Transformation
-            </span>
-            <h2 style={{
-              fontSize: 'clamp(1.8rem, 3.5vw, 2.4rem)',
-              color: '#FFFFFF',
-              fontFamily: 'var(--font-serif)',
-              margin: '0 0 16px',
-              lineHeight: 1.2
-            }}>
-              "I didn't just study functional nutrition. <span style={{ color: 'rgb(0, 229, 226)' }}>I lived the recovery.</span>"
-            </h2>
-            <p style={{ color: '#D1D5DB', fontSize: '0.95rem', lineHeight: 1.7, marginBottom: '22px' }}>
-              Reshmi Verma personally lost 38 kg and reversed severe metabolic fatigue, chronic gut distress, and dysregulated breathing. She built the SAMYA™ Method so you never have to guess your way through confusing diets or band-aid prescriptions again.
-            </p>
-            <div style={{ display: 'flex', gap: '14px', flexWrap: 'wrap' }}>
-              <a href={RAZORPAY_PAYMENT_URL} target="_blank" rel="noopener noreferrer" className="btn btn-white-solid" style={{ padding: '12px 26px', borderRadius: '12px', fontSize: '0.95rem' }}>
-                <span>Book 1:1 Consultation</span>
-              </a>
-              <Link to="/about" className="btn btn-on-dark" style={{ padding: '12px 24px', borderRadius: '12px', fontSize: '0.95rem' }}>
-                <span>Read Reshmi's Full Journey &rarr;</span>
-              </Link>
-            </div>
-          </div>
-          <div style={{ textAlign: 'center' }}>
-            <img
-              src="/assets/images/reshmi-transformation-side-by-side.jpg"
-              alt="Reshmi Verma 38 kg Transformation"
-              style={{
-                width: '100%',
-                maxHeight: '340px',
-                objectFit: 'contain',
-                borderRadius: '18px',
-                boxShadow: '0 12px 30px rgba(0, 0, 0, 0.5)'
-              }}
-            />
-            <span style={{ fontSize: '0.78rem', color: '#9CA3AF', display: 'block', marginTop: '8px' }}>
-              Verified 38 kg Sustained Transformation • Reshmi Verma
-            </span>
-          </div>
         </div>
 
         {/* Bottom CTA Card */}
