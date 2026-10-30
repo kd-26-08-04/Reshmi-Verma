@@ -56,7 +56,7 @@ export default function AboutPage() {
     },
     {
       q: 'What is the fee for the 1:1 Health Clarity Consultation?',
-      a: 'The 1:1 Health Clarity Consultation is ₹2,999 for a full 60-minute in-depth video session. This includes pre-session review of your lab reports, interactive symptom decoding, and a tailored recovery roadmap.'
+      a: 'The 1:1 Health Clarity Consultation is ₹1,999 for a full 60-minute in-depth video session. This includes pre-session review of your lab reports, interactive symptom decoding, and a tailored recovery roadmap.'
     }
   ];
 
@@ -73,7 +73,7 @@ export default function AboutPage() {
             </h1>
 
             <p style={{ fontSize: '1.18rem', color: 'var(--text-secondary)', lineHeight: 1.7, maxWidth: '780px', margin: '0 auto 32px' }}>
-              Meet <strong>Reshmi Verma</strong>  Functional Nutritionist, Certified Breathwork Facilitator, and Biohacker. Bridging two decades of laboratory diagnostic leadership with root-cause medicine to help you reclaim energy, gut harmony, and metabolic freedom.
+              Meet <strong>Reshmi Verma</strong>  Functional & Integrative Nutritionist, Certified Biohacker, and Functional Breathwork Facilitator. Her approach integrates personalised nutrition, functional breathing, somatic practices and breath resilience to support nervous system regulation, metabolic health, gut harmony and overall well-being. By bringing together the science of nutrition, breath and mind-body connection, she helps individuals build greater physiological resilience, restore balance and create sustainable health from within.
             </p>
 
             <div style={{ display: 'flex', gap: '14px', justifyContent: 'center', flexWrap: 'wrap' }}>
@@ -429,7 +429,7 @@ export default function AboutPage() {
           </span>
           <h2 style={{ color: 'white', fontSize: 'clamp(1.45rem, 5vw, 2.6rem)', marginBottom: '12px', lineHeight: 1.25 }}>Ready to Uncover Your Health Blueprint?</h2>
           <p style={{ color: '#FED7AA', maxWidth: '640px', margin: '0 auto 20px', fontSize: 'clamp(0.85rem, 2.5vw, 1.1rem)', lineHeight: 1.5 }}>
-            Book your 60-minute 1:1 Health Clarity Consultation with Reshmi Verma (₹2,999) to connect your symptoms, laboratory diagnostics, and recovery roadmap.
+            Book your 60-minute 1:1 Health Clarity Consultation with Reshmi Verma (₹1,999) to connect your symptoms, laboratory diagnostics, and recovery roadmap.
           </p>
           <div className="cta-dual-btn-row">
             <a

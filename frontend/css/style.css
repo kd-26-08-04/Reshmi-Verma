@@ -2082,23 +2082,46 @@ h6 {
 
 
 
-/* Mobile Toggle */
+/* Mobile Toggle & Responsive Navigation */
 
 .mobile-toggle {
 
   display: none;
 
-  background: none;
+  background: rgba(13, 148, 136, 0.08);
 
-  border: none;
+  border: 1px solid rgba(13, 148, 136, 0.25);
 
-  font-size: 1.5rem;
+  border-radius: 10px;
 
-  color: var(--emerald-deep);
+  color: var(--emerald-deep, #0f172a);
 
   cursor: pointer;
 
   padding: 8px;
+
+  width: 42px;
+
+  height: 42px;
+
+  align-items: center;
+
+  justify-content: center;
+
+  flex-shrink: 0;
+
+  transition: all 0.2s ease;
+
+}
+
+.mobile-toggle:hover,
+.mobile-toggle:active {
+
+  background: rgba(13, 148, 136, 0.18);
+
+  color: #000000;
+
+  border-color: rgba(13, 148, 136, 0.45);
 
 }
 
@@ -2110,7 +2133,7 @@ h6 {
 
     position: fixed;
 
-    top: 78px;
+    top: 74px;
 
     left: 0;
 
@@ -2136,7 +2159,7 @@ h6 {
 
     z-index: 1050;
 
-    max-height: calc(100vh - 78px);
+    max-height: calc(100vh - 74px);
 
     overflow-y: auto;
 
@@ -2160,7 +2183,55 @@ h6 {
 
   .mobile-toggle {
 
-    display: block;
+    display: flex !important;
+
+  }
+
+  .nav-actions-group {
+
+    display: none !important;
+
+  }
+
+  .brand-logo {
+
+    gap: 8px !important;
+
+  }
+
+  .brand-logo-img {
+
+    width: 48px !important;
+
+    height: 48px !important;
+
+  }
+
+  .brand-wordmark-img {
+
+    height: 32px !important;
+
+    max-width: 180px !important;
+
+  }
+
+}
+
+@media (max-width: 480px) {
+
+  .brand-logo-img {
+
+    width: 40px !important;
+
+    height: 40px !important;
+
+  }
+
+  .brand-wordmark-img {
+
+    height: 28px !important;
+
+    max-width: 155px !important;
 
   }
 

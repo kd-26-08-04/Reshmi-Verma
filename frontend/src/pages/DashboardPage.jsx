@@ -221,7 +221,7 @@ export default function DashboardPage() {
 
                   <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end', gap: '10px' }}>
                     <div style={{ fontSize: '1.3rem', fontWeight: 700, color: 'var(--emerald-deep)', fontFamily: 'var(--font-serif)' }}>
-                      ₹{b.amount ? Number(b.amount).toLocaleString('en-IN') : '2,999'}
+                      ₹{b.amount ? Number(b.amount).toLocaleString('en-IN') : '1,999'}
                     </div>
 
                     {isIntakeDone ? (

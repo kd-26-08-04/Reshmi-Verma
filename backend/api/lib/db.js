@@ -758,7 +758,7 @@ export function getDefaultPricingTiers() {
         'Individualized Oxygen Advantage breath prescription',
         'Written clinical action plan & supplement guide'
       ],
-      buttonText: 'Select Comprehensive Plan (₹2,999)',
+      buttonText: 'Select Comprehensive Plan (₹1,999)',
       featured: true,
       active: true
     },
