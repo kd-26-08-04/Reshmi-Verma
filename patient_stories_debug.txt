@@ -1,0 +1,101 @@
+const PATIENT_STORIES = [
+  {
+    name: "Shoaib Ansari",
+
+    location: "Ahmednagar",
+
+    avatar: "/assets/images/real-patient-shoaib.jpg",
+
+    quote:
+      '"I had been suffering from severe gastritis, acidity, and post-meal sluggishness for years. Reshmi pinpointed the exact bacterial imbalance in my lab report and fixed it with whole food biochemistry."',
+  },
+
+  {
+    name: "Vartika Sharma",
+
+    location: "Bangalore",
+
+    avatar: "/assets/images/real-patient-vartika.jpg",
+
+    quote:
+      "\"For as long as I can remember, I had been suffering from Hashimoto's, extreme fatigue, and crazy PMS mood swings. Within 8 weeks on Reshmi's gut & breath protocol, my brain fog vanished and energy is at an all-time high!\"",
+  },
+
+  {
+    name: "Simrat Kaur",
+
+    location: "Ludhiana",
+
+    avatar: "/assets/images/real-patient-simrat.jpg",
+
+    quote:
+      '"This program has done wonders in my life. I had severe chronic constipation, low energy, and food sensitivities. Reshmi\'s diagnostic approach repaired my digestion without restrictive crash diets."',
+  },
+
+  {
+    name: "Ananya Patel",
+
+    location: "Mumbai",
+
+    avatar: null,
+
+    initials: "AP",
+
+    avatarBg: "linear-gradient(135deg, #EC4899 0%, #BE185D 100%)",
+
+    quote:
+      '"I struggled with irregular cycles and stubborn fatigue for years. Reshmi\'s plate structure was easy to follow even with my demanding corporate hours. My cycle is completely on time now!"',
+  },
+
+  {
+    name: "Pranav Nair",
+
+    location: "New Delhi",
+
+    avatar: "/assets/images/real-patient-pranav.jpg",
+
+    quote:
+      '"I was struggling with anxiety-induced shallow breathing, sleep apnea, and high stress. Oxygen Advantage breathwork with Reshmi boosted my BOLT score from 12s to 32s. Sleep quality is now phenomenal."',
+  },
+
+  {
+    name: "Sunita Mehta",
+
+    location: "Gurugram",
+
+    avatar: null,
+
+    initials: "SM",
+
+    avatarBg: "linear-gradient(135deg, #059669 0%, #047857 100%)",
+
+    quote:
+      '"Perimenopause hot flashes made sleep nearly impossible. With Reshmi\'s dietary guidance and vagal calming breath drills, my night sweats vanished and I finally sleep through the night peacefully."',
+  },
+
+  {
+    name: "Dr. Sandeep Verma",
+
+    location: "Pune",
+
+    avatar: "/assets/images/transformation-dr-sandeep.jpg",
+
+    quote:
+      '"As a clinician, I appreciate Reshmi’s deep foundation in functional diagnostic biochemistry. Her scientific root-cause approach resolved my chronic metabolic sluggishness and elevated lipid markers."',
+  },
+
+  {
+    name: "Rohit Malhotra",
+
+    location: "Jaipur",
+
+    avatar: null,
+
+    initials: "RM",
+
+    avatarBg: "linear-gradient(135deg, #0284C7 0%, #0369A1 100%)",
+
+    quote:
+      '"Diagnosed with fatty liver and post-lunch lethargy. Following Reshmi’s guidance on meal pacing and metabolic circadian rhythm normalized my liver enzymes on my latest scan."',
+  },
+];

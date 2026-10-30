@@ -1,0 +1,263 @@
+=== HOMEPAGE PATIENT_STORIES ===
+const PATIENT_STORIES = [
+  {
+    name: "Shoaib Ansari",
+
+    location: "Ahmednagar",
+
+    avatar: "/assets/images/real-patient-shoaib.jpg",
+
+    quote:
+      '"I had been suffering from severe gastritis, acidity, and post-meal sluggishness for years. Reshmi pinpointed the exact bacterial imbalance in my lab report and fixed it with whole food biochemistry."',
+  },
+
+  {
+    name: "Vartika Sharma",
+
+    location: "Bangalore",
+
+    avatar: "/assets/images/real-patient-vartika.jpg",
+
+    quote:
+      "\"For as long as I can remember, I had been suffering from Hashimoto's, extreme fatigue, and crazy PMS mood swings. Within 8 weeks on Reshmi's gut & breath protocol, my brain fog vanished and energy is at an all-time high!\"",
+  },
+
+  {
+    name: "Simrat Kaur",
+
+    location: "Ludhiana",
+
+    avatar: "/assets/images/real-patient-simrat.jpg",
+
+    quote:
+      '"This program has done wonders in my life. I had severe chronic constipation, low energy, and food sensitivities. Reshmi\'s diagnostic approach repaired my digestion without restrictive crash diets."',
+  },
+
+  {
+    name: "Ananya Patel",
+
+    location: "Mumbai",
+
+    avatar: null,
+
+    initials: "AP",
+
+    avatarBg: "linear-gradient(135deg, #EC4899 0%, #BE185D 100%)",
+
+    quote:
+      '"I struggled with irregular cycles and stubborn fatigue for years. Reshmi\'s plate structure was easy to follow even with my demanding corporate hours. My cycle is completely on time now!"',
+  },
+
+  {
+    name: "Pranav Nair",
+
+    location: "New Delhi",
+
+    avatar: "/assets/images/real-patient-pranav.jpg",
+
+    quote:
+      '"I was struggling with anxiety-induced shallow breathing, sleep apnea, and high stress. Oxygen Advantage breathwork with Reshmi boosted my BOLT score from 12s to 32s. Sleep quality is now phenomenal."',
+  },
+
+  {
+    name: "Sunita Mehta",
+
+    location: "Gurugram",
+
+    avatar: null,
+
+    initials: "SM",
+
+    avatarBg: "linear-gradient(135deg, #059669 0%, #047857 100%)",
+
+    quote:
+      '"Perimenopause hot flashes made sleep nearly impossible. With Reshmi\'s dietary guidance and vagal calming breath drills, my night sweats vanished and I finally sleep through the night peacefully."',
+  },
+
+  {
+    name: "Dr. Sandeep Verma",
+
+    location: "Pune",
+
+    avatar: "/assets/images/transformation-dr-sandeep.jpg",
+
+    quote:
+      '"As a clinician, I appreciate Reshmi’s deep foundation in functional diagnostic biochemistry. Her scientific root-cause approach resolved my chronic metabolic sluggishness and elevated lipid markers."',
+  },
+
+  {
+    name: "Rohit Malhotra",
+
+    location: "Jaipur",
+
+    avatar: null,
+
+    initials: "RM",
+
+    avatarBg: "linear-gradient(135deg, #0284C7 0%, #0369A1 100%)",
+
+    quote:
+      '"Diagnosed with fatty liver and post-lunch lethargy. Following Reshmi’s guidance on meal pacing and metabolic circadian rhythm normalized my liver enzymes on my latest scan."',
+  },
+];
+
+=== HOMEPAGE CLINICAL_REVIEWS ===
+const CLINICAL_REVIEWS = [
+  {
+    initials: "AP",
+
+    name: "Ananya Patel",
+
+    program: "GERD & SIBO Recovery • 3 Months",
+
+    stars: "★★★★★",
+
+    quote:
+      '"Suffered from severe GERD and post-meal bloating for 3 years. Reshmi\'s gut mucosa protocol resolved the burning and reflux within 6 weeks. No more daily antacids."',
+  },
+
+  {
+    initials: "RK",
+
+    name: "Rahul Kapoor",
+
+    program: "Oxygen Advantage & Sleep Program",
+
+    stars: "★★★★★",
+
+    quote:
+      '"My BOLT score was just 8 seconds with high anxiety and midnight awakenings. Reshmi\'s breathing pacing and autonomic reset brought my score to 26s. I finally sleep peacefully."',
+  },
+
+  {
+    initials: "SM",
+
+    name: "Sunita Mehta",
+
+    program: "Metabolic Health & Weight Reversal",
+
+    stars: "★★★★★",
+
+    quote:
+      '"Knowing that Reshmi herself lost 38 kg gave me immense confidence. She customized my nutrition without starvation. Lost 15 kg and my HbA1c is completely normal."',
+  },
+
+  {
+    initials: "VS",
+
+    name: "Vikram Singhal",
+
+    program: "Circadian Metabolic Reset • 4 Months",
+
+    stars: "★★★★★",
+
+    quote:
+      '"Constant post-meal lethargy and stubborn insulin resistance were draining me. Reshmi\'s precise food pairing and vagal breathing restored my stamina and metabolic agility."',
+  },
+];
+
+=== TESTIMONIALSPAGE STORIES ===
+const stories = [
+    {
+      id: 1,
+      category: 'hormones',
+      name: 'Vartika Sharma',
+      city: 'Bangalore',
+      avatar: '/assets/images/real-patient-vartika.jpg',
+      headline: 'My brain fog is gone and energy is back.',
+      story: "I used to feel completely exhausted by 3 PM every day because of thyroid issues. Reshmi mam adjusted my diet and guided me step-by-step. Within 8 weeks, my energy levels are back to normal and I feel active again.",
+      protocolPillars: ['Gut-Thyroid Diet', 'Energy Routine', 'Breathwork']
+    },
+    {
+      id: 2,
+      category: 'gut',
+      name: 'Simrat Kaur',
+      city: 'Ludhiana',
+      avatar: '/assets/images/real-patient-simrat.jpg',
+      headline: 'Fixed my bloating without extreme diets.',
+      story: "I was dealing with severe bloating and gas after almost every meal. Reshmi mam's simple food swaps and meal timings solved my issue in just 6 weeks. No crash diets, just realistic healthy eating.",
+      protocolPillars: ['Digestive Timing', 'Natural Food Swaps', 'Gut Recovery']
+    },
+    {
+      id: 3,
+      category: 'breath',
+      name: 'Pranav Nair',
+      city: 'New Delhi',
+      avatar: '/assets/images/real-patient-pranav.jpg',
+      headline: 'Sleeping soundly through the night now.',
+      story: "I used to wake up anxious with shallow chest breathing at night. Learning the Oxygen Advantage nasal breathing drills from Reshmi mam completely changed my sleep quality. I wake up fresh every single morning.",
+      protocolPillars: ['Nasal Breathing', 'Sleep Routine', 'Stress Relief']
+    },
+    {
+      id: 4,
+      category: 'gut',
+      name: 'Shoaib Ansari',
+      city: 'Ahmednagar',
+      avatar: '/assets/images/real-patient-shoaib.jpg',
+      headline: 'Off daily antacids after almost 3 years.',
+      story: "Taking antacids was my daily routine for 3 years. Reshmi mam identified the root foods causing my acidity and helped heal my stomach. I have zero reflux now and eat comfortably without fear.",
+      protocolPillars: ['Acidity Protocol', 'Food Triggers Plan', 'Gentle Digestion']
+    },
+    {
+      id: 5,
+      category: 'weight',
+      name: 'Ananya Patel',
+      city: 'Mumbai',
+      avatar: null,
+      initials: 'AP',
+      avatarColor: '#DB2777',
+      headline: 'Periods regularized and lost 6 kg naturally.',
+      story: "I struggled with irregular cycles and stubborn weight for years. Reshmi mam's food plate structure was easy to follow even with my busy corporate job. My cycle is now on time and I feel so much lighter.",
+      protocolPillars: ['Hormonal Balance', 'Plate Method', 'Cycle Care']
+    },
+    {
+      id: 6,
+      category: 'hormones',
+      name: 'Sunita Mehta',
+      city: 'Gurugram',
+      avatar: null,
+      initials: 'SM',
+      avatarColor: '#059669',
+      headline: 'Peaceful sleep after months of restless nights.',
+      story: "Perimenopause hot flashes made it impossible to sleep properly. With Reshmi mam's dietary guidance and calming breathing drills, my hot flashes dropped drastically and I finally get uninterrupted rest.",
+      protocolPillars: ['Hormone Support', 'Evening Routine', 'Vagal Calming']
+    },
+    {
+      id: 7,
+      category: 'weight',
+      name: 'Rohit Malhotra',
+      city: 'Pune',
+      avatar: null,
+      initials: 'RM',
+      avatarColor: '#DC2626',
+      headline: 'Liver enzymes normal on recent test.',
+      story: "I was diagnosed with grade 1 fatty liver and constant afternoon fatigue. Following Reshmi’s guidance on meal spacing and simple daily walking habits normalized my liver markers on my latest ultrasound.",
+      protocolPillars: ['Liver Friendly Diet', 'Walking Drills', 'Metabolic Boost']
+    },
+    {
+      id: 8,
+      category: 'gut',
+      name: 'Kavita Rao',
+      city: 'Hyderabad',
+      avatar: null,
+      initials: 'KR',
+      avatarColor: '#6D28D9',
+      headline: 'No more weekly migraines or sluggish gut.',
+      story: "My chronic constipation was triggering severe weekly migraines. Reshmi mam fixed my gut motility with hydration habits and wholesome foods. My gut feels light and head is completely clear.",
+      protocolPillars: ['Hydration Routine', 'Motility Support', 'Clean Wholefoods']
+    },
+    {
+      id: 8,
+      category: 'Fart',
+      name: 'Kuldeep Tiwari',
+      city: 'Nagpur',
+      avatar: null,
+      initials: 'KT',
+      avatarColor: '#13ecf3ff',
+      headline: 'No more excessive gas or embarrassing bloating.    ',
+      story: "I used to experience frequent gas, excessive flatulence, and uncomfortable bloating throughout the day. With Reshmi ma'am's personalised guidance, I focused on improving my gut health through mindful eating, better digestion habits, and dietary changes. Now I feel lighter, more comfortable, and confident in my daily routine    .",
+      protocolPillars: ['Digestive Support', 'Mindful Eating', 'Gut Heal']
+    }
+  ];
+
+=== CLIENT_TRANSFORMATION_SHOWCASE TRANSFORMATIONS ===

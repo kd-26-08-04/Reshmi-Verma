@@ -88,11 +88,6 @@ export default function ClientTransformationShowcase() {
       condition: 'Weight Loss & Inch Loss Protocol',
       file: '/assets/audio/client-voice-8.mp3',
     },
-    {
-      id: 'voice-9',
-      condition: 'Nutrition Consultation & Motivation',
-      file: '/assets/audio/client-voice-9.mp3',
-    }
   ];
 
   const togglePlayAudio = (id) => {

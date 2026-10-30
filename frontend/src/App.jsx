@@ -1,46 +1,51 @@
-import React, { useEffect } from 'react';
-import { BrowserRouter as Router, Routes, Route, useLocation, Navigate } from 'react-router-dom';
-import { AuthProvider } from './context/AuthContext';
+import React, { useEffect } from "react";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  useLocation,
+  Navigate,
+} from "react-router-dom";
+import { AuthProvider } from "./context/AuthContext";
 
 // Components
-import Navbar from './components/Navbar';
-import Footer from './components/Footer';
-import BackgroundMedia from './components/BackgroundMedia';
-import EvaAssistant from './components/EvaAssistant';
-import MobileBottomBar from './components/MobileBottomBar';
-import WelcomeAssessmentModal from './components/WelcomeAssessmentModal';
-import DragonflyAnimation from './components/DragonflyAnimation';
+import Navbar from "./components/Navbar";
+import Footer from "./components/Footer";
+import BackgroundMedia from "./components/BackgroundMedia";
+import MobileBottomBar from "./components/MobileBottomBar";
+import WelcomeAssessmentModal from "./components/WelcomeAssessmentModal";
+import DragonflyAnimation from "./components/DragonflyAnimation";
 
 // Pages
-import HomePage from './pages/HomePage';
-import AboutPage from './pages/AboutPage';
-import NutritionPage from './pages/NutritionPage';
-import BreathePage from './pages/BreathePage';
-import AssessmentPage from './pages/AssessmentPage';
-import BreathingAssessmentPage from './pages/BreathingAssessmentPage';
-import QuestionnairePage from './pages/QuestionnairePage';
-import AuthPage from './pages/AuthPage';
-import DashboardPage from './pages/DashboardPage';
-import AdminPage from './pages/AdminPage';
-import ContactPage from './pages/ContactPage';
-import TestimonialsPage from './pages/TestimonialsPage';
-import VideosPage from './pages/VideosPage';
-import NotFoundPage from './pages/NotFoundPage';
+import HomePage from "./pages/HomePage";
+import AboutPage from "./pages/AboutPage";
+import NutritionPage from "./pages/NutritionPage";
+import BreathePage from "./pages/BreathePage";
+import AssessmentPage from "./pages/AssessmentPage";
+import BreathingAssessmentPage from "./pages/BreathingAssessmentPage";
+import QuestionnairePage from "./pages/QuestionnairePage";
+import AuthPage from "./pages/AuthPage";
+import DashboardPage from "./pages/DashboardPage";
+import AdminPage from "./pages/AdminPage";
+import ContactPage from "./pages/ContactPage";
+import TestimonialsPage from "./pages/TestimonialsPage";
+import VideosPage from "./pages/VideosPage";
+import NotFoundPage from "./pages/NotFoundPage";
 
 function ScrollToTop() {
   const { pathname, search, hash } = useLocation();
 
   useEffect(() => {
     // Prevent browser from automatically restoring previous scroll positions on back/forward or route switch
-    if ('scrollRestoration' in window.history) {
-      window.history.scrollRestoration = 'manual';
+    if ("scrollRestoration" in window.history) {
+      window.history.scrollRestoration = "manual";
     }
 
     if (!hash) {
       // Temporarily bypass smooth-scrolling to ensure page snaps immediately to top
       const html = document.documentElement;
       const originalScrollBehavior = html.style.scrollBehavior;
-      html.style.scrollBehavior = 'auto';
+      html.style.scrollBehavior = "auto";
 
       window.scrollTo(0, 0);
       document.body.scrollTop = 0;
@@ -56,11 +61,11 @@ function ScrollToTop() {
 
       return () => cancelAnimationFrame(rafId);
     } else {
-      const targetId = hash.replace('#', '');
+      const targetId = hash.replace("#", "");
       const timer = setTimeout(() => {
         const el = document.getElementById(targetId);
         if (el) {
-          el.scrollIntoView({ behavior: 'smooth' });
+          el.scrollIntoView({ behavior: "smooth" });
         }
       }, 60);
       return () => clearTimeout(timer);
@@ -72,9 +77,13 @@ function ScrollToTop() {
 
 function AppContent() {
   const { pathname } = useLocation();
-  const isAuthPage = pathname === '/auth' || pathname === '/login';
-  const isAdminPage = pathname.startsWith('/admin');
-  const isBookingOrAssessment = pathname.startsWith('/assessment') || pathname.startsWith('/breathing-assessment') || pathname.startsWith('/functional-breathing-assessment') || pathname === '/questionnaire';
+  const isAuthPage = pathname === "/auth" || pathname === "/login";
+  const isAdminPage = pathname.startsWith("/admin");
+  const isBookingOrAssessment =
+    pathname.startsWith("/assessment") ||
+    pathname.startsWith("/breathing-assessment") ||
+    pathname.startsWith("/functional-breathing-assessment") ||
+    pathname === "/questionnaire";
 
   return (
     <>
@@ -90,8 +99,14 @@ function AppContent() {
         <Route path="/breathe" element={<BreathePage />} />
         <Route path="/booking" element={<Navigate to="/" replace />} />
         <Route path="/assessment" element={<AssessmentPage />} />
-        <Route path="/breathing-assessment" element={<BreathingAssessmentPage />} />
-        <Route path="/functional-breathing-assessment" element={<BreathingAssessmentPage />} />
+        <Route
+          path="/breathing-assessment"
+          element={<BreathingAssessmentPage />}
+        />
+        <Route
+          path="/functional-breathing-assessment"
+          element={<BreathingAssessmentPage />}
+        />
         <Route path="/questionnaire" element={<QuestionnairePage />} />
         <Route path="/auth" element={<AuthPage />} />
         <Route path="/login" element={<AuthPage />} />
@@ -103,8 +118,9 @@ function AppContent() {
       </Routes>
 
       {!isAuthPage && !isAdminPage && <Footer />}
-      {!isAdminPage && <EvaAssistant isBookingOrAssessment={isBookingOrAssessment} />}
-      {!isAuthPage && !isAdminPage && !isBookingOrAssessment && <MobileBottomBar />}
+      {!isAuthPage && !isAdminPage && !isBookingOrAssessment && (
+        <MobileBottomBar />
+      )}
       <WelcomeAssessmentModal />
       <DragonflyAnimation />
     </>

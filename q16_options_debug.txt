@@ -1,0 +1,6 @@
+
+          { label: '30+ Seconds (Optimal / Resilient / Elite oxygen delivery)', score: 0, tag: 'Optimal BOLT ≥ 30s' },
+          { label: '20–29 Seconds (Moderate — breathing habits require refinement)', score: 1, tag: 'Moderate BOLT 20–29s' },
+          { label: '10–19 Seconds (Sub-optimal — indicates chronic over-breathing)', score: 2, tag: 'Low BOLT 10–19s' },
+          { label: 'Under 10 Seconds (Critical — severe hyperventilation / respiratory exhaustion)', score: 3, tag: 'Severe Low BOLT < 10s' }
+        
