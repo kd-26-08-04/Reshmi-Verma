@@ -84,7 +84,7 @@ export default function Navbar() {
             className="brand-logo-img"
           />
           <img
-            src="/assets/images/healthwithreshmi-brand.png"
+            src="/assets/images/logo.png"
             alt="Health with Reshmi"
             className="brand-wordmark-img"
           />

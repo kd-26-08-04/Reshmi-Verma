@@ -16,10 +16,10 @@ export default function Footer() {
                   className="footer-brand-logo-img"
                 />
                 <img
-                  src="/assets/images/healthwithreshmi-brand.png"
+                  src="/assets/images/logo.png"
                   alt="Health with Reshmi"
                   className="brand-wordmark-img"
-                  style={{ height: '44px', width: 'auto', maxWidth: '240px' }}
+                  style={{ height: '58px', width: 'auto', maxWidth: '340px' }}
                 />
               </div>
               <p>

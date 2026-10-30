@@ -1002,11 +1002,11 @@ h6 {
 
 .brand-wordmark-img {
 
-  height: 38px;
+  height: 60px;
 
   width: auto;
 
-  max-width: 220px;
+  max-width: 320px;
 
   object-fit: contain;
 
@@ -1020,9 +1020,9 @@ h6 {
 
   .brand-wordmark-img {
 
-    height: 30px;
+    height: 38px;
 
-    max-width: 170px;
+    max-width: 220px;
 
   }
 
@@ -14947,7 +14947,8 @@ h6 {
 
   margin: 0 auto;
 
-  scrollbar-width: none; /* Firefox */
+  scrollbar-width: none;
+  /* Firefox */
 
 }
 
@@ -14955,7 +14956,8 @@ h6 {
 
 .more-about-grid::-webkit-scrollbar {
 
-  display: none; /* Chrome, Safari, Edge */
+  display: none;
+  /* Chrome, Safari, Edge */
 
 }
 
@@ -17682,6 +17684,7 @@ h6 {
   }
 
 }
+
 /* ==========================================================================
    Explore More - Infinite Marquee with Edge Fade & Controls
    ========================================================================== */
@@ -17720,6 +17723,7 @@ h6 {
   0% {
     transform: translateX(0);
   }
+
   100% {
     transform: translateX(-50%);
   }

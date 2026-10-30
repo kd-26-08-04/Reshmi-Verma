@@ -244,22 +244,39 @@ export default function AboutPage() {
                 <span>The Diagnostic Lens</span>
               </span>
               <h3 style={{ fontSize: '2rem', color: 'var(--emerald-deep)', marginBottom: '14px', lineHeight: 1.3 }}>
-                Why "Normal" Lab Reports Often Mask Real Illness.
+                Beyond the Numbers: Understanding Your Health Better.
               </h3>
               <p style={{ color: 'var(--text-secondary)', lineHeight: 1.65, fontSize: '0.98rem', marginBottom: '14px' }}>
-                Standard pathology reference ranges are designed to detect end-stage pathological failure. They were never calibrated to flag sub-clinical inflammation, cellular gut permeability, or autonomic burnout.
+                Your reports provide important insights into your health. Functional bloodwork adds another perspective by looking at patterns, identifying potential imbalances, and understanding how different markers work together.
               </p>
               <p style={{ color: 'var(--text-secondary)', lineHeight: 1.65, fontSize: '0.98rem', margin: 0 }}>
-                In a 1:1 Consultation, Reshmi looks at functional biomarker patterns: correlating subtle shifts in your liver enzymes, fasting insulin, thyroid conversions, and respiratory CO₂ tolerance into a unified action plan.
-              </p>
+                Because health is not just about being within range…it's about understanding the bigger picture and supporting long-term wellbeing.              </p>
             </div>
 
-            <div>
-              <div style={{ position: 'relative', borderRadius: '20px', overflow: 'hidden', boxShadow: '0 16px 36px rgba(0,0,0,0.08)' }}>
+            <div style={{ display: 'flex', justifyContent: 'center' }}>
+              <div
+                style={{
+                  position: 'relative',
+                  borderRadius: '20px',
+                  overflow: 'hidden',
+                  boxShadow: '0 16px 36px rgba(0,0,0,0.08)',
+                  background: '#ffffff',
+                  border: '1px solid rgba(13, 148, 136, 0.12)',
+                  maxWidth: '460px',
+                  width: '100%',
+                }}
+              >
                 <img
-                  src="/assets/images/clinical-consultation.jpg"
-                  alt="Clinical Consultation Review"
-                  style={{ width: '100%', height: 'auto', display: 'block', objectFit: 'cover' }}
+                  src="/assets/images/clinic.jpeg"
+                  alt="Traditional vs Functional Bloodwork Reference Ranges"
+                  style={{
+                    width: '100%',
+                    height: 'auto',
+                    maxHeight: '520px',
+                    display: 'block',
+                    objectFit: 'contain',
+                    margin: '0 auto',
+                  }}
                 />
               </div>
             </div>
