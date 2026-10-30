@@ -1665,6 +1665,8 @@ export default function HomePage() {
                     alt={reel.title}
 
                     className="reel-cover-img"
+                    loading="lazy"
+                    decoding="async"
 
                     style={{
                       filter: "brightness(0.85) contrast(1.05)",

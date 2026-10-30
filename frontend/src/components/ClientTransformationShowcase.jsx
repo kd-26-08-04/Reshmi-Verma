@@ -195,6 +195,7 @@ export default function ClientTransformationShowcase() {
                     src={item.image}
                     alt={`${item.name} Before & After Transformation`}
                     loading="lazy"
+                    decoding="async"
                   />
                 </div>
 
