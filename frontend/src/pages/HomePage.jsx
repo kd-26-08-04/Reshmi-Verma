@@ -657,7 +657,10 @@ export default function HomePage() {
                 )}
 
                 {transformationTab === "before" && (
-                  <div className="transformation-single-view">
+                  <div
+                    className="transformation-single-view"
+                    style={{ background: "#1a1a1a" }}
+                  >
                     <span
                       className="photo-phase-tag phase-before"
                       style={{ top: 14, left: 14 }}
@@ -666,10 +669,15 @@ export default function HomePage() {
                     </span>
 
                     <img
-                      src="/assets/images/Before.jpg"
-
+                      src="/assets/images/before.jpeg"
                       alt="Reshmi Verma Before Transformation"
-
+                      style={{
+                        width: "100%",
+                        height: "100%",
+                        objectFit: "contain",
+                        objectPosition: "center center",
+                        display: "block",
+                      }}
                       onError={(e) => {
                         e.target.onerror = null;
                         e.target.src =

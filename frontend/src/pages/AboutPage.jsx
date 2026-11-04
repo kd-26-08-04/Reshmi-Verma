@@ -35,28 +35,28 @@ export default function AboutPage() {
 
   const faqs = [
     {
-      q: 'What is a 1:1 Health Clarity Consultation with Reshmi Verma?',
-      a: 'A dedicated 60-minute video session where Reshmi analyzes your complete medical history, lifestyle patterns, gut symptoms, and previous diagnostic blood tests. Instead of giving a generic diet chart, she uncovers the biochemical root-causes behind your symptoms and gives you a structured, actionable recovery blueprint.'
+      q: 'What can I expect from a 1:1 Health Clarity Consultation?',
+      a: "A personalised 60-minute online session to explore your health concerns, lifestyle, and nutrition. Gain clarity on possible contributing factors, key health priorities, and practical next steps tailored to your needs."
     },
     {
-      q: 'How is Functional Medicine different from conventional medicine?',
-      a: 'Conventional medicine often focuses on diagnosing acute diseases and suppressing symptoms with medication. Functional Medicine looks at the upstream causes — such as chronic low-grade gut inflammation, impaired CO₂ breathing tolerance, micronutrient deficiencies, and circadian disruption — to restore your body to self-healing equilibrium.'
+      q: 'Who can benefit from a consultation?',
+      a: "Anyone looking to take a more proactive approach to their health, particularly those experiencing digestive concerns, fatigue, weight changes, hormonal challenges, metabolic concerns, or difficulty achieving lasting results despite trying different approaches."
     },
     {
-      q: 'Do I need recent blood test reports before booking a session?',
-      a: 'It is highly helpful but not mandatory. If you have tests from the last 3-6 months (CBC, Thyroid Panel, HbA1c, Vitamin D/B12, Lipid, Liver/Kidney), you can upload them during booking. During the session, Reshmi will analyze them functionally. If new tests are needed, she will recommend specific targeted panels.'
+      q: 'Do I need to have a diagnosed health condition to book?',
+      a: "Not at all. You can book even if you don't have a diagnosis. The consultation is also suitable for individuals who want to understand their health better and focus on prevention and long-term wellbeing."
     },
     {
-      q: 'What makes Reshmi Verma’s approach unique?',
-      a: 'Reshmi brings rare dual authority: over 18 years of experience directing clinical diagnostic laboratories (Rainbow Medinova) combined with formal credentials in Functional Nutrition, Certified Breathwork, and Human Biohacking. Moreover, she personally reversed 38 kg of weight and chronic metabolic fatigue, so every protocol is forged through genuine lived experience and clinical empathy.'
+      q: 'What if I have already tried multiple diets, supplements or wellness programmes without lasting results?',
+      a: "That's exactly why individualisation matters. Instead of adding another generic protocol, we first explore what you've tried, what worked, what didn't, and what may be missing from your current approach."
     },
     {
-      q: 'Can online consultations be effective for gut and hormonal issues?',
-      a: 'Absolutely. Over 90% of chronic gut, hormonal, and metabolic challenges stem from daily lifestyle, nutrition, breath mechanics, and autonomic nervous system triggers. Through high-definition video calls and detailed pre-intake assessments, our clients worldwide achieve transformational symptom reversal.'
+      q: "Can I work with Reshmi if I live outside India?",
+      a: "Yes. Consultations and eligible programmes are offered online, allowing us to work with clients internationally, subject to time-zone coordination and programme suitability."
     },
     {
-      q: 'What is the fee for the 1:1 Health Clarity Consultation?',
-      a: 'The 1:1 Health Clarity Consultation is ₹1,999 for a full 60-minute in-depth video session. This includes pre-session review of your lab reports, interactive symptom decoding, and a tailored recovery roadmap.'
+      q: "Reshmi a medical doctor? Does she prescribe medication?",
+      a: "Reshmi is a Biotechnologist and Functional & Integrative Nutritionist, with specialised training in breathwork, nervous system regulation, and health optimisation. She does not practise as a medical doctor or prescribe medication. Her approach brings together personalised nutrition, evidence-informed wellness protocols, lifestyle interventions, and breathwork, working in tandem with medical practitioners to complement conventional care and support a more comprehensive approach to health."
     }
   ];
 
@@ -286,92 +286,6 @@ export default function AboutPage() {
 
       {/* Verified Client Before & After Transformations & Real Voice Notes */}
       <ClientTransformationShowcase />
-
-      {/* 4. Patient Problems & Healing Solutions (With Generated Clinical Images) */}
-      <section className="section" style={{ padding: '60px 0' }}>
-        <div className="container">
-          <div className="section-header text-center" style={{ maxWidth: '750px', margin: '0 auto 40px' }}>
-
-            <h2 style={{ fontSize: '2.4rem', color: 'var(--emerald-deep)' }}>
-              Conditions We Help You Overcome
-            </h2>
-            <p style={{ color: 'var(--text-secondary)', fontSize: '1.05rem' }}>
-              Real clinical solutions targeting the three interconnected roots of chronic physical friction.
-            </p>
-          </div>
-
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '28px' }}>
-            {/* Card 1: Gut Health & Diet */}
-            <div className="clinical-card-interactive" style={{ background: 'white', borderRadius: '20px', border: '1px solid var(--border-subtle)', boxShadow: '0 8px 24px rgba(0,0,0,0.04)', display: 'flex', flexDirection: 'column' }}>
-              <div className="card-img-wrap" style={{ height: '220px', borderTopLeftRadius: '20px', borderTopRightRadius: '20px' }}>
-                <img
-                  src="/assets/images/diet-nutrition-plate.jpg"
-                  alt="Personalized Functional Nutrition Meal Plate"
-                  style={{ width: '100%', height: '100%', objectFit: 'cover' }}
-                />
-              </div>
-              <div style={{ padding: '24px', flex: '1', display: 'flex', flexDirection: 'column' }}>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '8px' }}>
-                  <span style={{ fontSize: '1.2rem' }}>🥗</span>
-                  <h3 style={{ fontSize: '1.25rem', color: 'var(--emerald-deep)', margin: 0 }}>Gut &amp; Digestive Dysbiosis</h3>
-                </div>
-                <p style={{ fontSize: '0.88rem', color: 'var(--text-secondary)', lineHeight: 1.6, marginBottom: '14px' }}>
-                  Persistent bloating, acid reflux, SIBO, leaky gut, and unexplained food sensitivities. We rebuild gut mucosal integrity using targeted foods, elimination timing, and microbiome repair.
-                </p>
-                <div style={{ marginTop: 'auto', paddingTop: '12px', borderTop: '1px solid var(--border-subtle)', fontSize: '0.8rem', color: 'var(--emerald-medium)', fontWeight: 700 }}>
-                  ✓ Rebuilt mucosal barrier &bull; Zero crash starvation
-                </div>
-              </div>
-            </div>
-
-            {/* Card 2: Metabolic & Hormonal Vitality */}
-            <div className="clinical-card-interactive" style={{ background: 'white', borderRadius: '20px', border: '1px solid var(--border-subtle)', boxShadow: '0 8px 24px rgba(0,0,0,0.04)', display: 'flex', flexDirection: 'column' }}>
-              <div className="card-img-wrap" style={{ height: '220px', borderTopLeftRadius: '20px', borderTopRightRadius: '20px' }}>
-                <img
-                  src="/assets/images/patient-vitality-energy.jpg"
-                  alt="Hormonal and Energy Vitality"
-                  style={{ width: '100%', height: '100%', objectFit: 'cover' }}
-                />
-              </div>
-              <div style={{ padding: '24px', flex: '1', display: 'flex', flexDirection: 'column' }}>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '8px' }}>
-                  <span style={{ fontSize: '1.2rem' }}>⚡</span>
-                  <h3 style={{ fontSize: '1.25rem', color: 'var(--emerald-deep)', margin: 0 }}>Metabolism &amp; Hormonal Balance</h3>
-                </div>
-                <p style={{ fontSize: '0.88rem', color: 'var(--text-secondary)', lineHeight: 1.6, marginBottom: '14px' }}>
-                  PCOS, thyroid sluggishness, afternoon exhaustion crashes, and stubborn abdominal fat. We balance cellular glucose kinetics, circadian insulin sensitivity, and cortisol curves.
-                </p>
-                <div style={{ marginTop: 'auto', paddingTop: '12px', borderTop: '1px solid var(--border-subtle)', fontSize: '0.8rem', color: 'var(--emerald-medium)', fontWeight: 700 }}>
-                  ✓ Stable all-day energy &bull; Natural hormonal flow
-                </div>
-              </div>
-            </div>
-
-            {/* Card 3: Breath & Autonomic Nervous System */}
-            <div className="clinical-card-interactive" style={{ background: 'white', borderRadius: '20px', border: '1px solid var(--border-subtle)', boxShadow: '0 8px 24px rgba(0,0,0,0.04)', display: 'flex', flexDirection: 'column' }}>
-              <div className="card-img-wrap" style={{ height: '220px', borderTopLeftRadius: '20px', borderTopRightRadius: '20px' }}>
-                <img
-                  src="/assets/images/breath-nervous-system.jpg"
-                  alt="Nervous System & Breath Regulation"
-                  style={{ width: '100%', height: '100%', objectFit: 'cover' }}
-                />
-              </div>
-              <div style={{ padding: '24px', flex: '1', display: 'flex', flexDirection: 'column' }}>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '8px' }}>
-                  <span style={{ fontSize: '1.2rem' }}>💨</span>
-                  <h3 style={{ fontSize: '1.25rem', color: 'var(--emerald-deep)', margin: 0 }}>Stress, Anxiety &amp; Breathing</h3>
-                </div>
-                <p style={{ fontSize: '0.88rem', color: 'var(--text-secondary)', lineHeight: 1.6, marginBottom: '14px' }}>
-                  Shallow chest breathing, rapid mouth breathing, fragmented sleep, and chronic autonomic fight-or-flight overdrive. Somatic breathwork resets CO₂ chemoreceptors and stimulates vagal tone.
-                </p>
-                <div style={{ marginTop: 'auto', paddingTop: '12px', borderTop: '1px solid var(--border-subtle)', fontSize: '0.8rem', color: 'var(--emerald-medium)', fontWeight: 700 }}>
-                  ✓ Deep restorative sleep &bull; Nervous system calm
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
 
       {/* 5. Comprehensive Clinical FAQs */}
       <section className="section" style={{ padding: '60px 0' }}>

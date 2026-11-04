@@ -87,7 +87,7 @@ export default function AuthPage() {
               <span>Confidential Clinical Portal</span>
             </div>
             <h1 id="auth-title" style={{ fontFamily: 'var(--font-serif)', fontSize: '1.75rem', color: 'var(--emerald-deep)', margin: '0 0 4px', lineHeight: 1.2, fontWeight: 800 }}>
-              {mode === 'login' ? 'Client Sign In' : 'Create Account'}
+              {mode === 'login' ? 'Sign In' : 'Create Account'}
             </h1>
           </div>
 

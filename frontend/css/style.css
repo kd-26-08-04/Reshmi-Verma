@@ -17892,3 +17892,456 @@ h6 {
   transform: scale(1.12);
   box-shadow: 0 10px 28px rgba(0, 229, 226, 0.5);
 }
+
+
+/* ==========================================================================
+   COMPREHENSIVE MOBILE RESPONSIVE POLISH — All Sections
+   Breakpoints: 768px (mobile), 480px (small phones), 360px (tiny phones)
+   ========================================================================== */
+
+
+/* ——— 1. FAQ — Reduce font/padding on mobile ——— */
+@media (max-width: 768px) {
+
+  .faq-list {
+    gap: 12px;
+  }
+
+  .faq-question {
+    padding: 16px 18px;
+    font-size: 1rem;
+    line-height: 1.45;
+    gap: 12px;
+  }
+
+  .faq-icon {
+    width: 28px;
+    height: 28px;
+    font-size: 1rem;
+    flex-shrink: 0;
+  }
+
+  .faq-answer {
+    padding: 0 18px;
+    font-size: 0.9rem;
+    line-height: 1.65;
+  }
+
+  .faq-item.active .faq-answer {
+    max-height: 600px;
+    padding: 0 18px 18px;
+  }
+
+}
+
+
+/* ——— 2. Testimonial Cards — Compact padding on mobile ——— */
+@media (max-width: 768px) {
+
+  .testimonials-grid {
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+
+  .testimonial-card {
+    padding: 24px 20px;
+    border-radius: var(--radius-md);
+  }
+
+  .testimonial-quote {
+    font-size: 1rem;
+    margin-bottom: 18px;
+    line-height: 1.55;
+  }
+
+  .testimonial-author {
+    padding-top: 14px;
+    gap: 12px;
+  }
+
+  .author-avatar {
+    width: 40px;
+    height: 40px;
+    font-size: 0.95rem;
+  }
+
+  .author-info h5 {
+    font-size: 0.92rem;
+  }
+
+  .author-info span {
+    font-size: 0.75rem;
+  }
+
+  .quote-stars {
+    margin-bottom: 14px;
+  }
+
+  .quote-stars svg {
+    width: 15px;
+    height: 15px;
+  }
+
+}
+
+
+/* ——— 3. Transformation Container — Better aspect-ratio on mobile ——— */
+@media (max-width: 768px) {
+
+  .transformation-visual-container {
+    aspect-ratio: 4 / 5;
+    border-radius: 18px;
+  }
+
+  .transformation-tabs-nav {
+    gap: 6px;
+    padding: 4px;
+  }
+
+  .trans-tab-btn {
+    font-size: 0.75rem;
+    padding: 7px 8px;
+  }
+
+  .faq-item.active .faq-answer {
+    max-height: 600px;
+  }
+
+}
+
+@media (max-width: 480px) {
+
+  .transformation-visual-container {
+    aspect-ratio: 3 / 4;
+  }
+
+}
+
+
+/* ——— 4. Explore Marquee — Mobile fix (disable mask, adjust cards) ——— */
+@media (max-width: 768px) {
+
+  .explore-marquee-container {
+    -webkit-mask-image: none !important;
+    mask-image: none !important;
+    padding: 8px 0 14px;
+  }
+
+  .explore-marquee-track {
+    gap: 14px;
+    animation-duration: 28s;
+  }
+
+  .explore-edge-glow-left,
+  .explore-edge-glow-right {
+    display: none !important;
+  }
+
+  .explore-marquee-outer {
+    padding: 4px 0 12px;
+  }
+
+}
+
+
+/* ——— 5. Reels Section — Better mobile spacing ——— */
+@media (max-width: 768px) {
+
+  .reels-section {
+    padding: 44px 0 36px;
+  }
+
+  .reels-header-row {
+    gap: 12px;
+    margin-bottom: 24px;
+  }
+
+  .reels-header-content h2 {
+    font-size: 1.65rem;
+    line-height: 1.25;
+  }
+
+  .reels-header-content p {
+    font-size: 0.95rem;
+  }
+
+  .reels-nav-controls {
+    display: none !important;
+  }
+
+  .reels-carousel {
+    padding: 8px 0 20px;
+    gap: 14px;
+    scrollbar-width: none;
+  }
+
+  .reels-carousel::-webkit-scrollbar {
+    display: none;
+  }
+
+  .reel-card {
+    flex: 0 0 220px;
+    width: 220px;
+    height: 380px;
+    border-radius: 16px;
+  }
+
+  .reel-title {
+    font-size: 0.95rem;
+  }
+
+  .reel-content-bottom {
+    padding: 14px 12px;
+  }
+
+  .reels-channels-bar {
+    padding: 16px;
+    gap: 14px;
+    border-radius: var(--radius-md);
+  }
+
+  .reels-channels-info {
+    gap: 12px;
+  }
+
+  .reels-channels-avatar {
+    width: 44px;
+    height: 44px;
+  }
+
+  .reels-channels-text h4 {
+    font-size: 0.98rem;
+  }
+
+  .reels-channels-text p {
+    font-size: 0.82rem;
+  }
+
+}
+
+
+/* ——— 6. Hero — Tiny phone adjustments (< 480px) ——— */
+@media (max-width: 480px) {
+
+  .hero-content h1 {
+    font-size: 1.9rem !important;
+    line-height: 1.2;
+  }
+
+  .hero-content p.lead {
+    font-size: 0.93rem;
+  }
+
+  .hero-cta-group {
+    flex-direction: column !important;
+    gap: 8px !important;
+    width: 100%;
+  }
+
+  .hero-cta-group .btn {
+    width: 100% !important;
+    justify-content: center !important;
+    padding: 13px 16px !important;
+    font-size: 0.9rem !important;
+  }
+
+  .hero-stats-row {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+    padding: 12px 10px;
+  }
+
+  .stat-item .stat-num {
+    font-size: 1.35rem;
+  }
+
+  .stat-item .stat-label {
+    font-size: 0.65rem;
+    line-height: 1.25;
+  }
+
+  .hero-portrait-card {
+    padding: 6px;
+    border-radius: 20px;
+  }
+
+}
+
+
+/* ——— 7. Voice Audio Cards — Compact on mobile ——— */
+@media (max-width: 768px) {
+
+  .voice-audio-card {
+    padding: 16px 18px;
+    border-radius: 16px;
+  }
+
+}
+
+
+/* ——— 8. About Grid on Mobile — Fix centering ——— */
+@media (max-width: 768px) {
+
+  .about-grid {
+    gap: 32px;
+  }
+
+  .about-image-wrapper {
+    max-width: 420px;
+    margin: 0 auto;
+    width: 100%;
+  }
+
+  .about-content h2 {
+    font-size: 1.75rem !important;
+    line-height: 1.25;
+  }
+
+}
+
+
+/* ——— 9. Section Padding — Breathe on mobile ——— */
+@media (max-width: 480px) {
+
+  .section {
+    padding: 40px 0 !important;
+  }
+
+  .section-header {
+    margin-bottom: 28px !important;
+  }
+
+  .section-header h2 {
+    font-size: 1.65rem !important;
+    line-height: 1.25;
+  }
+
+  .section-header p {
+    font-size: 0.88rem !important;
+  }
+
+}
+
+
+/* ——— 10. Pillar & USP Cards on tiny phones ——— */
+@media (max-width: 480px) {
+
+  .pillars-grid,
+  .usp-grid {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+
+  .pillar-card,
+  .usp-card {
+    padding: 20px 16px !important;
+  }
+
+}
+
+
+/* ——— 11. Booking Tiers — Full width on tiny phones ——— */
+@media (max-width: 480px) {
+
+  .tier-card {
+    padding: 24px 16px !important;
+  }
+
+  .tier-card h3 {
+    font-size: 1.2rem !important;
+  }
+
+}
+
+
+/* ——— 12. Mobile Bottom Bar — Ensure no content overlap ——— */
+@media (max-width: 768px) {
+
+  main,
+  .page-wrapper {
+    padding-bottom: 72px;
+  }
+
+  footer {
+    padding-bottom: calc(72px + env(safe-area-inset-bottom)) !important;
+  }
+
+}
+
+
+/* ——— 13. Transformation Marquee — Mobile card sizes ——— */
+@media (max-width: 480px) {
+
+  .story-client-compact-card {
+    flex: 0 0 260px !important;
+    max-width: 88vw !important;
+  }
+
+}
+
+
+/* ——— 14. How Steps & Credential Grid — Single col on small phones ——— */
+@media (max-width: 480px) {
+
+  .credentials-single-line {
+    grid-template-columns: 1fr !important;
+    gap: 12px !important;
+    margin: 24px 0 20px !important;
+  }
+
+  .credential-item {
+    padding: 10px 12px !important;
+    font-size: 0.82rem !important;
+  }
+
+}
+
+
+/* ——— 15. Container Horizontal Padding — Prevent edge-to-edge cramming ——— */
+@media (max-width: 480px) {
+
+  .container {
+    padding-left: 16px !important;
+    padding-right: 16px !important;
+  }
+
+}
+
+
+/* ——— 16. SAMYA Cards — Compact on tiny phones ——— */
+@media (max-width: 480px) {
+
+  .samya-card {
+    padding: 16px 14px !important;
+  }
+
+  .samya-card h4 {
+    font-size: 1rem !important;
+  }
+
+}
+
+
+/* ——— 17. Transformation Callout — Better centering ——— */
+@media (max-width: 768px) {
+
+  .transformation-callout {
+    font-size: 0.82rem !important;
+    padding: 10px 14px !important;
+  }
+
+}
+
+
+/* ——— 18. Hero Portrait — Responsive max-width ——— */
+@media (max-width: 480px) {
+
+  .hero-portrait-card {
+    max-width: 300px !important;
+  }
+
+  .hero-portrait-image-wrap {
+    aspect-ratio: 3 / 4;
+  }
+
+}
