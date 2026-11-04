@@ -207,7 +207,7 @@ export default function AuthPage() {
                     type="text"
                     id="reg-name"
                     className="auth-field-input"
-                    placeholder="e.g. Priya Sharma"
+                    placeholder="e.g. Kuldeep Tiwari"
                     required
                     autoComplete="name"
                     value={registerForm.name}

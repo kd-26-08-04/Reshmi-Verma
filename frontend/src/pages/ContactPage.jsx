@@ -305,7 +305,7 @@ export default function ContactPage() {
 
                     onChange={handleChange}
 
-                    placeholder="e.g. Priya Sharma"
+                    placeholder="e.g. Kuldeep Tiwari"
 
                     style={{
                       width: "100%",
@@ -350,7 +350,7 @@ export default function ContactPage() {
 
                     onChange={handleChange}
 
-                    placeholder="priya@example.com"
+                    placeholder="kuldeep@example.com"
 
                     style={{
                       width: "100%",

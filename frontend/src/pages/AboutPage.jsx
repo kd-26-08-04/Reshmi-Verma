@@ -55,7 +55,7 @@ export default function AboutPage() {
       a: "Yes. Consultations and eligible programmes are offered online, allowing us to work with clients internationally, subject to time-zone coordination and programme suitability."
     },
     {
-      q: "Reshmi a medical doctor? Does she prescribe medication?",
+      q: " Is Reshmi a medical doctor? Does she prescribe medication?",
       a: "Reshmi is a Biotechnologist and Functional & Integrative Nutritionist, with specialised training in breathwork, nervous system regulation, and health optimisation. She does not practise as a medical doctor or prescribe medication. Her approach brings together personalised nutrition, evidence-informed wellness protocols, lifestyle interventions, and breathwork, working in tandem with medical practitioners to complement conventional care and support a more comprehensive approach to health."
     }
   ];

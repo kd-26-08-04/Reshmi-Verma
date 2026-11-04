@@ -2527,7 +2527,7 @@ export default function BreathingAssessmentPage() {
 
                   onChange={(e) => setLeadName(e.target.value)}
 
-                  placeholder="e.g. Priya Sharma"
+                  placeholder="e.g. Kuldeep Tiwari"
 
                   required
 

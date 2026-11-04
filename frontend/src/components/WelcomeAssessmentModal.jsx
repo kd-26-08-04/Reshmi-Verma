@@ -411,7 +411,7 @@ export default function WelcomeAssessmentModal() {
                   name="name"
                   value={formData.name}
                   onChange={handleInputChange}
-                  placeholder="e.g. Priya Sharma"
+                  placeholder="e.g. Kuldeep Tiwari"
                   required
                   style={{
                     width: '100%',

@@ -930,7 +930,7 @@ export default function AssessmentPage() {
                     type="text"
                     value={leadName}
                     onChange={(e) => setLeadName(e.target.value)}
-                    placeholder="e.g. Priya Sharma"
+                    placeholder="e.g. Kuldeep Tiwari"
                     required
                     style={{ width: '100%', padding: '12px 16px', borderRadius: '10px', border: '1.5px solid rgba(243, 1, 132, 0.25)', fontSize: '0.95rem' }}
                   />

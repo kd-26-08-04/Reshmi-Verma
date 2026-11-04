@@ -144,18 +144,6 @@ export default function TestimonialsPage() {
       headline: 'No more weekly migraines or sluggish gut.',
       story: "My chronic constipation was triggering severe weekly migraines. Reshmi mam fixed my gut motility with hydration habits and wholesome foods. My gut feels light and head is completely clear.",
       protocolPillars: ['Hydration Routine', 'Motility Support', 'Clean Wholefoods']
-    },
-    {
-      id: 8,
-      category: 'Fart',
-      name: 'Kuldeep Tiwari',
-      city: 'Nagpur',
-      avatar: null,
-      initials: 'KT',
-      avatarColor: '#13ecf3ff',
-      headline: 'No more excessive gas or embarrassing bloating.    ',
-      story: "I used to experience frequent gas, excessive flatulence, and uncomfortable bloating throughout the day. With Reshmi ma'am's personalised guidance, I focused on improving my gut health through mindful eating, better digestion habits, and dietary changes. Now I feel lighter, more comfortable, and confident in my daily routine    .",
-      protocolPillars: ['Digestive Support', 'Mindful Eating', 'Gut Heal']
     }
   ];
 
