@@ -2,8 +2,6 @@ import React, { useState, useEffect } from "react";
 
 import { Link } from "react-router-dom";
 
-import { useAuth } from "../context/AuthContext";
-
 import { getApiUrl, RAZORPAY_PAYMENT_URL } from "../utils/api";
 
 /**
@@ -823,8 +821,6 @@ const OA_SECTIONS = [
 ];
 
 export default function BreathingAssessmentPage() {
-  const { user } = useAuth();
-
   const [answers, setAnswers] = useState({});
 
   const [currentPillar, setCurrentPillar] = useState(0);
@@ -853,14 +849,14 @@ export default function BreathingAssessmentPage() {
     return null;
   });
 
-  const [leadName, setLeadName] = useState(leadInfo?.name || user?.name || "");
+  const [leadName, setLeadName] = useState(leadInfo?.name || "");
 
   const [leadPhone, setLeadPhone] = useState(
-    leadInfo?.phone || user?.phone || "",
+    leadInfo?.phone || "",
   );
 
   const [leadEmail, setLeadEmail] = useState(
-    leadInfo?.email || user?.email || "",
+    leadInfo?.email || "",
   );
 
   const [leadError, setLeadError] = useState("");
@@ -870,16 +866,6 @@ export default function BreathingAssessmentPage() {
   const [isSavingLead, setIsSavingLead] = useState(false);
 
   const [savedSuccess, setSavedSuccess] = useState(false);
-
-  useEffect(() => {
-    if (user && !leadInfo) {
-      if (user.name) setLeadName(user.name);
-
-      if (user.phone) setLeadPhone(user.phone);
-
-      if (user.email) setLeadEmail(user.email);
-    }
-  }, [user, leadInfo]);
 
   const handleStartFromGate = async (e) => {
     e.preventDefault();

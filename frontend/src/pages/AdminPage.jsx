@@ -1,10 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useAuth } from '../context/AuthContext';
 import { getApiUrl } from '../utils/api';
 
 export default function AdminPage() {
-  const { user, token, isAdmin, isAuthenticated, loading: authLoading } = useAuth();
   const navigate = useNavigate();
 
   // Active Tab: 'bookings' | 'pricing' | 'reels'
@@ -313,21 +311,13 @@ export default function AdminPage() {
     });
   };
 
-  // Initialize data on auth load
+  // Initialize data on load
   useEffect(() => {
-    if (!authLoading) {
-      if (!isAuthenticated) {
-        navigate('/auth');
-      } else if (!isAdmin) {
-        setLoadingBookings(false);
-      } else {
-        fetchAdminBookings();
-        fetchPricingTiers();
-        fetchSchedule();
-        fetchAdminLeads();
-      }
-    }
-  }, [authLoading, isAuthenticated, isAdmin]);
+    fetchAdminBookings();
+    fetchPricingTiers();
+    fetchSchedule();
+    fetchAdminLeads();
+  }, []);
 
   // Update Booking Status
   const handleUpdateBooking = async (bookingId, updates) => {
@@ -510,22 +500,6 @@ export default function AdminPage() {
       (b.phone || b.clientPhone || '').toLowerCase().includes(query);
     return matchesFilter && matchesQuery;
   });
-
-  if (!isAdmin && !authLoading) {
-    return (
-      <main className="admin-container" style={{ textAlign: 'center' }}>
-        <div style={{ background: '#FFF1F2', padding: '32px 20px', borderRadius: '24px', border: '1px solid #BE123C' }}>
-          <h2 style={{ color: '#BE123C', fontSize: 'clamp(1.25rem, 4vw, 1.75rem)' }}>🔒 Administrative Access Restricted</h2>
-          <p style={{ color: 'var(--text-secondary)', fontSize: '0.95rem' }}>
-            This command desk requires administrator credentials. Please sign in with an authorized clinic account.
-          </p>
-          <button className="btn btn-primary" onClick={() => navigate('/auth')}>
-            Sign in as Administrator
-          </button>
-        </div>
-      </main>
-    );
-  }
 
   return (
     <>

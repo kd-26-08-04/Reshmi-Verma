@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { useAuth } from '../context/AuthContext';
 import { getApiUrl, RAZORPAY_PAYMENT_URL } from '../utils/api';
 
 /**
@@ -270,8 +269,6 @@ const ASSESSMENT_STRUCTURE = [
 ];
 
 export default function AssessmentPage() {
-  const { user } = useAuth();
-
   const [currentSectionIndex, setCurrentSectionIndex] = useState(0);
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [answers, setAnswers] = useState({});
@@ -291,7 +288,6 @@ export default function AssessmentPage() {
 
   // Pre-Assessment Gate Form state — pre-fill from localStorage if available
   const [leadName, setLeadName] = useState(() => {
-    if (user?.name) return user.name;
     try {
       const stored = localStorage.getItem('reshmi_assessment_lead') || localStorage.getItem('reshmi_user_lead');
       if (stored) return JSON.parse(stored)?.name || '';
@@ -299,7 +295,6 @@ export default function AssessmentPage() {
     return '';
   });
   const [leadPhone, setLeadPhone] = useState(() => {
-    if (user?.phone) return user.phone;
     try {
       const stored = localStorage.getItem('reshmi_assessment_lead') || localStorage.getItem('reshmi_user_lead');
       if (stored) return JSON.parse(stored)?.phone || '';
@@ -307,7 +302,6 @@ export default function AssessmentPage() {
     return '';
   });
   const [leadEmail, setLeadEmail] = useState(() => {
-    if (user?.email) return user.email;
     try {
       const stored = localStorage.getItem('reshmi_assessment_lead') || localStorage.getItem('reshmi_user_lead');
       if (stored) return JSON.parse(stored)?.email || '';
@@ -316,14 +310,6 @@ export default function AssessmentPage() {
   });
   const [leadError, setLeadError] = useState('');
   const [leadSaving, setLeadSaving] = useState(false);
-
-  useEffect(() => {
-    if (user && !leadInfo) {
-      if (user.name) setLeadName(user.name);
-      if (user.phone) setLeadPhone(user.phone);
-      if (user.email) setLeadEmail(user.email);
-    }
-  }, [user, leadInfo]);
 
   const currentSection = ASSESSMENT_STRUCTURE[currentSectionIndex];
   const currentQuestion = currentSection.questions[currentQuestionIndex];
@@ -637,9 +623,9 @@ export default function AssessmentPage() {
   const handleDownloadScorecard = () => {
     if (!results) return;
 
-    const clientName = leadInfo?.name || user?.name || 'Valued Client';
-    const clientPhone = leadInfo?.phone || user?.phone || 'Not provided';
-    const clientEmail = leadInfo?.email || user?.email || 'Not provided';
+    const clientName = leadInfo?.name || 'Valued Client';
+    const clientPhone = leadInfo?.phone || 'Not provided';
+    const clientEmail = leadInfo?.email || 'Not provided';
     const currentDate = new Date().toLocaleDateString('en-IN', {
       day: 'numeric',
       month: 'long',

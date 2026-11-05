@@ -459,7 +459,7 @@ export default function WelcomeAssessmentModal() {
                   name="email"
                   value={formData.email}
                   onChange={handleInputChange}
-                  placeholder="e.g. priya@gmail.com"
+                  placeholder="e.g. kuldeep@gmail.com"
                   required
                   style={{
                     width: '100%',

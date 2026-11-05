@@ -6,7 +6,6 @@ import {
   useLocation,
   Navigate,
 } from "react-router-dom";
-import { AuthProvider } from "./context/AuthContext";
 
 // Components
 import Navbar from "./components/Navbar";
@@ -24,8 +23,6 @@ import BreathePage from "./pages/BreathePage";
 import AssessmentPage from "./pages/AssessmentPage";
 import BreathingAssessmentPage from "./pages/BreathingAssessmentPage";
 import QuestionnairePage from "./pages/QuestionnairePage";
-import AuthPage from "./pages/AuthPage";
-import DashboardPage from "./pages/DashboardPage";
 import AdminPage from "./pages/AdminPage";
 import ContactPage from "./pages/ContactPage";
 import TestimonialsPage from "./pages/TestimonialsPage";
@@ -77,7 +74,6 @@ function ScrollToTop() {
 
 function AppContent() {
   const { pathname } = useLocation();
-  const isAuthPage = pathname === "/auth" || pathname === "/login";
   const isAdminPage = pathname.startsWith("/admin");
   const isBookingOrAssessment =
     pathname.startsWith("/assessment") ||
@@ -108,17 +104,17 @@ function AppContent() {
           element={<BreathingAssessmentPage />}
         />
         <Route path="/questionnaire" element={<QuestionnairePage />} />
-        <Route path="/auth" element={<AuthPage />} />
-        <Route path="/login" element={<AuthPage />} />
-        <Route path="/dashboard" element={<DashboardPage />} />
+        <Route path="/auth" element={<Navigate to="/" replace />} />
+        <Route path="/login" element={<Navigate to="/" replace />} />
+        <Route path="/dashboard" element={<Navigate to="/" replace />} />
         <Route path="/admin" element={<AdminPage />} />
         <Route path="/contact" element={<ContactPage />} />
         <Route path="/videos" element={<VideosPage />} />
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
 
-      {!isAuthPage && !isAdminPage && <Footer />}
-      {!isAuthPage && !isAdminPage && !isBookingOrAssessment && (
+      {!isAdminPage && <Footer />}
+      {!isAdminPage && !isBookingOrAssessment && (
         <MobileBottomBar />
       )}
       <WelcomeAssessmentModal />
@@ -129,10 +125,8 @@ function AppContent() {
 
 export default function App() {
   return (
-    <AuthProvider>
-      <Router>
-        <AppContent />
-      </Router>
-    </AuthProvider>
+    <Router>
+      <AppContent />
+    </Router>
   );
 }

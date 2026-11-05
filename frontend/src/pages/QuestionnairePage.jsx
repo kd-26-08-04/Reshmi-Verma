@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useSearchParams, useNavigate, Link } from 'react-router-dom';
-import { useAuth } from '../context/AuthContext';
 import { getApiUrl, RAZORPAY_PAYMENT_URL } from '../utils/api';
 
 // Built-in clinical questionnaire specification (Sections A through F)
@@ -387,7 +386,6 @@ export default function QuestionnairePage() {
                                return '';
                              }
                            })();
-  const { user, token } = useAuth();
   const navigate = useNavigate();
 
   // File Upload State & Refs
@@ -422,9 +420,9 @@ export default function QuestionnairePage() {
 
     return {
       bookingId: bookingIdFromUrl,
-      fullName: user?.name || '',
-      email: user?.email || '',
-      phone: user?.phone || '',
+      fullName: '',
+      email: '',
+      phone: '',
       age: '',
       gender: 'Female',
       city: '',
@@ -467,18 +465,6 @@ export default function QuestionnairePage() {
       q42_additional_discussion: ''
     };
   });
-
-  // Prefill user details if logged in
-  useEffect(() => {
-    if (user) {
-      setFormData(prev => ({
-        ...prev,
-        fullName: prev.fullName || user.name || '',
-        email: prev.email || user.email || '',
-        phone: prev.phone || user.phone || ''
-      }));
-    }
-  }, [user]);
 
   // Sync booking ID if present in URL
   useEffect(() => {
@@ -627,7 +613,6 @@ export default function QuestionnairePage() {
 
     try {
       const headers = { 'Content-Type': 'application/json' };
-      if (token) headers['Authorization'] = `Bearer ${token}`;
 
       const res = await fetch(getApiUrl('/api/submit-questionnaire'), {
         method: 'POST',

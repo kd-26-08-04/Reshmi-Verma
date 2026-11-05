@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { NavLink, Link, useNavigate, useLocation } from 'react-router-dom';
-import { useAuth } from '../context/AuthContext';
 import { RAZORPAY_PAYMENT_URL } from '../utils/api';
 
 export default function Navbar() {
@@ -9,7 +8,6 @@ export default function Navbar() {
   const [openDropdown, setOpenDropdown] = useState(null); // 'about' | 'assessment' | null
   const dropdownTimeoutRef = useRef(null);
 
-  const { user, isAuthenticated, isAdmin, logout } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -60,12 +58,6 @@ export default function Navbar() {
         el.scrollIntoView({ behavior: 'smooth' });
       }
     }
-  };
-
-  const handleLogout = () => {
-    logout();
-    navigate('/');
-    closeMenu();
   };
 
   const isAboutActive = location.pathname === '/about' || location.pathname === '/videos';
@@ -232,101 +224,40 @@ export default function Navbar() {
             </NavLink>
           </li>
 
-          {/* User Account State Mobile Menu (Only visible on mobile viewport) */}
-          {isAuthenticated ? (
-            <li className="nav-menu-mobile-cta">
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', marginTop: '10px' }}>
-                <Link
-                  to={isAdmin ? '/admin' : '/dashboard'}
-                  className="btn btn-secondary"
-                  style={{ width: '100%', padding: '10px' }}
-                  onClick={closeMenu}
-                >
-                  {isAdmin ? '🛡️ Admin Desk' : '📋 My Portal'}
-                </Link>
-                <button
-                  onClick={handleLogout}
-                  className="btn btn-secondary"
-                  style={{ width: '100%', padding: '8px', fontSize: '0.85rem' }}
-                >
-                  Sign Out
-                </button>
-              </div>
-            </li>
-          ) : (
-            <li className="nav-menu-mobile-cta">
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '10px', marginTop: '10px' }}>
-                <Link
-                  to="/auth"
-                  className="btn btn-secondary"
-                  style={{ width: '100%', padding: '11px', justifyContent: 'center' }}
-                  onClick={closeMenu}
-                >
-                  <span>🔐 Sign In</span>
-                </Link>
-                <a
-                  href={RAZORPAY_PAYMENT_URL}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="btn btn-primary"
-                  style={{ width: '100%', padding: '12px', justifyContent: 'center' }}
-                  onClick={closeMenu}
-                >
-                  <span>📅 Book Consultation</span>
-                </a>
-              </div>
-            </li>
-          )}
-        </ul>
-
-        {/* Action Header Items */}
-        <div className="nav-actions">
-          {isAuthenticated ? (
-            <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-              <Link
-                to={isAdmin ? '/admin' : '/dashboard'}
-                className="btn btn-secondary btn-sm"
-                style={{ padding: '6px 14px', fontSize: '0.85rem' }}
-                title={`Signed in as ${user?.name || user?.email}`}
-              >
-                {isAdmin ? 'Admin Desk' : 'My Portal'}
-              </Link>
-              <button
-                onClick={handleLogout}
-                className="btn btn-outline btn-sm"
-                style={{ padding: '6px 10px', fontSize: '0.82rem' }}
-              >
-                Sign Out
-              </button>
-            </div>
-          ) : (
-            <div className="nav-actions-group">
-              <Link
-                to="/auth"
-                className="btn-header-signin"
-                id="header-signin-btn"
-              >
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
-                  <circle cx="12" cy="7" r="4"></circle>
-                </svg>
-                <span>Sign In</span>
-              </Link>
+          {/* Mobile Consultation CTA */}
+          <li className="nav-menu-mobile-cta">
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '10px', marginTop: '10px' }}>
               <a
                 href={RAZORPAY_PAYMENT_URL}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="btn btn-primary btn-sm"
-                id="header-book-btn"
+                className="btn btn-primary"
+                style={{ width: '100%', padding: '12px', justifyContent: 'center' }}
+                onClick={closeMenu}
               >
-                <span>Book Consultation</span>
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-                  <line x1="5" y1="12" x2="19" y2="12"></line>
-                  <polyline points="12 5 19 12 12 19"></polyline>
-                </svg>
+                <span>📅 Book Consultation</span>
               </a>
             </div>
-          )}
+          </li>
+        </ul>
+
+        {/* Action Header Items */}
+        <div className="nav-actions">
+          <div className="nav-actions-group">
+            <a
+              href={RAZORPAY_PAYMENT_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn btn-primary btn-sm"
+              id="header-book-btn"
+            >
+              <span>Book Consultation</span>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+                <polyline points="12 5 19 12 12 19"></polyline>
+              </svg>
+            </a>
+          </div>
 
           <button
             className="mobile-toggle"

@@ -13,11 +13,7 @@ const __dirname = path.dirname(__filename);
 // Import API handlers
 import createOrderHandler from './api/create-order.js';
 import verifyPaymentHandler from './api/verify-payment.js';
-import authRegisterHandler from './api/auth-register.js';
-import authLoginHandler from './api/auth-login.js';
-import authMeHandler from './api/auth-me.js';
 import submitQuestionnaireHandler from './api/submit-questionnaire.js';
-import myBookingsHandler from './api/my-bookings.js';
 import adminBookingsHandler from './api/admin-bookings.js';
 import adminUpdateBookingHandler from './api/admin-update-booking.js';
 import questionnaireTemplateHandler from './api/questionnaire-template.js';
@@ -81,21 +77,10 @@ app.get('/api/health', (req, res) => {
   });
 });
 
-// Authentication endpoints
-app.post('/api/auth-register', wrapHandler(authRegisterHandler));
-app.post('/api/auth/register', wrapHandler(authRegisterHandler));
-
-app.post('/api/auth-login', wrapHandler(authLoginHandler));
-app.post('/api/auth/login', wrapHandler(authLoginHandler));
-
-app.get('/api/auth-me', wrapHandler(authMeHandler));
-app.get('/api/auth/me', wrapHandler(authMeHandler));
-
 // Booking & Razorpay endpoints
 app.get('/api/available-slots', wrapHandler(availableSlotsHandler));
 app.post('/api/create-order', wrapHandler(createOrderHandler));
 app.post('/api/verify-payment', wrapHandler(verifyPaymentHandler));
-app.get('/api/my-bookings', wrapHandler(myBookingsHandler));
 
 // Clinic Schedule & Slots management
 app.get('/api/admin-schedule', wrapHandler(adminScheduleHandler));
