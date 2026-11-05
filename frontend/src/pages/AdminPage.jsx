@@ -68,7 +68,6 @@ export default function AdminPage() {
     setLoadingBookings(true);
     try {
       const headers = {};
-      if (token) headers['Authorization'] = `Bearer ${token}`;
 
       const res = await fetch(getApiUrl('/api/admin-bookings'), { headers });
       const data = await res.json();
@@ -145,7 +144,6 @@ export default function AdminPage() {
     setLoadingLeads(true);
     try {
       const headers = {};
-      if (token) headers['Authorization'] = `Bearer ${token}`;
 
       const res = await fetch(getApiUrl('/api/admin-leads'), { headers });
       const data = await res.json();
@@ -168,7 +166,6 @@ export default function AdminPage() {
     setUpdatingLeadId(leadId);
     try {
       const headers = { 'Content-Type': 'application/json' };
-      if (token) headers['Authorization'] = `Bearer ${token}`;
 
       const res = await fetch(getApiUrl('/api/admin-update-lead'), {
         method: 'POST',
@@ -198,7 +195,6 @@ export default function AdminPage() {
     setSavingSchedule(true);
     try {
       const headers = { 'Content-Type': 'application/json' };
-      if (token) headers['Authorization'] = `Bearer ${token}`;
 
       const res = await fetch(getApiUrl('/api/admin-schedule'), {
         method: 'POST',
@@ -324,7 +320,6 @@ export default function AdminPage() {
     setUpdatingId(bookingId);
     try {
       const headers = { 'Content-Type': 'application/json' };
-      if (token) headers['Authorization'] = `Bearer ${token}`;
 
       const res = await fetch(getApiUrl('/api/admin-update-booking'), {
         method: 'POST',
@@ -354,7 +349,6 @@ export default function AdminPage() {
     setSavingPricing(true);
     try {
       const headers = { 'Content-Type': 'application/json' };
-      if (token) headers['Authorization'] = `Bearer ${token}`;
 
       const res = await fetch(getApiUrl('/api/admin-pricing-tiers'), {
         method: 'POST',
@@ -431,7 +425,6 @@ export default function AdminPage() {
     setSavingReels(true);
     try {
       const headers = { 'Content-Type': 'application/json' };
-      if (token) headers['Authorization'] = `Bearer ${token}`;
 
       const res = await fetch(getApiUrl('/api/admin-reels'), {
         method: 'POST',
@@ -518,7 +511,7 @@ export default function AdminPage() {
                 Reshmi Verma Administration & Control
               </h1>
               <p style={{ fontSize: '0.88rem', color: 'var(--text-muted)', margin: 0, wordBreak: 'break-word' }}>
-                Authorized Portal &bull; Logged in as: <strong>{user?.email}</strong>
+                Authorized Portal &bull; Clinical Command Desk
               </p>
             </div>
           </div>
