@@ -639,19 +639,42 @@ export default function HomePage() {
 
               {/* Main Visual Display */}
 
-              <div className="transformation-visual-container">
+              <div
+                className={`transformation-visual-container ${transformationTab === "compare" ? "mode-compare" : "mode-single"}`}
+                style={{
+                  aspectRatio: transformationTab === "compare" ? "1 / 1" : "3 / 4",
+                  background: "#121214",
+                  borderRadius: "20px",
+                  overflow: "hidden",
+                }}
+              >
                 {transformationTab === "compare" && (
-                  <div className="transformation-split-view combined-mode">
-                    <span className="photo-phase-tag phase-before">BEFORE</span>
+                  <div
+                    className="transformation-split-view combined-mode"
+                    style={{
+                      width: "100%",
+                      height: "100%",
+                      background: "#121214",
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                    }}
+                  >
+                    <span className="photo-phase-tag phase-before" style={{ top: 14, left: 14 }}>BEFORE</span>
 
-                    <span className="photo-phase-tag phase-after">AFTER</span>
+                    <span className="photo-phase-tag phase-after" style={{ top: 14, right: 14 }}>AFTER</span>
 
                     <img
                       src="/assets/images/collage.jpeg"
-
                       alt="Reshmi Verma Before and After 38 kg Health Transformation"
-
                       className="transformation-combined-img"
+                      style={{
+                        width: "100%",
+                        height: "100%",
+                        objectFit: "contain",
+                        objectPosition: "center center",
+                        display: "block",
+                      }}
                     />
                   </div>
                 )}
@@ -688,7 +711,10 @@ export default function HomePage() {
                 )}
 
                 {transformationTab === "after" && (
-                  <div className="transformation-single-view">
+                  <div
+                    className="transformation-single-view"
+                    style={{ background: "#1a1a1a" }}
+                  >
                     <span
                       className="photo-phase-tag phase-after"
                       style={{ top: 14, right: 14 }}
@@ -698,9 +724,14 @@ export default function HomePage() {
 
                     <img
                       src="/assets/images/After.PNG"
-
                       alt="Reshmi Verma After Transformation"
-
+                      style={{
+                        width: "100%",
+                        height: "100%",
+                        objectFit: "contain",
+                        objectPosition: "center center",
+                        display: "block",
+                      }}
                       onError={(e) => {
                         e.target.onerror = null;
                         e.target.src = "/assets/images/reshmi-after.jpg";

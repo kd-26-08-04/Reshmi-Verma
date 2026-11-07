@@ -5251,9 +5251,9 @@ h6 {
 
   height: 100%;
 
-  object-fit: cover;
+  object-fit: contain;
 
-  object-position: center top;
+  object-position: center center;
 
   display: block;
 
@@ -17985,11 +17985,26 @@ h6 {
 }
 
 
-/* ——— 3. Transformation Container — Better aspect-ratio on mobile ——— */
+/* ——— 3. Transformation Container — Dynamic aspect-ratio on mobile ——— */
+.transformation-visual-container.mode-compare,
+.transformation-visual-container:not(.mode-single) {
+  aspect-ratio: 1 / 1 !important;
+}
+
+.transformation-visual-container.mode-single {
+  aspect-ratio: 3 / 4 !important;
+}
+
 @media (max-width: 768px) {
 
-  .transformation-visual-container {
-    aspect-ratio: 4 / 5;
+  .transformation-visual-container.mode-compare,
+  .transformation-visual-container:not(.mode-single) {
+    aspect-ratio: 1 / 1 !important;
+    border-radius: 18px;
+  }
+
+  .transformation-visual-container.mode-single {
+    aspect-ratio: 3 / 4 !important;
     border-radius: 18px;
   }
 
@@ -18011,8 +18026,13 @@ h6 {
 
 @media (max-width: 480px) {
 
-  .transformation-visual-container {
-    aspect-ratio: 3 / 4;
+  .transformation-visual-container.mode-compare,
+  .transformation-visual-container:not(.mode-single) {
+    aspect-ratio: 1 / 1 !important;
+  }
+
+  .transformation-visual-container.mode-single {
+    aspect-ratio: 3 / 4 !important;
   }
 
 }
